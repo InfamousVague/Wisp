@@ -169,7 +169,7 @@ function HeroSection() {
           variant="secondary"
           size="lg"
           iconLeft={<Github size={18} />}
-          onClick={() => window.open('https://github.com', '_blank')}
+          onClick={() => window.open('https://github.com/InfamousVague/Wisp', '_blank')}
         >
           GitHub
         </Button>
@@ -530,9 +530,16 @@ function FooterSection() {
       <Text size="xs" color="muted">
         Built with Wisp · MIT License
       </Text>
-      <Text size="xs" color="muted">
-        github.com/wisp-ui
-      </Text>
+      <a
+        href="https://github.com/InfamousVague/Wisp"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ textDecoration: 'none' }}
+      >
+        <Text size="xs" color="muted">
+          github.com/InfamousVague/Wisp
+        </Text>
+      </a>
     </footer>
   );
 }
