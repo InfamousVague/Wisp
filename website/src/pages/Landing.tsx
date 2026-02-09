@@ -115,7 +115,6 @@ export function Landing() {
       <ShowcaseSection />
 
       {/* Footer */}
-      <FooterSection />
     </div>
   );
 }
@@ -519,37 +518,3 @@ function ShowcaseSection() {
   );
 }
 
-// ---------------------------------------------------------------------------
-// Footer
-// ---------------------------------------------------------------------------
-
-function FooterSection() {
-  const colors = useThemeColors();
-
-  return (
-    <footer
-      style={{
-        marginTop: 'auto',
-        borderTop: `1px solid ${colors.border.subtle}`,
-        padding: '24px 32px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
-      <Text size="xs" color="muted">
-        Built with Wisp · MIT License
-      </Text>
-      <a
-        href="https://github.com/InfamousVague/Wisp"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ textDecoration: 'none' }}
-      >
-        <Text size="xs" color="muted">
-          github.com/InfamousVague/Wisp
-        </Text>
-      </a>
-    </footer>
-  );
-}
