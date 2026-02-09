@@ -440,7 +440,7 @@ function ShowcaseSection() {
                       <Text size="xs" weight="semibold">Box</Text>
                     </Card>
                   </HStack>
-                  <Separator spacing="xs" />
+                  <Separator spacing="sm" />
                   <Card variant="outlined" padding="md" radius="md">
                     <VStack gap="xs">
                       <HStack gap="sm" align="center">
@@ -450,7 +450,7 @@ function ShowcaseSection() {
                           <Text size="xs" color="secondary">Developer</Text>
                         </VStack>
                       </HStack>
-                      <Separator spacing="xs" />
+                      <Separator spacing="sm" />
                       <HStack gap="xs" align="center">
                         <Badge variant="success" size="sm" dot>Active</Badge>
                         <Spacer size="xs" />

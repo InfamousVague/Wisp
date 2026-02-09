@@ -17,6 +17,7 @@
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
+    "types": ["vite/client"],
     "paths": {
       "@wisp-ui/react": ["../packages/react/src"],
       "@wisp-ui/react/*": ["../packages/react/src/*"],
