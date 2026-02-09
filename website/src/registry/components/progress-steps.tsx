@@ -16,7 +16,7 @@ function StepsDemo() {
       <ProgressSteps steps={steps} currentStep={step} />
       <HStack gap="sm" justify="center">
         <Button size="sm" variant="secondary" onClick={() => setStep(Math.max(0, step - 1))} disabled={step === 0}>Back</Button>
-        <Button size="sm" onClick={() => setStep(Math.min(3, step + 1))} disabled={step === 3}>Next</Button>
+        <Button size="sm" onClick={() => setStep(Math.min(steps.length, step + 1))} disabled={step === steps.length}>Next</Button>
       </HStack>
     </VStack>
   );
