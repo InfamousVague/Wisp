@@ -1,0 +1,76 @@
+import React, { forwardRef, useMemo } from 'react';
+import type { ScrollAreaProps } from '@wisp-ui/core/types/ScrollArea.types';
+import { buildScrollAreaStyle } from '@wisp-ui/core/styles/ScrollArea.styles';
+import { useThemeColors } from '../../providers';
+
+/**
+ * ScrollArea -- A styled scrollable container with theme-aware scrollbar colors.
+ *
+ * @remarks
+ * Uses the CSS standard `scrollbar-width` and `scrollbar-color` properties
+ * for styling, ensuring consistent appearance across modern browsers.
+ * Supports vertical, horizontal, or bidirectional scrolling via the
+ * {@link ScrollAreaProps.direction | direction} prop.
+ *
+ * Key features:
+ * - Theme-aware scrollbar track and thumb colors via {@link ThemeColors}
+ * - Configurable scrollbar width (`thin`, `auto`, `none`)
+ * - Optional scrollbar hiding while preserving scroll behavior
+ * - Constrained dimensions with `maxHeight` / `maxWidth`
+ * - Smooth iOS momentum scrolling (`-webkit-overflow-scrolling: touch`)
+ *
+ * @module primitives/scroll-area
+ * @example
+ * ```tsx
+ * <ScrollArea maxHeight={400}>
+ *   <LongContent />
+ * </ScrollArea>
+ * ```
+ *
+ * @example Horizontal scrolling
+ * ```tsx
+ * <ScrollArea direction="horizontal" maxWidth={600}>
+ *   <WideTable />
+ * </ScrollArea>
+ * ```
+ */
+export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(function ScrollArea(
+  {
+    children,
+    direction = 'vertical',
+    hideScrollbar = false,
+    scrollbarWidth = 'thin',
+    maxHeight,
+    maxWidth,
+    style: userStyle,
+    ...rest
+  },
+  ref,
+) {
+  const themeColors = useThemeColors();
+
+  const scrollStyle = useMemo(
+    () => buildScrollAreaStyle({
+      direction,
+      scrollbarWidth,
+      hideScrollbar,
+      maxHeight,
+      maxWidth,
+      themeColors,
+    }),
+    [direction, scrollbarWidth, hideScrollbar, maxHeight, maxWidth, themeColors],
+  );
+
+  const mergedStyle = useMemo(
+    () => ({ ...scrollStyle, ...userStyle }),
+    [scrollStyle, userStyle],
+  );
+
+  return (
+    <div ref={ref} style={mergedStyle} {...rest}>
+      {children}
+    </div>
+  );
+});
+
+ScrollArea.displayName = 'ScrollArea';

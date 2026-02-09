@@ -1,0 +1,200 @@
+import React, { createContext, useContext, useCallback, useMemo, useState, useEffect, useRef } from 'react';
+import { View, Pressable, Modal, TextInput, FlatList, SafeAreaView, StyleSheet, Text as RNText, ActivityIndicator } from 'react-native';
+import type { ViewStyle, TextStyle } from 'react-native';
+import Svg, { Path, Circle, Line } from 'react-native-svg';
+import { useThemeColors } from '../../providers';
+
+type CommandSize = 'sm' | 'md' | 'lg';
+const commandSizeMap: Record<CommandSize, number> = { sm: 400, md: 520, lg: 640 };
+
+interface CommandContextValue {
+  search: string;
+  onSearchChange: (v: string) => void;
+  onItemSelect: (v: string) => void;
+  filter?: (value: string, search: string, keywords?: string[]) => boolean;
+  size: CommandSize;
+  loading: boolean;
+}
+
+const CommandContext = createContext<CommandContextValue | null>(null);
+function useCommandContext(): CommandContextValue {
+  const ctx = useContext(CommandContext);
+  if (!ctx) throw new Error('[Wisp] Command compound components must be used within <Command>.');
+  return ctx;
+}
+
+function defaultFilter(value: string, search: string, keywords?: string[]): boolean {
+  const lower = search.toLowerCase();
+  if (value.toLowerCase().includes(lower)) return true;
+  if (keywords?.some((kw) => kw.toLowerCase().includes(lower))) return true;
+  return false;
+}
+
+export interface CommandProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onSelect?: (value: string) => void;
+  size?: CommandSize;
+  filter?: (value: string, search: string, keywords?: string[]) => boolean;
+  loading?: boolean;
+  closeOnSelect?: boolean;
+  children: React.ReactNode;
+  style?: ViewStyle;
+}
+
+export function Command({ open, onOpenChange, onSelect, size = 'md', filter, loading = false, closeOnSelect = true, children, style: userStyle }: CommandProps) {
+  const tc = useThemeColors();
+  const [search, setSearch] = useState('');
+
+  useEffect(() => { if (open) setSearch(''); }, [open]);
+
+  const handleItemSelect = useCallback((value: string) => {
+    onSelect?.(value);
+    if (closeOnSelect) onOpenChange(false);
+  }, [onSelect, closeOnSelect, onOpenChange]);
+
+  const contextValue = useMemo<CommandContextValue>(() => ({
+    search, onSearchChange: setSearch, onItemSelect: handleItemSelect, filter, size, loading,
+  }), [search, handleItemSelect, filter, size, loading]);
+
+  if (!open) return null;
+
+  return (
+    <Modal visible={open} transparent animationType="fade" onRequestClose={() => onOpenChange(false)} statusBarTranslucent>
+      <Pressable style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.5)' }]} onPress={() => onOpenChange(false)}>
+        <SafeAreaView style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 80 }}>
+          <Pressable onPress={(e) => e.stopPropagation()}>
+            <View style={[{
+              backgroundColor: tc.background.raised, borderRadius: 16, overflow: 'hidden',
+              width: commandSizeMap[size], maxHeight: 400,
+              shadowColor: '#000', shadowOffset: { width: 0, height: 8 },
+              shadowOpacity: 0.25, shadowRadius: 24, elevation: 10,
+            }, userStyle]}>
+              <CommandContext.Provider value={contextValue}>
+                {children}
+              </CommandContext.Provider>
+            </View>
+          </Pressable>
+        </SafeAreaView>
+      </Pressable>
+    </Modal>
+  );
+}
+Command.displayName = 'Command';
+
+export interface CommandInputProps {
+  placeholder?: string;
+  icon?: React.ComponentType<{ size?: number | string }>;
+}
+
+export function CommandInput({ placeholder = 'Type a command or search...', icon: IconComp }: CommandInputProps) {
+  const { search, onSearchChange } = useCommandContext();
+  const tc = useThemeColors();
+  const inputRef = useRef<TextInput>(null);
+
+  useEffect(() => { setTimeout(() => inputRef.current?.focus(), 100); }, []);
+
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 12, borderBottomWidth: 1, borderBottomColor: tc.border.subtle, gap: 8 }}>
+      {IconComp ? (
+        <IconComp size={18} />
+      ) : (
+        <Svg width={18} height={18} viewBox="0 0 24 24" fill="none">
+          <Circle cx={11} cy={11} r={8} stroke={tc.text.muted} strokeWidth={2} />
+          <Line x1={21} y1={21} x2={16.65} y2={16.65} stroke={tc.text.muted} strokeWidth={2} strokeLinecap="round" />
+        </Svg>
+      )}
+      <TextInput ref={inputRef} value={search} onChangeText={onSearchChange}
+        placeholder={placeholder} placeholderTextColor={tc.text.muted}
+        autoCorrect={false} autoCapitalize="none" spellCheck={false}
+        style={{ flex: 1, height: 44, fontSize: 14, color: tc.text.onRaised } as TextStyle} />
+    </View>
+  );
+}
+CommandInput.displayName = 'CommandInput';
+
+export interface CommandListProps { children: React.ReactNode; style?: ViewStyle; }
+
+export function CommandList({ children, style: userStyle }: CommandListProps) {
+  const { loading } = useCommandContext();
+  const tc = useThemeColors();
+  if (loading) {
+    return <View style={[{ padding: 24, alignItems: 'center' }, userStyle]}><ActivityIndicator color={tc.accent.primary} /></View>;
+  }
+  return <View style={[{ paddingVertical: 4, maxHeight: 300 }, userStyle]}>{children}</View>;
+}
+CommandList.displayName = 'CommandList';
+
+export interface CommandGroupProps { heading?: string; children: React.ReactNode; style?: ViewStyle; }
+
+export function CommandGroup({ heading, children, style: userStyle }: CommandGroupProps) {
+  const tc = useThemeColors();
+  return (
+    <View style={userStyle}>
+      {heading && (
+        <RNText style={{ fontSize: 11, fontWeight: '600', color: tc.text.muted, paddingHorizontal: 12, paddingTop: 8, paddingBottom: 4, textTransform: 'uppercase', letterSpacing: 0.5 } as TextStyle}>{heading}</RNText>
+      )}
+      {children}
+    </View>
+  );
+}
+CommandGroup.displayName = 'CommandGroup';
+
+export interface CommandItemProps {
+  value: string;
+  onSelect?: (value: string) => void;
+  disabled?: boolean;
+  icon?: React.ComponentType<{ size?: number | string }>;
+  description?: string;
+  keywords?: string[];
+  children: React.ReactNode;
+  style?: ViewStyle;
+}
+
+export function CommandItem({ value, onSelect: onItemSelect, disabled = false, icon: IconComp, description, keywords, children, style: userStyle }: CommandItemProps) {
+  const { search, onItemSelect: onRootSelect, filter } = useCommandContext();
+  const tc = useThemeColors();
+
+  const filterFn = filter || defaultFilter;
+  const isVisible = !search || filterFn(value, search, keywords);
+
+  const handlePress = useCallback(() => {
+    if (disabled) return;
+    onItemSelect?.(value);
+    onRootSelect(value);
+  }, [disabled, value, onItemSelect, onRootSelect]);
+
+  if (!isVisible) return null;
+
+  return (
+    <Pressable onPress={handlePress} disabled={disabled}
+      style={({ pressed }) => [{ flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 8, paddingHorizontal: 12, backgroundColor: pressed ? tc.accent.highlight : 'transparent', opacity: disabled ? 0.4 : 1, borderRadius: 6, marginHorizontal: 4 }, userStyle]}>
+      {IconComp && <View style={{ width: 20, alignItems: 'center' }}><IconComp size={18} /></View>}
+      <View style={{ flex: 1 }}>
+        <RNText style={{ fontSize: 14, color: tc.text.onRaised } as TextStyle}>{children}</RNText>
+        {description && <RNText style={{ fontSize: 12, color: tc.text.muted, marginTop: 2 } as TextStyle}>{description}</RNText>}
+      </View>
+    </Pressable>
+  );
+}
+CommandItem.displayName = 'CommandItem';
+
+export interface CommandSeparatorProps { style?: ViewStyle; }
+
+export function CommandSeparator({ style: userStyle }: CommandSeparatorProps) {
+  const tc = useThemeColors();
+  return <View style={[{ height: 1, backgroundColor: tc.border.subtle, marginVertical: 4 }, userStyle]} />;
+}
+CommandSeparator.displayName = 'CommandSeparator';
+
+export interface CommandEmptyProps { children?: React.ReactNode; style?: ViewStyle; }
+
+export function CommandEmpty({ children, style: userStyle }: CommandEmptyProps) {
+  const tc = useThemeColors();
+  return (
+    <View style={[{ padding: 24, alignItems: 'center' }, userStyle]}>
+      <RNText style={{ fontSize: 14, color: tc.text.muted } as TextStyle}>{children || 'No results found.'}</RNText>
+    </View>
+  );
+}
+CommandEmpty.displayName = 'CommandEmpty';

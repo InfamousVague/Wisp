@@ -1,0 +1,198 @@
+import React, { forwardRef, useMemo, useState, useCallback } from 'react';
+import { View, Pressable, Modal, FlatList, StyleSheet, Text as RNText, SafeAreaView } from 'react-native';
+import type { ViewStyle, TextStyle } from 'react-native';
+import Svg, { Polyline, Path } from 'react-native-svg';
+import { useThemeColors } from '../../providers';
+
+export interface SelectOption {
+  value: string;
+  label: string;
+  description?: string;
+  icon?: React.ReactNode;
+  disabled?: boolean;
+}
+
+type SelectSize = 'sm' | 'md' | 'lg';
+
+const selectSizeMap: Record<SelectSize, { height: number; fontSize: number; paddingX: number }> = {
+  sm: { height: 32, fontSize: 13, paddingX: 10 },
+  md: { height: 40, fontSize: 14, paddingX: 14 },
+  lg: { height: 48, fontSize: 16, paddingX: 16 },
+};
+
+export interface SelectProps {
+  options: SelectOption[];
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  placeholder?: string;
+  size?: SelectSize;
+  label?: string;
+  error?: string | boolean;
+  disabled?: boolean;
+  fullWidth?: boolean;
+  style?: ViewStyle;
+}
+
+export const Select = forwardRef<View, SelectProps>(function Select(
+  {
+    options,
+    value: controlledValue,
+    defaultValue,
+    onChange,
+    placeholder = 'Select…',
+    size = 'md',
+    label,
+    error,
+    disabled = false,
+    fullWidth = false,
+    style: userStyle,
+  },
+  ref,
+) {
+  const themeColors = useThemeColors();
+  const cfg = selectSizeMap[size];
+  const isControlled = controlledValue !== undefined;
+  const [internalValue, setInternalValue] = useState(defaultValue ?? '');
+  const activeValue = isControlled ? controlledValue : internalValue;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const selectedOption = options.find((o) => o.value === activeValue);
+  const hasError = !!error;
+
+  const handleSelect = useCallback(
+    (optionValue: string) => {
+      if (!isControlled) setInternalValue(optionValue);
+      onChange?.(optionValue);
+      setIsOpen(false);
+    },
+    [isControlled, onChange],
+  );
+
+  const triggerStyle = useMemo<ViewStyle>(
+    () => ({
+      flexDirection: 'row',
+      alignItems: 'center',
+      height: cfg.height,
+      paddingHorizontal: cfg.paddingX,
+      borderRadius: 8,
+      borderWidth: 1,
+      borderColor: hasError ? themeColors.status.danger : themeColors.border.subtle,
+      backgroundColor: themeColors.background.surface,
+      gap: 8,
+      alignSelf: fullWidth ? 'stretch' : 'flex-start',
+      opacity: disabled ? 0.4 : 1,
+    }),
+    [cfg, hasError, themeColors, fullWidth, disabled],
+  );
+
+  const triggerTextStyle = useMemo<TextStyle>(
+    () => ({
+      flex: 1,
+      fontSize: cfg.fontSize,
+      color: selectedOption ? themeColors.text.primary : themeColors.text.muted,
+    }),
+    [cfg, selectedOption, themeColors],
+  );
+
+  const errorMsg = typeof error === 'string' ? error : undefined;
+
+  return (
+    <View ref={ref} style={[{ gap: 6 }, userStyle]}>
+      {label && (
+        <RNText style={{ fontSize: 14, fontWeight: '500', color: themeColors.text.primary } as TextStyle}>
+          {label}
+        </RNText>
+      )}
+
+      <Pressable
+        onPress={() => !disabled && setIsOpen(true)}
+        disabled={disabled}
+        accessibilityRole="button"
+        style={triggerStyle}
+      >
+        {selectedOption?.icon && <View style={{ flexShrink: 0 }}>{selectedOption.icon}</View>}
+        <RNText style={triggerTextStyle} numberOfLines={1}>
+          {selectedOption?.label ?? placeholder}
+        </RNText>
+        <Svg width={16} height={16} viewBox="0 0 24 24" fill="none">
+          <Polyline points="6 9 12 15 18 9" stroke={themeColors.text.secondary} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+        </Svg>
+      </Pressable>
+
+      {errorMsg && (
+        <RNText style={{ fontSize: 12, color: themeColors.status.danger } as TextStyle}>{errorMsg}</RNText>
+      )}
+
+      <Modal visible={isOpen} transparent animationType="fade" onRequestClose={() => setIsOpen(false)} statusBarTranslucent>
+        <Pressable style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.5)' }]} onPress={() => setIsOpen(false)}>
+          <SafeAreaView style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24 }}>
+            <Pressable onPress={(e) => e.stopPropagation()}>
+              <View style={{
+                backgroundColor: themeColors.background.raised,
+                borderRadius: 16,
+                maxHeight: '70%',
+                overflow: 'hidden',
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 8 },
+                shadowOpacity: 0.2,
+                shadowRadius: 24,
+                elevation: 8,
+              }}>
+                {label && (
+                  <View style={{ paddingHorizontal: 16, paddingTop: 16, paddingBottom: 8 }}>
+                    <RNText style={{ fontSize: 16, fontWeight: '600', color: themeColors.text.onRaised } as TextStyle}>
+                      {label}
+                    </RNText>
+                  </View>
+                )}
+                <FlatList
+                  data={options}
+                  keyExtractor={(item) => item.value}
+                  renderItem={({ item }) => {
+                    const isSelected = item.value === activeValue;
+                    const isDisabled = !!item.disabled;
+                    return (
+                      <Pressable
+                        onPress={() => !isDisabled && handleSelect(item.value)}
+                        disabled={isDisabled}
+                        style={({ pressed }) => ({
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          gap: 12,
+                          paddingVertical: 12,
+                          paddingHorizontal: 16,
+                          backgroundColor: pressed ? themeColors.accent.highlight : 'transparent',
+                          opacity: isDisabled ? 0.4 : 1,
+                        })}
+                      >
+                        {item.icon && <View style={{ flexShrink: 0 }}>{item.icon}</View>}
+                        <View style={{ flex: 1 }}>
+                          <RNText style={{ fontSize: 14, fontWeight: isSelected ? '600' : '400', color: themeColors.text.onRaised } as TextStyle}>
+                            {item.label}
+                          </RNText>
+                          {item.description && (
+                            <RNText style={{ fontSize: 12, color: themeColors.text.onRaisedSecondary, marginTop: 2 } as TextStyle}>
+                              {item.description}
+                            </RNText>
+                          )}
+                        </View>
+                        {isSelected && (
+                          <Svg width={16} height={16} viewBox="0 0 24 24" fill="none">
+                            <Polyline points="20 6 9 17 4 12" stroke={themeColors.accent.primary} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" />
+                          </Svg>
+                        )}
+                      </Pressable>
+                    );
+                  }}
+                />
+              </View>
+            </Pressable>
+          </SafeAreaView>
+        </Pressable>
+      </Modal>
+    </View>
+  );
+});
+
+Select.displayName = 'Select';

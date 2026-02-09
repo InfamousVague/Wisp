@@ -1,0 +1,90 @@
+import React, { useState } from 'react';
+import { Dialog, Button, Text, VStack, HStack } from '@wisp-ui/react';
+import type { ComponentEntry } from '../types';
+
+function DialogDemo() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button size="sm" onClick={() => setOpen(true)}>Open Dialog</Button>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Confirm Action"
+        description="Are you sure you want to proceed? This action cannot be undone."
+        footer={
+          <HStack gap="sm" justify="end">
+            <Button variant="secondary" size="sm" onClick={() => setOpen(false)}>Cancel</Button>
+            <Button size="sm" onClick={() => setOpen(false)}>Confirm</Button>
+          </HStack>
+        }
+      />
+    </>
+  );
+}
+
+export const dialogEntry: ComponentEntry = {
+  slug: 'dialog',
+  name: 'Dialog',
+  category: 'components',
+  description:
+    'Modal dialog with title, description, body, footer, close button, overlay click/escape handling, and size presets.',
+  variantCount: 3,
+  keywords: ['dialog', 'modal', 'alert', 'confirm', 'popup'],
+
+  cardPreview: (
+    <div style={{ width: '100%', maxWidth: 200, borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(255,255,255,0.04)', padding: 12, overflow: 'hidden' }}>
+      <VStack gap="xs">
+        <Text size="sm" weight="medium">Dialog Title</Text>
+        <Text size="xs" color="secondary">Are you sure?</Text>
+        <HStack gap="xs" justify="end" style={{ marginTop: 8 }}>
+          <div style={{ padding: '3px 8px', borderRadius: 4, border: '1px solid rgba(255,255,255,0.1)', fontSize: 11, color: 'rgba(255,255,255,0.6)' }}>Cancel</div>
+          <div style={{ padding: '3px 8px', borderRadius: 4, backgroundColor: 'rgba(255,255,255,0.12)', fontSize: 11, color: 'rgba(255,255,255,0.8)' }}>Confirm</div>
+        </HStack>
+      </VStack>
+    </div>
+  ),
+
+  examples: [
+    {
+      title: 'Interactive',
+      render: <DialogDemo />,
+      code: `import { Dialog } from '@wisp-ui/react';
+
+const [open, setOpen] = useState(false);
+<Button onClick={() => setOpen(true)}>Open</Button>
+<Dialog
+  open={open}
+  onClose={() => setOpen(false)}
+  title="Confirm Action"
+  description="Are you sure?"
+  footer={<Button onClick={() => setOpen(false)}>Confirm</Button>}
+/>`,
+      rnCode: `import { Dialog, Button } from '@wisp-ui/react-native';
+
+const [open, setOpen] = useState(false);
+<Button onPress={() => setOpen(true)}>Open</Button>
+<Dialog
+  open={open}
+  onClose={() => setOpen(false)}
+  title="Confirm Action"
+  description="Are you sure?"
+  footer={<Button onPress={() => setOpen(false)}>Confirm</Button>}
+/>`,
+    },
+  ],
+
+  props: [
+    { name: 'open', type: 'boolean', required: true, description: 'Dialog visibility.' },
+    { name: 'onClose', type: '() => void', required: true, description: 'Close callback.' },
+    { name: 'title', type: 'string', required: true, description: 'Header title.' },
+    { name: 'description', type: 'string', description: 'Description below title.' },
+    { name: 'icon', type: 'React.ReactNode', description: 'Icon above title.' },
+    { name: 'children', type: 'React.ReactNode', description: 'Body content.' },
+    { name: 'footer', type: 'React.ReactNode', description: 'Footer actions.' },
+    { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Width preset.' },
+    { name: 'closeOnOverlayClick', type: 'boolean', default: 'true', description: 'Close on backdrop click.' },
+    { name: 'closeOnEscape', type: 'boolean', default: 'true', description: 'Close on Escape key.' },
+    { name: 'showCloseButton', type: 'boolean', default: 'true', description: 'Show X button.' },
+  ],
+};

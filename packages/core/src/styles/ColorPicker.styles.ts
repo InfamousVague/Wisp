@@ -1,0 +1,228 @@
+import type { CSSStyleObject } from '../types';
+import type { ThemeColors } from '../theme/types';
+import type { ColorPickerSizeConfig } from '../types/ColorPicker.types';
+import { fontFamilyStacks } from '../tokens/shared';
+
+// ---------------------------------------------------------------------------
+// Container style (vertical flex column)
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds the outermost container style (vertical flex column containing
+ * the label, preview row, and preset swatch grid).
+ *
+ * @param sizeConfig - Dimension tokens for the active size.
+ * @returns `CSSStyleObject` for the container `<div>`.
+ */
+export function buildColorPickerContainerStyle(
+  sizeConfig: ColorPickerSizeConfig,
+): CSSStyleObject {
+  return {
+    display: 'inline-flex',
+    flexDirection: 'column',
+    gap: sizeConfig.gap,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Preview row style (preview swatch + hex input)
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds the preview row style — a horizontal flex row containing the
+ * colour preview swatch and the optional hex text input.
+ *
+ * @param sizeConfig - Dimension tokens for the active size.
+ * @returns `CSSStyleObject` for the preview row `<div>`.
+ */
+export function buildColorPickerPreviewRowStyle(
+  sizeConfig: ColorPickerSizeConfig,
+): CSSStyleObject {
+  return {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: sizeConfig.gap,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Preview swatch style
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds styles for the colour preview swatch displayed next to the hex
+ * input.
+ *
+ * @param sizeConfig  - Dimension tokens for the active size.
+ * @param color       - The current hex colour to display.
+ * @param themeColors - The active {@link ThemeColors} for border colour.
+ * @returns `CSSStyleObject` for the preview swatch `<div>`.
+ */
+export function buildColorPickerPreviewStyle(
+  sizeConfig: ColorPickerSizeConfig,
+  color: string,
+  themeColors: ThemeColors,
+): CSSStyleObject {
+  return {
+    width: sizeConfig.previewSize,
+    height: sizeConfig.previewSize,
+    borderRadius: sizeConfig.borderRadius,
+    backgroundColor: color,
+    border: `1px solid ${themeColors.border.subtle}`,
+    flexShrink: 0,
+    boxSizing: 'border-box',
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Hex input style
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds styles for the hex colour text input.
+ *
+ * @param sizeConfig  - Dimension tokens for the active size.
+ * @param themeColors - The active {@link ThemeColors} for border and text.
+ * @returns `CSSStyleObject` for the `<input>` element.
+ */
+export function buildColorPickerInputStyle(
+  sizeConfig: ColorPickerSizeConfig,
+  themeColors: ThemeColors,
+): CSSStyleObject {
+  return {
+    height: sizeConfig.inputHeight,
+    borderRadius: sizeConfig.borderRadius,
+    border: `1px solid ${themeColors.border.strong}`,
+    backgroundColor: 'transparent',
+    color: themeColors.text.primary,
+    fontSize: sizeConfig.fontSize,
+    padding: `0 ${Math.round(sizeConfig.fontSize * 0.6)}px`,
+    fontFamily: fontFamilyStacks.mono,
+    width: 100,
+    boxSizing: 'border-box',
+    outline: 'none',
+    margin: 0,
+    appearance: 'none',
+    transition: 'border-color 150ms ease',
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Swatch grid style
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds styles for the preset swatch grid container.
+ *
+ * @param _sizeConfig - Dimension tokens for the active size (reserved for
+ *                      future per-size spacing adjustments).
+ * @returns `CSSStyleObject` for the swatch grid `<div>`.
+ */
+export function buildColorPickerSwatchGridStyle(
+  _sizeConfig: ColorPickerSizeConfig,
+): CSSStyleObject {
+  return {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: 6,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Individual swatch style
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds styles for a single preset colour swatch.
+ *
+ * @param sizeConfig  - Dimension tokens for the active size.
+ * @param color       - The hex colour of this swatch.
+ * @param isSelected  - Whether this swatch is the currently selected colour.
+ * @param isHovered   - Whether the pointer is currently over this swatch.
+ * @param themeColors - The active {@link ThemeColors} for border colours.
+ * @returns `CSSStyleObject` for the swatch `<button>`.
+ */
+export function buildColorPickerSwatchStyle(
+  sizeConfig: ColorPickerSizeConfig,
+  color: string,
+  isSelected: boolean,
+  isHovered: boolean,
+  themeColors: ThemeColors,
+): CSSStyleObject {
+  let border: string;
+  if (isSelected) {
+    border = `2px solid ${themeColors.accent.primary}`;
+  } else if (isHovered) {
+    border = `2px solid ${themeColors.border.strong}`;
+  } else {
+    border = `1px solid ${themeColors.border.subtle}`;
+  }
+
+  return {
+    width: sizeConfig.swatchSize,
+    height: sizeConfig.swatchSize,
+    borderRadius: 4,
+    backgroundColor: color,
+    cursor: 'pointer',
+    border,
+    padding: 0,
+    outline: 'none',
+    boxSizing: 'border-box',
+    flexShrink: 0,
+    transition: 'border-color 150ms ease',
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Label style
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds styles for the optional label text rendered above the picker.
+ *
+ * @param sizeConfig  - Dimension tokens for the active size.
+ * @param themeColors - The active {@link ThemeColors} for text colour.
+ * @returns `CSSStyleObject` for the `<label>` element.
+ */
+export function buildColorPickerLabelStyle(
+  sizeConfig: ColorPickerSizeConfig,
+  themeColors: ThemeColors,
+): CSSStyleObject {
+  return {
+    fontFamily: fontFamilyStacks.sans,
+    fontSize: sizeConfig.fontSize,
+    color: themeColors.text.secondary,
+    fontWeight: 500,
+    lineHeight: 1.4,
+    cursor: 'default',
+    userSelect: 'none',
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Skeleton style
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds styles for the skeleton shimmer placeholder shown when
+ * `skeleton` is `true`.
+ *
+ * @param sizeConfig  - Dimension tokens for the active size.
+ * @param themeColors - The active {@link ThemeColors} providing the
+ *                      skeleton background tint.
+ * @returns `CSSStyleObject` for the skeleton `<div>`.
+ */
+export function getColorPickerSkeletonStyle(
+  sizeConfig: ColorPickerSizeConfig,
+  themeColors: ThemeColors,
+): CSSStyleObject {
+  return {
+    display: 'inline-block',
+    width: 180,
+    height: sizeConfig.previewSize + sizeConfig.gap + sizeConfig.swatchSize * 2 + 6,
+    borderRadius: sizeConfig.borderRadius,
+    backgroundColor: themeColors.border.subtle,
+    animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
+  };
+}

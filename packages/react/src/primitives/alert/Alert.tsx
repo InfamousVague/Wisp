@@ -1,0 +1,98 @@
+import React, { forwardRef, useMemo } from 'react';
+import type { AlertProps } from '@wisp-ui/core/types/Alert.types';
+import type { CSSStyleObject } from '@wisp-ui/core/types';
+import {
+  buildAlertStyle,
+  buildIconWrapperStyle,
+  buildContentStyle,
+  buildTitleStyle,
+  buildDescriptionStyle,
+  buildActionStyle,
+} from '@wisp-ui/core/styles/Alert.styles';
+import { useThemeColors } from '../../providers';
+
+/**
+ * Alert — Contextual feedback banner for user-facing messages.
+ *
+ * @remarks
+ * - Supports five semantic variants: `default`, `info`, `success`, `warning`, and `danger`.
+ * - Accepts an optional leading {@link AlertProps.icon | icon} and trailing {@link AlertProps.action | action} slot.
+ * - Falls back to `children` when no explicit `description` prop is provided.
+ * - Renders with `role="alert"` for accessibility.
+ * - Forwards a ref to the root `<div>` element.
+ *
+ * @module primitives/alert
+ * @example
+ * ```tsx
+ * <Alert variant="success" title="Saved" description="Your changes have been saved." />
+ * ```
+ * @example
+ * ```tsx
+ * <Alert variant="danger" icon={<ErrorIcon />} action={<Button>Retry</Button>}>
+ *   Something went wrong.
+ * </Alert>
+ * ```
+ */
+export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  {
+    variant = 'default',
+    title,
+    description,
+    icon,
+    action,
+    children,
+    className,
+    style: userStyle,
+    ...rest
+  },
+  ref,
+) {
+  const themeColors = useThemeColors();
+
+  const alertStyle = useMemo(
+    () => buildAlertStyle(variant, themeColors, userStyle as CSSStyleObject),
+    [variant, themeColors, userStyle],
+  );
+
+  const iconStyle = useMemo(
+    () => buildIconWrapperStyle(variant, themeColors),
+    [variant, themeColors],
+  );
+
+  const contentStyle = useMemo(() => buildContentStyle(), []);
+
+  const titleStyle = useMemo(
+    () => buildTitleStyle(themeColors, variant),
+    [themeColors, variant],
+  );
+
+  const descriptionStyle = useMemo(
+    () => buildDescriptionStyle(themeColors, variant),
+    [themeColors, variant],
+  );
+
+  const actionWrapperStyle = useMemo(() => buildActionStyle(), []);
+
+  const body = description ?? children;
+
+  return (
+    <div
+      ref={ref}
+      role="alert"
+      className={className}
+      style={alertStyle}
+      {...rest}
+    >
+      {icon && <span style={iconStyle}>{icon}</span>}
+
+      <div style={contentStyle}>
+        {title && <p style={titleStyle}>{title}</p>}
+        {body && <p style={descriptionStyle}>{body}</p>}
+      </div>
+
+      {action && <div style={actionWrapperStyle}>{action}</div>}
+    </div>
+  );
+});
+
+Alert.displayName = 'Alert';

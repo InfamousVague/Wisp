@@ -1,0 +1,332 @@
+/**
+ * @module @wisp-ui/react
+ * @description Wisp React — React components built on @wisp-ui/core.
+ */
+
+// ─── Core re-exports (tokens, theme types, variants, utils) ─────
+// Consumers can import from @wisp-ui/core directly, but we re-export
+// for convenience so they only need @wisp-ui/react.
+
+// Tokens
+export { colors, neutral } from '@wisp-ui/core/tokens/colors';
+export { spacing } from '@wisp-ui/core/tokens/spacing';
+export { typography } from '@wisp-ui/core/tokens/typography';
+export { radii } from '@wisp-ui/core/tokens/radii';
+export { shadows } from '@wisp-ui/core/tokens/shadows';
+export { borderWidths } from '@wisp-ui/core/tokens/borders';
+export { componentHeights, iconSizes } from '@wisp-ui/core/tokens/sizing';
+export { durations, easings, springs } from '@wisp-ui/core/tokens/motion';
+export { zIndex } from '@wisp-ui/core/tokens/z-index';
+export { breakpoints as breakpointTokens } from '@wisp-ui/core/tokens/breakpoints';
+export { opacity } from '@wisp-ui/core/tokens/opacity';
+export { withAlpha, lighten, darken, mixColors, hexToRgb, rgbToHex } from '@wisp-ui/core/tokens/color-utils';
+export {
+  textSizes,
+  fontWeightKeys,
+  fontWeightValues,
+  semanticColors,
+  fontFamilyKeys,
+  fontFamilyStacks,
+  componentSizes,
+  resolveSemanticColor,
+  surfaceVariants,
+  glassStyle,
+} from '@wisp-ui/core/tokens/shared';
+export type {
+  TextSize,
+  FontWeightKey,
+  SemanticColor,
+  FontFamilyKey,
+  ComponentSize,
+  SurfaceVariant,
+} from '@wisp-ui/core/tokens/shared';
+
+// Theme types (from core)
+export type { ThemeMode, ThemeColors, ThemeConfig, WispTheme } from '@wisp-ui/core/theme/types';
+
+// Variants
+export { appearances, type Appearance, getAppearanceColors } from '@wisp-ui/core/variants/appearance';
+export { sizes, type Size, sizeConfig } from '@wisp-ui/core/variants/size';
+export { shapes, type Shape, shapeConfig } from '@wisp-ui/core/variants/shape';
+export { intents, type Intent } from '@wisp-ui/core/variants/intent';
+export { orientations, type Orientation } from '@wisp-ui/core/variants/orientation';
+
+// Utils (from core)
+export { getSizeValues, getShapeRadius } from '@wisp-ui/core/utils/style-helpers';
+export { getButtonA11yProps, getInputA11yProps, getCheckboxA11yProps, getLiveRegionProps } from '@wisp-ui/core/utils/accessibility';
+
+// ─── React Providers & Theme ────────────────────────────────────
+export { WispProvider } from './providers';
+export { useTheme, useThemeColors } from './providers';
+
+// ─── Animation ──────────────────────────────────────────────────
+export {
+  usePressAnimation,
+  useSpring,
+  useTransition,
+  useAnimatedValue,
+  Presence,
+} from './animation';
+
+// ─── Haptics ────────────────────────────────────────────────────
+export { useHaptics, triggerHaptic } from './haptics';
+export type { HapticType } from './haptics';
+
+// ─── Hooks ──────────────────────────────────────────────────────
+export { useLoading } from './hooks/use-loading';
+export { useControllable } from './hooks/use-controllable';
+export { useFocusVisible } from './hooks/use-focus-visible';
+export { useBreakpoint } from './hooks/use-breakpoint';
+export { usePlatform } from './hooks/use-platform';
+export { useId } from './hooks/use-id';
+
+// ─── Utils (React-specific) ────────────────────────────────────
+export { mergeRefs } from './utils/merge-refs';
+
+// ─── Primitives ─────────────────────────────────────────────────
+export { Text } from './primitives';
+export type { TextProps, TextWeight, TextColor, TextFamily } from './primitives';
+export { textColors, textWeights } from '@wisp-ui/core/types/Text.types';
+
+export { Icon, iconSizeMap } from './primitives';
+export type { IconProps, IconColor, IconSize } from './primitives';
+export { iconColors } from '@wisp-ui/core/types/Icon.types';
+
+export { Button, buttonVariants, buttonShapes, buttonSizeMap, shapeRadiusMap } from './primitives';
+export type { ButtonProps, ButtonVariant, ButtonShape, ButtonSize } from './primitives';
+
+export { Toggle, toggleSizes, toggleSizeMap, toggleSlimSizeMap } from './primitives';
+export type { ToggleProps, ToggleSize, ToggleSizeConfig } from './primitives';
+
+export { Input, inputSizes, inputSizeMap } from './primitives';
+export type { InputProps, InputSize, InputSizeConfig } from './primitives';
+
+export { Checkbox, checkboxSizes, checkboxSizeMap } from './primitives';
+export type { CheckboxProps, CheckboxSize, CheckboxSizeConfig } from './primitives';
+
+export { Spinner, spinnerSizes, spinnerSizeMap } from './primitives';
+export type { SpinnerProps, SpinnerSize, SpinnerSizeConfig } from './primitives';
+
+export { TextArea, textAreaSizes, textAreaSizeMap } from './primitives';
+export type { TextAreaProps, TextAreaSize, TextAreaSizeConfig } from './primitives';
+
+export { Radio, RadioGroup, radioSizes, radioSizeMap } from './primitives';
+export type { RadioProps, RadioGroupProps, RadioSize, RadioSizeConfig } from './primitives';
+
+export { Slider, sliderSizes, sliderSizeMap } from './primitives';
+export type { SliderProps, SliderSize, SliderSizeConfig } from './primitives';
+
+export { Badge, badgeSizes, badgeSizeMap, badgeVariants, badgeShapes } from './primitives';
+export type { BadgeProps, BadgeSize, BadgeVariant, BadgeShape, BadgeSizeConfig } from './primitives';
+
+export { Chip, chipSizes, chipSizeMap, chipColors, chipVariants } from './primitives';
+export type { ChipProps, ChipSize, ChipColor, ChipVariant, ChipSizeConfig } from './primitives';
+
+export { Tag, tagSizes, tagSizeMap } from './primitives';
+export type { TagProps, TagSize, TagSizeConfig } from './primitives';
+
+export { Avatar, avatarSizes, avatarShapes, avatarStatuses, avatarSizeMap } from './primitives';
+export type { AvatarProps, AvatarSize, AvatarShape, AvatarStatus, AvatarSizeConfig } from './primitives';
+
+export { Kbd, kbdSizes } from './primitives';
+export type { KbdProps, KbdSize } from './primitives';
+
+export { ColorSwatch, colorSwatchSizes, colorSwatchShapes } from './primitives';
+export type { ColorSwatchProps, ColorSwatchSize, ColorSwatchShape } from './primitives';
+
+export { Skeleton, skeletonVariants, skeletonAnimations } from './primitives';
+export type { SkeletonProps, SkeletonVariant, SkeletonAnimation } from './primitives';
+
+export { Alert, alertVariants } from './primitives';
+export type { AlertProps, AlertVariant } from './primitives';
+
+export { Progress, progressSizes, progressSizeMap } from './primitives';
+export type { ProgressProps, ProgressSize, ProgressSizeConfig } from './primitives';
+
+export { CircularProgress, circularProgressSizes, circularProgressVariants, circularProgressSizeMap } from './primitives';
+export type { CircularProgressProps, CircularProgressSize, CircularProgressVariant, CircularProgressSizeConfig } from './primitives';
+
+export { Toast, toastVariants } from './primitives';
+export type { ToastProps, ToastVariant } from './primitives';
+
+export { NumberInput, numberInputSizes } from './primitives';
+export type { NumberInputProps, NumberInputSize } from './primitives';
+
+export { PinInput, pinInputSizes, pinInputTypes, pinInputSizeMap } from './primitives';
+export type { PinInputProps, PinInputSize, PinInputType, PinInputSizeConfig } from './primitives';
+
+export { TagInput, tagInputSizes, tagInputSizeMap } from './primitives';
+export type { TagInputProps, TagInputSize, TagInputSizeConfig, TagItem } from './primitives';
+
+export { Indicator, indicatorVariants, indicatorStates, indicatorSizes, indicatorSizeMap } from './primitives';
+export type { IndicatorProps, IndicatorVariant, IndicatorState, IndicatorSize, IndicatorSizeConfig } from './primitives';
+
+export { Meter, meterSizes, meterSizeMap, meterVariants } from './primitives';
+export type { MeterProps, MeterSize, MeterSizeConfig, MeterVariant } from './primitives';
+
+export { Rating, ratingSizes, ratingSizeMap } from './primitives';
+export type { RatingProps, RatingSize, RatingSizeConfig } from './primitives';
+
+export { ColorPicker, colorPickerSizes, colorPickerSizeMap } from './primitives';
+export type { ColorPickerProps, ColorPickerSize, ColorPickerSizeConfig } from './primitives';
+
+export { Stepper, stepperSizes, stepperSizeMap } from './primitives';
+export type { StepperProps, StepperSize, StepperSizeConfig } from './primitives';
+
+// ─── Layouts ────────────────────────────────────────────────────
+export { Stack, HStack, VStack, stackDirections, stackAligns, stackJustifys } from './layouts';
+export type { StackProps, StackDirection, StackGap, StackAlign, StackJustify } from './layouts';
+
+export { Box, spacingKeys, radiiKeys } from './layouts';
+export type { BoxProps, ThemeSpacingKey, ThemeRadiiKey, BoxDisplay, BoxPosition } from './layouts';
+
+export { Center } from './layouts';
+export type { CenterProps } from './layouts';
+
+export { Spacer, spacerSizes } from './layouts';
+export type { SpacerProps, SpacerSize } from './layouts';
+
+export { Container, containerSizes, containerSizeMap } from './layouts';
+export type { ContainerProps, ContainerSize } from './layouts';
+
+export { ScrollArea, scrollAreaDirections, scrollbarWidths } from './layouts';
+export type { ScrollAreaProps, ScrollAreaDirection, ScrollbarWidth } from './layouts';
+
+export { Grid, GridItem, gridAlignItems, gridJustifyItems, gridAlignContents, gridJustifyContents } from './layouts';
+export type { GridProps, GridItemProps, GridGap, GridColumns, GridRows, GridAlignItems, GridJustifyItems, GridAlignContent, GridJustifyContent } from './layouts';
+
+export { Collapse, collapseDurations, collapseDurationMap } from './layouts';
+export type { CollapseProps, CollapseDuration } from './layouts';
+
+export { Sticky, stickyEdges } from './layouts';
+export type { StickyProps, StickyEdge } from './layouts';
+
+export { Overlay, overlayBackdrops } from './layouts';
+export type { OverlayProps, OverlayBackdrop } from './layouts';
+
+export { Floating, useFloating, floatingPlacements, floatingAligns, floatingStrategies } from './layouts';
+export type { FloatingProps, FloatingPlacement, FloatingAlign, FloatingStrategy, FloatingPosition, UseFloatingOptions } from './layouts';
+
+export { AspectRatio } from './layouts';
+export type { AspectRatioProps } from './layouts';
+
+export { Card, cardVariants, cardPaddings, cardRadii, cardPaddingMap, cardRadiusMap } from './layouts';
+export type { CardProps, CardVariant, CardPadding, CardRadius } from './layouts';
+
+export { Separator, separatorOrientations, separatorVariants, separatorSpacings, separatorSpacingMap } from './layouts';
+export type { SeparatorProps, SeparatorOrientation, SeparatorVariant, SeparatorSpacing } from './layouts';
+
+export { FormField, formFieldSizes, formFieldOrientations, formFieldSizeMap } from './layouts';
+export type { FormFieldProps, FormFieldSize, FormFieldOrientation, FormFieldSizeConfig } from './layouts';
+
+export { Breadcrumb, BreadcrumbItem, BreadcrumbSeparator, breadcrumbSizes, breadcrumbSizeMap } from './layouts';
+export type { BreadcrumbProps, BreadcrumbItemProps, BreadcrumbSeparatorProps, BreadcrumbSize, BreadcrumbSizeConfig } from './layouts';
+
+export { ListItem, listItemSizes, listItemSizeMap } from './layouts';
+export type { ListItemProps, ListItemSize, ListItemSizeConfig } from './layouts';
+
+export { EmptyState, emptyStateSizes, emptyStateSizeMap } from './layouts';
+export type { EmptyStateProps, EmptyStateSize, EmptyStateSizeConfig } from './layouts';
+
+export { Sidebar, SidebarSection, SidebarItem, sidebarWidths, sidebarWidthMap, sidebarPositions } from './layouts';
+export type { SidebarProps, SidebarSectionProps, SidebarItemProps, SidebarContextValue, SidebarWidth, SidebarPosition } from './layouts';
+
+// ─── Components ─────────────────────────────────────────────────
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './components';
+export type { AccordionProps, AccordionItemProps, AccordionTriggerProps, AccordionContentProps } from './components';
+
+export { Dialog, dialogSizes, dialogSizeMap } from './components';
+export type { DialogProps, DialogSize } from './components';
+
+export { Sheet, sheetSizes, sheetSizeMap } from './components';
+export type { SheetProps, SheetSize } from './components';
+
+export { Command, CommandInput, CommandList, CommandGroup, CommandItem, CommandSeparator, CommandEmpty, commandSizes, commandSizeMap } from './components';
+export type { CommandProps, CommandInputProps, CommandListProps, CommandGroupProps, CommandItemProps, CommandSeparatorProps, CommandEmptyProps, CommandSize } from './components';
+
+export { Combobox, comboboxSizes } from './components';
+export type { ComboboxProps, ComboboxOption, ComboboxSize } from './components';
+
+export { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, dropdownMenuAligns, dropdownMenuSides } from './components';
+export type { DropdownMenuProps, DropdownMenuTriggerProps, DropdownMenuContentProps, DropdownMenuItemProps, DropdownMenuSeparatorProps, DropdownMenuAlign, DropdownMenuSide } from './components';
+
+export { Tabs, TabList, Tab, TabPanel } from './components';
+export type { TabsProps, TabListProps, TabProps, TabPanelProps, TabsOrientation } from './components';
+
+export { Popover, PopoverTrigger, PopoverContent, popoverPlacements, popoverAligns } from './components';
+export type { PopoverProps, PopoverTriggerProps, PopoverContentProps, PopoverPlacement, PopoverAlign } from './components';
+
+export { Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, tableSizes, tableVariants, tableCellAlignments, tableSizePaddingMap, tableSizeFontMap } from './components';
+export type { TableProps, TableHeaderProps, TableBodyProps, TableFooterProps, TableRowProps, TableHeadProps, TableCellProps, TableSize, TableVariant, TableCellAlignment } from './components';
+
+export { Pagination, paginationSizes, paginationSizeMap } from './components';
+export type { PaginationProps, PaginationSize, PaginationSizeConfig, PageItem } from './components';
+
+export { Select, selectSizes, selectSizeMap } from './components';
+export type { SelectProps, SelectOption, SelectSize, SelectSizeConfig } from './components';
+
+export { SegmentedControl, segmentedControlSizeMap } from './components';
+export type { SegmentedControlProps, SegmentedControlOption, SegmentedControlSize, SegmentedControlSizeConfig } from './components';
+
+export { SwitchGroup, CheckboxGroup } from './components';
+export type { SwitchGroupProps, CheckboxGroupProps, SwitchGroupOption, SwitchGroupOrientation } from './components';
+
+export { Toolbar, ToolbarGroup, ToolbarSeparator, toolbarSizes, toolbarVariants, toolbarSizeMap } from './components';
+export type { ToolbarProps, ToolbarGroupProps, ToolbarSeparatorProps, ToolbarSize, ToolbarVariant, ToolbarSizeConfig } from './components';
+
+export { Tooltip, tooltipPlacements } from './components';
+export type { TooltipProps, TooltipPlacement } from './components';
+
+export { ButtonGroup, buttonGroupSizes, buttonGroupSizeMap, buttonGroupVariants } from './components';
+export type { ButtonGroupProps, ButtonGroupItem, ButtonGroupSize, ButtonGroupVariant, ButtonGroupSizeConfig } from './components';
+
+export { SocialButton, socialProviders, socialButtonSizes, socialButtonSizeMap, socialButtonVariants, socialProviderConfigs } from './components';
+export type { SocialButtonProps, SocialProvider, SocialButtonSize, SocialButtonVariant, SocialButtonSizeConfig, SocialProviderConfig } from './components';
+
+export { Banner, bannerVariants } from './components';
+export type { BannerProps, BannerVariant } from './components';
+
+export { ProgressSteps, progressStepsSizes, progressStepsSizeMap, progressStepsOrientations } from './components';
+export type { ProgressStepsProps, ProgressStep, ProgressStepsSize, ProgressStepsOrientation, ProgressStepsSizeConfig } from './components';
+
+export { ActivityFeed, activityFeedSizes, activityFeedSizeMap } from './components';
+export type { ActivityFeedProps, ActivityFeedItem, ActivityFeedSize, ActivityFeedSizeConfig } from './components';
+
+export { FileUploader } from './components';
+export type { FileUploaderProps } from './components';
+
+export { Timeline, timelineSizes, timelineSizeMap, timelineOrientations, timelineStatuses } from './components';
+export type { TimelineProps, TimelineItem, TimelineSize, TimelineOrientation, TimelineSizeConfig, TimelineStatus } from './components';
+
+export { Calendar, calendarSizes, calendarSizeMap } from './components';
+export type { CalendarProps, CalendarSize, CalendarSizeConfig } from './components';
+
+export { DatePicker, datePickerSizes, datePickerSizeMap } from './components';
+export type { DatePickerProps, DatePickerSize, DatePickerSizeConfig } from './components';
+
+export { TimePicker, timePickerSizes, timePickerSizeMap } from './components';
+export type { TimePickerProps, TimePickerSize, TimePickerSizeConfig, TimePickerFormat } from './components';
+
+export { DateRangePicker, dateRangePickerSizes, dateRangePickerSizeMap } from './components';
+export type { DateRangePickerProps, DateRange, DateRangePickerSize, DateRangePickerSizeConfig } from './components';
+
+export { LocalePicker, DEFAULT_LOCALE_OPTIONS, localePickerSizes, localePickerSizeMap } from './components';
+export type { LocalePickerProps, LocaleOption, LocalePickerSize, LocalePickerSizeConfig } from './components';
+
+export { DataTable, dataTableSizes, dataTableSizeMap, dataTableVariants } from './components';
+export type { DataTableProps, DataTableColumn, DataTableSize, DataTableSizeConfig, DataTableVariant, SortState } from './components';
+
+export { TreeView, treeViewSizes, treeViewSizeMap } from './components';
+export type { TreeViewProps, TreeNode, TreeViewSize, TreeViewSizeConfig } from './components';
+
+export { Carousel } from './components';
+export type { CarouselProps } from './components';
+
+export { CopyButton, copyButtonSizes, copyButtonSizeMap, copyButtonVariants } from './components';
+export type { CopyButtonProps, CopyButtonSize, CopyButtonVariant, CopyButtonSizeConfig } from './components';
+
+export { PingMeter, pingMeterSizes, pingMeterSizeMap, pingMeterVariants } from './components';
+export type { PingMeterProps, PingMeterSize, PingMeterVariant, PingQuality, PingMeterSizeConfig } from './components';
+
+// ─── Contexts ───────────────────────────────────────────────────
+export { LoadingContext } from './contexts';

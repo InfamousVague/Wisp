@@ -1,0 +1,169 @@
+import React, { forwardRef, useMemo } from 'react';
+import type { MeterProps } from '@wisp-ui/core/types/Meter.types';
+import { meterSizeMap } from '@wisp-ui/core/types/Meter.types';
+import {
+  buildMeterContainerStyle,
+  buildMeterTrackStyle,
+  buildMeterFillStyle,
+  buildMeterLabelStyle,
+  buildMeterValueStyle,
+  getMeterSkeletonStyle,
+} from '@wisp-ui/core/styles/Meter.styles';
+import { useThemeColors } from '../../providers';
+
+/**
+ * Meter -- Semantic gauge indicator for the Wisp design system.
+ *
+ * @remarks
+ * Displays a horizontal meter bar representing a scalar value within a known
+ * range. Unlike {@link Progress}, which tracks task completion, Meter
+ * represents a measurement (e.g. disk usage, battery level, relevance score).
+ * Key features:
+ *
+ * - Three sizes: `sm`, `md`, `lg`.
+ * - Three variants: `default` (solid accent), `gradient` (left-to-right
+ *   gradient), and `segments` (semantic green/yellow/red based on thresholds).
+ * - Optional label and value display.
+ * - Semantic `role="meter"` with full ARIA attributes.
+ * - Skeleton placeholder state for loading layouts.
+ * - Disabled state with reduced opacity.
+ *
+ * @see {@link MeterProps} for the full prop API.
+ *
+ * @module primitives/meter
+ * @example
+ * ```tsx
+ * <Meter value={60} />
+ * <Meter value={75} label="Disk usage" showValue />
+ * <Meter value={90} variant="segments" low={25} high={75} optimum={50} />
+ * <Meter value={45} variant="gradient" />
+ * ```
+ */
+export const Meter = forwardRef<HTMLDivElement, MeterProps>(function Meter(
+  {
+    value,
+    min = 0,
+    max = 100,
+    size = 'md',
+    label,
+    showValue = false,
+    variant = 'default',
+    segments = 3,
+    optimum = 50,
+    low = 25,
+    high = 75,
+    skeleton = false,
+    disabled = false,
+    style: userStyle,
+    className,
+    ...rest
+  },
+  ref,
+) {
+  const themeColors = useThemeColors();
+  const sizeConfig = meterSizeMap[size];
+
+  // ---------------------------------------------------------------------------
+  // Clamp value and compute percentage
+  // ---------------------------------------------------------------------------
+  const range = max - min;
+  const clampedValue = Math.min(Math.max(value, min), max);
+  const percent = range > 0 ? ((clampedValue - min) / range) * 100 : 0;
+
+  // Convert threshold props to percentages relative to the range
+  const lowPercent = range > 0 ? ((low - min) / range) * 100 : 25;
+  const highPercent = range > 0 ? ((high - min) / range) * 100 : 75;
+  const optimumPercent = range > 0 ? ((optimum - min) / range) * 100 : 50;
+
+  // ---------------------------------------------------------------------------
+  // Display value
+  // ---------------------------------------------------------------------------
+  const displayValue = useMemo(() => {
+    return `${Math.round(percent)}%`;
+  }, [percent]);
+
+  // ---------------------------------------------------------------------------
+  // Skeleton
+  // ---------------------------------------------------------------------------
+  if (skeleton) {
+    const skeletonStyle = getMeterSkeletonStyle(sizeConfig, themeColors);
+    return (
+      <div
+        aria-hidden
+        className={className}
+        style={{ ...skeletonStyle, ...userStyle }}
+      />
+    );
+  }
+
+  // ---------------------------------------------------------------------------
+  // Build styles
+  // ---------------------------------------------------------------------------
+  const containerStyle = useMemo(
+    () => buildMeterContainerStyle(sizeConfig),
+    [sizeConfig],
+  );
+
+  const trackStyle = useMemo(
+    () => buildMeterTrackStyle(sizeConfig, themeColors),
+    [sizeConfig, themeColors],
+  );
+
+  const fillStyle = useMemo(
+    () => buildMeterFillStyle(sizeConfig, themeColors, percent, variant, lowPercent, highPercent, optimumPercent),
+    [sizeConfig, themeColors, percent, variant, lowPercent, highPercent, optimumPercent],
+  );
+
+  const labelRowStyle = useMemo(
+    () => buildMeterLabelStyle(sizeConfig, themeColors),
+    [sizeConfig, themeColors],
+  );
+
+  const valueTextStyle = useMemo(
+    () => buildMeterValueStyle(sizeConfig, themeColors),
+    [sizeConfig, themeColors],
+  );
+
+  // ---------------------------------------------------------------------------
+  // Disabled style
+  // ---------------------------------------------------------------------------
+  const disabledStyle: React.CSSProperties = disabled
+    ? { opacity: 0.5, pointerEvents: 'none' }
+    : {};
+
+  // ---------------------------------------------------------------------------
+  // Render
+  // ---------------------------------------------------------------------------
+  return (
+    <div
+      ref={ref}
+      className={className}
+      aria-disabled={disabled || undefined}
+      style={{ ...containerStyle, ...disabledStyle, ...userStyle }}
+      {...rest}
+    >
+      {/* Label row */}
+      {(label || showValue) && (
+        <div style={labelRowStyle}>
+          {label && <span>{label}</span>}
+          {showValue && <span style={valueTextStyle}>{displayValue}</span>}
+        </div>
+      )}
+
+      {/* Track */}
+      <div
+        role="meter"
+        aria-valuenow={clampedValue}
+        aria-valuemin={min}
+        aria-valuemax={max}
+        aria-label={label || undefined}
+        style={trackStyle}
+      >
+        {/* Fill */}
+        <div style={fillStyle} />
+      </div>
+    </div>
+  );
+});
+
+Meter.displayName = 'Meter';

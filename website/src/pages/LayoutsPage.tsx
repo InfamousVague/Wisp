@@ -1,0 +1,24 @@
+import React from 'react';
+import { Text, VStack } from '@wisp-ui/react';
+import { entriesByCategory } from '../registry';
+import { CategoryGrid } from '../shared/CategoryGrid';
+
+export function LayoutsPage() {
+  const entries = entriesByCategory('layouts');
+
+  return (
+    <VStack gap="lg">
+      <div>
+        <Text size="display-sm" weight="bold">
+          Layouts
+        </Text>
+        <div style={{ marginTop: 6 }}>
+          <Text size="md" color="secondary">
+            Structural containers — cards, grids, stacks, sidebars, and spacing utilities.
+          </Text>
+        </div>
+      </div>
+      <CategoryGrid entries={entries} />
+    </VStack>
+  );
+}
