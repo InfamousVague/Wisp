@@ -156,7 +156,7 @@ function HeroSection() {
       <img
         src={`${import.meta.env.BASE_URL}wisp-logo.png`}
         alt="Wisp logo"
-        style={{ width: 96, height: 96 }}
+        style={{ width: 192, height: 192 }}
       />
       <Text size="display-2xl" weight="bold">
         wisp
