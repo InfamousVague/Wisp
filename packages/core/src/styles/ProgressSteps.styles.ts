@@ -35,7 +35,7 @@ export function buildStepWrapperStyle(
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      flex: isLast ? '0 0 auto' : 1,
+      flex: 1,
       position: 'relative',
     };
   }
@@ -115,11 +115,13 @@ export function buildConnectorStyle(
   const color = isCompleted ? themeColors.accent.primary : themeColors.border.strong;
 
   if (orientation === 'horizontal') {
+    const gap = 2;
+    const offset = sizeConfig.dotSize / 2 + gap;
     return {
       position: 'absolute',
       top: sizeConfig.dotSize / 2 - sizeConfig.lineThickness / 2,
-      left: `calc(50% + ${sizeConfig.dotSize / 2 + 4}px)`,
-      right: `calc(-50% + ${sizeConfig.dotSize / 2 + 4}px)`,
+      left: `calc(50% + ${offset}px)`,
+      width: `calc(100% - ${offset * 2}px)`,
       height: sizeConfig.lineThickness,
       backgroundColor: color,
       transition: 'background-color 200ms ease',
