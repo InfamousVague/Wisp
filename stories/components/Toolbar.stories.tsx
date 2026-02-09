@@ -53,7 +53,7 @@ import {
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Toolbar> = {
-  title: 'Components/Toolbar',
+  title: 'React/Components/Utilities/Toolbar',
   component: Toolbar,
   tags: ['autodocs'],
   argTypes: {

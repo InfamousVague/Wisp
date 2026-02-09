@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Avatar } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Avatar> = {
-  title: 'React Native/Avatar',
+  title: 'React Native/Primitives/Avatar',
   component: Avatar,
   tags: ['autodocs'],
   argTypes: {

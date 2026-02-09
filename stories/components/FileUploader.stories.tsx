@@ -10,7 +10,7 @@ import { FileUploader } from '@wisp-ui/react';
 import { Image, FileText } from 'lucide-react';
 
 const meta: Meta<typeof FileUploader> = {
-  title: 'Components/FileUploader',
+  title: 'React/Components/Data Entry/FileUploader',
   component: FileUploader,
   tags: ['autodocs'],
 };

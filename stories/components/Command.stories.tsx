@@ -36,7 +36,7 @@ import {
 } from 'lucide-react';
 
 const meta: Meta<typeof Command> = {
-  title: 'Components/Command',
+  title: 'React/Components/Utilities/Command',
   component: Command,
   tags: ['autodocs'],
   argTypes: {

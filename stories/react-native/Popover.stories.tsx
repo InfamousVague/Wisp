@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Popover, PopoverTrigger, PopoverContent, Button, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Popover> = {
-  title: 'React Native/Popover',
+  title: 'React Native/Components/Overlays/Popover',
   component: Popover,
   tags: ['autodocs'],
   argTypes: {

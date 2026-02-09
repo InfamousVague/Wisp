@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 const meta: Meta<typeof Icon> = {
-  title: 'React Native/Icon',
+  title: 'React Native/Primitives/Icon',
   component: Icon,
   tags: ['autodocs'],
   argTypes: {

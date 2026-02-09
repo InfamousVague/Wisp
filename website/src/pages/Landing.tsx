@@ -87,7 +87,7 @@ export function Landing() {
       >
         <HStack gap="xs" align="center">
           <img
-            src={`${import.meta.env.BASE_URL}wisp-logo.png`}
+            src={`${import.meta.env.BASE_URL}${mode === 'light' ? 'wisp-logo-dark.png' : 'wisp-logo.png'}`}
             alt="Wisp"
             style={{ width: 28, height: 28 }}
           />
@@ -100,7 +100,7 @@ export function Landing() {
         </HStack>
         <HStack gap="sm" align="center">
           <ThemeToggle mode={mode} onToggle={toggleMode} />
-          <LandingNavLink label="Docs" to="/primitives" />
+          <LandingNavLink label="Docs" to="/docs" />
           <LandingNavLink label="Components" to="/components" />
         </HStack>
       </header>
@@ -139,6 +139,7 @@ function LandingNavLink({ label, to }: { label: string; to: string }) {
 
 function HeroSection() {
   const navigate = useNavigate();
+  const { mode } = useTheme();
   const colors = useThemeColors();
 
   return (
@@ -153,7 +154,7 @@ function HeroSection() {
       }}
     >
       <img
-        src={`${import.meta.env.BASE_URL}wisp-logo.png`}
+        src={`${import.meta.env.BASE_URL}${mode === 'light' ? 'wisp-logo-dark.png' : 'wisp-logo.png'}`}
         alt="Wisp logo"
         style={{ width: 192, height: 192 }}
       />
@@ -427,35 +428,36 @@ function ShowcaseSection() {
             {/* Layout showcase */}
             <GridItem>
               <ShowcaseCard title="Layouts" description="Stack, Grid, Card, Separator, and containers" to="/layouts/card">
-                <VStack gap="sm">
-                  <HStack gap="sm" align="stretch">
-                    <Card variant="filled" padding="sm" radius="md" style={{ flex: 1 }}>
-                      <VStack gap="xs" align="center">
-                        <Avatar size="sm" name="Alice" />
-                        <Text size="xs" weight="semibold">Alice</Text>
-                      </VStack>
-                    </Card>
-                    <Card variant="filled" padding="sm" radius="md" style={{ flex: 1 }}>
-                      <VStack gap="xs" align="center">
-                        <Avatar size="sm" name="Bob" />
-                        <Text size="xs" weight="semibold">Bob</Text>
-                      </VStack>
-                    </Card>
-                    <Card variant="filled" padding="sm" radius="md" style={{ flex: 1 }}>
-                      <VStack gap="xs" align="center">
-                        <Avatar size="sm" name="Carol" />
-                        <Text size="xs" weight="semibold">Carol</Text>
-                      </VStack>
-                    </Card>
-                  </HStack>
-                  <Separator spacing="sm" />
+                <VStack gap="sm" style={{ width: '100%', maxWidth: 280 }}>
                   <HStack gap="sm" align="center">
-                    <Skeleton variant="circular" style={{ width: 32, height: 32 }} />
-                    <VStack gap="2xs" style={{ flex: 1 }}>
-                      <Skeleton variant="text" style={{ width: '60%' }} />
-                      <Skeleton variant="text" style={{ width: '40%' }} />
-                    </VStack>
+                    <Card variant="outlined" padding="sm" radius="md" style={{ flex: 1, textAlign: 'center' }}>
+                      <Text size="xs" weight="semibold">Stack</Text>
+                    </Card>
+                    <Card variant="outlined" padding="sm" radius="md" style={{ flex: 1, textAlign: 'center' }}>
+                      <Text size="xs" weight="semibold">Grid</Text>
+                    </Card>
+                    <Card variant="outlined" padding="sm" radius="md" style={{ flex: 1, textAlign: 'center' }}>
+                      <Text size="xs" weight="semibold">Box</Text>
+                    </Card>
                   </HStack>
+                  <Separator spacing="xs" />
+                  <Card variant="outlined" padding="md" radius="md">
+                    <VStack gap="xs">
+                      <HStack gap="sm" align="center">
+                        <Avatar size="sm" name="JD" />
+                        <VStack gap="2xs">
+                          <Text size="xs" weight="semibold">Jane Doe</Text>
+                          <Text size="xs" color="secondary">Developer</Text>
+                        </VStack>
+                      </HStack>
+                      <Separator spacing="xs" />
+                      <HStack gap="xs" align="center">
+                        <Badge variant="success" size="sm" dot>Active</Badge>
+                        <Spacer size="xs" />
+                        <Text size="xs" color="tertiary">3 projects</Text>
+                      </HStack>
+                    </VStack>
+                  </Card>
                 </VStack>
               </ShowcaseCard>
             </GridItem>

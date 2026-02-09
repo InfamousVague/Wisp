@@ -9,7 +9,7 @@ import { Button } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof NumberInput> = {
-  title: 'Primitives/NumberInput',
+  title: 'React/Primitives/NumberInput',
   component: NumberInput,
   tags: ['autodocs'],
   args: {

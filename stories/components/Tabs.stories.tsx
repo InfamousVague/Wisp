@@ -6,7 +6,7 @@ import { Icon } from '@wisp-ui/react';
 import { User, Settings, Bell } from 'lucide-react';
 
 const meta: Meta<typeof Tabs> = {
-  title: 'Components/Tabs',
+  title: 'React/Components/Navigation/Tabs',
   component: Tabs,
   tags: ['autodocs'],
 };

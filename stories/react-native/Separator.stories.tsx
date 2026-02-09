@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Separator, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Separator> = {
-  title: 'React Native/Separator',
+  title: 'React Native/Layouts/Separator',
   component: Separator,
   tags: ['autodocs'],
   argTypes: {

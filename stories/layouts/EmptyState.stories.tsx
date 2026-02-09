@@ -9,7 +9,7 @@ import { useThemeColors } from '@wisp-ui/react';
 import { Inbox, Search, FileText, Upload } from 'lucide-react';
 
 const meta: Meta<typeof EmptyState> = {
-  title: 'Layouts/EmptyState',
+  title: 'React/Layouts/EmptyState',
   component: EmptyState,
   tags: ['autodocs'],
   argTypes: {

@@ -4,7 +4,7 @@ import { Calendar } from '@wisp-ui/react';
 import { calendarSizes } from '@wisp-ui/react';
 
 const meta: Meta<typeof Calendar> = {
-  title: 'Components/Calendar',
+  title: 'React/Components/Date & Time/Calendar',
   component: Calendar,
   tags: ['autodocs'],
   argTypes: {

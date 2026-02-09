@@ -9,7 +9,7 @@ import { useThemeColors } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Center> = {
-  title: 'Layouts/Center',
+  title: 'React/Layouts/Center',
   component: Center,
   tags: ['autodocs'],
   argTypes: {

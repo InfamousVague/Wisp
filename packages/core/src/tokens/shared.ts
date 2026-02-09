@@ -131,6 +131,7 @@ export const semanticColors = [
   'disabled',
   'white',
   'inverse',
+  'inherit',
   'error',
   'warning',
   'success',
@@ -311,6 +312,7 @@ export function resolveSemanticColor(color: SemanticColor | string, themeColors:
     case 'disabled':  return themeColors.border.strong; // dimmed gray
     case 'white':     return '#FFFFFF';
     case 'inverse':   return themeColors.text.inverse;
+    case 'inherit':   return 'inherit';
     case 'error':     return themeColors.status.danger;
     case 'warning':   return themeColors.status.warning;
     case 'success':   return themeColors.status.success;

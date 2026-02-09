@@ -13,7 +13,7 @@ import { useThemeColors } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Collapse> = {
-  title: 'Layouts/Collapse',
+  title: 'React/Layouts/Collapse',
   component: Collapse,
   tags: ['autodocs'],
 };

@@ -4,7 +4,7 @@ import { Button } from '@wisp-ui/react-native';
 import { buttonVariants, buttonShapes, componentSizes } from '@wisp-ui/react';
 
 const meta: Meta<typeof Button> = {
-  title: 'React Native/Button',
+  title: 'React Native/Primitives/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {

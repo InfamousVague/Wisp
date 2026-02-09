@@ -4,7 +4,7 @@ import { ActivityFeed } from '@wisp-ui/react-native';
 import type { ActivityFeedItem } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof ActivityFeed> = {
-  title: 'React Native/ActivityFeed',
+  title: 'React Native/Components/Data Display/ActivityFeed',
   component: ActivityFeed,
   tags: ['autodocs'],
   argTypes: {

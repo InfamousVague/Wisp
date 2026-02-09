@@ -8,7 +8,7 @@ import { popoverPlacements, popoverAligns } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta = {
-  title: 'Components/Popover',
+  title: 'React/Components/Overlays/Popover',
   tags: ['autodocs'],
 };
 

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Stepper, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Stepper> = {
-  title: 'React Native/Stepper',
+  title: 'React Native/Primitives/Stepper',
   component: Stepper,
   tags: ['autodocs'],
   argTypes: {

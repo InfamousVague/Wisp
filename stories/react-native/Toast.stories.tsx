@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Toast, Button, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Toast> = {
-  title: 'React Native/Toast',
+  title: 'React Native/Primitives/Toast',
   component: Toast,
   tags: ['autodocs'],
   argTypes: {

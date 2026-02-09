@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 const meta: Meta<typeof Dialog> = {
-  title: 'Components/Dialog Compositions',
+  title: 'React/Components/Overlays/Dialog Compositions',
   component: Dialog,
   tags: ['autodocs'],
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Tooltip } from "./Tooltip";
-import { tooltipPlacements } from "./Tooltip.types";
+import { tooltipPlacements } from ".";
 import { Text } from "../text";
 
 // ---------------------------------------------------------------------------

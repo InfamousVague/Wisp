@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { AspectRatio } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof AspectRatio> = {
-  title: 'React Native/AspectRatio',
+  title: 'React Native/Layouts/AspectRatio',
   component: AspectRatio,
   tags: ['autodocs'],
   argTypes: {

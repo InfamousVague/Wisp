@@ -8,7 +8,7 @@ import { Icon } from '@wisp-ui/react';
 import { Info, CheckCircle, AlertTriangle, XCircle, Bell } from 'lucide-react';
 
 const meta: Meta<typeof Alert> = {
-  title: 'Primitives/Alert',
+  title: 'React/Primitives/Alert',
   component: Alert,
   tags: ['autodocs'],
   args: { variant: 'default' },

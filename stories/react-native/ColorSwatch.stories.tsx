@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ColorSwatch } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof ColorSwatch> = {
-  title: 'React Native/ColorSwatch',
+  title: 'React Native/Primitives/ColorSwatch',
   component: ColorSwatch,
   tags: ['autodocs'],
   argTypes: {

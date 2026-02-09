@@ -10,7 +10,7 @@ import { useThemeColors } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Box> = {
-  title: 'Layouts/Box',
+  title: 'React/Layouts/Box',
   component: Box,
   tags: ['autodocs'],
   argTypes: {

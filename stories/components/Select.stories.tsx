@@ -7,7 +7,7 @@ import { VStack } from '@wisp-ui/react';
 import { User, Globe, Shield, Zap, Palette, Code, Settings, Users } from 'lucide-react';
 
 const meta: Meta<typeof Select> = {
-  title: 'Components/Select',
+  title: 'React/Components/Data Entry/Select',
   component: Select,
   tags: ['autodocs'],
   args: { size: 'md', placeholder: 'Select…' },

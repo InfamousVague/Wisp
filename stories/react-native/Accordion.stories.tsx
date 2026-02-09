@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Accordion> = {
-  title: 'React Native/Accordion',
+  title: 'React Native/Components/Data Display/Accordion',
   component: Accordion,
   tags: ['autodocs'],
   argTypes: {

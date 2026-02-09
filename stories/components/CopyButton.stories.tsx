@@ -9,7 +9,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CopyButton } from '@wisp-ui/react';
 
 const meta: Meta<typeof CopyButton> = {
-  title: 'Components/CopyButton',
+  title: 'React/Components/Utilities/CopyButton',
   component: CopyButton,
   tags: ['autodocs'],
   argTypes: {

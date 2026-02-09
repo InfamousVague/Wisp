@@ -13,7 +13,7 @@ import { useThemeColors } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Overlay> = {
-  title: 'Layouts/Overlay',
+  title: 'React/Layouts/Overlay',
   component: Overlay,
   tags: ['autodocs'],
 };

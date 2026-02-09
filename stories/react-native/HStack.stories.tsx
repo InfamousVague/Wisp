@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { HStack, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof HStack> = {
-  title: 'React Native/HStack',
+  title: 'React Native/Layouts/HStack',
   component: HStack,
   tags: ['autodocs'],
   argTypes: {

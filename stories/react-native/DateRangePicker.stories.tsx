@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DateRangePicker, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof DateRangePicker> = {
-  title: 'React Native/DateRangePicker',
+  title: 'React Native/Components/Date & Time/DateRangePicker',
   component: DateRangePicker,
   tags: ['autodocs'],
   argTypes: {

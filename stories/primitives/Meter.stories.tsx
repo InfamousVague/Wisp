@@ -9,7 +9,7 @@ import { meterSizes, meterVariants } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Meter> = {
-  title: 'Primitives/Meter',
+  title: 'React/Primitives/Meter',
   component: Meter,
   tags: ['autodocs'],
   argTypes: {

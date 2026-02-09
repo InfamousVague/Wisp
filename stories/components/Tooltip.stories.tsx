@@ -9,7 +9,7 @@ import { Text } from "@wisp-ui/react";
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Tooltip> = {
-  title: "Components/Tooltip",
+  title: "React/Components/Overlays/Tooltip",
   component: Tooltip,
   tags: ["autodocs"],
   argTypes: {

@@ -8,7 +8,7 @@ import { Text } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof ColorPicker> = {
-  title: 'Primitives/ColorPicker',
+  title: 'React/Primitives/ColorPicker',
   component: ColorPicker,
   tags: ['autodocs'],
   args: {

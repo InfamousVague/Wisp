@@ -7,7 +7,7 @@ import { Text } from '@wisp-ui/react';
 import { Button } from '@wisp-ui/react';
 
 const meta: Meta<typeof Sheet> = {
-  title: 'Components/Sheet',
+  title: 'React/Components/Overlays/Sheet',
   component: Sheet,
   tags: ['autodocs'],
   argTypes: {

@@ -9,7 +9,7 @@ import { useThemeColors } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof AspectRatio> = {
-  title: 'Layouts/AspectRatio',
+  title: 'React/Layouts/AspectRatio',
   component: AspectRatio,
   tags: ['autodocs'],
   argTypes: {

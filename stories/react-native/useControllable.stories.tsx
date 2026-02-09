@@ -90,7 +90,7 @@ function CounterDemo({
 // ---------------------------------------------------------------------------
 
 const meta: Meta = {
-  title: 'React Native/useControllable',
+  title: 'React Native/Hooks/useControllable',
   tags: ['autodocs'],
 };
 

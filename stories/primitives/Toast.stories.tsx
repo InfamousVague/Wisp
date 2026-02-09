@@ -8,7 +8,7 @@ import { Icon } from '@wisp-ui/react';
 import { CheckCircle, AlertTriangle, AlertCircle, Info, Bell } from 'lucide-react';
 
 const meta: Meta<typeof Toast> = {
-  title: 'Primitives/Toast',
+  title: 'React/Primitives/Toast',
   component: Toast,
   tags: ['autodocs'],
   args: { title: 'Notification', dismissible: true },

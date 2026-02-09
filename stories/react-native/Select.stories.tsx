@@ -11,7 +11,7 @@ const fruitOptions = [
 ];
 
 const meta: Meta<typeof Select> = {
-  title: 'React Native/Select',
+  title: 'React Native/Components/Data Entry/Select',
   component: Select,
   tags: ['autodocs'],
   argTypes: {

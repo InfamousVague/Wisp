@@ -8,7 +8,7 @@ import { Text } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Slider> = {
-  title: 'Primitives/Slider',
+  title: 'React/Primitives/Slider',
   component: Slider,
   tags: ['autodocs'],
   args: {

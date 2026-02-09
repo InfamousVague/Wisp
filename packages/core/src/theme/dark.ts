@@ -31,8 +31,8 @@ export const darkColors: ThemeColors = {
     primary: '#F5F5F5',
     /** Secondary supporting text — neutral gray. */
     secondary: '#A0A0A0',
-    /** Muted / disabled text — subdued neutral. */
-    muted: '#555555',
+    /** Muted / disabled text — subdued neutral (≥ 3:1 on canvas). */
+    muted: '#606060',
     /** Inverse text used on light-colored surfaces (e.g. white buttons). */
     inverse: '#0A0A0A',
     /** Link / interactive text — pure white (monochrome accent). */
@@ -84,17 +84,17 @@ export const darkColors: ThemeColors = {
   // ---------------------------------------------------------------------------
   status: {
     success: '#22C55E',
-    successSurface: 'rgba(34, 197, 94, 0.10)',
-    successBorder: 'rgba(34, 197, 94, 0.20)',
+    successSurface: 'rgba(34, 197, 94, 0.18)',
+    successBorder: 'rgba(34, 197, 94, 0.35)',
     warning: '#F59E0B',
-    warningSurface: 'rgba(245, 158, 11, 0.10)',
-    warningBorder: 'rgba(245, 158, 11, 0.20)',
+    warningSurface: 'rgba(245, 158, 11, 0.18)',
+    warningBorder: 'rgba(245, 158, 11, 0.35)',
     danger: '#EF4444',
-    dangerSurface: 'rgba(239, 68, 68, 0.10)',
-    dangerBorder: 'rgba(239, 68, 68, 0.20)',
+    dangerSurface: 'rgba(239, 68, 68, 0.18)',
+    dangerBorder: 'rgba(239, 68, 68, 0.35)',
     info: '#3B82F6',
-    infoSurface: 'rgba(59, 130, 246, 0.10)',
-    infoBorder: 'rgba(59, 130, 246, 0.20)',
+    infoSurface: 'rgba(59, 130, 246, 0.18)',
+    infoBorder: 'rgba(59, 130, 246, 0.35)',
   },
 
   // ---------------------------------------------------------------------------
@@ -108,9 +108,9 @@ export const darkColors: ThemeColors = {
     /** Active / pressed — saturated. */
     active: '#7C3AED',
     /** Tinted brand surface. */
-    surface: 'rgba(139, 92, 246, 0.10)',
+    surface: 'rgba(139, 92, 246, 0.18)',
     /** Subtle brand border. */
-    border: 'rgba(139, 92, 246, 0.20)',
+    border: 'rgba(139, 92, 246, 0.35)',
     /** Text on brand backgrounds — white. */
     text: '#FFFFFF',
   },
@@ -124,5 +124,31 @@ export const darkColors: ThemeColors = {
     amber: '#F59E0B',
     emerald: '#10B981',
     cyan: '#06B6D4',
+  },
+
+  // ---------------------------------------------------------------------------
+  // Extended palette — Flat UI Russian colors
+  // ---------------------------------------------------------------------------
+  palette: {
+    creamyPeach: '#f3a683',
+    rosyHighlight: '#f7d794',
+    softBlue: '#778beb',
+    brewedMustard: '#e77f67',
+    oldGeranium: '#cf6a87',
+    sawtoothOak: '#f19066',
+    summertime: '#f5cd79',
+    cornflower: '#546de5',
+    tigerlily: '#e15f41',
+    deepRose: '#c44569',
+    purpleMountainMajesty: '#786fa6',
+    roguePink: '#f8a5c2',
+    squeaky: '#63cdda',
+    appleValley: '#ea8685',
+    pencilLead: '#596275',
+    purpleCorallite: '#574b90',
+    flamingoPink: '#f78fb3',
+    blueCuracao: '#3dc1d3',
+    porcelainRose: '#e66767',
+    biscay: '#303952',
   },
 };

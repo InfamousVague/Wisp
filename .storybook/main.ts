@@ -103,6 +103,11 @@ const config: StorybookConfig = {
             path: 'fabric-stub',
             namespace: 'stub',
           }));
+          // Named export stub for @react-native/assets-registry (getAssetByID)
+          build.onLoad({ filter: /^assets-registry-stub$/, namespace: 'stub' }, () => ({
+            contents: 'export function getAssetByID() { return null; } export default getAssetByID;',
+            loader: 'js',
+          }));
           build.onLoad({ filter: /.*/, namespace: 'stub' }, () => ({
             contents: 'export default function stub() { return null; }',
             loader: 'js',

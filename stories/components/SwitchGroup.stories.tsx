@@ -9,7 +9,7 @@ import { Text } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof SwitchGroup> = {
-  title: 'Components/SwitchGroup',
+  title: 'React/Components/Data Entry/SwitchGroup',
   component: SwitchGroup,
   tags: ['autodocs'],
   args: {

@@ -16,8 +16,8 @@ export const cardEntry: ComponentEntry = {
     <HStack gap="sm">
       <Card variant="elevated" padding="md" radius="md" style={{ width: 140 }}>
         <VStack gap="xs">
-          <Text size="sm" weight="bold">Elevated</Text>
-          <Text size="xs" color="secondary">With shadow</Text>
+          <Text size="sm" weight="bold" color="inherit">Elevated</Text>
+          <Text size="xs" color="inherit" style={{ opacity: 0.7 }}>With shadow</Text>
         </VStack>
       </Card>
       <Card variant="outlined" padding="md" radius="md" style={{ width: 140 }}>
@@ -36,8 +36,8 @@ export const cardEntry: ComponentEntry = {
         <HStack gap="md" style={{ flexWrap: 'wrap' }}>
           <Card variant="elevated" padding="lg" radius="lg" style={{ width: 200 }}>
             <VStack gap="xs">
-              <Text size="md" weight="bold">Elevated</Text>
-              <Text size="sm" color="secondary">Box shadow for depth.</Text>
+              <Text size="md" weight="bold" color="inherit">Elevated</Text>
+              <Text size="sm" color="inherit" style={{ opacity: 0.7 }}>Box shadow for depth.</Text>
             </VStack>
           </Card>
           <Card variant="outlined" padding="lg" radius="lg" style={{ width: 200 }}>
@@ -48,14 +48,14 @@ export const cardEntry: ComponentEntry = {
           </Card>
           <Card variant="filled" padding="lg" radius="lg" style={{ width: 200 }}>
             <VStack gap="xs">
-              <Text size="md" weight="bold">Filled</Text>
-              <Text size="sm" color="secondary">Raised background.</Text>
+              <Text size="md" weight="bold" color="inherit">Filled</Text>
+              <Text size="sm" color="inherit" style={{ opacity: 0.7 }}>Raised background.</Text>
             </VStack>
           </Card>
           <Card variant="glass" padding="lg" radius="lg" style={{ width: 200 }}>
             <VStack gap="xs">
-              <Text size="md" weight="bold">Glass</Text>
-              <Text size="sm" color="secondary">Frosted glass effect.</Text>
+              <Text size="md" weight="bold" color="inherit">Glass</Text>
+              <Text size="sm" color="inherit" style={{ opacity: 0.7 }}>Frosted glass effect.</Text>
             </VStack>
           </Card>
         </HStack>

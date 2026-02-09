@@ -289,7 +289,7 @@ function AnimatedValueDemoComponent() {
 // ---------------------------------------------------------------------------
 
 const meta: Meta = {
-  title: 'React Native/Animation Hooks',
+  title: 'React Native/Hooks/Animation Hooks',
   tags: ['autodocs'],
 };
 

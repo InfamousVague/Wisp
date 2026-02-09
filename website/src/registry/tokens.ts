@@ -21,6 +21,67 @@ function ColorDot({ color, label }: { color: string; label: string }) {
   );
 }
 
+function PaletteGrid() {
+  const colors = useThemeColors();
+  const p = colors.palette;
+  const entries: [string, string][] = [
+    ['creamyPeach', p.creamyPeach],
+    ['rosyHighlight', p.rosyHighlight],
+    ['softBlue', p.softBlue],
+    ['brewedMustard', p.brewedMustard],
+    ['oldGeranium', p.oldGeranium],
+    ['sawtoothOak', p.sawtoothOak],
+    ['summertime', p.summertime],
+    ['cornflower', p.cornflower],
+    ['tigerlily', p.tigerlily],
+    ['deepRose', p.deepRose],
+    ['purpleMountainMajesty', p.purpleMountainMajesty],
+    ['roguePink', p.roguePink],
+    ['squeaky', p.squeaky],
+    ['appleValley', p.appleValley],
+    ['pencilLead', p.pencilLead],
+    ['purpleCorallite', p.purpleCorallite],
+    ['flamingoPink', p.flamingoPink],
+    ['blueCuracao', p.blueCuracao],
+    ['porcelainRose', p.porcelainRose],
+    ['biscay', p.biscay],
+  ];
+  return h('div', {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap' as const,
+      gap: 16,
+      width: '100%',
+    },
+  },
+    ...entries.map(([name, hex]) =>
+      h('div', {
+        key: name,
+        style: {
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 6,
+          textAlign: 'center' as const,
+          width: 110,
+        },
+      },
+        h('div', {
+          style: {
+            width: '100%', height: 48, borderRadius: 8,
+            backgroundColor: hex,
+            border: '1px solid rgba(128,128,128,0.15)',
+          },
+        }),
+        h('div', { style: { display: 'flex', flexDirection: 'column', gap: 1, minWidth: 0 } },
+          h(Text, { size: 'xs', weight: 'medium', style: { lineHeight: '14px' } } as any, name),
+          h(Text, { size: 'xs', color: 'tertiary', family: 'mono', style: { lineHeight: '14px' } } as any, hex),
+        ),
+      ),
+    ),
+  );
+}
+
 function SpacingBar({ size, label }: { size: number; label: string }) {
   return h('div', {
     style: { display: 'flex', alignItems: 'center', gap: 8 },
@@ -43,8 +104,8 @@ export const colorsEntry: ComponentEntry = {
   slug: 'colors',
   name: 'Colors',
   category: 'tokens',
-  description: 'Neutral grayscale palette and semantic status colors (success, warning, danger, info).',
-  keywords: ['color', 'palette', 'neutral', 'semantic', 'theme'],
+  description: 'Neutral grayscale palette, semantic status colors, and 20-color extended palette for decorative use.',
+  keywords: ['color', 'palette', 'neutral', 'semantic', 'theme', 'russian', 'flat'],
   cardPreview: h(HStack, { gap: 'xs', align: 'center' } as any,
     ...[
       '#FFFFFF', '#F0F1F5', '#BFC6D4', '#667085',
@@ -87,6 +148,22 @@ export const colorsEntry: ComponentEntry = {
 // colors.warning.base  → '#F59E0B'
 // colors.danger.base   → '#EF4444'
 // colors.info.base     → '#3B82F6'`,
+    },
+    {
+      title: 'Extended Palette',
+      render: h(PaletteGrid),
+      code: `import { useThemeColors } from '@wisp-ui/react';
+
+const colors = useThemeColors();
+// colors.palette.creamyPeach     → warm peach
+// colors.palette.rosyHighlight   → soft gold
+// colors.palette.softBlue        → muted periwinkle
+// colors.palette.cornflower      → rich indigo-blue
+// colors.palette.squeaky         → light cyan
+// colors.palette.deepRose        → deep magenta
+// colors.palette.flamingoPink    → vivid pink
+// colors.palette.blueCuracao     → bright teal
+// ... and 12 more`,
     },
   ],
   props: [],

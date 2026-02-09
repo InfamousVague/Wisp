@@ -4,7 +4,7 @@ import { Timeline } from '@wisp-ui/react-native';
 import type { TimelineItem } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Timeline> = {
-  title: 'React Native/Timeline',
+  title: 'React Native/Components/Data Display/Timeline',
   component: Timeline,
   tags: ['autodocs'],
   argTypes: {

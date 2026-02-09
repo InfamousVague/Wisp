@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Tooltip, Button, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'React Native/Tooltip',
+  title: 'React Native/Components/Overlays/Tooltip',
   component: Tooltip,
   tags: ['autodocs'],
   argTypes: {

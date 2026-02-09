@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { LocalePicker, DEFAULT_LOCALE_OPTIONS } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof LocalePicker> = {
-  title: 'React Native/LocalePicker',
+  title: 'React Native/Components/Data Entry/LocalePicker',
   component: LocalePicker,
   tags: ['autodocs'],
   argTypes: {

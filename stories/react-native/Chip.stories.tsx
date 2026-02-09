@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Chip } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Chip> = {
-  title: 'React Native/Chip',
+  title: 'React Native/Primitives/Chip',
   component: Chip,
   tags: ['autodocs'],
   argTypes: {

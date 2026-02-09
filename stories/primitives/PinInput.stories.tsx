@@ -16,7 +16,7 @@ import { ShieldCheck, KeyRound, Smartphone } from 'lucide-react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof PinInput> = {
-  title: 'Primitives/PinInput',
+  title: 'React/Primitives/PinInput',
   component: PinInput,
   tags: ['autodocs'],
   argTypes: {

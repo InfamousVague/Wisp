@@ -10,7 +10,7 @@ import { Bell, Mail, Shield, Smartphone, Globe, Lock } from 'lucide-react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Checkbox> = {
-  title: 'Primitives/Checkbox',
+  title: 'React/Primitives/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
   args: {

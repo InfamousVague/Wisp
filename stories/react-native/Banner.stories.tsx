@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Banner, Button } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Banner> = {
-  title: 'React Native/Banner',
+  title: 'React Native/Components/Feedback/Banner',
   component: Banner,
   tags: ['autodocs'],
   argTypes: {

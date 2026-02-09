@@ -10,7 +10,7 @@ import { Sun, Moon, Check, X, Volume2, VolumeX, Eye, EyeOff, Bell, BellOff, Wifi
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Toggle> = {
-  title: 'Primitives/Toggle',
+  title: 'React/Primitives/Toggle',
   component: Toggle,
   tags: ['autodocs'],
   args: {

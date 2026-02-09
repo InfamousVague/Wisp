@@ -171,7 +171,7 @@ function TransitionToggleDemo() {
 // ---------------------------------------------------------------------------
 
 const meta: Meta = {
-  title: 'React Native/useTransition',
+  title: 'React Native/Hooks/useTransition',
   tags: ['autodocs'],
 };
 

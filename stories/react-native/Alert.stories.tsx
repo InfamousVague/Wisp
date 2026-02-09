@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Alert } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Alert> = {
-  title: 'React Native/Alert',
+  title: 'React Native/Primitives/Alert',
   component: Alert,
   tags: ['autodocs'],
   argTypes: {

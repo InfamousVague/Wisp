@@ -10,7 +10,7 @@ import { useThemeColors } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Grid> = {
-  title: 'Layouts/Grid',
+  title: 'React/Layouts/Grid',
   component: Grid,
   tags: ['autodocs'],
 };

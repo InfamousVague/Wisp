@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Overlay, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Overlay> = {
-  title: 'React Native/Overlay',
+  title: 'React Native/Layouts/Overlay',
   component: Overlay,
   tags: ['autodocs'],
   argTypes: {

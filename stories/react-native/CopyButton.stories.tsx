@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CopyButton } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof CopyButton> = {
-  title: 'React Native/CopyButton',
+  title: 'React Native/Components/Utilities/CopyButton',
   component: CopyButton,
   tags: ['autodocs'],
   argTypes: {

@@ -4,7 +4,7 @@ import { Checkbox } from '@wisp-ui/react-native';
 import { componentSizes } from '@wisp-ui/react';
 
 const meta: Meta<typeof Checkbox> = {
-  title: 'React Native/Checkbox',
+  title: 'React Native/Primitives/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
   argTypes: {

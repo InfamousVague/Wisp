@@ -8,7 +8,7 @@ import { Icon } from '@wisp-ui/react';
 import { Star, ArrowRight } from 'lucide-react';
 
 const meta: Meta<typeof Card> = {
-  title: 'Layouts/Card',
+  title: 'React/Layouts/Card',
   component: Card,
   tags: ['autodocs'],
   argTypes: {

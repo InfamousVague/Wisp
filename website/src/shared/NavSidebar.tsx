@@ -13,12 +13,16 @@ import {
   LayoutGrid,
   Component,
   Home,
+  BookOpen,
 } from 'lucide-react';
 
 const NAV_SECTIONS = [
   {
     label: 'Overview',
-    items: [{ label: 'Home', path: '/', icon: Home }],
+    items: [
+      { label: 'Home', path: '/', icon: Home },
+      { label: 'Docs', path: '/docs', icon: BookOpen },
+    ],
   },
   {
     label: 'Library',

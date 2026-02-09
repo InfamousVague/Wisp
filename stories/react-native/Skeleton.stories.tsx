@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Skeleton } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Skeleton> = {
-  title: 'React Native/Skeleton',
+  title: 'React Native/Primitives/Skeleton',
   component: Skeleton,
   tags: ['autodocs'],
   argTypes: {

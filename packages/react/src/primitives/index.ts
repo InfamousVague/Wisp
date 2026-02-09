@@ -122,6 +122,14 @@ export type { AvatarProps, AvatarSize, AvatarShape, AvatarStatus, AvatarSizeConf
 export { avatarSizes, avatarShapes, avatarStatuses, avatarSizeMap } from './avatar';
 
 // ---------------------------------------------------------------------------
+// Image
+// ---------------------------------------------------------------------------
+
+export { Image } from './image';
+export type { ImageProps, ImageFit, ImageRadius } from './image';
+export { imageFits, imageRadii, imageRadiusMap } from './image';
+
+// ---------------------------------------------------------------------------
 // Kbd
 // ---------------------------------------------------------------------------
 
@@ -240,3 +248,19 @@ export { colorPickerSizes, colorPickerSizeMap } from './color-picker';
 export { Stepper } from './stepper';
 export type { StepperProps, StepperSize, StepperSizeConfig } from './stepper';
 export { stepperSizes, stepperSizeMap } from './stepper';
+
+// ---------------------------------------------------------------------------
+// NotificationBadge
+// ---------------------------------------------------------------------------
+
+export { NotificationBadge } from './notification-badge';
+export type { NotificationBadgeProps, NotificationBadgeColor } from './notification-badge';
+export { notificationBadgeColors } from './notification-badge';
+
+// ---------------------------------------------------------------------------
+// CodeBlock
+// ---------------------------------------------------------------------------
+
+export { CodeBlock } from './code-block';
+export type { CodeBlockProps, CodeBlockVariant } from './code-block';
+export { codeBlockVariants } from './code-block';

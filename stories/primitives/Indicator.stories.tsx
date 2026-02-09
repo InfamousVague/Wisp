@@ -9,7 +9,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Indicator } from '@wisp-ui/react';
 
 const meta: Meta<typeof Indicator> = {
-  title: 'Primitives/Indicator',
+  title: 'React/Primitives/Indicator',
   component: Indicator,
   tags: ['autodocs'],
   argTypes: {

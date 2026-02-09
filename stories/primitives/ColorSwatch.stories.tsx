@@ -9,7 +9,7 @@ import { Text } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof ColorSwatch> = {
-  title: 'Primitives/ColorSwatch',
+  title: 'React/Primitives/ColorSwatch',
   component: ColorSwatch,
   tags: ['autodocs'],
   argTypes: {

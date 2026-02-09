@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SocialButton } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof SocialButton> = {
-  title: 'React Native/SocialButton',
+  title: 'React Native/Components/Utilities/SocialButton',
   component: SocialButton,
   tags: ['autodocs'],
   argTypes: {

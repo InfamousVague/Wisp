@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TextArea } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof TextArea> = {
-  title: 'React Native/TextArea',
+  title: 'React Native/Primitives/TextArea',
   component: TextArea,
   tags: ['autodocs'],
   argTypes: {

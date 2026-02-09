@@ -195,7 +195,7 @@ function PresenceToggleDemo() {
 // ---------------------------------------------------------------------------
 
 const meta: Meta = {
-  title: 'React Native/Presence',
+  title: 'React Native/Hooks/Presence',
   tags: ['autodocs'],
 };
 

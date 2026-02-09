@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SegmentedControl } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof SegmentedControl> = {
-  title: 'React Native/SegmentedControl',
+  title: 'React Native/Components/Navigation/SegmentedControl',
   component: SegmentedControl,
   tags: ['autodocs'],
   argTypes: {

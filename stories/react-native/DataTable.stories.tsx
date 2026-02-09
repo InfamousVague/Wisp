@@ -4,7 +4,7 @@ import { DataTable } from '@wisp-ui/react-native';
 import type { DataTableColumn, SortState } from '@wisp-ui/react-native';
 
 const meta: Meta = {
-  title: 'React Native/DataTable',
+  title: 'React Native/Components/Data Display/DataTable',
   tags: ['autodocs'],
   argTypes: {
     size: { control: 'select', options: ['sm', 'md', 'lg'] },

@@ -63,7 +63,7 @@ function FocusVisibleDemo() {
 // ---------------------------------------------------------------------------
 
 const meta: Meta = {
-  title: 'React Native/useFocusVisible',
+  title: 'React Native/Hooks/useFocusVisible',
   tags: ['autodocs'],
 };
 

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Sheet, Button, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Sheet> = {
-  title: 'React Native/Sheet',
+  title: 'React Native/Components/Overlays/Sheet',
   component: Sheet,
   tags: ['autodocs'],
   argTypes: {

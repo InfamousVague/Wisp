@@ -13,7 +13,7 @@ import { tableSizes, tableVariants } from '@wisp-ui/react';
 import { Text } from '@wisp-ui/react';
 
 const meta: Meta<typeof Table> = {
-  title: 'Components/Table',
+  title: 'React/Components/Data Display/Table',
   component: Table,
   tags: ['autodocs'],
   argTypes: {

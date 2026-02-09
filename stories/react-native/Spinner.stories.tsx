@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Spinner } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Spinner> = {
-  title: 'React Native/Spinner',
+  title: 'React Native/Primitives/Spinner',
   component: Spinner,
   tags: ['autodocs'],
   argTypes: {

@@ -12,7 +12,7 @@ import { User, Globe, Shield, Code, Users, Zap, Palette, Settings } from 'lucide
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Combobox> = {
-  title: 'Components/Combobox',
+  title: 'React/Components/Data Entry/Combobox',
   component: Combobox,
   tags: ['autodocs'],
   args: {

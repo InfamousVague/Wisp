@@ -12,7 +12,7 @@ import { Plus, ArrowRight, Trash2, Download, Check, Search, Star, Settings, Mail
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Button> = {
-  title: 'Primitives/Button',
+  title: 'React/Primitives/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {

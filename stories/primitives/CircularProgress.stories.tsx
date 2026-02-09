@@ -9,7 +9,7 @@ import { circularProgressSizes, circularProgressVariants } from '@wisp-ui/react'
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof CircularProgress> = {
-  title: 'Primitives/CircularProgress',
+  title: 'React/Primitives/CircularProgress',
   component: CircularProgress,
   tags: ['autodocs'],
   argTypes: {

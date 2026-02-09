@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Pagination } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Pagination> = {
-  title: 'React Native/Pagination',
+  title: 'React Native/Components/Navigation/Pagination',
   component: Pagination,
   tags: ['autodocs'],
   argTypes: {

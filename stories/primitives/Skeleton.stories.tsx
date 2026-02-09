@@ -4,7 +4,7 @@ import { Skeleton } from '@wisp-ui/react';
 import { Text } from '@wisp-ui/react';
 
 const meta: Meta<typeof Skeleton> = {
-  title: 'Primitives/Skeleton',
+  title: 'React/Primitives/Skeleton',
   component: Skeleton,
   tags: ['autodocs'],
   argTypes: {

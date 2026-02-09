@@ -15,7 +15,7 @@ import { User, Mail, Bell, FileText, Settings, ChevronRight, Star, MoreHorizonta
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof ListItem> = {
-  title: 'Layouts/ListItem',
+  title: 'React/Layouts/ListItem',
   component: ListItem,
   tags: ['autodocs'],
 };

@@ -10,7 +10,7 @@ import { Search, Users, Tag, Mail } from 'lucide-react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof TagInput> = {
-  title: 'Primitives/TagInput',
+  title: 'React/Primitives/TagInput',
   component: TagInput,
   tags: ['autodocs'],
   args: {

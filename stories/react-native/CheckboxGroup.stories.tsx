@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CheckboxGroup } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof CheckboxGroup> = {
-  title: 'React Native/CheckboxGroup',
+  title: 'React Native/Components/Data Entry/CheckboxGroup',
   component: CheckboxGroup,
   tags: ['autodocs'],
   argTypes: {

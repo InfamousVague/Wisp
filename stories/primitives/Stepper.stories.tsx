@@ -8,7 +8,7 @@ import { Text } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Stepper> = {
-  title: 'Primitives/Stepper',
+  title: 'React/Primitives/Stepper',
   component: Stepper,
   tags: ['autodocs'],
   args: {

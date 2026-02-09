@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ColorPicker, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof ColorPicker> = {
-  title: 'React Native/ColorPicker',
+  title: 'React Native/Primitives/ColorPicker',
   component: ColorPicker,
   tags: ['autodocs'],
   argTypes: {

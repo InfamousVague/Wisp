@@ -128,6 +128,9 @@ export type { TagProps, TagSize, TagSizeConfig } from './primitives';
 export { Avatar, avatarSizes, avatarShapes, avatarStatuses, avatarSizeMap } from './primitives';
 export type { AvatarProps, AvatarSize, AvatarShape, AvatarStatus, AvatarSizeConfig } from './primitives';
 
+export { Image, imageFits, imageRadii, imageRadiusMap } from './primitives';
+export type { ImageProps, ImageFit, ImageRadius } from './primitives';
+
 export { Kbd, kbdSizes } from './primitives';
 export type { KbdProps, KbdSize } from './primitives';
 
@@ -172,6 +175,12 @@ export type { ColorPickerProps, ColorPickerSize, ColorPickerSizeConfig } from '.
 
 export { Stepper, stepperSizes, stepperSizeMap } from './primitives';
 export type { StepperProps, StepperSize, StepperSizeConfig } from './primitives';
+
+export { NotificationBadge, notificationBadgeColors } from './primitives';
+export type { NotificationBadgeProps, NotificationBadgeColor } from './primitives';
+
+export { CodeBlock, codeBlockVariants } from './primitives';
+export type { CodeBlockProps, CodeBlockVariant } from './primitives';
 
 // ─── Layouts ────────────────────────────────────────────────────
 export { Stack, HStack, VStack, stackDirections, stackAligns, stackJustifys } from './layouts';
@@ -327,6 +336,33 @@ export type { CopyButtonProps, CopyButtonSize, CopyButtonVariant, CopyButtonSize
 
 export { PingMeter, pingMeterSizes, pingMeterSizeMap, pingMeterVariants } from './components';
 export type { PingMeterProps, PingMeterSize, PingMeterVariant, PingQuality, PingMeterSizeConfig } from './components';
+
+export { AvatarGroup } from './components';
+export type { AvatarGroupProps } from './components';
+
+export { SearchInput } from './components';
+export type { SearchInputProps } from './components';
+
+export { Navbar, NavbarBrand, NavbarContent, NavbarItem, navbarVariants } from './components';
+export type { NavbarProps, NavbarBrandProps, NavbarContentProps, NavbarItemProps, NavbarVariant } from './components';
+
+export { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuSeparator } from './components';
+export type { ContextMenuProps, ContextMenuTriggerProps, ContextMenuContentProps, ContextMenuItemProps, ContextMenuSeparatorProps } from './components';
+
+export { ToastProvider, useToast, toastPositions } from './components';
+export type { ToastProviderProps, ToastOptions, ToastItem, ToastPosition, UseToastReturn } from './components';
+
+export { ChatBubble, chatBubbleAlignments, chatBubbleVariants, chatBubbleStatuses } from './components';
+export type { ChatBubbleProps, ChatBubbleAlignment, ChatBubbleVariant, ChatBubbleStatus, ChatBubbleReaction } from './components';
+
+export { MessageGroup } from './components';
+export type { MessageGroupProps } from './components';
+
+export { NewMessageDivider } from './components';
+export type { NewMessageDividerProps } from './components';
+
+export { TypingIndicator, typingIndicatorAnimations } from './components';
+export type { TypingIndicatorProps, TypingIndicatorAnimation } from './components';
 
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';

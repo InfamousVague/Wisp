@@ -10,7 +10,7 @@ import { Search, AlertCircle, CheckCircle, ArrowRight, Star, Info, Zap } from 'l
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Text> = {
-  title: 'Primitives/Text',
+  title: 'React/Primitives/Text',
   component: Text,
   tags: ['autodocs'],
   argTypes: {

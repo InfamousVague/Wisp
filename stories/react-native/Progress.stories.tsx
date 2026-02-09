@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Progress } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Progress> = {
-  title: 'React Native/Progress',
+  title: 'React Native/Primitives/Progress',
   component: Progress,
   tags: ['autodocs'],
   argTypes: {

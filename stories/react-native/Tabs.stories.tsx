@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Tabs, TabList, Tab, TabPanel, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Tabs> = {
-  title: 'React Native/Tabs',
+  title: 'React Native/Components/Navigation/Tabs',
   component: Tabs,
   tags: ['autodocs'],
   argTypes: {

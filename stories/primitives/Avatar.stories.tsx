@@ -6,7 +6,7 @@ import { Text } from '@wisp-ui/react';
 import { Camera } from 'lucide-react';
 
 const meta: Meta<typeof Avatar> = {
-  title: 'Primitives/Avatar',
+  title: 'React/Primitives/Avatar',
   component: Avatar,
   tags: ['autodocs'],
   args: { size: 'md', shape: 'circle' },

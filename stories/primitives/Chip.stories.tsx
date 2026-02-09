@@ -10,7 +10,7 @@ import { Star, Check, AlertCircle, Info, Tag, Zap } from 'lucide-react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Chip> = {
-  title: 'Primitives/Chip',
+  title: 'React/Primitives/Chip',
   component: Chip,
   tags: ['autodocs'],
   argTypes: {

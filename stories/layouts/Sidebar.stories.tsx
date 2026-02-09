@@ -22,7 +22,7 @@ import {
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Sidebar> = {
-  title: 'Layouts/Sidebar',
+  title: 'React/Layouts/Sidebar',
   component: Sidebar,
   tags: ['autodocs'],
   argTypes: {

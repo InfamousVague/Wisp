@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Collapse, Button, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Collapse> = {
-  title: 'React Native/Collapse',
+  title: 'React Native/Layouts/Collapse',
   component: Collapse,
   tags: ['autodocs'],
   argTypes: {

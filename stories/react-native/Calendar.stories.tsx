@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Calendar } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Calendar> = {
-  title: 'React Native/Calendar',
+  title: 'React Native/Components/Date & Time/Calendar',
   component: Calendar,
   tags: ['autodocs'],
   argTypes: {

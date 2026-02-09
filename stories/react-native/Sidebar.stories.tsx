@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Sidebar, SidebarSection, SidebarItem, Text, Badge } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Sidebar> = {
-  title: 'React Native/Sidebar',
+  title: 'React Native/Layouts/Sidebar',
   component: Sidebar,
   tags: ['autodocs'],
   argTypes: {

@@ -9,7 +9,7 @@ import { Text } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Separator> = {
-  title: 'Layouts/Separator',
+  title: 'React/Layouts/Separator',
   component: Separator,
   tags: ['autodocs'],
   argTypes: {

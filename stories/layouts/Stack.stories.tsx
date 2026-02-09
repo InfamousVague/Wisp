@@ -7,7 +7,7 @@ import { Text } from '@wisp-ui/react';
 import { useThemeColors } from '@wisp-ui/react';
 
 const meta: Meta<typeof Stack> = {
-  title: 'Layouts/Stack',
+  title: 'React/Layouts/Stack',
   component: Stack,
   tags: ['autodocs'],
   argTypes: {

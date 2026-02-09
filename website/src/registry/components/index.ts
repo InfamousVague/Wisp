@@ -32,6 +32,15 @@ import { dateRangePickerEntry } from './date-range-picker';
 import { localePickerEntry } from './locale-picker';
 import { carouselEntry } from './carousel';
 import { pingMeterEntry } from './ping-meter';
+import { avatarGroupEntry } from './avatar-group';
+import { searchInputEntry } from './search-input';
+import { navbarEntry } from './navbar';
+import { contextMenuEntry } from './context-menu';
+import { toastProviderEntry } from './toast-provider';
+import { chatBubbleEntry } from './chat-bubble';
+import { messageGroupEntry } from './message-group';
+import { newMessageDividerEntry } from './new-message-divider';
+import { typingIndicatorEntry } from './typing-indicator';
 
 export const componentEntries: ComponentEntry[] = [
   commandEntry,
@@ -67,4 +76,13 @@ export const componentEntries: ComponentEntry[] = [
   localePickerEntry,
   carouselEntry,
   pingMeterEntry,
+  avatarGroupEntry,
+  searchInputEntry,
+  navbarEntry,
+  contextMenuEntry,
+  toastProviderEntry,
+  chatBubbleEntry,
+  messageGroupEntry,
+  newMessageDividerEntry,
+  typingIndicatorEntry,
 ];

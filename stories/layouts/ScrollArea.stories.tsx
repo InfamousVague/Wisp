@@ -6,7 +6,7 @@ import { Text } from '@wisp-ui/react';
 import { useThemeColors } from '@wisp-ui/react';
 
 const meta: Meta<typeof ScrollArea> = {
-  title: 'Layouts/ScrollArea',
+  title: 'React/Layouts/ScrollArea',
   component: ScrollArea,
   tags: ['autodocs'],
   argTypes: {

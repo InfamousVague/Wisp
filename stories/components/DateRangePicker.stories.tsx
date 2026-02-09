@@ -4,7 +4,7 @@ import { DateRangePicker } from '@wisp-ui/react';
 import type { DateRange } from '@wisp-ui/react';
 
 const meta: Meta<typeof DateRangePicker> = {
-  title: 'Components/DateRangePicker',
+  title: 'React/Components/Date & Time/DateRangePicker',
   component: DateRangePicker,
   tags: ['autodocs'],
   args: { size: 'md', placeholder: 'Select dates' },

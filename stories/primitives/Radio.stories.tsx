@@ -8,7 +8,7 @@ import { Text } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof RadioGroup> = {
-  title: 'Primitives/Radio',
+  title: 'React/Primitives/Radio',
   component: RadioGroup,
   tags: ['autodocs'],
   args: {

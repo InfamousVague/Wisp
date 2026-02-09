@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ButtonGroup } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof ButtonGroup> = {
-  title: 'React Native/ButtonGroup',
+  title: 'React Native/Components/Utilities/ButtonGroup',
   component: ButtonGroup,
   tags: ['autodocs'],
   argTypes: {

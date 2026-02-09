@@ -95,7 +95,7 @@ function PlatformDemo() {
 // ---------------------------------------------------------------------------
 
 const meta: Meta = {
-  title: 'React Native/usePlatform',
+  title: 'React Native/Hooks/usePlatform',
   tags: ['autodocs'],
 };
 

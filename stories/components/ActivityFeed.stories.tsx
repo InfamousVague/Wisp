@@ -10,7 +10,7 @@ import { ActivityFeed } from '@wisp-ui/react';
 import { MessageSquare, GitCommit, User, Star, Upload } from 'lucide-react';
 
 const meta: Meta<typeof ActivityFeed> = {
-  title: 'Components/ActivityFeed',
+  title: 'React/Components/Data Display/ActivityFeed',
   component: ActivityFeed,
   tags: ['autodocs'],
 };

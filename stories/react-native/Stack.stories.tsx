@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Stack, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Stack> = {
-  title: 'React Native/Stack',
+  title: 'React Native/Layouts/Stack',
   component: Stack,
   tags: ['autodocs'],
   argTypes: {

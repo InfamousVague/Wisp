@@ -9,7 +9,7 @@ import { componentSizes } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Spinner> = {
-  title: 'Primitives/Spinner',
+  title: 'React/Primitives/Spinner',
   component: Spinner,
   tags: ['autodocs'],
   argTypes: {

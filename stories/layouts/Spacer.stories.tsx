@@ -12,7 +12,7 @@ import { useThemeColors } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Spacer> = {
-  title: 'Layouts/Spacer',
+  title: 'React/Layouts/Spacer',
   component: Spacer,
   tags: ['autodocs'],
   argTypes: {

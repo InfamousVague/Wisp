@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FormField, Input } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof FormField> = {
-  title: 'React Native/FormField',
+  title: 'React Native/Layouts/FormField',
   component: FormField,
   tags: ['autodocs'],
   argTypes: {

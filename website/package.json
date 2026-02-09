@@ -4,8 +4,9 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "stats": "node scripts/generate-test-stats.mjs",
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "node scripts/generate-test-stats.mjs && tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

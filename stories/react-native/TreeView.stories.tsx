@@ -4,7 +4,7 @@ import { TreeView } from '@wisp-ui/react-native';
 import type { TreeNode } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof TreeView> = {
-  title: 'React Native/TreeView',
+  title: 'React Native/Components/Data Display/TreeView',
   component: TreeView,
   tags: ['autodocs'],
   argTypes: {

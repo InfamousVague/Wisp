@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TimePicker } from '@wisp-ui/react';
 
 const meta: Meta<typeof TimePicker> = {
-  title: 'Components/TimePicker',
+  title: 'React/Components/Date & Time/TimePicker',
   component: TimePicker,
   tags: ['autodocs'],
   args: { size: 'md', format: '12h', placeholder: 'Select time' },

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EmptyState, Button, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof EmptyState> = {
-  title: 'React Native/EmptyState',
+  title: 'React Native/Layouts/EmptyState',
   component: EmptyState,
   tags: ['autodocs'],
   argTypes: {

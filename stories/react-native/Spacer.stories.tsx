@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Spacer, Text, HStack } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Spacer> = {
-  title: 'React Native/Spacer',
+  title: 'React Native/Layouts/Spacer',
   component: Spacer,
   tags: ['autodocs'],
   argTypes: {

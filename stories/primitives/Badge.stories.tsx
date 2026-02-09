@@ -10,7 +10,7 @@ import { Star, X, Check, AlertCircle, Info } from 'lucide-react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Badge> = {
-  title: 'Primitives/Badge',
+  title: 'React/Primitives/Badge',
   component: Badge,
   tags: ['autodocs'],
   argTypes: {

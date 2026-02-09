@@ -9,7 +9,7 @@ import { Hash, Star, X, Tag as TagIcon, Zap, Circle } from 'lucide-react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Tag> = {
-  title: 'Primitives/Tag',
+  title: 'React/Primitives/Tag',
   component: Tag,
   tags: ['autodocs'],
   args: {

@@ -10,7 +10,7 @@ import { Timeline } from '@wisp-ui/react';
 import { CheckCircle, Package, Truck, CreditCard, ShoppingCart, Clock, Star, AlertCircle } from 'lucide-react';
 
 const meta: Meta<typeof Timeline> = {
-  title: 'Components/Timeline',
+  title: 'React/Components/Data Display/Timeline',
   component: Timeline,
   tags: ['autodocs'],
 };

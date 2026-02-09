@@ -11,7 +11,7 @@ import {
 } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof DropdownMenu> = {
-  title: 'React Native/DropdownMenu',
+  title: 'React Native/Components/Overlays/DropdownMenu',
   component: DropdownMenu,
   tags: ['autodocs'],
 };

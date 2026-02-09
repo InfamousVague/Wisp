@@ -4,7 +4,7 @@ import { ProgressSteps } from '@wisp-ui/react-native';
 import type { ProgressStep } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof ProgressSteps> = {
-  title: 'React Native/ProgressSteps',
+  title: 'React Native/Components/Data Display/ProgressSteps',
   component: ProgressSteps,
   tags: ['autodocs'],
   argTypes: {

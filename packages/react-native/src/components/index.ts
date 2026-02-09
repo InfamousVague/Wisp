@@ -77,3 +77,13 @@ export { Command, CommandInput, CommandList, CommandGroup, CommandItem, CommandS
 export type { CommandProps, CommandInputProps, CommandListProps, CommandGroupProps, CommandItemProps, CommandSeparatorProps, CommandEmptyProps } from './command';
 export { FileUploader } from './file-uploader';
 export type { FileUploaderProps } from './file-uploader';
+
+// Wave 8: Chat
+export { ChatBubble, StatusIcon } from './chat-bubble';
+export type { ChatBubbleProps } from './chat-bubble';
+export { MessageGroup } from './message-group';
+export type { MessageGroupProps } from './message-group';
+export { NewMessageDivider } from './new-message-divider';
+export type { NewMessageDividerProps } from './new-message-divider';
+export { TypingIndicator } from './typing-indicator';
+export type { TypingIndicatorProps } from './typing-indicator';

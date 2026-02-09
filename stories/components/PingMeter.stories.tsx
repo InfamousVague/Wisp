@@ -9,7 +9,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { PingMeter } from '@wisp-ui/react';
 
 const meta: Meta<typeof PingMeter> = {
-  title: 'Components/PingMeter',
+  title: 'React/Components/Utilities/PingMeter',
   component: PingMeter,
   tags: ['autodocs'],
 };

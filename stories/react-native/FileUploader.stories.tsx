@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FileUploader } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof FileUploader> = {
-  title: 'React Native/FileUploader',
+  title: 'React Native/Components/Data Entry/FileUploader',
   component: FileUploader,
   tags: ['autodocs'],
   argTypes: {

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TimePicker, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof TimePicker> = {
-  title: 'React Native/TimePicker',
+  title: 'React Native/Components/Date & Time/TimePicker',
   component: TimePicker,
   tags: ['autodocs'],
   argTypes: {

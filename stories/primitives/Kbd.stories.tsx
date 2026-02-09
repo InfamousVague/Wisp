@@ -9,7 +9,7 @@ import { Text } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Kbd> = {
-  title: 'Primitives/Kbd',
+  title: 'React/Primitives/Kbd',
   component: Kbd,
   tags: ['autodocs'],
   argTypes: {

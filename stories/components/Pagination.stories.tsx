@@ -5,7 +5,7 @@ import { paginationSizes } from '@wisp-ui/react';
 import { Text } from '@wisp-ui/react';
 
 const meta: Meta<typeof Pagination> = {
-  title: 'Components/Pagination',
+  title: 'React/Components/Navigation/Pagination',
   component: Pagination,
   tags: ['autodocs'],
   argTypes: {

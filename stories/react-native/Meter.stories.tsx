@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Meter } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Meter> = {
-  title: 'React Native/Meter',
+  title: 'React Native/Primitives/Meter',
   component: Meter,
   tags: ['autodocs'],
   argTypes: {

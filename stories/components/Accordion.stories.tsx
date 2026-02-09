@@ -4,7 +4,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@w
 import { Text } from '@wisp-ui/react';
 
 const meta: Meta<typeof Accordion> = {
-  title: 'Components/Accordion',
+  title: 'React/Components/Data Display/Accordion',
   component: Accordion,
   tags: ['autodocs'],
 };

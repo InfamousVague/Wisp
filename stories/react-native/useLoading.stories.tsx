@@ -74,7 +74,7 @@ function LoadingStoryWrapper({ loading }: { loading: boolean }) {
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof LoadingStoryWrapper> = {
-  title: 'React Native/useLoading',
+  title: 'React Native/Hooks/useLoading',
   component: LoadingStoryWrapper,
   tags: ['autodocs'],
   argTypes: {

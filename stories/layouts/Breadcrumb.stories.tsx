@@ -7,7 +7,7 @@ import { Icon } from '@wisp-ui/react';
 import { Home, Folder, File } from 'lucide-react';
 
 const meta: Meta<typeof Breadcrumb> = {
-  title: 'Layouts/Breadcrumb',
+  title: 'React/Layouts/Breadcrumb',
   component: Breadcrumb,
   tags: ['autodocs'],
   argTypes: {

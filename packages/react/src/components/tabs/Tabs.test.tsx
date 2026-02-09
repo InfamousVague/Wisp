@@ -188,7 +188,7 @@ describe('Tabs — disabled tab', () => {
         </Tabs>
       </Dark>,
     );
-    const disabledTab = screen.getByText('Second');
+    const disabledTab = screen.getByText('Second').closest('button')!;
     expect(disabledTab).toHaveAttribute('aria-disabled');
     expect(disabledTab).toBeDisabled();
   });
@@ -294,25 +294,25 @@ describe('Tabs — accessibility', () => {
 
   it('active tab has aria-selected=true', () => {
     renderTabs();
-    const firstTab = screen.getByText('First');
+    const firstTab = screen.getByText('First').closest('button')!;
     expect(firstTab).toHaveAttribute('aria-selected', 'true');
   });
 
   it('inactive tab has aria-selected=false', () => {
     renderTabs();
-    const secondTab = screen.getByText('Second');
+    const secondTab = screen.getByText('Second').closest('button')!;
     expect(secondTab).toHaveAttribute('aria-selected', 'false');
   });
 
   it('active tab has tabIndex=0, inactive tabs have tabIndex=-1', () => {
     renderTabs();
-    expect(screen.getByText('First')).toHaveAttribute('tabindex', '0');
-    expect(screen.getByText('Second')).toHaveAttribute('tabindex', '-1');
+    expect(screen.getByText('First').closest('button')!).toHaveAttribute('tabindex', '0');
+    expect(screen.getByText('Second').closest('button')!).toHaveAttribute('tabindex', '-1');
   });
 
   it('tab aria-controls matches panel id', () => {
     renderTabs();
-    const firstTab = screen.getByText('First');
+    const firstTab = screen.getByText('First').closest('button')!;
     const panelId = firstTab.getAttribute('aria-controls');
     const panel = screen.getByRole('tabpanel');
     expect(panel).toHaveAttribute('id', panelId);
@@ -320,7 +320,7 @@ describe('Tabs — accessibility', () => {
 
   it('panel aria-labelledby matches tab id', () => {
     renderTabs();
-    const firstTab = screen.getByText('First');
+    const firstTab = screen.getByText('First').closest('button')!;
     const tabId = firstTab.getAttribute('id');
     const panel = screen.getByRole('tabpanel');
     expect(panel).toHaveAttribute('aria-labelledby', tabId);

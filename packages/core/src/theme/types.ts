@@ -272,6 +272,65 @@ export interface DataColors {
   cyan: string;
 }
 
+/**
+ * Extended color palette for decorative and expressive use cases.
+ *
+ * @remarks
+ * Twenty vibrant hues sourced from the Flat UI Colors Russian palette.
+ * These are intended for avatars, tags, charts, illustrations, and any
+ * context where the monochrome base needs a splash of personality.
+ *
+ * Colors are grouped loosely by hue family:
+ * - **Warm:** peach, mustard, tigerlily, sawtoothOak
+ * - **Yellow:** rosyHighlight, summertime
+ * - **Blue:** softBlue, cornflower, blueCuracao, squeaky
+ * - **Pink/Red:** oldGeranium, deepRose, roguePink, flamingoPink, porcelainRose, appleValley
+ * - **Purple:** purpleMountainMajesty, purpleCorallite
+ * - **Neutral:** pencilLead, biscay
+ */
+export interface PaletteColors {
+  /** Warm peach — #f3a683. */
+  creamyPeach: string;
+  /** Soft gold highlight — #f7d794. */
+  rosyHighlight: string;
+  /** Muted periwinkle — #778beb. */
+  softBlue: string;
+  /** Warm salmon-orange — #e77f67. */
+  brewedMustard: string;
+  /** Dusty rose — #cf6a87. */
+  oldGeranium: string;
+  /** Darker peach-orange — #f19066. */
+  sawtoothOak: string;
+  /** Warm yellow — #f5cd79. */
+  summertime: string;
+  /** Rich indigo-blue — #546de5. */
+  cornflower: string;
+  /** Bold terracotta — #e15f41. */
+  tigerlily: string;
+  /** Deep magenta-rose — #c44569. */
+  deepRose: string;
+  /** Muted lavender — #786fa6. */
+  purpleMountainMajesty: string;
+  /** Soft pastel pink — #f8a5c2. */
+  roguePink: string;
+  /** Light cyan-turquoise — #63cdda. */
+  squeaky: string;
+  /** Warm blush — #ea8685. */
+  appleValley: string;
+  /** Slate blue-gray — #596275. */
+  pencilLead: string;
+  /** Deep indigo — #574b90. */
+  purpleCorallite: string;
+  /** Vivid pink — #f78fb3. */
+  flamingoPink: string;
+  /** Bright teal-cyan — #3dc1d3. */
+  blueCuracao: string;
+  /** Soft coral-red — #e66767. */
+  porcelainRose: string;
+  /** Dark navy — #303952. */
+  biscay: string;
+}
+
 // ---------------------------------------------------------------------------
 // Composite Color Map
 // ---------------------------------------------------------------------------
@@ -307,6 +366,8 @@ export interface ThemeColors {
   brand: BrandColors;
   /** Data-visualization colors. */
   data: DataColors;
+  /** Extended decorative color palette. */
+  palette: PaletteColors;
 }
 
 // ---------------------------------------------------------------------------

@@ -6,7 +6,7 @@ import { Text } from '@wisp-ui/react';
 import { Button } from '@wisp-ui/react';
 
 const meta: Meta<typeof Dialog> = {
-  title: 'Components/Dialog',
+  title: 'React/Components/Overlays/Dialog',
   component: Dialog,
   tags: ['autodocs'],
   argTypes: {

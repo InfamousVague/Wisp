@@ -11,7 +11,7 @@ import { useThemeColors } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Container> = {
-  title: 'Layouts/Container',
+  title: 'React/Layouts/Container',
   component: Container,
   tags: ['autodocs'],
   argTypes: {

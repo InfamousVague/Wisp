@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Badge } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Badge> = {
-  title: 'React Native/Badge',
+  title: 'React Native/Primitives/Badge',
   component: Badge,
   tags: ['autodocs'],
   argTypes: {

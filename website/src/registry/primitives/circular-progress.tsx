@@ -66,6 +66,26 @@ export const circularProgressEntry: ComponentEntry = {
       code: `<CircularProgress value={75} variant="half" showValue />`,
     },
     {
+      title: 'Thickness',
+      render: (
+        <HStack gap="lg" align="end">
+          {(['thin', 'regular', 'medium', 'thick', 'heavy'] as const).map((t) => (
+            <VStack key={t} gap="xs" align="center">
+              <CircularProgress value={65} size="lg" thickness={t} showValue />
+              <Text size="xs" color="tertiary">{t}</Text>
+            </VStack>
+          ))}
+        </HStack>
+      ),
+      code: `import { CircularProgress } from '@wisp-ui/react';
+
+<CircularProgress value={65} thickness="thin" showValue />
+<CircularProgress value={65} thickness="regular" showValue />
+<CircularProgress value={65} thickness="medium" showValue />
+<CircularProgress value={65} thickness="thick" showValue />
+<CircularProgress value={65} thickness="heavy" showValue />`,
+    },
+    {
       title: 'Indeterminate',
       render: (
         <HStack gap="md" align="center">

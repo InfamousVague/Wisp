@@ -8,7 +8,7 @@ import { Text } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Rating> = {
-  title: 'Primitives/Rating',
+  title: 'React/Primitives/Rating',
   component: Rating,
   tags: ['autodocs'],
   args: {

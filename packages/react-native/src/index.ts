@@ -116,6 +116,8 @@ export {
   SocialButton, CopyButton, PingMeter,
   Command, CommandInput, CommandList, CommandGroup, CommandItem, CommandSeparator, CommandEmpty,
   FileUploader,
+  // Wave 8: Chat
+  ChatBubble, StatusIcon, MessageGroup, NewMessageDivider, TypingIndicator,
 } from './components';
 export type {
   // Wave 1
@@ -151,6 +153,8 @@ export type {
   CommandProps, CommandInputProps, CommandListProps, CommandGroupProps,
   CommandItemProps, CommandSeparatorProps, CommandEmptyProps,
   FileUploaderProps,
+  // Wave 8: Chat
+  ChatBubbleProps, MessageGroupProps, NewMessageDividerProps, TypingIndicatorProps,
 } from './components';
 
 // ---------------------------------------------------------------------------

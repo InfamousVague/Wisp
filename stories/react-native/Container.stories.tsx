@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Container, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Container> = {
-  title: 'React Native/Container',
+  title: 'React Native/Layouts/Container',
   component: Container,
   tags: ['autodocs'],
   argTypes: {

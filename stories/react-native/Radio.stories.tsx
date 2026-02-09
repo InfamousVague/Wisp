@@ -4,7 +4,7 @@ import { Radio, RadioGroup } from '@wisp-ui/react-native';
 import { componentSizes } from '@wisp-ui/react';
 
 const meta: Meta<typeof Radio> = {
-  title: 'React Native/Radio',
+  title: 'React Native/Primitives/Radio',
   component: Radio,
   tags: ['autodocs'],
   argTypes: {

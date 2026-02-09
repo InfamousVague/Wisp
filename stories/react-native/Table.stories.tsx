@@ -10,7 +10,7 @@ import {
 } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Table> = {
-  title: 'React Native/Table',
+  title: 'React Native/Components/Data Display/Table',
   component: Table,
   tags: ['autodocs'],
   argTypes: {

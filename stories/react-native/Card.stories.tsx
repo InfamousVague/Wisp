@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Card, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Card> = {
-  title: 'React Native/Card',
+  title: 'React Native/Layouts/Card',
   component: Card,
   tags: ['autodocs'],
   argTypes: {

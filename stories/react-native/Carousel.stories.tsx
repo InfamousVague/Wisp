@@ -24,7 +24,7 @@ function Slide({ color, index }: { color: string; index: number }) {
 }
 
 const meta: Meta<typeof Carousel> = {
-  title: 'React Native/Carousel',
+  title: 'React Native/Components/Data Display/Carousel',
   component: Carousel,
   tags: ['autodocs'],
   argTypes: {

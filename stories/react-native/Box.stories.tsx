@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Box, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Box> = {
-  title: 'React Native/Box',
+  title: 'React Native/Layouts/Box',
   component: Box,
   tags: ['autodocs'],
   argTypes: {

@@ -8,7 +8,7 @@ import { Text } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof TextArea> = {
-  title: 'Primitives/TextArea',
+  title: 'React/Primitives/TextArea',
   component: TextArea,
   tags: ['autodocs'],
   args: {

@@ -5,7 +5,7 @@ import type { TreeNode } from '@wisp-ui/react';
 import { Folder, File, FileText, FileCode, Settings, Image } from 'lucide-react';
 
 const meta: Meta<typeof TreeView> = {
-  title: 'Components/TreeView',
+  title: 'React/Components/Data Display/TreeView',
   component: TreeView,
   tags: ['autodocs'],
 };

@@ -8,7 +8,7 @@ import { Select } from '@wisp-ui/react';
 import { Text } from '@wisp-ui/react';
 
 const meta: Meta<typeof FormField> = {
-  title: 'Layouts/FormField',
+  title: 'React/Layouts/FormField',
   component: FormField,
   tags: ['autodocs'],
   argTypes: {

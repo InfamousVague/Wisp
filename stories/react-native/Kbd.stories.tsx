@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Kbd } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Kbd> = {
-  title: 'React Native/Kbd',
+  title: 'React Native/Primitives/Kbd',
   component: Kbd,
   tags: ['autodocs'],
   argTypes: {

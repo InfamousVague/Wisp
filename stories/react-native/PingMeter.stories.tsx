@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { PingMeter } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof PingMeter> = {
-  title: 'React Native/PingMeter',
+  title: 'React Native/Components/Utilities/PingMeter',
   component: PingMeter,
   tags: ['autodocs'],
   argTypes: {

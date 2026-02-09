@@ -10,7 +10,7 @@ import { ButtonGroup } from '@wisp-ui/react';
 import { List, Grid, LayoutGrid } from 'lucide-react';
 
 const meta: Meta<typeof ButtonGroup> = {
-  title: 'Components/ButtonGroup',
+  title: 'React/Components/Utilities/ButtonGroup',
   component: ButtonGroup,
   tags: ['autodocs'],
 };

@@ -11,7 +11,7 @@ import { Button } from '@wisp-ui/react';
 import { Info, CheckCircle, AlertTriangle, XCircle, Bell } from 'lucide-react';
 
 const meta: Meta<typeof Banner> = {
-  title: 'Components/Banner',
+  title: 'React/Components/Feedback/Banner',
   component: Banner,
   tags: ['autodocs'],
 };

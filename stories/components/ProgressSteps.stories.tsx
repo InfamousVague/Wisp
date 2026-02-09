@@ -11,7 +11,7 @@ import { Button } from '@wisp-ui/react';
 import { User, CreditCard, CheckCircle, Package } from 'lucide-react';
 
 const meta: Meta<typeof ProgressSteps> = {
-  title: 'Components/ProgressSteps',
+  title: 'React/Components/Data Display/ProgressSteps',
   component: ProgressSteps,
   tags: ['autodocs'],
 };

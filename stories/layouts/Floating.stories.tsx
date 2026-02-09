@@ -13,7 +13,7 @@ import { useThemeColors } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Floating> = {
-  title: 'Layouts/Floating',
+  title: 'React/Layouts/Floating',
   component: Floating,
   tags: ['autodocs'],
 };

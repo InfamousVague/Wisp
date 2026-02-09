@@ -4,8 +4,8 @@ import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { Tooltip } from "./Tooltip";
-import { tooltipPlacements } from "./Tooltip.types";
-import { WispProvider } from "../../theme";
+import { tooltipPlacements } from ".";
+import { WispProvider } from "../../providers";
 
 // ---------------------------------------------------------------------------
 // Wrapper

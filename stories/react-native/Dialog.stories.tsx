@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Dialog, Button, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Dialog> = {
-  title: 'React Native/Dialog',
+  title: 'React Native/Components/Overlays/Dialog',
   component: Dialog,
   tags: ['autodocs'],
   argTypes: {

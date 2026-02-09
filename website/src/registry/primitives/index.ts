@@ -20,6 +20,7 @@ import { colorSwatchEntry } from './color-swatch';
 import { skeletonEntry } from './skeleton';
 import { indicatorEntry } from './indicator';
 import { avatarEntry } from './avatar';
+import { imageEntry } from './image';
 import { alertEntry } from './alert';
 import { toastEntry } from './toast';
 import { progressEntry } from './progress';
@@ -28,6 +29,8 @@ import { meterEntry } from './meter';
 import { ratingEntry } from './rating';
 import { colorPickerEntry } from './color-picker';
 import { stepperEntry } from './stepper';
+import { notificationBadgeEntry } from './notification-badge';
+import { codeBlockEntry } from './code-block';
 
 export const primitiveEntries: ComponentEntry[] = [
   textEntry,
@@ -56,7 +59,10 @@ export const primitiveEntries: ComponentEntry[] = [
   skeletonEntry,
   colorSwatchEntry,
   avatarEntry,
+  imageEntry,
   kbdEntry,
   colorPickerEntry,
   stepperEntry,
+  notificationBadgeEntry,
+  codeBlockEntry,
 ];

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ListItem, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof ListItem> = {
-  title: 'React Native/ListItem',
+  title: 'React Native/Layouts/ListItem',
   component: ListItem,
   tags: ['autodocs'],
   argTypes: {

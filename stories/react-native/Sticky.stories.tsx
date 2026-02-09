@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Sticky, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Sticky> = {
-  title: 'React Native/Sticky',
+  title: 'React Native/Layouts/Sticky',
   component: Sticky,
   tags: ['autodocs'],
   argTypes: {

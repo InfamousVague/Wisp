@@ -135,7 +135,7 @@ function BreakpointTableDemo() {
 // ---------------------------------------------------------------------------
 
 const meta: Meta = {
-  title: 'React Native/useBreakpoint',
+  title: 'React Native/Hooks/useBreakpoint',
   tags: ['autodocs'],
 };
 

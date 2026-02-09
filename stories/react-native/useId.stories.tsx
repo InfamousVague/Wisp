@@ -108,7 +108,7 @@ function MultipleIdsDemo() {
 // ---------------------------------------------------------------------------
 
 const meta: Meta = {
-  title: 'React Native/useId',
+  title: 'React Native/Hooks/useId',
   tags: ['autodocs'],
 };
 

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { PinInput } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof PinInput> = {
-  title: 'React Native/PinInput',
+  title: 'React Native/Primitives/PinInput',
   component: PinInput,
   tags: ['autodocs'],
   argTypes: {

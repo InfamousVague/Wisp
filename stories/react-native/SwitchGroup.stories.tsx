@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SwitchGroup } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof SwitchGroup> = {
-  title: 'React Native/SwitchGroup',
+  title: 'React Native/Components/Data Entry/SwitchGroup',
   component: SwitchGroup,
   tags: ['autodocs'],
   argTypes: {

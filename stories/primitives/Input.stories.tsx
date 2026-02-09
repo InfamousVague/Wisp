@@ -10,7 +10,7 @@ import { Search, X, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Input> = {
-  title: 'Primitives/Input',
+  title: 'React/Primitives/Input',
   component: Input,
   tags: ['autodocs'],
   args: {

@@ -9,7 +9,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SocialButton } from '@wisp-ui/react';
 
 const meta: Meta<typeof SocialButton> = {
-  title: 'Components/SocialButton',
+  title: 'React/Components/Utilities/SocialButton',
   component: SocialButton,
   tags: ['autodocs'],
 };

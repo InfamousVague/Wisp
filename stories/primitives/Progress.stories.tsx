@@ -9,7 +9,7 @@ import { componentSizes, thicknesses } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Progress> = {
-  title: 'Primitives/Progress',
+  title: 'React/Primitives/Progress',
   component: Progress,
   tags: ['autodocs'],
   argTypes: {

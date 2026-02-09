@@ -11,7 +11,7 @@ import {
 } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Command> = {
-  title: 'React Native/Command',
+  title: 'React Native/Components/Utilities/Command',
   component: Command,
   tags: ['autodocs'],
   argTypes: {

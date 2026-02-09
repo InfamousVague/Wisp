@@ -4,7 +4,7 @@ import { Toggle } from '@wisp-ui/react-native';
 import { Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Toggle> = {
-  title: 'React Native/Toggle',
+  title: 'React Native/Primitives/Toggle',
   component: Toggle,
   tags: ['autodocs'],
   argTypes: {

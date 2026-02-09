@@ -14,7 +14,7 @@ const countryOptions = [
 ];
 
 const meta: Meta<typeof Combobox> = {
-  title: 'React Native/Combobox',
+  title: 'React Native/Components/Data Entry/Combobox',
   component: Combobox,
   tags: ['autodocs'],
   argTypes: {

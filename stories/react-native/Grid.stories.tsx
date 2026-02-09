@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Grid, GridItem } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Grid> = {
-  title: 'React Native/Grid',
+  title: 'React Native/Layouts/Grid',
   component: Grid,
   tags: ['autodocs'],
   argTypes: {

@@ -5,7 +5,7 @@ import { dataTableSizes, dataTableVariants } from '@wisp-ui/react';
 import type { DataTableColumn, SortState } from '@wisp-ui/react';
 
 const meta: Meta<typeof DataTable> = {
-  title: 'Components/DataTable',
+  title: 'React/Components/Data Display/DataTable',
   component: DataTable,
   tags: ['autodocs'],
   argTypes: {

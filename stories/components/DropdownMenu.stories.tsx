@@ -9,7 +9,7 @@ import {
 } from "@wisp-ui/react";
 
 const meta: Meta = {
-  title: "Components/DropdownMenu",
+  title: "React/Components/Overlays/DropdownMenu",
   tags: ["autodocs"],
 };
 

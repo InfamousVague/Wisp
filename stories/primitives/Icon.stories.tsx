@@ -31,7 +31,7 @@ import {
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Icon> = {
-  title: 'Primitives/Icon',
+  title: 'React/Primitives/Icon',
   component: Icon,
   tags: ['autodocs'],
   argTypes: {

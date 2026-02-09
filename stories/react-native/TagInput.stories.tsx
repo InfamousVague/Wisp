@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TagInput, Text } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof TagInput> = {
-  title: 'React Native/TagInput',
+  title: 'React Native/Primitives/TagInput',
   component: TagInput,
   tags: ['autodocs'],
   argTypes: {

@@ -4,7 +4,7 @@ import { Slider } from '@wisp-ui/react-native';
 import { componentSizes } from '@wisp-ui/react';
 
 const meta: Meta<typeof Slider> = {
-  title: 'React Native/Slider',
+  title: 'React Native/Primitives/Slider',
   component: Slider,
   tags: ['autodocs'],
   argTypes: {

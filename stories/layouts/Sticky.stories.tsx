@@ -12,7 +12,7 @@ import { useThemeColors } from '@wisp-ui/react';
 // ---------------------------------------------------------------------------
 
 const meta: Meta<typeof Sticky> = {
-  title: 'Layouts/Sticky',
+  title: 'React/Layouts/Sticky',
   component: Sticky,
   tags: ['autodocs'],
 };

@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "./DropdownMenu";
-import { WispProvider } from "../../theme";
+import { WispProvider } from "../../providers";
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => (
   <WispProvider mode="dark">{children}</WispProvider>

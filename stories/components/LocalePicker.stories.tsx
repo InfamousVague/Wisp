@@ -4,7 +4,7 @@ import { LocalePicker } from '@wisp-ui/react';
 import type { LocaleOption } from '@wisp-ui/react';
 
 const meta: Meta<typeof LocalePicker> = {
-  title: 'Components/LocalePicker',
+  title: 'React/Components/Data Entry/LocalePicker',
   component: LocalePicker,
   tags: ['autodocs'],
   args: { size: 'md', placeholder: 'Select language' },

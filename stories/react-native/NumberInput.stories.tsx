@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { NumberInput } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof NumberInput> = {
-  title: 'React Native/NumberInput',
+  title: 'React Native/Primitives/NumberInput',
   component: NumberInput,
   tags: ['autodocs'],
   argTypes: {

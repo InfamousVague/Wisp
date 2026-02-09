@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Indicator, Avatar } from '@wisp-ui/react-native';
 
 const meta: Meta<typeof Indicator> = {
-  title: 'React Native/Indicator',
+  title: 'React Native/Primitives/Indicator',
   component: Indicator,
   tags: ['autodocs'],
   argTypes: {

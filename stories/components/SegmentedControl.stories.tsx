@@ -6,7 +6,7 @@ import { Icon } from '@wisp-ui/react';
 import { Grid, List, LayoutGrid } from 'lucide-react';
 
 const meta: Meta<typeof SegmentedControl> = {
-  title: 'Components/SegmentedControl',
+  title: 'React/Components/Navigation/SegmentedControl',
   component: SegmentedControl,
   tags: ['autodocs'],
   argTypes: {

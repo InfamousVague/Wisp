@@ -1,0 +1,156 @@
+/**
+ * @module TypingIndicator
+ */
+import React, { forwardRef, useMemo, useEffect } from 'react';
+import type { TypingIndicatorProps } from '@wisp-ui/core/types/TypingIndicator.types';
+import {
+  ensureTypingIndicatorKeyframes,
+  buildDotsContainerStyle,
+  buildDotStyle,
+  buildTypingBubbleStyle,
+  buildTypingGroupStyle,
+  buildTypingRowStyle,
+  buildTypingSenderNameStyle,
+} from '@wisp-ui/core/styles/TypingIndicator.styles';
+import { useThemeColors } from '../../providers';
+
+// ---------------------------------------------------------------------------
+// Dot count
+// ---------------------------------------------------------------------------
+
+const DOT_INDICES = [0, 1, 2];
+
+// ---------------------------------------------------------------------------
+// TypingIndicator
+// ---------------------------------------------------------------------------
+
+/**
+ * TypingIndicator — Animated "someone is typing…" indicator.
+ *
+ * @remarks
+ * Key features:
+ * - Four animation styles: `bounce`, `pulse`, `scale`, `wave`.
+ * - Optional `bubble` mode wraps the dots in a ChatBubble-shaped container.
+ * - Optional `avatar` + `sender` props display a header above the bubble.
+ * - Accessible via `role="status"` and `aria-label`.
+ *
+ * @example
+ * ```tsx
+ * // Bare dots
+ * <TypingIndicator />
+ *
+ * // Inside a chat bubble
+ * <TypingIndicator bubble animation="pulse" />
+ *
+ * // With avatar
+ * <TypingIndicator
+ *   bubble
+ *   avatar={<Avatar name="Alice" size="sm" />}
+ *   sender="Alice"
+ * />
+ * ```
+ */
+export const TypingIndicator = forwardRef<HTMLDivElement, TypingIndicatorProps>(
+  function TypingIndicator(
+    {
+      animation = 'bounce',
+      bubble = false,
+      align = 'incoming',
+      avatar,
+      sender,
+      color,
+      dotSize = 8,
+      style: userStyle,
+      className,
+      ...rest
+    },
+    ref,
+  ) {
+    const themeColors = useThemeColors();
+
+    // Inject keyframes on mount (SSR-safe)
+    useEffect(() => {
+      ensureTypingIndicatorKeyframes();
+    }, []);
+
+    const dotColor = color ?? themeColors.text.muted;
+
+    const dotsContainerStyle = useMemo(
+      () => buildDotsContainerStyle(),
+      [],
+    );
+
+    // The core dots element
+    const dots = (
+      <div style={dotsContainerStyle} aria-hidden>
+        {DOT_INDICES.map((i) => (
+          <span
+            key={i}
+            style={buildDotStyle(i, animation, dotSize, dotColor)}
+          />
+        ))}
+      </div>
+    );
+
+    // ---- Non-bubble mode: just render the dots ----
+    if (!bubble) {
+      return (
+        <div
+          ref={ref}
+          className={className}
+          style={{ display: 'inline-flex', alignItems: 'center', ...userStyle }}
+          role="status"
+          aria-label="Typing"
+          {...rest}
+        >
+          {dots}
+        </div>
+      );
+    }
+
+    // ---- Bubble mode: wrap in ChatBubble-shaped container ----
+    const bubbleStyle = useMemo(
+      () => buildTypingBubbleStyle(align, themeColors),
+      [align, themeColors],
+    );
+
+    const groupStyle = useMemo(
+      () => buildTypingGroupStyle(align),
+      [align],
+    );
+
+    const rowStyle = useMemo(
+      () => buildTypingRowStyle(align),
+      [align],
+    );
+
+    const senderNameStyle = useMemo(
+      () => buildTypingSenderNameStyle(themeColors),
+      [themeColors],
+    );
+
+    return (
+      <div
+        ref={ref}
+        className={className}
+        style={{ ...groupStyle, ...userStyle }}
+        role="status"
+        aria-label={sender ? `${sender} is typing` : 'Typing'}
+        {...rest}
+      >
+        {/* Sender name above the row */}
+        {sender && <span style={senderNameStyle}>{sender}</span>}
+
+        {/* Avatar + Bubble side-by-side */}
+        <div style={rowStyle}>
+          {avatar}
+          <div style={bubbleStyle}>
+            {dots}
+          </div>
+        </div>
+      </div>
+    );
+  },
+);
+
+TypingIndicator.displayName = 'TypingIndicator';
