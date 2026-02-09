@@ -85,7 +85,12 @@ export function Landing() {
           borderBottom: `1px solid ${colors.border.subtle}`,
         }}
       >
-        <HStack gap="sm" align="center">
+        <HStack gap="xs" align="center">
+          <img
+            src={`${import.meta.env.BASE_URL}wisp-logo.png`}
+            alt="Wisp"
+            style={{ width: 28, height: 28 }}
+          />
           <Text size="lg" weight="bold">
             wisp
           </Text>
@@ -148,6 +153,11 @@ function HeroSection() {
         gap: 24,
       }}
     >
+      <img
+        src={`${import.meta.env.BASE_URL}wisp-logo.png`}
+        alt="Wisp logo"
+        style={{ width: 96, height: 96 }}
+      />
       <Text size="display-2xl" weight="bold">
         wisp
       </Text>
