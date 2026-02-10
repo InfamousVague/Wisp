@@ -37,8 +37,10 @@ export interface MessageInputProps extends ViewProps {
   onAttachmentClick?: () => void;
   /** Show emoji trigger button. @default true */
   showEmoji?: boolean;
-  /** Called when emoji button is pressed. */
+  /** Called when emoji button is pressed (use for external picker). */
   onEmojiClick?: () => void;
+  /** Called when an emoji is selected from the built-in picker. */
+  onEmojiSelect?: (emoji: string) => void;
   /** Whether the input is disabled. @default false */
   disabled?: boolean;
   /** Whether the message is being sent. @default false */
@@ -65,6 +67,7 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
     onAttachmentClick,
     showEmoji = true,
     onEmojiClick,
+    onEmojiSelect: _onEmojiSelect,
     disabled = false,
     sending = false,
     autoExpand = true,
