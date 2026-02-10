@@ -63,26 +63,100 @@ export function buildEmojiPickerContainerStyle(
 
 export function buildEmojiPickerHeaderStyle(
   sizeConfig: EmojiPickerSizeConfig,
+  colors: EmojiPickerColors,
 ): CSSStyleObject {
   return {
     display: 'flex',
     flexDirection: 'column',
     gap: sizeConfig.gap * 2,
-    padding: `${sizeConfig.padding}px ${sizeConfig.padding}px 0`,
+    padding: `${sizeConfig.padding}px ${sizeConfig.padding}px ${sizeConfig.gap}px`,
     flexShrink: 0,
+    backgroundColor: colors.bg,
   };
 }
 
-export function buildEmojiPickerSkinToneBarStyle(
+/** Row containing search input and skin tone trigger side by side. */
+export function buildEmojiPickerSearchRowStyle(): CSSStyleObject {
+  return {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  };
+}
+
+/** The hand emoji button that toggles the skin tone row. */
+export function buildEmojiPickerSkinToneTriggerStyle(
+  sizeConfig: EmojiPickerSizeConfig,
+  colors: EmojiPickerColors,
+  open: boolean,
+): CSSStyleObject {
+  return {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: sizeConfig.searchHeight,
+    height: sizeConfig.searchHeight,
+    borderRadius: sizeConfig.borderRadius / 2,
+    border: `1px solid ${open ? colors.skinToneActiveBorder : colors.border}`,
+    backgroundColor: open ? colors.tabHoverBg : 'transparent',
+    cursor: 'pointer',
+    fontSize: Math.round(sizeConfig.searchHeight * 0.5),
+    padding: 0,
+    lineHeight: 1,
+    flexShrink: 0,
+    overflow: 'hidden',
+    transition: 'border-color 150ms ease, background-color 150ms ease',
+  };
+}
+
+/** The expanded row of skin tone hand options. */
+export function buildEmojiPickerSkinToneRowStyle(
   sizeConfig: EmojiPickerSizeConfig,
   colors: EmojiPickerColors,
 ): CSSStyleObject {
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: sizeConfig.gap + 2,
-    padding: `${sizeConfig.gap}px 0`,
+    justifyContent: 'space-evenly',
+    padding: `6px 8px`,
+    borderRadius: sizeConfig.borderRadius / 2,
+    border: `1px solid ${colors.border}`,
+    backgroundColor: colors.tabHoverBg,
   };
+}
+
+/** Individual skin tone option inside the expanded row. */
+export function buildEmojiPickerSkinToneOptionStyle(
+  sizeConfig: EmojiPickerSizeConfig,
+  colors: EmojiPickerColors,
+  active: boolean,
+): CSSStyleObject {
+  const optionSize = Math.round(sizeConfig.cellSize * 0.9);
+  return {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: optionSize,
+    height: optionSize,
+    borderRadius: '50%',
+    border: active ? `2px solid ${colors.skinToneActiveBorder}` : '2px solid transparent',
+    backgroundColor: active ? colors.bg : 'transparent',
+    cursor: 'pointer',
+    fontSize: Math.round(optionSize * 0.55),
+    padding: 0,
+    lineHeight: 1,
+    overflow: 'hidden',
+    transition: 'border-color 150ms ease',
+  };
+}
+
+// Legacy — kept for backward compat
+export function buildEmojiPickerSkinToneBarStyle(
+  sizeConfig: EmojiPickerSizeConfig,
+  colors: EmojiPickerColors,
+): CSSStyleObject {
+  return buildEmojiPickerSkinToneRowStyle(sizeConfig, colors);
 }
 
 export function buildEmojiPickerSkinToneDotStyle(
@@ -90,21 +164,7 @@ export function buildEmojiPickerSkinToneDotStyle(
   colors: EmojiPickerColors,
   active: boolean,
 ): CSSStyleObject {
-  return {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: sizeConfig.skinToneDotSize,
-    height: sizeConfig.skinToneDotSize,
-    borderRadius: '50%',
-    border: `2px solid ${active ? colors.skinToneActiveBorder : 'transparent'}`,
-    backgroundColor: 'transparent',
-    cursor: 'pointer',
-    fontSize: sizeConfig.skinToneDotSize * 0.7,
-    padding: 0,
-    lineHeight: 1,
-    transition: 'border-color 150ms ease',
-  };
+  return buildEmojiPickerSkinToneOptionStyle(sizeConfig, colors, active);
 }
 
 export function buildEmojiPickerTabBarStyle(

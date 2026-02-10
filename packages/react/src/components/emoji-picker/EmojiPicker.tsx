@@ -39,8 +39,10 @@ import {
   resolveEmojiPickerColors,
   buildEmojiPickerContainerStyle,
   buildEmojiPickerHeaderStyle,
-  buildEmojiPickerSkinToneBarStyle,
-  buildEmojiPickerSkinToneDotStyle,
+  buildEmojiPickerSearchRowStyle,
+  buildEmojiPickerSkinToneTriggerStyle,
+  buildEmojiPickerSkinToneRowStyle,
+  buildEmojiPickerSkinToneOptionStyle,
   buildEmojiPickerTabBarStyle,
   buildEmojiPickerTabStyle,
   buildEmojiPickerGridStyle,
@@ -116,6 +118,7 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState<EmojiCategory>('smileys');
   const [internalSkinTone, setInternalSkinTone] = useState<SkinTone>(defaultSkinTone);
+  const [skinToneOpen, setSkinToneOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<Map<string, HTMLDivElement>>(new Map());
   const isScrollingProgrammatically = useRef(false);
@@ -129,9 +132,14 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
         setInternalSkinTone(tone);
       }
       onSkinToneChange?.(tone);
+      setSkinToneOpen(false);
     },
     [controlledSkinTone, onSkinToneChange],
   );
+
+  const toggleSkinTonePicker = useCallback(() => {
+    setSkinToneOpen((prev) => !prev);
+  }, []);
 
   // Resolve colors
   const colors = useMemo(
@@ -268,11 +276,19 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
     [sizeConfig, colors],
   );
   const headerStyle = useMemo(
-    () => buildEmojiPickerHeaderStyle(sizeConfig),
-    [sizeConfig],
+    () => buildEmojiPickerHeaderStyle(sizeConfig, colors),
+    [sizeConfig, colors],
   );
-  const skinToneBarStyle = useMemo(
-    () => buildEmojiPickerSkinToneBarStyle(sizeConfig, colors),
+  const searchRowStyle = useMemo(
+    () => buildEmojiPickerSearchRowStyle(),
+    [],
+  );
+  const skinToneTriggerStyle = useMemo(
+    () => buildEmojiPickerSkinToneTriggerStyle(sizeConfig, colors, skinToneOpen),
+    [sizeConfig, colors, skinToneOpen],
+  );
+  const skinToneRowStyle = useMemo(
+    () => buildEmojiPickerSkinToneRowStyle(sizeConfig, colors),
     [sizeConfig, colors],
   );
   const tabBarStyle = useMemo(
@@ -312,30 +328,42 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
       aria-label="Emoji picker"
       {...rest}
     >
-      {/* Header: Search + Skin Tones */}
+      {/* Header: Search + Skin Tone trigger */}
       <div style={headerStyle}>
-        {/* Search */}
-        {showSearch && (
-          <Input
-            size={size}
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder={searchPlaceholder}
-            icon={Search as any}
-            aria-label="Search emoji"
-            autoFocus={autoFocusSearch}
-            style={{ width: '100%' }}
-          />
-        )}
+        <div style={searchRowStyle}>
+          {showSearch && (
+            <Input
+              size={size}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={searchPlaceholder}
+              icon={Search as any}
+              aria-label="Search emoji"
+              autoFocus={autoFocusSearch}
+              style={{ width: '100%', flex: 1 }}
+            />
+          )}
+          {showSkinTones && (
+            <button
+              type="button"
+              style={skinToneTriggerStyle}
+              onClick={toggleSkinTonePicker}
+              aria-label="Select skin tone"
+              title="Select skin tone"
+            >
+              {SKIN_TONE_PREVIEW}{SKIN_TONE_MODIFIERS[currentSkinTone]}
+            </button>
+          )}
+        </div>
 
-        {/* Skin tone selector */}
-        {showSkinTones && (
-          <div style={skinToneBarStyle}>
+        {/* Expanded skin tone options */}
+        {showSkinTones && skinToneOpen && (
+          <div style={skinToneRowStyle}>
             {skinTones.map((tone) => (
               <button
                 key={tone}
                 type="button"
-                style={buildEmojiPickerSkinToneDotStyle(sizeConfig, colors, currentSkinTone === tone)}
+                style={buildEmojiPickerSkinToneOptionStyle(sizeConfig, colors, currentSkinTone === tone)}
                 onClick={() => handleSkinToneChange(tone)}
                 aria-label={`Skin tone: ${tone}`}
                 title={tone}
