@@ -75,17 +75,51 @@ export function buildEmojiPickerHeaderStyle(
   };
 }
 
-/** Row containing search input and skin tone trigger side by side. */
-export function buildEmojiPickerSearchRowStyle(): CSSStyleObject {
+/**
+ * Outer wrapper for the search/skin-tone slider. Clips overflow so that
+ * the two panels slide in and out horizontally.
+ */
+export function buildEmojiPickerSearchRowStyle(
+  sizeConfig: EmojiPickerSizeConfig,
+): CSSStyleObject {
+  return {
+    position: 'relative',
+    overflow: 'hidden',
+    height: sizeConfig.searchHeight,
+  };
+}
+
+/**
+ * Inner track that holds two panels side by side (search + skin tone options).
+ * Slides left/right via translateX based on `open` state.
+ */
+export function buildEmojiPickerSliderTrackStyle(
+  open: boolean,
+): CSSStyleObject {
+  return {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '200%',
+    height: '100%',
+    transition: 'transform 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+    transform: open ? 'translateX(-50%)' : 'translateX(0%)',
+  };
+}
+
+/** Each panel inside the slider track occupies exactly half the track (= 100% of container). */
+export function buildEmojiPickerSliderPanelStyle(): CSSStyleObject {
   return {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    width: '50%',
+    height: '100%',
     gap: 8,
+    flexShrink: 0,
   };
 }
 
-/** The hand emoji button that toggles the skin tone row. */
+/** The hand emoji button that toggles the skin tone panel. */
 export function buildEmojiPickerSkinToneTriggerStyle(
   sizeConfig: EmojiPickerSizeConfig,
   colors: EmojiPickerColors,
@@ -110,23 +144,7 @@ export function buildEmojiPickerSkinToneTriggerStyle(
   };
 }
 
-/** The expanded row of skin tone hand options. */
-export function buildEmojiPickerSkinToneRowStyle(
-  sizeConfig: EmojiPickerSizeConfig,
-  colors: EmojiPickerColors,
-): CSSStyleObject {
-  return {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    padding: `6px 8px`,
-    borderRadius: sizeConfig.borderRadius / 2,
-    border: `1px solid ${colors.border}`,
-    backgroundColor: colors.tabHoverBg,
-  };
-}
-
-/** Individual skin tone option inside the expanded row. */
+/** Individual skin tone option in the sliding panel. */
 export function buildEmojiPickerSkinToneOptionStyle(
   sizeConfig: EmojiPickerSizeConfig,
   colors: EmojiPickerColors,
@@ -152,6 +170,19 @@ export function buildEmojiPickerSkinToneOptionStyle(
 }
 
 // Legacy — kept for backward compat
+export function buildEmojiPickerSkinToneRowStyle(
+  sizeConfig: EmojiPickerSizeConfig,
+  colors: EmojiPickerColors,
+): CSSStyleObject {
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    height: '100%',
+    flex: 1,
+  };
+}
+
 export function buildEmojiPickerSkinToneBarStyle(
   sizeConfig: EmojiPickerSizeConfig,
   colors: EmojiPickerColors,

@@ -3,8 +3,8 @@
  * @description React Native EmojiPicker for the Wisp design system.
  *
  * Full-featured emoji selection panel with category tabs, keyword search,
- * skin tone selector (hand button that expands to show all tones), and
- * scroll-synced navigation via onScroll offset tracking.
+ * skin tone selector (sliding panel animation), and scroll-synced navigation
+ * via onScroll offset tracking.
  */
 
 import React, { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
@@ -118,12 +118,19 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
   const [activeCategory, setActiveCategory] = useState<EmojiCategory>('smileys');
   const [internalSkinTone, setInternalSkinTone] = useState<SkinTone>(defaultSkinTone);
   const [skinToneOpen, setSkinToneOpen] = useState(false);
-  const skinToneAnim = useRef(new Animated.Value(0)).current;
+  const slideAnim = useRef(new Animated.Value(0)).current;
+  const [headerWidth, setHeaderWidth] = useState(0);
   const scrollRef = useRef<ScrollView>(null);
   const sectionOffsets = useRef<Map<string, number>>(new Map());
   const isScrollingProgrammatically = useRef(false);
 
   const currentSkinTone = controlledSkinTone ?? internalSkinTone;
+
+  // --- Header width measurement for sliding animation ---
+
+  const handleHeaderLayout = useCallback((e: LayoutChangeEvent) => {
+    setHeaderWidth(e.nativeEvent.layout.width);
+  }, []);
 
   // --- Skin tone handlers ---
 
@@ -132,24 +139,24 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
       if (controlledSkinTone === undefined) setInternalSkinTone(tone);
       onSkinToneChange?.(tone);
       setSkinToneOpen(false);
-      Animated.timing(skinToneAnim, {
+      Animated.timing(slideAnim, {
         toValue: 0,
-        duration: 150,
+        duration: 250,
         useNativeDriver: true,
       }).start();
     },
-    [controlledSkinTone, onSkinToneChange, skinToneAnim],
+    [controlledSkinTone, onSkinToneChange, slideAnim],
   );
 
   const toggleSkinTonePicker = useCallback(() => {
     const next = !skinToneOpen;
     setSkinToneOpen(next);
-    Animated.timing(skinToneAnim, {
+    Animated.timing(slideAnim, {
       toValue: next ? 1 : 0,
-      duration: 200,
+      duration: 250,
       useNativeDriver: true,
     }).start();
-  }, [skinToneOpen, skinToneAnim]);
+  }, [skinToneOpen, slideAnim]);
 
   // --- Colors ---
 
@@ -265,14 +272,18 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
   const hasResults = isSearching ? filteredEmojis.length > 0 : true;
 
   // --- Derived sizes ---
-  // The trigger button is a square matching the search bar height
   const triggerSize = sizeConfig.searchHeight;
-  // Font size for the hand emoji in the trigger button — RN emoji render
-  // much larger than the font size suggests, so keep it small
   const triggerHandFontSize = Math.round(triggerSize * 0.5);
-  // Each option in the expanded row
   const optionSize = Math.round(sizeConfig.cellSize * 0.9);
   const optionFontSize = Math.round(optionSize * 0.55);
+
+  // Animated translateX: slides from 0 to -headerWidth
+  const sliderTranslateX = useMemo(() => {
+    return slideAnim.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, -headerWidth],
+    });
+  }, [slideAnim, headerWidth]);
 
   // ---- Styles ----
 
@@ -294,11 +305,24 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     zIndex: 2,
   }), [sizeConfig, colors]);
 
-  const searchRowStyle = useMemo<ViewStyle>(() => ({
+  const sliderClipStyle = useMemo<ViewStyle>(() => ({
+    height: sizeConfig.searchHeight,
+    overflow: 'hidden',
+  }), [sizeConfig]);
+
+  const sliderTrackStyle = useMemo<ViewStyle>(() => ({
+    flexDirection: 'row',
+    width: headerWidth * 2 || '200%' as any,
+    height: '100%' as any,
+  }), [headerWidth]);
+
+  const sliderPanelStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'center',
+    width: headerWidth || '50%' as any,
+    height: '100%' as any,
     gap: 8,
-  }), []);
+  }), [headerWidth]);
 
   const searchStyle = useMemo<TextStyle>(() => ({
     flex: 1,
@@ -324,18 +348,13 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     borderColor: skinToneOpen ? colors.skinToneActiveBorder : colors.border,
   }), [triggerSize, sizeConfig, colors, themeColors, skinToneOpen]);
 
-  const skinToneRowStyle = useMemo<ViewStyle>(() => ({
+  const skinToneOptionsStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    paddingVertical: 6,
-    paddingHorizontal: 8,
-    backgroundColor: themeColors.background.sunken,
-    borderRadius: sizeConfig.borderRadius / 2,
-    borderWidth: 1,
-    borderColor: colors.border,
-    marginTop: sizeConfig.gap + 2,
-  }), [sizeConfig, colors, themeColors]);
+    flex: 1,
+    height: '100%' as any,
+  }), []);
 
   const tabBarStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
@@ -382,77 +401,86 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
 
   return (
     <View ref={ref} style={[containerStyle, userStyle as ViewStyle]} {...rest}>
-      {/* ── Header: Search bar + skin tone trigger ── */}
-      <View style={headerStyle}>
-        <View style={searchRowStyle}>
-          {showSearch && (
-            <TextInput
-              value={search}
-              onChangeText={setSearch}
-              placeholder={searchPlaceholder}
-              placeholderTextColor={themeColors.text.muted}
-              style={searchStyle}
-              accessibilityLabel="Search emoji"
-            />
-          )}
-          {showSkinTones && (
-            <Pressable
-              onPress={toggleSkinTonePicker}
-              style={skinTriggerStyle}
-              accessibilityLabel="Select skin tone"
-              accessibilityRole="button"
-            >
-              <Text style={{ fontSize: triggerHandFontSize }}>
-                {SKIN_TONE_HAND + SKIN_TONE_MODIFIERS[currentSkinTone]}
-              </Text>
-            </Pressable>
-          )}
-        </View>
-
-        {/* ── Expanded skin tone options ── */}
-        {showSkinTones && skinToneOpen && (
+      {/* ── Header: sliding search ↔ skin tone panels ── */}
+      <View style={headerStyle} onLayout={handleHeaderLayout}>
+        <View style={sliderClipStyle}>
           <Animated.View
             style={[
-              skinToneRowStyle,
-              {
-                opacity: skinToneAnim,
-                transform: [{
-                  translateY: skinToneAnim.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [-6, 0],
-                  }),
-                }],
-              },
+              sliderTrackStyle,
+              { transform: [{ translateX: sliderTranslateX }] },
             ]}
           >
-            {skinTones.map((tone: SkinTone) => {
-              const isActive = currentSkinTone === tone;
-              const optStyle: ViewStyle = {
-                width: optionSize,
-                height: optionSize,
-                borderRadius: optionSize / 2,
-                alignItems: 'center',
-                justifyContent: 'center',
-                overflow: 'hidden',
-                borderWidth: isActive ? 2 : 0,
-                borderColor: isActive ? colors.skinToneActiveBorder : 'transparent',
-                backgroundColor: isActive ? themeColors.background.surface : 'transparent',
-              };
-              return (
+            {/* Panel 1: Search bar + skin tone trigger */}
+            <View style={sliderPanelStyle}>
+              {showSearch && (
+                <TextInput
+                  value={search}
+                  onChangeText={setSearch}
+                  placeholder={searchPlaceholder}
+                  placeholderTextColor={themeColors.text.muted}
+                  style={searchStyle}
+                  accessibilityLabel="Search emoji"
+                />
+              )}
+              {showSkinTones && (
                 <Pressable
-                  key={tone}
-                  onPress={() => handleSkinToneChange(tone)}
-                  accessibilityLabel={`Skin tone: ${tone}`}
-                  style={optStyle}
+                  onPress={toggleSkinTonePicker}
+                  style={skinTriggerStyle}
+                  accessibilityLabel="Select skin tone"
+                  accessibilityRole="button"
                 >
-                  <Text style={{ fontSize: optionFontSize }}>
-                    {SKIN_TONE_HAND + SKIN_TONE_MODIFIERS[tone]}
+                  <Text style={{ fontSize: triggerHandFontSize }}>
+                    {SKIN_TONE_HAND + SKIN_TONE_MODIFIERS[currentSkinTone]}
                   </Text>
                 </Pressable>
-              );
-            })}
+              )}
+            </View>
+
+            {/* Panel 2: Skin tone options + back button */}
+            {showSkinTones && (
+              <View style={sliderPanelStyle}>
+                <View style={skinToneOptionsStyle}>
+                  {skinTones.map((tone: SkinTone) => {
+                    const isActive = currentSkinTone === tone;
+                    const optStyle: ViewStyle = {
+                      width: optionSize,
+                      height: optionSize,
+                      borderRadius: optionSize / 2,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      overflow: 'hidden',
+                      borderWidth: isActive ? 2 : 0,
+                      borderColor: isActive ? colors.skinToneActiveBorder : 'transparent',
+                      backgroundColor: isActive ? themeColors.background.surface : 'transparent',
+                    };
+                    return (
+                      <Pressable
+                        key={tone}
+                        onPress={() => handleSkinToneChange(tone)}
+                        accessibilityLabel={`Skin tone: ${tone}`}
+                        style={optStyle}
+                      >
+                        <Text style={{ fontSize: optionFontSize }}>
+                          {SKIN_TONE_HAND + SKIN_TONE_MODIFIERS[tone]}
+                        </Text>
+                      </Pressable>
+                    );
+                  })}
+                </View>
+                <Pressable
+                  onPress={toggleSkinTonePicker}
+                  style={skinTriggerStyle}
+                  accessibilityLabel="Back to search"
+                  accessibilityRole="button"
+                >
+                  <Text style={{ fontSize: triggerHandFontSize }}>
+                    {SKIN_TONE_HAND + SKIN_TONE_MODIFIERS[currentSkinTone]}
+                  </Text>
+                </Pressable>
+              </View>
+            )}
           </Animated.View>
-        )}
+        </View>
       </View>
 
       {/* ── Category tabs ── */}
