@@ -7,11 +7,11 @@ function CarouselPreview() {
   return (
     <div style={{ width: '100%', maxWidth: 200, pointerEvents: 'none' }}>
       <Carousel showArrows={false}>
-        <Box style={{ height: 60, backgroundColor: colors.background.surface, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Text size="xs" style={{ color: colors.text.onRaised }}>Slide 1</Text>
+        <Box style={{ height: 60, backgroundColor: colors.background.sunken, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Text size="xs">Slide 1</Text>
         </Box>
-        <Box style={{ height: 60, backgroundColor: colors.background.surface, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Text size="xs" style={{ color: colors.text.onRaised }}>Slide 2</Text>
+        <Box style={{ height: 60, backgroundColor: colors.background.sunken, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Text size="xs">Slide 2</Text>
         </Box>
       </Carousel>
     </div>
@@ -24,8 +24,8 @@ function BasicCarouselDemo() {
     <div style={{ width: '100%', maxWidth: 400 }}>
       <Carousel>
         {[1, 2, 3, 4].map((n) => (
-          <Box key={n} style={{ height: 180, backgroundColor: colors.background.surface, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Text size="lg" weight="bold" style={{ color: colors.text.onRaised }}>Slide {n}</Text>
+          <Box key={n} style={{ height: 180, backgroundColor: colors.background.sunken, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Text size="lg" weight="bold">Slide {n}</Text>
           </Box>
         ))}
       </Carousel>
@@ -39,8 +39,8 @@ function AutoPlayCarouselDemo() {
     <div style={{ width: '100%', maxWidth: 400 }}>
       <Carousel autoPlay autoPlayInterval={3000} loop>
         {[1, 2, 3].map((n) => (
-          <Box key={n} style={{ height: 140, backgroundColor: colors.background.surface, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Text size="md" style={{ color: colors.text.onRaised }}>Auto Slide {n}</Text>
+          <Box key={n} style={{ height: 140, backgroundColor: colors.background.sunken, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Text size="md">Auto Slide {n}</Text>
           </Box>
         ))}
       </Carousel>
