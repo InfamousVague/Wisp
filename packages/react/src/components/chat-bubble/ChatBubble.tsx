@@ -147,7 +147,7 @@ export const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(
       <div ref={ref} className={className} style={{ display: 'inline-flex', flexDirection: 'column' }} {...rest}>
         {/* Bubble */}
         <div style={{ ...bubbleStyle, ...userStyle }}>
-          <div>{children}</div>
+          <div style={{ color: colors.text }}>{children}</div>
 
           {/* Reactions live inside the bubble */}
           {hasReactions && (

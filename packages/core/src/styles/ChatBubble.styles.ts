@@ -43,12 +43,12 @@ export function resolveChatBubbleColors(
     };
   }
 
-  // incoming / default
+  // incoming — black bubble with white text in both themes
   return {
-    bg: themeColors.background.surface,
-    text: themeColors.text.primary,
-    timestamp: themeColors.text.muted,
-    border: themeColors.border.subtle,
+    bg: '#0C0C0E',
+    text: '#FFFFFF',
+    timestamp: '#A0A0A0',
+    border: '#2A2A2A',
   };
 }
 
@@ -165,6 +165,10 @@ export function buildReactionChipStyle(
   reacted: boolean,
   themeColors: ThemeColors,
 ): CSSStyleObject {
+  const chipBg = reacted
+    ? themeColors.brand.surface
+    : themeColors.background.surface;
+
   return {
     display: 'inline-flex',
     alignItems: 'center',
@@ -175,7 +179,7 @@ export function buildReactionChipStyle(
     lineHeight: '18px',
     fontFamily: fontFamilyStacks.sans,
     border: `1px solid ${reacted ? themeColors.brand.border : themeColors.border.subtle}`,
-    backgroundColor: reacted ? themeColors.brand.surface : themeColors.background.surface,
+    backgroundColor: chipBg,
     color: reacted ? themeColors.brand.text : themeColors.text.secondary,
     cursor: 'pointer',
     userSelect: 'none',
