@@ -182,17 +182,14 @@ export const ThemeEditor = forwardRef<HTMLDivElement, ThemeEditorProps>(
 
           {/* Reset button */}
           {showReset && (
-            <>
-              <Separator />
-              <Button
-                variant="secondary"
-                size="sm"
-                onClick={resetOverrides}
-                style={{ alignSelf: 'flex-start' }}
-              >
-                Reset to Defaults
-              </Button>
-            </>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={resetOverrides}
+              style={{ alignSelf: 'flex-start' }}
+            >
+              Reset to Defaults
+            </Button>
           )}
         </VStack>
       </Card>

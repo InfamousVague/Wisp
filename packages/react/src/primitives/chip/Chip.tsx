@@ -122,7 +122,7 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(function Chip(
     >
       {icon && <span style={iconWrapperStyle}>{icon}</span>}
 
-      <Text>{children}</Text>
+      <Text color="inherit">{children}</Text>
 
       {removable && (
         <button

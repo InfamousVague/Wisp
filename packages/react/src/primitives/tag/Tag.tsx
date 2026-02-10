@@ -183,7 +183,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
       )}
 
       {/* Tag label */}
-      <Text>{children}</Text>
+      <Text color="inherit">{children}</Text>
 
       {/* Close / remove button */}
       {onRemove && (

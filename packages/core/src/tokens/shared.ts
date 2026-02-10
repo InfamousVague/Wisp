@@ -133,8 +133,10 @@ export const semanticColors = [
   'inverse',
   'inherit',
   'error',
+  'danger',
   'warning',
   'success',
+  'info',
   'brand',
 ] as const;
 
@@ -314,8 +316,10 @@ export function resolveSemanticColor(color: SemanticColor | string, themeColors:
     case 'inverse':   return themeColors.text.inverse;
     case 'inherit':   return 'inherit';
     case 'error':     return themeColors.status.danger;
+    case 'danger':    return themeColors.status.danger;
     case 'warning':   return themeColors.status.warning;
     case 'success':   return themeColors.status.success;
+    case 'info':      return themeColors.status.info;
     case 'brand':     return themeColors.accent.primary;
     default:          return color; // raw hex passthrough
   }

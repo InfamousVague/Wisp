@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTheme, useThemeColors, Button, Text, Kbd } from '@wisp-ui/react';
-import { Search } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
+import { useTheme, useThemeColors, Button, Text, Kbd, Toggle, Dialog, ThemeEditor } from '@wisp-ui/react';
+import { Search, Settings } from 'lucide-react';
 
 interface TopBarProps {
   onSearchOpen?: () => void;
@@ -12,6 +11,7 @@ export function TopBar({ onSearchOpen }: TopBarProps) {
   const navigate = useNavigate();
   const { mode, toggleMode } = useTheme();
   const colors = useThemeColors();
+  const [themeEditorOpen, setThemeEditorOpen] = useState(false);
 
   return (
     <div
@@ -49,8 +49,22 @@ export function TopBar({ onSearchOpen }: TopBarProps) {
         <Kbd size="sm" style={{ marginLeft: 'auto' }}>⌘K</Kbd>
       </div>
 
-      {/* Theme toggle */}
-      <ThemeToggle mode={mode as 'light' | 'dark'} onToggle={toggleMode} />
+      {/* Dark/light mode toggle switch */}
+      <Toggle
+        checked={mode === 'dark'}
+        onChange={toggleMode}
+        size="sm"
+        slim
+      />
+
+      {/* Theme editor icon */}
+      <Button
+        variant="tertiary"
+        size="sm"
+        iconLeft={<Settings size={16} />}
+        onClick={() => setThemeEditorOpen(true)}
+        title="Theme settings"
+      />
 
       {/* Docs button */}
       <Button
@@ -69,6 +83,20 @@ export function TopBar({ onSearchOpen }: TopBarProps) {
       >
         Components
       </Button>
+
+      {/* Theme editor dialog */}
+      <Dialog
+        open={themeEditorOpen}
+        onClose={() => setThemeEditorOpen(false)}
+        size="lg"
+        title="Theme Settings"
+      >
+        <ThemeEditor
+          showModeToggle={false}
+          showReset
+          maxHeight={480}
+        />
+      </Dialog>
     </div>
   );
 }
