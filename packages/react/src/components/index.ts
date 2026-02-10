@@ -434,7 +434,7 @@ export { voiceRecorderStates, voiceRecorderSizes, voiceRecorderSizeMap } from '.
 // EmojiPicker
 // ---------------------------------------------------------------------------
 
-export { EmojiPicker } from './emoji-picker';
-export type { EmojiPickerProps, EmojiPickerSize, EmojiPickerSizeConfig, EmojiItem, EmojiCategory } from './emoji-picker';
-export { emojiPickerSizes, emojiPickerSizeMap, emojiCategories } from './emoji-picker';
+export { EmojiPicker, EmojiPickerTrigger } from './emoji-picker';
+export type { EmojiPickerProps, EmojiPickerTriggerProps, EmojiPickerSize, EmojiPickerSizeConfig, EmojiItem, EmojiCategory, SkinTone, CategoryIconMap } from './emoji-picker';
+export { emojiPickerSizes, emojiPickerSizeMap, emojiCategories, skinTones, SKIN_TONE_MODIFIERS } from './emoji-picker';
 

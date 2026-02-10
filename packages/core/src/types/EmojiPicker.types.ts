@@ -1,10 +1,29 @@
 /**
  * @module types/EmojiPicker
  * @description Type definitions for the EmojiPicker component — emoji
- * selection grid with category tabs and search.
+ * selection grid with category tabs, keyword search, skin tone selector,
+ * and scroll-synced navigation.
  */
 
 import type React from 'react';
+import type { LucideIcon } from 'lucide-react';
+
+// ---------------------------------------------------------------------------
+// Skin Tones (Fitzpatrick scale)
+// ---------------------------------------------------------------------------
+
+export const skinTones = ['default', 'light', 'medium-light', 'medium', 'medium-dark', 'dark'] as const;
+export type SkinTone = (typeof skinTones)[number];
+
+/** Unicode Fitzpatrick modifiers appended to skin-tone-capable emojis. */
+export const SKIN_TONE_MODIFIERS: Record<SkinTone, string> = {
+  default: '',
+  light: '\u{1F3FB}',
+  'medium-light': '\u{1F3FC}',
+  medium: '\u{1F3FD}',
+  'medium-dark': '\u{1F3FE}',
+  dark: '\u{1F3FF}',
+};
 
 // ---------------------------------------------------------------------------
 // Size
@@ -34,12 +53,18 @@ export interface EmojiPickerSizeConfig {
   searchHeight: number;
   /** Border radius. */
   borderRadius: number;
+  /** Icon size for category tabs (Lucide icons). */
+  tabIconSize: number;
+  /** Number of emoji columns in the grid. */
+  columnsCount: number;
+  /** Size of skin tone selector dots. */
+  skinToneDotSize: number;
 }
 
 export const emojiPickerSizeMap: Record<EmojiPickerSize, EmojiPickerSizeConfig> = {
-  sm: { width: 280, height: 300, cellSize: 30, emojiSize: 18, fontSize: 11, padding: 8, gap: 2, tabHeight: 32, searchHeight: 32, borderRadius: 12 },
-  md: { width: 320, height: 360, cellSize: 36, emojiSize: 22, fontSize: 12, padding: 12, gap: 2, tabHeight: 36, searchHeight: 36, borderRadius: 16 },
-  lg: { width: 380, height: 420, cellSize: 44, emojiSize: 28, fontSize: 13, padding: 16, gap: 4, tabHeight: 40, searchHeight: 40, borderRadius: 20 },
+  sm: { width: 280, height: 320, cellSize: 30, emojiSize: 18, fontSize: 11, padding: 8, gap: 2, tabHeight: 32, searchHeight: 32, borderRadius: 12, tabIconSize: 14, columnsCount: 8, skinToneDotSize: 18 },
+  md: { width: 340, height: 400, cellSize: 36, emojiSize: 22, fontSize: 12, padding: 10, gap: 2, tabHeight: 36, searchHeight: 36, borderRadius: 16, tabIconSize: 16, columnsCount: 8, skinToneDotSize: 22 },
+  lg: { width: 400, height: 480, cellSize: 44, emojiSize: 28, fontSize: 13, padding: 14, gap: 4, tabHeight: 42, searchHeight: 40, borderRadius: 20, tabIconSize: 18, columnsCount: 8, skinToneDotSize: 26 },
 };
 
 // ---------------------------------------------------------------------------
@@ -47,6 +72,7 @@ export const emojiPickerSizeMap: Record<EmojiPickerSize, EmojiPickerSizeConfig> 
 // ---------------------------------------------------------------------------
 
 export const emojiCategories = [
+  'recent',
   'smileys',
   'people',
   'animals',
@@ -66,7 +92,16 @@ export interface EmojiItem {
   name: string;
   /** Category the emoji belongs to. */
   category: EmojiCategory;
+  /** Keywords for search matching. */
+  keywords: string[];
+  /** Whether this emoji supports skin tone modifiers. */
+  skinToneSupport?: boolean;
+  /** Popularity rank (lower = more popular). */
+  popularityRank?: number;
 }
+
+/** Map of category names to Lucide icon component types. */
+export type CategoryIconMap = Record<EmojiCategory, LucideIcon>;
 
 // ---------------------------------------------------------------------------
 // Props
@@ -77,7 +112,7 @@ export interface EmojiPickerProps extends Omit<React.HTMLAttributes<HTMLDivEleme
   size?: EmojiPickerSize;
 
   /** Called when an emoji is selected. */
-  onSelect?: (emoji: string) => void;
+  onSelect?: (emoji: string, item?: EmojiItem) => void;
 
   /** Custom emoji data. If not provided, uses built-in set. */
   emojis?: EmojiItem[];
@@ -96,4 +131,52 @@ export interface EmojiPickerProps extends Omit<React.HTMLAttributes<HTMLDivEleme
 
   /** Show loading skeleton. @default false */
   skeleton?: boolean;
+
+  /** Show skin tone selector. @default true */
+  showSkinTones?: boolean;
+
+  /** Default skin tone (uncontrolled). @default 'default' */
+  defaultSkinTone?: SkinTone;
+
+  /** Controlled skin tone. */
+  skinTone?: SkinTone;
+
+  /** Callback when skin tone changes. */
+  onSkinToneChange?: (tone: SkinTone) => void;
+
+  /** Auto-focus the search input on mount. @default false */
+  autoFocusSearch?: boolean;
+}
+
+// ---------------------------------------------------------------------------
+// Trigger Props
+// ---------------------------------------------------------------------------
+
+export interface EmojiPickerTriggerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+  /** Size preset for the picker panel. @default 'md' */
+  size?: EmojiPickerSize;
+
+  /** Props passed to the inner EmojiPicker. */
+  pickerProps?: Omit<EmojiPickerProps, 'size' | 'style' | 'className'>;
+
+  /** Size of the trigger button. @default 'md' */
+  buttonSize?: 'sm' | 'md' | 'lg';
+
+  /** Variant of the trigger button. @default 'tertiary' */
+  buttonVariant?: 'primary' | 'secondary' | 'tertiary' | 'destructive';
+
+  /** Popover placement relative to the trigger. @default 'bottom' */
+  placement?: 'top' | 'bottom' | 'left' | 'right';
+
+  /** Popover alignment. @default 'start' */
+  align?: 'start' | 'center' | 'end';
+
+  /** Popover offset in pixels. */
+  offset?: number;
+
+  /** Custom trigger icon (Lucide component type). */
+  icon?: LucideIcon;
+
+  /** Custom trigger content (replaces default button). */
+  children?: React.ReactNode;
 }

@@ -415,8 +415,8 @@ export type { MessageInputProps, MessageInputSize, MessageInputSizeConfig } from
 export { VoiceRecorder, voiceRecorderStates, voiceRecorderSizes, voiceRecorderSizeMap } from './components';
 export type { VoiceRecorderProps, VoiceRecorderState, VoiceRecorderSize, VoiceRecorderSizeConfig } from './components';
 
-export { EmojiPicker, emojiPickerSizes, emojiPickerSizeMap, emojiCategories } from './components';
-export type { EmojiPickerProps, EmojiPickerSize, EmojiPickerSizeConfig, EmojiItem, EmojiCategory } from './components';
+export { EmojiPicker, EmojiPickerTrigger, emojiPickerSizes, emojiPickerSizeMap, emojiCategories, skinTones, SKIN_TONE_MODIFIERS } from './components';
+export type { EmojiPickerProps, EmojiPickerTriggerProps, EmojiPickerSize, EmojiPickerSizeConfig, EmojiItem, EmojiCategory, SkinTone, CategoryIconMap } from './components';
 
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';
