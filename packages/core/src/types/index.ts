@@ -105,6 +105,8 @@ export * from './Toolbar.types';
 export * from './Tooltip.types';
 export * from './TreeView.types';
 export * from './TypingIndicator.types';
+export * from './Sparkline.types';
+export * from './StatCard.types';
 export * from './Beacon.types';
 export * from './Coachmark.types';
 export * from './SpotlightTour.types';

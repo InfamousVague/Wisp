@@ -49,6 +49,7 @@ import { spotlightTourEntry } from './spotlight-tour';
 import { achievementCardEntry } from './achievement-card';
 import { questTrackerEntry } from './quest-tracker';
 import { achievementUnlockEntry } from './achievement-unlock';
+import { statCardEntry } from './stat-card';
 
 
 export const componentEntries: ComponentEntry[] = [
@@ -102,4 +103,5 @@ export const componentEntries: ComponentEntry[] = [
   achievementCardEntry,
   questTrackerEntry,
   achievementUnlockEntry,
+  statCardEntry,
 ];

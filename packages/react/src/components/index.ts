@@ -382,3 +382,11 @@ export { questObjectiveStatuses, questTrackerSizes, questTrackerSizeMap } from '
 export { AchievementUnlock } from './achievement-unlock';
 export type { AchievementUnlockProps } from './achievement-unlock';
 
+// ---------------------------------------------------------------------------
+// StatCard
+// ---------------------------------------------------------------------------
+
+export { StatCard } from './stat-card';
+export type { StatCardProps, StatCardVariant, StatCardSize, StatCardSizeConfig } from './stat-card';
+export { statCardVariants, statCardSizes, statCardSizeMap } from './stat-card';
+

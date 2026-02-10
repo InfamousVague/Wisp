@@ -185,6 +185,9 @@ export type { CodeBlockProps, CodeBlockVariant, SyntaxToken, SyntaxHighlighter, 
 export { Beacon, beaconVariants, beaconSizes, beaconSizeMap } from './primitives';
 export type { BeaconProps, BeaconVariant, BeaconSize, BeaconSizeConfig } from './primitives';
 
+export { Sparkline, sparklineVariants, sparklineSizes, sparklineSizeMap, sparklineColors } from './primitives';
+export type { SparklineProps, SparklineVariant, SparklineSize, SparklineSizeConfig, SparklineColor } from './primitives';
+
 // ─── Layouts ────────────────────────────────────────────────────
 export { Stack, HStack, VStack, stackDirections, stackAligns, stackJustifys } from './layouts';
 export type { StackProps, StackDirection, StackGap, StackAlign, StackJustify } from './layouts';
@@ -390,6 +393,9 @@ export type { QuestTrackerProps, QuestObjective, QuestObjectiveStatus, QuestTrac
 
 export { AchievementUnlock } from './components';
 export type { AchievementUnlockProps } from './components';
+
+export { StatCard, statCardVariants, statCardSizes, statCardSizeMap } from './components';
+export type { StatCardProps, StatCardVariant, StatCardSize, StatCardSizeConfig } from './components';
 
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';

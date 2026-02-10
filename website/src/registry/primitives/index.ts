@@ -32,6 +32,7 @@ import { stepperEntry } from './stepper';
 import { notificationBadgeEntry } from './notification-badge';
 import { codeBlockEntry } from './code-block';
 import { beaconEntry } from './beacon';
+import { sparklineEntry } from './sparkline';
 
 export const primitiveEntries: ComponentEntry[] = [
   textEntry,
@@ -67,4 +68,5 @@ export const primitiveEntries: ComponentEntry[] = [
   notificationBadgeEntry,
   codeBlockEntry,
   beaconEntry,
+  sparklineEntry,
 ];

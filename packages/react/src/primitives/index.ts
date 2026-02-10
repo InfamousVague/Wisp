@@ -272,3 +272,11 @@ export { codeBlockVariants } from './code-block';
 export { Beacon } from './beacon';
 export type { BeaconProps, BeaconVariant, BeaconSize, BeaconSizeConfig } from './beacon';
 export { beaconVariants, beaconSizes, beaconSizeMap } from './beacon';
+
+// ---------------------------------------------------------------------------
+// Sparkline
+// ---------------------------------------------------------------------------
+
+export { Sparkline } from './sparkline';
+export type { SparklineProps, SparklineVariant, SparklineSize, SparklineSizeConfig, SparklineColor } from './sparkline';
+export { sparklineVariants, sparklineSizes, sparklineSizeMap, sparklineColors } from './sparkline';
