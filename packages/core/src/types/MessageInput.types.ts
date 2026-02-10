@@ -71,8 +71,11 @@ export interface MessageInputProps extends Omit<React.HTMLAttributes<HTMLDivElem
   /** Show emoji trigger button. @default true */
   showEmoji?: boolean;
 
-  /** Called when emoji button is clicked. */
+  /** Called when emoji button is clicked (use for external picker). */
   onEmojiClick?: () => void;
+
+  /** Called when an emoji is selected from the built-in picker. */
+  onEmojiSelect?: (emoji: string) => void;
 
   /** Whether the input is disabled. @default false */
   disabled?: boolean;

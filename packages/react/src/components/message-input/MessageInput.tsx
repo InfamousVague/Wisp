@@ -23,6 +23,8 @@ import {
   buildMessageInputSendButtonStyle,
   buildMessageInputSkeletonStyle,
 } from '@wisp-ui/core/styles/MessageInput.styles';
+import { Popover, PopoverTrigger, PopoverContent } from '../popover';
+import { EmojiPicker } from '../emoji-picker';
 
 // ---------------------------------------------------------------------------
 // Inline SVG Icons
@@ -71,6 +73,7 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
     onAttachmentClick,
     showEmoji = true,
     onEmojiClick,
+    onEmojiSelect,
     disabled = false,
     sending = false,
     autoExpand = true,
@@ -87,6 +90,7 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [internalValue, setInternalValue] = useState(defaultValue);
+  const [emojiOpen, setEmojiOpen] = useState(false);
   const value = controlledValue !== undefined ? controlledValue : internalValue;
 
   const colors = useMemo(
@@ -154,6 +158,35 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
     [handleSubmit],
   );
 
+  // Insert emoji at cursor position in the textarea
+  const handleEmojiSelect = useCallback(
+    (emoji: string) => {
+      const ta = textareaRef.current;
+      const cursorPos = ta?.selectionStart ?? value.length;
+      const before = value.slice(0, cursorPos);
+      const after = value.slice(cursorPos);
+      const next = before + emoji + after;
+
+      if (controlledValue === undefined) setInternalValue(next);
+      onValueChange?.(next);
+      onEmojiSelect?.(emoji);
+      setEmojiOpen(false);
+
+      // Restore focus and cursor position after emoji insertion
+      requestAnimationFrame(() => {
+        if (ta) {
+          ta.focus();
+          const newPos = cursorPos + emoji.length;
+          ta.setSelectionRange(newPos, newPos);
+        }
+      });
+    },
+    [value, controlledValue, onValueChange, onEmojiSelect],
+  );
+
+  // Whether the built-in emoji picker popover should be used
+  const useBuiltInPicker = showEmoji && !onEmojiClick;
+
   return (
     <div
       ref={ref}
@@ -185,7 +218,34 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
         aria-label="Message"
       />
 
-      {showEmoji && (
+      {showEmoji && useBuiltInPicker && (
+        <Popover open={emojiOpen} onOpenChange={setEmojiOpen} placement="top" align="end">
+          <PopoverTrigger>
+            <button
+              type="button"
+              style={iconBtnStyle}
+              aria-label="Add emoji"
+              disabled={disabled}
+            >
+              <SmileIcon size={sizeConfig.iconSize} />
+            </button>
+          </PopoverTrigger>
+          <PopoverContent
+            style={{
+              padding: 0,
+              border: 'none',
+              background: 'transparent',
+            }}
+          >
+            <EmojiPicker
+              size="sm"
+              onSelect={(emoji) => handleEmojiSelect(emoji)}
+            />
+          </PopoverContent>
+        </Popover>
+      )}
+
+      {showEmoji && !useBuiltInPicker && (
         <button
           type="button"
           style={iconBtnStyle}
