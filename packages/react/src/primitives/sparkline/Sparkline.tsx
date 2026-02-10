@@ -152,14 +152,19 @@ export const Sparkline = forwardRef<HTMLDivElement, SparklineProps>(function Spa
     [sizeConfig, responsive],
   );
 
-  // SVG dimensions
+  // SVG dimensions — padding must accommodate the largest visible element
+  // (end-dot radius or half the stroke width) so nothing is clipped.
   const { width: svgW, height: svgH } = sizeConfig;
-  const padding = 2; // small padding to avoid clipping strokes / dots
+  const padding = Math.max(
+    sizeConfig.strokeWidth,
+    showEndDot ? sizeConfig.dotRadius + 1 : 0,
+    2,
+  );
 
   // Compute geometry
   const points = useMemo(
     () => normalisePoints(data, svgW, svgH, padding),
-    [data, svgW, svgH],
+    [data, svgW, svgH, padding],
   );
 
   const pathD = useMemo(

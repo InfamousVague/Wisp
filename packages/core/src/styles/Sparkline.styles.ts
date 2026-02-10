@@ -91,7 +91,7 @@ export function buildSparklineWrapperStyle(
     width: responsive ? '100%' : sizeConfig.width,
     height: sizeConfig.height,
     flexShrink: 0,
-    overflow: 'hidden',
+    overflow: 'visible',
   };
 }
 
