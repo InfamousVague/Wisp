@@ -215,14 +215,14 @@ export const Rating = forwardRef<HTMLDivElement, RatingProps>(function Rating(
   const containerStyle = useMemo<React.CSSProperties>(() => ({
     ...buildRatingContainerStyle(sizeConfig),
     opacity: disabled ? 0.5 : 1,
-  }), [sizeConfig, disabled]);
+  }), [sizeConfig, disabled, theme]);
 
   // ---------------------------------------------------------------------------
   // Build value label style
   // ---------------------------------------------------------------------------
   const valueLabelStyle = useMemo(
     () => buildRatingValueStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   // ---------------------------------------------------------------------------

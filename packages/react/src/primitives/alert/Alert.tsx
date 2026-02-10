@@ -52,27 +52,27 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
 
   const alertStyle = useMemo(
     () => buildAlertStyle(variant, theme, userStyle as CSSStyleObject),
-    [variant, themeColors, userStyle],
+    [variant, theme, userStyle],
   );
 
   const iconStyle = useMemo(
     () => buildIconWrapperStyle(variant, theme),
-    [variant, themeColors],
+    [variant, theme],
   );
 
-  const contentStyle = useMemo(() => buildContentStyle(theme), []);
+  const contentStyle = useMemo(() => buildContentStyle(theme), [theme]);
 
   const titleStyle = useMemo(
     () => buildTitleStyle(theme, variant),
-    [themeColors, variant],
+    [theme, variant],
   );
 
   const descriptionStyle = useMemo(
     () => buildDescriptionStyle(theme, variant),
-    [themeColors, variant],
+    [theme, variant],
   );
 
-  const actionWrapperStyle = useMemo(() => buildActionStyle(), []);
+  const actionWrapperStyle = useMemo(() => buildActionStyle(), [theme]);
 
   const body = description ?? children;
 

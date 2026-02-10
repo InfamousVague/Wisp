@@ -79,7 +79,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(function Spinner
 
   const labelStyle = useMemo(
     () => buildLabelStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   return (

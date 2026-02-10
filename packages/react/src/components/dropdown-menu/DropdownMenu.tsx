@@ -205,7 +205,7 @@ export const DropdownMenuContent = forwardRef<HTMLDivElement, DropdownMenuConten
       return () => clearTimeout(timer);
     }, [open, resolvedRef]);
 
-    const contentStyle = useMemo(() => buildContentStyle(theme, variant), [themeColors, variant]);
+    const contentStyle = useMemo(() => buildContentStyle(theme, variant), [theme, variant]);
     const alignTransform = useMemo(() => {
       if (align === "center") return "translateX(-50%)";
       if (align === "end") return "translateX(-100%)";
@@ -255,9 +255,9 @@ export const DropdownMenuItem = forwardRef<HTMLDivElement, DropdownMenuItemProps
     });
 
     const isActive = hovered || (itemIndex >= 0 && itemIndex === activeIndex);
-    const itemStyle = useMemo(() => buildItemStyle({ theme, disabled, danger, isActive }), [themeColors, disabled, danger, isActive]);
+    const itemStyle = useMemo(() => buildItemStyle({ theme, disabled, danger, isActive }), [theme, disabled, danger, isActive]);
     const iconStyleVal = useMemo(() => buildItemIconStyle(), []);
-    const shortcutStyleVal = useMemo(() => buildShortcutStyle(theme), [themeColors]);
+    const shortcutStyleVal = useMemo(() => buildShortcutStyle(theme), [theme]);
 
     const handleClick = useCallback(() => { if (disabled) return; onSelect?.(); onOpenChange(false); }, [disabled, onSelect, onOpenChange]);
     const handleMouseEnter = useCallback(() => { if (!disabled) { setHovered(true); setActiveIndex(itemIndex); } }, [disabled, itemIndex, setActiveIndex]);
@@ -286,7 +286,7 @@ export const DropdownMenuSeparator = forwardRef<HTMLDivElement, DropdownMenuSepa
   function DropdownMenuSeparator({ style: userStyle, className }, ref) {
     const { theme } = useTheme();
     const themeColors = theme.colors;
-    const separatorStyle = useMemo(() => buildSeparatorStyle(theme), [themeColors]);
+    const separatorStyle = useMemo(() => buildSeparatorStyle(theme), [theme]);
     return (<div ref={ref} role="separator" className={className} style={{ ...separatorStyle, ...userStyle }} />);
   },
 );

@@ -73,13 +73,13 @@ export const ActivityCircles = forwardRef<HTMLDivElement, ActivityCirclesProps>(
     // Resolve common colours
     const colors = useMemo(
       () => resolveActivityCirclesColors(theme),
-      [themeColors],
+      [theme],
     );
 
     // Resolve per-ring colours
     const ringColors = useMemo(
       () => rings.map((ring, i) => ring.color || resolveRingColor(i, theme)),
-      [rings, themeColors],
+      [rings, theme],
     );
 
     // Compute SVG geometry for all rings

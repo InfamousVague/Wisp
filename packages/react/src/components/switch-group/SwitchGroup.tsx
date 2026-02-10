@@ -93,17 +93,17 @@ export const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(function
   // ---------------------------------------------------------------------------
   const groupStyle = useMemo(
     () => buildGroupStyle(orientation, theme, userStyle as CSSStyleObject),
-    [orientation, themeColors, userStyle],
+    [orientation, theme, userStyle],
   );
 
   const labelStyle = useMemo(
     () => buildGroupLabelStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   const descriptionStyle = useMemo(
     () => buildGroupDescriptionStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   const optionsStyle = useMemo(
@@ -113,12 +113,12 @@ export const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(function
 
   const optionItemStyle = useMemo(
     () => buildOptionStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   const errorStyle = useMemo(
     () => buildErrorStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   // ---------------------------------------------------------------------------
@@ -266,17 +266,17 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(func
   // ---------------------------------------------------------------------------
   const groupStyle = useMemo(
     () => buildGroupStyle(orientation, theme, userStyle as CSSStyleObject),
-    [orientation, themeColors, userStyle],
+    [orientation, theme, userStyle],
   );
 
   const labelStyle = useMemo(
     () => buildGroupLabelStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   const descriptionStyle = useMemo(
     () => buildGroupDescriptionStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   const optionsStyle = useMemo(
@@ -286,7 +286,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(func
 
   const errorStyle = useMemo(
     () => buildErrorStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   // ---------------------------------------------------------------------------

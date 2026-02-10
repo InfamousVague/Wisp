@@ -166,12 +166,12 @@ function DataTableInner<T extends Record<string, any>>(
   // -- Memoised styles -------------------------------------------------------
   const containerStyle = useMemo(
     () => buildTableContainerStyle(theme, variant, userStyle as CSSStyleObject),
-    [themeColors, variant, userStyle],
+    [theme, variant, userStyle],
   );
-  const tableStyle = useMemo(() => buildTableStyle(), []);
+  const tableStyle = useMemo(() => buildTableStyle(), [theme]);
   const headerStyle = useMemo(
     () => buildTableHeaderStyle(sizeConfig, theme, variant),
-    [sizeConfig, themeColors, variant],
+    [sizeConfig, theme, variant],
   );
   const checkboxCellStyle = useMemo(
     () => buildCheckboxCellStyle(sizeConfig),
@@ -183,11 +183,11 @@ function DataTableInner<T extends Record<string, any>>(
   );
   const emptyStyle = useMemo(
     () => buildEmptyStateStyle(theme, sizeConfig),
-    [themeColors, sizeConfig],
+    [theme, sizeConfig],
   );
   const skeletonBarStyle = useMemo(
     () => buildSkeletonBarStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   // -- Sort handler ----------------------------------------------------------

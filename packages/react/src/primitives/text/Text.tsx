@@ -70,7 +70,7 @@ export const Text = forwardRef<HTMLElement, TextProps>(function Text(
   // Resolve semantic color variant to actual hex
   const resolvedColor = useMemo(
     () => resolveTextColor(color, theme),
-    [color, themeColors],
+    [color, theme],
   );
 
   // Skeleton loading state

@@ -59,7 +59,7 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(function S
       maxWidth,
       theme,
     }),
-    [direction, scrollbarWidth, hideScrollbar, maxHeight, maxWidth, themeColors],
+    [direction, scrollbarWidth, hideScrollbar, maxHeight, maxWidth, theme],
   );
 
   const mergedStyle = useMemo(

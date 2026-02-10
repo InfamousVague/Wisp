@@ -107,22 +107,22 @@ export const Meter = forwardRef<HTMLDivElement, MeterProps>(function Meter(
 
   const trackStyle = useMemo(
     () => buildMeterTrackStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   const fillStyle = useMemo(
     () => buildMeterFillStyle(sizeConfig, theme, percent, variant, lowPercent, highPercent, optimumPercent),
-    [sizeConfig, themeColors, percent, variant, lowPercent, highPercent, optimumPercent],
+    [sizeConfig, theme, percent, variant, lowPercent, highPercent, optimumPercent],
   );
 
   const labelRowStyle = useMemo(
     () => buildMeterLabelStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   const valueTextStyle = useMemo(
     () => buildMeterValueStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   // ---------------------------------------------------------------------------

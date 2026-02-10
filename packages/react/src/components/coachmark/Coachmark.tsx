@@ -189,12 +189,12 @@ export function Coachmark({
 
   const colors = useMemo(
     () => resolveCoachmarkColors(variant, theme),
-    [variant, themeColors],
+    [variant, theme],
   );
 
   const panelStyle = useMemo(
     () => buildCoachmarkPanelStyle(colors, theme),
-    [colors],
+    [colors, theme],
   );
   const arrowStyle = useMemo(
     () => buildCoachmarkArrowStyle(placement, colors),
@@ -202,23 +202,23 @@ export function Coachmark({
   );
   const titleStyle = useMemo(
     () => buildCoachmarkTitleStyle(colors.text, theme),
-    [colors.text],
+    [colors.text, theme],
   );
   const descriptionStyle = useMemo(
     () => buildCoachmarkDescriptionStyle(colors.descriptionText, theme),
-    [colors.descriptionText],
+    [colors.descriptionText, theme],
   );
   const footerStyle = useMemo(
     () => buildCoachmarkFooterStyle(theme),
-    [],
+    [theme],
   );
   const dismissBtnStyle = useMemo(
     () => buildCoachmarkDismissButtonStyle(theme),
-    [themeColors],
+    [theme],
   );
   const actionBtnStyle = useMemo(
     () => buildCoachmarkActionButtonStyle(colors, theme),
-    [colors],
+    [colors, theme],
   );
 
   const transform = useMemo(

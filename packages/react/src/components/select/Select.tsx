@@ -80,14 +80,14 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
 
   const colors = useMemo(
     () => resolveSelectColors(isOpen, hasError, disabled, theme),
-    [isOpen, hasError, disabled, themeColors],
+    [isOpen, hasError, disabled, theme],
   );
 
-  const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig, fullWidth), [sizeConfig, fullWidth]);
+  const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig, fullWidth), [sizeConfig, fullWidth, theme]);
   const triggerStyle = useMemo(() => buildTriggerStyle(sizeConfig, colors, disabled, theme), [sizeConfig, colors, disabled, theme]);
-  const dropdownStyle = useMemo(() => buildDropdownStyle(theme, variant), [themeColors, variant]);
-  const labelStyle = useMemo(() => buildLabelStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
-  const hintStyle = useMemo(() => buildHintStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
+  const dropdownStyle = useMemo(() => buildDropdownStyle(theme, variant), [theme, variant]);
+  const labelStyle = useMemo(() => buildLabelStyle(sizeConfig, colors, theme), [sizeConfig, colors, theme]);
+  const hintStyle = useMemo(() => buildHintStyle(sizeConfig, colors, theme), [sizeConfig, colors, theme]);
 
   const selectedOption = options.find((opt) => opt.value === selectedValue);
   const triggerTextStyle = useMemo(

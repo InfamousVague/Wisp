@@ -60,7 +60,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
 
     const overflowStyle = useMemo(
       () => buildOverflowStyle(sizeConfig, spacing, theme),
-      [sizeConfig, spacing, themeColors],
+      [sizeConfig, spacing, theme],
     );
 
     return (

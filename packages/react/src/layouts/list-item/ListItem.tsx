@@ -55,12 +55,12 @@ export const ListItem = forwardRef<HTMLElement, ListItemProps>(function ListItem
 
   const computedStyle = useMemo(
     () => buildListItemStyle({ size, align, interactive, active, disabled, theme }),
-    [size, align, interactive, active, disabled, themeColors],
+    [size, align, interactive, active, disabled, theme],
   );
 
-  const leadingSlotStyle = useMemo(() => buildLeadingStyle(), []);
+  const leadingSlotStyle = useMemo(() => buildLeadingStyle(), [theme]);
   const contentSlotStyle = useMemo(() => buildContentStyle(), []);
-  const trailingSlotStyle = useMemo(() => buildTrailingStyle(theme), []);
+  const trailingSlotStyle = useMemo(() => buildTrailingStyle(theme), [theme]);
 
   const handleMouseEnter = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {

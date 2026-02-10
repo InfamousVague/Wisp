@@ -66,7 +66,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(function Skele
         borderRadius: '50%',
         animation,
       }),
-      [themeColors, size, animation],
+      [theme, size, animation],
     );
 
     return (
@@ -110,7 +110,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(function Skele
         );
       }
       return elements;
-    }, [lines, lineSpacing, lineHeight, resolvedRadius, animation, themeColors]);
+    }, [lines, lineSpacing, lineHeight, resolvedRadius, animation, theme]);
 
     return (
       <div
@@ -135,7 +135,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(function Skele
       borderRadius: resolvedRadius,
       animation,
     }),
-    [themeColors, resolvedWidth, resolvedHeight, resolvedRadius, animation],
+    [theme, resolvedWidth, resolvedHeight, resolvedRadius, animation],
   );
 
   return (

@@ -126,7 +126,7 @@ export const ContextMenuContent = forwardRef<HTMLDivElement, ContextMenuContentP
 
     const contentStyle = useMemo(
       () => buildContextMenuContentStyle(theme),
-      [themeColors],
+      [theme],
     );
 
     if (!open) return null;
@@ -182,12 +182,12 @@ export const ContextMenuItem = forwardRef<HTMLDivElement, ContextMenuItemProps>(
 
     const itemStyle = useMemo(
       () => buildContextMenuItemStyle(destructive, disabled, theme),
-      [destructive, disabled, themeColors],
+      [destructive, disabled, theme],
     );
 
     const shortcutStyle = useMemo(
       () => buildContextMenuShortcutStyle(theme),
-      [themeColors],
+      [theme],
     );
 
     const handleClick = useCallback(() => {
@@ -232,7 +232,7 @@ export const ContextMenuSeparator = forwardRef<HTMLDivElement, ContextMenuSepara
 
     const separatorStyle = useMemo(
       () => buildContextMenuSeparatorStyle(theme),
-      [themeColors],
+      [theme],
     );
 
     return (

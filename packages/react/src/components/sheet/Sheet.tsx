@@ -167,22 +167,22 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
       ...buildOverlayStyle(theme),
       opacity: animateOpen ? 1 : 0,
     }),
-    [themeColors, animateOpen],
+    [theme, animateOpen],
   );
 
   const sheetStyle = useMemo(
     () => buildSheetStyle(size, animateOpen, dragOffset, theme, variant, userStyle as CSSStyleObject),
-    [size, animateOpen, dragOffset, themeColors, variant, userStyle],
+    [size, animateOpen, dragOffset, theme, variant, userStyle],
   );
 
   const handleBarStyle = useMemo(
     () => buildHandleBarStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   const handlePillStyle = useMemo(
     () => buildHandlePillStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   // -------------------------------------------------------------------------

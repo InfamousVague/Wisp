@@ -246,13 +246,13 @@ export const PinInput = forwardRef<HTMLDivElement, PinInputProps>(function PinIn
   const isFocused = focusedIndex >= 0;
   const colors = useMemo(
     () => resolvePinInputColors(isFocused, hasError, hasWarning, disabled, theme),
-    [isFocused, hasError, hasWarning, disabled, themeColors],
+    [isFocused, hasError, hasWarning, disabled, theme],
   );
 
-  const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig), [sizeConfig]);
+  const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig), [sizeConfig, theme]);
   const containerStyle = useMemo(() => buildCellContainerStyle(sizeConfig), [sizeConfig]);
-  const labelStyleObj = useMemo(() => buildLabelStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
-  const hintStyleObj = useMemo(() => buildHintStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
+  const labelStyleObj = useMemo(() => buildLabelStyle(sizeConfig, colors, theme), [sizeConfig, colors, theme]);
+  const hintStyleObj = useMemo(() => buildHintStyle(sizeConfig, colors, theme), [sizeConfig, colors, theme]);
 
   const mergedStyle = useMemo(
     () => (userStyle ? { ...wrapperStyle, ...userStyle } : wrapperStyle),

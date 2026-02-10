@@ -13,7 +13,7 @@ import type {
   SidebarContextValue,
 } from '@wisp-ui/core/types/Sidebar.types';
 import type { CSSStyleObject } from '@wisp-ui/core/types';
-import type { ThemeColors } from '@wisp-ui/core/theme/types';
+
 import {
   buildSidebarStyle,
   buildSectionStyle,
@@ -120,7 +120,7 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
 
   const sidebarStyle = useMemo(
     () => buildSidebarStyle(resolvedWidth, position, theme, userStyle as CSSStyleObject),
-    [resolvedWidth, position, themeColors, userStyle],
+    [resolvedWidth, position, theme, userStyle],
   );
 
   return (
@@ -141,7 +141,6 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
           <CollapseToggle
             collapsed={collapsed}
             onToggle={() => handleCollapsedChange(!collapsed)}
-            themeColors={themeColors}
           />
         )}
       </nav>
@@ -157,12 +156,12 @@ Sidebar.displayName = 'Sidebar';
 function CollapseToggle({
   collapsed,
   onToggle,
-  themeColors,
 }: {
   collapsed: boolean;
   onToggle: () => void;
-  themeColors: ThemeColors;
 }) {
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const [hovered, setHovered] = useState(false);
 
   const style: React.CSSProperties = {
@@ -258,7 +257,7 @@ export const SidebarSection = forwardRef<HTMLDivElement, SidebarSectionProps>(fu
 
   const titleStyle = useMemo(
     () => buildSectionTitleStyle(theme, collapsible),
-    [themeColors, collapsible],
+    [theme, collapsible],
   );
 
   const chevronStyle = useMemo(
@@ -361,7 +360,7 @@ export const SidebarItem = forwardRef<HTMLDivElement, SidebarItemProps>(function
 
   const handleMouseLeave = useCallback(() => {
     setHovered(false);
-  }, []);
+  }, [theme]);
 
   const handleClick = useCallback(
     (e: React.MouseEvent) => {
@@ -376,7 +375,7 @@ export const SidebarItem = forwardRef<HTMLDivElement, SidebarItemProps>(function
 
   const itemStyle = useMemo(
     () => buildItemStyle(active, disabled, hovered, sidebarCollapsed, sidebarWidth, theme, userStyle as CSSStyleObject),
-    [active, disabled, hovered, sidebarCollapsed, sidebarWidth, themeColors, userStyle],
+    [active, disabled, hovered, sidebarCollapsed, sidebarWidth, theme, userStyle],
   );
 
   const iconStyle = useMemo(() => buildItemIconStyle(), []);

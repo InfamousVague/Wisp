@@ -147,7 +147,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle
   const colors = useMemo(() => {
     if (disabled) return getDisabledToggleColors(theme);
     return resolveToggleColors(isChecked, theme, checkedColor, uncheckedColor);
-  }, [isChecked, disabled, themeColors, checkedColor, uncheckedColor]);
+  }, [isChecked, disabled, theme, checkedColor, uncheckedColor]);
 
   // ---------------------------------------------------------------------------
   // Skeleton
@@ -175,7 +175,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle
 
   const handleStyle = useMemo(
     () => buildHandleStyle({ sizeConfig, colors, checked: isChecked, hasContent }, theme),
-    [sizeConfig, colors, isChecked, hasContent],
+    [sizeConfig, colors, isChecked, hasContent, theme],
   );
 
   // Apply hover bg
@@ -201,12 +201,12 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle
   // ---------------------------------------------------------------------------
   const checkedContentStyle = useMemo(
     () => buildTrackContentStyle({ sizeConfig, side: 'checked', colors }, theme),
-    [sizeConfig, colors],
+    [sizeConfig, colors, theme],
   );
 
   const uncheckedContentStyle = useMemo(
     () => buildTrackContentStyle({ sizeConfig, side: 'unchecked', colors }, theme),
-    [sizeConfig, colors],
+    [sizeConfig, colors, theme],
   );
 
   // ---------------------------------------------------------------------------

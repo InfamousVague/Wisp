@@ -59,19 +59,19 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
 
   const containerStyle = useMemo(
     () => buildContainerStyle(sizeConfig, shape, theme),
-    [sizeConfig, shape, themeColors],
+    [sizeConfig, shape, theme],
   );
 
   const innerStyle = useMemo(
     () => buildInnerStyle(sizeConfig, shape, theme),
-    [sizeConfig, shape, themeColors],
+    [sizeConfig, shape, theme],
   );
 
-  const imgStyle = useMemo(() => buildImageStyle(), []);
+  const imgStyle = useMemo(() => buildImageStyle(), [theme]);
 
   const initialsStyle = useMemo(
     () => buildInitialsStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   if (skeleton) {

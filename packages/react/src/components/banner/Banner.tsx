@@ -51,24 +51,24 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(function Banner(
 
   const colors = useMemo(
     () => resolveBannerColors(variant, theme),
-    [variant, themeColors],
+    [variant, theme],
   );
 
   const bannerStyle = useMemo(
     () => buildBannerStyle(colors, fullWidth, theme),
-    [colors, fullWidth],
+    [colors, fullWidth, theme],
   );
   const titleStyle = useMemo(
     () => buildBannerTitleStyle(colors, theme),
-    [colors],
+    [colors, theme],
   );
   const messageStyle = useMemo(
     () => buildBannerMessageStyle(colors, theme),
-    [colors],
+    [colors, theme],
   );
   const dismissStyle = useMemo(
     () => buildBannerDismissStyle(colors, theme),
-    [colors],
+    [colors, theme],
   );
 
   return (

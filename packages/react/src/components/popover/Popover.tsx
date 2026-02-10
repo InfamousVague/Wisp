@@ -378,7 +378,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
     // Build styles
     const contentStyle = useMemo(
       () => buildContentStyle(theme, variant, userStyle as CSSStyleObject),
-      [themeColors, variant, userStyle],
+      [theme, variant, userStyle],
     );
 
     const transform = useMemo(

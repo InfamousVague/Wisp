@@ -114,37 +114,37 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(function D
 
   const containerStyle = useMemo(
     () => buildDatePickerContainerStyle(sizeConfig, false, theme),
-    [sizeConfig],
+    [sizeConfig, theme],
   );
 
   const triggerStyle = useMemo(
     () => buildDatePickerTriggerStyle(sizeConfig, theme, isOpen, disabled, hasError, isTriggerHovered),
-    [sizeConfig, themeColors, isOpen, disabled, hasError, isTriggerHovered],
+    [sizeConfig, theme, isOpen, disabled, hasError, isTriggerHovered],
   );
 
   const dropdownStyle = useMemo(
     () => buildDatePickerDropdownStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   const iconStyle = useMemo(
     () => buildDatePickerIconStyle(theme, disabled),
-    [themeColors, disabled],
+    [theme, disabled],
   );
 
   const clearStyle = useMemo(
     () => buildDatePickerClearStyle(theme, isClearHovered),
-    [themeColors, isClearHovered],
+    [theme, isClearHovered],
   );
 
   const labelStyle = useMemo(
     () => buildDatePickerLabelStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   const errorStyle = useMemo(
     () => buildDatePickerErrorStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   // -------------------------------------------------------------------------

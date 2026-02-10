@@ -132,7 +132,7 @@ export const CopyButton = forwardRef<HTMLButtonElement, CopyButtonProps>(functio
 
   const buttonStyle = useMemo(
     () => buildCopyButtonStyle(sizeConfig, theme, variant, isCopied, hovered, disabled),
-    [sizeConfig, themeColors, variant, isCopied, hovered, disabled],
+    [sizeConfig, theme, variant, isCopied, hovered, disabled],
   );
 
   const mergedStyle: React.CSSProperties = { ...buttonStyle, ...userStyle };

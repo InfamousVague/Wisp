@@ -62,14 +62,14 @@ export const NotificationBadge = forwardRef<HTMLDivElement, NotificationBadgePro
 
     const colors = useMemo(
       () => resolveNotificationBadgeColors(color, theme),
-      [color, themeColors],
+      [color, theme],
     );
 
-    const wrapperStyle = useMemo(() => buildNotificationBadgeWrapperStyle(), []);
+    const wrapperStyle = useMemo(() => buildNotificationBadgeWrapperStyle(), [theme]);
 
     const badgeStyle = useMemo(
       () => buildNotificationBadgeStyle(colors, dot, invisible, pulse, theme),
-      [colors, dot, invisible, pulse],
+      [colors, dot, invisible, pulse, theme],
     );
 
     // Determine badge content

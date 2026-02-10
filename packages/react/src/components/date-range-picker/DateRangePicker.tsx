@@ -76,7 +76,6 @@ interface CalendarMonthProps {
   minDate?: Date;
   maxDate?: Date;
   sizeConfig: DateRangePickerSizeConfig;
-  themeColors: ThemeColors;
 }
 
 function CalendarMonth({
@@ -90,7 +89,6 @@ function CalendarMonth({
   minDate,
   maxDate,
   sizeConfig,
-  themeColors,
 }: CalendarMonthProps) {
   const { theme } = useTheme();
   const daysInMonth = getDaysInMonth(year, month);
@@ -393,11 +391,11 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
   const hasValue = currentRange.start != null && currentRange.end != null;
 
   const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig), [sizeConfig]);
-  const labelStyleObj = useMemo(() => buildLabelStyle(sizeConfig, theme), [sizeConfig, themeColors]);
-  const triggerStyle = useMemo(() => buildTriggerStyle(sizeConfig, theme, isOpen, disabled), [sizeConfig, themeColors, isOpen, disabled]);
-  const dropdownStyle = useMemo(() => buildDropdownStyle(theme), [themeColors]);
-  const headerStyle = useMemo(() => buildCalendarHeaderStyle(sizeConfig, theme), [sizeConfig]);
-  const monthYearStyle = useMemo(() => buildMonthYearStyle(sizeConfig, theme), [sizeConfig, themeColors]);
+  const labelStyleObj = useMemo(() => buildLabelStyle(sizeConfig, theme), [sizeConfig, theme]);
+  const triggerStyle = useMemo(() => buildTriggerStyle(sizeConfig, theme, isOpen, disabled), [sizeConfig, theme, isOpen, disabled]);
+  const dropdownStyle = useMemo(() => buildDropdownStyle(theme), [theme]);
+  const headerStyle = useMemo(() => buildCalendarHeaderStyle(sizeConfig, theme), [sizeConfig, theme]);
+  const monthYearStyle = useMemo(() => buildMonthYearStyle(sizeConfig, theme), [sizeConfig, theme]);
 
   return (
     <div ref={ref} className={className} style={{ ...wrapperStyle, ...userStyle }} {...rest}>
@@ -504,7 +502,8 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
               minDate={minDate}
               maxDate={maxDate}
               sizeConfig={sizeConfig}
-              themeColors={themeColors}
+
+
             />
           </div>
 
@@ -551,7 +550,8 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
               minDate={minDate}
               maxDate={maxDate}
               sizeConfig={sizeConfig}
-              themeColors={themeColors}
+
+
             />
           </div>
         </div>

@@ -161,22 +161,22 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
     // -----------------------------------------------------------------------
     const containerStyle = useMemo(
       () => buildStepperContainerStyle(sizeConfig, theme),
-      [sizeConfig, themeColors],
+      [sizeConfig, theme],
     );
 
     const minusButtonStyle = useMemo(
       () => buildStepperButtonStyle(sizeConfig, theme, minusDisabled, minusHovered),
-      [sizeConfig, themeColors, minusDisabled, minusHovered],
+      [sizeConfig, theme, minusDisabled, minusHovered],
     );
 
     const plusButtonStyle = useMemo(
       () => buildStepperButtonStyle(sizeConfig, theme, plusDisabled, plusHovered),
-      [sizeConfig, themeColors, plusDisabled, plusHovered],
+      [sizeConfig, theme, plusDisabled, plusHovered],
     );
 
     const valueStyle = useMemo(
       () => buildStepperValueStyle(sizeConfig, theme),
-      [sizeConfig, themeColors],
+      [sizeConfig, theme],
     );
 
     // -----------------------------------------------------------------------

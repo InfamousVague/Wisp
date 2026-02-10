@@ -91,7 +91,7 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
 
   const colors = useMemo(
     () => resolveMessageInputColors(theme),
-    [themeColors],
+    [theme],
   );
 
   if (skeleton) {

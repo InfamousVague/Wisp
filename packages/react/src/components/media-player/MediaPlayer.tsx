@@ -144,7 +144,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
 
   const colors = useMemo(
     () => resolveMediaPlayerColors(theme),
-    [themeColors],
+    [theme],
   );
 
   // Skeleton early return
@@ -172,7 +172,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
 
   const controlBtnStyle = useMemo(
     () => buildControlButtonStyle(sizeConfig, colors, theme),
-    [sizeConfig, colors],
+    [sizeConfig, colors, theme],
   );
 
   const seekContainerStyle = useMemo(
@@ -325,7 +325,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
 
   const volumeContainerStyle = useMemo(
     () => buildVolumeContainerStyle(sizeConfig, theme),
-    [sizeConfig],
+    [sizeConfig, theme],
   );
 
   const volumeSliderStyle = useMemo(
@@ -335,7 +335,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
 
   const speedBtnStyle = useMemo(
     () => buildSpeedButtonStyle(sizeConfig, colors, theme),
-    [sizeConfig, colors],
+    [sizeConfig, colors, theme],
   );
 
   const renderControls = () => (
@@ -474,7 +474,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
   // Audio variant
   // ---------------------------------------------------------------------------
 
-  const audioInfoStyle = useMemo(() => buildAudioInfoStyle(colors, theme), [colors]);
+  const audioInfoStyle = useMemo(() => buildAudioInfoStyle(colors, theme), [colors, theme]);
   const audioSeekRowStyle = useMemo(() => buildAudioSeekRowStyle(sizeConfig), [sizeConfig]);
 
   return (

@@ -61,25 +61,25 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(function E
 
   const containerStyle = useMemo(
     () => ({ ...buildContainerStyle(sizeConfig, theme), ...userStyle }),
-    [sizeConfig, userStyle],
+    [sizeConfig, userStyle, theme],
   );
 
   const iconStyle = useMemo(
     () => buildIconStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   const titleStyle = useMemo(
     () => buildTitleStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   const descriptionStyle = useMemo(
     () => buildDescriptionStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
-  const actionWrapperStyle = useMemo(() => buildActionStyle(theme), []);
+  const actionWrapperStyle = useMemo(() => buildActionStyle(theme), [theme]);
 
   return (
     <div ref={ref} style={containerStyle} {...rest}>

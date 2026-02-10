@@ -234,23 +234,23 @@ export const TagInput = forwardRef<HTMLDivElement, TagInputProps>(function TagIn
 
   const colors = useMemo(
     () => resolveTagInputColors(focused, hasError, hasWarning, disabled, theme),
-    [focused, hasError, hasWarning, disabled, themeColors],
+    [focused, hasError, hasWarning, disabled, theme],
   );
 
-  const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig, fullWidth), [sizeConfig, fullWidth]);
+  const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig, fullWidth), [sizeConfig, fullWidth, theme]);
   const contStyle = useMemo(() => buildContainerStyle(sizeConfig, colors, disabled, theme), [sizeConfig, colors, disabled, theme]);
-  const tagStyle = useMemo(() => buildTagStyle(sizeConfig, colors, disabled, theme), [sizeConfig, colors, disabled]);
+  const tagStyle = useMemo(() => buildTagStyle(sizeConfig, colors, disabled, theme), [sizeConfig, colors, disabled, theme]);
   const tagRemoveBaseStyle = useMemo(() => buildTagRemoveStyle(sizeConfig, colors), [sizeConfig, colors]);
   const inputStyle = useMemo(() => buildInputStyle(sizeConfig, colors), [sizeConfig, colors]);
-  const labelStyleObj = useMemo(() => buildLabelStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
-  const hintStyleObj = useMemo(() => buildHintStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
+  const labelStyleObj = useMemo(() => buildLabelStyle(sizeConfig, colors, theme), [sizeConfig, colors, theme]);
+  const hintStyleObj = useMemo(() => buildHintStyle(sizeConfig, colors, theme), [sizeConfig, colors, theme]);
 
   const mergedStyle = useMemo(
     () => (userStyle ? { ...wrapperStyle, ...userStyle } : wrapperStyle),
     [wrapperStyle, userStyle],
   );
 
-  const removeHoverBg = useMemo(() => getTagRemoveHoverBg(theme), [themeColors]);
+  const removeHoverBg = useMemo(() => getTagRemoveHoverBg(theme), [theme]);
 
   // ---------------------------------------------------------------------------
   // Skeleton

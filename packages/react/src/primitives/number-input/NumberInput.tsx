@@ -243,37 +243,37 @@ export const NumberInput = forwardRef<HTMLDivElement, NumberInputProps>(
     // -----------------------------------------------------------------------
     const wrapperStyle = useMemo(
       () => buildWrapperStyle(fullWidth, theme),
-      [fullWidth],
+      [fullWidth, theme],
     );
 
     const containerStyle = useMemo(
       () => buildContainerStyle(sizeConfig, disabled, error, focused, theme),
-      [sizeConfig, disabled, error, focused, themeColors],
+      [sizeConfig, disabled, error, focused, theme],
     );
 
     const inputStyle = useMemo(
       () => buildInputStyle(sizeConfig, theme),
-      [sizeConfig, themeColors],
+      [sizeConfig, theme],
     );
 
     const minusButtonStyle = useMemo(
       () => buildButtonStyle(buttonConfig, disabled || (min !== undefined && currentValue <= min), minusHovered, theme),
-      [buttonConfig, disabled, min, currentValue, minusHovered, themeColors],
+      [buttonConfig, disabled, min, currentValue, minusHovered, theme],
     );
 
     const plusButtonStyle = useMemo(
       () => buildButtonStyle(buttonConfig, disabled || (max !== undefined && currentValue >= max), plusHovered, theme),
-      [buttonConfig, disabled, max, currentValue, plusHovered, themeColors],
+      [buttonConfig, disabled, max, currentValue, plusHovered, theme],
     );
 
     const labelStyle = useMemo(
       () => (label ? buildLabelStyle(sizeConfig, disabled, theme) : undefined),
-      [label, sizeConfig, disabled, themeColors],
+      [label, sizeConfig, disabled, theme],
     );
 
     const hintStyle = useMemo(
       () => (hint ? buildHintStyle(sizeConfig, error, theme) : undefined),
-      [hint, sizeConfig, error, themeColors],
+      [hint, sizeConfig, error, theme],
     );
 
     // -----------------------------------------------------------------------

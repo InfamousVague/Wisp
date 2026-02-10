@@ -72,27 +72,27 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
 
     const wrapperStyle = useMemo(
       () => buildCodeBlockWrapperStyle(variant, theme, maxHeight),
-      [variant, themeColors, maxHeight],
+      [variant, theme, maxHeight],
     );
 
     const headerStyle = useMemo(
       () => buildCodeBlockHeaderStyle(variant, theme),
-      [variant, themeColors],
+      [variant, theme],
     );
 
     const preStyle = useMemo(
       () => buildCodeBlockPreStyle(theme, maxHeight),
-      [themeColors, maxHeight],
+      [theme, maxHeight],
     );
 
     const lineNumberStyle = useMemo(
       () => buildCodeBlockLineNumberStyle(variant, theme),
-      [variant, themeColors],
+      [variant, theme],
     );
 
     const copyBtnStyle = useMemo(
       () => buildCodeBlockCopyButtonStyle(variant, theme),
-      [variant, themeColors],
+      [variant, theme],
     );
 
     const handleCopy = useCallback(async () => {

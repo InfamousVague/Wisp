@@ -127,7 +127,7 @@ export function ToastProvider({
 
   const containerStyle = useMemo(
     () => buildToastContainerStyle(position, theme),
-    [position],
+    [position, theme],
   );
 
   const itemWrapperStyle = useMemo(

@@ -61,37 +61,37 @@ export const MessageGroup = forwardRef<HTMLDivElement, MessageGroupProps>(
 
     const groupStyle = useMemo(
       () => buildMessageGroupStyle(align, theme),
-      [align],
+      [align, theme],
     );
 
     const senderNameStyle = useMemo(
       () => buildSenderNameStyle(theme),
-      [themeColors],
+      [theme],
     );
 
     const contentRowStyle = useMemo(
       () => buildContentRowStyle(align, theme),
-      [align],
+      [align, theme],
     );
 
     const bubblesStyle = useMemo(
       () => buildBubblesContainerStyle(align, theme),
-      [align],
+      [align, theme],
     );
 
     const footerStyle = useMemo(
       () => buildGroupFooterStyle(align, theme),
-      [align],
+      [align, theme],
     );
 
     const timestampStyle = useMemo(
       () => buildGroupTimestampStyle(theme),
-      [themeColors],
+      [theme],
     );
 
     const statusIconStyle = useMemo(
       () => buildGroupStatusStyle(theme),
-      [themeColors],
+      [theme],
     );
 
     const showFooter = timestamp || status;

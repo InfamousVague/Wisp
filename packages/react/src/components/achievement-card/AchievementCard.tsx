@@ -53,44 +53,44 @@ export function AchievementCard({
 
   const colors = useMemo(
     () => resolveAchievementColors(status, rarity, theme),
-    [status, rarity, themeColors],
+    [status, rarity, theme],
   );
 
   const cardStyle = useMemo(
     () => buildAchievementCardStyle(colors, status, !!onClick, theme),
-    [colors, status, onClick],
+    [colors, status, onClick, theme],
   );
   const iconContainerStyle = useMemo(
     () => buildAchievementIconStyle(colors, theme),
-    [colors],
+    [colors, theme],
   );
   const contentStyle = useMemo(
     () => buildAchievementContentStyle(theme),
-    [],
+    [theme],
   );
   const titleStyle = useMemo(
     () => buildAchievementTitleStyle(colors.text, theme),
-    [colors.text],
+    [colors.text, theme],
   );
   const descriptionStyle = useMemo(
     () => buildAchievementDescriptionStyle(colors.descriptionText, theme),
-    [colors.descriptionText],
+    [colors.descriptionText, theme],
   );
   const progressTrackStyle = useMemo(
     () => buildAchievementProgressTrackStyle(theme),
-    [themeColors],
+    [theme],
   );
   const progressBarStyle = useMemo(
     () => buildAchievementProgressBarStyle(colors.rarityColor, progress, theme),
-    [colors.rarityColor, progress],
+    [colors.rarityColor, progress, theme],
   );
   const rarityStyle = useMemo(
     () => buildAchievementRarityStyle(colors.rarityColor, theme),
-    [colors.rarityColor],
+    [colors.rarityColor, theme],
   );
   const dateStyle = useMemo(
     () => buildAchievementDateStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   const rarityConfig = achievementRarityMap[rarity];

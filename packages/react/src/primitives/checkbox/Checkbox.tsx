@@ -173,7 +173,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(function Che
 
   const colors = useMemo(
     () => resolveCheckboxColors(isChecked, indeterminate, error, warning, disabled, theme),
-    [isChecked, indeterminate, error, warning, disabled, themeColors],
+    [isChecked, indeterminate, error, warning, disabled, theme],
   );
 
   // ---------------------------------------------------------------------------

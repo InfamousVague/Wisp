@@ -36,7 +36,7 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(function Kbd(
 
   const kbdStyle = useMemo(
     () => buildKbdStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   return (

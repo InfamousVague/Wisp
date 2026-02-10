@@ -83,7 +83,7 @@ export const StatCard = forwardRef<HTMLDivElement, StatCardProps>(function StatC
   // Resolve colors
   const colors = useMemo(
     () => resolveStatCardColors(variant, theme),
-    [variant, themeColors],
+    [variant, theme],
   );
 
   // Skeleton early return
@@ -101,7 +101,7 @@ export const StatCard = forwardRef<HTMLDivElement, StatCardProps>(function StatC
   // Styles
   const containerStyle = useMemo(
     () => buildStatCardContainerStyle(sizeConfig, colors, theme),
-    [sizeConfig, colors],
+    [sizeConfig, colors, theme],
   );
 
   const contentStyle = useMemo(
@@ -111,27 +111,27 @@ export const StatCard = forwardRef<HTMLDivElement, StatCardProps>(function StatC
 
   const textStackStyle = useMemo(
     () => buildStatCardTextStackStyle(theme),
-    [],
+    [theme],
   );
 
   const iconContainerStyle = useMemo(
     () => (IconComponent ? buildStatCardIconStyle(sizeConfig, colors.accent, theme) : undefined),
-    [IconComponent, sizeConfig, colors.accent],
+    [IconComponent, sizeConfig, colors.accent, theme],
   );
 
   const valueStyle = useMemo(
     () => buildStatCardValueStyle(sizeConfig, colors, theme),
-    [sizeConfig, colors],
+    [sizeConfig, colors, theme],
   );
 
   const labelStyle = useMemo(
     () => buildStatCardLabelStyle(sizeConfig, colors, theme),
-    [sizeConfig, colors],
+    [sizeConfig, colors, theme],
   );
 
   const descriptionStyle = useMemo(
     () => (description ? buildStatCardDescriptionStyle(sizeConfig, colors, theme) : undefined),
-    [description, sizeConfig, colors],
+    [description, sizeConfig, colors, theme],
   );
 
   const rightStyle = useMemo(
@@ -149,7 +149,7 @@ export const StatCard = forwardRef<HTMLDivElement, StatCardProps>(function StatC
 
   const trendStyle = useMemo(
     () => (trend !== undefined && trend !== null ? buildStatCardTrendStyle(sizeConfig, trendColor, theme) : undefined),
-    [trend, sizeConfig, trendColor],
+    [trend, sizeConfig, trendColor, theme],
   );
 
   // Determine sparkline color based on variant

@@ -103,7 +103,7 @@ export const Card = forwardRef<HTMLElement, CardProps>(function Card(
         pressed,
         theme,
       }),
-    [variant, padding, radius, interactive, selected, disabled, hovered, pressed, themeColors],
+    [variant, padding, radius, interactive, selected, disabled, hovered, pressed, theme],
   );
 
   const mergedStyle: React.CSSProperties = useMemo(

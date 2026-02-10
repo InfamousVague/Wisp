@@ -50,7 +50,7 @@ export const Icon = forwardRef<HTMLSpanElement, IconProps>(function Icon(
   // Resolve color
   const resolvedColor = useMemo(
     () => resolveIconColor(color, theme),
-    [color, themeColors],
+    [color, theme],
   );
 
   // Skeleton loading state
@@ -68,7 +68,7 @@ export const Icon = forwardRef<HTMLSpanElement, IconProps>(function Icon(
   }
 
   // Build container style
-  const containerStyle = useMemo(() => buildIconStyle(size), [size]);
+  const containerStyle = useMemo(() => buildIconStyle(size), [size, theme]);
   const mergedStyle = userStyle ? { ...containerStyle, ...userStyle } : containerStyle;
 
   // Icon pixel size

@@ -49,10 +49,10 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
 
     const navStyle = useMemo(
       () => buildNavbarStyle(variant, sticky, height, theme),
-      [variant, sticky, height, themeColors],
+      [variant, sticky, height, theme],
     );
 
-    const ctx = useMemo(() => ({ variant }), [variant]);
+    const ctx = useMemo(() => ({ variant }), [variant, theme]);
 
     return (
       <NavbarContext.Provider value={ctx}>
@@ -120,7 +120,7 @@ export const NavbarItem = forwardRef<HTMLDivElement, NavbarItemProps>(
 
     const itemStyle = useMemo(
       () => buildNavbarItemStyle(active, theme, isSolid),
-      [active, themeColors, isSolid],
+      [active, theme, isSolid],
     );
 
     return (

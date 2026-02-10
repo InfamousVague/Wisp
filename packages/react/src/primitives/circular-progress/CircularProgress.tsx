@@ -103,7 +103,7 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
     // -----------------------------------------------------------------------
     const colors = useMemo(
       () => resolveCircularProgressColors(color, theme),
-      [color, themeColors],
+      [color, theme],
     );
 
     // -----------------------------------------------------------------------
@@ -156,12 +156,12 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
 
     const valueTextStyle = useMemo(
       () => buildValueTextStyle(sizeConfig, colors, theme),
-      [sizeConfig, colors],
+      [sizeConfig, colors, theme],
     );
 
     const labelTextStyle = useMemo(
       () => buildLabelTextStyle(sizeConfig, colors, theme),
-      [sizeConfig, colors],
+      [sizeConfig, colors, theme],
     );
 
     // -----------------------------------------------------------------------

@@ -75,7 +75,7 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
 
   const wrapperStyle = useMemo(
     () => buildWrapperStyle(radius, aspectRatio, theme),
-    [radius, aspectRatio, themeColors],
+    [radius, aspectRatio, theme],
   );
 
   const imgStyle = useMemo(
@@ -85,12 +85,12 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
 
   const fallbackStyle = useMemo(
     () => buildFallbackStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   const skeletonStyle = useMemo(
     () => buildSkeletonStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   const defaultFallback = (

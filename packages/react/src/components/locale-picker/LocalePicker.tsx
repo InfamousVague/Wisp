@@ -188,16 +188,16 @@ export const LocalePicker = forwardRef<HTMLDivElement, LocalePickerProps>(functi
   // Resolve colors
   const colors = useMemo(
     () => resolveLocalePickerColors(isOpen, disabled, theme),
-    [isOpen, disabled, themeColors],
+    [isOpen, disabled, theme],
   );
 
   // Memoised styles
-  const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig), [sizeConfig]);
-  const labelStyle = useMemo(() => buildLabelStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
+  const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig), [sizeConfig, theme]);
+  const labelStyle = useMemo(() => buildLabelStyle(sizeConfig, colors, theme), [sizeConfig, colors, theme]);
   const triggerStyle = useMemo(() => buildTriggerStyle(sizeConfig, colors, disabled, theme), [sizeConfig, colors, disabled, theme]);
-  const dropdownStyle = useMemo(() => buildDropdownStyle(theme), [themeColors]);
-  const searchInputStyle = useMemo(() => buildSearchInputStyle(sizeConfig, theme), [sizeConfig, themeColors]);
-  const optionsListStyle = useMemo(() => buildOptionsListStyle(theme), []);
+  const dropdownStyle = useMemo(() => buildDropdownStyle(theme), [theme]);
+  const searchInputStyle = useMemo(() => buildSearchInputStyle(sizeConfig, theme), [sizeConfig, theme]);
+  const optionsListStyle = useMemo(() => buildOptionsListStyle(theme), [theme]);
 
   const selectedOption = options.find((opt) => opt.code === selectedValue);
   const triggerTextStyle = useMemo(

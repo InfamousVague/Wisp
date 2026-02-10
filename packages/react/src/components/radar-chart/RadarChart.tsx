@@ -72,12 +72,12 @@ export const RadarChart = forwardRef<HTMLDivElement, RadarChartProps>(
     // -----------------------------------------------------------------------
     const chartColors = useMemo(
       () => resolveRadarChartColors(theme),
-      [themeColors],
+      [theme],
     );
 
     const seriesColors = useMemo(
       () => series.map((s, i) => s.color || resolveSeriesColor(i, theme)),
-      [series, themeColors],
+      [series, theme],
     );
 
     // -----------------------------------------------------------------------

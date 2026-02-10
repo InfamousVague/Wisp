@@ -53,23 +53,23 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(functi
 
   const dropzoneStyle = useMemo(
     () => buildDropzoneStyle(theme, isDragOver, disabled),
-    [themeColors, isDragOver, disabled],
+    [theme, isDragOver, disabled],
   );
   const iconStyle = useMemo(
     () => buildDropzoneIconStyle(theme),
-    [themeColors],
+    [theme],
   );
   const titleStyle = useMemo(
     () => buildDropzoneTitleStyle(theme),
-    [themeColors],
+    [theme],
   );
   const descriptionStyle = useMemo(
     () => buildDropzoneDescriptionStyle(theme),
-    [themeColors],
+    [theme],
   );
   const linkStyle = useMemo(
     () => buildDropzoneLinkStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   const processFiles = useCallback(

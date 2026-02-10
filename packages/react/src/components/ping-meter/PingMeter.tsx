@@ -140,17 +140,17 @@ export const PingMeter = forwardRef<HTMLDivElement, PingMeterProps>(function Pin
 
   const dotStyle = useMemo(
     () => buildPingDotStyle(sizeConfig, color, theme),
-    [sizeConfig, color],
+    [sizeConfig, color, theme],
   );
 
   const pulseStyle = useMemo(
     () => buildPingDotPulseStyle(sizeConfig, color, theme),
-    [sizeConfig, color],
+    [sizeConfig, color, theme],
   );
 
   const latencyStyle = useMemo(
     () => buildPingLatencyStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   return (

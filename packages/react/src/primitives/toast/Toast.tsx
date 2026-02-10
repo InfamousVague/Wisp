@@ -62,16 +62,16 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
 
   const colors = useMemo(
     () => resolveToastColors(variant, theme),
-    [variant, themeColors],
+    [variant, theme],
   );
 
-  const toastStyle = useMemo(() => buildToastStyle(colors, surface, theme), [colors, surface]);
+  const toastStyle = useMemo(() => buildToastStyle(colors, surface, theme), [colors, surface, theme]);
   const iconStyle = useMemo(() => buildIconStyle(colors), [colors]);
-  const contentStyle = useMemo(() => buildContentStyle(theme), []);
-  const titleStyle = useMemo(() => buildTitleStyle(colors, theme), [colors]);
-  const descriptionStyle = useMemo(() => buildDescriptionStyle(colors, theme), [colors]);
+  const contentStyle = useMemo(() => buildContentStyle(theme), [theme]);
+  const titleStyle = useMemo(() => buildTitleStyle(colors, theme), [colors, theme]);
+  const descriptionStyle = useMemo(() => buildDescriptionStyle(colors, theme), [colors, theme]);
   const actionWrapperStyle = useMemo(() => buildActionStyle(), []);
-  const dismissStyle = useMemo(() => buildDismissStyle(colors, theme), [colors]);
+  const dismissStyle = useMemo(() => buildDismissStyle(colors, theme), [colors, theme]);
 
   const handleDismissEnter = useCallback(() => setDismissHovered(true), []);
   const handleDismissLeave = useCallback(() => setDismissHovered(false), []);

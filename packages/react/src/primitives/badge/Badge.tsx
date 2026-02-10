@@ -55,7 +55,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
   // Resolve variant colors
   const colors = useMemo(
     () => resolveBadgeColors(variant, theme),
-    [variant, themeColors],
+    [variant, theme],
   );
 
   // Skeleton early return
@@ -73,12 +73,12 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
   // Build styles
   const badgeStyle = useMemo(
     () => buildBadgeStyle(sizeConfig, colors, shape, theme),
-    [sizeConfig, colors, shape],
+    [sizeConfig, colors, shape, theme],
   );
 
   const dotStyle = useMemo(
     () => (dot ? buildDotStyle(sizeConfig, colors, theme) : undefined),
-    [dot, sizeConfig, colors],
+    [dot, sizeConfig, colors, theme],
   );
 
   return (

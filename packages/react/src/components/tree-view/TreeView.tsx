@@ -48,7 +48,6 @@ interface TreeNodeRowProps {
   node: TreeNode;
   depth: number;
   sizeConfig: TreeViewSizeConfig;
-  themeColors: ThemeColors;
   expandedSet: Set<string>;
   selectedId: string | undefined;
   selectable: boolean;
@@ -63,7 +62,6 @@ function TreeNodeRow({
   node,
   depth,
   sizeConfig,
-  themeColors,
   expandedSet,
   selectedId,
   selectable,
@@ -125,22 +123,22 @@ function TreeNodeRow({
 
   const nodeStyle = useMemo(
     () => buildTreeNodeStyle(sizeConfig, depth, isSelected, hovered, isDisabled, theme),
-    [sizeConfig, depth, isSelected, hovered, isDisabled, themeColors],
+    [sizeConfig, depth, isSelected, hovered, isDisabled, theme],
   );
 
   const toggleStyle = useMemo(
     () => buildTreeToggleStyle(sizeConfig, theme, isExpanded),
-    [sizeConfig, themeColors, isExpanded],
+    [sizeConfig, theme, isExpanded],
   );
 
   const iconStyle = useMemo(
     () => buildTreeIconStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   const labelStyle = useMemo(
     () => buildTreeLabelStyle(sizeConfig, theme, isDisabled),
-    [sizeConfig, themeColors, isDisabled],
+    [sizeConfig, theme, isDisabled],
   );
 
   const IconComponent = node.icon;
@@ -221,7 +219,7 @@ function TreeNodeRow({
               node={child}
               depth={depth + 1}
               sizeConfig={sizeConfig}
-              themeColors={themeColors}
+
               expandedSet={expandedSet}
               selectedId={selectedId}
               selectable={selectable}
@@ -276,7 +274,7 @@ export const TreeView = forwardRef<HTMLDivElement, TreeViewProps>(function TreeV
     () => defaultExpanded ?? [],
   );
   const expandedIds = isExpandedControlled ? controlledExpanded : internalExpanded;
-  const expandedSet = useMemo(() => new Set(expandedIds), [expandedIds]);
+  const expandedSet = useMemo(() => new Set(expandedIds), [expandedIds, theme]);
 
   const handleToggleExpand = useCallback(
     (id: string) => {
@@ -366,7 +364,6 @@ export const TreeView = forwardRef<HTMLDivElement, TreeViewProps>(function TreeV
           node={node}
           depth={0}
           sizeConfig={sizeConfig}
-          themeColors={themeColors}
           expandedSet={expandedSet}
           selectedId={selectedId}
           selectable={selectable}

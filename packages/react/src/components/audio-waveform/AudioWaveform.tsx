@@ -52,7 +52,7 @@ export const AudioWaveform = forwardRef<HTMLDivElement, AudioWaveformProps>(func
   // Resolve colors
   const colors = useMemo(
     () => resolveAudioWaveformColors(color, theme),
-    [color, themeColors],
+    [color, theme],
   );
 
   // Skeleton early return

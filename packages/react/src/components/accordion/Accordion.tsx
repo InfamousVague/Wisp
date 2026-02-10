@@ -178,7 +178,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(function Acc
       ...buildAccordionStyle(theme, userStyle as CSSStyleObject),
       fontFamily: fontFamilyStacks.sans,
     }),
-    [themeColors, userStyle],
+    [theme, userStyle],
   );
 
   return (
@@ -219,7 +219,7 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(func
 
   const itemStyle = useMemo(
     () => ({ ...buildItemStyle(theme), ...userStyle }),
-    [themeColors, userStyle],
+    [theme, userStyle],
   );
 
   return (
@@ -274,10 +274,10 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
 
     const triggerStyle = useMemo(
       () => buildTriggerStyle(isOpen, disabled, hovered, theme, userStyle as CSSStyleObject),
-      [isOpen, disabled, hovered, themeColors, userStyle],
+      [isOpen, disabled, hovered, theme, userStyle],
     );
 
-    const chevronStyle = useMemo(() => buildChevronStyle(isOpen), [isOpen]);
+    const chevronStyle = useMemo(() => buildChevronStyle(isOpen), [isOpen, theme]);
 
     const chevronIcon = icon ?? (
       <svg
@@ -349,7 +349,7 @@ export const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps
 
     const wrapperStyle = useMemo(
       () => ({ ...buildContentStyle(isOpen, measuredHeight, theme), ...userStyle }),
-      [isOpen, measuredHeight, themeColors, userStyle],
+      [isOpen, measuredHeight, theme, userStyle],
     );
 
     // Merge forwarded ref with internal ref

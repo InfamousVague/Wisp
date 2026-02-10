@@ -86,7 +86,7 @@ export const Beacon = forwardRef<HTMLButtonElement, BeaconProps>(function Beacon
   const sizeConfig = beaconSizeMap[size];
   const accentColor = useMemo(
     () => resolveBeaconColor(variant, theme),
-    [variant, themeColors],
+    [variant, theme],
   );
 
   // Inject pulse keyframe when pulsing is enabled
@@ -96,7 +96,7 @@ export const Beacon = forwardRef<HTMLButtonElement, BeaconProps>(function Beacon
 
   const buttonStyle = useMemo(
     () => buildBeaconButtonStyle(sizeConfig, accentColor, theme),
-    [sizeConfig, accentColor, themeColors],
+    [sizeConfig, accentColor, theme],
   );
 
   const pulseStyle = useMemo(

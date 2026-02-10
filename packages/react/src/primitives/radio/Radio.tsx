@@ -338,17 +338,17 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>(function Radio(
   // ---------------------------------------------------------------------------
   const colors = useMemo(
     () => resolveRadioColors(selected, disabled, group.error, theme),
-    [selected, disabled, group.error, themeColors],
+    [selected, disabled, group.error, theme],
   );
 
   const outerStyle = useMemo(
     () => buildOuterCircleStyle(sizeConfig, colors, disabled, theme),
-    [sizeConfig, colors, disabled, themeColors],
+    [sizeConfig, colors, disabled, theme],
   );
 
   const innerStyle = useMemo(
     () => buildInnerDotStyle(sizeConfig, colors, selected, theme),
-    [sizeConfig, colors, selected, themeColors],
+    [sizeConfig, colors, selected, theme],
   );
 
   // Hover and focus-visible overrides

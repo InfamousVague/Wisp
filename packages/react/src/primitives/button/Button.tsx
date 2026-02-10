@@ -144,7 +144,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   const variantColors = useMemo(() => {
     if (disabled && !isLoading) return getDisabledColors(theme);
     return resolveVariantColors(variant, theme, onSurface);
-  }, [variant, disabled, isLoading, themeColors, onSurface]);
+  }, [variant, disabled, isLoading, theme, onSurface]);
 
   // Build style
   const computedStyle = useMemo(
@@ -158,7 +158,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         disabled: disabled || isLoading,
         isLoading,
       }, theme),
-    [size, shape, variantColors, isIconOnly, fullWidth, disabled, isLoading],
+    [size, shape, variantColors, isIconOnly, fullWidth, disabled, isLoading, theme],
   );
 
   // Hover/active handlers for inline style state

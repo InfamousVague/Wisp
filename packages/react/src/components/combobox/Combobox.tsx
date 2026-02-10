@@ -276,7 +276,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Com
 
   const colors = useMemo(
     () => resolveComboboxColors(isOpen, hasError, disabled, theme),
-    [isOpen, hasError, disabled, themeColors],
+    [isOpen, hasError, disabled, theme],
   );
 
   if (skeleton) {

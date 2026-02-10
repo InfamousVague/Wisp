@@ -48,7 +48,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(function Brea
   const sizeConfig = breadcrumbSizeMap[size];
   const navStyle = useMemo(() => buildNavStyle(), []);
   const listStyle = useMemo(() => buildListStyle(sizeConfig), [sizeConfig]);
-  const separatorStyle = useMemo(() => buildSeparatorStyle(theme), [themeColors]);
+  const separatorStyle = useMemo(() => buildSeparatorStyle(theme), [theme]);
 
   const items = React.Children.toArray(children);
 
@@ -95,9 +95,9 @@ export const BreadcrumbItem = forwardRef<HTMLLIElement, BreadcrumbItemProps>(fun
   const themeColors = theme.colors;
   const [hovered, setHovered] = useState(false);
   const itemStyle = useMemo(() => buildItemStyle(), []);
-  const linkStyle = useMemo(() => buildLinkStyle(theme), [themeColors]);
-  const linkHoverStyleVal = useMemo(() => buildLinkHoverStyle(theme), [themeColors]);
-  const activeStyle = useMemo(() => buildActiveStyle(theme), [themeColors]);
+  const linkStyle = useMemo(() => buildLinkStyle(theme), [theme]);
+  const linkHoverStyleVal = useMemo(() => buildLinkHoverStyle(theme), [theme]);
+  const activeStyle = useMemo(() => buildActiveStyle(theme), [theme]);
 
   const handleMouseEnter = useCallback(() => setHovered(true), []);
   const handleMouseLeave = useCallback(() => setHovered(false), []);
@@ -168,7 +168,7 @@ export const BreadcrumbSeparator = forwardRef<HTMLLIElement, BreadcrumbSeparator
 ) {
   const { theme } = useTheme();
   const themeColors = theme.colors;
-  const separatorStyle = useMemo(() => buildSeparatorStyle(theme), [themeColors]);
+  const separatorStyle = useMemo(() => buildSeparatorStyle(theme), [theme]);
   return (
     <li ref={ref} role="presentation" style={separatorStyle} aria-hidden {...rest}>
       {children || '/'}

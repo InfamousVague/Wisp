@@ -93,7 +93,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(function Progr
   // ---------------------------------------------------------------------------
   const colors = useMemo(
     () => resolveProgressColors(color, theme),
-    [color, themeColors],
+    [color, theme],
   );
 
   // ---------------------------------------------------------------------------
@@ -126,16 +126,16 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(function Progr
     [indeterminate, sizeConfig, colors, percent, theme],
   );
 
-  const labelRowStyle = useMemo(() => buildLabelRowStyle(theme), []);
+  const labelRowStyle = useMemo(() => buildLabelRowStyle(theme), [theme]);
 
   const labelTextStyle = useMemo(
     () => buildLabelTextStyle(sizeConfig, colors, theme),
-    [sizeConfig, colors],
+    [sizeConfig, colors, theme],
   );
 
   const valueTextStyle = useMemo(
     () => buildValueTextStyle(sizeConfig, colors, theme),
-    [sizeConfig, colors],
+    [sizeConfig, colors, theme],
   );
 
   // ---------------------------------------------------------------------------

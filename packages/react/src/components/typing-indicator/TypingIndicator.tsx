@@ -78,7 +78,7 @@ export const TypingIndicator = forwardRef<HTMLDivElement, TypingIndicatorProps>(
 
     const dotsContainerStyle = useMemo(
       () => buildDotsContainerStyle(theme),
-      [],
+      [theme],
     );
 
     // The core dots element
@@ -112,22 +112,22 @@ export const TypingIndicator = forwardRef<HTMLDivElement, TypingIndicatorProps>(
     // ---- Bubble mode: wrap in ChatBubble-shaped container ----
     const bubbleStyle = useMemo(
       () => buildTypingBubbleStyle(align, theme),
-      [align, themeColors],
+      [align, theme],
     );
 
     const groupStyle = useMemo(
       () => buildTypingGroupStyle(align, theme),
-      [align],
+      [align, theme],
     );
 
     const rowStyle = useMemo(
       () => buildTypingRowStyle(align, theme),
-      [align],
+      [align, theme],
     );
 
     const senderNameStyle = useMemo(
       () => buildTypingSenderNameStyle(theme),
-      [themeColors],
+      [theme],
     );
 
     return (

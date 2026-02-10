@@ -50,12 +50,12 @@ export const ColorSwatch = forwardRef<HTMLDivElement, ColorSwatchProps>(function
 
   const checkerboardWrapperStyle = useMemo(
     () => (checkerboard ? buildCheckerboardStyle(sizeConfig, shape, theme) : undefined),
-    [checkerboard, sizeConfig, shape, themeColors],
+    [checkerboard, sizeConfig, shape, theme],
   );
 
   const colorOverlayStyle = useMemo(
     () => (checkerboard ? buildColorOverlayStyle(color, bordered, theme) : undefined),
-    [checkerboard, color, bordered, themeColors],
+    [checkerboard, color, bordered, theme],
   );
 
   if (checkerboard) {
@@ -77,7 +77,7 @@ export const ColorSwatch = forwardRef<HTMLDivElement, ColorSwatchProps>(function
 
   const swatchStyle = useMemo(
     () => buildSwatchStyle(sizeConfig, color, shape, bordered, false, theme),
-    [sizeConfig, color, shape, bordered, themeColors],
+    [sizeConfig, color, shape, bordered, theme],
   );
 
   return (

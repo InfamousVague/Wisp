@@ -146,7 +146,7 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
   // Resolve colors
   const colors = useMemo(
     () => resolveEmojiPickerColors(theme),
-    [themeColors],
+    [theme],
   );
 
   // Skeleton
@@ -283,11 +283,11 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
   );
   const searchRowStyle = useMemo(
     () => buildEmojiPickerSearchRowStyle(sizeConfig, theme),
-    [sizeConfig],
+    [sizeConfig, theme],
   );
   const sliderClipStyle = useMemo(
     () => buildEmojiPickerSliderClipStyle(sizeConfig, theme),
-    [sizeConfig],
+    [sizeConfig, theme],
   );
   const sliderTrackStyle = useMemo(
     () => buildEmojiPickerSliderTrackStyle(skinToneOpen),
@@ -311,11 +311,11 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
   );
   const categoryLabelStyle = useMemo(
     () => buildEmojiPickerCategoryLabelStyle(sizeConfig, colors, theme),
-    [sizeConfig, colors],
+    [sizeConfig, colors, theme],
   );
   const cellStyle = useMemo(
     () => buildEmojiPickerCellStyle(sizeConfig, theme),
-    [sizeConfig],
+    [sizeConfig, theme],
   );
   const cellRowStyle = useMemo(
     () => buildEmojiPickerCellRowStyle(sizeConfig),
@@ -323,7 +323,7 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
   );
   const noResultsStyle = useMemo(
     () => buildEmojiPickerNoResultsStyle(colors, theme),
-    [colors],
+    [colors, theme],
   );
 
   const isSearching = search.trim().length > 0;

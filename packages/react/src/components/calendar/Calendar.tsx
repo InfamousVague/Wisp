@@ -229,7 +229,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calen
 
   const containerStyle = useMemo(
     () => buildCalendarContainerStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
   const headerStyle = useMemo(
     () => buildCalendarHeaderStyle(sizeConfig),
@@ -241,11 +241,11 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calen
   );
   const dayHeaderStyle = useMemo(
     () => buildCalendarDayHeaderStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
   const monthYearStyle = useMemo(
     () => buildCalendarMonthYearStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   const iconSize = sizeConfig.cellSize < 36 ? 16 : 20;

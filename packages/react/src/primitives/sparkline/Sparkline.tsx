@@ -122,7 +122,7 @@ export const Sparkline = forwardRef<HTMLDivElement, SparklineProps>(function Spa
   // Resolve colors
   const colors = useMemo(
     () => resolveSparklineColors(color, theme),
-    [color, themeColors],
+    [color, theme],
   );
 
   // Skeleton early return

@@ -107,34 +107,34 @@ export function AchievementUnlock({
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [open, onClose]);
 
-  const overlayStyle = useMemo(() => buildAchievementUnlockOverlayStyle(theme), [themeColors]);
+  const overlayStyle = useMemo(() => buildAchievementUnlockOverlayStyle(theme), [theme]);
   const panelStyle = useMemo(
     () => buildAchievementUnlockPanelStyle(theme, rarity),
-    [themeColors, rarity],
+    [theme, rarity],
   );
   const iconStyle = useMemo(
     () => buildAchievementUnlockIconStyle(rarityConfig.color, theme),
-    [rarityConfig.color],
+    [rarityConfig.color, theme],
   );
   const titleStyle = useMemo(
     () => buildAchievementUnlockTitleStyle(theme),
-    [themeColors],
+    [theme],
   );
   const descriptionStyle = useMemo(
     () => buildAchievementUnlockDescriptionStyle(theme),
-    [themeColors],
+    [theme],
   );
   const rarityStyle = useMemo(
     () => buildAchievementUnlockRarityStyle(rarityConfig.color, theme),
-    [rarityConfig.color],
+    [rarityConfig.color, theme],
   );
   const closeStyle = useMemo(
     () => buildAchievementUnlockCloseStyle(theme),
-    [themeColors],
+    [theme],
   );
   const actionStyle = useMemo(
     () => buildAchievementUnlockActionStyle(rarityConfig.color, theme),
-    [rarityConfig.color, themeColors],
+    [rarityConfig.color, theme],
   );
 
   if (!open) return null;

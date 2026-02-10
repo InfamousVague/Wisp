@@ -76,17 +76,17 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
 
     const containerStyle = useMemo(
       () => buildSearchInputContainerStyle(sizeConfig, focused, disabled, theme, fullWidth),
-      [sizeConfig, focused, disabled, themeColors, fullWidth],
+      [sizeConfig, focused, disabled, theme, fullWidth],
     );
 
     const fieldStyle = useMemo(
       () => buildSearchInputFieldStyle(sizeConfig, theme),
-      [sizeConfig, themeColors],
+      [sizeConfig, theme],
     );
 
     const clearBtnStyle = useMemo(
       () => buildSearchInputClearButtonStyle(theme),
-      [themeColors],
+      [theme],
     );
 
     // Debounced search

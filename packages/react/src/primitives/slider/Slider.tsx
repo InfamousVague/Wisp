@@ -267,7 +267,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
 
   const colors = useMemo(
     () => resolveSliderColors(disabled, theme),
-    [disabled, themeColors],
+    [disabled, theme],
   );
 
   // ---------------------------------------------------------------------------

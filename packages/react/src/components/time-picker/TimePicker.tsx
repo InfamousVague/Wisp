@@ -170,26 +170,26 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(function T
   }, [minuteStep]);
 
   // Styles
-  const containerStyle = useMemo(() => buildTimePickerContainerStyle(sizeConfig, theme), [sizeConfig]);
+  const containerStyle = useMemo(() => buildTimePickerContainerStyle(sizeConfig, theme), [sizeConfig, theme]);
   const triggerStyle = useMemo(
     () => buildTimePickerTriggerStyle(sizeConfig, theme, isOpen, disabled, hasError, false),
-    [sizeConfig, themeColors, isOpen, disabled, hasError],
+    [sizeConfig, theme, isOpen, disabled, hasError],
   );
   const dropdownStyle = useMemo(
     () => buildTimePickerDropdownStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
   const columnStyle = useMemo(
     () => buildTimePickerColumnStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
   const labelStyle = useMemo(
     () => buildTimePickerLabelStyle(sizeConfig, theme, disabled),
-    [sizeConfig, themeColors, disabled],
+    [sizeConfig, theme, disabled],
   );
   const errorStyle = useMemo(
     () => buildTimePickerErrorStyle(sizeConfig, theme),
-    [sizeConfig, themeColors],
+    [sizeConfig, theme],
   );
 
   // Commit a time change

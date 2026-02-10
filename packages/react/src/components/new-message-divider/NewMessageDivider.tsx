@@ -41,7 +41,7 @@ export const NewMessageDivider = forwardRef<HTMLDivElement, NewMessageDividerPro
 
     const dividerStyle = useMemo(
       () => buildNewMessageDividerStyle(theme),
-      [],
+      [theme],
     );
 
     const lineStyle = useMemo(
@@ -51,7 +51,7 @@ export const NewMessageDivider = forwardRef<HTMLDivElement, NewMessageDividerPro
 
     const labelStyle = useMemo(
       () => buildLabelStyle(resolvedColor, theme),
-      [resolvedColor],
+      [resolvedColor, theme],
     );
 
     return (

@@ -130,12 +130,12 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
 
   const tableStyle = useMemo(
     () => buildTableStyle(theme, userStyle as CSSStyleObject),
-    [themeColors, userStyle],
+    [theme, userStyle],
   );
 
   const wrapperStyle = useMemo(
     () => (bordered ? buildTableBorderedWrapperStyle(theme) : undefined),
-    [bordered, themeColors],
+    [bordered, theme],
   );
 
   const table = (
@@ -169,7 +169,7 @@ export const TableHeader = forwardRef<HTMLTableSectionElement, TableHeaderProps>
 
     const headerStyle = useMemo(
       () => buildTableHeaderStyle(stickyHeader, theme, userStyle as CSSStyleObject),
-      [stickyHeader, themeColors, userStyle],
+      [stickyHeader, theme, userStyle],
     );
 
     return (
@@ -219,7 +219,7 @@ export const TableFooter = forwardRef<HTMLTableSectionElement, TableFooterProps>
 
     const footerStyle = useMemo(
       () => buildTableFooterStyle(theme, userStyle as CSSStyleObject),
-      [themeColors, userStyle],
+      [theme, userStyle],
     );
 
     return (
@@ -335,7 +335,7 @@ export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
           theme,
           userStyle: userStyle as CSSStyleObject,
         }),
-      [hoverable, hovered, selected, variant, isEvenRow, isHeaderRow, bordered, isLastRow, themeColors, userStyle],
+      [hoverable, hovered, selected, variant, isEvenRow, isHeaderRow, bordered, isLastRow, theme, userStyle],
     );
 
     return (
@@ -374,7 +374,7 @@ export const TableHead = forwardRef<HTMLTableCellElement, TableHeadProps>(
 
     const headStyle = useMemo(
       () => buildTableHeadStyle({ size, align, theme, userStyle: userStyle as CSSStyleObject }),
-      [size, align, themeColors, userStyle],
+      [size, align, theme, userStyle],
     );
 
     return (
@@ -405,7 +405,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
 
     const cellStyle = useMemo(
       () => buildTableCellStyle({ size, align, theme, userStyle: userStyle as CSSStyleObject }),
-      [size, align, themeColors, userStyle],
+      [size, align, theme, userStyle],
     );
 
     return (

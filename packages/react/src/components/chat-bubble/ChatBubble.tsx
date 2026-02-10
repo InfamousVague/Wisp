@@ -105,22 +105,22 @@ export const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(
 
     const colors = useMemo(
       () => resolveChatBubbleColors(align, variant, theme),
-      [align, variant, themeColors],
+      [align, variant, theme],
     );
 
     const bubbleStyle = useMemo(
       () => buildChatBubbleStyle(align, colors, theme),
-      [align, colors],
+      [align, colors, theme],
     );
 
     const footerStyle = useMemo(
       () => buildFooterStyle(align, theme),
-      [align],
+      [align, theme],
     );
 
     const timestampStyle = useMemo(
       () => buildTimestampStyle(colors, theme),
-      [colors],
+      [colors, theme],
     );
 
     const statusIconStyle = useMemo(
@@ -130,7 +130,7 @@ export const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(
 
     const reactionsContainerStyle = useMemo(
       () => buildReactionsContainerStyle(theme),
-      [],
+      [theme],
     );
 
     const handleReactionClick = useCallback(
@@ -201,7 +201,7 @@ function ReactionChip({
   const themeColors = theme.colors;
   const chipStyle = useMemo(
     () => buildReactionChipStyle(reaction.reacted ?? false, theme),
-    [reaction.reacted, themeColors],
+    [reaction.reacted, theme],
   );
 
   return (

@@ -67,7 +67,7 @@ export const Tooltip = forwardRef<HTMLElement, TooltipProps>(function Tooltip(
   // Resolve colors
   const colors = useMemo(
     () => resolveTooltipColors(theme),
-    [themeColors],
+    [theme],
   );
 
   // Update position based on trigger element rect
@@ -117,7 +117,7 @@ export const Tooltip = forwardRef<HTMLElement, TooltipProps>(function Tooltip(
   // Build styles
   const tooltipStyle = useMemo(
     () => buildTooltipStyle(colors, maxWidth, isVisible, placement, variant, theme),
-    [colors, maxWidth, isVisible, placement, variant],
+    [colors, maxWidth, isVisible, placement, variant, theme],
   );
 
   const arrowStyle = useMemo(

@@ -75,7 +75,7 @@ export const Toolbar = forwardRef<HTMLDivElement, ToolbarProps>(function Toolbar
 
   const toolbarStyle = useMemo(
     () => buildToolbarStyle(sizeConfig, variant, theme),
-    [sizeConfig, variant, themeColors],
+    [sizeConfig, variant, theme],
   );
 
   const mergedStyle = useMemo(
@@ -177,7 +177,7 @@ export const ToolbarSeparator = forwardRef<HTMLDivElement, ToolbarSeparatorProps
 
     const separatorStyle = useMemo(
       () => buildSeparatorStyle(sizeConfig, theme),
-      [sizeConfig, themeColors],
+      [sizeConfig, theme],
     );
 
     const mergedStyle = useMemo(

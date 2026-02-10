@@ -119,7 +119,7 @@ export const VoiceRecorder = forwardRef<HTMLDivElement, VoiceRecorderProps>(func
 
   const colors = useMemo(
     () => resolveVoiceRecorderColors(state, theme),
-    [state, themeColors],
+    [state, theme],
   );
 
   if (skeleton) {
@@ -134,7 +134,7 @@ export const VoiceRecorder = forwardRef<HTMLDivElement, VoiceRecorderProps>(func
 
   const timerStyle = useMemo(
     () => buildTimerStyle(sizeConfig, colors, theme),
-    [sizeConfig, colors],
+    [sizeConfig, colors, theme],
   );
 
   // Idle state — just show the record button

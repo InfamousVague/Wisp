@@ -103,7 +103,7 @@ export const ReadReceipt = forwardRef<HTMLSpanElement, ReadReceiptProps>(functio
 
   const colors = useMemo(
     () => resolveReadReceiptColors(status, theme),
-    [status, themeColors],
+    [status, theme],
   );
 
   if (skeleton) {

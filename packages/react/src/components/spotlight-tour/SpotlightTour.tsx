@@ -283,28 +283,28 @@ export function SpotlightTour({
   // Styles
   const popoverStyle = useMemo(
     () => buildSpotlightPopoverStyle(theme, variant),
-    [themeColors, variant],
+    [theme, variant],
   );
   const titleStyle = useMemo(
     () => buildSpotlightTitleStyle(theme),
-    [themeColors],
+    [theme],
   );
   const descriptionStyle = useMemo(
     () => buildSpotlightDescriptionStyle(theme),
-    [themeColors],
+    [theme],
   );
-  const footerStyle = useMemo(() => buildSpotlightFooterStyle(theme), []);
+  const footerStyle = useMemo(() => buildSpotlightFooterStyle(theme), [theme]);
   const stepCountStyle = useMemo(
     () => buildSpotlightStepCountStyle(theme),
-    [themeColors],
+    [theme],
   );
   const prevBtnStyle = useMemo(
     () => buildSpotlightNavButtonStyle(theme, false),
-    [themeColors],
+    [theme],
   );
   const nextBtnStyle = useMemo(
     () => buildSpotlightNavButtonStyle(theme, true),
-    [themeColors],
+    [theme],
   );
 
   const placement = currentStepData?.placement || 'bottom';

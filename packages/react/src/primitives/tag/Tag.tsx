@@ -112,7 +112,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
 
   const colors = useMemo(
     () => resolveTagColors(selected, disabled, theme),
-    [selected, disabled, themeColors],
+    [selected, disabled, theme],
   );
 
   // ---------------------------------------------------------------------------
@@ -134,7 +134,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
   // ---------------------------------------------------------------------------
   const tagStyle = useMemo(
     () => buildTagStyle(sizeConfig, colors, disabled, theme),
-    [sizeConfig, colors, disabled],
+    [sizeConfig, colors, disabled, theme],
   );
 
   const closeButtonStyle = useMemo(

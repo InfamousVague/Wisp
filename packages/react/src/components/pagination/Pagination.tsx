@@ -129,26 +129,26 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(function Pagi
     [page, totalPages, siblingCount],
   );
 
-  const navStyle = useMemo(() => buildNavStyle(disabled, theme), [disabled]);
-  const activeStyle = useMemo(() => buildActivePageStyle(size, theme), [size, themeColors]);
-  const inactiveStyle = useMemo(() => buildInactivePageStyle(size, disabled, theme), [size, disabled, themeColors]);
-  const inactiveHoverStyle = useMemo(() => buildInactivePageHoverStyle(size, theme), [size, themeColors]);
-  const ellipsisStyle = useMemo(() => buildEllipsisStyle(size, theme), [size, themeColors]);
+  const navStyle = useMemo(() => buildNavStyle(disabled, theme), [disabled, theme]);
+  const activeStyle = useMemo(() => buildActivePageStyle(size, theme), [size, theme]);
+  const inactiveStyle = useMemo(() => buildInactivePageStyle(size, disabled, theme), [size, disabled, theme]);
+  const inactiveHoverStyle = useMemo(() => buildInactivePageHoverStyle(size, theme), [size, theme]);
+  const ellipsisStyle = useMemo(() => buildEllipsisStyle(size, theme), [size, theme]);
 
   const isAtFirst = page <= 1;
   const isAtLast = page >= totalPages;
 
   const prevArrowStyle = useMemo(
     () => buildArrowStyle(size, isAtFirst || disabled, theme),
-    [size, isAtFirst, disabled, themeColors],
+    [size, isAtFirst, disabled, theme],
   );
   const nextArrowStyle = useMemo(
     () => buildArrowStyle(size, isAtLast || disabled, theme),
-    [size, isAtLast, disabled, themeColors],
+    [size, isAtLast, disabled, theme],
   );
   const arrowHoverStyle = useMemo(
     () => buildArrowHoverStyle(size, theme),
-    [size, themeColors],
+    [size, theme],
   );
 
   const iconSize = paginationSizeMap[size].iconSize;

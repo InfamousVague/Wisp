@@ -138,13 +138,13 @@ export const SocialButton = forwardRef<HTMLButtonElement, SocialButtonProps>(fun
 
   const baseStyle = useMemo(
     () => buildSocialButtonStyle(sizeConfig, providerConfig, variant, theme, fullWidth, iconOnly, !!disabled),
-    [sizeConfig, providerConfig, variant, themeColors, fullWidth, iconOnly, disabled],
+    [sizeConfig, providerConfig, variant, theme, fullWidth, iconOnly, disabled],
   );
 
   const handleMouseEnter = useCallback(() => {
     if (!disabled) setHovered(true);
   }, [disabled]);
-  const handleMouseLeave = useCallback(() => setHovered(false), []);
+  const handleMouseLeave = useCallback(() => setHovered(false), [theme]);
 
   const mergedStyle: React.CSSProperties = {
     ...baseStyle,

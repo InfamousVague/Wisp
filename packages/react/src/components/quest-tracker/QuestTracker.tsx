@@ -65,7 +65,7 @@ export function QuestTracker({
 
   const containerStyle = useMemo(
     () => buildQuestTrackerContainerStyle(theme, sizeConfig),
-    [themeColors, sizeConfig],
+    [theme, sizeConfig],
   );
   const headerStyle = useMemo(
     () => buildQuestTrackerHeaderStyle(sizeConfig, collapsible),
@@ -73,11 +73,11 @@ export function QuestTracker({
   );
   const titleStyle = useMemo(
     () => buildQuestTrackerTitleStyle(theme, sizeConfig),
-    [themeColors, sizeConfig],
+    [theme, sizeConfig],
   );
   const chevronStyle = useMemo(
     () => buildQuestTrackerChevronStyle(theme, expanded),
-    [themeColors, expanded],
+    [theme, expanded],
   );
   const listStyle = useMemo(
     () => buildQuestTrackerListStyle(sizeConfig),
@@ -85,11 +85,11 @@ export function QuestTracker({
   );
   const progressTrackStyle = useMemo(
     () => buildQuestTrackerProgressTrackStyle(theme),
-    [themeColors],
+    [theme],
   );
   const progressBarStyle = useMemo(
     () => buildQuestTrackerProgressBarStyle(theme, progress),
-    [themeColors, progress],
+    [theme, progress],
   );
 
   return (

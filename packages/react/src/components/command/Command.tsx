@@ -223,13 +223,13 @@ export function Command({
   const overlayStyle = useMemo(() => ({
     ...buildOverlayStyle(theme),
     animation: 'wisp-command-overlay-in 150ms ease',
-  }), [themeColors]);
+  }), [theme]);
 
   const panelStyle = useMemo(() => ({
     ...buildPanelStyle(size, theme, variant),
     animation: 'wisp-command-panel-in 150ms ease',
     ...userStyle,
-  }), [size, themeColors, variant, userStyle]);
+  }), [size, theme, variant, userStyle]);
 
   if (!open) return null;
 
@@ -339,9 +339,9 @@ export function CommandInput({
     [getVisibleItemIds, activeItemId, setActiveItemId, onItemSelect, loop],
   );
 
-  const wrapperStyle = useMemo(() => buildInputWrapperStyle(theme), [themeColors]);
-  const inputStyle = useMemo(() => buildInputStyle(theme), [themeColors]);
-  const iconStyle = useMemo(() => buildInputIconStyle(theme), [themeColors]);
+  const wrapperStyle = useMemo(() => buildInputWrapperStyle(theme), [theme]);
+  const inputStyle = useMemo(() => buildInputStyle(theme), [theme]);
+  const iconStyle = useMemo(() => buildInputIconStyle(theme), [theme]);
 
   const Icon = IconComponent || Search;
 
@@ -384,8 +384,8 @@ export function CommandList({
   const { theme } = useTheme();
   const themeColors = theme.colors;
 
-  const listStyle = useMemo(() => buildListStyle(theme), [themeColors]);
-  const loadingStyle = useMemo(() => buildLoadingStyle(theme), [themeColors]);
+  const listStyle = useMemo(() => buildListStyle(theme), [theme]);
+  const loadingStyle = useMemo(() => buildLoadingStyle(theme), [theme]);
 
   if (loading) {
     return (
@@ -420,7 +420,7 @@ export function CommandGroup({
   const groupRef = useRef<HTMLDivElement>(null);
   const [hasVisibleItems, setHasVisibleItems] = useState(true);
 
-  const headingStyle = useMemo(() => buildGroupHeadingStyle(theme), [themeColors]);
+  const headingStyle = useMemo(() => buildGroupHeadingStyle(theme), [theme]);
 
   // Check if any items in this group are visible
   useEffect(() => {
@@ -516,20 +516,20 @@ export function CommandItem({
 
   const itemStyle = useMemo(
     () => buildItemStyle(theme, isActive, disabled),
-    [themeColors, isActive, disabled],
+    [theme, isActive, disabled],
   );
   const iconStyle = useMemo(
     () => buildItemIconStyle(theme, disabled),
-    [themeColors, disabled],
+    [theme, disabled],
   );
-  const labelStyle = useMemo(() => buildItemLabelStyle(theme), [themeColors]);
+  const labelStyle = useMemo(() => buildItemLabelStyle(theme), [theme]);
   const descStyle = useMemo(
     () => buildItemDescriptionStyle(theme),
-    [themeColors],
+    [theme],
   );
   const shortcutStyle = useMemo(
     () => buildItemShortcutStyle(theme),
-    [themeColors],
+    [theme],
   );
   const handleClick = useCallback(() => {
     if (disabled) return;
@@ -595,7 +595,7 @@ export function CommandSeparator({
 }: CommandSeparatorProps): React.JSX.Element {
   const { theme } = useTheme();
   const themeColors = theme.colors;
-  const separatorStyle = useMemo(() => buildSeparatorStyle(theme), [themeColors]);
+  const separatorStyle = useMemo(() => buildSeparatorStyle(theme), [theme]);
 
   return (
     <div role="separator" className={className} style={{ ...separatorStyle, ...userStyle }} />
@@ -628,7 +628,7 @@ export function CommandEmpty({
     return () => clearTimeout(timer);
   }, [search, getVisibleItemIds]);
 
-  const emptyStyle = useMemo(() => buildEmptyStyle(theme), [themeColors]);
+  const emptyStyle = useMemo(() => buildEmptyStyle(theme), [theme]);
 
   if (loading || !isEmpty) return null;
 

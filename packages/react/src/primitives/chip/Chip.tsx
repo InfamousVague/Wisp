@@ -57,13 +57,13 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(function Chip(
   // Resolve variant + color -> final palette
   const colors = useMemo(
     () => resolveChipColors(color, variant, theme),
-    [color, variant, themeColors],
+    [color, variant, theme],
   );
 
   // Build container style
   const chipStyle = useMemo(
     () => buildChipStyle({ sizeConfig, colors, clickable, disabled }, theme),
-    [sizeConfig, colors, clickable, disabled],
+    [sizeConfig, colors, clickable, disabled, theme],
   );
 
   // Build icon wrapper style
@@ -75,17 +75,17 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(function Chip(
   // Build remove button style
   const removeStyle = useMemo(
     () => buildRemoveButtonStyle(sizeConfig, colors, theme),
-    [sizeConfig, colors, themeColors],
+    [sizeConfig, colors, theme],
   );
 
   // Hover state for the remove button
   const [removeHovered, setRemoveHovered] = useState(false);
   const removeHoverBg = useMemo(
     () => getRemoveButtonHoverBg(theme),
-    [themeColors],
+    [theme],
   );
 
-  const handleRemoveMouseEnter = useCallback(() => setRemoveHovered(true), []);
+  const handleRemoveMouseEnter = useCallback(() => setRemoveHovered(true), [theme]);
   const handleRemoveMouseLeave = useCallback(() => setRemoveHovered(false), []);
 
   // Handle remove click — stop propagation so chip onClick is not triggered

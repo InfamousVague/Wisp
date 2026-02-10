@@ -57,7 +57,7 @@ export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(function Sep
   // Resolve the line color from variant
   const lineColor = useMemo(
     () => resolveSeparatorColor(variant, theme),
-    [variant, themeColors],
+    [variant, theme],
   );
 
   // Build the root container style
@@ -75,7 +75,7 @@ export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(function Sep
   // Build label style
   const labelStyle = useMemo(
     () => (hasLabel ? buildLabelStyle(theme) : undefined),
-    [hasLabel, themeColors],
+    [hasLabel, theme],
   );
 
   // Vertical separator never shows a label

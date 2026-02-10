@@ -110,7 +110,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
 
     const containerStyle = useMemo(
       () => buildContainerStyle({ fullWidth, theme, userStyle: userStyle as CSSStyleObject }),
-      [fullWidth, themeColors, userStyle],
+      [fullWidth, theme, userStyle],
     );
 
     const sizeConfig = segmentedControlSizeMap[size];

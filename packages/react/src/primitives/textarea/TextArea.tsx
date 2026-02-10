@@ -102,7 +102,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
 
   const colors = useMemo(
     () => resolveTextAreaColors(focused, hasError, hasWarning, disabled, theme),
-    [focused, hasError, hasWarning, disabled, themeColors],
+    [focused, hasError, hasWarning, disabled, theme],
   );
 
   // ---------------------------------------------------------------------------
@@ -139,7 +139,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
 
   const labelStyle = useMemo(
     () => buildLabelStyle(sizeConfig, colors, theme),
-    [sizeConfig, colors],
+    [sizeConfig, colors, theme],
   );
 
   // Determine if we show hint, warning, or error below the textarea (error > warning > hint)
@@ -148,7 +148,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
 
   const hintStyle = useMemo(
     () => (bottomText ? buildHintStyle(sizeConfig, colors, isStatusText, theme) : undefined),
-    [sizeConfig, colors, isStatusText, bottomText],
+    [sizeConfig, colors, isStatusText, bottomText, theme],
   );
 
   // ---------------------------------------------------------------------------

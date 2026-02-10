@@ -56,12 +56,12 @@ export const Indicator = forwardRef<HTMLSpanElement, IndicatorProps>(function In
   }, [state]);
 
   const sizeConfig = indicatorSizeMap[size];
-  const color = useMemo(() => resolveIndicatorColor(variant, theme), [variant, themeColors]);
+  const color = useMemo(() => resolveIndicatorColor(variant, theme), [variant, theme]);
 
   const containerStyle = useMemo(() => buildIndicatorContainerStyle(), []);
   const dotStyle = useMemo(
     () => buildIndicatorDotStyle(sizeConfig, color, state, theme),
-    [sizeConfig, color, state],
+    [sizeConfig, color, state, theme],
   );
 
   return (

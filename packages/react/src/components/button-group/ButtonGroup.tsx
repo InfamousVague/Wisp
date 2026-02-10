@@ -67,7 +67,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(function
 
   const containerStyle = useMemo(
     () => buildGroupContainerStyle(theme, variant, fullWidth),
-    [themeColors, variant, fullWidth],
+    [theme, variant, fullWidth],
   );
 
   // Hover state tracking per item

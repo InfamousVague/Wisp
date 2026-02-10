@@ -55,7 +55,7 @@ export const ReactionBar = forwardRef<HTMLDivElement, ReactionBarProps>(function
 
   const colors = useMemo(
     () => resolveReactionBarColors(theme),
-    [themeColors],
+    [theme],
   );
 
   if (skeleton) {

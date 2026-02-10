@@ -187,7 +187,7 @@ export const QRCode = forwardRef<HTMLDivElement, QRCodeProps>(
     // -----------------------------------------------------------------------
     const defaultColors = useMemo(
       () => resolveQRCodeColors(theme),
-      [themeColors],
+      [theme],
     );
 
     const dark = darkColor || defaultColors.dark;
@@ -227,7 +227,7 @@ export const QRCode = forwardRef<HTMLDivElement, QRCodeProps>(
     // -----------------------------------------------------------------------
     // Styles
     // -----------------------------------------------------------------------
-    const wrapperStyle = useMemo(() => buildQRCodeWrapperStyle(), []);
+    const wrapperStyle = useMemo(() => buildQRCodeWrapperStyle(), [theme]);
     const svgStyle = useMemo(() => buildQRCodeSvgStyle(sizeConfig), [sizeConfig]);
 
     // -----------------------------------------------------------------------

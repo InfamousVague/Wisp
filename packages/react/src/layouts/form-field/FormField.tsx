@@ -69,23 +69,23 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(function For
 
   const labelStyle = useMemo(
     () => buildLabelStyle(sizeConfig, disabled, orientation, labelWidth, theme, onSurface),
-    [sizeConfig, disabled, orientation, labelWidth, themeColors, onSurface],
+    [sizeConfig, disabled, orientation, labelWidth, theme, onSurface],
   );
 
   const requiredStyle = useMemo(
     () => buildRequiredStyle(theme),
-    [themeColors],
+    [theme],
   );
 
   const contentStyle = useMemo(
     () => buildContentStyle(orientation, theme),
-    [orientation],
+    [orientation, theme],
   );
 
   const hintText = error || description;
   const hintStyle = useMemo(
     () => (hintText ? buildHintStyle(sizeConfig, !!error, theme, onSurface) : undefined),
-    [sizeConfig, error, hintText, themeColors, onSurface],
+    [sizeConfig, error, hintText, theme, onSurface],
   );
 
   // In vertical orientation: label → control → hint

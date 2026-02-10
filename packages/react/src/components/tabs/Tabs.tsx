@@ -219,7 +219,7 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(function TabList
 
   const listStyle = useMemo(
     () => buildTabListStyle(orientation, theme, userStyle as CSSStyleObject),
-    [orientation, themeColors, userStyle],
+    [orientation, theme, userStyle],
   );
 
   // Merge refs (forwarded + internal)
@@ -332,9 +332,9 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
 
   const tabStyle = useMemo(
     () => buildTabStyle(active, disabled, hovered, orientation, theme, userStyle as CSSStyleObject),
-    [active, disabled, hovered, orientation, themeColors, userStyle],
+    [active, disabled, hovered, orientation, theme, userStyle],
   );
-  const focusStyle = useMemo(() => buildTabFocusStyle(theme), [themeColors]);
+  const focusStyle = useMemo(() => buildTabFocusStyle(theme), [theme]);
   const mergedStyle: React.CSSProperties = focusVisible ? { ...tabStyle, ...focusStyle } : tabStyle;
 
   const tabId = getTabId(baseId, value);
