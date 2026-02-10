@@ -21,7 +21,7 @@ import { useThemeColors } from '../../providers';
  * copy-to-clipboard button, and max-height scrolling.
  *
  * - Two variants: `default` (dark surface) and `outlined` (transparent + border).
- * - No external syntax highlighting dependency — plain monospace text.
+ * - Optional syntax highlighting via the `highlighter` prop (library-agnostic).
  * - Copy button uses the Clipboard API.
  *
  * @module primitives/code-block
@@ -43,6 +43,7 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
     {
       code,
       language,
+      highlighter,
       showLineNumbers = false,
       highlightLines,
       copyable = true,
@@ -60,6 +61,12 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
     const highlightSet = useMemo(
       () => new Set(highlightLines ?? []),
       [highlightLines],
+    );
+
+    // Syntax highlighting — tokenise code when a highlighter is provided
+    const tokenisedLines = useMemo(
+      () => (highlighter ? highlighter(code, language ?? '') : null),
+      [highlighter, code, language],
     );
 
     const wrapperStyle = useMemo(
@@ -129,7 +136,15 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
                   {showLineNumbers && (
                     <span style={lineNumberStyle}>{lineNum}</span>
                   )}
-                  <span style={{ flex: 1 }}>{line || '\n'}</span>
+                  <span style={{ flex: 1 }}>
+                    {tokenisedLines && tokenisedLines[i]
+                      ? tokenisedLines[i].map((token, j) => (
+                          <span key={j} style={token.color ? { color: token.color } : undefined}>
+                            {token.content}
+                          </span>
+                        ))
+                      : (line || '\n')}
+                  </span>
                 </div>
               );
             })}

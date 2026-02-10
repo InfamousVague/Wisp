@@ -150,6 +150,96 @@ describe('CodeBlock — copy button', () => {
 });
 
 // ---------------------------------------------------------------------------
+// Syntax highlighting
+// ---------------------------------------------------------------------------
+
+describe('CodeBlock — syntax highlighting', () => {
+  it('renders plain text when no highlighter is provided', () => {
+    const { container } = render(
+      <Dark>
+        <CodeBlock code="const x = 1;" language="TypeScript" />
+      </Dark>,
+    );
+    // The text should be present as-is, without extra coloured spans
+    const codeEl = container.querySelector('code')!;
+    const innerSpans = codeEl.querySelectorAll('span[style]');
+    // Line wrapper spans exist, but none should have a color style
+    const coloured = Array.from(innerSpans).filter((s) => (s as HTMLElement).style.color);
+    expect(coloured.length).toBe(0);
+  });
+
+  it('renders coloured spans when highlighter is provided', () => {
+    const mockHighlighter = vi.fn().mockReturnValue([
+      [
+        { content: 'const', color: '#ff0000' },
+        { content: ' x = ', color: undefined },
+        { content: '1', color: '#00ff00' },
+        { content: ';' },
+      ],
+    ]);
+
+    const { container } = render(
+      <Dark>
+        <CodeBlock code="const x = 1;" language="TypeScript" highlighter={mockHighlighter} />
+      </Dark>,
+    );
+
+    const codeEl = container.querySelector('code')!;
+    const colouredSpans = Array.from(codeEl.querySelectorAll('span')).filter(
+      (s) => (s as HTMLElement).style.color,
+    );
+    expect(colouredSpans.length).toBeGreaterThanOrEqual(2);
+    expect(colouredSpans[0].style.color).toBe('rgb(255, 0, 0)'); // #ff0000
+  });
+
+  it('passes code and language to the highlighter function', () => {
+    const mockHighlighter = vi.fn().mockReturnValue([[{ content: 'test' }]]);
+
+    render(
+      <Dark>
+        <CodeBlock code="test" language="css" highlighter={mockHighlighter} />
+      </Dark>,
+    );
+
+    expect(mockHighlighter).toHaveBeenCalledWith('test', 'css');
+  });
+
+  it('passes empty string for language when not specified', () => {
+    const mockHighlighter = vi.fn().mockReturnValue([[{ content: 'test' }]]);
+
+    render(
+      <Dark>
+        <CodeBlock code="test" highlighter={mockHighlighter} />
+      </Dark>,
+    );
+
+    expect(mockHighlighter).toHaveBeenCalledWith('test', '');
+  });
+
+  it('composes line numbers with syntax highlighting', () => {
+    const mockHighlighter = vi.fn().mockReturnValue([
+      [{ content: 'line1', color: '#ff0000' }],
+      [{ content: 'line2', color: '#00ff00' }],
+    ]);
+
+    render(
+      <Dark>
+        <CodeBlock
+          code={'line1\nline2'}
+          language="tsx"
+          highlighter={mockHighlighter}
+          showLineNumbers
+        />
+      </Dark>,
+    );
+
+    // Line numbers should still render
+    expect(screen.getByText('1')).toBeInTheDocument();
+    expect(screen.getByText('2')).toBeInTheDocument();
+  });
+});
+
+// ---------------------------------------------------------------------------
 // className passthrough
 // ---------------------------------------------------------------------------
 

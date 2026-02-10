@@ -25,7 +25,7 @@ export const codeBlockEntry: ComponentEntry = {
   name: 'CodeBlock',
   category: 'primitives',
   description:
-    'Monospace code display with optional line numbers, line highlighting, copy-to-clipboard, and max-height scrolling. Two variants: default (dark surface) and outlined.',
+    'Monospace code display with optional syntax highlighting, line numbers, line highlighting, copy-to-clipboard, and max-height scrolling. Pass a SyntaxHighlighter function to enable coloured tokens. Two variants: default (dark surface) and outlined.',
   variantCount: 2,
   keywords: ['code', 'codeblock', 'pre', 'snippet', 'source', 'mono'],
 
@@ -94,7 +94,8 @@ export const codeBlockEntry: ComponentEntry = {
 
   props: [
     { name: 'code', type: 'string', description: 'The code string to display.' },
-    { name: 'language', type: 'string', description: 'Language label shown in the header.' },
+    { name: 'language', type: 'string', description: 'Language identifier shown in the header and passed to the highlighter.' },
+    { name: 'highlighter', type: 'SyntaxHighlighter', description: 'Optional function that tokenises code for syntax highlighting. Use createShikiHighlighter for a ready-made Shiki adapter.' },
     { name: 'showLineNumbers', type: 'boolean', default: 'false', description: 'Displays line numbers in a left gutter.' },
     { name: 'highlightLines', type: 'number[]', description: 'Array of 1-based line numbers to highlight.' },
     { name: 'copyable', type: 'boolean', default: 'true', description: 'Shows a copy-to-clipboard button.' },
