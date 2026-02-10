@@ -76,8 +76,8 @@ export function resolveToggleColors(
     const trackColor = checkedColor || themeColors.accent.primary;
     // Pick handle color that contrasts with the track — light track gets dark handle, dark track gets light handle
     const trackIsLight = isHexColor(trackColor) && relativeLuminance(trackColor) > 0.4;
-    const handleColor = trackIsLight ? '#0A0E15' : '#F7F8FA';
-    const contentColor = trackIsLight ? '#0A0E15' : '#F7F8FA';
+    const handleColor = trackIsLight ? themeColors.text.primary : themeColors.text.inverse;
+    const contentColor = trackIsLight ? themeColors.text.primary : themeColors.text.inverse;
 
     return {
       trackBg: trackColor,
@@ -85,7 +85,7 @@ export function resolveToggleColors(
       handleBg: handleColor,
       handleBorder: 'transparent',
       contentColor,
-      handleIconColor: trackIsLight ? '#F7F8FA' : '#0A0E15',
+      handleIconColor: trackIsLight ? themeColors.text.inverse : themeColors.text.primary,
     };
   }
 
@@ -99,15 +99,15 @@ export function resolveToggleColors(
   //   Light: #D1D6E0 → #BFC6D4 (one neutral step)
   //   Dark:  #37404F → #202531 (one neutral step)
   // This gives a subtle "alive" feel without a jarring color shift.
-  const hoverTrack = uncheckedColor || (uncheckedTrackIsLight ? '#BFC6D4' : '#2E3642');
+  const hoverTrack = uncheckedColor || (uncheckedTrackIsLight ? themeColors.border.strong : themeColors.border.strong);
 
   return {
     trackBg: uncheckedTrack,
     trackBgHover: hoverTrack,
-    handleBg: uncheckedTrackIsLight ? '#0A0E15' : '#F7F8FA',
+    handleBg: uncheckedTrackIsLight ? themeColors.text.primary : themeColors.text.inverse,
     handleBorder: 'transparent',
-    contentColor: uncheckedTrackIsLight ? '#0A0E15' : '#F7F8FA',
-    handleIconColor: uncheckedTrackIsLight ? '#F7F8FA' : '#0A0E15',
+    contentColor: uncheckedTrackIsLight ? themeColors.text.primary : themeColors.text.inverse,
+    handleIconColor: uncheckedTrackIsLight ? themeColors.text.inverse : themeColors.text.primary,
   };
 }
 

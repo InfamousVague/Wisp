@@ -432,7 +432,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
   // ---------------------------------------------------------------------------
 
   if (isVideo) {
-    const videoContainerStyle = buildVideoContainerStyle();
+    const videoContainerStyle = buildVideoContainerStyle(themeColors);
     const videoElStyle = buildVideoElementStyle();
 
     return (

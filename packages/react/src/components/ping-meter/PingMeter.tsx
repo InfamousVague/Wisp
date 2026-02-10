@@ -124,7 +124,7 @@ export const PingMeter = forwardRef<HTMLDivElement, PingMeterProps>(function Pin
   // Derive quality and colors
   const quality = getQuality(latency);
   const activeBars = getActiveBars(quality);
-  const color = getLatencyColor(latency);
+  const color = getLatencyColor(latency, themeColors);
 
   // Resolve which elements to show based on variant + explicit flags
   const isDot = variant === 'dot' || (variant === 'full' && showDot);

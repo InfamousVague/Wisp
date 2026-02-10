@@ -7,7 +7,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { DateRangePickerSizeConfig } from '../types/DateRangePicker.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography, defaultShadows } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
@@ -127,7 +127,7 @@ export function buildDropdownStyle(
     backgroundColor: themeColors.background.raised,
     border: `1px solid ${themeColors.border.subtle}`,
     borderRadius: defaultRadii.lg,
-    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
+    boxShadow: defaultShadows.md,
     boxSizing: 'border-box',
     fontFamily: fontFamilyStacks.sans,
   };

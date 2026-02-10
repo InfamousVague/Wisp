@@ -2,6 +2,7 @@ import React, { forwardRef, useMemo, useEffect, useRef } from 'react';
 import { View, Animated, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { useThemeColors } from '../../providers';
+import type { ThemeColors } from '@wisp-ui/core/theme/types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 type PingMeterSize = 'sm' | 'md' | 'lg';
@@ -32,11 +33,11 @@ function getActiveBars(quality: PingQuality): number {
   }
 }
 
-function getLatencyColor(latency: number): string {
-  if (latency < 50) return '#22C55E';
-  if (latency < 100) return '#EAB308';
-  if (latency < 200) return '#F97316';
-  return '#EF4444';
+function getLatencyColor(latency: number, themeColors: ThemeColors): string {
+  if (latency < 50) return themeColors.status.success;
+  if (latency < 100) return themeColors.status.warning;
+  if (latency < 200) return themeColors.status.warning;
+  return themeColors.status.danger;
 }
 
 export interface PingMeterProps {
@@ -57,7 +58,7 @@ export const PingMeter = forwardRef<View, PingMeterProps>(function PingMeter(
   const cfg = sizeMap[size];
   const quality = getQuality(latency);
   const activeBars = getActiveBars(quality);
-  const color = getLatencyColor(latency);
+  const color = getLatencyColor(latency, tc);
 
   const isDot = variant === 'dot' || (variant === 'full' && showDot);
   const isBars = variant === 'bars' || (variant === 'full' && showBars);

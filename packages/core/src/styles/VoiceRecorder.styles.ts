@@ -51,7 +51,7 @@ export function resolveVoiceRecorderColors(
     recordButton: themeColors.status.danger,
     recordButtonActive: themeColors.status.danger,
     icon: themeColors.text.secondary,
-    iconOnRecord: '#FFFFFF',
+    iconOnRecord: themeColors.text.inverse,
     timer: state === 'recording' ? themeColors.status.danger : themeColors.text.secondary,
     waveform: themeColors.accent.primary,
     cancelButton: themeColors.text.muted,

@@ -37,19 +37,19 @@ export function resolveChatBubbleColors(
 ): ChatBubbleColors {
   if (align === 'outgoing') {
     return {
-      bg: '#FFFFFF',
-      text: '#0C0C0E',
-      timestamp: '#6E6E77',
-      border: '#E4E4E7',
+      bg: themeColors.accent.primary,
+      text: themeColors.text.primary,
+      timestamp: themeColors.text.secondary,
+      border: themeColors.border.subtle,
     };
   }
 
   // incoming — black bubble with white text in both themes
   return {
-    bg: '#0C0C0E',
-    text: '#FFFFFF',
-    timestamp: '#A0A0A0',
-    border: '#2A2A2A',
+    bg: themeColors.background.raised,
+    text: themeColors.text.onRaised,
+    timestamp: themeColors.text.onRaisedSecondary,
+    border: themeColors.accent.dividerRaised,
   };
 }
 

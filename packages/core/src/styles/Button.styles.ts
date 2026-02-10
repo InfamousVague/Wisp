@@ -54,10 +54,10 @@ export function resolveVariantColors(
     case 'primary':
       return onSurface
         ? {
-            bg: '#FFFFFF',
-            bgHover: '#E8E8EC',
-            bgActive: '#D0D0D8',
-            text: '#09090B',
+            bg: themeColors.text.inverse,
+            bgHover: themeColors.accent.primaryHover,
+            bgActive: themeColors.accent.primaryActive,
+            text: themeColors.text.primary,
             border: 'transparent',
             borderHover: 'transparent',
           }
@@ -78,8 +78,8 @@ export function resolveVariantColors(
             bgHover: themeColors.accent.highlightRaised,
             bgActive: themeColors.accent.highlightRaised,
             text: themeColors.text.onRaised,
-            border: 'rgba(255, 255, 255, 0.4)',
-            borderHover: 'rgba(255, 255, 255, 0.7)',
+            border: themeColors.accent.dividerRaised,
+            borderHover: themeColors.accent.highlightRaised,
           }
         : {
             bg: 'transparent',
@@ -160,7 +160,7 @@ export function resolveVariantColors(
         bg: themeColors.status.warning,
         bgHover: themeColors.status.warning,
         bgActive: themeColors.status.warning,
-        text: '#0F1219', // dark text always — amber is bright in both modes
+        text: themeColors.text.primary, // dark text always — amber is bright in both modes
         border: 'transparent',
         borderHover: 'transparent',
       };

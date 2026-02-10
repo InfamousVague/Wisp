@@ -131,8 +131,8 @@ export function buildTypingBubbleStyle(
     justifyContent: 'center',
     padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px`,
     borderRadius: isOutgoing ? '12px 12px 2px 12px' : '12px 12px 12px 2px',
-    backgroundColor: isOutgoing ? '#FFFFFF' : '#0C0C0E',
-    border: `1px solid ${isOutgoing ? '#E4E4E7' : '#2A2A2A'}`,
+    backgroundColor: isOutgoing ? themeColors.accent.primary : themeColors.background.raised,
+    border: `1px solid ${isOutgoing ? themeColors.border.subtle : themeColors.accent.dividerRaised}`,
     boxSizing: 'border-box',
   };
 }

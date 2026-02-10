@@ -15,7 +15,7 @@ import { zIndex } from '../tokens/z-index';
 // Overlay
 // ---------------------------------------------------------------------------
 
-export function buildAchievementUnlockOverlayStyle(): CSSStyleObject {
+export function buildAchievementUnlockOverlayStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
     position: 'fixed',
     top: 0,
@@ -26,7 +26,7 @@ export function buildAchievementUnlockOverlayStyle(): CSSStyleObject {
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: zIndex.toast,
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundColor: themeColors.background.overlay,
     animation: 'wisp-achievement-panel-in 300ms ease-out',
   };
 }
@@ -162,6 +162,7 @@ export function buildAchievementUnlockCloseStyle(
 
 export function buildAchievementUnlockActionStyle(
   rarityColor: string,
+  themeColors: ThemeColors,
 ): CSSStyleObject {
   return {
     display: 'inline-flex',
@@ -173,7 +174,7 @@ export function buildAchievementUnlockActionStyle(
     borderRadius: defaultRadii.md,
     border: 'none',
     backgroundColor: rarityColor,
-    color: '#FFFFFF',
+    color: themeColors.text.inverse,
     cursor: 'pointer',
     whiteSpace: 'nowrap',
     marginTop: defaultSpacing.xs,

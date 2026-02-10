@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { CardVariant, CardPadding, CardRadius } from '../types/Card.types';
 import { cardPaddingMap, cardRadiusMap } from '../types/Card.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
+import { defaultShadows } from '../theme/create-theme';
 
 /**
  * Resolved CSS values for a single {@link CardVariant}.
@@ -36,7 +37,7 @@ export function resolveVariantStyles(
       return {
         backgroundColor: themeColors.background.surface,
         border: `1px solid ${themeColors.border.subtle}`,
-        boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+        boxShadow: defaultShadows.sm,
       };
     case 'outlined':
       return {

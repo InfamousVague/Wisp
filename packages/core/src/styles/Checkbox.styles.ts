@@ -90,7 +90,7 @@ export function resolveCheckboxColors(
     const accentColor = themeColors.accent.primary;
     // Pick icon color that contrasts with the accent — same approach as Toggle
     const accentIsLight = isHexColor(accentColor) && relativeLuminance(accentColor) > 0.4;
-    const iconColor = accentIsLight ? '#0A0E15' : '#F7F8FA';
+    const iconColor = accentIsLight ? themeColors.text.primary : themeColors.text.inverse;
 
     return {
       boxBg: accentColor,

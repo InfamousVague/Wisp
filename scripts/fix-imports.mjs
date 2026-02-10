@@ -13,8 +13,9 @@ function fixFile(filePath) {
 
   const needsTypography = content.includes('defaultTypography') && !content.match(/import\s+[^;]*defaultTypography[^;]*from/);
   const needsSpacing = content.includes('defaultSpacing') && !content.match(/import\s+[^;]*defaultSpacing[^;]*from/);
+  const needsShadows = content.includes('defaultShadows') && !content.match(/import\s+[^;]*defaultShadows[^;]*from/);
 
-  if (!needsTypography && !needsSpacing) return false;
+  if (!needsTypography && !needsSpacing && !needsShadows) return false;
 
   // Determine correct import source based on file path
   const isCore = filePath.includes('packages/core/');
@@ -30,6 +31,7 @@ function fixFile(filePath) {
     const toAdd = [];
     if (needsTypography) toAdd.push('defaultTypography');
     if (needsSpacing) toAdd.push('defaultSpacing');
+    if (needsShadows) toAdd.push('defaultShadows');
 
     if (toAdd.length > 0) {
       // Check if it's multiline
@@ -45,6 +47,7 @@ function fixFile(filePath) {
     const toImport = [];
     if (needsTypography) toImport.push('defaultTypography');
     if (needsSpacing) toImport.push('defaultSpacing');
+    if (needsShadows) toImport.push('defaultShadows');
 
     const newImport = `import { ${toImport.join(', ')} } from ${importSource};`;
 

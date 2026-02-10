@@ -106,7 +106,7 @@ export function AchievementUnlock({
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [open, onClose]);
 
-  const overlayStyle = useMemo(() => buildAchievementUnlockOverlayStyle(), []);
+  const overlayStyle = useMemo(() => buildAchievementUnlockOverlayStyle(themeColors), [themeColors]);
   const panelStyle = useMemo(
     () => buildAchievementUnlockPanelStyle(themeColors, rarity),
     [themeColors, rarity],
@@ -132,8 +132,8 @@ export function AchievementUnlock({
     [themeColors],
   );
   const actionStyle = useMemo(
-    () => buildAchievementUnlockActionStyle(rarityConfig.color),
-    [rarityConfig.color],
+    () => buildAchievementUnlockActionStyle(rarityConfig.color, themeColors),
+    [rarityConfig.color, themeColors],
   );
 
   if (!open) return null;

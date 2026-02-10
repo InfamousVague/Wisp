@@ -34,15 +34,15 @@ export function resolveNotificationBadgeColors(
 ): NotificationBadgeColorSet {
   switch (color) {
     case 'danger':
-      return { bg: themeColors.status.danger, text: '#FFFFFF' };
+      return { bg: themeColors.status.danger, text: themeColors.text.inverse };
     case 'warning':
-      return { bg: themeColors.status.warning, text: '#000000' };
+      return { bg: themeColors.status.warning, text: themeColors.text.primary };
     case 'success':
-      return { bg: themeColors.status.success, text: '#FFFFFF' };
+      return { bg: themeColors.status.success, text: themeColors.text.inverse };
     case 'info':
-      return { bg: themeColors.status.info, text: '#FFFFFF' };
+      return { bg: themeColors.status.info, text: themeColors.text.inverse };
     case 'default':
-      return { bg: themeColors.accent.primary, text: '#FFFFFF' };
+      return { bg: themeColors.accent.primary, text: themeColors.text.inverse };
     default:
       return resolveNotificationBadgeColors('danger', themeColors);
   }

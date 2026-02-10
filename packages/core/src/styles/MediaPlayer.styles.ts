@@ -62,12 +62,12 @@ export function buildMediaPlayerContainerStyle(
   };
 }
 
-export function buildVideoContainerStyle(): CSSStyleObject {
+export function buildVideoContainerStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
     position: 'relative',
     width: '100%',
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: themeColors.background.canvas,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

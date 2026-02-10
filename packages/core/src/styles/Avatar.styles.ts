@@ -9,19 +9,6 @@ import { defaultRadii, defaultTypography } from '../theme/create-theme';
 // ---------------------------------------------------------------------------
 
 /**
- * Static colour mapping for each {@link AvatarStatus} that has a dedicated hue.
- *
- * @remarks
- * Statuses not present in the map (e.g. `'offline'`) fall back to the
- * theme's muted text colour via {@link resolveStatusColor}.
- */
-export const statusColorMap: Record<string, string> = {
-  online: '#22C55E',
-  busy: '#EF4444',
-  away: '#F59E0B',
-};
-
-/**
  * Returns the background colour for a given status indicator dot.
  *
  * @param status - The current avatar status.
@@ -32,6 +19,11 @@ export function resolveStatusColor(
   status: AvatarStatus,
   themeColors: ThemeColors,
 ): string {
+  const statusColorMap: Record<string, string> = {
+    online: themeColors.status.success,
+    busy: themeColors.status.danger,
+    away: themeColors.status.warning,
+  };
   return statusColorMap[status] ?? themeColors.text.muted;
 }
 

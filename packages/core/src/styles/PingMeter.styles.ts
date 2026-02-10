@@ -21,11 +21,11 @@ import { defaultRadii } from '../theme/create-theme';
  *   - `#f97316` (orange) for 100-200ms
  *   - `#ef4444` (red) for > 200ms
  */
-export function getLatencyColor(latency: number): string {
-  if (latency < 50) return '#22c55e';
-  if (latency < 100) return '#eab308';
-  if (latency < 200) return '#f97316';
-  return '#ef4444';
+export function getLatencyColor(latency: number, themeColors: ThemeColors): string {
+  if (latency < 50) return themeColors.status.success;
+  if (latency < 100) return themeColors.status.warning;
+  if (latency < 200) return themeColors.status.warning;
+  return themeColors.status.danger;
 }
 
 // ---------------------------------------------------------------------------

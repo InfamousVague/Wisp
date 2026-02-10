@@ -135,7 +135,7 @@ export function buildQuestTrackerIndicatorStyle(
       return {
         ...base,
         backgroundColor: themeColors.status.success,
-        color: '#FFFFFF',
+        color: themeColors.text.inverse,
       };
     case 'in-progress':
       return {
