@@ -35,8 +35,8 @@ export function PreviewCard({ entry }: PreviewCardProps) {
         style={{
           overflow: 'hidden',
           transition: 'border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease',
-          borderColor: hovered ? colors.border.focus : undefined,
-          boxShadow: hovered ? `0 0 0 1px ${colors.border.focus}` : undefined,
+          borderColor: hovered ? colors.text.secondary : colors.border.strong,
+          boxShadow: hovered ? `0 0 0 1px ${colors.text.secondary}` : 'none',
           transform: pressed ? 'scale(0.98)' : hovered ? 'translateY(-2px)' : undefined,
         }}
       >
@@ -76,7 +76,7 @@ function PreviewArea({ children }: { children: React.ReactNode }) {
     <div
       style={{
         padding: 20,
-        backgroundColor: colors.background.canvas,
+        backgroundColor: 'transparent',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

@@ -25,7 +25,7 @@ export function App() {
   if (isLanding) {
     return (
       <>
-        <AppRoutes />
+        <AppRoutes onSearchOpen={() => setSearchOpen(true)} />
         <SearchPalette open={searchOpen} onOpenChange={setSearchOpen} />
       </>
     );

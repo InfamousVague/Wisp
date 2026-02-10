@@ -5,6 +5,7 @@ import {
   SidebarSection,
   SidebarItem,
   Text,
+  useTheme,
   useThemeColors,
 } from '@wisp-ui/react';
 import {
@@ -38,6 +39,7 @@ const NAV_SECTIONS = [
 export function NavSidebar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { mode } = useTheme();
   const colors = useThemeColors();
 
   return (
@@ -57,10 +59,15 @@ export function NavSidebar() {
           onClick={() => navigate('/')}
           style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}
         >
+          <img
+            src={`${import.meta.env.BASE_URL}${mode === 'light' ? 'wisp-logo-dark.png' : 'wisp-logo.png'}`}
+            alt="Wisp"
+            style={{ width: 24, height: 24 }}
+          />
           <Text size="lg" weight="bold">
             wisp
           </Text>
-          <Text size="xs" color="tertiary" weight="semibold">
+          <Text size="xs" weight="semibold" color="tertiary">
             UI Kit
           </Text>
         </div>

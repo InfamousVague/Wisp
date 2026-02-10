@@ -8,10 +8,14 @@ import { ComponentsPage } from './pages/ComponentsPage';
 import { TokensPage } from './pages/TokensPage';
 import { ComponentDetail } from './pages/ComponentDetail';
 
-export function AppRoutes() {
+interface AppRoutesProps {
+  onSearchOpen?: () => void;
+}
+
+export function AppRoutes({ onSearchOpen }: AppRoutesProps) {
   return (
     <Routes>
-      <Route path="/" element={<Landing />} />
+      <Route path="/" element={<Landing onSearchOpen={onSearchOpen} />} />
       <Route path="/docs" element={<DocsPage />} />
       <Route path="/tokens" element={<TokensPage />} />
       <Route path="/tokens/:slug" element={<ComponentDetail category="tokens" />} />

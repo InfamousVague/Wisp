@@ -84,7 +84,7 @@ function PreviewContent({ children }: { children: React.ReactNode }) {
     <div
       style={{
         padding: 24,
-        backgroundColor: colors.background.canvas,
+        backgroundColor: 'transparent',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

@@ -62,7 +62,7 @@ import { ThemeToggle } from '../shared/ThemeToggle';
 // Landing Page
 // ---------------------------------------------------------------------------
 
-export function Landing() {
+export function Landing({ onSearchOpen }: { onSearchOpen?: () => void }) {
   const { mode, toggleMode } = useTheme();
   const colors = useThemeColors();
 
@@ -82,22 +82,48 @@ export function Landing() {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '16px 32px',
+          height: 64,
           borderBottom: `1px solid ${colors.border.subtle}`,
         }}
       >
-        <HStack gap="xs" align="center">
+        <HStack gap="sm" align="center">
           <img
             src={`${import.meta.env.BASE_URL}${mode === 'light' ? 'wisp-logo-dark.png' : 'wisp-logo.png'}`}
             alt="Wisp"
-            style={{ width: 28, height: 28 }}
+            style={{ width: 36, height: 36 }}
           />
-          <Text size="lg" weight="bold">
+          <Text size="xl" weight="bold">
             wisp
           </Text>
-          <Text size="xs" color="tertiary" weight="semibold">
+          <Text size="sm" color="tertiary" weight="semibold">
             UI Kit
           </Text>
         </HStack>
+
+        {/* Search trigger */}
+        <div
+          onClick={onSearchOpen}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 12,
+            padding: '8px 16px',
+            borderRadius: 8,
+            border: `1px solid ${colors.border.subtle}`,
+            cursor: 'pointer',
+            flex: 1,
+            maxWidth: 400,
+            marginLeft: 32,
+            marginRight: 32,
+          }}
+        >
+          <Search size={18} color={colors.text.muted} />
+          <Text size="md" color="tertiary">
+            Search…
+          </Text>
+          <Kbd size="md" style={{ marginLeft: 'auto' }}>⌘K</Kbd>
+        </div>
+
         <HStack gap="sm" align="center">
           <ThemeToggle mode={mode} onToggle={toggleMode} />
           <LandingNavLink label="Docs" to="/docs" />
@@ -332,8 +358,8 @@ function ShowcaseCard({
         style={{
           overflow: 'hidden',
           transition: 'border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease',
-          borderColor: hovered ? colors.border.focus : undefined,
-          boxShadow: hovered ? `0 0 0 1px ${colors.border.focus}` : undefined,
+          borderColor: hovered ? colors.text.secondary : colors.border.strong,
+          boxShadow: hovered ? `0 0 0 1px ${colors.text.secondary}` : 'none',
           transform: hovered ? 'translateY(-2px)' : undefined,
         }}
       >
