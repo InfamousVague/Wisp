@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dialog, Button, Text, VStack, HStack } from '@wisp-ui/react';
+import { Dialog, Button, Text, VStack, HStack, useThemeColors } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
 
 function DialogDemo() {
@@ -23,6 +23,22 @@ function DialogDemo() {
   );
 }
 
+function DialogPreview() {
+  const colors = useThemeColors();
+  return (
+    <div style={{ width: '100%', maxWidth: 200, borderRadius: 8, border: `1px solid ${colors.accent.dividerRaised}`, backgroundColor: colors.background.raised, padding: 12, overflow: 'hidden' }}>
+      <VStack gap="xs">
+        <Text size="sm" weight="medium">Dialog Title</Text>
+        <Text size="xs" color="secondary">Are you sure?</Text>
+        <HStack gap="xs" justify="end" style={{ marginTop: 8 }}>
+          <div style={{ padding: '3px 8px', borderRadius: 4, border: `1px solid ${colors.accent.dividerRaised}`, fontSize: 11, color: colors.text.onRaisedSecondary }}>Cancel</div>
+          <div style={{ padding: '3px 8px', borderRadius: 4, backgroundColor: colors.accent.highlightRaised, fontSize: 11, color: colors.text.onRaised }}>Confirm</div>
+        </HStack>
+      </VStack>
+    </div>
+  );
+}
+
 export const dialogEntry: ComponentEntry = {
   slug: 'dialog',
   name: 'Dialog',
@@ -32,18 +48,7 @@ export const dialogEntry: ComponentEntry = {
   variantCount: 3,
   keywords: ['dialog', 'modal', 'alert', 'confirm', 'popup'],
 
-  cardPreview: (
-    <div style={{ width: '100%', maxWidth: 200, borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(255,255,255,0.04)', padding: 12, overflow: 'hidden' }}>
-      <VStack gap="xs">
-        <Text size="sm" weight="medium">Dialog Title</Text>
-        <Text size="xs" color="secondary">Are you sure?</Text>
-        <HStack gap="xs" justify="end" style={{ marginTop: 8 }}>
-          <div style={{ padding: '3px 8px', borderRadius: 4, border: '1px solid rgba(255,255,255,0.1)', fontSize: 11, color: 'rgba(255,255,255,0.6)' }}>Cancel</div>
-          <div style={{ padding: '3px 8px', borderRadius: 4, backgroundColor: 'rgba(255,255,255,0.12)', fontSize: 11, color: 'rgba(255,255,255,0.8)' }}>Confirm</div>
-        </HStack>
-      </VStack>
-    </div>
-  ),
+  cardPreview: <DialogPreview />,
 
   examples: [
     {

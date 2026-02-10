@@ -1,6 +1,22 @@
 import React from 'react';
-import { Carousel, Text, Box, VStack } from '@wisp-ui/react';
+import { Carousel, Text, Box, VStack, useThemeColors } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+
+function CarouselPreview() {
+  const colors = useThemeColors();
+  return (
+    <div style={{ width: '100%', maxWidth: 200, pointerEvents: 'none' }}>
+      <Carousel showArrows={false}>
+        <Box style={{ height: 60, backgroundColor: colors.accent.highlight, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Text size="xs">Slide 1</Text>
+        </Box>
+        <Box style={{ height: 60, backgroundColor: colors.accent.highlight, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Text size="xs">Slide 2</Text>
+        </Box>
+      </Carousel>
+    </div>
+  );
+}
 
 export const carouselEntry: ComponentEntry = {
   slug: 'carousel',
@@ -11,18 +27,7 @@ export const carouselEntry: ComponentEntry = {
   variantCount: 1,
   keywords: ['carousel', 'slider', 'slides', 'gallery', 'swipe'],
 
-  cardPreview: (
-    <div style={{ width: '100%', maxWidth: 200, pointerEvents: 'none' }}>
-      <Carousel showArrows={false}>
-        <Box style={{ height: 60, backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Text size="xs">Slide 1</Text>
-        </Box>
-        <Box style={{ height: 60, backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Text size="xs">Slide 2</Text>
-        </Box>
-      </Carousel>
-    </div>
-  ),
+  cardPreview: <CarouselPreview />,
 
   examples: [
     {

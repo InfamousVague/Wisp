@@ -1,6 +1,20 @@
 import React from 'react';
-import { Popover, PopoverTrigger, PopoverContent, Button, Text, VStack } from '@wisp-ui/react';
+import { Popover, PopoverTrigger, PopoverContent, Button, Text, VStack, useThemeColors } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+
+function PopoverPreview() {
+  const colors = useThemeColors();
+  return (
+    <div style={{ width: '100%', maxWidth: 200, position: 'relative', paddingTop: 48 }}>
+      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', backgroundColor: colors.background.raised, borderRadius: 8, padding: '8px 16px', border: `1px solid ${colors.accent.dividerRaised}` }}>
+        <Text size="xs">Popover content</Text>
+      </div>
+      <div style={{ textAlign: 'center' }}>
+        <Text size="xs" color="secondary">▲ Trigger</Text>
+      </div>
+    </div>
+  );
+}
 
 export const popoverEntry: ComponentEntry = {
   slug: 'popover',
@@ -11,16 +25,7 @@ export const popoverEntry: ComponentEntry = {
   variantCount: 4,
   keywords: ['popover', 'popup', 'floating', 'panel', 'dropdown'],
 
-  cardPreview: (
-    <div style={{ width: '100%', maxWidth: 200, position: 'relative', paddingTop: 48 }}>
-      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 8, padding: '8px 16px', border: '1px solid rgba(255,255,255,0.1)' }}>
-        <Text size="xs">Popover content</Text>
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        <Text size="xs" color="secondary">▲ Trigger</Text>
-      </div>
-    </div>
-  ),
+  cardPreview: <PopoverPreview />,
 
   examples: [
     {

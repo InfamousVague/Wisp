@@ -1,6 +1,20 @@
 import React from 'react';
-import { Tooltip, Button, HStack, Text } from '@wisp-ui/react';
+import { Tooltip, Button, HStack, Text, useThemeColors } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+
+function TooltipPreview() {
+  const colors = useThemeColors();
+  return (
+    <div style={{ width: '100%', maxWidth: 200, position: 'relative', paddingTop: 32 }}>
+      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', backgroundColor: colors.background.raised, borderRadius: 6, padding: '4px 10px', whiteSpace: 'nowrap' }}>
+        <Text size="xs">Tooltip text</Text>
+      </div>
+      <div style={{ textAlign: 'center' }}>
+        <Text size="xs" color="secondary">Hover target ▲</Text>
+      </div>
+    </div>
+  );
+}
 
 export const tooltipEntry: ComponentEntry = {
   slug: 'tooltip',
@@ -11,16 +25,7 @@ export const tooltipEntry: ComponentEntry = {
   variantCount: 4,
   keywords: ['tooltip', 'hint', 'hover', 'info', 'help'],
 
-  cardPreview: (
-    <div style={{ width: '100%', maxWidth: 200, position: 'relative', paddingTop: 32 }}>
-      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', backgroundColor: 'rgba(255,255,255,0.12)', borderRadius: 6, padding: '4px 10px', whiteSpace: 'nowrap' }}>
-        <Text size="xs">Tooltip text</Text>
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        <Text size="xs" color="secondary">Hover target ▲</Text>
-      </div>
-    </div>
-  ),
+  cardPreview: <TooltipPreview />,
 
   examples: [
     {

@@ -1,6 +1,15 @@
 import React from 'react';
-import { MessageInput, VStack, Text } from '@wisp-ui/react';
+import { MessageInput, VStack, Text, useThemeColors } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+
+function MessageInputPreview() {
+  const colors = useThemeColors();
+  return (
+    <div style={{ width: '100%', pointerEvents: 'none', backgroundColor: colors.background.surface, borderRadius: 8, padding: 8 }}>
+      <MessageInput size="sm" placeholder="Type a message..." />
+    </div>
+  );
+}
 
 export const messageInputEntry: ComponentEntry = {
   slug: 'message-input',
@@ -11,11 +20,7 @@ export const messageInputEntry: ComponentEntry = {
   variantCount: 1,
   keywords: ['message', 'input', 'chat', 'send', 'compose', 'text', 'attachment', 'emoji', 'textarea'],
 
-  cardPreview: (
-    <div style={{ width: '100%', pointerEvents: 'none' }}>
-      <MessageInput size="sm" placeholder="Type a message..." />
-    </div>
-  ),
+  cardPreview: <MessageInputPreview />,
 
   examples: [
     {

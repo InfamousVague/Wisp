@@ -1,7 +1,30 @@
 import React from 'react';
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, Button, Text, VStack } from '@wisp-ui/react';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, Button, Text, VStack, useThemeColors } from '@wisp-ui/react';
 import { Copy, Trash2, Edit, MoreHorizontal } from 'lucide-react';
 import type { ComponentEntry } from '../types';
+
+function DropdownMenuPreview() {
+  const colors = useThemeColors();
+  return (
+    <div style={{ width: '100%', maxWidth: 200 }}>
+      <div style={{ borderRadius: 8, border: `1px solid ${colors.border.subtle}`, backgroundColor: colors.background.raised, overflow: 'hidden', fontSize: 13 }}>
+        <div style={{ padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <Edit size={13} style={{ color: colors.text.onRaisedSecondary }} />
+          <span style={{ color: colors.text.onRaised }}>Edit</span>
+        </div>
+        <div style={{ padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <Copy size={13} style={{ color: colors.text.onRaisedSecondary }} />
+          <span style={{ color: colors.text.onRaised }}>Copy</span>
+        </div>
+        <div style={{ height: 1, backgroundColor: colors.accent.dividerRaised, margin: '2px 0' }} />
+        <div style={{ padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <Trash2 size={13} style={{ color: colors.status.danger }} />
+          <span style={{ color: colors.status.danger }}>Delete</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export const dropdownMenuEntry: ComponentEntry = {
   slug: 'dropdown-menu',
@@ -12,25 +35,7 @@ export const dropdownMenuEntry: ComponentEntry = {
   variantCount: 1,
   keywords: ['dropdown', 'menu', 'context', 'actions', 'right-click'],
 
-  cardPreview: (
-    <div style={{ width: '100%', maxWidth: 200 }}>
-      <div style={{ borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(255,255,255,0.04)', overflow: 'hidden', fontSize: 13 }}>
-        <div style={{ padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Edit size={13} style={{ opacity: 0.5 }} />
-          <span style={{ color: 'rgba(255,255,255,0.7)' }}>Edit</span>
-        </div>
-        <div style={{ padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Copy size={13} style={{ opacity: 0.5 }} />
-          <span style={{ color: 'rgba(255,255,255,0.7)' }}>Copy</span>
-        </div>
-        <div style={{ height: 1, backgroundColor: 'rgba(255,255,255,0.08)', margin: '2px 0' }} />
-        <div style={{ padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Trash2 size={13} style={{ opacity: 0.5, color: '#ef4444' }} />
-          <span style={{ color: '#ef4444' }}>Delete</span>
-        </div>
-      </div>
-    </div>
-  ),
+  cardPreview: <DropdownMenuPreview />,
 
   examples: [
     {
