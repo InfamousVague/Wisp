@@ -8,10 +8,10 @@ function FloatingCardPreview() {
   return (
     <Box style={{ width: '100%', maxWidth: 200, position: 'relative', padding: '24px 0' }}>
       <DemoBox p="sm" radius="sm" style={{ textAlign: 'center', width: 80, margin: '0 auto' }}>
-        <Text size="xs">Anchor</Text>
+        <Text>Anchor</Text>
       </DemoBox>
       <DemoBox intensity="strong" style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', borderRadius: 6, padding: '4px 8px' }}>
-        <Text size="xs">Float</Text>
+        <Text>Float</Text>
       </DemoBox>
     </Box>
   );
@@ -24,7 +24,7 @@ function FloatingPlacementsExample() {
       {(['top', 'bottom', 'left', 'right'] as const).map((p) => (
         <Box key={p} style={{ position: 'relative', padding: 32 }}>
           <DemoBox p="sm" radius="sm" style={{ textAlign: 'center', width: 60 }}>
-            <Text size="xs">Anchor</Text>
+            <Text>Anchor</Text>
           </DemoBox>
           <DemoBox intensity="strong" style={{
             position: 'absolute',
@@ -34,7 +34,7 @@ function FloatingPlacementsExample() {
               { left: '100%', top: '50%', transform: 'translateY(-50%)', marginLeft: -24 }),
             borderRadius: 6, padding: '2px 8px', whiteSpace: 'nowrap' as const
           }}>
-            <Text size="xs">{p}</Text>
+            <Text>{p}</Text>
           </DemoBox>
         </Box>
       ))}

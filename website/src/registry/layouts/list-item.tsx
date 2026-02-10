@@ -15,10 +15,10 @@ export const listItemEntry: ComponentEntry = {
   cardPreview: (
     <VStack gap="xs" style={{ width: '100%', maxWidth: 220 }}>
       <ListItem size="sm" leading={<Star size={14} />} trailing={<ChevronRight size={14} />}>
-        <Text size="sm">Favorites</Text>
+        <Text>Favorites</Text>
       </ListItem>
       <ListItem size="sm" interactive active leading={<Star size={14} />}>
-        <Text size="sm">Selected</Text>
+        <Text>Selected</Text>
       </ListItem>
     </VStack>
   ),
@@ -29,10 +29,10 @@ export const listItemEntry: ComponentEntry = {
       render: (
         <VStack style={{ width: '100%', maxWidth: 320 }}>
           <ListItem leading={<Avatar size="sm" name="John Doe" />} trailing={<Badge variant="info">New</Badge>}>
-            <Text size="sm" weight="medium">John Doe</Text>
+            <Text weight="medium">John Doe</Text>
           </ListItem>
           <ListItem leading={<Avatar size="sm" name="Alice Smith" />} trailing={<Text size="xs" color="tertiary">2m ago</Text>}>
-            <Text size="sm" weight="medium">Alice Smith</Text>
+            <Text weight="medium">Alice Smith</Text>
           </ListItem>
         </VStack>
       ),
@@ -53,7 +53,7 @@ export const listItemEntry: ComponentEntry = {
         <VStack gap="sm" style={{ width: '100%', maxWidth: 320 }}>
           {(['sm', 'md', 'lg'] as const).map((size) => (
             <ListItem key={size} size={size} interactive>
-              <Text size="sm">{size} list item</Text>
+              <Text>{size} list item</Text>
             </ListItem>
           ))}
         </VStack>
@@ -70,13 +70,13 @@ export const listItemEntry: ComponentEntry = {
       render: (
         <VStack style={{ width: '100%', maxWidth: 320 }}>
           <ListItem interactive leading={<Star size={16} />} trailing={<ChevronRight size={16} />}>
-            <Text size="sm">Hover me</Text>
+            <Text>Hover me</Text>
           </ListItem>
           <ListItem interactive active leading={<Star size={16} />}>
-            <Text size="sm" weight="medium">Active item</Text>
+            <Text weight="medium">Active item</Text>
           </ListItem>
           <ListItem disabled leading={<Star size={16} />}>
-            <Text size="sm">Disabled</Text>
+            <Text>Disabled</Text>
           </ListItem>
         </VStack>
       ),

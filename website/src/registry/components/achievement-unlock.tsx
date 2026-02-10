@@ -70,7 +70,7 @@ export const achievementUnlockEntry: ComponentEntry = {
         }}
       >
         <Text size="xs" weight="bold" color="secondary">Epic Achievement</Text>
-        <Text size="sm" weight="semibold">Unlocked!</Text>
+        <Text weight="semibold">Unlocked!</Text>
       </div>
     </VStack>
   ),

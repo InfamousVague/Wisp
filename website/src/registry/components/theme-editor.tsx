@@ -25,7 +25,7 @@ export const themeEditorEntry: ComponentEntry = {
 
   cardPreview: (
     <VStack gap="xs" style={{ width: '100%', maxWidth: 260, alignItems: 'center' }}>
-      <Text size="sm" weight="semibold">Theme Editor</Text>
+      <Text weight="semibold">Theme Editor</Text>
       <Text size="xs" color="secondary">
         Colors · Spacing · Typography · Radii
       </Text>

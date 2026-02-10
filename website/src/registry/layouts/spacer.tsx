@@ -14,9 +14,9 @@ export const spacerEntry: ComponentEntry = {
 
   cardPreview: (
     <HStack gap="sm" align="center" style={{ width: '100%', maxWidth: 200 }}>
-      <Text size="xs">Left</Text>
+      <Text>Left</Text>
       <Spacer flex />
-      <Text size="xs">Right</Text>
+      <Text>Right</Text>
     </HStack>
   ),
 
@@ -25,9 +25,9 @@ export const spacerEntry: ComponentEntry = {
       title: 'Flex Spacer',
       render: (
         <HStack align="center" style={{ width: '100%', maxWidth: 400, padding: '8px 0' }}>
-          <Text size="sm">Logo</Text>
+          <Text>Logo</Text>
           <Spacer flex />
-          <Text size="sm" color="secondary">Menu Item</Text>
+          <Text color="secondary">Menu Item</Text>
         </HStack>
       ),
       code: `import { Spacer, HStack } from '@wisp-ui/react';
@@ -50,11 +50,11 @@ export const spacerEntry: ComponentEntry = {
       render: (
         <VStack style={{ width: '100%', maxWidth: 300 }}>
           <DemoBox p="md" radius="sm">
-            <Text size="sm">Above</Text>
+            <Text>Above</Text>
           </DemoBox>
           <Spacer size="xl" />
           <DemoBox p="md" radius="sm">
-            <Text size="sm">Below (xl space)</Text>
+            <Text>Below (xl space)</Text>
           </DemoBox>
         </VStack>
       ),

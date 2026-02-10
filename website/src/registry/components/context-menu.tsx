@@ -40,7 +40,7 @@ function ContextMenuDemo() {
       <ContextMenuTrigger>
         <Card variant="outlined" padding="lg" radius="lg" style={{ textAlign: 'center', cursor: 'default', minHeight: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <VStack gap="xs" align="center">
-            <Text size="sm" weight="semibold">Right-click here</Text>
+            <Text weight="semibold">Right-click here</Text>
             <Text size="xs" color="secondary">to open the context menu</Text>
           </VStack>
         </Card>

@@ -29,7 +29,7 @@ export const gridEntry: ComponentEntry = {
         <Grid columns={3} gap="md" style={{ width: '100%', maxWidth: 400 }}>
           {[1, 2, 3, 4, 5, 6].map((n) => (
             <DemoBox key={n} p="md" radius="sm" style={{ textAlign: 'center' }}>
-              <Text size="sm">{n}</Text>
+              <Text>{n}</Text>
             </DemoBox>
           ))}
         </Grid>
@@ -61,18 +61,18 @@ export const gridEntry: ComponentEntry = {
         <Grid columns={4} gap="md" style={{ width: '100%', maxWidth: 500 }}>
           <GridItem colSpan={2}>
             <DemoBox p="md" radius="sm" style={{ textAlign: 'center' }}>
-              <Text size="sm">Span 2</Text>
+              <Text>Span 2</Text>
             </DemoBox>
           </GridItem>
           <DemoBox p="md" radius="sm" style={{ textAlign: 'center' }}>
-            <Text size="sm">1</Text>
+            <Text>1</Text>
           </DemoBox>
           <DemoBox p="md" radius="sm" style={{ textAlign: 'center' }}>
-            <Text size="sm">1</Text>
+            <Text>1</Text>
           </DemoBox>
           <GridItem colSpan={4}>
             <DemoBox p="md" radius="sm" style={{ textAlign: 'center' }}>
-              <Text size="sm">Full width (span 4)</Text>
+              <Text>Full width (span 4)</Text>
             </DemoBox>
           </GridItem>
         </Grid>

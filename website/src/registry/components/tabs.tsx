@@ -34,17 +34,17 @@ export const tabsEntry: ComponentEntry = {
           </TabList>
           <TabPanel value="general">
             <div style={{ padding: '16px 0' }}>
-              <Text size="sm" color="secondary">General settings content goes here.</Text>
+              <Text color="secondary">General settings content goes here.</Text>
             </div>
           </TabPanel>
           <TabPanel value="profile">
             <div style={{ padding: '16px 0' }}>
-              <Text size="sm" color="secondary">Profile settings content goes here.</Text>
+              <Text color="secondary">Profile settings content goes here.</Text>
             </div>
           </TabPanel>
           <TabPanel value="billing">
             <div style={{ padding: '16px 0' }}>
-              <Text size="sm" color="secondary">Billing settings content goes here.</Text>
+              <Text color="secondary">Billing settings content goes here.</Text>
             </div>
           </TabPanel>
         </Tabs>
@@ -83,17 +83,17 @@ export const tabsEntry: ComponentEntry = {
           </TabList>
           <TabPanel value="account">
             <div style={{ padding: '16px 0' }}>
-              <Text size="sm" color="secondary">Account details.</Text>
+              <Text color="secondary">Account details.</Text>
             </div>
           </TabPanel>
           <TabPanel value="settings">
             <div style={{ padding: '16px 0' }}>
-              <Text size="sm" color="secondary">App settings.</Text>
+              <Text color="secondary">App settings.</Text>
             </div>
           </TabPanel>
           <TabPanel value="notifications">
             <div style={{ padding: '16px 0' }}>
-              <Text size="sm" color="secondary">Notification preferences.</Text>
+              <Text color="secondary">Notification preferences.</Text>
             </div>
           </TabPanel>
         </Tabs>

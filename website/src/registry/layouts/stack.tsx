@@ -28,13 +28,13 @@ export const stackEntry: ComponentEntry = {
       render: (
         <VStack gap="md" style={{ width: '100%', maxWidth: 300 }}>
           <DemoBox p="md" radius="sm">
-            <Text size="sm">Item 1</Text>
+            <Text>Item 1</Text>
           </DemoBox>
           <DemoBox p="md" radius="sm">
-            <Text size="sm">Item 2</Text>
+            <Text>Item 2</Text>
           </DemoBox>
           <DemoBox p="md" radius="sm">
-            <Text size="sm">Item 3</Text>
+            <Text>Item 3</Text>
           </DemoBox>
         </VStack>
       ),
@@ -58,13 +58,13 @@ export const stackEntry: ComponentEntry = {
       render: (
         <HStack gap="md" align="center">
           <DemoBox p="md" radius="sm">
-            <Text size="sm">Left</Text>
+            <Text>Left</Text>
           </DemoBox>
           <DemoBox p="md" radius="sm">
-            <Text size="sm">Center</Text>
+            <Text>Center</Text>
           </DemoBox>
           <DemoBox p="md" radius="sm">
-            <Text size="sm">Right</Text>
+            <Text>Right</Text>
           </DemoBox>
         </HStack>
       ),
@@ -83,9 +83,9 @@ export const stackEntry: ComponentEntry = {
       title: 'Alignment & Justify',
       render: (
         <HStack gap="md" justify="between" align="center" style={{ width: '100%', maxWidth: 400 }}>
-          <Text size="sm">Start</Text>
-          <Text size="sm" color="secondary">Middle</Text>
-          <Text size="sm">End</Text>
+          <Text>Start</Text>
+          <Text color="secondary">Middle</Text>
+          <Text>End</Text>
         </HStack>
       ),
       code: `<HStack gap="md" justify="between" align="center">
@@ -103,9 +103,9 @@ export const stackEntry: ComponentEntry = {
       title: 'With Dividers',
       render: (
         <VStack gap="md" divider style={{ width: '100%', maxWidth: 300 }}>
-          <Text size="sm">Section A</Text>
-          <Text size="sm">Section B</Text>
-          <Text size="sm">Section C</Text>
+          <Text>Section A</Text>
+          <Text>Section B</Text>
+          <Text>Section C</Text>
         </VStack>
       ),
       code: `<VStack gap="md" divider>

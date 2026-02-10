@@ -16,13 +16,13 @@ export const cardEntry: ComponentEntry = {
     <HStack gap="sm">
       <Card variant="elevated" padding="md" radius="md" style={{ width: 140 }}>
         <VStack gap="xs">
-          <Text size="sm" weight="bold" color="inherit">Elevated</Text>
+          <Text weight="bold" color="inherit">Elevated</Text>
           <Text size="xs" color="inherit" style={{ opacity: 0.7 }}>With shadow</Text>
         </VStack>
       </Card>
       <Card variant="outlined" padding="md" radius="md" style={{ width: 140 }}>
         <VStack gap="xs">
-          <Text size="sm" weight="bold">Outlined</Text>
+          <Text weight="bold">Outlined</Text>
           <Text size="xs" color="secondary">With border</Text>
         </VStack>
       </Card>
@@ -37,25 +37,25 @@ export const cardEntry: ComponentEntry = {
           <Card variant="elevated" padding="lg" radius="lg" style={{ width: 200 }}>
             <VStack gap="xs">
               <Text size="md" weight="bold" color="inherit">Elevated</Text>
-              <Text size="sm" color="inherit" style={{ opacity: 0.7 }}>Box shadow for depth.</Text>
+              <Text color="inherit" style={{ opacity: 0.7 }}>Box shadow for depth.</Text>
             </VStack>
           </Card>
           <Card variant="outlined" padding="lg" radius="lg" style={{ width: 200 }}>
             <VStack gap="xs">
               <Text size="md" weight="bold">Outlined</Text>
-              <Text size="sm" color="secondary">Subtle border.</Text>
+              <Text color="secondary">Subtle border.</Text>
             </VStack>
           </Card>
           <Card variant="filled" padding="lg" radius="lg" style={{ width: 200 }}>
             <VStack gap="xs">
               <Text size="md" weight="bold" color="inherit">Filled</Text>
-              <Text size="sm" color="inherit" style={{ opacity: 0.7 }}>Raised background.</Text>
+              <Text color="inherit" style={{ opacity: 0.7 }}>Raised background.</Text>
             </VStack>
           </Card>
           <Card variant="glass" padding="lg" radius="lg" style={{ width: 200 }}>
             <VStack gap="xs">
               <Text size="md" weight="bold" color="inherit">Glass</Text>
-              <Text size="sm" color="inherit" style={{ opacity: 0.7 }}>Frosted glass effect.</Text>
+              <Text color="inherit" style={{ opacity: 0.7 }}>Frosted glass effect.</Text>
             </VStack>
           </Card>
         </HStack>
@@ -106,7 +106,7 @@ export const cardEntry: ComponentEntry = {
         <Card variant="outlined" padding="lg" radius="lg" interactive style={{ maxWidth: 300 }}>
           <VStack gap="sm">
             <Text size="md" weight="bold">Interactive Card</Text>
-            <Text size="sm" color="secondary">
+            <Text color="secondary">
               Hover and press this card to see the interaction feedback.
             </Text>
           </VStack>
@@ -114,11 +114,11 @@ export const cardEntry: ComponentEntry = {
       ),
       code: `<Card variant="outlined" padding="lg" radius="lg" interactive>
   <Text size="md" weight="bold">Interactive Card</Text>
-  <Text size="sm" color="secondary">Hover and press to see feedback.</Text>
+  <Text color="secondary">Hover and press to see feedback.</Text>
 </Card>`,
       rnCode: `<Card variant="outlined" padding="lg" radius="lg" interactive>
   <Text size="md" weight="bold">Interactive Card</Text>
-  <Text size="sm" color="secondary">Press to see feedback.</Text>
+  <Text color="secondary">Press to see feedback.</Text>
 </Card>`,
     },
   ],

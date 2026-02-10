@@ -37,7 +37,7 @@ export const popoverEntry: ComponentEntry = {
           </PopoverTrigger>
           <PopoverContent>
             <VStack gap="sm" style={{ padding: 12, maxWidth: 200 }}>
-              <Text size="sm" weight="medium">Popover Title</Text>
+              <Text weight="medium">Popover Title</Text>
               <Text size="xs" color="secondary">This is a popover panel with content inside.</Text>
             </VStack>
           </PopoverContent>

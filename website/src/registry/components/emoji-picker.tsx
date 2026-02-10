@@ -78,7 +78,7 @@ export const emojiPickerEntry: ComponentEntry = {
             size="md"
             pickerProps={{ onSelect: (emoji) => console.log('Emoji:', emoji) }}
           />
-          <Text size="sm" color="secondary">Click the button to open</Text>
+          <Text color="secondary">Click the button to open</Text>
         </HStack>
       ),
       code: `import { EmojiPickerTrigger } from '@wisp-ui/react';

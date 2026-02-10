@@ -48,19 +48,19 @@ export const kbdEntry: ComponentEntry = {
         <VStack gap="md">
           <HStack gap="xs" align="center">
             <Kbd>⌘</Kbd><Kbd>C</Kbd>
-            <Text size="sm" color="secondary" style={{ marginLeft: 8 }}>Copy</Text>
+            <Text color="secondary" style={{ marginLeft: 8 }}>Copy</Text>
           </HStack>
           <HStack gap="xs" align="center">
             <Kbd>⌘</Kbd><Kbd>V</Kbd>
-            <Text size="sm" color="secondary" style={{ marginLeft: 8 }}>Paste</Text>
+            <Text color="secondary" style={{ marginLeft: 8 }}>Paste</Text>
           </HStack>
           <HStack gap="xs" align="center">
             <Kbd>⌘</Kbd><Kbd>⇧</Kbd><Kbd>P</Kbd>
-            <Text size="sm" color="secondary" style={{ marginLeft: 8 }}>Command Palette</Text>
+            <Text color="secondary" style={{ marginLeft: 8 }}>Command Palette</Text>
           </HStack>
           <HStack gap="xs" align="center">
             <Kbd>Ctrl</Kbd><Kbd>Alt</Kbd><Kbd>Del</Kbd>
-            <Text size="sm" color="secondary" style={{ marginLeft: 8 }}>Task Manager</Text>
+            <Text color="secondary" style={{ marginLeft: 8 }}>Task Manager</Text>
           </HStack>
         </VStack>
       ),

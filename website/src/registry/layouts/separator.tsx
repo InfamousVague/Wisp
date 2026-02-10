@@ -13,9 +13,9 @@ export const separatorEntry: ComponentEntry = {
 
   cardPreview: (
     <VStack gap="sm" style={{ width: '100%', maxWidth: 200 }}>
-      <Text size="xs" color="secondary">Above</Text>
+      <Text color="secondary">Above</Text>
       <Separator />
-      <Text size="xs" color="secondary">Below</Text>
+      <Text color="secondary">Below</Text>
     </VStack>
   ),
 
@@ -24,11 +24,11 @@ export const separatorEntry: ComponentEntry = {
       title: 'Horizontal',
       render: (
         <VStack gap="md" style={{ width: '100%', maxWidth: 400 }}>
-          <Text size="sm">Section A</Text>
+          <Text>Section A</Text>
           <Separator />
-          <Text size="sm">Section B</Text>
+          <Text>Section B</Text>
           <Separator variant="strong" />
-          <Text size="sm">Section C</Text>
+          <Text>Section C</Text>
         </VStack>
       ),
       code: `import { Separator } from '@wisp-ui/react';
@@ -57,9 +57,9 @@ export const separatorEntry: ComponentEntry = {
       title: 'Vertical',
       render: (
         <HStack gap="md" align="center" style={{ height: 40 }}>
-          <Text size="sm">Left</Text>
+          <Text>Left</Text>
           <Separator orientation="vertical" />
-          <Text size="sm">Right</Text>
+          <Text>Right</Text>
         </HStack>
       ),
       code: `<HStack align="center" style={{ height: 40 }}>

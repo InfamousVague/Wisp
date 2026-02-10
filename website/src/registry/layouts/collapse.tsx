@@ -12,7 +12,7 @@ function CollapseDemo() {
       </Button>
       <Collapse open={open}>
         <DemoBox p="md" radius="sm" intensity="subtle">
-          <Text size="sm" color="secondary">This content collapses and expands with animation.</Text>
+          <Text color="secondary">This content collapses and expands with animation.</Text>
         </DemoBox>
       </Collapse>
     </VStack>
@@ -31,10 +31,10 @@ export const collapseEntry: ComponentEntry = {
   cardPreview: (
     <VStack gap="xs" style={{ width: '100%', maxWidth: 200 }}>
       <DemoBox p="sm" radius="sm">
-        <Text size="xs" weight="medium">Header</Text>
+        <Text weight="medium">Header</Text>
       </DemoBox>
       <DemoBox p="sm" radius="sm" intensity="subtle">
-        <Text size="xs" color="secondary">Collapsed content…</Text>
+        <Text color="secondary">Collapsed content…</Text>
       </DemoBox>
     </VStack>
   ),

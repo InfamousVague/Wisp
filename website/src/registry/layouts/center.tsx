@@ -7,7 +7,7 @@ function CenterCardPreview() {
   const colors = useThemeColors();
   return (
     <Center style={{ width: '100%', height: 80, backgroundColor: colors.border.subtle, borderRadius: 8 }}>
-      <Text size="xs" color="secondary">Centered</Text>
+      <Text color="secondary">Centered</Text>
     </Center>
   );
 }
@@ -26,10 +26,10 @@ function CenterInlineExample() {
   return (
     <Box display="flex" style={{ gap: 12 }}>
       <Center inline style={{ width: 48, height: 48, backgroundColor: colors.border.subtle, borderRadius: 8 }}>
-        <Text size="sm">A</Text>
+        <Text>A</Text>
       </Center>
       <Center inline style={{ width: 48, height: 48, backgroundColor: colors.border.subtle, borderRadius: 8 }}>
-        <Text size="sm">B</Text>
+        <Text>B</Text>
       </Center>
     </Box>
   );

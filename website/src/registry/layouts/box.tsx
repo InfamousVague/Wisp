@@ -14,7 +14,7 @@ export const boxEntry: ComponentEntry = {
 
   cardPreview: (
     <DemoBox p="md" radius="md" style={{ width: '100%', maxWidth: 200 }}>
-      <Text size="sm" color="secondary">Box with padding</Text>
+      <Text color="secondary">Box with padding</Text>
     </DemoBox>
   ),
 
@@ -45,7 +45,7 @@ export const boxEntry: ComponentEntry = {
       title: 'Directional Padding',
       render: (
         <DemoBox style={{ paddingLeft: 16, paddingRight: 16, paddingTop: 8, paddingBottom: 8 }} radius="sm">
-          <Text size="sm">px="lg" py="sm"</Text>
+          <Text>px="lg" py="sm"</Text>
         </DemoBox>
       ),
       code: `<Box px="lg" py="sm">Content</Box>`,

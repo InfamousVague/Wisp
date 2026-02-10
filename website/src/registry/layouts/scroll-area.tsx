@@ -30,7 +30,7 @@ export const scrollAreaEntry: ComponentEntry = {
           <VStack gap="sm">
             {Array.from({ length: 15 }, (_, i) => (
               <DemoBox key={i} p="sm" radius="sm" intensity="subtle">
-                <Text size="sm">Item {i + 1}</Text>
+                <Text>Item {i + 1}</Text>
               </DemoBox>
             ))}
           </VStack>

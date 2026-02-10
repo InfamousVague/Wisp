@@ -45,7 +45,7 @@ export const aspectRatioEntry: ComponentEntry = {
             <div key={label} style={{ width: 120 }}>
               <AspectRatio ratio={ratio}>
                 <DemoBox radius="sm" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Text size="sm">{label}</Text>
+                  <Text>{label}</Text>
                 </DemoBox>
               </AspectRatio>
             </div>

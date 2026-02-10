@@ -36,19 +36,19 @@ export const accordionEntry: ComponentEntry = {
             <AccordionItem value="1">
               <AccordionTrigger>What is Wisp?</AccordionTrigger>
               <AccordionContent>
-                <Text size="sm" color="secondary">A monochrome, cross-platform UI kit with 90+ components.</Text>
+                <Text color="secondary">A monochrome, cross-platform UI kit with 90+ components.</Text>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="2">
               <AccordionTrigger>Is it accessible?</AccordionTrigger>
               <AccordionContent>
-                <Text size="sm" color="secondary">Yes, full keyboard navigation and ARIA attributes.</Text>
+                <Text color="secondary">Yes, full keyboard navigation and ARIA attributes.</Text>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="3">
               <AccordionTrigger>Can I customize it?</AccordionTrigger>
               <AccordionContent>
-                <Text size="sm" color="secondary">Fully theme-able with token-based design system.</Text>
+                <Text color="secondary">Fully theme-able with token-based design system.</Text>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -77,19 +77,19 @@ export const accordionEntry: ComponentEntry = {
             <AccordionItem value="a">
               <AccordionTrigger>Section A</AccordionTrigger>
               <AccordionContent>
-                <Text size="sm" color="secondary">Multiple sections can be open at once.</Text>
+                <Text color="secondary">Multiple sections can be open at once.</Text>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="b">
               <AccordionTrigger>Section B</AccordionTrigger>
               <AccordionContent>
-                <Text size="sm" color="secondary">This is also expanded by default.</Text>
+                <Text color="secondary">This is also expanded by default.</Text>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="c" disabled>
               <AccordionTrigger>Disabled</AccordionTrigger>
               <AccordionContent>
-                <Text size="sm" color="secondary">Cannot toggle.</Text>
+                <Text color="secondary">Cannot toggle.</Text>
               </AccordionContent>
             </AccordionItem>
           </Accordion>

@@ -27,7 +27,7 @@ function SpotlightTourDemo() {
             border: '1px solid var(--wisp-border-subtle, #2A2A2A)',
           }}
         >
-          <Text size="sm">Settings Panel</Text>
+          <Text>Settings Panel</Text>
         </div>
         <div ref={ref3}>
           <Badge variant="default" size="sm">

@@ -63,7 +63,7 @@ export const coachmarkEntry: ComponentEntry = {
           maxWidth: 200,
         }}
       >
-        <Text size="sm" weight="semibold">Welcome!</Text>
+        <Text weight="semibold">Welcome!</Text>
         <Text size="xs" color="secondary">Click to explore features.</Text>
       </div>
     </VStack>

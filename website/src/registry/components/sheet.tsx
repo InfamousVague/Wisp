@@ -10,7 +10,7 @@ function SheetDemo() {
       <Sheet open={open} onClose={() => setOpen(false)}>
         <VStack gap="md" style={{ padding: 24 }}>
           <Text size="lg" weight="bold">Sheet Content</Text>
-          <Text size="sm" color="secondary">This is a bottom sheet panel that slides up from the bottom of the screen.</Text>
+          <Text color="secondary">This is a bottom sheet panel that slides up from the bottom of the screen.</Text>
           <Button size="sm" variant="secondary" onClick={() => setOpen(false)}>Close</Button>
         </VStack>
       </Sheet>

@@ -14,10 +14,10 @@ export const beaconEntry: ComponentEntry = {
   cardPreview: (
     <div style={{ display: 'flex', gap: 16, alignItems: 'center', pointerEvents: 'none' }}>
       <Beacon variant="info" size="md" pulsing>
-        <Text size="sm">Help content</Text>
+        <Text>Help content</Text>
       </Beacon>
       <Beacon variant="success" size="sm" pulsing={false}>
-        <Text size="sm">Static beacon</Text>
+        <Text>Static beacon</Text>
       </Beacon>
     </div>
   ),
@@ -29,8 +29,8 @@ export const beaconEntry: ComponentEntry = {
         <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
           <Beacon variant="info">
             <div style={{ maxWidth: 220 }}>
-              <Text size="sm" weight="semibold">Getting Started</Text>
-              <Text size="xs" color="secondary" style={{ marginTop: 4 }}>
+              <Text weight="semibold">Getting Started</Text>
+              <Text color="secondary" style={{ marginTop: 4 }}>
                 Click here to begin the onboarding tour and learn about key features.
               </Text>
             </div>
@@ -41,8 +41,8 @@ export const beaconEntry: ComponentEntry = {
 
 <Beacon variant="info">
   <div style={{ maxWidth: 220 }}>
-    <Text size="sm" weight="semibold">Getting Started</Text>
-    <Text size="xs" color="secondary">
+    <Text weight="semibold">Getting Started</Text>
+    <Text color="secondary">
       Click here to begin the onboarding tour.
     </Text>
   </div>
@@ -53,16 +53,16 @@ export const beaconEntry: ComponentEntry = {
       render: (
         <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
           <Beacon variant="default" size="md">
-            <Text size="sm">Default variant</Text>
+            <Text>Default variant</Text>
           </Beacon>
           <Beacon variant="info" size="md">
-            <Text size="sm">Info variant</Text>
+            <Text>Info variant</Text>
           </Beacon>
           <Beacon variant="success" size="md">
-            <Text size="sm">Success variant</Text>
+            <Text>Success variant</Text>
           </Beacon>
           <Beacon variant="warning" size="md">
-            <Text size="sm">Warning variant</Text>
+            <Text>Warning variant</Text>
           </Beacon>
         </div>
       ),
@@ -76,13 +76,13 @@ export const beaconEntry: ComponentEntry = {
       render: (
         <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
           <Beacon variant="info" size="sm">
-            <Text size="sm">Small beacon</Text>
+            <Text>Small beacon</Text>
           </Beacon>
           <Beacon variant="info" size="md">
-            <Text size="sm">Medium beacon</Text>
+            <Text>Medium beacon</Text>
           </Beacon>
           <Beacon variant="info" size="lg">
-            <Text size="sm">Large beacon</Text>
+            <Text>Large beacon</Text>
           </Beacon>
         </div>
       ),
@@ -94,11 +94,11 @@ export const beaconEntry: ComponentEntry = {
       title: 'Static (no pulse)',
       render: (
         <Beacon variant="info" pulsing={false}>
-          <Text size="sm">This beacon does not pulse.</Text>
+          <Text>This beacon does not pulse.</Text>
         </Beacon>
       ),
       code: `<Beacon variant="info" pulsing={false}>
-  <Text size="sm">This beacon does not pulse.</Text>
+  <Text>This beacon does not pulse.</Text>
 </Beacon>`,
     },
   ],

@@ -9,9 +9,9 @@ function OverlayBackdropExample() {
     <div style={{ display: 'flex', gap: 16 }}>
       {(['dim', 'blur', 'transparent'] as const).map((v) => (
         <Box key={v} style={{ width: 120, height: 80, position: 'relative', borderRadius: 8, overflow: 'hidden', backgroundColor: colors.border.subtle }}>
-          <Text size="xs" style={{ padding: 8 }}>Content</Text>
+          <Text style={{ padding: 8 }}>Content</Text>
           <Box style={{ position: 'absolute', inset: 0, backgroundColor: v === 'dim' ? 'rgba(0,0,0,0.5)' : v === 'blur' ? 'rgba(0,0,0,0.3)' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: v === 'blur' ? 'blur(4px)' : 'none' }}>
-            <Text size="xs" weight="medium">{v}</Text>
+            <Text weight="medium">{v}</Text>
           </Box>
         </Box>
       ))}
@@ -31,7 +31,7 @@ export const overlayEntry: ComponentEntry = {
   cardPreview: (
     <Box style={{ width: '100%', maxWidth: 200, height: 80, position: 'relative', borderRadius: 8, overflow: 'hidden' }}>
       <Box style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Text size="xs" style={{ color: 'white' }}>Overlay</Text>
+        <Text style={{ color: 'white' }}>Overlay</Text>
       </Box>
     </Box>
   ),

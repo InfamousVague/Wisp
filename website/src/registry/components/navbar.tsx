@@ -15,7 +15,7 @@ export const navbarEntry: ComponentEntry = {
     <div style={{ width: '100%' }}>
       <Navbar variant="solid" height={44}>
         <NavbarBrand>
-          <Text size="sm" weight="bold" color="inherit">App</Text>
+          <Text weight="bold" color="inherit">App</Text>
         </NavbarBrand>
         <NavbarContent align="end">
           <NavbarItem active>
@@ -39,13 +39,13 @@ export const navbarEntry: ComponentEntry = {
           </NavbarBrand>
           <NavbarContent align="end">
             <NavbarItem active>
-              <Text size="sm" color="inherit">Home</Text>
+              <Text color="inherit">Home</Text>
             </NavbarItem>
             <NavbarItem>
-              <Text size="sm" color="inherit">Docs</Text>
+              <Text color="inherit">Docs</Text>
             </NavbarItem>
             <NavbarItem>
-              <Text size="sm" color="inherit">Blog</Text>
+              <Text color="inherit">Blog</Text>
             </NavbarItem>
           </NavbarContent>
         </Navbar>
@@ -70,13 +70,13 @@ export const navbarEntry: ComponentEntry = {
           </NavbarBrand>
           <NavbarContent align="end">
             <NavbarItem active>
-              <Text size="sm">Home</Text>
+              <Text>Home</Text>
             </NavbarItem>
             <NavbarItem>
-              <Text size="sm" color="secondary">Docs</Text>
+              <Text color="secondary">Docs</Text>
             </NavbarItem>
             <NavbarItem>
-              <Text size="sm" color="secondary">Blog</Text>
+              <Text color="secondary">Blog</Text>
             </NavbarItem>
           </NavbarContent>
         </Navbar>
@@ -100,10 +100,10 @@ export const navbarEntry: ComponentEntry = {
             </NavbarBrand>
             <NavbarContent align="end">
               <NavbarItem active>
-                <Text size="sm">Home</Text>
+                <Text>Home</Text>
               </NavbarItem>
               <NavbarItem>
-                <Text size="sm" color="secondary">Docs</Text>
+                <Text color="secondary">Docs</Text>
               </NavbarItem>
             </NavbarContent>
           </Navbar>

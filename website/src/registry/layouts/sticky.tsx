@@ -9,7 +9,7 @@ function StickyExample() {
     <Box style={{ position: 'relative', height: 120, overflow: 'auto', backgroundColor: colors.accent.highlight, borderRadius: 8 }}>
       <Sticky edge="top">
         <DemoBox p="sm">
-          <Text size="sm" weight="medium">Sticky at top</Text>
+          <Text weight="medium">Sticky at top</Text>
         </DemoBox>
       </Sticky>
       <VStack gap="sm" style={{ padding: 12 }}>
@@ -33,9 +33,9 @@ export const stickyEntry: ComponentEntry = {
   cardPreview: (
     <VStack gap="xs" style={{ width: '100%', maxWidth: 200 }}>
       <DemoBox p="sm" radius="sm" style={{ textAlign: 'center' }}>
-        <Text size="xs" weight="medium">Sticky Header</Text>
+        <Text weight="medium">Sticky Header</Text>
       </DemoBox>
-      <Text size="xs" color="tertiary">Content below…</Text>
+      <Text color="tertiary">Content below…</Text>
     </VStack>
   ),
 
