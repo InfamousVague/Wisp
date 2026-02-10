@@ -260,7 +260,9 @@ export function buildEmojiPickerGridStyle(
   return {
     flex: 1,
     overflowY: 'auto',
-    padding: sizeConfig.padding,
+    // No top padding — sticky category labels pin at the very top of the
+    // scroll container so emoji cannot peek above them.
+    padding: `0 ${sizeConfig.padding}px ${sizeConfig.padding}px`,
     display: 'flex',
     flexDirection: 'column',
     gap: sizeConfig.gap * 2,
@@ -282,7 +284,7 @@ export function buildEmojiPickerCategoryLabelStyle(
     position: 'sticky',
     top: 0,
     backgroundColor: colors.bg,
-    zIndex: 1,
+    zIndex: 2,
   };
 }
 
