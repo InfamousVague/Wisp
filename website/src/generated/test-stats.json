@@ -1,15 +1,15 @@
 {
-  "totalFiles": 69,
-  "totalTests": 1898,
-  "passed": 1898,
+  "totalFiles": 0,
+  "totalTests": 0,
+  "passed": 0,
   "failed": 0,
   "pending": 0,
-  "duration": "8s",
-  "success": true,
-  "timestamp": "2026-02-09T22:20:41.891Z",
+  "duration": "—",
+  "success": false,
+  "timestamp": "2026-02-10T00:15:42.817Z",
   "coverage": {
-    "components": 24,
-    "primitives": 27,
-    "layouts": 18
+    "components": 0,
+    "primitives": 0,
+    "layouts": 0
   }
 }

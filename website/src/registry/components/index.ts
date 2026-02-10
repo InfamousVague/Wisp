@@ -41,6 +41,8 @@ import { chatBubbleEntry } from './chat-bubble';
 import { messageGroupEntry } from './message-group';
 import { newMessageDividerEntry } from './new-message-divider';
 import { typingIndicatorEntry } from './typing-indicator';
+import { activityCirclesEntry } from './activity-circles';
+import { radarChartEntry } from './radar-chart';
 
 export const componentEntries: ComponentEntry[] = [
   commandEntry,
@@ -85,4 +87,6 @@ export const componentEntries: ComponentEntry[] = [
   messageGroupEntry,
   newMessageDividerEntry,
   typingIndicatorEntry,
+  activityCirclesEntry,
+  radarChartEntry,
 ];

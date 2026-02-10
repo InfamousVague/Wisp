@@ -118,6 +118,8 @@ export {
   FileUploader,
   // Wave 8: Chat
   ChatBubble, StatusIcon, MessageGroup, NewMessageDivider, TypingIndicator,
+  // Wave 9: Charts
+  ActivityCircles, RadarChart,
 } from './components';
 export type {
   // Wave 1
@@ -155,6 +157,8 @@ export type {
   FileUploaderProps,
   // Wave 8: Chat
   ChatBubbleProps, MessageGroupProps, NewMessageDividerProps, TypingIndicatorProps,
+  // Wave 9: Charts
+  ActivityCirclesProps, RadarChartProps,
 } from './components';
 
 // ---------------------------------------------------------------------------

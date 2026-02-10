@@ -364,5 +364,11 @@ export type { NewMessageDividerProps } from './components';
 export { TypingIndicator, typingIndicatorAnimations } from './components';
 export type { TypingIndicatorProps, TypingIndicatorAnimation } from './components';
 
+export { ActivityCircles, activityCirclesSizes, activityCirclesSizeMap } from './components';
+export type { ActivityCirclesProps, ActivityCirclesRing, ActivityCirclesSize, ActivityCirclesSizeConfig } from './components';
+
+export { RadarChart, radarChartSizes, radarChartSizeMap } from './components';
+export type { RadarChartProps, RadarChartSeries, RadarChartSize, RadarChartSizeConfig } from './components';
+
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';

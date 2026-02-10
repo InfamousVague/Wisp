@@ -87,3 +87,9 @@ export { NewMessageDivider } from './new-message-divider';
 export type { NewMessageDividerProps } from './new-message-divider';
 export { TypingIndicator } from './typing-indicator';
 export type { TypingIndicatorProps } from './typing-indicator';
+
+// Wave 9: Charts
+export { ActivityCircles } from './activity-circles';
+export type { ActivityCirclesProps } from './activity-circles';
+export { RadarChart } from './radar-chart';
+export type { RadarChartProps } from './radar-chart';

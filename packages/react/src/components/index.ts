@@ -318,3 +318,19 @@ export type { NewMessageDividerProps } from './new-message-divider';
 export { TypingIndicator } from './typing-indicator';
 export type { TypingIndicatorProps, TypingIndicatorAnimation } from './typing-indicator';
 export { typingIndicatorAnimations } from './typing-indicator';
+
+// ---------------------------------------------------------------------------
+// ActivityCircles
+// ---------------------------------------------------------------------------
+
+export { ActivityCircles } from './activity-circles';
+export type { ActivityCirclesProps, ActivityCirclesRing, ActivityCirclesSize, ActivityCirclesSizeConfig } from './activity-circles';
+export { activityCirclesSizes, activityCirclesSizeMap } from './activity-circles';
+
+// ---------------------------------------------------------------------------
+// RadarChart
+// ---------------------------------------------------------------------------
+
+export { RadarChart } from './radar-chart';
+export type { RadarChartProps, RadarChartSeries, RadarChartSize, RadarChartSizeConfig } from './radar-chart';
+export { radarChartSizes, radarChartSizeMap } from './radar-chart';

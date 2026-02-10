@@ -12,6 +12,7 @@
  */
 
 export * from './Accordion.types';
+export * from './ActivityCircles.types';
 export * from './ActivityFeed.types';
 export * from './Alert.types';
 export * from './AspectRatio.types';
@@ -69,6 +70,7 @@ export * from './PingMeter.types';
 export * from './Popover.types';
 export * from './Progress.types';
 export * from './ProgressSteps.types';
+export * from './RadarChart.types';
 export * from './Radio.types';
 export * from './Rating.types';
 export * from './ScrollArea.types';
