@@ -40,9 +40,9 @@ export interface VoiceRecorderSizeConfig {
 }
 
 export const voiceRecorderSizeMap: Record<VoiceRecorderSize, VoiceRecorderSizeConfig> = {
-  sm: { height: 40, buttonSize: 32, iconSize: 16, fontSize: defaultTypography.sizes.xs.fontSize, padding: defaultSpacing.sm, gap: defaultSpacing.sm, borderRadius: 'xl' },
-  md: { height: 48, buttonSize: 40, iconSize: 20, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.md, gap: defaultSpacing.md, borderRadius: 'xl' },
-  lg: { height: 56, buttonSize: 48, iconSize: 24, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.lg, gap: defaultSpacing.md, borderRadius: 'xl' } };
+  sm: { height: 40, buttonSize: 32, iconSize: 16, fontSize: defaultTypography.sizes.xs.fontSize, padding: defaultSpacing.sm, gap: defaultSpacing.sm, borderRadius: 'full' },
+  md: { height: 48, buttonSize: 40, iconSize: 20, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.md, gap: defaultSpacing.md, borderRadius: 'full' },
+  lg: { height: 56, buttonSize: 48, iconSize: 24, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.lg, gap: defaultSpacing.md, borderRadius: 'full' } };
 
 // ---------------------------------------------------------------------------
 // Props
