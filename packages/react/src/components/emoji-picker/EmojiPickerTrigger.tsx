@@ -51,7 +51,13 @@ export const EmojiPickerTrigger = forwardRef<HTMLDivElement, EmojiPickerTriggerP
           <PopoverTrigger>
             {triggerElement}
           </PopoverTrigger>
-          <PopoverContent>
+          <PopoverContent
+            style={{
+              padding: 0,
+              border: 'none',
+              background: 'transparent',
+            }}
+          >
             <EmojiPicker size={size} {...pickerProps} />
           </PopoverContent>
         </Popover>
