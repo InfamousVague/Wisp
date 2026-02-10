@@ -28,7 +28,14 @@ export const qrCodeEntry: ComponentEntry = {
 
   cardPreview: (
     <div style={{ pointerEvents: 'none' }}>
-      <QRCode value="https://wisp.dev" size="sm" dotStyle="rounded" />
+      <QRCode
+        value="https://wisp.dev"
+        size="sm"
+        dotStyle="circle"
+        eyeFrameStyle="rounded"
+        eyePupilStyle="circle"
+        eyeColor="#9CA3AF"
+      />
     </div>
   ),
 
