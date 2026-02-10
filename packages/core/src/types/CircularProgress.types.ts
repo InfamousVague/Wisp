@@ -1,5 +1,6 @@
 import type React from 'react';
 import type { Thickness } from '../tokens/shared';
+import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size
@@ -60,10 +61,10 @@ export interface CircularProgressSizeConfig {
  * Provides pre-defined dimension tokens for all four circular-progress sizes.
  */
 export const circularProgressSizeMap: Record<CircularProgressSize, CircularProgressSizeConfig> = {
-  sm: { size: 32, strokeWidth: 3, fontSize: 10 },
-  md: { size: 48, strokeWidth: 4, fontSize: 12 },
-  lg: { size: 64, strokeWidth: 5, fontSize: 14 },
-  xl: { size: 96, strokeWidth: 6, fontSize: 18 },
+  sm: { size: 32, strokeWidth: 3, fontSize: defaultTypography.sizes['2xs'].fontSize },
+  md: { size: 48, strokeWidth: 4, fontSize: defaultTypography.sizes.xs.fontSize },
+  lg: { size: 64, strokeWidth: 5, fontSize: defaultTypography.sizes.sm.fontSize },
+  xl: { size: 96, strokeWidth: 6, fontSize: defaultTypography.sizes.lg.fontSize },
 };
 
 // ---------------------------------------------------------------------------

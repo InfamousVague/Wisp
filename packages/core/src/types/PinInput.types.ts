@@ -9,7 +9,7 @@
 
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 /** Re-export of shared component size constants scoped to PinInput. */
 export { componentSizes as pinInputSizes } from '../tokens/shared';
@@ -55,11 +55,11 @@ export interface PinInputSizeConfig {
  * dimensions, gaps, border radii, and typography sizes.
  */
 export const pinInputSizeMap: Record<ComponentSize, PinInputSizeConfig> = {
-  xs: { cellSize: 28, fontSize: 14, borderRadius: defaultRadii.md, gap: defaultSpacing.sm, labelFontSize: 12, hintFontSize: 11 },
-  sm: { cellSize: 34, fontSize: 16, borderRadius: defaultRadii.md, gap: defaultSpacing.sm, labelFontSize: 13, hintFontSize: 12 },
-  md: { cellSize: 40, fontSize: 18, borderRadius: defaultRadii.md, gap: defaultSpacing.sm, labelFontSize: 14, hintFontSize: 13 },
-  lg: { cellSize: 48, fontSize: 22, borderRadius: defaultRadii.md, gap: defaultSpacing.md, labelFontSize: 15, hintFontSize: 14 },
-  xl: { cellSize: 56, fontSize: 26, borderRadius: defaultRadii.lg, gap: defaultSpacing.md, labelFontSize: 16, hintFontSize: 15 },
+  xs: { cellSize: 28, fontSize: defaultTypography.sizes.sm.fontSize, borderRadius: defaultRadii.md, gap: defaultSpacing.sm, labelFontSize: 12, hintFontSize: 11 },
+  sm: { cellSize: 34, fontSize: defaultTypography.sizes.base.fontSize, borderRadius: defaultRadii.md, gap: defaultSpacing.sm, labelFontSize: 13, hintFontSize: 12 },
+  md: { cellSize: 40, fontSize: defaultTypography.sizes.lg.fontSize, borderRadius: defaultRadii.md, gap: defaultSpacing.sm, labelFontSize: 14, hintFontSize: 13 },
+  lg: { cellSize: 48, fontSize: defaultTypography.sizes['2xl'].fontSize, borderRadius: defaultRadii.md, gap: defaultSpacing.md, labelFontSize: 15, hintFontSize: 14 },
+  xl: { cellSize: 56, fontSize: defaultTypography.sizes['2xl'].fontSize, borderRadius: defaultRadii.lg, gap: defaultSpacing.md, labelFontSize: 16, hintFontSize: 15 },
 };
 
 // ---------------------------------------------------------------------------

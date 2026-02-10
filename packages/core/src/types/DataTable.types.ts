@@ -7,7 +7,7 @@
  */
 
 import type React from 'react';
-import { defaultSpacing } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // DataTable Size
@@ -43,9 +43,9 @@ export interface DataTableSizeConfig {
  * resolve sizing tokens.
  */
 export const dataTableSizeMap: Record<DataTableSize, DataTableSizeConfig> = {
-  sm: { rowHeight: 36, headerHeight: 32, fontSize: 12, headerFontSize: 11, paddingX: defaultSpacing.md, checkboxSize: 14 },
-  md: { rowHeight: 44, headerHeight: 40, fontSize: 13, headerFontSize: 12, paddingX: defaultSpacing.lg, checkboxSize: 16 },
-  lg: { rowHeight: 52, headerHeight: 48, fontSize: 14, headerFontSize: 13, paddingX: defaultSpacing.xl, checkboxSize: 18 },
+  sm: { rowHeight: 36, headerHeight: 32, fontSize: defaultTypography.sizes.xs.fontSize, headerFontSize: 11, paddingX: defaultSpacing.md, checkboxSize: 14 },
+  md: { rowHeight: 44, headerHeight: 40, fontSize: defaultTypography.sizes.sm.fontSize, headerFontSize: 12, paddingX: defaultSpacing.lg, checkboxSize: 16 },
+  lg: { rowHeight: 52, headerHeight: 48, fontSize: defaultTypography.sizes.sm.fontSize, headerFontSize: 13, paddingX: defaultSpacing.xl, checkboxSize: 18 },
 };
 
 // ---------------------------------------------------------------------------

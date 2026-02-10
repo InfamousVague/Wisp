@@ -67,7 +67,7 @@ export const CheckboxGroup = forwardRef<View, CheckboxGroupProps>(function Check
 
   const labelStyle = useMemo<TextStyle>(
     () => ({
-      fontSize: 14,
+      fontSize: defaultTypography.sizes.sm.fontSize,
       fontWeight: defaultTypography.weights.semibold,
       color: themeColors.text.primary,
     }),
@@ -76,7 +76,7 @@ export const CheckboxGroup = forwardRef<View, CheckboxGroupProps>(function Check
 
   const descriptionStyle = useMemo<TextStyle>(
     () => ({
-      fontSize: 13,
+      fontSize: defaultTypography.sizes.sm.fontSize,
       color: themeColors.text.secondary,
       marginTop: defaultSpacing['2xs'],
     }),
@@ -85,7 +85,7 @@ export const CheckboxGroup = forwardRef<View, CheckboxGroupProps>(function Check
 
   const errorStyle = useMemo<TextStyle>(
     () => ({
-      fontSize: 12,
+      fontSize: defaultTypography.sizes.xs.fontSize,
       color: themeColors.status.danger,
       marginTop: defaultSpacing.xs,
     }),

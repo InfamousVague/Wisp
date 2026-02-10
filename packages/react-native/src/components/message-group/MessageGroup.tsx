@@ -54,7 +54,7 @@ export const MessageGroup = forwardRef<View, MessageGroupProps>(function Message
   }), [isOutgoing]);
 
   const senderNameStyle = useMemo<TextStyle>(() => ({
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 18,
     fontWeight: defaultTypography.weights.semibold,
     color: themeColors.text.secondary,
@@ -82,7 +82,7 @@ export const MessageGroup = forwardRef<View, MessageGroupProps>(function Message
   }), [isOutgoing]);
 
   const timestampStyle = useMemo<TextStyle>(() => ({
-    fontSize: 11,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     lineHeight: 14,
     color: themeColors.text.muted,
   }), [themeColors]);

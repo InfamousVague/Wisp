@@ -162,7 +162,7 @@ export function buildCoachmarkTitleStyle(
   textColor: string,
 ): CSSStyleObject {
   return {
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1.43,
     color: textColor,
@@ -181,7 +181,7 @@ export function buildCoachmarkDescriptionStyle(
   descriptionColor: string,
 ): CSSStyleObject {
   return {
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.46,
     color: descriptionColor,
@@ -220,7 +220,7 @@ export function buildCoachmarkDismissButtonStyle(
     display: 'inline-flex',
     alignItems: 'center',
     padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
     borderRadius: defaultRadii.md,
@@ -246,7 +246,7 @@ export function buildCoachmarkActionButtonStyle(
     display: 'inline-flex',
     alignItems: 'center',
     padding: `${defaultSpacing.sm}px ${defaultSpacing.lg}px`,
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
     borderRadius: defaultRadii.md,

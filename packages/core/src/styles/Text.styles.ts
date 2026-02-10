@@ -6,7 +6,7 @@ import type { TextSize } from '../tokens/shared';
 import type { FontWeightKey, FontFamilyKey, SemanticColor } from '../tokens/shared';
 import { fontWeightValues, fontFamilyStacks, resolveSemanticColor } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
-import { defaultRadii } from '../theme/create-theme';
+import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size -> font-size + line-height map
@@ -40,14 +40,14 @@ export interface SizeConfig {
  * sizes (`display-xs` through `display-2xl`).
  */
 export const sizeMap: Record<TextSize, SizeConfig> = {
-  xs:            { fontSize: 12, lineHeight: 18, iconSize: 14, iconGap: 4, skeletonHeight: 14 },
-  sm:            { fontSize: 14, lineHeight: 20, iconSize: 14, iconGap: 6, skeletonHeight: 16 },
-  md:            { fontSize: 16, lineHeight: 24, iconSize: 16, iconGap: 6, skeletonHeight: 18 },
-  lg:            { fontSize: 18, lineHeight: 28, iconSize: 18, iconGap: 8, skeletonHeight: 20 },
-  xl:            { fontSize: 20, lineHeight: 30, iconSize: 20, iconGap: 8, skeletonHeight: 22 },
-  'display-xs':  { fontSize: 24, lineHeight: 32, iconSize: 20, iconGap: 8, skeletonHeight: 26 },
-  'display-sm':  { fontSize: 30, lineHeight: 38, iconSize: 24, iconGap: 10, skeletonHeight: 32 },
-  'display-md':  { fontSize: 36, lineHeight: 44, iconSize: 24, iconGap: 10, skeletonHeight: 38 },
+  xs:            { fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 18, iconSize: 14, iconGap: 4, skeletonHeight: 14 },
+  sm:            { fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 20, iconSize: 14, iconGap: 6, skeletonHeight: 16 },
+  md:            { fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 24, iconSize: 16, iconGap: 6, skeletonHeight: 18 },
+  lg:            { fontSize: defaultTypography.sizes.lg.fontSize, lineHeight: 28, iconSize: 18, iconGap: 8, skeletonHeight: 20 },
+  xl:            { fontSize: defaultTypography.sizes.xl.fontSize, lineHeight: 30, iconSize: 20, iconGap: 8, skeletonHeight: 22 },
+  'display-xs':  { fontSize: defaultTypography.sizes['2xl'].fontSize, lineHeight: 32, iconSize: 20, iconGap: 8, skeletonHeight: 26 },
+  'display-sm':  { fontSize: defaultTypography.sizes['3xl'].fontSize, lineHeight: 38, iconSize: 24, iconGap: 10, skeletonHeight: 32 },
+  'display-md':  { fontSize: defaultTypography.sizes['4xl'].fontSize, lineHeight: 44, iconSize: 24, iconGap: 10, skeletonHeight: 38 },
   'display-lg':  { fontSize: 48, lineHeight: 60, iconSize: 28, iconGap: 12, skeletonHeight: 50 },
   'display-xl':  { fontSize: 60, lineHeight: 72, iconSize: 32, iconGap: 12, skeletonHeight: 62 },
   'display-2xl': { fontSize: 72, lineHeight: 90, iconSize: 36, iconGap: 14, skeletonHeight: 74 },

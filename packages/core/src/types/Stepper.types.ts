@@ -2,7 +2,7 @@
  * @module Stepper
  */
 import type React from 'react';
-import { defaultRadii } from '../theme/create-theme';
+import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size subset -- Stepper supports sm | md | lg
@@ -47,9 +47,9 @@ export interface StepperSizeConfig {
  * Provides three size steps from `sm` (28 px tall) through `lg` (40 px tall).
  */
 export const stepperSizeMap: Record<StepperSize, StepperSizeConfig> = {
-  sm: { height: 28, buttonWidth: 28, fontSize: 13, iconSize: 14, borderRadius: defaultRadii.md, gap: 0 },
-  md: { height: 34, buttonWidth: 34, fontSize: 14, iconSize: 16, borderRadius: defaultRadii.md, gap: 0 },
-  lg: { height: 40, buttonWidth: 40, fontSize: 16, iconSize: 18, borderRadius: defaultRadii.md, gap: 0 },
+  sm: { height: 28, buttonWidth: 28, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 14, borderRadius: defaultRadii.md, gap: 0 },
+  md: { height: 34, buttonWidth: 34, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 16, borderRadius: defaultRadii.md, gap: 0 },
+  lg: { height: 40, buttonWidth: 40, fontSize: defaultTypography.sizes.base.fontSize, iconSize: 18, borderRadius: defaultRadii.md, gap: 0 },
 };
 
 // ---------------------------------------------------------------------------

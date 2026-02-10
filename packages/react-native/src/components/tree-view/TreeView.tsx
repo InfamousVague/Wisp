@@ -5,12 +5,12 @@ import Svg, { Polyline } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
 import { Collapse } from '../../layouts/collapse';
 import type { ThemeColors } from '@wisp-ui/core/theme/types';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 const sizeMap = {
-  sm: { fontSize: 12, lineHeight: 18, iconSize: 14, indent: 16, itemHeight: 28, gap: defaultSpacing['2xs'] },
-  md: { fontSize: 13, lineHeight: 20, iconSize: 16, indent: 20, itemHeight: 32, gap: defaultSpacing['2xs'] },
-  lg: { fontSize: 14, lineHeight: 22, iconSize: 18, indent: 24, itemHeight: 36, gap: defaultSpacing.xs },
+  sm: { fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 18, iconSize: 14, indent: 16, itemHeight: 28, gap: defaultSpacing['2xs'] },
+  md: { fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 20, iconSize: 16, indent: 20, itemHeight: 32, gap: defaultSpacing['2xs'] },
+  lg: { fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 22, iconSize: 18, indent: 24, itemHeight: 36, gap: defaultSpacing.xs },
 } as const;
 
 type TreeViewSize = keyof typeof sizeMap;

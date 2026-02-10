@@ -1,5 +1,5 @@
 import type React from 'react';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Kbd Sizes
@@ -37,9 +37,9 @@ export interface KbdSizeConfig {
  * Maps each {@link KbdSize} to its corresponding {@link KbdSizeConfig}.
  */
 export const kbdSizeMap: Record<KbdSize, KbdSizeConfig> = {
-  sm: { fontSize: 11, paddingX: defaultSpacing.xs, paddingY: defaultSpacing['2xs'], borderRadius: defaultRadii.sm, minWidth: 18, gap: defaultSpacing['2xs'] },
-  md: { fontSize: 12, paddingX: defaultSpacing.sm, paddingY: defaultSpacing['2xs'], borderRadius: defaultRadii.sm, minWidth: 22, gap: defaultSpacing.xs },
-  lg: { fontSize: 14, paddingX: defaultSpacing.sm, paddingY: defaultSpacing.xs, borderRadius: defaultRadii.md, minWidth: 26, gap: defaultSpacing.xs },
+  sm: { fontSize: defaultTypography.sizes.xs.fontSize, paddingX: defaultSpacing.xs, paddingY: defaultSpacing['2xs'], borderRadius: defaultRadii.sm, minWidth: 18, gap: defaultSpacing['2xs'] },
+  md: { fontSize: defaultTypography.sizes.xs.fontSize, paddingX: defaultSpacing.sm, paddingY: defaultSpacing['2xs'], borderRadius: defaultRadii.sm, minWidth: 22, gap: defaultSpacing.xs },
+  lg: { fontSize: defaultTypography.sizes.sm.fontSize, paddingX: defaultSpacing.sm, paddingY: defaultSpacing.xs, borderRadius: defaultRadii.md, minWidth: 26, gap: defaultSpacing.xs },
 };
 
 // ---------------------------------------------------------------------------

@@ -5,7 +5,7 @@
  */
 
 import type React from 'react';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant
@@ -46,7 +46,7 @@ export const mediaPlayerSizeMap: Record<MediaPlayerSize, MediaPlayerSizeConfig> 
   sm: {
     controlBarHeight: 36,
     iconSize: 14,
-    fontSize: 11,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     trackHeight: 3,
     thumbSize: 10,
     padding: defaultSpacing.sm,
@@ -57,7 +57,7 @@ export const mediaPlayerSizeMap: Record<MediaPlayerSize, MediaPlayerSizeConfig> 
   md: {
     controlBarHeight: 44,
     iconSize: 18,
-    fontSize: 12,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     trackHeight: 4,
     thumbSize: 12,
     padding: defaultSpacing.md,
@@ -68,7 +68,7 @@ export const mediaPlayerSizeMap: Record<MediaPlayerSize, MediaPlayerSizeConfig> 
   lg: {
     controlBarHeight: 52,
     iconSize: 22,
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     trackHeight: 5,
     thumbSize: 14,
     padding: defaultSpacing.lg,

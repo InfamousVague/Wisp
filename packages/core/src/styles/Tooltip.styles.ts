@@ -84,7 +84,7 @@ export function buildTooltipStyle(
     backgroundColor: colors.bg,
     color: colors.text,
     fontFamily: fontFamilyStacks.sans,
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.4,
     fontWeight: defaultTypography.weights.medium,
     whiteSpace: 'pre-wrap',

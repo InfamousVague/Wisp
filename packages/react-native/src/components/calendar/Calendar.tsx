@@ -7,9 +7,9 @@ import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/t
 
 type CalendarSize = 'sm' | 'md' | 'lg';
 const calendarSizeMap: Record<CalendarSize, { cellSize: number; fontSize: number; headerFontSize: number; gap: number; padding: number }> = {
-  sm: { cellSize: 28, fontSize: 12, headerFontSize: 13, gap: defaultSpacing['2xs'], padding: defaultSpacing.sm },
-  md: { cellSize: 36, fontSize: 14, headerFontSize: 14, gap: defaultSpacing.xs, padding: defaultSpacing.md },
-  lg: { cellSize: 44, fontSize: 16, headerFontSize: 16, gap: defaultSpacing.xs, padding: defaultSpacing.lg },
+  sm: { cellSize: 28, fontSize: defaultTypography.sizes.xs.fontSize, headerFontSize: 13, gap: defaultSpacing['2xs'], padding: defaultSpacing.sm },
+  md: { cellSize: 36, fontSize: defaultTypography.sizes.sm.fontSize, headerFontSize: 14, gap: defaultSpacing.xs, padding: defaultSpacing.md },
+  lg: { cellSize: 44, fontSize: defaultTypography.sizes.base.fontSize, headerFontSize: 16, gap: defaultSpacing.xs, padding: defaultSpacing.lg },
 };
 
 export interface CalendarProps {

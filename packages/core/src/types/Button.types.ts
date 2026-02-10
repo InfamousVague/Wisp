@@ -3,7 +3,7 @@
  */
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
-import { defaultSpacing } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // Re-export shared tokens
 export { componentSizes as buttonSizes } from '../tokens/shared';
@@ -116,11 +116,11 @@ export interface ButtonSizeConfig {
  * Provides five size steps from `xs` (28 px tall) through `xl` (48 px tall).
  */
 export const buttonSizeMap: Record<ComponentSize, ButtonSizeConfig> = {
-  xs: { height: 28, paddingX: defaultSpacing.md, paddingY: defaultSpacing.xs, fontSize: 12, lineHeight: 18, iconSize: 14, gap: defaultSpacing.xs, iconOnlyPadding: 6 },
-  sm: { height: 32, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: 14, lineHeight: 20, iconSize: 16, gap: defaultSpacing.sm, iconOnlyPadding: 7 },
-  md: { height: 36, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.sm, fontSize: 14, lineHeight: 20, iconSize: 16, gap: defaultSpacing.sm, iconOnlyPadding: 9 },
-  lg: { height: 40, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: 16, lineHeight: 24, iconSize: 20, gap: defaultSpacing.sm, iconOnlyPadding: 9 },
-  xl: { height: 48, paddingX: defaultSpacing.xl, paddingY: defaultSpacing.md, fontSize: 16, lineHeight: 24, iconSize: 20, gap: defaultSpacing.sm, iconOnlyPadding: 13 },
+  xs: { height: 28, paddingX: defaultSpacing.md, paddingY: defaultSpacing.xs, fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 18, iconSize: 14, gap: defaultSpacing.xs, iconOnlyPadding: 6 },
+  sm: { height: 32, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 20, iconSize: 16, gap: defaultSpacing.sm, iconOnlyPadding: 7 },
+  md: { height: 36, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.sm, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 20, iconSize: 16, gap: defaultSpacing.sm, iconOnlyPadding: 9 },
+  lg: { height: 40, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 24, iconSize: 20, gap: defaultSpacing.sm, iconOnlyPadding: 9 },
+  xl: { height: 48, paddingX: defaultSpacing.xl, paddingY: defaultSpacing.md, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 24, iconSize: 20, gap: defaultSpacing.sm, iconOnlyPadding: 13 },
 };
 
 // ---------------------------------------------------------------------------

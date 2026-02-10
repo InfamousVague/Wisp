@@ -5,7 +5,7 @@
  */
 
 import type React from 'react';
-import { defaultSpacing } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Status
@@ -31,10 +31,10 @@ export interface ReadReceiptSizeConfig {
 }
 
 export const readReceiptSizeMap: Record<ReadReceiptSize, ReadReceiptSizeConfig> = {
-  xs: { iconSize: 12, fontSize: 10, gap: defaultSpacing['2xs'] },
-  sm: { iconSize: 14, fontSize: 11, gap: defaultSpacing.xs },
-  md: { iconSize: 16, fontSize: 12, gap: defaultSpacing.xs },
-  lg: { iconSize: 20, fontSize: 14, gap: defaultSpacing.sm },
+  xs: { iconSize: 12, fontSize: defaultTypography.sizes['2xs'].fontSize, gap: defaultSpacing['2xs'] },
+  sm: { iconSize: 14, fontSize: defaultTypography.sizes.xs.fontSize, gap: defaultSpacing.xs },
+  md: { iconSize: 16, fontSize: defaultTypography.sizes.xs.fontSize, gap: defaultSpacing.xs },
+  lg: { iconSize: 20, fontSize: defaultTypography.sizes.sm.fontSize, gap: defaultSpacing.sm },
 };
 
 // ---------------------------------------------------------------------------

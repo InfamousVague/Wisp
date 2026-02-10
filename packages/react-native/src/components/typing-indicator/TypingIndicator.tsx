@@ -207,7 +207,7 @@ export const TypingIndicator = forwardRef<View, TypingIndicatorProps>(function T
   }), [isOutgoing]);
 
   const senderNameStyle = useMemo<TextStyle>(() => ({
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 18,
     fontWeight: defaultTypography.weights.semibold,
     color: themeColors.text.secondary,

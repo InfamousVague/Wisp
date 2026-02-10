@@ -1,5 +1,5 @@
 import type React from 'react';
-import { defaultSpacing } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 /** Describes a single selectable segment within a {@link SegmentedControl}. */
 export interface SegmentedControlOption {
@@ -34,9 +34,9 @@ export interface SegmentedControlSizeConfig {
  * {@link SegmentedControlSizeConfig}.
  */
 export const segmentedControlSizeMap: Record<SegmentedControlSize, SegmentedControlSizeConfig> = {
-  sm: { height: 28, fontSize: 12, paddingX: defaultSpacing.md },
-  md: { height: 34, fontSize: 14, paddingX: defaultSpacing.lg },
-  lg: { height: 40, fontSize: 15, paddingX: defaultSpacing.lg },
+  sm: { height: 28, fontSize: defaultTypography.sizes.xs.fontSize, paddingX: defaultSpacing.md },
+  md: { height: 34, fontSize: defaultTypography.sizes.sm.fontSize, paddingX: defaultSpacing.lg },
+  lg: { height: 40, fontSize: defaultTypography.sizes.base.fontSize, paddingX: defaultSpacing.lg },
 };
 
 /**

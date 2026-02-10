@@ -2,7 +2,7 @@
  * @module PingMeter
  */
 import type React from 'react';
-import { defaultSpacing } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Sizes
@@ -64,9 +64,9 @@ export interface PingMeterSizeConfig {
  * Pre-defined for `sm`, `md`, and `lg`.
  */
 export const pingMeterSizeMap: Record<PingMeterSize, PingMeterSizeConfig> = {
-  sm: { dotSize: 6, barWidth: 3, barHeight: 12, barGap: 2, fontSize: 11, gap: defaultSpacing.sm },
-  md: { dotSize: 8, barWidth: 4, barHeight: 16, barGap: 2, fontSize: 12, gap: defaultSpacing.sm },
-  lg: { dotSize: 10, barWidth: 5, barHeight: 20, barGap: 3, fontSize: 14, gap: defaultSpacing.md },
+  sm: { dotSize: 6, barWidth: 3, barHeight: 12, barGap: 2, fontSize: defaultTypography.sizes.xs.fontSize, gap: defaultSpacing.sm },
+  md: { dotSize: 8, barWidth: 4, barHeight: 16, barGap: 2, fontSize: defaultTypography.sizes.xs.fontSize, gap: defaultSpacing.sm },
+  lg: { dotSize: 10, barWidth: 5, barHeight: 20, barGap: 3, fontSize: defaultTypography.sizes.sm.fontSize, gap: defaultSpacing.md },
 };
 
 // ---------------------------------------------------------------------------

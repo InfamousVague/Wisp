@@ -1,5 +1,5 @@
 import type React from 'react';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Chip Sizes
@@ -62,7 +62,7 @@ export const chipSizeMap: Record<ChipSize, ChipSizeConfig> = {
   sm: {
     paddingX: defaultSpacing.sm,
     paddingY: defaultSpacing['2xs'],
-    fontSize: 12,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     lineHeight: 1.33,
     borderRadius: defaultRadii.sm,
     gap: defaultSpacing.xs,
@@ -73,7 +73,7 @@ export const chipSizeMap: Record<ChipSize, ChipSizeConfig> = {
   md: {
     paddingX: defaultSpacing.md,
     paddingY: defaultSpacing.xs,
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.38,
     borderRadius: defaultRadii.md,
     gap: defaultSpacing.sm,
@@ -84,7 +84,7 @@ export const chipSizeMap: Record<ChipSize, ChipSizeConfig> = {
   lg: {
     paddingX: defaultSpacing.md,
     paddingY: defaultSpacing.sm,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.43,
     borderRadius: defaultRadii.md,
     gap: defaultSpacing.sm,

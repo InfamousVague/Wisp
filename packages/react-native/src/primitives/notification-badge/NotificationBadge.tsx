@@ -121,7 +121,7 @@ export const NotificationBadge = forwardRef<View, NotificationBadgeProps>(
     }, [colors, dot]);
 
     const textStyle = useMemo<TextStyle>(() => ({
-      fontSize: 11,
+      fontSize: defaultTypography.sizes.xs.fontSize,
       fontWeight: defaultTypography.weights.semibold,
       color: colors.text,
       lineHeight: 14,

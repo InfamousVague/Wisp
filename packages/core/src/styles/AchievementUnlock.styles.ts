@@ -87,7 +87,7 @@ export function buildAchievementUnlockTitleStyle(
   themeColors: ThemeColors,
 ): CSSStyleObject {
   return {
-    fontSize: 18,
+    fontSize: defaultTypography.sizes.lg.fontSize,
     fontWeight: defaultTypography.weights.bold,
     lineHeight: 1.3,
     color: themeColors.text.primary,
@@ -104,7 +104,7 @@ export function buildAchievementUnlockDescriptionStyle(
   themeColors: ThemeColors,
 ): CSSStyleObject {
   return {
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.5,
     color: themeColors.text.secondary,
@@ -121,7 +121,7 @@ export function buildAchievementUnlockRarityStyle(
   rarityColor: string,
 ): CSSStyleObject {
   return {
-    fontSize: 11,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     fontWeight: defaultTypography.weights.bold,
     letterSpacing: '0.08em',
     textTransform: 'uppercase',
@@ -167,7 +167,7 @@ export function buildAchievementUnlockActionStyle(
     display: 'inline-flex',
     alignItems: 'center',
     padding: `${defaultSpacing.sm}px ${defaultSpacing.xl}px`,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1,
     borderRadius: defaultRadii.md,

@@ -122,19 +122,19 @@ export const AchievementUnlock = forwardRef<View, AchievementUnlockProps>(
     }), [rarityConfig]);
 
     const titleStyle = useMemo<TextStyle>(() => ({
-      fontSize: 14,
+      fontSize: defaultTypography.sizes.sm.fontSize,
       fontWeight: defaultTypography.weights.semibold,
       color: themeColors.text.primary,
     }), [themeColors]);
 
     const descStyle = useMemo<TextStyle>(() => ({
-      fontSize: 12,
+      fontSize: defaultTypography.sizes.xs.fontSize,
       color: themeColors.text.muted,
       marginTop: defaultSpacing['2xs'],
     }), [themeColors]);
 
     const unlockLabel = useMemo<TextStyle>(() => ({
-      fontSize: 11,
+      fontSize: defaultTypography.sizes.xs.fontSize,
       fontWeight: defaultTypography.weights.bold,
       color: rarityConfig.color,
       textTransform: 'uppercase',
@@ -142,7 +142,7 @@ export const AchievementUnlock = forwardRef<View, AchievementUnlockProps>(
     }), [rarityConfig]);
 
     const actionStyle = useMemo<TextStyle>(() => ({
-      fontSize: 13,
+      fontSize: defaultTypography.sizes.sm.fontSize,
       fontWeight: defaultTypography.weights.semibold,
       color: themeColors.accent.primary,
     }), [themeColors]);
@@ -164,7 +164,7 @@ export const AchievementUnlock = forwardRef<View, AchievementUnlockProps>(
           {IconComponent ? (
             <IconComponent size={24} color={rarityConfig.color} strokeWidth={2} />
           ) : (
-            <Text style={{ fontSize: 20 }}>{'\u{1F3C6}'}</Text>
+            <Text style={{ fontSize: defaultTypography.sizes.xl.fontSize }}>{'\u{1F3C6}'}</Text>
           )}
         </View>
 
@@ -180,7 +180,7 @@ export const AchievementUnlock = forwardRef<View, AchievementUnlockProps>(
           </Pressable>
         ) : (
           <Pressable onPress={onClose}>
-            <Text style={{ fontSize: 16, color: themeColors.text.muted }}>{'\u{2715}'}</Text>
+            <Text style={{ fontSize: defaultTypography.sizes.base.fontSize, color: themeColors.text.muted }}>{'\u{2715}'}</Text>
           </Pressable>
         )}
       </Animated.View>

@@ -2,7 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ChatBubbleAlignment, ChatBubbleVariant } from '../types/ChatBubble.types';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant -> colors (theme-aware)
@@ -78,8 +78,8 @@ export function buildChatBubbleStyle(
     border: `1px solid ${colors.border}`,
     color: colors.text,
     fontFamily: fontFamilyStacks.sans,
-    fontSize: 14,
-    lineHeight: '20px',
+    fontSize: defaultTypography.sizes.sm.fontSize,
+    lineHeight: defaultTypography.sizes.sm.lineHeight,
     wordWrap: 'break-word',
     overflowWrap: 'break-word',
     boxSizing: 'border-box',
@@ -112,8 +112,8 @@ export function buildFooterStyle(align: ChatBubbleAlignment): CSSStyleObject {
  */
 export function buildTimestampStyle(colors: ChatBubbleColors): CSSStyleObject {
   return {
-    fontSize: 11,
-    lineHeight: '14px',
+    fontSize: defaultTypography.sizes.xs.fontSize,
+    lineHeight: defaultTypography.sizes['2xs'].lineHeight,
     color: colors.timestamp,
     fontFamily: fontFamilyStacks.sans,
     whiteSpace: 'nowrap',
@@ -176,8 +176,8 @@ export function buildReactionChipStyle(
     gap: defaultSpacing.xs,
     padding: `${defaultSpacing['2xs']}px ${defaultSpacing.sm}px`,
     borderRadius: defaultRadii.xl,
-    fontSize: 12,
-    lineHeight: '18px',
+    fontSize: defaultTypography.sizes.xs.fontSize,
+    lineHeight: defaultTypography.sizes.xs.lineHeight,
     fontFamily: fontFamilyStacks.sans,
     border: `1px solid ${reacted ? themeColors.brand.border : themeColors.border.subtle}`,
     backgroundColor: chipBg,

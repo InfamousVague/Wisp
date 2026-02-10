@@ -2,16 +2,16 @@ import React, { forwardRef, useMemo, useEffect, useRef } from 'react';
 import { View, Animated, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { useThemeColors } from '../../providers';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 type PingMeterSize = 'sm' | 'md' | 'lg';
 type PingMeterVariant = 'dot' | 'bars' | 'full';
 type PingQuality = 'excellent' | 'good' | 'fair' | 'poor';
 
 const sizeMap: Record<PingMeterSize, { dotSize: number; barWidth: number; barHeight: number; barGap: number; fontSize: number; gap: number }> = {
-  sm: { dotSize: 6, barWidth: 3, barHeight: 12, barGap: 2, fontSize: 11, gap: defaultSpacing.sm },
-  md: { dotSize: 8, barWidth: 4, barHeight: 16, barGap: 2, fontSize: 12, gap: defaultSpacing.sm },
-  lg: { dotSize: 10, barWidth: 5, barHeight: 20, barGap: 3, fontSize: 14, gap: defaultSpacing.md },
+  sm: { dotSize: 6, barWidth: 3, barHeight: 12, barGap: 2, fontSize: defaultTypography.sizes.xs.fontSize, gap: defaultSpacing.sm },
+  md: { dotSize: 8, barWidth: 4, barHeight: 16, barGap: 2, fontSize: defaultTypography.sizes.xs.fontSize, gap: defaultSpacing.sm },
+  lg: { dotSize: 10, barWidth: 5, barHeight: 20, barGap: 3, fontSize: defaultTypography.sizes.sm.fontSize, gap: defaultSpacing.md },
 };
 
 const TOTAL_BARS = 4;

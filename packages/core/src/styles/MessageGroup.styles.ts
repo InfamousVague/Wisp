@@ -33,8 +33,8 @@ export function buildMessageGroupStyle(align: ChatBubbleAlignment): CSSStyleObje
  */
 export function buildSenderNameStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
-    fontSize: 13,
-    lineHeight: '18px',
+    fontSize: defaultTypography.sizes.sm.fontSize,
+    lineHeight: defaultTypography.sizes.xs.lineHeight,
     fontWeight: defaultTypography.weights.semibold,
     fontFamily: fontFamilyStacks.sans,
     color: themeColors.text.secondary,
@@ -108,8 +108,8 @@ export function buildGroupFooterStyle(align: ChatBubbleAlignment): CSSStyleObjec
  */
 export function buildGroupTimestampStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
-    fontSize: 11,
-    lineHeight: '14px',
+    fontSize: defaultTypography.sizes.xs.fontSize,
+    lineHeight: defaultTypography.sizes['2xs'].lineHeight,
     color: themeColors.text.muted,
     fontFamily: fontFamilyStacks.sans,
     whiteSpace: 'nowrap',

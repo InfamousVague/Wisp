@@ -315,7 +315,7 @@ export function buildOptionStyle(
     gap: defaultSpacing.sm,
     padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
     fontFamily: fontFamilyStacks.sans,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.43,
     color: isDisabled ? themeColors.text.muted : themeColors.text.onRaised,
     backgroundColor: isHighlighted
@@ -349,7 +349,7 @@ export function buildEmptyStyle(themeColors: ThemeColors): CSSStyleObject {
     justifyContent: 'center',
     padding: `${defaultSpacing.lg}px ${defaultSpacing.md}px`,
     fontFamily: fontFamilyStacks.sans,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.43,
     color: themeColors.text.muted,
     userSelect: 'none',

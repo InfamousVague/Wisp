@@ -79,19 +79,19 @@ export const AchievementCard = forwardRef<View, AchievementCardProps>(
     }), [isUnlocked, rarityConfig, themeColors]);
 
     const titleStyle = useMemo<TextStyle>(() => ({
-      fontSize: 15,
+      fontSize: defaultTypography.sizes.base.fontSize,
       fontWeight: defaultTypography.weights.semibold,
       color: themeColors.text.primary,
     }), [themeColors]);
 
     const descStyle = useMemo<TextStyle>(() => ({
-      fontSize: 13,
+      fontSize: defaultTypography.sizes.sm.fontSize,
       color: themeColors.text.muted,
       marginTop: defaultSpacing['2xs'],
     }), [themeColors]);
 
     const rarityStyle = useMemo<TextStyle>(() => ({
-      fontSize: 11,
+      fontSize: defaultTypography.sizes.xs.fontSize,
       fontWeight: defaultTypography.weights.semibold,
       color: rarityConfig.color,
       marginTop: defaultSpacing.xs,
@@ -113,7 +113,7 @@ export const AchievementCard = forwardRef<View, AchievementCardProps>(
     }), [progress, rarityConfig]);
 
     const unlockedAtStyle = useMemo<TextStyle>(() => ({
-      fontSize: 11,
+      fontSize: defaultTypography.sizes.xs.fontSize,
       color: themeColors.text.muted,
       marginTop: defaultSpacing.sm,
     }), [themeColors]);
@@ -127,7 +127,7 @@ export const AchievementCard = forwardRef<View, AchievementCardProps>(
             {IconComponent ? (
               <IconComponent size={24} color={iconColor} strokeWidth={2} />
             ) : (
-              <Text style={{ fontSize: 20 }}>{isLocked ? '\u{1F512}' : '\u{1F3C6}'}</Text>
+              <Text style={{ fontSize: defaultTypography.sizes.xl.fontSize }}>{isLocked ? '\u{1F512}' : '\u{1F3C6}'}</Text>
             )}
           </View>
           <View style={{ flex: 1 }}>

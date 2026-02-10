@@ -3,7 +3,7 @@ import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path, Polyline, Line } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface FileUploaderProps {
   accept?: string;
@@ -56,11 +56,11 @@ export const FileUploader = forwardRef<View, FileUploaderProps>(function FileUpl
       accessibilityRole="button" accessibilityLabel="Pick file"
       style={[dropzoneStyle, userStyle]}>
       <DisplayIcon size={22} color={tc.text.secondary} strokeWidth={2} />
-      <RNText style={{ fontSize: 14, color: tc.text.primary, textAlign: 'center' } as TextStyle}>
+      <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: tc.text.primary, textAlign: 'center' } as TextStyle}>
         {title || 'Tap to select a file'}
       </RNText>
       {descText ? (
-        <RNText style={{ fontSize: 12, color: tc.text.muted, textAlign: 'center' } as TextStyle}>
+        <RNText style={{ fontSize: defaultTypography.sizes.xs.fontSize, color: tc.text.muted, textAlign: 'center' } as TextStyle}>
           {descText}
         </RNText>
       ) : null}

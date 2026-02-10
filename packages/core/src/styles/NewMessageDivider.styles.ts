@@ -51,8 +51,8 @@ export function buildLineStyle(color: string): CSSStyleObject {
  */
 export function buildLabelStyle(color: string): CSSStyleObject {
   return {
-    fontSize: 12,
-    lineHeight: '16px',
+    fontSize: defaultTypography.sizes.xs.fontSize,
+    lineHeight: defaultTypography.sizes.xs.lineHeight,
     fontWeight: defaultTypography.weights.semibold,
     fontFamily: fontFamilyStacks.sans,
     color,

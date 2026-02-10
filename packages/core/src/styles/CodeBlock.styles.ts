@@ -24,7 +24,7 @@ export function buildCodeBlockWrapperStyle(
     borderRadius: defaultRadii.md,
     overflow: 'hidden',
     fontFamily: fontFamilyStacks.mono,
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.6,
   };
 
@@ -62,7 +62,7 @@ export function buildCodeBlockHeaderStyle(
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
-    fontSize: 11,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     fontWeight: defaultTypography.weights.medium,
     fontFamily: fontFamilyStacks.sans,
     color: variant === 'outlined'
@@ -169,7 +169,7 @@ export function buildCodeBlockCopyButtonStyle(
     padding: `${defaultSpacing.xs}px ${defaultSpacing.sm}px`,
     border: 'none',
     borderRadius: defaultRadii.sm,
-    fontSize: 11,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     fontFamily: fontFamilyStacks.sans,
     fontWeight: defaultTypography.weights.medium,
     cursor: 'pointer',

@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from 'react';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Locale Picker Size
@@ -55,9 +55,9 @@ export interface LocalePickerSizeConfig {
  * {@link LocalePickerSizeConfig} used for layout and typography calculations.
  */
 export const localePickerSizeMap: Record<LocalePickerSize, LocalePickerSizeConfig> = {
-  sm: { inputHeight: 28, fontSize: 12, iconSize: 14, borderRadius: defaultRadii.md, paddingX: defaultSpacing.md, optionHeight: 32, searchHeight: 28 },
-  md: { inputHeight: 34, fontSize: 13, iconSize: 16, borderRadius: defaultRadii.md, paddingX: defaultSpacing.md, optionHeight: 36, searchHeight: 34 },
-  lg: { inputHeight: 40, fontSize: 14, iconSize: 18, borderRadius: defaultRadii.md, paddingX: defaultSpacing.lg, optionHeight: 40, searchHeight: 40 },
+  sm: { inputHeight: 28, fontSize: defaultTypography.sizes.xs.fontSize, iconSize: 14, borderRadius: defaultRadii.md, paddingX: defaultSpacing.md, optionHeight: 32, searchHeight: 28 },
+  md: { inputHeight: 34, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 16, borderRadius: defaultRadii.md, paddingX: defaultSpacing.md, optionHeight: 36, searchHeight: 34 },
+  lg: { inputHeight: 40, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 18, borderRadius: defaultRadii.md, paddingX: defaultSpacing.lg, optionHeight: 40, searchHeight: 40 },
 };
 
 // ---------------------------------------------------------------------------

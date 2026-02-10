@@ -5,7 +5,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { StepperSizeConfig } from '../types/Stepper.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultTypography } from '../theme/create-theme';
+import { defaultTypography, defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container style (the bordered row with [- button] [value] [+ button])
@@ -121,7 +121,7 @@ export function buildStepperValueStyle(
 
     // Box model
     boxSizing: 'border-box',
-    padding: '0 8px',
+    padding: `0 ${defaultSpacing.sm}px`,
   };
 }
 

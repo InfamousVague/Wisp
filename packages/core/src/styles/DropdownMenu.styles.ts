@@ -78,14 +78,14 @@ export function buildItemStyle(opts: {
     display: "flex",
     alignItems: "center",
     width: "100%",
-    padding: "8px 12px",
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
     margin: 0,
     border: "none",
     borderRadius: defaultRadii.sm,
     backgroundColor,
     color,
-    fontSize: 14,
-    lineHeight: "20px",
+    fontSize: defaultTypography.sizes.sm.fontSize,
+    lineHeight: defaultTypography.sizes.sm.lineHeight,
     fontFamily: fontFamilyStacks.sans,
     fontWeight: defaultTypography.weights.regular,
     cursor: disabled ? "not-allowed" : "pointer",
@@ -128,8 +128,8 @@ export function buildShortcutStyle(
   return {
     marginLeft: "auto",
     paddingLeft: defaultSpacing.lg,
-    fontSize: 12,
-    lineHeight: "16px",
+    fontSize: defaultTypography.sizes.xs.fontSize,
+    lineHeight: defaultTypography.sizes.xs.lineHeight,
     color: themeColors.text.muted,
     fontFamily: fontFamilyStacks.sans,
     flexShrink: 0,
@@ -147,7 +147,7 @@ export function buildSeparatorStyle(
 ): CSSStyleObject {
   return {
     height: 1,
-    margin: "4px 0",
+    margin: `${defaultSpacing.xs}px 0`,
     backgroundColor: themeColors.border.subtle,
     border: "none",
   };

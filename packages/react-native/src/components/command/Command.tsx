@@ -108,7 +108,7 @@ export function CommandInput({ placeholder = 'Type a command or search...', icon
       <TextInput ref={inputRef} value={search} onChangeText={onSearchChange}
         placeholder={placeholder} placeholderTextColor={tc.text.muted}
         autoCorrect={false} autoCapitalize="none" spellCheck={false}
-        style={{ flex: 1, height: 44, fontSize: 14, color: tc.text.onRaised } as TextStyle} />
+        style={{ flex: 1, height: 44, fontSize: defaultTypography.sizes.sm.fontSize, color: tc.text.onRaised } as TextStyle} />
     </View>
   );
 }
@@ -133,7 +133,7 @@ export function CommandGroup({ heading, children, style: userStyle }: CommandGro
   return (
     <View style={userStyle}>
       {heading && (
-        <RNText style={{ fontSize: 11, fontWeight: defaultTypography.weights.semibold, color: tc.text.muted, paddingHorizontal: defaultSpacing.md, paddingTop: defaultSpacing.sm, paddingBottom: defaultSpacing.xs, textTransform: 'uppercase', letterSpacing: 0.5 } as TextStyle}>{heading}</RNText>
+        <RNText style={{ fontSize: defaultTypography.sizes.xs.fontSize, fontWeight: defaultTypography.weights.semibold, color: tc.text.muted, paddingHorizontal: defaultSpacing.md, paddingTop: defaultSpacing.sm, paddingBottom: defaultSpacing.xs, textTransform: 'uppercase', letterSpacing: 0.5 } as TextStyle}>{heading}</RNText>
       )}
       {children}
     </View>
@@ -172,8 +172,8 @@ export function CommandItem({ value, onSelect: onItemSelect, disabled = false, i
       style={({ pressed }) => [{ flexDirection: 'row', alignItems: 'center', gap: defaultSpacing.sm, paddingVertical: defaultSpacing.sm, paddingHorizontal: defaultSpacing.md, backgroundColor: pressed ? tc.accent.highlight : 'transparent', opacity: disabled ? 0.4 : 1, borderRadius: defaultRadii.md, marginHorizontal: defaultSpacing.xs }, userStyle]}>
       {IconComp && <View style={{ width: 20, alignItems: 'center' }}><IconComp size={18} /></View>}
       <View style={{ flex: 1 }}>
-        <RNText style={{ fontSize: 14, color: tc.text.onRaised } as TextStyle}>{children}</RNText>
-        {description && <RNText style={{ fontSize: 12, color: tc.text.muted, marginTop: defaultSpacing['2xs'] } as TextStyle}>{description}</RNText>}
+        <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: tc.text.onRaised } as TextStyle}>{children}</RNText>
+        {description && <RNText style={{ fontSize: defaultTypography.sizes.xs.fontSize, color: tc.text.muted, marginTop: defaultSpacing['2xs'] } as TextStyle}>{description}</RNText>}
       </View>
     </Pressable>
   );
@@ -194,7 +194,7 @@ export function CommandEmpty({ children, style: userStyle }: CommandEmptyProps) 
   const tc = useThemeColors();
   return (
     <View style={[{ padding: defaultSpacing.xl, alignItems: 'center' }, userStyle]}>
-      <RNText style={{ fontSize: 14, color: tc.text.muted } as TextStyle}>{children || 'No results found.'}</RNText>
+      <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: tc.text.muted } as TextStyle}>{children || 'No results found.'}</RNText>
     </View>
   );
 }

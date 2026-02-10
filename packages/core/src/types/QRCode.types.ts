@@ -1,3 +1,4 @@
+import { defaultTypography } from '../theme/create-theme';
 import type React from 'react';
 
 // ---------------------------------------------------------------------------
@@ -121,10 +122,10 @@ export interface QRCodeSizeConfig {
  * Maps each {@link QRCodeSize} to its {@link QRCodeSizeConfig}.
  */
 export const qrCodeSizeMap: Record<QRCodeSize, QRCodeSizeConfig> = {
-  sm: { dimension: 128, quietZone: 4, fontSize: 10 },
-  md: { dimension: 200, quietZone: 4, fontSize: 12 },
-  lg: { dimension: 300, quietZone: 4, fontSize: 14 },
-  xl: { dimension: 400, quietZone: 4, fontSize: 16 },
+  sm: { dimension: 128, quietZone: 4, fontSize: defaultTypography.sizes['2xs'].fontSize },
+  md: { dimension: 200, quietZone: 4, fontSize: defaultTypography.sizes.xs.fontSize },
+  lg: { dimension: 300, quietZone: 4, fontSize: defaultTypography.sizes.sm.fontSize },
+  xl: { dimension: 400, quietZone: 4, fontSize: defaultTypography.sizes.base.fontSize },
 };
 
 // ---------------------------------------------------------------------------

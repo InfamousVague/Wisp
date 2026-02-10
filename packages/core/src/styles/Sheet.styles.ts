@@ -10,7 +10,7 @@ import type { SheetSize } from '../types/Sheet.types';
 import { sheetSizeMap } from '../types/Sheet.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
-import { defaultRadii } from '../theme/create-theme';
+import { defaultRadii, defaultSpacing } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
@@ -101,7 +101,7 @@ export function buildHandleBarStyle(themeColors: ThemeColors): CSSStyleObject {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '12px 0 4px 0',
+    padding: `${defaultSpacing.md}px 0 ${defaultSpacing.xs}px 0`,
     cursor: 'grab',
     touchAction: 'none',
     userSelect: 'none',

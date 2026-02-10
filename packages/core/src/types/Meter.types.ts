@@ -1,5 +1,5 @@
 import type React from 'react';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Meter Size
@@ -44,9 +44,9 @@ export interface MeterSizeConfig {
  * Provides pre-defined dimension tokens for all three meter sizes.
  */
 export const meterSizeMap: Record<MeterSize, MeterSizeConfig> = {
-  sm: { height: 6, borderRadius: defaultRadii.sm, fontSize: 12, gap: defaultSpacing.sm },
-  md: { height: 8, borderRadius: defaultRadii.sm, fontSize: 13, gap: defaultSpacing.sm },
-  lg: { height: 12, borderRadius: defaultRadii.md, fontSize: 14, gap: defaultSpacing.md },
+  sm: { height: 6, borderRadius: defaultRadii.sm, fontSize: defaultTypography.sizes.xs.fontSize, gap: defaultSpacing.sm },
+  md: { height: 8, borderRadius: defaultRadii.sm, fontSize: defaultTypography.sizes.sm.fontSize, gap: defaultSpacing.sm },
+  lg: { height: 12, borderRadius: defaultRadii.md, fontSize: defaultTypography.sizes.sm.fontSize, gap: defaultSpacing.md },
 };
 
 // ---------------------------------------------------------------------------

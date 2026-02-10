@@ -5,7 +5,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { NotificationBadgeColor } from '../types/NotificationBadge.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultRadii, defaultTypography, defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color → resolved colors
@@ -121,8 +121,8 @@ export function buildNotificationBadgeStyle(
     ...base,
     minWidth: 20,
     height: 20,
-    padding: '0 6px',
-    fontSize: 11,
+    padding: `0 ${defaultSpacing.sm}px`,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     animation: pulse ? 'wisp-notification-badge-pulse 1.5s ease-in-out infinite' : undefined,
   };
 }

@@ -1,5 +1,5 @@
 import type React from 'react';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size
@@ -59,9 +59,9 @@ export interface ColorPickerSizeConfig {
  * the ColorPicker component and its style builders.
  */
 export const colorPickerSizeMap: Record<ColorPickerSize, ColorPickerSizeConfig> = {
-  sm: { swatchSize: 20, inputHeight: 28, fontSize: 12, gap: defaultSpacing.sm, borderRadius: defaultRadii.md, previewSize: 28 },
-  md: { swatchSize: 24, inputHeight: 34, fontSize: 13, gap: defaultSpacing.md, borderRadius: defaultRadii.md, previewSize: 34 },
-  lg: { swatchSize: 28, inputHeight: 40, fontSize: 14, gap: defaultSpacing.md, borderRadius: defaultRadii.md, previewSize: 40 },
+  sm: { swatchSize: 20, inputHeight: 28, fontSize: defaultTypography.sizes.xs.fontSize, gap: defaultSpacing.sm, borderRadius: defaultRadii.md, previewSize: 28 },
+  md: { swatchSize: 24, inputHeight: 34, fontSize: defaultTypography.sizes.sm.fontSize, gap: defaultSpacing.md, borderRadius: defaultRadii.md, previewSize: 34 },
+  lg: { swatchSize: 28, inputHeight: 40, fontSize: defaultTypography.sizes.sm.fontSize, gap: defaultSpacing.md, borderRadius: defaultRadii.md, previewSize: 40 },
 };
 
 // ---------------------------------------------------------------------------

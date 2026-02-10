@@ -7,6 +7,7 @@
  */
 
 import type React from 'react';
+import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Table Size
@@ -33,9 +34,9 @@ export const tableSizePaddingMap: Record<TableSize, { vertical: number; horizont
  * line-height multiplier for table cell text.
  */
 export const tableSizeFontMap: Record<TableSize, { fontSize: number; lineHeight: number }> = {
-  sm: { fontSize: 12, lineHeight: 1.34 },
-  md: { fontSize: 14, lineHeight: 1.43 },
-  lg: { fontSize: 16, lineHeight: 1.5 },
+  sm: { fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 1.34 },
+  md: { fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.43 },
+  lg: { fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 1.5 },
 };
 
 // ---------------------------------------------------------------------------

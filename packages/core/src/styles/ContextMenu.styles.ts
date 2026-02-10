@@ -4,7 +4,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
@@ -46,7 +46,7 @@ export function buildContextMenuItemStyle(
     alignItems: 'center',
     gap: defaultSpacing.sm,
     padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.4,
     fontFamily: fontFamilyStacks.sans,
     color: disabled ? themeColors.text.muted : textColor,
@@ -77,7 +77,7 @@ export function buildContextMenuShortcutStyle(
 ): CSSStyleObject {
   return {
     marginLeft: 'auto',
-    fontSize: 11,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     color: themeColors.accent.mutedRaised,
     fontFamily: fontFamilyStacks.sans,
   };

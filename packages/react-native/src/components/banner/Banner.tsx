@@ -58,7 +58,7 @@ export const Banner = forwardRef<View, BannerProps>(function Banner(
 
   const titleStyle = useMemo<TextStyle>(
     () => ({
-      fontSize: 14,
+      fontSize: defaultTypography.sizes.sm.fontSize,
       fontWeight: defaultTypography.weights.semibold,
       lineHeight: 20,
       color: colors.text,
@@ -68,7 +68,7 @@ export const Banner = forwardRef<View, BannerProps>(function Banner(
 
   const messageStyle = useMemo<TextStyle>(
     () => ({
-      fontSize: 14,
+      fontSize: defaultTypography.sizes.sm.fontSize,
       fontWeight: defaultTypography.weights.regular,
       lineHeight: 21,
       color: colors.text,

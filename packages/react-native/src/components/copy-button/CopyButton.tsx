@@ -3,15 +3,15 @@ import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path, Rect, Polyline } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 type CopyButtonSize = 'sm' | 'md' | 'lg';
 type CopyButtonVariant = 'outline' | 'ghost' | 'minimal';
 
 const sizeMap: Record<CopyButtonSize, { height: number; iconSize: number; fontSize: number; paddingX: number; gap: number }> = {
-  sm: { height: 28, iconSize: 14, fontSize: 12, paddingX: 10, gap: defaultSpacing.xs },
-  md: { height: 32, iconSize: 16, fontSize: 13, paddingX: 12, gap: defaultSpacing.sm },
-  lg: { height: 36, iconSize: 18, fontSize: 14, paddingX: 14, gap: defaultSpacing.sm },
+  sm: { height: 28, iconSize: 14, fontSize: defaultTypography.sizes.xs.fontSize, paddingX: 10, gap: defaultSpacing.xs },
+  md: { height: 32, iconSize: 16, fontSize: defaultTypography.sizes.sm.fontSize, paddingX: 12, gap: defaultSpacing.sm },
+  lg: { height: 36, iconSize: 18, fontSize: defaultTypography.sizes.sm.fontSize, paddingX: 14, gap: defaultSpacing.sm },
 };
 
 function CopyIcon({ size, color }: { size: number; color: string }) {

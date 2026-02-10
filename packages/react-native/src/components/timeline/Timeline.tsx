@@ -5,9 +5,9 @@ import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 const sizeMap = {
-  sm: { dotSize: 10, lineWidth: 2, fontSize: 13, secondaryFontSize: 11, gap: defaultSpacing.md, contentGap: 4 },
-  md: { dotSize: 12, lineWidth: 2, fontSize: 14, secondaryFontSize: 12, gap: defaultSpacing.lg, contentGap: 6 },
-  lg: { dotSize: 16, lineWidth: 2, fontSize: 16, secondaryFontSize: 13, gap: defaultSpacing.xl, contentGap: 8 },
+  sm: { dotSize: 10, lineWidth: 2, fontSize: defaultTypography.sizes.sm.fontSize, secondaryFontSize: 11, gap: defaultSpacing.md, contentGap: 4 },
+  md: { dotSize: 12, lineWidth: 2, fontSize: defaultTypography.sizes.sm.fontSize, secondaryFontSize: 12, gap: defaultSpacing.lg, contentGap: 6 },
+  lg: { dotSize: 16, lineWidth: 2, fontSize: defaultTypography.sizes.base.fontSize, secondaryFontSize: 13, gap: defaultSpacing.xl, contentGap: 8 },
 } as const;
 
 type TimelineSize = keyof typeof sizeMap;

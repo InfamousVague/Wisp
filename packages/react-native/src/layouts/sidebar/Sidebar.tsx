@@ -219,7 +219,7 @@ export const SidebarSection = forwardRef<View, SidebarSectionProps>(function Sid
         >
           <RNText
             style={{
-              fontSize: 11,
+              fontSize: defaultTypography.sizes.xs.fontSize,
               fontWeight: defaultTypography.weights.semibold,
               letterSpacing: 0.5,
               textTransform: 'uppercase',
@@ -350,7 +350,7 @@ export const SidebarItem = forwardRef<View, SidebarItemProps>(function SidebarIt
           numberOfLines={1}
           style={{
             flex: 1,
-            fontSize: 14,
+            fontSize: defaultTypography.sizes.sm.fontSize,
             fontWeight: defaultTypography.weights.medium,
             color,
           }}

@@ -121,7 +121,7 @@ export function buildAchievementTitleStyle(
   textColor: string,
 ): CSSStyleObject {
   return {
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1.43,
     color: textColor,
@@ -137,7 +137,7 @@ export function buildAchievementDescriptionStyle(
   descriptionColor: string,
 ): CSSStyleObject {
   return {
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.46,
     color: descriptionColor,
@@ -186,7 +186,7 @@ export function buildAchievementRarityStyle(
     display: 'inline-flex',
     alignItems: 'center',
     gap: defaultSpacing.xs,
-    fontSize: 11,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     fontWeight: defaultTypography.weights.semibold,
     color: rarityColor,
     letterSpacing: '0.02em',
@@ -202,7 +202,7 @@ export function buildAchievementDateStyle(
   themeColors: ThemeColors,
 ): CSSStyleObject {
   return {
-    fontSize: 11,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     fontWeight: defaultTypography.weights.regular,
     color: themeColors.text.muted,
     margin: 0,

@@ -127,7 +127,7 @@ export const QuestTracker = forwardRef<View, QuestTrackerProps>(
         >
           <Text style={titleStyle}>{title}</Text>
           {collapsible && (
-            <Text style={{ fontSize: 14, color: themeColors.text.muted }}>
+            <Text style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: themeColors.text.muted }}>
               {expanded ? '\u{25B2}' : '\u{25BC}'}
             </Text>
           )}

@@ -9,9 +9,9 @@ import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/t
 type DatePickerSize = 'sm' | 'md' | 'lg';
 
 const datePickerSizeMap: Record<DatePickerSize, { height: number; fontSize: number; paddingX: number; iconSize: number }> = {
-  sm: { height: 32, fontSize: 13, paddingX: 10, iconSize: 14 },
-  md: { height: 40, fontSize: 14, paddingX: 14, iconSize: 16 },
-  lg: { height: 48, fontSize: 16, paddingX: 16, iconSize: 18 },
+  sm: { height: 32, fontSize: defaultTypography.sizes.sm.fontSize, paddingX: 10, iconSize: 14 },
+  md: { height: 40, fontSize: defaultTypography.sizes.sm.fontSize, paddingX: 14, iconSize: 16 },
+  lg: { height: 48, fontSize: defaultTypography.sizes.base.fontSize, paddingX: 16, iconSize: 18 },
 };
 
 type DateFormat = 'MM/DD/YYYY' | 'DD/MM/YYYY' | 'YYYY-MM-DD';
@@ -80,7 +80,7 @@ export const DatePicker = forwardRef<View, DatePickerProps>(function DatePicker(
 
   return (
     <View ref={ref} style={[{ gap: defaultSpacing.sm }, userStyle]}>
-      {label && <RNText style={{ fontSize: 14, fontWeight: defaultTypography.weights.medium, color: themeColors.text.primary } as TextStyle}>{label}</RNText>}
+      {label && <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, fontWeight: defaultTypography.weights.medium, color: themeColors.text.primary } as TextStyle}>{label}</RNText>}
       <Pressable onPress={() => !disabled && setIsOpen(true)} disabled={disabled} accessibilityRole="button" style={triggerStyle}>
         <Svg width={cfg.iconSize} height={cfg.iconSize} viewBox="0 0 24 24" fill="none">
           <Path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke={themeColors.text.secondary} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
@@ -96,7 +96,7 @@ export const DatePicker = forwardRef<View, DatePickerProps>(function DatePicker(
           </Pressable>
         )}
       </Pressable>
-      {errorMsg && <RNText style={{ fontSize: 12, color: themeColors.status.danger } as TextStyle}>{errorMsg}</RNText>}
+      {errorMsg && <RNText style={{ fontSize: defaultTypography.sizes.xs.fontSize, color: themeColors.status.danger } as TextStyle}>{errorMsg}</RNText>}
       <Modal visible={isOpen} transparent animationType="fade" onRequestClose={() => setIsOpen(false)} statusBarTranslucent>
         <Pressable style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.5)' }]} onPress={() => setIsOpen(false)}>
           <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

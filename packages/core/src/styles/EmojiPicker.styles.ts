@@ -344,7 +344,7 @@ export function buildEmojiPickerNoResultsStyle(
     justifyContent: 'center',
     flex: 1,
     color: colors.categoryLabel,
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     padding: defaultSpacing.xl,
     textAlign: 'center',
   };

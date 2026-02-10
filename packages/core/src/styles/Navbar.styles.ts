@@ -67,7 +67,7 @@ export function buildNavbarBrandStyle(): CSSStyleObject {
     gap: defaultSpacing.sm,
     flexShrink: 0,
     fontWeight: defaultTypography.weights.bold,
-    fontSize: 16,
+    fontSize: defaultTypography.sizes.base.fontSize,
     cursor: 'pointer',
     userSelect: 'none',
   };
@@ -107,7 +107,7 @@ export function buildNavbarItemStyle(
     alignItems: 'center',
     padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
     borderRadius: defaultRadii.md,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: active ? 600 : 400,
     color: active ? textColor : mutedColor,
     cursor: 'pointer',

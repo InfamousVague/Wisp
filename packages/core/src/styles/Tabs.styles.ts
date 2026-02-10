@@ -145,7 +145,7 @@ export function buildTabStyle(
     background: 'none',
     color,
     fontWeight: defaultTypography.weights.medium,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.43,
     cursor: disabled ? 'not-allowed' : 'pointer',
     opacity: disabled ? 0.5 : 1,

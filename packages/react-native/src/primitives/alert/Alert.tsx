@@ -78,7 +78,7 @@ export const Alert = forwardRef<View, AlertProps>(function Alert(
         {title && (
           <RNText
             style={{
-              fontSize: 14,
+              fontSize: defaultTypography.sizes.sm.fontSize,
               lineHeight: 20,
               fontWeight: defaultTypography.weights.semibold,
               color: isRaised ? themeColors.text.onRaised : themeColors.text.primary,
@@ -90,7 +90,7 @@ export const Alert = forwardRef<View, AlertProps>(function Alert(
         {body && (
           <RNText
             style={{
-              fontSize: 14,
+              fontSize: defaultTypography.sizes.sm.fontSize,
               lineHeight: 20,
               fontWeight: defaultTypography.weights.regular,
               color: isRaised ? themeColors.text.onRaisedSecondary : themeColors.text.secondary,

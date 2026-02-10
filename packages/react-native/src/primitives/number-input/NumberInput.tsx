@@ -67,10 +67,10 @@ interface ButtonSizeConfig {
 }
 
 const buttonSizeMap: Record<ComponentSize, ButtonSizeConfig> = {
-  xs: { buttonSize: 24, fontSize: 16 },
-  sm: { buttonSize: 28, fontSize: 18 },
-  md: { buttonSize: 36, fontSize: 20 },
-  lg: { buttonSize: 44, fontSize: 24 },
+  xs: { buttonSize: 24, fontSize: defaultTypography.sizes.base.fontSize },
+  sm: { buttonSize: 28, fontSize: defaultTypography.sizes.lg.fontSize },
+  md: { buttonSize: 36, fontSize: defaultTypography.sizes.xl.fontSize },
+  lg: { buttonSize: 44, fontSize: defaultTypography.sizes['2xl'].fontSize },
   xl: { buttonSize: 52, fontSize: 28 },
 };
 

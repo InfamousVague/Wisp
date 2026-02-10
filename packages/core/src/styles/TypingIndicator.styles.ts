@@ -190,8 +190,8 @@ export function buildTypingSenderNameStyle(
   themeColors: ThemeColors,
 ): CSSStyleObject {
   return {
-    fontSize: 13,
-    lineHeight: '18px',
+    fontSize: defaultTypography.sizes.sm.fontSize,
+    lineHeight: defaultTypography.sizes.xs.lineHeight,
     fontWeight: defaultTypography.weights.semibold,
     fontFamily: fontFamilyStacks.sans,
     color: themeColors.text.secondary,

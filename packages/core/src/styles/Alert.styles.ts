@@ -116,7 +116,7 @@ export function buildTitleStyle(themeColors: ThemeColors, variant: AlertVariant 
   const isRaised = variant === 'default';
   return {
     fontFamily: fontFamilyStacks.sans,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.43,
     fontWeight: defaultTypography.weights.semibold,
     color: isRaised ? themeColors.text.onRaised : themeColors.text.primary,
@@ -138,7 +138,7 @@ export function buildDescriptionStyle(themeColors: ThemeColors, variant: AlertVa
   const isRaised = variant === 'default';
   return {
     fontFamily: fontFamilyStacks.sans,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.43,
     fontWeight: defaultTypography.weights.regular,
     color: isRaised ? themeColors.text.onRaisedSecondary : themeColors.text.secondary,

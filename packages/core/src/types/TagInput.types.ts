@@ -1,6 +1,6 @@
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size tokens
@@ -75,7 +75,7 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
     minHeight: 28,
     paddingX: defaultSpacing.sm,
     paddingY: defaultSpacing.xs,
-    fontSize: 12,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     lineHeight: 1.33,
     borderRadius: defaultRadii.md,
     gap: defaultSpacing.xs,
@@ -92,7 +92,7 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
     minHeight: 32,
     paddingX: defaultSpacing.sm,
     paddingY: defaultSpacing.xs,
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.38,
     borderRadius: defaultRadii.md,
     gap: defaultSpacing.xs,
@@ -109,7 +109,7 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
     minHeight: 38,
     paddingX: defaultSpacing.md,
     paddingY: defaultSpacing.sm,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.43,
     borderRadius: defaultRadii.md,
     gap: defaultSpacing.sm,
@@ -126,7 +126,7 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
     minHeight: 44,
     paddingX: defaultSpacing.md,
     paddingY: defaultSpacing.sm,
-    fontSize: 15,
+    fontSize: defaultTypography.sizes.base.fontSize,
     lineHeight: 1.47,
     borderRadius: defaultRadii.md,
     gap: defaultSpacing.sm,
@@ -143,7 +143,7 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
     minHeight: 52,
     paddingX: defaultSpacing.lg,
     paddingY: defaultSpacing.sm,
-    fontSize: 16,
+    fontSize: defaultTypography.sizes.base.fontSize,
     lineHeight: 1.5,
     borderRadius: defaultRadii.lg,
     gap: defaultSpacing.sm,

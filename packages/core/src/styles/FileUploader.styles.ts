@@ -62,7 +62,7 @@ export function buildDropzoneTitleStyle(
   themeColors: ThemeColors,
 ): CSSStyleObject {
   return {
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1.4,
     color: themeColors.text.primary,
@@ -74,7 +74,7 @@ export function buildDropzoneDescriptionStyle(
   themeColors: ThemeColors,
 ): CSSStyleObject {
   return {
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.4,
     color: themeColors.text.muted,

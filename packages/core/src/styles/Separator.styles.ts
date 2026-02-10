@@ -116,7 +116,7 @@ export function buildLabelStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
     paddingLeft: defaultSpacing.md,
     paddingRight: defaultSpacing.md,
-    fontSize: 12,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     lineHeight: 1.33,
     fontFamily: fontFamilyStacks.sans,
     fontWeight: defaultTypography.weights.medium,

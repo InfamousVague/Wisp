@@ -92,7 +92,7 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
 
   const titleStyle = useMemo<TextStyle>(
     () => ({
-      fontSize: 16,
+      fontSize: defaultTypography.sizes.base.fontSize,
       fontWeight: defaultTypography.weights.semibold,
       color: themeColors.text.onRaised,
     }),
@@ -101,7 +101,7 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
 
   const descStyle = useMemo<TextStyle>(
     () => ({
-      fontSize: 14,
+      fontSize: defaultTypography.sizes.sm.fontSize,
       color: themeColors.text.onRaisedSecondary,
       marginTop: defaultSpacing.xs,
     }),

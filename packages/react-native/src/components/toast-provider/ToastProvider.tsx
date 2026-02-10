@@ -92,13 +92,13 @@ function ToastItemView({ item, onDismiss }: { item: ToastItem; onDismiss: (id: s
   };
 
   const titleStyle: TextStyle = {
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.semibold,
     color: themeColors.text.primary,
   };
 
   const descStyle: TextStyle = {
-    fontSize: 12,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     color: themeColors.text.muted,
     marginTop: defaultSpacing['2xs'],
   };
@@ -110,7 +110,7 @@ function ToastItemView({ item, onDismiss }: { item: ToastItem; onDismiss: (id: s
         {item.description && <Text style={descStyle}>{item.description}</Text>}
       </View>
       <Pressable onPress={() => onDismiss(item.id)}>
-        <Text style={{ fontSize: 14, color: themeColors.text.muted }}>{'\u{2715}'}</Text>
+        <Text style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: themeColors.text.muted }}>{'\u{2715}'}</Text>
       </Pressable>
     </Animated.View>
   );

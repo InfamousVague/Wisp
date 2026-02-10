@@ -5,7 +5,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { ComponentSize } from '../tokens/shared';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size map (reuse Input dimensions)
@@ -21,11 +21,11 @@ export interface SearchInputSizeConfig {
 }
 
 export const searchInputSizeMap: Record<ComponentSize, SearchInputSizeConfig> = {
-  xs: { height: 28, paddingX: 8, fontSize: 12, lineHeight: 1.33, borderRadius: defaultRadii.md, iconSize: 14 },
-  sm: { height: 32, paddingX: 10, fontSize: 13, lineHeight: 1.38, borderRadius: defaultRadii.md, iconSize: 16 },
-  md: { height: 38, paddingX: 12, fontSize: 14, lineHeight: 1.43, borderRadius: defaultRadii.md, iconSize: 18 },
-  lg: { height: 44, paddingX: 14, fontSize: 15, lineHeight: 1.47, borderRadius: defaultRadii.md, iconSize: 20 },
-  xl: { height: 52, paddingX: 16, fontSize: 16, lineHeight: 1.5, borderRadius: defaultRadii.lg, iconSize: 22 },
+  xs: { height: 28, paddingX: 8, fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 1.33, borderRadius: defaultRadii.md, iconSize: 14 },
+  sm: { height: 32, paddingX: 10, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.38, borderRadius: defaultRadii.md, iconSize: 16 },
+  md: { height: 38, paddingX: 12, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.43, borderRadius: defaultRadii.md, iconSize: 18 },
+  lg: { height: 44, paddingX: 14, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 1.47, borderRadius: defaultRadii.md, iconSize: 20 },
+  xl: { height: 52, paddingX: 16, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 1.5, borderRadius: defaultRadii.lg, iconSize: 22 },
 };
 
 // ---------------------------------------------------------------------------

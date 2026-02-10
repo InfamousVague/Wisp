@@ -144,7 +144,7 @@ export function buildSeparatorStyle(
 ): CSSStyleObject {
   return {
     color: themeColors.text.muted,
-    padding: '0 6px',
+    padding: `0 ${defaultSpacing.sm}px`,
     display: 'inline-flex',
     alignItems: 'center',
     userSelect: 'none',

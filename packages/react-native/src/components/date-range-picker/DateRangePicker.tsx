@@ -8,9 +8,9 @@ import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/t
 type DRPSize = 'sm' | 'md' | 'lg';
 export interface DateRange { start: Date | null; end: Date | null; }
 const sizeMap: Record<DRPSize, { height: number; fontSize: number; paddingX: number; iconSize: number; cellSize: number; hFs: number }> = {
-  sm: { height: 32, fontSize: 13, paddingX: 10, iconSize: 14, cellSize: 28, hFs: 13 },
-  md: { height: 40, fontSize: 14, paddingX: 14, iconSize: 16, cellSize: 36, hFs: 14 },
-  lg: { height: 48, fontSize: 16, paddingX: 16, iconSize: 18, cellSize: 44, hFs: 16 },
+  sm: { height: 32, fontSize: defaultTypography.sizes.sm.fontSize, paddingX: 10, iconSize: 14, cellSize: 28, hFs: 13 },
+  md: { height: 40, fontSize: defaultTypography.sizes.sm.fontSize, paddingX: 14, iconSize: 16, cellSize: 36, hFs: 14 },
+  lg: { height: 48, fontSize: defaultTypography.sizes.base.fontSize, paddingX: 16, iconSize: 18, cellSize: 44, hFs: 16 },
 };
 
 export interface DateRangePickerProps {
@@ -95,7 +95,7 @@ export const DateRangePicker = forwardRef<View, DateRangePickerProps>(function D
 
   return (
     <View ref={ref} style={[{gap:defaultSpacing.sm},us]}>
-      {label && <RNText style={{fontSize:14,fontWeight:defaultTypography.weights.medium,color:tc.text.primary} as TextStyle}>{label}</RNText>}
+      {label && <RNText style={{fontSize:defaultTypography.sizes.sm.fontSize,fontWeight:defaultTypography.weights.medium,color:tc.text.primary} as TextStyle}>{label}</RNText>}
       <Pressable onPress={() => !disabled && setOpen(true)} disabled={disabled} accessibilityRole="button" style={tStyle}>
         <Svg width={cfg.iconSize} height={cfg.iconSize} viewBox="0 0 24 24" fill="none"><Path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke={tc.text.secondary} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" /></Svg>
         <RNText style={{flex:1,fontSize:cfg.fontSize,color:hv?tc.text.primary:tc.text.muted} as TextStyle} numberOfLines={1}>

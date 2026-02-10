@@ -1,3 +1,4 @@
+import { defaultTypography } from '../theme/create-theme';
 import type React from 'react';
 
 // ---------------------------------------------------------------------------
@@ -25,9 +26,9 @@ export interface BreadcrumbSizeConfig {
  * {@link BreadcrumbSizeConfig}.
  */
 export const breadcrumbSizeMap: Record<BreadcrumbSize, BreadcrumbSizeConfig> = {
-  sm: { fontSize: 12 },
-  md: { fontSize: 14 },
-  lg: { fontSize: 16 },
+  sm: { fontSize: defaultTypography.sizes.xs.fontSize },
+  md: { fontSize: defaultTypography.sizes.sm.fontSize },
+  lg: { fontSize: defaultTypography.sizes.base.fontSize },
 };
 
 // ---------------------------------------------------------------------------

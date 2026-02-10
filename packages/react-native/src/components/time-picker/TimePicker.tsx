@@ -8,9 +8,9 @@ import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/t
 type TimePickerSize = 'sm' | 'md' | 'lg';
 type TimePickerFormat = '12h' | '24h';
 const sizeMap: Record<TimePickerSize, { height: number; fontSize: number; paddingX: number; iconSize: number; colW: number }> = {
-  sm: { height: 32, fontSize: 13, paddingX: 10, iconSize: 14, colW: 52 },
-  md: { height: 40, fontSize: 14, paddingX: 14, iconSize: 16, colW: 60 },
-  lg: { height: 48, fontSize: 16, paddingX: 16, iconSize: 18, colW: 72 },
+  sm: { height: 32, fontSize: defaultTypography.sizes.sm.fontSize, paddingX: 10, iconSize: 14, colW: 52 },
+  md: { height: 40, fontSize: defaultTypography.sizes.sm.fontSize, paddingX: 14, iconSize: 16, colW: 60 },
+  lg: { height: 48, fontSize: defaultTypography.sizes.base.fontSize, paddingX: 16, iconSize: 18, colW: 72 },
 };
 
 export interface TimePickerProps {
@@ -66,12 +66,12 @@ export const TimePicker = forwardRef<View, TimePickerProps>(function TimePicker(
 
   return (
     <View ref={ref} style={[{gap:defaultSpacing.sm}, us]}>
-      {label && <RNText style={{fontSize:14,fontWeight:defaultTypography.weights.medium,color:tc.text.primary} as TextStyle}>{label}</RNText>}
+      {label && <RNText style={{fontSize:defaultTypography.sizes.sm.fontSize,fontWeight:defaultTypography.weights.medium,color:tc.text.primary} as TextStyle}>{label}</RNText>}
       <Pressable onPress={() => !disabled && setOpen(true)} disabled={disabled} accessibilityRole="button" style={tStyle}>
         <Svg width={cfg.iconSize} height={cfg.iconSize} viewBox="0 0 24 24" fill="none"><Path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke={tc.text.secondary} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" /></Svg>
         <RNText style={{flex:1,fontSize:cfg.fontSize,color:disp?tc.text.primary:tc.text.muted} as TextStyle} numberOfLines={1}>{disp || placeholder}</RNText>
       </Pressable>
-      {errMsg && <RNText style={{fontSize:12,color:tc.status.danger} as TextStyle}>{errMsg}</RNText>}
+      {errMsg && <RNText style={{fontSize:defaultTypography.sizes.xs.fontSize,color:tc.status.danger} as TextStyle}>{errMsg}</RNText>}
       <Modal visible={open} transparent animationType="fade" onRequestClose={() => setOpen(false)} statusBarTranslucent>
         <Pressable style={[StyleSheet.absoluteFill,{backgroundColor:'rgba(0,0,0,0.5)'}]} onPress={() => setOpen(false)}>
           <SafeAreaView style={{flex:1,justifyContent:'center',alignItems:'center'}}>

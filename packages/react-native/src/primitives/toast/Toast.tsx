@@ -141,14 +141,14 @@ export const Toast = forwardRef<View, ToastProps>(function Toast(
   }), []);
 
   const titleStyle = useMemo<TextStyle>(() => ({
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 20,
     fontWeight: defaultTypography.weights.medium,
     color: colors.text,
   }), [colors]);
 
   const descriptionStyle = useMemo<TextStyle>(() => ({
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 18,
     fontWeight: defaultTypography.weights.regular,
     color: colors.description,
@@ -170,7 +170,7 @@ export const Toast = forwardRef<View, ToastProps>(function Toast(
   }), []);
 
   const dismissTextStyle = useMemo<TextStyle>(() => ({
-    fontSize: 16,
+    fontSize: defaultTypography.sizes.base.fontSize,
     lineHeight: 18,
     color: colors.dismiss,
   }), [colors]);

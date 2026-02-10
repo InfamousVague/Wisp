@@ -4,7 +4,7 @@
  */
 
 import type { HTMLAttributes } from 'react';
-import { defaultSpacing } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size
@@ -40,9 +40,9 @@ export interface CalendarSizeConfig {
  * resolve sizing tokens.
  */
 export const calendarSizeMap: Record<CalendarSize, CalendarSizeConfig> = {
-  sm: { cellSize: 28, fontSize: 12, headerFontSize: 13, gap: defaultSpacing['2xs'], padding: defaultSpacing.sm, dayHeaderFontSize: 11 },
-  md: { cellSize: 36, fontSize: 13, headerFontSize: 14, gap: defaultSpacing['2xs'], padding: defaultSpacing.md, dayHeaderFontSize: 12 },
-  lg: { cellSize: 44, fontSize: 14, headerFontSize: 16, gap: defaultSpacing.xs, padding: defaultSpacing.lg, dayHeaderFontSize: 13 },
+  sm: { cellSize: 28, fontSize: defaultTypography.sizes.xs.fontSize, headerFontSize: 13, gap: defaultSpacing['2xs'], padding: defaultSpacing.sm, dayHeaderFontSize: 11 },
+  md: { cellSize: 36, fontSize: defaultTypography.sizes.sm.fontSize, headerFontSize: 14, gap: defaultSpacing['2xs'], padding: defaultSpacing.md, dayHeaderFontSize: 12 },
+  lg: { cellSize: 44, fontSize: defaultTypography.sizes.sm.fontSize, headerFontSize: 16, gap: defaultSpacing.xs, padding: defaultSpacing.lg, dayHeaderFontSize: 13 },
 };
 
 // ---------------------------------------------------------------------------

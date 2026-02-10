@@ -12,6 +12,7 @@ import type { ViewProps, ViewStyle, TextStyle, ImageStyle, ImageResizeMode } fro
 import type { ImageFit, ImageRadius } from '@wisp-ui/core/types/Image.types';
 import { imageRadiusMap } from '@wisp-ui/core/types/Image.types';
 import { useThemeColors } from '../../providers';
+import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Fit → RN ResizeMode mapping
@@ -104,7 +105,7 @@ export const WispImage = forwardRef<View, WispImageProps>(
     }), [themeColors]);
 
     const fallbackTextStyle = useMemo<TextStyle>(() => ({
-      fontSize: 12,
+      fontSize: defaultTypography.sizes.xs.fontSize,
       color: themeColors.text.muted,
     }), [themeColors]);
 

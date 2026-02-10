@@ -91,19 +91,19 @@ export const CodeBlock = forwardRef<View, CodeBlockProps>(
     }), [themeColors]);
 
     const headerTextStyle = useMemo<TextStyle>(() => ({
-      fontSize: 12,
+      fontSize: defaultTypography.sizes.xs.fontSize,
       fontWeight: defaultTypography.weights.medium,
       color: themeColors.text.muted,
       textTransform: 'uppercase',
     }), [themeColors]);
 
     const copyBtnTextStyle = useMemo<TextStyle>(() => ({
-      fontSize: 12,
+      fontSize: defaultTypography.sizes.xs.fontSize,
       color: themeColors.text.muted,
     }), [themeColors]);
 
     const lineNumberStyle = useMemo<TextStyle>(() => ({
-      fontSize: 13,
+      fontSize: defaultTypography.sizes.sm.fontSize,
       fontFamily: 'monospace',
       color: themeColors.text.muted,
       textAlign: 'right',
@@ -113,7 +113,7 @@ export const CodeBlock = forwardRef<View, CodeBlockProps>(
     }), [themeColors]);
 
     const codeTextStyle = useMemo<TextStyle>(() => ({
-      fontSize: 13,
+      fontSize: defaultTypography.sizes.sm.fontSize,
       fontFamily: 'monospace',
       color: themeColors.text.primary,
       lineHeight: 20,

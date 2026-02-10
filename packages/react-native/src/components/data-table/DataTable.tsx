@@ -8,9 +8,9 @@ import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/t
 type DataTableSize = 'sm' | 'md' | 'lg';
 
 const dtSizeMap: Record<DataTableSize, { cellPV: number; cellPH: number; fontSize: number; headerFontSize: number }> = {
-  sm: { cellPV: 6, cellPH: 10, fontSize: 13, headerFontSize: 12 },
-  md: { cellPV: 10, cellPH: 14, fontSize: 14, headerFontSize: 13 },
-  lg: { cellPV: 14, cellPH: 18, fontSize: 15, headerFontSize: 14 },
+  sm: { cellPV: 6, cellPH: 10, fontSize: defaultTypography.sizes.sm.fontSize, headerFontSize: 12 },
+  md: { cellPV: 10, cellPH: 14, fontSize: defaultTypography.sizes.sm.fontSize, headerFontSize: 13 },
+  lg: { cellPV: 14, cellPH: 18, fontSize: defaultTypography.sizes.base.fontSize, headerFontSize: 14 },
 };
 
 export interface DataTableColumn<T> {

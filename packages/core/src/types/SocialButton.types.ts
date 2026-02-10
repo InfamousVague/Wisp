@@ -2,7 +2,7 @@
  * @module SocialButton
  */
 import type React from 'react';
-import { defaultSpacing } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Providers
@@ -49,9 +49,9 @@ export interface SocialButtonSizeConfig {
 
 /** Size → config lookup. */
 export const socialButtonSizeMap: Record<SocialButtonSize, SocialButtonSizeConfig> = {
-  sm: { height: 36, paddingX: defaultSpacing.lg, fontSize: 13, iconSize: 18, gap: defaultSpacing.sm },
-  md: { height: 40, paddingX: defaultSpacing.lg, fontSize: 14, iconSize: 20, gap: defaultSpacing.md },
-  lg: { height: 44, paddingX: defaultSpacing.xl, fontSize: 15, iconSize: 22, gap: defaultSpacing.md },
+  sm: { height: 36, paddingX: defaultSpacing.lg, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 18, gap: defaultSpacing.sm },
+  md: { height: 40, paddingX: defaultSpacing.lg, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 20, gap: defaultSpacing.md },
+  lg: { height: 44, paddingX: defaultSpacing.xl, fontSize: defaultTypography.sizes.base.fontSize, iconSize: 22, gap: defaultSpacing.md },
 };
 
 // ---------------------------------------------------------------------------

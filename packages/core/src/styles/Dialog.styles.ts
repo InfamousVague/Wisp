@@ -109,9 +109,9 @@ export function buildTitleStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
     margin: 0,
     fontFamily: fontFamilyStacks.sans,
-    fontSize: 18,
+    fontSize: defaultTypography.sizes.lg.fontSize,
     fontWeight: defaultTypography.weights.semibold,
-    lineHeight: '28px',
+    lineHeight: defaultTypography.sizes.lg.lineHeight,
     color: themeColors.text.onRaised,
   };
 }
@@ -124,11 +124,11 @@ export function buildTitleStyle(themeColors: ThemeColors): CSSStyleObject {
  */
 export function buildDescriptionStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
-    margin: '4px 0 0 0',
+    margin: `${defaultSpacing.xs}px 0 0 0`,
     fontFamily: fontFamilyStacks.sans,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.regular,
-    lineHeight: '20px',
+    lineHeight: defaultTypography.sizes.sm.lineHeight,
     color: themeColors.text.onRaisedSecondary,
   };
 }

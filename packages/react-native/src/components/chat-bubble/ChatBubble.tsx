@@ -17,7 +17,7 @@ import type {
 import { resolveChatBubbleColors } from '@wisp-ui/core/styles/ChatBubble.styles';
 import { useThemeColors } from '../../providers';
 import Svg, { Path } from 'react-native-svg';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -111,7 +111,7 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
 
   const textStyle = useMemo<TextStyle>(() => ({
     color: colors.text,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 20,
   }), [colors]);
 
@@ -124,7 +124,7 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
   }), [isOutgoing]);
 
   const timestampStyle = useMemo<TextStyle>(() => ({
-    fontSize: 11,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     lineHeight: 14,
     color: colors.timestamp,
   }), [colors]);
@@ -174,8 +174,8 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
                     : themeColors.background.surface,
                 }}
               >
-                <Text style={{ fontSize: 12 }}>{reaction.emoji}</Text>
-                <Text style={{ fontSize: 11, color: themeColors.text.secondary }}>
+                <Text style={{ fontSize: defaultTypography.sizes.xs.fontSize }}>{reaction.emoji}</Text>
+                <Text style={{ fontSize: defaultTypography.sizes.xs.fontSize, color: themeColors.text.secondary }}>
                   {reaction.count}
                 </Text>
               </Pressable>

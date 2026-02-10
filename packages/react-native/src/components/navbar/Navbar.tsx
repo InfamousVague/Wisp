@@ -11,7 +11,7 @@ import { View, Pressable, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { NavbarVariant } from '@wisp-ui/core/types/Navbar.types';
 import { useThemeColors } from '../../providers';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -175,7 +175,7 @@ export const NavbarItem = forwardRef<View, NavbarItemProps>(
       const mutedColor = isSolid ? themeColors.text.onRaisedSecondary : themeColors.text.secondary;
 
       return {
-        fontSize: 14,
+        fontSize: defaultTypography.sizes.sm.fontSize,
         fontWeight: active ? '600' : '400',
         color: active ? textColor : mutedColor,
       };

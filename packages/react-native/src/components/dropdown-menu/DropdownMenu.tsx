@@ -2,7 +2,7 @@ import React, { forwardRef, useMemo, useState, useCallback, createContext, useCo
 import { View, Pressable, Modal, ScrollView, StyleSheet, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { useThemeColors } from '../../providers';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -207,7 +207,7 @@ export const DropdownMenuItem = forwardRef<View, DropdownMenuItemProps>(function
       ]}
     >
       {icon && <View style={{ flexShrink: 0 }}>{icon}</View>}
-      <RNText style={{ fontSize: 14, color: textColor, flex: 1 } as TextStyle}>{children}</RNText>
+      <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: textColor, flex: 1 } as TextStyle}>{children}</RNText>
     </Pressable>
   );
 });

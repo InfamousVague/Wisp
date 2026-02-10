@@ -87,7 +87,7 @@ export function buildTriggerStyle(
     cursor: isDisabled ? 'not-allowed' : 'pointer',
     color,
     fontWeight: defaultTypography.weights.medium,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.43,
     gap: defaultSpacing.sm,
     opacity: isDisabled ? 0.5 : 1,
@@ -147,7 +147,7 @@ export function buildContentStyle(
     maxHeight: isOpen ? measuredHeight : 0,
     paddingBottom: isOpen ? 12 : 0,
     color: themeColors.text.secondary,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.57,
   };
 }

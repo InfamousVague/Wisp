@@ -22,9 +22,9 @@ const providers: Record<SocialProvider, ProviderConfig> = {
 };
 
 const sizeMap: Record<SocialButtonSize, { height: number; paddingX: number; fontSize: number; iconSize: number; gap: number }> = {
-  sm: { height: 36, paddingX: 14, fontSize: 13, iconSize: 18, gap: defaultSpacing.sm },
-  md: { height: 40, paddingX: 16, fontSize: 14, iconSize: 20, gap: defaultSpacing.md },
-  lg: { height: 44, paddingX: 20, fontSize: 15, iconSize: 22, gap: defaultSpacing.md },
+  sm: { height: 36, paddingX: 14, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 18, gap: defaultSpacing.sm },
+  md: { height: 40, paddingX: 16, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 20, gap: defaultSpacing.md },
+  lg: { height: 44, paddingX: 20, fontSize: defaultTypography.sizes.base.fontSize, iconSize: 22, gap: defaultSpacing.md },
 };
 
 function GoogleIcon({ size }: { size: number }) {

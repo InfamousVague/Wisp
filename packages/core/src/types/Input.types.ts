@@ -1,6 +1,6 @@
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 /**
  * Ordered tuple of valid input size tokens, re-exported from the shared
@@ -55,11 +55,11 @@ export interface InputSizeConfig {
  * the Input component and its style builders.
  */
 export const inputSizeMap: Record<ComponentSize, InputSizeConfig> = {
-  xs: { height: 28, paddingX: defaultSpacing.sm, paddingY: defaultSpacing.xs, fontSize: 12, lineHeight: 1.33, borderRadius: defaultRadii.md, iconSize: 14, labelFontSize: 12, hintFontSize: 11 },
-  sm: { height: 32, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: 13, lineHeight: 1.38, borderRadius: defaultRadii.md, iconSize: 16, labelFontSize: 13, hintFontSize: 12 },
-  md: { height: 38, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: 14, lineHeight: 1.43, borderRadius: defaultRadii.md, iconSize: 18, labelFontSize: 14, hintFontSize: 13 },
-  lg: { height: 44, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: 15, lineHeight: 1.47, borderRadius: defaultRadii.md, iconSize: 20, labelFontSize: 15, hintFontSize: 14 },
-  xl: { height: 52, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: 16, lineHeight: 1.5, borderRadius: defaultRadii.lg, iconSize: 22, labelFontSize: 16, hintFontSize: 15 },
+  xs: { height: 28, paddingX: defaultSpacing.sm, paddingY: defaultSpacing.xs, fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 1.33, borderRadius: defaultRadii.md, iconSize: 14, labelFontSize: 12, hintFontSize: 11 },
+  sm: { height: 32, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.38, borderRadius: defaultRadii.md, iconSize: 16, labelFontSize: 13, hintFontSize: 12 },
+  md: { height: 38, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.43, borderRadius: defaultRadii.md, iconSize: 18, labelFontSize: 14, hintFontSize: 13 },
+  lg: { height: 44, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 1.47, borderRadius: defaultRadii.md, iconSize: 20, labelFontSize: 15, hintFontSize: 14 },
+  xl: { height: 52, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 1.5, borderRadius: defaultRadii.lg, iconSize: 22, labelFontSize: 16, hintFontSize: 15 },
 };
 
 // ---------------------------------------------------------------------------

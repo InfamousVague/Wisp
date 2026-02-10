@@ -2,7 +2,7 @@ import React, { forwardRef, useMemo, useState, useCallback, useRef, createContex
 import { View, Pressable, ScrollView, Animated, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle, LayoutChangeEvent } from 'react-native';
 import { useThemeColors } from '../../providers';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -219,7 +219,7 @@ export const Tab = forwardRef<View, TabProps & { _registerLayout?: (value: strin
 
     const labelStyle = useMemo<TextStyle>(
       () => ({
-        fontSize: 14,
+        fontSize: defaultTypography.sizes.sm.fontSize,
         fontWeight: isActive ? '600' : '400',
         color: isActive ? themeColors.text.primary : themeColors.text.secondary,
       }),

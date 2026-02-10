@@ -12,9 +12,9 @@ type TableSize = 'sm' | 'md' | 'lg';
 type TableVariant = 'default' | 'striped';
 
 const tableSizeMap: Record<TableSize, { cellPaddingV: number; cellPaddingH: number; fontSize: number; headerFontSize: number }> = {
-  sm: { cellPaddingV: 6, cellPaddingH: 10, fontSize: 13, headerFontSize: 12 },
-  md: { cellPaddingV: 10, cellPaddingH: 14, fontSize: 14, headerFontSize: 13 },
-  lg: { cellPaddingV: 14, cellPaddingH: 18, fontSize: 15, headerFontSize: 14 },
+  sm: { cellPaddingV: 6, cellPaddingH: 10, fontSize: defaultTypography.sizes.sm.fontSize, headerFontSize: 12 },
+  md: { cellPaddingV: 10, cellPaddingH: 14, fontSize: defaultTypography.sizes.sm.fontSize, headerFontSize: 13 },
+  lg: { cellPaddingV: 14, cellPaddingH: 18, fontSize: defaultTypography.sizes.base.fontSize, headerFontSize: 14 },
 };
 
 interface TableContextValue {

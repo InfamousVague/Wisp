@@ -83,7 +83,7 @@ export function buildContainerStyle(
     display: 'flex',
     alignItems: 'center',
     height: sizeConfig.height + 16, // more spacious than standard input
-    padding: '0 8px',
+    padding: `0 ${defaultSpacing.sm}px`,
     border: `1px solid ${borderColor}`,
     borderRadius: sizeConfig.borderRadius + 4,
     background: disabled ? themeColors.border.subtle : 'transparent',

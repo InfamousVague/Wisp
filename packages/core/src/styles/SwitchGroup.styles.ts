@@ -43,7 +43,7 @@ export function buildGroupStyle(
 export function buildGroupLabelStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
     fontWeight: defaultTypography.weights.medium,
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.43,
     color: themeColors.text.primary,
     fontFamily: fontFamilyStacks.sans,
@@ -63,7 +63,7 @@ export function buildGroupLabelStyle(themeColors: ThemeColors): CSSStyleObject {
  */
 export function buildGroupDescriptionStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.38,
     color: themeColors.text.secondary,
     fontFamily: fontFamilyStacks.sans,
@@ -125,7 +125,7 @@ export function buildOptionLabelStyle(
   themeColors: ThemeColors,
 ): CSSStyleObject {
   return {
-    fontSize: 14,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.43,
     color: disabled ? themeColors.text.muted : themeColors.text.primary,
     fontFamily: fontFamilyStacks.sans,
@@ -146,7 +146,7 @@ export function buildOptionLabelStyle(
  */
 export function buildOptionDescriptionStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.38,
     color: themeColors.text.secondary,
     fontFamily: fontFamilyStacks.sans,
@@ -167,7 +167,7 @@ export function buildOptionDescriptionStyle(themeColors: ThemeColors): CSSStyleO
  */
 export function buildErrorStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.38,
     color: themeColors.status.danger,
     fontFamily: fontFamilyStacks.sans,

@@ -2,7 +2,7 @@ import React, { forwardRef, useMemo, useState, useRef, useEffect, useCallback } 
 import { View, Pressable, Modal, Animated, StyleSheet, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { useThemeColors } from '../../providers';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface TooltipProps {
   children: React.ReactElement;
@@ -68,7 +68,7 @@ export const Tooltip = forwardRef<View, TooltipProps>(function Tooltip(
 
   const textStyle = useMemo<TextStyle>(
     () => ({
-      fontSize: 12,
+      fontSize: defaultTypography.sizes.xs.fontSize,
       color: themeColors.text.inverse,
     }),
     [themeColors],

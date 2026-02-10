@@ -4,7 +4,7 @@
  */
 
 import type React from 'react';
-import { defaultSpacing } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 /** Available size presets for the Pagination component. */
 export const paginationSizes = ['sm', 'md', 'lg'] as const;
@@ -34,9 +34,9 @@ export interface PaginationSizeConfig {
  * resolve sizing tokens.
  */
 export const paginationSizeMap: Record<PaginationSize, PaginationSizeConfig> = {
-  sm: { height: 28, fontSize: 12, minWidth: 28, iconSize: 14, gap: defaultSpacing.xs },
-  md: { height: 34, fontSize: 14, minWidth: 34, iconSize: 16, gap: defaultSpacing.sm },
-  lg: { height: 40, fontSize: 15, minWidth: 40, iconSize: 18, gap: defaultSpacing.sm },
+  sm: { height: 28, fontSize: defaultTypography.sizes.xs.fontSize, minWidth: 28, iconSize: 14, gap: defaultSpacing.xs },
+  md: { height: 34, fontSize: defaultTypography.sizes.sm.fontSize, minWidth: 34, iconSize: 16, gap: defaultSpacing.sm },
+  lg: { height: 40, fontSize: defaultTypography.sizes.base.fontSize, minWidth: 40, iconSize: 18, gap: defaultSpacing.sm },
 };
 
 /**

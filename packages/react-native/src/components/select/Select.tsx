@@ -16,9 +16,9 @@ export interface SelectOption {
 type SelectSize = 'sm' | 'md' | 'lg';
 
 const selectSizeMap: Record<SelectSize, { height: number; fontSize: number; paddingX: number }> = {
-  sm: { height: 32, fontSize: 13, paddingX: 10 },
-  md: { height: 40, fontSize: 14, paddingX: 14 },
-  lg: { height: 48, fontSize: 16, paddingX: 16 },
+  sm: { height: 32, fontSize: defaultTypography.sizes.sm.fontSize, paddingX: 10 },
+  md: { height: 40, fontSize: defaultTypography.sizes.sm.fontSize, paddingX: 14 },
+  lg: { height: 48, fontSize: defaultTypography.sizes.base.fontSize, paddingX: 16 },
 };
 
 export interface SelectProps {
@@ -101,7 +101,7 @@ export const Select = forwardRef<View, SelectProps>(function Select(
   return (
     <View ref={ref} style={[{ gap: defaultSpacing.sm }, userStyle]}>
       {label && (
-        <RNText style={{ fontSize: 14, fontWeight: defaultTypography.weights.medium, color: themeColors.text.primary } as TextStyle}>
+        <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, fontWeight: defaultTypography.weights.medium, color: themeColors.text.primary } as TextStyle}>
           {label}
         </RNText>
       )}
@@ -122,7 +122,7 @@ export const Select = forwardRef<View, SelectProps>(function Select(
       </Pressable>
 
       {errorMsg && (
-        <RNText style={{ fontSize: 12, color: themeColors.status.danger } as TextStyle}>{errorMsg}</RNText>
+        <RNText style={{ fontSize: defaultTypography.sizes.xs.fontSize, color: themeColors.status.danger } as TextStyle}>{errorMsg}</RNText>
       )}
 
       <Modal visible={isOpen} transparent animationType="fade" onRequestClose={() => setIsOpen(false)} statusBarTranslucent>
@@ -142,7 +142,7 @@ export const Select = forwardRef<View, SelectProps>(function Select(
               }}>
                 {label && (
                   <View style={{ paddingHorizontal: defaultSpacing.lg, paddingTop: defaultSpacing.lg, paddingBottom: defaultSpacing.sm }}>
-                    <RNText style={{ fontSize: 16, fontWeight: defaultTypography.weights.semibold, color: themeColors.text.onRaised } as TextStyle}>
+                    <RNText style={{ fontSize: defaultTypography.sizes.base.fontSize, fontWeight: defaultTypography.weights.semibold, color: themeColors.text.onRaised } as TextStyle}>
                       {label}
                     </RNText>
                   </View>
@@ -169,11 +169,11 @@ export const Select = forwardRef<View, SelectProps>(function Select(
                       >
                         {item.icon && <View style={{ flexShrink: 0 }}>{item.icon}</View>}
                         <View style={{ flex: 1 }}>
-                          <RNText style={{ fontSize: 14, fontWeight: isSelected ? '600' : '400', color: themeColors.text.onRaised } as TextStyle}>
+                          <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, fontWeight: isSelected ? '600' : '400', color: themeColors.text.onRaised } as TextStyle}>
                             {item.label}
                           </RNText>
                           {item.description && (
-                            <RNText style={{ fontSize: 12, color: themeColors.text.onRaisedSecondary, marginTop: defaultSpacing['2xs'] } as TextStyle}>
+                            <RNText style={{ fontSize: defaultTypography.sizes.xs.fontSize, color: themeColors.text.onRaisedSecondary, marginTop: defaultSpacing['2xs'] } as TextStyle}>
                               {item.description}
                             </RNText>
                           )}

@@ -512,7 +512,7 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
       >
         {!hasResults && (
           <View style={noResultsStyle}>
-            <Text style={{ fontSize: 13, color: colors.categoryLabel }}>No emoji found</Text>
+            <Text style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: colors.categoryLabel }}>No emoji found</Text>
           </View>
         )}
 

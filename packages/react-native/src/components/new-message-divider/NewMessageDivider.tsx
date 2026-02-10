@@ -52,7 +52,7 @@ export const NewMessageDivider = forwardRef<View, NewMessageDividerProps>(functi
   }), [resolvedColor]);
 
   const labelStyle = useMemo<TextStyle>(() => ({
-    fontSize: 12,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     lineHeight: 16,
     fontWeight: defaultTypography.weights.semibold,
     color: resolvedColor,

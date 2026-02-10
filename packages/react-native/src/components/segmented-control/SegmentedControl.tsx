@@ -3,12 +3,12 @@ import { View, Pressable, Animated, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle, LayoutChangeEvent } from 'react-native';
 import type { SegmentedControlOption } from '@wisp-ui/core/types/SegmentedControl.types';
 import { useThemeColors } from '../../providers';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 const sizeMap = {
-  sm: { height: 28, fontSize: 12, paddingX: 10 },
-  md: { height: 34, fontSize: 14, paddingX: 14 },
-  lg: { height: 40, fontSize: 15, paddingX: 18 },
+  sm: { height: 28, fontSize: defaultTypography.sizes.xs.fontSize, paddingX: 10 },
+  md: { height: 34, fontSize: defaultTypography.sizes.sm.fontSize, paddingX: 14 },
+  lg: { height: 40, fontSize: defaultTypography.sizes.base.fontSize, paddingX: 18 },
 } as const;
 
 type SegmentedControlSize = keyof typeof sizeMap;

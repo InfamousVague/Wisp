@@ -67,7 +67,7 @@ export function buildSpotlightTitleStyle(
   themeColors: ThemeColors,
 ): CSSStyleObject {
   return {
-    fontSize: 15,
+    fontSize: defaultTypography.sizes.base.fontSize,
     fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1.4,
     color: themeColors.text.primary,
@@ -86,7 +86,7 @@ export function buildSpotlightDescriptionStyle(
   themeColors: ThemeColors,
 ): CSSStyleObject {
   return {
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.46,
     color: themeColors.text.secondary,
@@ -122,7 +122,7 @@ export function buildSpotlightStepCountStyle(
   themeColors: ThemeColors,
 ): CSSStyleObject {
   return {
-    fontSize: 12,
+    fontSize: defaultTypography.sizes.xs.fontSize,
     fontWeight: defaultTypography.weights.medium,
     color: themeColors.text.muted,
     margin: 0,
@@ -145,7 +145,7 @@ export function buildSpotlightNavButtonStyle(
     alignItems: 'center',
     gap: defaultSpacing.xs,
     padding: `${defaultSpacing.sm}px ${defaultSpacing.lg}px`,
-    fontSize: 13,
+    fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
     borderRadius: defaultRadii.md,
