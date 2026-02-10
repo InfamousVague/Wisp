@@ -163,10 +163,6 @@ export function buildTextAreaContainerStyle(
   return {
     display: 'flex',
     minHeight: sizeConfig.minHeight,
-    paddingLeft: sizeConfig.paddingX,
-    paddingRight: sizeConfig.paddingX,
-    paddingTop: sizeConfig.paddingY,
-    paddingBottom: sizeConfig.paddingY,
     backgroundColor: colors.bg,
     borderRadius: radii[sizeConfig.borderRadius],
     boxSizing: 'border-box',
@@ -195,21 +191,28 @@ export function buildTextAreaStyle(
   sizeConfig: TextAreaSizeConfig,
   colors: TextAreaColors,
   resize: 'none' | 'vertical' | 'horizontal' | 'both',
+  theme: WispTheme,
 ): CSSStyleObject {
   return {
     // Reset
     margin: 0,
-    padding: 0,
     border: 'none',
     outline: 'none',
     background: 'transparent',
     appearance: 'none',
+
+    // Padding (on the textarea so the resize handle sits at the container edge)
+    paddingLeft: sizeConfig.paddingX,
+    paddingRight: sizeConfig.paddingX,
+    paddingTop: sizeConfig.paddingY,
+    paddingBottom: sizeConfig.paddingY,
 
     // Sizing
     flex: 1,
     minWidth: 0,
     width: '100%',
     minHeight: 0,
+    boxSizing: 'border-box',
 
     // Typography
     fontFamily: fontFamilyStacks.sans,
@@ -218,6 +221,9 @@ export function buildTextAreaStyle(
 
     // Colors
     color: colors.text,
+
+    // Use the theme mode color scheme so the native resize handle is visible
+    colorScheme: theme.mode,
 
     // Resize
     resize,

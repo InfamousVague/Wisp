@@ -133,8 +133,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
   );
 
   const textAreaStyle = useMemo(
-    () => buildTextAreaStyle(sizeConfig, colors, resize),
-    [sizeConfig, colors, resize],
+    () => buildTextAreaStyle(sizeConfig, colors, resize, theme),
+    [sizeConfig, colors, resize, theme],
   );
 
   const labelStyle = useMemo(

@@ -142,8 +142,6 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea(
 
   const containerStyle = useMemo<ViewStyle>(() => ({
     minHeight: sizeConfig.minHeight,
-    paddingHorizontal: sizeConfig.paddingX,
-    paddingVertical: sizeConfig.paddingY,
     borderRadius: sizeConfig.borderRadius,
     borderWidth: 1,
     borderColor: colors.border,
@@ -156,7 +154,8 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea(
     fontSize: sizeConfig.fontSize,
     lineHeight: sizeConfig.fontSize * sizeConfig.lineHeight,
     color: colors.text,
-    padding: 0,
+    paddingHorizontal: sizeConfig.paddingX,
+    paddingVertical: sizeConfig.paddingY,
     textAlignVertical: 'top',
   }), [sizeConfig, colors]);
 
