@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo, useState, useRef, useEffect, useCallback } from 'react';
 import { View, Pressable, Modal, Animated, StyleSheet, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface TooltipProps {
   children: React.ReactElement;
@@ -26,7 +26,8 @@ export const Tooltip = forwardRef<View, TooltipProps>(function Tooltip(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const [visible, setVisible] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const dismissTimer = useRef<ReturnType<typeof setTimeout> | null>(null);

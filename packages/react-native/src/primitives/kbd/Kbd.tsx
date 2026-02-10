@@ -16,8 +16,8 @@ import { View, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { KbdSize } from '@wisp-ui/core/types/Kbd.types';
 import { kbdSizeMap } from '@wisp-ui/core/types/Kbd.types';
-import { useThemeColors } from '../../providers';
 import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -58,7 +58,8 @@ export const Kbd = forwardRef<View, KbdProps>(function Kbd(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = kbdSizeMap[size];
 
   const containerStyle = useMemo<ViewStyle>(() => ({

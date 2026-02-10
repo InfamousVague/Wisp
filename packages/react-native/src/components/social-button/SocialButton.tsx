@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo } from 'react';
 import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 type SocialProvider = 'google' | 'apple' | 'facebook' | 'github' | 'x' | 'microsoft' | 'discord' | 'slack';
 type SocialButtonSize = 'sm' | 'md' | 'lg';
@@ -124,7 +124,8 @@ export const SocialButton = forwardRef<View, SocialButtonProps>(function SocialB
   { provider, action = 'Sign in with', variant = 'filled', size = 'md', fullWidth = false,
     iconOnly = false, disabled = false, onPress, style: userStyle }, ref,
 ) {
-  const tc = useThemeColors();
+  const { theme } = useTheme();
+  const tc = theme.colors;
   const cfg = sizeMap[size];
   const pc = providers[provider];
   const ProviderIcon = providerIcons[provider];

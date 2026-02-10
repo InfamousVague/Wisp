@@ -9,8 +9,8 @@ import {
   resolveRingColor,
   resolveActivityCirclesColors,
 } from '@wisp-ui/core/styles/ActivityCircles.styles';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface ActivityCirclesProps {
   rings: ActivityCirclesRing[];
@@ -38,7 +38,8 @@ export const ActivityCircles = forwardRef<View, ActivityCirclesProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const baseSizeConfig = activityCirclesSizeMap[size];
 
     const sizeConfig = useMemo(() => {
@@ -47,12 +48,12 @@ export const ActivityCircles = forwardRef<View, ActivityCirclesProps>(
     }, [baseSizeConfig, thickness]);
 
     const colors = useMemo(
-      () => resolveActivityCirclesColors(themeColors),
+      () => resolveActivityCirclesColors(theme),
       [themeColors],
     );
 
     const ringColors = useMemo(
-      () => rings.map((ring, i) => ring.color || resolveRingColor(i, themeColors)),
+      () => rings.map((ring, i) => ring.color || resolveRingColor(i, theme)),
       [rings, themeColors],
     );
 

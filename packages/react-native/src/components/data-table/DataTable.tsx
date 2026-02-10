@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo, useCallback } from 'react';
 import { View, Pressable, FlatList, ScrollView, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 type DataTableSize = 'sm' | 'md' | 'lg';
 
@@ -60,7 +60,8 @@ function DataTableInner<T>(
   }: DataTableProps<T>,
   ref: React.Ref<View>,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const cfg = dtSizeMap[size];
 
   const handleSort = useCallback(

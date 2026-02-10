@@ -23,9 +23,9 @@ import {
   resolveVariantColors,
   getDisabledColors,
 } from '@wisp-ui/core/styles/Button.styles';
-import { useThemeColors } from '../../providers';
 import { Text } from '../text';
 import { toRNShadow } from '../../utils';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -79,14 +79,15 @@ export const Button = forwardRef<View, ButtonProps>(function Button(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = buttonSizeMap[size];
   const isIconOnly = !children && !!(iconLeft || iconRight);
   const isDisabled = disabled || isLoading;
 
   const variantColors = useMemo(() => {
-    if (disabled && !isLoading) return getDisabledColors(themeColors);
-    return resolveVariantColors(variant, themeColors, onSurface);
+    if (disabled && !isLoading) return getDisabledColors(theme);
+    return resolveVariantColors(variant, theme, onSurface);
   }, [variant, disabled, isLoading, themeColors, onSurface]);
 
   const handlePress = useCallback(

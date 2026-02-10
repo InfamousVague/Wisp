@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import { View, Pressable, Modal, FlatList, StyleSheet, Text as RNText, SafeAreaView } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline, Path } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface SelectOption {
   value: string;
@@ -51,7 +51,8 @@ export const Select = forwardRef<View, SelectProps>(function Select(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const cfg = selectSizeMap[size];
   const isControlled = controlledValue !== undefined;
   const [internalValue, setInternalValue] = useState(defaultValue ?? '');

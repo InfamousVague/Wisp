@@ -3,8 +3,8 @@ import { View, Text as RNText, Pressable } from 'react-native';
 import type { ChipSize, ChipColor, ChipVariant } from '@wisp-ui/core/types/Chip.types';
 import { chipSizeMap } from '@wisp-ui/core/types/Chip.types';
 import { resolveChipColors } from '@wisp-ui/core/styles/Chip.styles';
-import { useThemeColors } from '../../providers';
 import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface ChipProps {
   children: React.ReactNode;
@@ -36,11 +36,12 @@ export const Chip = forwardRef<View, ChipProps>(function Chip(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = chipSizeMap[size];
 
   const colors = useMemo(
-    () => resolveChipColors(color, variant, themeColors),
+    () => resolveChipColors(color, variant, theme),
     [color, variant, themeColors],
   );
 

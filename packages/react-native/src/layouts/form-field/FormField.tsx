@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText } from 'react-native';
 import type { FormFieldSize } from '@wisp-ui/core/types/FormField.types';
 import { formFieldSizeMap } from '@wisp-ui/core/types/FormField.types';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export type FormFieldOrientation = 'vertical' | 'horizontal';
 
@@ -50,7 +50,8 @@ export const FormField = forwardRef<View, FormFieldProps>(function FormField(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = formFieldSizeMap[size];
   const isHorizontal = orientation === 'horizontal';
   const hintText = error || description;

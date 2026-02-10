@@ -11,8 +11,8 @@ import { View, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { AvatarSize } from '@wisp-ui/core/types/Avatar.types';
 import { avatarSizeMap } from '@wisp-ui/core/types/Avatar.types';
-import { useThemeColors } from '../../providers';
 import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -45,7 +45,8 @@ export const AvatarGroup = forwardRef<View, AvatarGroupProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const sizeConfig = avatarSizeMap[size];
 
     const allChildren = React.Children.toArray(children);

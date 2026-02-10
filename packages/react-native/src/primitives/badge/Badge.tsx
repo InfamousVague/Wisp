@@ -12,8 +12,8 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { BadgeSize, BadgeVariant, BadgeShape } from '@wisp-ui/core/types/Badge.types';
 import { badgeSizeMap } from '@wisp-ui/core/types/Badge.types';
 import { resolveBadgeColors } from '@wisp-ui/core/styles/Badge.styles';
-import { useThemeColors } from '../../providers';
 import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -47,11 +47,12 @@ export const Badge = forwardRef<View, BadgeProps>(function Badge(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = badgeSizeMap[size];
 
   const colors = useMemo(
-    () => resolveBadgeColors(variant, themeColors),
+    () => resolveBadgeColors(variant, theme),
     [variant, themeColors],
   );
 

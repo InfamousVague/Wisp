@@ -3,7 +3,7 @@ import { View, Animated } from 'react-native';
 import type { IndicatorVariant, IndicatorState, IndicatorSize } from '@wisp-ui/core/types/Indicator.types';
 import { indicatorSizeMap } from '@wisp-ui/core/types/Indicator.types';
 import { resolveIndicatorColor } from '@wisp-ui/core/styles/Indicator.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 export interface IndicatorProps {
   variant?: IndicatorVariant;
@@ -23,9 +23,10 @@ export const Indicator = forwardRef<View, IndicatorProps>(function Indicator(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = indicatorSizeMap[size];
-  const color = useMemo(() => resolveIndicatorColor(variant, themeColors), [variant, themeColors]);
+  const color = useMemo(() => resolveIndicatorColor(variant, theme), [variant, themeColors]);
 
   // Pulse animation for active state
   const pulseAnim = useRef(new Animated.Value(1)).current;

@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import { View, Pressable, Modal, FlatList, SafeAreaView, StyleSheet, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 type TimePickerSize = 'sm' | 'md' | 'lg';
 type TimePickerFormat = '12h' | '24h';
@@ -31,7 +31,8 @@ export const TimePicker = forwardRef<View, TimePickerProps>(function TimePicker(
   { value: cv, defaultValue, onChange, size = 'md', format = '12h', minuteStep = 1,
     placeholder = 'Select time', disabled = false, label, error, style: us }, ref,
 ) {
-  const tc = useThemeColors(); const cfg = sizeMap[size];
+  const { theme } = useTheme();
+  const tc = theme.colors; const cfg = sizeMap[size];
   const isCtrl = cv !== undefined;
   const [iv, setIv] = useState<string|undefined>(defaultValue);
   const val = isCtrl ? cv : iv;

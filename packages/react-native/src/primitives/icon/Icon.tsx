@@ -19,7 +19,7 @@ import type { ViewProps, ViewStyle } from 'react-native';
 import type { ComponentSize, SemanticColor } from '@wisp-ui/core/tokens/shared';
 import { iconSizeMap } from '@wisp-ui/core/types/Icon.types';
 import { resolveIconColor } from '@wisp-ui/core/styles/Icon.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -89,11 +89,12 @@ export const Icon = forwardRef<View, IconProps>(function Icon(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // Resolve semantic or raw color through the theme
   const resolvedColor = useMemo(
-    () => resolveIconColor(color, themeColors),
+    () => resolveIconColor(color, theme),
     [color, themeColors],
   );
 

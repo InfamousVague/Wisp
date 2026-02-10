@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo, useState, useCallback, useEffect, useRef } 
 import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path, Rect, Polyline } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 type CopyButtonSize = 'sm' | 'md' | 'lg';
 type CopyButtonVariant = 'outline' | 'ghost' | 'minimal';
@@ -48,7 +48,8 @@ export const CopyButton = forwardRef<View, CopyButtonProps>(function CopyButton(
   { value, size = 'md', label, variant = 'outline', copiedLabel = 'Copied!', copiedDuration = 2000,
     onCopy, onPress, disabled = false, style: userStyle }, ref,
 ) {
-  const tc = useThemeColors();
+  const { theme } = useTheme();
+  const tc = theme.colors;
   const cfg = sizeMap[size];
   const [isCopied, setIsCopied] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);

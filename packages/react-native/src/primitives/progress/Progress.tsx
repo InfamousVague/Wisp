@@ -22,9 +22,9 @@ import { thicknessValues } from '@wisp-ui/core/tokens/shared';
 import { progressSizeMap } from '@wisp-ui/core/types/Progress.types';
 import { resolveProgressColors } from '@wisp-ui/core/styles/Progress.styles';
 import type { ProgressColors } from '@wisp-ui/core/styles/Progress.styles';
-import { useThemeColors } from '../../providers';
 import { Text } from '../text';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -115,7 +115,8 @@ export const Progress = forwardRef<View, ProgressProps>(function Progress(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const baseSizeConfig = progressSizeMap[size];
 
   // Apply thickness override if provided
@@ -146,7 +147,7 @@ export const Progress = forwardRef<View, ProgressProps>(function Progress(
   // Colors
   // ---------------------------------------------------------------------------
   const colors = useMemo(
-    () => resolveProgressColors(color, themeColors),
+    () => resolveProgressColors(color, theme),
     [color, themeColors],
   );
 

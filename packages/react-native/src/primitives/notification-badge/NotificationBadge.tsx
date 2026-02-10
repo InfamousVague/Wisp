@@ -11,8 +11,8 @@ import { View, Text, Animated } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { NotificationBadgeColor } from '@wisp-ui/core/types/NotificationBadge.types';
 import { resolveNotificationBadgeColors } from '@wisp-ui/core/styles/NotificationBadge.styles';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -54,10 +54,11 @@ export const NotificationBadge = forwardRef<View, NotificationBadgeProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
 
     const colors = useMemo(
-      () => resolveNotificationBadgeColors(color, themeColors),
+      () => resolveNotificationBadgeColors(color, theme),
       [color, themeColors],
     );
 

@@ -11,8 +11,8 @@ import { View, Image as RNImage, Text, Animated } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle, ImageStyle, ImageResizeMode } from 'react-native';
 import type { ImageFit, ImageRadius } from '@wisp-ui/core/types/Image.types';
 import { imageRadiusMap } from '@wisp-ui/core/types/Image.types';
-import { useThemeColors } from '../../providers';
 import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Fit → RN ResizeMode mapping
@@ -71,7 +71,8 @@ export const WispImage = forwardRef<View, WispImageProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const [loaded, setLoaded] = useState(false);
     const [errored, setErrored] = useState(false);
 

@@ -2,10 +2,10 @@ import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { Collapse } from '../../layouts/collapse';
 import type { ThemeColors } from '@wisp-ui/core/theme/types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 const sizeMap = {
   sm: { fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 18, iconSize: 14, indent: 16, itemHeight: 28, gap: defaultSpacing['2xs'] },
@@ -184,7 +184,8 @@ export const TreeView = forwardRef<View, TreeViewProps>(function TreeView(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = sizeMap[size];
 
   // Expand state

@@ -11,7 +11,7 @@ import { View, TextInput, Pressable, Text, ActivityIndicator } from 'react-nativ
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
 import { searchInputSizeMap } from '@wisp-ui/core/styles/SearchInput.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -65,7 +65,8 @@ export const SearchInput = forwardRef<View, SearchInputProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const sizeConfig = searchInputSizeMap[size];
 
     const [internalValue, setInternalValue] = useState(defaultValue);

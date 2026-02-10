@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo, useRef, useEffect, useCallback } from 'react';
 import { View, Pressable, Animated, PanResponder, Dimensions, Modal, StyleSheet } from 'react-native';
 import type { ViewStyle } from 'react-native';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 type SheetSize = 'sm' | 'md' | 'lg' | 'full';
 
@@ -37,7 +37,8 @@ export const Sheet = forwardRef<View, SheetProps>(function Sheet(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const screenHeight = Dimensions.get('window').height;
   const maxHeight = screenHeight * sheetSizePercent[size];
 

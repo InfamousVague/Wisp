@@ -4,8 +4,8 @@ import Svg, { Circle } from 'react-native-svg';
 import type { CircularProgressSize } from '@wisp-ui/core/types/CircularProgress.types';
 import { circularProgressSizeMap } from '@wisp-ui/core/types/CircularProgress.types';
 import { resolveCircularProgressColors } from '@wisp-ui/core/styles/CircularProgress.styles';
-import { useThemeColors } from '../../providers';
 import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 type ColorVariant = 'default' | 'success' | 'warning' | 'danger' | 'info';
 
@@ -40,7 +40,8 @@ export const CircularProgress = forwardRef<View, CircularProgressProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const sizeConfig = circularProgressSizeMap[size];
 
     const clampedValue = Math.min(Math.max(value, 0), max);
@@ -55,7 +56,7 @@ export const CircularProgress = forwardRef<View, CircularProgressProps>(
     }, [clampedValue, max, formatValue]);
 
     const colors = useMemo(
-      () => resolveCircularProgressColors(color, themeColors),
+      () => resolveCircularProgressColors(color, theme),
       [color, themeColors],
     );
 

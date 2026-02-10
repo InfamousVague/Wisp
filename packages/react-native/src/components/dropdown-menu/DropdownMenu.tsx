@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo, useState, useCallback, createContext, useContext } from 'react';
 import { View, Pressable, Modal, ScrollView, StyleSheet, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -122,8 +122,9 @@ export const DropdownMenuContent = forwardRef<View, DropdownMenuContentProps>(fu
   { children, style: userStyle },
   ref,
 ) {
+  const { theme } = useTheme();
   const { open, setOpen } = useDropdownMenuContext();
-  const themeColors = useThemeColors();
+  const themeColors = theme.colors;
 
   const contentStyle = useMemo<ViewStyle>(
     () => ({
@@ -174,8 +175,9 @@ export const DropdownMenuItem = forwardRef<View, DropdownMenuItemProps>(function
   { children, onSelect, disabled = false, danger = false, icon, style: userStyle },
   ref,
 ) {
+  const { theme } = useTheme();
   const { setOpen } = useDropdownMenuContext();
-  const themeColors = useThemeColors();
+  const themeColors = theme.colors;
 
   const handlePress = useCallback(() => {
     if (disabled) return;
@@ -220,7 +222,8 @@ DropdownMenuItem.displayName = 'DropdownMenuItem';
 
 export const DropdownMenuSeparator = forwardRef<View, DropdownMenuSeparatorProps>(
   function DropdownMenuSeparator({ style: userStyle }, ref) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     return (
       <View
         ref={ref}

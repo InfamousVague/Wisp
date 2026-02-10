@@ -10,8 +10,8 @@ import { View, Text, Pressable } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import type { QuestObjective, QuestTrackerSize } from '@wisp-ui/core/types/QuestTracker.types';
 import { questTrackerSizeMap } from '@wisp-ui/core/types/QuestTracker.types';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -48,7 +48,8 @@ export const QuestTracker = forwardRef<View, QuestTrackerProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const sizeConfig = questTrackerSizeMap[size];
     const [expanded, setExpanded] = useState(defaultExpanded);
 

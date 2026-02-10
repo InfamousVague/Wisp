@@ -2,8 +2,8 @@ import React, { createContext, useContext, useCallback, useMemo, useState, useEf
 import { View, Pressable, Modal, TextInput, FlatList, SafeAreaView, StyleSheet, Text as RNText, ActivityIndicator } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path, Circle, Line } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 type CommandSize = 'sm' | 'md' | 'lg';
 const commandSizeMap: Record<CommandSize, number> = { sm: 400, md: 520, lg: 640 };
@@ -44,7 +44,8 @@ export interface CommandProps {
 }
 
 export function Command({ open, onOpenChange, onSelect, size = 'md', filter, loading = false, closeOnSelect = true, children, style: userStyle }: CommandProps) {
-  const tc = useThemeColors();
+  const { theme } = useTheme();
+  const tc = theme.colors;
   const [search, setSearch] = useState('');
 
   useEffect(() => { if (open) setSearch(''); }, [open]);
@@ -89,8 +90,9 @@ export interface CommandInputProps {
 }
 
 export function CommandInput({ placeholder = 'Type a command or search...', icon: IconComp }: CommandInputProps) {
+  const { theme } = useTheme();
   const { search, onSearchChange } = useCommandContext();
-  const tc = useThemeColors();
+  const tc = theme.colors;
   const inputRef = useRef<TextInput>(null);
 
   useEffect(() => { setTimeout(() => inputRef.current?.focus(), 100); }, []);
@@ -117,8 +119,9 @@ CommandInput.displayName = 'CommandInput';
 export interface CommandListProps { children: React.ReactNode; style?: ViewStyle; }
 
 export function CommandList({ children, style: userStyle }: CommandListProps) {
+  const { theme } = useTheme();
   const { loading } = useCommandContext();
-  const tc = useThemeColors();
+  const tc = theme.colors;
   if (loading) {
     return <View style={[{ padding: defaultSpacing.xl, alignItems: 'center' }, userStyle]}><ActivityIndicator color={tc.accent.primary} /></View>;
   }
@@ -129,7 +132,8 @@ CommandList.displayName = 'CommandList';
 export interface CommandGroupProps { heading?: string; children: React.ReactNode; style?: ViewStyle; }
 
 export function CommandGroup({ heading, children, style: userStyle }: CommandGroupProps) {
-  const tc = useThemeColors();
+  const { theme } = useTheme();
+  const tc = theme.colors;
   return (
     <View style={userStyle}>
       {heading && (
@@ -153,8 +157,9 @@ export interface CommandItemProps {
 }
 
 export function CommandItem({ value, onSelect: onItemSelect, disabled = false, icon: IconComp, description, keywords, children, style: userStyle }: CommandItemProps) {
+  const { theme } = useTheme();
   const { search, onItemSelect: onRootSelect, filter } = useCommandContext();
-  const tc = useThemeColors();
+  const tc = theme.colors;
 
   const filterFn = filter || defaultFilter;
   const isVisible = !search || filterFn(value, search, keywords);
@@ -183,7 +188,8 @@ CommandItem.displayName = 'CommandItem';
 export interface CommandSeparatorProps { style?: ViewStyle; }
 
 export function CommandSeparator({ style: userStyle }: CommandSeparatorProps) {
-  const tc = useThemeColors();
+  const { theme } = useTheme();
+  const tc = theme.colors;
   return <View style={[{ height: 1, backgroundColor: tc.border.subtle, marginVertical: defaultSpacing.xs }, userStyle]} />;
 }
 CommandSeparator.displayName = 'CommandSeparator';
@@ -191,7 +197,8 @@ CommandSeparator.displayName = 'CommandSeparator';
 export interface CommandEmptyProps { children?: React.ReactNode; style?: ViewStyle; }
 
 export function CommandEmpty({ children, style: userStyle }: CommandEmptyProps) {
-  const tc = useThemeColors();
+  const { theme } = useTheme();
+  const tc = theme.colors;
   return (
     <View style={[{ padding: defaultSpacing.xl, alignItems: 'center' }, userStyle]}>
       <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: tc.text.muted } as TextStyle}>{children || 'No results found.'}</RNText>

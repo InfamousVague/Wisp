@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText } from 'react-native';
 import type { EmptyStateSize } from '@wisp-ui/core/types/EmptyState.types';
 import { emptyStateSizeMap } from '@wisp-ui/core/types/EmptyState.types';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface EmptyStateProps {
   /** Icon element displayed above the title. */
@@ -23,7 +23,8 @@ export const EmptyState = forwardRef<View, EmptyStateProps>(function EmptyState(
   { icon, title, description, action, size = 'md', style: userStyle },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = emptyStateSizeMap[size];
 
   return (

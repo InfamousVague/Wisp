@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo, createContext, useContext } from 'react';
 import { View, ScrollView, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import { useThemeColors } from '../../providers';
 import { defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Types & Context
@@ -49,7 +49,8 @@ export const Table = forwardRef<View, TableProps>(function Table(
   { children, size = 'md', variant = 'default', hoverable = false, style: userStyle },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const ctxValue = useMemo<TableContextValue>(() => ({ size, variant, hoverable }), [size, variant, hoverable]);
 
   const tableStyle = useMemo<ViewStyle>(
@@ -88,7 +89,8 @@ export const TableHeader = forwardRef<View, TableHeaderProps>(function TableHead
   { children, style: userStyle },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   return (
     <View
@@ -115,8 +117,9 @@ export const TableBody = forwardRef<View, TableBodyProps>(function TableBody(
   { children, style: userStyle },
   ref,
 ) {
+  const { theme } = useTheme();
   const { variant } = useTableContext();
-  const themeColors = useThemeColors();
+  const themeColors = theme.colors;
 
   const childrenWithIndex = React.Children.map(children, (child, index) => {
     if (!React.isValidElement(child)) return child;
@@ -148,7 +151,8 @@ export const TableFooter = forwardRef<View, TableFooterProps>(function TableFoot
   { children, style: userStyle },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   return (
     <View ref={ref} style={[{ borderTopWidth: 1, borderTopColor: themeColors.border.subtle }, userStyle]}>
       {children}
@@ -174,7 +178,8 @@ export const TableRow = forwardRef<View, TableRowProps>(function TableRow(
   { children, selected = false, _rowIndex = 0, _isStriped = false, style: userStyle },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const isEvenRow = _rowIndex % 2 === 1;
 
   const rowStyle = useMemo<ViewStyle>(
@@ -215,8 +220,9 @@ export const TableHead = forwardRef<View, TableHeadProps>(function TableHead(
   { children, align = 'left', width, style: userStyle },
   ref,
 ) {
+  const { theme } = useTheme();
   const { size } = useTableContext();
-  const themeColors = useThemeColors();
+  const themeColors = theme.colors;
   const cfg = tableSizeMap[size];
 
   const cellStyle = useMemo<ViewStyle>(
@@ -265,8 +271,9 @@ export const TableCell = forwardRef<View, TableCellProps>(function TableCell(
   { children, align = 'left', width, style: userStyle },
   ref,
 ) {
+  const { theme } = useTheme();
   const { size } = useTableContext();
-  const themeColors = useThemeColors();
+  const themeColors = theme.colors;
   const cfg = tableSizeMap[size];
 
   const cellStyle = useMemo<ViewStyle>(

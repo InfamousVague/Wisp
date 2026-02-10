@@ -24,8 +24,8 @@ import {
 import type { EmojiPickerSize } from '@wisp-ui/core/types/EmojiPicker.types';
 import { resolveEmojiPickerColors } from '@wisp-ui/core/styles/EmojiPicker.styles';
 import { EMOJI_DATA } from './emoji-data';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Category labels & icons
@@ -113,7 +113,8 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = emojiPickerSizeMap[size];
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState<EmojiCategory>('smileys');
@@ -162,7 +163,7 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
   // --- Colors ---
 
   const colors = useMemo(
-    () => resolveEmojiPickerColors(themeColors),
+    () => resolveEmojiPickerColors(theme),
     [themeColors],
   );
 

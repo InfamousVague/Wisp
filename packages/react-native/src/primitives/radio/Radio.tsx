@@ -29,9 +29,9 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
 import { radioSizeMap } from '@wisp-ui/core/types/Radio.types';
 import { resolveRadioColors } from '@wisp-ui/core/styles/Radio.styles';
-import { useThemeColors } from '../../providers';
 import { Text } from '../text';
 import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -199,7 +199,8 @@ export const Radio = forwardRef<View, RadioProps>(function Radio(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const group = useRadioGroupContext();
 
   const disabled = localDisabled || group.disabled;
@@ -253,7 +254,7 @@ export const Radio = forwardRef<View, RadioProps>(function Radio(
   // Resolve colors + styles
   // ---------------------------------------------------------------------------
   const colors = useMemo(
-    () => resolveRadioColors(selected, disabled, group.error, themeColors),
+    () => resolveRadioColors(selected, disabled, group.error, theme),
     [selected, disabled, group.error, themeColors],
   );
 

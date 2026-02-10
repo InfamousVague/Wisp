@@ -34,9 +34,9 @@ import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
 import type { PinInputType } from '@wisp-ui/core/types/PinInput.types';
 import { pinInputSizeMap } from '@wisp-ui/core/types/PinInput.types';
 import { resolvePinInputColors } from '@wisp-ui/core/styles/PinInput.styles';
-import { useThemeColors } from '../../providers';
 import { Text } from '../text';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -134,7 +134,8 @@ export const PinInput = forwardRef<View, PinInputProps>(function PinInput(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = pinInputSizeMap[size];
 
   // -----------------------------------------------------------------------
@@ -281,7 +282,7 @@ export const PinInput = forwardRef<View, PinInputProps>(function PinInput(
 
   const labelStyle = useMemo<TextStyle | undefined>(() => {
     if (!label) return undefined;
-    const colors = resolvePinInputColors(false, hasError, hasWarning, disabled, themeColors);
+    const colors = resolvePinInputColors(false, hasError, hasWarning, disabled, theme);
     return {
       fontSize: sizeConfig.labelFontSize,
       fontWeight: defaultTypography.weights.medium,
@@ -292,7 +293,7 @@ export const PinInput = forwardRef<View, PinInputProps>(function PinInput(
 
   const hintStyle = useMemo<TextStyle | undefined>(() => {
     if (!bottomText) return undefined;
-    const colors = resolvePinInputColors(false, hasError, hasWarning, disabled, themeColors);
+    const colors = resolvePinInputColors(false, hasError, hasWarning, disabled, theme);
     return {
       fontSize: sizeConfig.hintFontSize,
       color: isStatusText ? colors.hint : colors.hint,
@@ -303,7 +304,7 @@ export const PinInput = forwardRef<View, PinInputProps>(function PinInput(
   const buildCellStyle = useCallback(
     (index: number): TextStyle => {
       const cellIsFocused = focusedIndex === index;
-      const colors = resolvePinInputColors(cellIsFocused, hasError, hasWarning, disabled, themeColors);
+      const colors = resolvePinInputColors(cellIsFocused, hasError, hasWarning, disabled, theme);
 
       return {
         width: sizeConfig.cellSize,

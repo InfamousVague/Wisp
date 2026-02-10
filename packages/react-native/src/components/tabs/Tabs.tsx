@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo, useState, useCallback, useRef, createContext, useContext, useEffect } from 'react';
 import { View, Pressable, ScrollView, Animated, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle, LayoutChangeEvent } from 'react-native';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -112,8 +112,9 @@ export const TabList = forwardRef<View, TabListProps>(function TabList(
   { children, style: userStyle },
   ref,
 ) {
+  const { theme } = useTheme();
   const { activeValue, orientation } = useTabsContext();
-  const themeColors = useThemeColors();
+  const themeColors = theme.colors;
   const [tabLayouts, setTabLayouts] = useState<Record<string, TabLayout>>({});
   const indicatorX = useRef(new Animated.Value(0)).current;
   const indicatorW = useRef(new Animated.Value(0)).current;
@@ -193,8 +194,9 @@ export const Tab = forwardRef<View, TabProps & { _registerLayout?: (value: strin
     { children, value, disabled = false, icon, style: userStyle, _registerLayout },
     ref,
   ) {
+    const { theme } = useTheme();
     const { activeValue, onChange } = useTabsContext();
-    const themeColors = useThemeColors();
+    const themeColors = theme.colors;
     const isActive = activeValue === value;
 
     const handleLayout = useCallback(

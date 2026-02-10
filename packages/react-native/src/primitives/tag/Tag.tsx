@@ -3,8 +3,8 @@ import { View, Text as RNText, Pressable } from 'react-native';
 import type { TagSize } from '@wisp-ui/core/types/Tag.types';
 import { tagSizeMap } from '@wisp-ui/core/types/Tag.types';
 import { resolveTagColors } from '@wisp-ui/core/styles/Tag.styles';
-import { useThemeColors } from '../../providers';
 import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface TagProps {
   children: React.ReactNode;
@@ -30,11 +30,12 @@ export const Tag = forwardRef<View, TagProps>(function Tag(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = tagSizeMap[size];
 
   const colors = useMemo(
-    () => resolveTagColors(selected, disabled, themeColors),
+    () => resolveTagColors(selected, disabled, theme),
     [selected, disabled, themeColors],
   );
 

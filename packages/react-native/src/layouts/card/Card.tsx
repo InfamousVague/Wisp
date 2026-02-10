@@ -15,7 +15,7 @@
 import React, { forwardRef, useMemo, useCallback } from 'react';
 import { View, Pressable } from 'react-native';
 import type { ViewProps, ViewStyle } from 'react-native';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -100,7 +100,8 @@ export const Card = forwardRef<View, CardProps>(function Card(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const isInteractive = !!onPress;
 
   const paddingValue = cardPaddingMap[padding];

@@ -2,9 +2,9 @@ import React, { forwardRef, useMemo, useState, useCallback, useRef, createContex
 import { View, Pressable, Animated } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { Collapse } from '../../layouts/collapse';
 import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -147,8 +147,9 @@ export const AccordionItem = forwardRef<View, AccordionItemProps>(function Accor
   { children, value, disabled = false, style: userStyle },
   ref,
 ) {
+  const { theme } = useTheme();
   const { openValues } = useAccordionContext();
-  const themeColors = useThemeColors();
+  const themeColors = theme.colors;
   const isOpen = openValues.includes(value);
 
   const ctxValue = useMemo<AccordionItemContextValue>(
@@ -184,9 +185,10 @@ export const AccordionTrigger = forwardRef<View, AccordionTriggerProps>(function
   { children, icon, style: userStyle },
   ref,
 ) {
+  const { theme } = useTheme();
   const { toggle } = useAccordionContext();
   const { value, isOpen, disabled } = useAccordionItemContext();
-  const themeColors = useThemeColors();
+  const themeColors = theme.colors;
   const rotateAnim = useRef(new Animated.Value(isOpen ? 1 : 0)).current;
   const isFirstRender = useRef(true);
 

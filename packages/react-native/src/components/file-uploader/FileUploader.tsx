@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo, useCallback } from 'react';
 import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path, Polyline, Line } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface FileUploaderProps {
   accept?: string;
@@ -23,7 +23,8 @@ export const FileUploader = forwardRef<View, FileUploaderProps>(function FileUpl
   { accept, multiple = false, maxSize, maxFiles, onPickFile, onChange, disabled = false,
     title, description, icon: Icon, style: userStyle }, ref,
 ) {
-  const tc = useThemeColors();
+  const { theme } = useTheme();
+  const tc = theme.colors;
 
   const handlePress = useCallback(() => {
     if (disabled) return;

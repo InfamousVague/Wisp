@@ -3,8 +3,8 @@ import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import type { ButtonGroupItem, ButtonGroupVariant, ButtonGroupSize } from '@wisp-ui/core/types/ButtonGroup.types';
 import { buttonGroupSizeMap } from '@wisp-ui/core/types/ButtonGroup.types';
-import { useThemeColors } from '../../providers';
 import { defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface ButtonGroupProps {
   items: ButtonGroupItem[];
@@ -32,7 +32,8 @@ export const ButtonGroup = forwardRef<View, ButtonGroupProps>(function ButtonGro
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = buttonGroupSizeMap[size];
   const [internalValue, setInternalValue] = useState(defaultValue ?? items[0]?.value);
 

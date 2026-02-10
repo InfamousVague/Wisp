@@ -12,8 +12,8 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { ReadReceiptStatus, ReadReceiptSize } from '@wisp-ui/core/types/ReadReceipt.types';
 import { readReceiptSizeMap } from '@wisp-ui/core/types/ReadReceipt.types';
 import { resolveReadReceiptColors } from '@wisp-ui/core/styles/ReadReceipt.styles';
-import { useThemeColors } from '../../providers';
 import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Status → unicode icon map
@@ -72,11 +72,12 @@ export const ReadReceipt = forwardRef<View, ReadReceiptProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const sizeConfig = readReceiptSizeMap[size];
 
     const colors = useMemo(
-      () => resolveReadReceiptColors(status, themeColors),
+      () => resolveReadReceiptColors(status, theme),
       [status, themeColors],
     );
 

@@ -12,7 +12,7 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { MessageInputSize } from '@wisp-ui/core/types/MessageInput.types';
 import { messageInputSizeMap } from '@wisp-ui/core/types/MessageInput.types';
 import { resolveMessageInputColors } from '@wisp-ui/core/styles/MessageInput.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -74,7 +74,8 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = messageInputSizeMap[size];
 
   const [internalValue, setInternalValue] = useState(defaultValue);
@@ -82,7 +83,7 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
   const [inputHeight, setInputHeight] = useState(sizeConfig.minHeight - sizeConfig.padding);
 
   const colors = useMemo(
-    () => resolveMessageInputColors(themeColors),
+    () => resolveMessageInputColors(theme),
     [themeColors],
   );
 

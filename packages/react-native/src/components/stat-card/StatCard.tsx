@@ -12,8 +12,8 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { StatCardVariant, StatCardSize } from '@wisp-ui/core/types/StatCard.types';
 import { statCardSizeMap } from '@wisp-ui/core/types/StatCard.types';
 import { resolveStatCardColors } from '@wisp-ui/core/styles/StatCard.styles';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -61,10 +61,11 @@ export const StatCard = forwardRef<View, StatCardProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const sizeConfig = statCardSizeMap[size];
     const colors = useMemo(
-      () => resolveStatCardColors(variant, themeColors),
+      () => resolveStatCardColors(variant, theme),
       [variant, themeColors],
     );
 

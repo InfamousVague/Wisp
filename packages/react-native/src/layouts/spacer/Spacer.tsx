@@ -7,12 +7,13 @@
  *
  * - Always renders a `<View>` (no `<div>`).
  * - No `className` prop (RN uses `style` arrays).
- * - Spacing tokens resolved locally rather than from `theme.spacing`.
+ * - Spacing tokens resolved locally rather than from `defaultSpacing`.
  */
 
 import React, { forwardRef, useMemo } from 'react';
 import { View } from 'react-native';
 import type { ViewProps, ViewStyle } from 'react-native';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Types

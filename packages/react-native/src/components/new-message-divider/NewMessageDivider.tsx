@@ -8,8 +8,8 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -35,7 +35,8 @@ export const NewMessageDivider = forwardRef<View, NewMessageDividerProps>(functi
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const resolvedColor = color ?? themeColors.status.danger;
 
   const containerStyle = useMemo<ViewStyle>(() => ({

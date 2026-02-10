@@ -1,9 +1,9 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText } from 'react-native';
 import type { AlertVariant } from '@wisp-ui/core/types/Alert.types';
-import { useThemeColors } from '../../providers';
 import type { ThemeColors } from '@wisp-ui/core/theme/types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface AlertProps {
   variant?: AlertVariant;
@@ -43,7 +43,8 @@ export const Alert = forwardRef<View, AlertProps>(function Alert(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const colors = useMemo(() => resolveVariantColors(variant, themeColors), [variant, themeColors]);
 
   const isRaised = variant === 'default';

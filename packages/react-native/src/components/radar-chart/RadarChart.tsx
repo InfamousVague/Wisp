@@ -14,8 +14,8 @@ import {
   resolveSeriesColor,
   resolveRadarChartColors,
 } from '@wisp-ui/core/styles/RadarChart.styles';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface RadarChartProps {
   axes: string[];
@@ -49,16 +49,17 @@ export const RadarChart = forwardRef<View, RadarChartProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const sizeConfig = radarChartSizeMap[size];
 
     const chartColors = useMemo(
-      () => resolveRadarChartColors(themeColors),
+      () => resolveRadarChartColors(theme),
       [themeColors],
     );
 
     const seriesColors = useMemo(
-      () => series.map((s, i) => s.color || resolveSeriesColor(i, themeColors)),
+      () => series.map((s, i) => s.color || resolveSeriesColor(i, theme)),
       [series, themeColors],
     );
 

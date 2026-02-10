@@ -4,8 +4,8 @@ import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import type { BannerVariant } from '@wisp-ui/core/types/Banner.types';
 import { resolveBannerColors } from '@wisp-ui/core/styles/Banner.styles';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface BannerProps {
   children: React.ReactNode;
@@ -33,10 +33,11 @@ export const Banner = forwardRef<View, BannerProps>(function Banner(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const colors = useMemo(
-    () => resolveBannerColors(variant, themeColors),
+    () => resolveBannerColors(variant, theme),
     [variant, themeColors],
   );
 

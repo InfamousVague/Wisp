@@ -15,7 +15,7 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View } from 'react-native';
 import type { ViewProps, ViewStyle } from 'react-native';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Spacing map
@@ -143,7 +143,8 @@ export const Stack = forwardRef<View, StackProps>(function Stack(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const resolvedGap = resolveGap(gap);
 

@@ -20,7 +20,7 @@ import type {
   ColorSwatchSizeConfig,
 } from '@wisp-ui/core/types/ColorSwatch.types';
 import { colorSwatchSizeMap } from '@wisp-ui/core/types/ColorSwatch.types';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -110,7 +110,8 @@ export const ColorSwatch = forwardRef<View, ColorSwatchProps>(function ColorSwat
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig: ColorSwatchSizeConfig = colorSwatchSizeMap[size];
 
   const swatchStyle = useMemo<ViewStyle>(() => ({

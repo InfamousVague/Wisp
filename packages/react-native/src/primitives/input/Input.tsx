@@ -24,8 +24,8 @@ import type {
 import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
 import { inputSizeMap } from '@wisp-ui/core/types/Input.types';
 import { resolveInputColors } from '@wisp-ui/core/styles/Input.styles';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -66,7 +66,8 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = inputSizeMap[size];
 
   const [focused, setFocused] = useState(false);
@@ -93,7 +94,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
   const warningMessage = typeof warning === 'string' ? warning : undefined;
 
   const colors = useMemo(
-    () => resolveInputColors(focused, hasError, hasWarning, disabled, themeColors),
+    () => resolveInputColors(focused, hasError, hasWarning, disabled, theme),
     [focused, hasError, hasWarning, disabled, themeColors],
   );
 

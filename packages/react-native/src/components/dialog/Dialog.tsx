@@ -2,9 +2,9 @@ import React, { forwardRef, useMemo, useRef, useEffect } from 'react';
 import { View, Pressable, Animated, Text as RNText, Dimensions } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { Overlay } from '../../layouts/overlay';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 type DialogSize = 'sm' | 'md' | 'lg';
 
@@ -44,7 +44,8 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.95)).current;
 

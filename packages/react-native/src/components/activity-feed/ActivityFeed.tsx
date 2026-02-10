@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText, Image } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 const sizeMap = {
   sm: { avatarSize: 28, primaryFontSize: 13, secondaryFontSize: 12, gap: defaultSpacing.md, lineWidth: 2 },
@@ -32,7 +32,8 @@ export const ActivityFeed = forwardRef<View, ActivityFeedProps>(function Activit
   { items, size = 'md', showConnector = true, style: userStyle },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const cfg = sizeMap[size];
 
   return (

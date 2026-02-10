@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo } from 'react';
 import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 const sizeMap = {
   sm: { dotSize: 24, lineThickness: 2, labelFontSize: 12, descFontSize: 11, iconSize: 14, gap: defaultSpacing.sm },
@@ -41,7 +41,8 @@ export const ProgressSteps = forwardRef<View, ProgressStepsProps>(function Progr
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const cfg = sizeMap[size];
   const isHorizontal = orientation === 'horizontal';
 

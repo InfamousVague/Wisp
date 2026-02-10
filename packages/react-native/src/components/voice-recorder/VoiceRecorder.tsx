@@ -12,8 +12,8 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { VoiceRecorderState, VoiceRecorderSize } from '@wisp-ui/core/types/VoiceRecorder.types';
 import { voiceRecorderSizeMap } from '@wisp-ui/core/types/VoiceRecorder.types';
 import { resolveVoiceRecorderColors } from '@wisp-ui/core/styles/VoiceRecorder.styles';
-import { useThemeColors } from '../../providers';
 import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -77,10 +77,11 @@ export const VoiceRecorder = forwardRef<View, VoiceRecorderProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const sizeConfig = voiceRecorderSizeMap[size];
     const colors = useMemo(
-      () => resolveVoiceRecorderColors(state, themeColors),
+      () => resolveVoiceRecorderColors(state, theme),
       [state, themeColors],
     );
 

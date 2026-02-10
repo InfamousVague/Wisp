@@ -2,8 +2,8 @@ import React, { forwardRef, useState, useCallback, useMemo, useEffect, useRef, C
 import { View, FlatList, Pressable, Dimensions } from 'react-native';
 import type { ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface CarouselProps {
   children: React.ReactNode; autoPlay?: boolean; autoPlayInterval?: number; loop?: boolean;
@@ -15,7 +15,8 @@ export const Carousel = forwardRef<View, CarouselProps>(function Carousel(
   { children, autoPlay=false, autoPlayInterval=5000, loop=true, showArrows=true, showDots=true,
     onChange, defaultIndex=0, index: ci, aspectRatio, style: us }, ref,
 ) {
-  const tc = useThemeColors();
+  const { theme } = useTheme();
+  const tc = theme.colors;
   const slides = useMemo(() => Children.toArray(children), [children]);
   const cnt = slides.length;
   const flRef = useRef<FlatList>(null);

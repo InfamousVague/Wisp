@@ -17,9 +17,9 @@ import { Pressable, View } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { StepperSize, StepperSizeConfig } from '@wisp-ui/core/types/Stepper.types';
 import { stepperSizeMap } from '@wisp-ui/core/types/Stepper.types';
-import { useThemeColors } from '../../providers';
 import { Text } from '../text';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -130,7 +130,8 @@ export const Stepper = forwardRef<View, StepperProps>(function Stepper(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // -----------------------------------------------------------------------
   // Internal state (uncontrolled mode)

@@ -1,9 +1,9 @@
 import React, { forwardRef, useMemo, useEffect, useRef } from 'react';
 import { View, Animated, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import { useThemeColors } from '../../providers';
 import type { ThemeColors } from '@wisp-ui/core/theme/types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 type PingMeterSize = 'sm' | 'md' | 'lg';
 type PingMeterVariant = 'dot' | 'bars' | 'full';
@@ -54,7 +54,8 @@ export const PingMeter = forwardRef<View, PingMeterProps>(function PingMeter(
   { latency, size = 'md', showLatency = true, showBars = true, showDot = true,
     variant = 'full', style: userStyle }, ref,
 ) {
-  const tc = useThemeColors();
+  const { theme } = useTheme();
+  const tc = theme.colors;
   const cfg = sizeMap[size];
   const quality = getQuality(latency);
   const activeBars = getActiveBars(quality);

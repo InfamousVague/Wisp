@@ -25,9 +25,9 @@ import type {
 import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
 import { inputSizeMap } from '@wisp-ui/core/types/Input.types';
 import { resolveInputColors } from '@wisp-ui/core/styles/Input.styles';
-import { useThemeColors } from '../../providers';
 import { Text } from '../text';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -161,7 +161,8 @@ export const NumberInput = forwardRef<View, NumberInputProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const sizeConfig = inputSizeMap[size];
     const btnConfig = buttonSizeMap[size];
 
@@ -298,7 +299,7 @@ export const NumberInput = forwardRef<View, NumberInputProps>(
     const bottomText = errorMessage || hint;
 
     const colors = useMemo(
-      () => resolveInputColors(focused, hasError, false, disabled, themeColors),
+      () => resolveInputColors(focused, hasError, false, disabled, theme),
       [focused, hasError, disabled, themeColors],
     );
 

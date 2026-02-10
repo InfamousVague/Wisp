@@ -23,7 +23,7 @@ import type {
 import type { TextAlign } from '@wisp-ui/core/types/Text.types';
 import { resolveTextColor } from '@wisp-ui/core/styles/Text.styles';
 import { sizeMap } from '@wisp-ui/core/styles/Text.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -74,10 +74,11 @@ export const Text = forwardRef<RNText, TextProps>(function Text(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const resolvedColor = useMemo(
-    () => resolveTextColor(color, themeColors),
+    () => resolveTextColor(color, theme),
     [color, themeColors],
   );
 

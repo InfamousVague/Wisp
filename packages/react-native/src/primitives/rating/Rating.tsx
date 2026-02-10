@@ -3,8 +3,8 @@ import { View, Text as RNText, Pressable } from 'react-native';
 import Svg, { Path, Defs, ClipPath, Rect } from 'react-native-svg';
 import type { RatingSize } from '@wisp-ui/core/types/Rating.types';
 import { ratingSizeMap } from '@wisp-ui/core/types/Rating.types';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface RatingProps {
   value?: number;
@@ -78,7 +78,8 @@ export const Rating = forwardRef<View, RatingProps>(function Rating(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = ratingSizeMap[size];
 
   const isControlled = controlledValue !== undefined;

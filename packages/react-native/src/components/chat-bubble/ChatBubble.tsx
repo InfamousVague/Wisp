@@ -15,9 +15,9 @@ import type {
   ChatBubbleReaction,
 } from '@wisp-ui/core/types/ChatBubble.types';
 import { resolveChatBubbleColors } from '@wisp-ui/core/styles/ChatBubble.styles';
-import { useThemeColors } from '../../providers';
 import Svg, { Path } from 'react-native-svg';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -88,11 +88,12 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const isOutgoing = align === 'outgoing';
 
   const colors = useMemo(
-    () => resolveChatBubbleColors(align, variant, themeColors),
+    () => resolveChatBubbleColors(align, variant, theme),
     [align, variant, themeColors],
   );
 

@@ -3,8 +3,8 @@ import { View, TextInput, Text as RNText, Pressable } from 'react-native';
 import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
 import { tagInputSizeMap } from '@wisp-ui/core/types/TagInput.types';
 import { resolveTagInputColors } from '@wisp-ui/core/styles/TagInput.styles';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface TagInputProps {
   size?: ComponentSize;
@@ -48,7 +48,8 @@ export const TagInput = forwardRef<View, TagInputProps>(function TagInput(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = tagInputSizeMap[size];
 
   const isControlled = value !== undefined;
@@ -127,7 +128,7 @@ export const TagInput = forwardRef<View, TagInputProps>(function TagInput(
   );
 
   const colors = useMemo(
-    () => resolveTagInputColors(focused, hasError, hasWarning, disabled, themeColors),
+    () => resolveTagInputColors(focused, hasError, hasWarning, disabled, theme),
     [focused, hasError, hasWarning, disabled, themeColors],
   );
 

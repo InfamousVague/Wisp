@@ -11,9 +11,9 @@ import { View, Text, Pressable, Animated } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import type { AchievementRarity } from '@wisp-ui/core/types/AchievementCard.types';
 import { achievementRarityMap } from '@wisp-ui/core/types/AchievementCard.types';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 import { zIndex } from '@wisp-ui/core/tokens/z-index';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -50,7 +50,8 @@ export const AchievementUnlock = forwardRef<View, AchievementUnlockProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const rarityConfig = achievementRarityMap[rarity];
     const slideAnim = useRef(new Animated.Value(-100)).current;
     const opacityAnim = useRef(new Animated.Value(0)).current;

@@ -2,9 +2,9 @@ import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import { View, Pressable, Modal, FlatList, StyleSheet, TextInput, Text as RNText, SafeAreaView } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import type { SelectOption } from '../select/Select';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 type ComboboxSize = 'sm' | 'md' | 'lg';
 
@@ -46,7 +46,8 @@ export const Combobox = forwardRef<View, ComboboxProps>(function Combobox(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const cfg = comboboxSizeMap[size];
   const isControlled = controlledValue !== undefined;
   const [internalValue, setInternalValue] = useState(defaultValue ?? '');

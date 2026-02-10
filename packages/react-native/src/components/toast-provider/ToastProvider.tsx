@@ -9,9 +9,9 @@
 import React, { createContext, useContext, useCallback, useState, useRef, useEffect } from 'react';
 import { View, Text, Pressable, Animated } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 import { zIndex } from '@wisp-ui/core/tokens/z-index';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -48,7 +48,8 @@ export const useToast = () => useContext(ToastContext);
 // ---------------------------------------------------------------------------
 
 function ToastItemView({ item, onDismiss }: { item: ToastItem; onDismiss: (id: string) => void }) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const slideAnim = useRef(new Animated.Value(-50)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
 

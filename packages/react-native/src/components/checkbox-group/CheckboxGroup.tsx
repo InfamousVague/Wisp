@@ -2,9 +2,9 @@ import React, { forwardRef, useState, useCallback, useMemo } from 'react';
 import { View, Text } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import type { SwitchGroupOption, SwitchGroupOrientation } from '@wisp-ui/core/types/SwitchGroup.types';
-import { useThemeColors } from '../../providers';
 import { Checkbox } from '../../primitives/checkbox';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface CheckboxGroupProps {
   label?: string;
@@ -34,7 +34,8 @@ export const CheckboxGroup = forwardRef<View, CheckboxGroupProps>(function Check
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const isControlled = controlledValue !== undefined;
   const [internalValue, setInternalValue] = useState<string[]>(defaultValue);

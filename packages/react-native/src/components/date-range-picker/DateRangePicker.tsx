@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo, useState, useCallback, useEffect } from 're
 import { View, Pressable, Modal, ScrollView, SafeAreaView, StyleSheet, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path, Polyline } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 type DRPSize = 'sm' | 'md' | 'lg';
 export interface DateRange { start: Date | null; end: Date | null; }
@@ -63,7 +63,8 @@ function CalMonth({ year, month, rs, re, onPress, minD, maxD, cs, fs, tc }: any)
 export const DateRangePicker = forwardRef<View, DateRangePickerProps>(function DateRangePicker(
   { value: cv, defaultValue, onChange, size='md', placeholder='Select dates', minDate, maxDate, disabled=false, label, style: us }, ref,
 ) {
-  const tc = useThemeColors(); const cfg = sizeMap[size];
+  const { theme } = useTheme();
+  const tc = theme.colors; const cfg = sizeMap[size];
   const isCtrl = cv !== undefined;
   const [iv, setIv] = useState<DateRange>(defaultValue ?? {start:null,end:null});
   const cr = isCtrl ? cv! : iv;

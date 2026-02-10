@@ -19,9 +19,9 @@ import type { ComponentSize, Thickness } from '@wisp-ui/core/tokens/shared';
 import { sliderSizeMap } from '@wisp-ui/core/types/Slider.types';
 import { resolveSliderColors } from '@wisp-ui/core/styles/Slider.styles';
 import { thicknessValues } from '@wisp-ui/core/tokens/shared';
-import { useThemeColors } from '../../providers';
 import { Text } from '../text';
 import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -101,7 +101,8 @@ export const Slider = forwardRef<View, SliderProps>(function Slider(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // Controlled / uncontrolled
   const isControlled = controlledValue !== undefined;
@@ -174,7 +175,7 @@ export const Slider = forwardRef<View, SliderProps>(function Slider(
   }, [baseSizeConfig, thickness]);
 
   const colors = useMemo(
-    () => resolveSliderColors(disabled, themeColors),
+    () => resolveSliderColors(disabled, theme),
     [disabled, themeColors],
   );
 

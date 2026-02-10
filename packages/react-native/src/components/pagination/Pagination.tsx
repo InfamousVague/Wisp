@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo, useCallback } from 'react';
 import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 const sizeMap = {
   sm: { height: 28, fontSize: defaultTypography.sizes.xs.fontSize, minWidth: 28, iconSize: 14, gap: defaultSpacing.xs },
@@ -55,7 +55,8 @@ export const Pagination = forwardRef<View, PaginationProps>(function Pagination(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const cfg = sizeMap[size];
   const isAtFirst = page <= 1;
   const isAtLast = page >= totalPages;

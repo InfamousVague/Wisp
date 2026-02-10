@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 const sizeMap = {
   sm: { dotSize: 10, lineWidth: 2, fontSize: defaultTypography.sizes.sm.fontSize, secondaryFontSize: 11, gap: defaultSpacing.md, contentGap: 4 },
@@ -33,7 +33,8 @@ export const Timeline = forwardRef<View, TimelineProps>(function Timeline(
   { items, size = 'md', style: userStyle },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const cfg = sizeMap[size];
 
   return (

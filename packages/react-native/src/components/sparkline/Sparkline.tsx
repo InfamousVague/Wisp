@@ -11,8 +11,8 @@ import type { ViewProps, ViewStyle } from 'react-native';
 import Svg, { Path, Rect, Circle } from 'react-native-svg';
 import type { SparklineVariant, SparklineSize, SparklineColor } from '@wisp-ui/core/types/Sparkline.types';
 import { sparklineSizeMap } from '@wisp-ui/core/types/Sparkline.types';
-import { useThemeColors } from '../../providers';
 import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -57,7 +57,8 @@ export const Sparkline = forwardRef<View, SparklineProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const sizeConfig = sparklineSizeMap[size];
 
     const accentColor = useMemo(() => {

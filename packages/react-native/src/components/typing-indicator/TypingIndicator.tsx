@@ -12,8 +12,8 @@ import { View, Text, Animated, Easing } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { ChatBubbleAlignment } from '@wisp-ui/core/types/ChatBubble.types';
 import type { TypingIndicatorAnimation } from '@wisp-ui/core/types/TypingIndicator.types';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -142,7 +142,8 @@ export const TypingIndicator = forwardRef<View, TypingIndicatorProps>(function T
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const isOutgoing = align === 'outgoing';
   const dotColor = color ?? themeColors.text.muted;
 

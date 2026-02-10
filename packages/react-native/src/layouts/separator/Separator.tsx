@@ -14,7 +14,7 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View } from 'react-native';
 import type { ViewProps, ViewStyle } from 'react-native';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -77,7 +77,8 @@ export const Separator = forwardRef<View, SeparatorProps>(function Separator(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const lineColor = useMemo(
     () => (variant === 'strong' ? themeColors.border.strong : themeColors.border.subtle),

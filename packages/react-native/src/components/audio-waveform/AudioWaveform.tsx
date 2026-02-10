@@ -12,8 +12,8 @@ import type { ViewProps, ViewStyle, GestureResponderEvent } from 'react-native';
 import Svg, { Rect } from 'react-native-svg';
 import type { AudioWaveformSize, AudioWaveformColor } from '@wisp-ui/core/types/AudioWaveform.types';
 import { audioWaveformSizeMap } from '@wisp-ui/core/types/AudioWaveform.types';
-import { useThemeColors } from '../../providers';
 import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -52,7 +52,8 @@ export const AudioWaveform = forwardRef<View, AudioWaveformProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const sizeConfig = audioWaveformSizeMap[size];
 
     const accentColor = useMemo(() => {

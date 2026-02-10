@@ -3,8 +3,8 @@ import { View, Text as RNText, Pressable } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import type { BreadcrumbSize } from '@wisp-ui/core/types/Breadcrumb.types';
 import { breadcrumbSizeMap } from '@wisp-ui/core/types/Breadcrumb.types';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Breadcrumb
@@ -24,7 +24,8 @@ export const Breadcrumb = forwardRef<View, BreadcrumbProps>(function Breadcrumb(
   { separator, size = 'md', children, style: userStyle },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = breadcrumbSizeMap[size];
   const items = React.Children.toArray(children);
 
@@ -92,7 +93,8 @@ export const BreadcrumbItem = forwardRef<View, BreadcrumbItemProps>(function Bre
   { active = false, icon, children, onPress, style: userStyle },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const textColor = active ? themeColors.text.primary : themeColors.text.secondary;
   const fontWeight = active ? ('500' as const) : ('400' as const);
@@ -134,7 +136,8 @@ export interface BreadcrumbSeparatorProps {
 
 export const BreadcrumbSeparator = forwardRef<View, BreadcrumbSeparatorProps>(
   function BreadcrumbSeparator({ children, style: userStyle }, ref) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
 
     return (
       <View

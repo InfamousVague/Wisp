@@ -18,9 +18,9 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { ToastVariant } from '@wisp-ui/core/types/Toast.types';
 import { resolveToastColors } from '@wisp-ui/core/styles/Toast.styles';
 import type { ToastColors } from '@wisp-ui/core/styles/Toast.styles';
-import { useThemeColors } from '../../providers';
 import { Text } from '../text';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -104,10 +104,11 @@ export const Toast = forwardRef<View, ToastProps>(function Toast(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const colors: ToastColors = useMemo(
-    () => resolveToastColors(variant, themeColors),
+    () => resolveToastColors(variant, theme),
     [variant, themeColors],
   );
 

@@ -21,7 +21,7 @@ import {
   getDisabledToggleColors,
   resolveSizeConfig,
 } from '@wisp-ui/core/styles/Toggle.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -62,7 +62,8 @@ export const Toggle = forwardRef<View, ToggleProps>(function Toggle(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // Controlled / uncontrolled
   const isControlled = controlledChecked !== undefined;
@@ -86,8 +87,8 @@ export const Toggle = forwardRef<View, ToggleProps>(function Toggle(
   );
 
   const colors = useMemo(() => {
-    if (disabled) return getDisabledToggleColors(themeColors);
-    return resolveToggleColors(isChecked, themeColors, checkedColor, uncheckedColor);
+    if (disabled) return getDisabledToggleColors(theme);
+    return resolveToggleColors(isChecked, theme, checkedColor, uncheckedColor);
   }, [isChecked, disabled, themeColors, checkedColor, uncheckedColor]);
 
   const handlePress = useCallback(() => {

@@ -26,9 +26,9 @@ import type {
 import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
 import { textAreaSizeMap } from '@wisp-ui/core/types/TextArea.types';
 import { resolveTextAreaColors } from '@wisp-ui/core/styles/TextArea.styles';
-import { useThemeColors } from '../../providers';
 import { Text } from '../text';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -93,7 +93,8 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = textAreaSizeMap[size];
 
   // ---------------------------------------------------------------------------
@@ -126,7 +127,7 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea(
   const warningMessage = typeof warning === 'string' ? warning : undefined;
 
   const colors = useMemo(
-    () => resolveTextAreaColors(focused, hasError, hasWarning, disabled, themeColors),
+    () => resolveTextAreaColors(focused, hasError, hasWarning, disabled, theme),
     [focused, hasError, hasWarning, disabled, themeColors],
   );
 

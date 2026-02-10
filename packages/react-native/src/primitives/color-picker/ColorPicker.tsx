@@ -3,8 +3,8 @@ import { View, TextInput, Pressable, Text } from 'react-native';
 import type { ViewProps } from 'react-native';
 import { colorPickerSizeMap } from '@wisp-ui/core/types/ColorPicker.types';
 import type { ColorPickerSize, ColorPickerSizeConfig } from '@wisp-ui/core/types/ColorPicker.types';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -63,7 +63,8 @@ export const ColorPicker = forwardRef<View, ColorPickerProps>(function ColorPick
   },
   ref,
 ) {
-  const tc = useThemeColors();
+  const { theme } = useTheme();
+  const tc = theme.colors;
   const sizeConfig = useMemo(() => colorPickerSizeMap[size], [size]);
   const resolvedPresets = presets ?? DEFAULT_PRESETS;
 

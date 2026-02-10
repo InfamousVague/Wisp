@@ -20,9 +20,9 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
 import { checkboxSizeMap } from '@wisp-ui/core/types/Checkbox.types';
 import { resolveCheckboxColors } from '@wisp-ui/core/styles/Checkbox.styles';
-import { useThemeColors } from '../../providers';
 import { Text } from '../text';
 import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -74,7 +74,8 @@ export const Checkbox = forwardRef<View, CheckboxProps>(function Checkbox(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // ---------------------------------------------------------------------------
   // Controlled / uncontrolled state
@@ -135,7 +136,7 @@ export const Checkbox = forwardRef<View, CheckboxProps>(function Checkbox(
   const sizeConfig = checkboxSizeMap[size];
 
   const colors = useMemo(
-    () => resolveCheckboxColors(isChecked, indeterminate, error, warning, disabled, themeColors),
+    () => resolveCheckboxColors(isChecked, indeterminate, error, warning, disabled, theme),
     [isChecked, indeterminate, error, warning, disabled, themeColors],
   );
 

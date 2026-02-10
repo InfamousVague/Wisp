@@ -31,7 +31,7 @@ import {
   classyPath,
 } from '@wisp-ui/core/styles/qr-utils';
 import { resolveQRCodeColors } from '@wisp-ui/core/styles/QRCode.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 export interface QRCodeProps {
   value: string;
@@ -83,7 +83,8 @@ export const QRCode = forwardRef<View, QRCodeProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const sizeConfig = qrCodeSizeMap[size];
     const gradientId = useMemo(() => `qr-grad-${++idCounter}`, []);
 
@@ -91,7 +92,7 @@ export const QRCode = forwardRef<View, QRCodeProps>(
     // Colours
     // -----------------------------------------------------------------------
     const defaultColors = useMemo(
-      () => resolveQRCodeColors(themeColors),
+      () => resolveQRCodeColors(theme),
       [themeColors],
     );
 

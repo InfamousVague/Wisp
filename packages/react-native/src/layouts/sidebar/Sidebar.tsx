@@ -10,8 +10,9 @@ import { View, Text as RNText, Pressable, ScrollView } from 'react-native';
 import Svg, { Path, Polyline } from 'react-native-svg';
 import type { SidebarWidth, SidebarPosition, SidebarContextValue } from '@wisp-ui/core/types/Sidebar.types';
 import { sidebarWidthMap } from '@wisp-ui/core/types/Sidebar.types';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { ThemeColors } from '@wisp-ui/core/theme/types';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -62,7 +63,8 @@ export const Sidebar = forwardRef<View, SidebarProps>(function Sidebar(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const isControlled = controlledCollapsed !== undefined;
   const [internalCollapsed, setInternalCollapsed] = useState(false);
@@ -132,7 +134,7 @@ function CollapseToggle({
 }: {
   collapsed: boolean;
   onToggle: () => void;
-  themeColors: ReturnType<typeof useThemeColors>;
+  themeColors: ThemeColors;
 }) {
   return (
     <Pressable
@@ -197,7 +199,8 @@ export const SidebarSection = forwardRef<View, SidebarSectionProps>(function Sid
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const { collapsed: sidebarCollapsed } = useSidebarContext();
   const [sectionCollapsed, setSectionCollapsed] = useState(defaultCollapsed);
 
@@ -292,7 +295,8 @@ export const SidebarItem = forwardRef<View, SidebarItemProps>(function SidebarIt
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const { collapsed: sidebarCollapsed, width: sidebarWidth } = useSidebarContext();
 
   const backgroundColor = active ? themeColors.accent.primary : 'transparent';

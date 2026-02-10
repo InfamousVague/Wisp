@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo, useCallback, useState } from 'react';
 import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 type CalendarSize = 'sm' | 'md' | 'lg';
 const calendarSizeMap: Record<CalendarSize, { cellSize: number; fontSize: number; headerFontSize: number; gap: number; padding: number }> = {
@@ -44,7 +44,8 @@ export const Calendar = forwardRef<View, CalendarProps>(function Calendar(
   { value, defaultValue, onChange, size = 'md', minDate, maxDate, disabledDates,
     locale = 'en-US', weekStartsOn = 0, showOutsideDays = true, style: userStyle }, ref,
 ) {
-  const tc = useThemeColors(); const cfg = calendarSizeMap[size];
+  const { theme } = useTheme();
+  const tc = theme.colors; const cfg = calendarSizeMap[size];
   const [intVal, setIntVal] = useState<Date | undefined>(defaultValue);
   const sel = value !== undefined ? value : intVal;
   const today = useMemo(() => new Date(), []);

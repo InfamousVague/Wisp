@@ -10,8 +10,8 @@ import React, { forwardRef, createContext, useContext, useMemo } from 'react';
 import { View, Pressable, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { NavbarVariant } from '@wisp-ui/core/types/Navbar.types';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -40,7 +40,8 @@ export const Navbar = forwardRef<View, NavbarProps>(
     { variant = 'solid', height = 56, children, style: userStyle, ...rest },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
 
     const containerStyle = useMemo<ViewStyle>(() => {
       const base: ViewStyle = {
@@ -158,7 +159,8 @@ export interface NavbarItemProps extends ViewProps {
 
 export const NavbarItem = forwardRef<View, NavbarItemProps>(
   function NavbarItem({ active = false, onPress, children, style: userStyle, ...rest }, ref) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const { variant } = useContext(NavbarContext);
     const isSolid = variant === 'solid';
 

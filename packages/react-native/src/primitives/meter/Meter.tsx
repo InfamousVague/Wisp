@@ -19,9 +19,9 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { MeterSize, MeterVariant } from '@wisp-ui/core/types/Meter.types';
 import { meterSizeMap } from '@wisp-ui/core/types/Meter.types';
 import { resolveSegmentColor } from '@wisp-ui/core/styles/Meter.styles';
-import { useThemeColors } from '../../providers';
 import { Text } from '../text';
 import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -97,7 +97,8 @@ export const Meter = forwardRef<View, MeterProps>(function Meter(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = meterSizeMap[size];
 
   // ---------------------------------------------------------------------------
@@ -125,7 +126,7 @@ export const Meter = forwardRef<View, MeterProps>(function Meter(
   const fillColor = useMemo(() => {
     switch (variant) {
       case 'segments':
-        return resolveSegmentColor(percent, lowPercent, highPercent, optimumPercent, themeColors);
+        return resolveSegmentColor(percent, lowPercent, highPercent, optimumPercent, theme);
       case 'gradient':
         // RN View does not support linear-gradient; fall back to accent primary.
         return themeColors.accent.primary;

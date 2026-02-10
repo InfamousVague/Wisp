@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo, useState, useCallback, useRef, useEffect } 
 import { View, Pressable, Animated, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle, LayoutChangeEvent } from 'react-native';
 import type { SegmentedControlOption } from '@wisp-ui/core/types/SegmentedControl.types';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 const sizeMap = {
   sm: { height: 28, fontSize: defaultTypography.sizes.xs.fontSize, paddingX: 10 },
@@ -37,7 +37,8 @@ export const SegmentedControl = forwardRef<View, SegmentedControlProps>(function
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const cfg = sizeMap[size];
   const isControlled = controlledValue !== undefined;
   const [internalValue, setInternalValue] = useState(defaultValue ?? options[0]?.value);

@@ -6,8 +6,8 @@ import {
   extractInitials,
   resolveStatusColor,
 } from '@wisp-ui/core/styles/Avatar.styles';
-import { useThemeColors } from '../../providers';
 import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface AvatarProps {
   src?: string;
@@ -31,7 +31,8 @@ export const Avatar = forwardRef<View, AvatarProps>(function Avatar(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = avatarSizeMap[size];
   const [imgError, setImgError] = useState(false);
 
@@ -128,7 +129,7 @@ export const Avatar = forwardRef<View, AvatarProps>(function Avatar(
             width: sizeConfig.statusSize,
             height: sizeConfig.statusSize,
             borderRadius: sizeConfig.statusSize / 2,
-            backgroundColor: resolveStatusColor(status, themeColors),
+            backgroundColor: resolveStatusColor(status, theme),
             borderWidth: sizeConfig.statusBorder,
             borderColor: themeColors.background.canvas,
           }}

@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useEffect } from 'react';
 import { View, Animated } from 'react-native';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 export type SkeletonVariant = 'rectangular' | 'circular' | 'text';
 
@@ -28,7 +28,8 @@ export const Skeleton = forwardRef<View, SkeletonProps>(function Skeleton(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const pulseAnim = useRef(new Animated.Value(0.3)).current;
 
   useEffect(() => {

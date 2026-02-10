@@ -2,9 +2,9 @@ import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import { View, Pressable, Modal, SafeAreaView, StyleSheet, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { Calendar } from '../calendar';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 type DatePickerSize = 'sm' | 'md' | 'lg';
 
@@ -50,7 +50,8 @@ export const DatePicker = forwardRef<View, DatePickerProps>(function DatePicker(
     clearable = true, style: userStyle },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const cfg = datePickerSizeMap[size];
   const isControlled = controlledValue !== undefined;
   const [internalValue, setInternalValue] = useState<Date | undefined>(defaultValue);

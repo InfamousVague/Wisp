@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo } from 'react';
 import { View, Pressable } from 'react-native';
 import type { ListItemSize } from '@wisp-ui/core/types/ListItem.types';
 import { listItemSizeMap } from '@wisp-ui/core/types/ListItem.types';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface ListItemProps {
   children?: React.ReactNode;
@@ -41,7 +41,8 @@ export const ListItem = forwardRef<View, ListItemProps>(function ListItem(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const config = listItemSizeMap[size];
 
   const alignValue =

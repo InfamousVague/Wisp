@@ -2,8 +2,8 @@ import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import { View, Pressable, Modal, TextInput, SectionList, SafeAreaView, StyleSheet, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path, Polyline, Circle, Line } from 'react-native-svg';
-import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 export interface LocaleOption { code: string; label: string; nativeLabel?: string; region?: string; }
 
@@ -40,7 +40,8 @@ export const LocalePicker = forwardRef<View, LocalePickerProps>(function LocaleP
   { value: controlledValue, defaultValue, onChange, options: optionsProp, size = 'md',
     placeholder = 'Select language', searchable = true, disabled = false, label, groupByRegion = true, style: userStyle }, ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const cfg = sizeMap[size];
   const options = optionsProp ?? DEFAULT_LOCALE_OPTIONS;
   const isControlled = controlledValue !== undefined;

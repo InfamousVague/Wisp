@@ -13,7 +13,7 @@ import type { ViewProps, ViewStyle } from 'react-native';
 import type { BeaconVariant, BeaconSize } from '@wisp-ui/core/types/Beacon.types';
 import { beaconSizeMap } from '@wisp-ui/core/types/Beacon.types';
 import { resolveBeaconColor } from '@wisp-ui/core/styles/Beacon.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -49,10 +49,11 @@ export const Beacon = forwardRef<View, BeaconProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const sizeConfig = beaconSizeMap[size];
     const accentColor = useMemo(
-      () => resolveBeaconColor(variant, themeColors),
+      () => resolveBeaconColor(variant, theme),
       [variant, themeColors],
     );
 

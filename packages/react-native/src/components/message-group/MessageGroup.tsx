@@ -10,9 +10,9 @@ import React, { forwardRef, useMemo, Children, isValidElement, cloneElement } fr
 import { View, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { ChatBubbleAlignment, ChatBubbleStatus } from '@wisp-ui/core/types/ChatBubble.types';
-import { useThemeColors } from '../../providers';
 import { ChatBubble, StatusIcon } from '../chat-bubble/ChatBubble';
 import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -44,7 +44,8 @@ export const MessageGroup = forwardRef<View, MessageGroupProps>(function Message
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const isOutgoing = align === 'outgoing';
 
   const groupStyle = useMemo<ViewStyle>(() => ({
