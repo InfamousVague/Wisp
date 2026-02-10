@@ -56,6 +56,9 @@ export const EmojiPickerTrigger = forwardRef<HTMLDivElement, EmojiPickerTriggerP
               padding: 0,
               border: 'none',
               background: 'transparent',
+              boxShadow: 'none',
+              borderRadius: 0,
+              overflow: 'visible',
             }}
           >
             <EmojiPicker size={size} {...pickerProps} />

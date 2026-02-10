@@ -235,6 +235,9 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
               padding: 0,
               border: 'none',
               background: 'transparent',
+              boxShadow: 'none',
+              borderRadius: 0,
+              overflow: 'visible',
             }}
           >
             <EmojiPicker
