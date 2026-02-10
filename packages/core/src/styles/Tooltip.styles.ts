@@ -79,7 +79,7 @@ export function buildTooltipStyle(
   };
 
   return {
-    position: 'absolute',
+    position: 'relative',
     zIndex: zIndex.tooltip,
     maxWidth,
     padding: `${spacing.sm}px ${spacing.md}px`,
