@@ -6,6 +6,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { MessageInputSizeConfig } from '../types/MessageInput.types';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -55,7 +56,7 @@ export function buildMessageInputContainerStyle(
     borderRadius: sizeConfig.borderRadius,
     border: `1px solid ${colors.border}`,
     backgroundColor: colors.bg,
-    transition: 'border-color 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}`,
     width: '100%',
   };
 }
@@ -98,7 +99,7 @@ export function buildMessageInputIconButtonStyle(
     cursor: 'pointer',
     padding: 0,
     flexShrink: 0,
-    transition: 'color 150ms ease',
+    transition: `color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -120,7 +121,7 @@ export function buildMessageInputSendButtonStyle(
     cursor: hasContent ? 'pointer' : 'default',
     padding: 0,
     flexShrink: 0,
-    transition: 'all 150ms ease',
+    transition: `all ${durations.fast}ms ${easings.easeOut.css}`,
     opacity: hasContent ? 1 : 0.5,
   };
 }

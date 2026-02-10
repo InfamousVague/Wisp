@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import type { ToastPosition } from '../types/ToastProvider.types';
 import { defaultSpacing } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Container positioning
@@ -50,6 +51,6 @@ export function buildToastContainerStyle(
 export function buildToastItemWrapperStyle(): CSSStyleObject {
   return {
     pointerEvents: 'auto',
-    transition: 'opacity 200ms ease, transform 200ms ease',
+    transition: `opacity ${durations.normal}ms ${easings.easeOut.css}, transform ${durations.normal}ms ${easings.easeOut.css}`,
   };
 }

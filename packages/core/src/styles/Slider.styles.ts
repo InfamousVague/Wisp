@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { SliderSizeConfig } from '../types/Slider.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Slider color tokens
@@ -160,7 +161,7 @@ export function buildThumbStyle(
     transform: `translate(-${thumbOffset}px, -50%)`,
     cursor: 'grab',
     outline: 'none',
-    transition: 'box-shadow 150ms ease',
+    transition: `box-shadow ${durations.fast}ms ${easings.easeOut.css}`,
     zIndex: 1,
   };
 }

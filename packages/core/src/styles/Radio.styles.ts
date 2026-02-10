@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { RadioSizeConfig } from '../types/Radio.types';
 import { defaultRadii } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Resolved color set
@@ -129,7 +130,7 @@ export function buildOuterCircleStyle(
     boxSizing: 'border-box',
     flexShrink: 0,
     cursor: disabled ? 'not-allowed' : 'pointer',
-    transition: 'border-color 150ms ease, box-shadow 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -162,7 +163,7 @@ export function buildInnerDotStyle(
     backgroundColor: colors.innerBg,
     transform: selected ? 'scale(1)' : 'scale(0)',
     opacity: selected ? 1 : 0,
-    transition: 'transform 150ms ease, opacity 150ms ease',
+    transition: `transform ${durations.fast}ms ${easings.easeOut.css}, opacity ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

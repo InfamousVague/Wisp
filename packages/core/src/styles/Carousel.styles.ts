@@ -9,6 +9,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -113,7 +114,7 @@ export function buildCarouselArrowStyle(
     WebkitBackdropFilter: 'blur(8px)',
     padding: 0,
     outline: 'none',
-    transition: 'background-color 200ms ease',
+    transition: `background-color ${durations.normal}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -161,7 +162,7 @@ export function buildCarouselDotStyle(
     backgroundColor: isActive
       ? themeColors.text.inverse
       : themeColors.text.muted,
-    transition: 'width 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+    transition: `width ${durations.slow}ms cubic-bezier(0.4, 0, 0.2, 1)`,
     cursor: 'pointer',
     border: 'none',
     appearance: 'none',

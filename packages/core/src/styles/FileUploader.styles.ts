@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Dropzone container
@@ -29,7 +30,7 @@ export function buildDropzoneStyle(
     opacity: disabled ? 0.5 : 1,
     fontFamily: fontFamilyStacks.sans,
     textAlign: 'center',
-    transition: 'border-color 150ms ease, background-color 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}, background-color ${durations.fast}ms ${easings.easeOut.css}`,
     boxSizing: 'border-box',
     position: 'relative',
   };

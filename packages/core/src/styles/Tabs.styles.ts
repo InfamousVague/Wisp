@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { TabsOrientation } from '../types/Tabs.types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // TabList styles
@@ -151,7 +152,7 @@ export function buildTabStyle(
     opacity: disabled ? 0.5 : 1,
     outline: 'none',
     position: 'relative',
-    transition: 'color 150ms ease',
+    transition: `color ${durations.fast}ms ${easings.easeOut.css}`,
     whiteSpace: 'nowrap',
     userSelect: 'none',
   };

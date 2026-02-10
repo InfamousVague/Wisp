@@ -3,6 +3,7 @@ import type { ListItemSize, ListItemSizeConfig } from '../types/ListItem.types';
 import { listItemSizeMap } from '../types/ListItem.types';
 import type { ThemeColors } from '../theme/types';
 import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 /**
  * Builds the root `CSSProperties` for a {@link ListItem}.
@@ -39,7 +40,7 @@ export function buildListItemStyle(opts: {
     paddingTop: config.paddingY,
     paddingBottom: config.paddingY,
     borderRadius: defaultRadii.md,
-    transition: 'background-color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 
   if (opts.interactive) {

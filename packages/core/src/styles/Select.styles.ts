@@ -5,6 +5,7 @@ import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography, defaultShadows } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Resolved select colors
@@ -163,7 +164,7 @@ export function buildTriggerStyle(
       ? '0 0 0 2px ' + colors.focusRing + '25'
       : 'none',
     cursor: disabled ? 'not-allowed' : 'pointer',
-    transition: 'border-color 150ms ease, box-shadow 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}`,
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: sizeConfig.lineHeight,
@@ -272,7 +273,7 @@ export function buildOptionStyle(
     backgroundColor,
     cursor: isDisabled ? 'not-allowed' : 'pointer',
     userSelect: 'none',
-    transition: 'background-color 100ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

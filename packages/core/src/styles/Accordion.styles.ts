@@ -7,6 +7,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import { defaultSpacing, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Accordion root
@@ -93,7 +94,7 @@ export function buildTriggerStyle(
     opacity: isDisabled ? 0.5 : 1,
     outline: 'none',
     textAlign: 'left',
-    transition: 'color 150ms ease',
+    transition: `color ${durations.fast}ms ${easings.easeOut.css}`,
     userSelect: 'none',
     ...userStyle,
   };
@@ -117,7 +118,7 @@ export function buildChevronStyle(
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
-    transition: 'transform 200ms ease',
+    transition: `transform ${durations.normal}ms ${easings.easeOut.css}`,
     transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
   };
 }
@@ -142,8 +143,7 @@ export function buildContentStyle(
 ): CSSStyleObject {
   return {
     overflow: 'hidden',
-    transition:
-      'max-height 250ms cubic-bezier(0.4, 0, 0.2, 1), padding-bottom 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+    transition: `max-height ${durations.normal}ms cubic-bezier(0.4, 0, 0.2, 1), padding-bottom ${durations.normal}ms cubic-bezier(0.4, 0, 0.2, 1)`,
     maxHeight: isOpen ? measuredHeight : 0,
     paddingBottom: isOpen ? 12 : 0,
     color: themeColors.text.secondary,

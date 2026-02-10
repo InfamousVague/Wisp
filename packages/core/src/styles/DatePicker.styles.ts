@@ -9,6 +9,7 @@ import type { ThemeColors } from '../theme/types';
 import type { DatePickerSizeConfig } from '../types/DatePicker.types';
 import { defaultSpacing, defaultRadii, defaultTypography, defaultShadows } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -89,7 +90,7 @@ export function buildDatePickerTriggerStyle(
     margin: 0,
     width: '100%',
     userSelect: 'none',
-    transition: 'border-color 150ms ease, box-shadow 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}`,
     WebkitTapHighlightColor: 'transparent',
     opacity: isDisabled ? 0.5 : 1,
   };
@@ -173,7 +174,7 @@ export function buildDatePickerClearStyle(
     flexShrink: 0,
     borderRadius: defaultRadii.sm,
     outline: 'none',
-    transition: 'color 150ms ease',
+    transition: `color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

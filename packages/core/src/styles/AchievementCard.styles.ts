@@ -9,6 +9,7 @@ import type { AchievementStatus, AchievementRarity } from '../types/AchievementC
 import { achievementRarityMap } from '../types/AchievementCard.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Colour resolution
@@ -73,7 +74,7 @@ export function buildAchievementCardStyle(
     borderRadius: defaultRadii.lg,
     fontFamily: fontFamilyStacks.sans,
     cursor: clickable ? 'pointer' : 'default',
-    transition: 'opacity 200ms ease, filter 200ms ease',
+    transition: `opacity ${durations.normal}ms ${easings.easeOut.css}, filter ${durations.normal}ms ${easings.easeOut.css}`,
     opacity: status === 'locked' ? 0.6 : 1,
     filter: status === 'locked' ? 'grayscale(0.8)' : 'none',
   };
@@ -171,7 +172,7 @@ export function buildAchievementProgressBarStyle(
     height: '100%',
     borderRadius: defaultRadii.sm,
     backgroundColor: rarityColor,
-    transition: 'width 500ms ease',
+    transition: `width ${durations.slow}ms ${easings.easeOut.css}`,
   };
 }
 

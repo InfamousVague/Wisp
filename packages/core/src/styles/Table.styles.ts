@@ -12,6 +12,7 @@ import type { TableSize, TableCellAlignment, TableVariant } from '../types/Table
 import { tableSizePaddingMap, tableSizeFontMap } from '../types/Table.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Table bordered wrapper (<div>)
@@ -176,7 +177,7 @@ export function buildTableRowStyle(opts: {
 
   return {
     borderBottom: hideBorder ? 'none' : '1px solid ' + opts.themeColors.border.subtle,
-    transition: 'background-color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
     backgroundColor,
     ...opts.userStyle,
   };

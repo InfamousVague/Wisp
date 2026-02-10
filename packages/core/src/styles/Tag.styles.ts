@@ -4,6 +4,7 @@ import type { TagSizeConfig } from '../types/Tag.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { relativeLuminance } from '../utils/contrast';
 import { defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Helper: detect hex color strings
@@ -149,7 +150,7 @@ export function buildTagStyle(
     userSelect: 'none',
     cursor: disabled ? 'default' : 'pointer',
     opacity: disabled ? 0.5 : 1,
-    transition: 'background-color 150ms ease, border-color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, border-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -185,7 +186,7 @@ export function buildCloseButtonStyle(
     backgroundColor: colors.closeBg,
     cursor: 'pointer',
     flexShrink: 0,
-    transition: 'background-color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

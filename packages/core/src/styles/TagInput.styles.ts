@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { TagInputSizeConfig } from '../types/TagInput.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Resolved tag-input colors
@@ -176,7 +177,7 @@ export function buildContainerStyle(
       ? `0 0 0 2px ${colors.focusRing}25`
       : 'none',
     cursor: disabled ? 'not-allowed' : 'text',
-    transition: 'border-color 150ms ease, box-shadow 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -207,7 +208,7 @@ export function buildTagStyle(
     opacity: disabled ? 0.5 : 1,
     userSelect: 'none',
     boxSizing: 'border-box',
-    transition: 'background-color 150ms ease, opacity 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, opacity ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -235,7 +236,7 @@ export function buildTagRemoveStyle(
     color: colors.tagText,
     cursor: 'pointer',
     opacity: 0.6,
-    transition: 'opacity 150ms ease, background-color 150ms ease',
+    transition: `opacity ${durations.fast}ms ${easings.easeOut.css}, background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

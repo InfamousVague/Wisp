@@ -6,6 +6,7 @@ import type { ThemeColors } from '../theme/types';
 import type { CodeBlockVariant } from '../types/CodeBlock.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Wrapper style (<div> around everything)
@@ -179,7 +180,7 @@ export function buildCodeBlockCopyButtonStyle(
     color: variant === 'outlined'
       ? themeColors.text.secondary
       : themeColors.text.onRaisedSecondary,
-    transition: 'background-color 150ms ease, color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}`,
     outline: 'none',
     lineHeight: 1,
   };

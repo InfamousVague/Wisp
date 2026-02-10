@@ -4,6 +4,7 @@ import type { SegmentedControlSize, SegmentedControlSizeConfig } from '../types/
 import { segmentedControlSizeMap } from '../types/SegmentedControl.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 /**
  * Builds the inline style for the {@link SegmentedControl} root container.
@@ -123,6 +124,6 @@ export function buildSegmentStyle(opts: {
     userSelect: 'none' as const,
     position: 'relative',
     zIndex: 1,
-    transition: 'color 200ms ease',
+    transition: `color ${durations.normal}ms ${easings.easeOut.css}`,
   };
 }

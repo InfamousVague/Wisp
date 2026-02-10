@@ -6,6 +6,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ProgressStepsSizeConfig, ProgressStepsOrientation } from '../types/ProgressSteps.types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -99,7 +100,7 @@ export function buildStepDotStyle(
     fontWeight: defaultTypography.weights.semibold,
     cursor: clickable ? 'pointer' : 'default',
     boxSizing: 'border-box',
-    transition: 'background-color 200ms ease, border-color 200ms ease',
+    transition: `background-color ${durations.normal}ms ${easings.easeOut.css}, border-color ${durations.normal}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -125,7 +126,7 @@ export function buildConnectorStyle(
       width: `calc(100% - ${offset * 2}px)`,
       height: sizeConfig.lineThickness,
       backgroundColor: color,
-      transition: 'background-color 200ms ease',
+      transition: `background-color ${durations.normal}ms ${easings.easeOut.css}`,
     };
   }
   return {
@@ -135,7 +136,7 @@ export function buildConnectorStyle(
     bottom: 4,
     width: sizeConfig.lineThickness,
     backgroundColor: color,
-    transition: 'background-color 200ms ease',
+    transition: `background-color ${durations.normal}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -154,7 +155,7 @@ export function buildStepLabelStyle(
     lineHeight: 1.4,
     color: status === 'upcoming' ? themeColors.text.muted : themeColors.text.primary,
     margin: 0,
-    transition: 'color 200ms ease',
+    transition: `color ${durations.normal}ms ${easings.easeOut.css}`,
   };
 }
 

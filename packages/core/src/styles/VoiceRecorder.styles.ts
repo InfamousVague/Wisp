@@ -7,6 +7,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { VoiceRecorderState, VoiceRecorderSizeConfig } from '../types/VoiceRecorder.types';
 import { defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Keyframe injection
@@ -99,7 +100,7 @@ export function buildRecordButtonStyle(
     cursor: 'pointer',
     padding: 0,
     flexShrink: 0,
-    transition: 'all 150ms ease',
+    transition: `all ${durations.fast}ms ${easings.easeOut.css}`,
     ...(isRecording ? { animation: 'wisp-voice-pulse 1.5s ease-in-out infinite' } : {}),
   };
 }
@@ -138,7 +139,7 @@ export function buildActionButtonStyle(
     cursor: 'pointer',
     padding: 0,
     flexShrink: 0,
-    transition: 'all 150ms ease',
+    transition: `all ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

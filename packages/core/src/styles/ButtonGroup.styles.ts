@@ -6,6 +6,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ButtonGroupVariant, ButtonGroupSizeConfig } from '../types/ButtonGroup.types';
 import { defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Container style
@@ -121,6 +122,6 @@ export function buildGroupItemStyle(
     whiteSpace: 'nowrap',
 
     // Transition
-    transition: 'background-color 150ms ease, color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }

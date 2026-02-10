@@ -4,6 +4,7 @@ import type { ThemeColors } from '../theme/types';
 import type { SidebarPosition, SidebarWidth } from '../types/Sidebar.types';
 import { sidebarWidthMap } from '../types/Sidebar.types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Sidebar container
@@ -43,7 +44,7 @@ export function buildSidebarStyle(
     scrollbarWidth: 'thin',
     fontFamily: fontFamilyStacks.sans,
     boxSizing: 'border-box',
-    transition: 'width 200ms cubic-bezier(0.4, 0, 0.2, 1), min-width 200ms cubic-bezier(0.4, 0, 0.2, 1)',
+    transition: `width ${durations.normal}ms cubic-bezier(0.4, 0, 0.2, 1), min-width ${durations.normal}ms cubic-bezier(0.4, 0, 0.2, 1)`,
     ...userStyle,
   };
 }
@@ -124,7 +125,7 @@ export function buildSectionChevronStyle(
     width: 16,
     height: 16,
     flexShrink: 0,
-    transition: 'transform 200ms cubic-bezier(0.4, 0, 0.2, 1)',
+    transition: `transform ${durations.normal}ms cubic-bezier(0.4, 0, 0.2, 1)`,
     transform: isCollapsed ? 'rotate(-90deg)' : 'rotate(0deg)',
   };
 }
@@ -195,7 +196,7 @@ export function buildItemStyle(
     fontFamily: fontFamilyStacks.sans,
     cursor: disabled ? 'not-allowed' : 'pointer',
     opacity: disabled ? 0.4 : 1,
-    transition: 'background-color 150ms ease, color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}`,
     textDecoration: 'none',
     border: 'none',
     outline: 'none',

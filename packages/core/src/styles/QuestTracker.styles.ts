@@ -8,6 +8,7 @@ import type { ThemeColors } from '../theme/types';
 import type { QuestTrackerSizeConfig } from '../types/QuestTracker.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -76,7 +77,7 @@ export function buildQuestTrackerChevronStyle(
     alignItems: 'center',
     justifyContent: 'center',
     color: themeColors.text.muted,
-    transition: 'transform 200ms ease',
+    transition: `transform ${durations.normal}ms ${easings.easeOut.css}`,
     transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
   };
 }
@@ -215,6 +216,6 @@ export function buildQuestTrackerProgressBarStyle(
     width: `${Math.min(Math.max(progress, 0), 100)}%`,
     height: '100%',
     backgroundColor: themeColors.status.success,
-    transition: 'width 500ms ease',
+    transition: `width ${durations.slow}ms ${easings.easeOut.css}`,
   };
 }

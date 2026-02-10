@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { InputSizeConfig } from '../types/Input.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Size config for the circular stepper buttons
@@ -93,7 +94,7 @@ export function buildContainerStyle(
         ? `0 0 0 2px ${focusRing}25`
         : 'none',
     cursor: disabled ? 'not-allowed' : 'text',
-    transition: 'border-color 150ms ease, box-shadow 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -192,7 +193,7 @@ export function buildButtonStyle(
     // Interaction
     cursor: disabled ? 'not-allowed' : 'pointer',
     opacity: disabled ? 0.4 : 1,
-    transition: 'background 120ms ease, opacity 120ms ease',
+    transition: `background ${durations.fast}ms ${easings.easeOut.css}, opacity ${durations.fast}ms ${easings.easeOut.css}`,
     userSelect: 'none',
   };
 }

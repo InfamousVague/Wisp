@@ -9,6 +9,7 @@ import type { SpotlightTourVariant } from '../types/SpotlightTour.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Overlay
@@ -154,6 +155,6 @@ export function buildSpotlightNavButtonStyle(
     color: primary ? themeColors.background.canvas : themeColors.text.primary,
     cursor: 'pointer',
     whiteSpace: 'nowrap',
-    transition: 'opacity 150ms ease',
+    transition: `opacity ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }

@@ -9,6 +9,7 @@ import type { ThemeColors } from '../theme/types';
 import type { DateRangePickerSizeConfig } from '../types/DateRangePicker.types';
 import { defaultSpacing, defaultRadii, defaultTypography, defaultShadows } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Wrapper
@@ -89,7 +90,7 @@ export function buildTriggerStyle(
     border: `1px solid ${isOpen ? themeColors.accent.primary : themeColors.border.strong}`,
     boxShadow: isOpen ? `0 0 0 2px ${themeColors.accent.primary}25` : 'none',
     cursor: disabled ? 'not-allowed' : 'pointer',
-    transition: 'border-color 150ms ease, box-shadow 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}`,
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     color: disabled ? themeColors.text.muted : themeColors.text.primary,
@@ -191,7 +192,7 @@ export function buildNavButtonStyle(
     backgroundColor: isHovered ? themeColors.accent.highlight : 'transparent',
     color: themeColors.text.onRaised,
     cursor: 'pointer',
-    transition: 'background-color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -323,7 +324,7 @@ export function buildRangeDayCellStyle(
     color: themeColors.text.onRaised,
     cursor: 'pointer',
     userSelect: 'none',
-    transition: 'background-color 150ms ease, color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 
   // --- State overrides (order matters: disabled > start/end > inRange > today > hover > outside) ---

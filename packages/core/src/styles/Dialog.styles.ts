@@ -12,6 +12,7 @@ import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Overlay
@@ -159,7 +160,7 @@ export function buildCloseButtonStyle(themeColors: ThemeColors): CSSStyleObject 
     cursor: 'pointer',
     flexShrink: 0,
     marginLeft: defaultSpacing.sm,
-    transition: 'background-color 150ms ease, color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

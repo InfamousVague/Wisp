@@ -6,6 +6,7 @@ import type { ThemeColors } from '../theme/types';
 import type { ComponentSize } from '../tokens/shared';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Size map (reuse Input dimensions)
@@ -52,7 +53,7 @@ export function buildSearchInputContainerStyle(
     border: `1px solid ${focused ? themeColors.accent.primary : themeColors.border.strong}`,
     boxShadow: focused ? `0 0 0 2px ${themeColors.accent.primary}25` : 'none',
     cursor: disabled ? 'not-allowed' : 'text',
-    transition: 'border-color 150ms ease, box-shadow 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}`,
     width: fullWidth ? '100%' : undefined,
     opacity: disabled ? 0.5 : 1,
   };
@@ -105,6 +106,6 @@ export function buildSearchInputClearButtonStyle(
     cursor: 'pointer',
     flexShrink: 0,
     outline: 'none',
-    transition: 'color 150ms ease',
+    transition: `color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }

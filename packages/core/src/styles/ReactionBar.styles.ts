@@ -7,6 +7,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { ReactionBarSizeConfig } from '../types/ReactionBar.types';
 import { defaultSpacing, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -76,7 +77,7 @@ export function buildReactionButtonStyle(
     border: `1px solid ${active ? colors.buttonBorderActive : colors.buttonBorder}`,
     backgroundColor: active ? colors.buttonBgActive : colors.buttonBg,
     cursor: 'pointer',
-    transition: 'all 150ms ease',
+    transition: `all ${durations.fast}ms ${easings.easeOut.css}`,
     fontSize: sizeConfig.emojiSize,
     lineHeight: 1,
   };
@@ -113,7 +114,7 @@ export function buildAddButtonStyle(
     color: colors.addButtonColor,
     fontSize: sizeConfig.emojiSize,
     lineHeight: 1,
-    transition: 'all 150ms ease',
+    transition: `all ${durations.fast}ms ${easings.easeOut.css}`,
     padding: 0,
   };
 }

@@ -6,6 +6,7 @@ import type { ThemeColors } from '../theme/types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Content (dropdown panel)
@@ -52,7 +53,7 @@ export function buildContextMenuItemStyle(
     color: disabled ? themeColors.text.muted : textColor,
     cursor: disabled ? 'default' : 'pointer',
     userSelect: 'none',
-    transition: 'background-color 100ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
     outline: 'none',
     border: 'none',
     backgroundColor: 'transparent',

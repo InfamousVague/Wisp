@@ -8,6 +8,7 @@ import type { ToggleSizeConfig } from '../types/Toggle.types';
 import { toggleSizeMap, toggleSlimSizeMap } from '../types/Toggle.types';
 import { relativeLuminance } from '../utils/contrast';
 import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Helper: detect hex color strings
@@ -195,7 +196,7 @@ export function buildTrackStyle(opts: {
     userSelect: 'none',
 
     // Transition
-    transition: 'background-color 200ms ease',
+    transition: `background-color ${durations.normal}ms ${easings.easeOut.css}`,
   };
 }
 

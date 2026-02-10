@@ -8,6 +8,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { CalendarSizeConfig } from '../types/Calendar.types';
 import { defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -106,7 +107,7 @@ export function buildCalendarNavButtonStyle(
     cursor: 'pointer',
 
     // Transition
-    transition: 'background-color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -225,7 +226,7 @@ export function buildCalendarDayCellStyle(
     userSelect: 'none',
 
     // Transition
-    transition: 'background-color 150ms ease, color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 
   // --- State overrides (order matters: disabled > selected > today > hover > outside) ---

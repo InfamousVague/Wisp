@@ -3,6 +3,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { MeterSizeConfig, MeterVariant } from '../types/Meter.types';
 import { defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Segment color resolution
@@ -138,7 +139,7 @@ export function buildMeterFillStyle(
     height: '100%',
     width: `${percent}%`,
     borderRadius: sizeConfig.borderRadius,
-    transition: 'width 300ms ease, background-color 300ms ease',
+    transition: `width ${durations.slow}ms ${easings.easeOut.css}, background-color ${durations.slow}ms ${easings.easeOut.css}`,
   };
 
   switch (variant) {

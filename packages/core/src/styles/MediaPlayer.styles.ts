@@ -7,6 +7,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { MediaPlayerSizeConfig } from '../types/MediaPlayer.types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -130,7 +131,7 @@ export function buildControlButtonStyle(
     cursor: 'pointer',
     padding: 0,
     flexShrink: 0,
-    transition: 'color 150ms ease, background-color 150ms ease',
+    transition: `color ${durations.fast}ms ${easings.easeOut.css}, background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -174,7 +175,7 @@ export function buildSeekBarFillStyle(
     width: `${progress * 100}%`,
     backgroundColor: colors.trackFill,
     borderRadius: 'inherit',
-    transition: 'width 100ms linear',
+    transition: `width ${durations.fast}ms ${easings.linear.css}`,
   };
 }
 
@@ -238,7 +239,7 @@ export function buildSpeedButtonStyle(
     fontWeight: defaultTypography.weights.semibold,
     fontFamily: 'monospace',
     flexShrink: 0,
-    transition: 'color 150ms ease',
+    transition: `color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

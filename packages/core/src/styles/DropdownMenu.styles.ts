@@ -10,6 +10,7 @@ import { fontFamilyStacks, glassStyle } from "../tokens/shared";
 import type { SurfaceVariant } from "../tokens/shared";
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
+import { durations, easings } from '../tokens/motion';
 
 /**
  * Builds the style for the dropdown content panel (the floating menu container).
@@ -96,7 +97,7 @@ export function buildItemStyle(opts: {
     userSelect: "none",
     boxSizing: "border-box",
     gap: defaultSpacing.sm,
-    transition: "background-color 120ms ease",
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

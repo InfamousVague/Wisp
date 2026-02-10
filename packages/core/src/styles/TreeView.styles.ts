@@ -8,6 +8,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { TreeViewSizeConfig } from '../types/TreeView.types';
 import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Tree container
@@ -75,7 +76,7 @@ export function buildTreeNodeStyle(
     opacity: isDisabled ? 0.5 : 1,
     outline: 'none',
     userSelect: 'none',
-    transition: 'background-color 100ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -104,7 +105,7 @@ export function buildTreeToggleStyle(
     height: sizeConfig.iconSize,
     flexShrink: 0,
     transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
-    transition: 'transform 200ms ease',
+    transition: `transform ${durations.normal}ms ${easings.easeOut.css}`,
     color: themeColors.text.muted,
     appearance: 'none' as const,
     border: 'none',

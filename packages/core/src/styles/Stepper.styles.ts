@@ -6,6 +6,7 @@ import type { ThemeColors } from '../theme/types';
 import type { StepperSizeConfig } from '../types/Stepper.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultTypography, defaultSpacing } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Container style (the bordered row with [- button] [value] [+ button])
@@ -77,7 +78,7 @@ export function buildStepperButtonStyle(
 
     // Interaction
     cursor: isDisabled ? 'not-allowed' : 'pointer',
-    transition: 'background 120ms ease, color 120ms ease',
+    transition: `background ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}`,
     userSelect: 'none',
   };
 }

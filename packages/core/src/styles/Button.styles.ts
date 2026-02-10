@@ -8,6 +8,7 @@ import type { ThemeColors } from '../theme/types';
 import type { ButtonVariant, ButtonShape } from '../types/Button.types';
 import { buttonSizeMap, shapeRadiusMap } from '../types/Button.types';
 import { defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Variant -> colors (theme-aware)
@@ -357,7 +358,7 @@ export function buildButtonStyle(opts: {
     userSelect: 'none',
 
     // Transition
-    transition: 'background-color 150ms ease, box-shadow 150ms ease, opacity 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}, opacity ${durations.fast}ms ${easings.easeOut.css}`,
   };
 
   return style;

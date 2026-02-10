@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { InputSizeConfig } from '../types/Input.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Resolved input colors
@@ -190,7 +191,7 @@ export function buildInputContainerStyle(
       ? `0 0 0 2px ${colors.focusRing}25`
       : 'none',
     cursor: disabled ? 'not-allowed' : 'text',
-    transition: 'border-color 150ms ease, box-shadow 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

@@ -6,6 +6,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { TimelineSizeConfig, TimelineOrientation, TimelineStatus } from '../types/Timeline.types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -118,7 +119,7 @@ export function buildTimelineDotStyle(
     zIndex: 1,
     boxShadow,
     boxSizing: 'border-box',
-    transition: 'background-color 200ms ease, box-shadow 200ms ease',
+    transition: `background-color ${durations.normal}ms ${easings.easeOut.css}, box-shadow ${durations.normal}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -144,7 +145,7 @@ export function buildTimelineLineStyle(
       right: `calc(-50% + ${sizeConfig.dotSize / 2 + 4}px)`,
       height: sizeConfig.lineWidth,
       backgroundColor: themeColors.border.subtle,
-      transition: 'background-color 200ms ease',
+      transition: `background-color ${durations.normal}ms ${easings.easeOut.css}`,
     };
   }
 
@@ -155,7 +156,7 @@ export function buildTimelineLineStyle(
     bottom: 0,
     width: sizeConfig.lineWidth,
     backgroundColor: themeColors.border.subtle,
-    transition: 'background-color 200ms ease',
+    transition: `background-color ${durations.normal}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -205,7 +206,7 @@ export function buildTimelineTitleStyle(
     lineHeight: 1.4,
     color: status === 'pending' ? themeColors.text.muted : themeColors.text.primary,
     margin: 0,
-    transition: 'color 200ms ease',
+    transition: `color ${durations.normal}ms ${easings.easeOut.css}`,
   };
 }
 

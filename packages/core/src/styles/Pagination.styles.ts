@@ -9,6 +9,7 @@ import type { ThemeColors } from '../theme/types';
 import type { PaginationSize } from '../types/Pagination.types';
 import { paginationSizeMap } from '../types/Pagination.types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Root nav container
@@ -79,7 +80,7 @@ function buildBaseButtonStyle(
     userSelect: 'none',
 
     // Transition
-    transition: 'background-color 150ms ease, color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { RatingSizeConfig } from '../types/Rating.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Container style (wraps stars + optional value label)
@@ -61,7 +62,7 @@ export function buildRatingStarStyle(
     color: active || hovered
       ? themeColors.accent.primary
       : themeColors.border.subtle,
-    transition: 'color 150ms ease, transform 150ms ease',
+    transition: `color ${durations.fast}ms ${easings.easeOut.css}, transform ${durations.fast}ms ${easings.easeOut.css}`,
     transform: hovered && isInteractive ? 'scale(1.1)' : 'scale(1)',
     flexShrink: 0,
   };

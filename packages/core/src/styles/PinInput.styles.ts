@@ -11,6 +11,7 @@ import type { ThemeColors } from '../theme/types';
 import type { PinInputSizeConfig } from '../types/PinInput.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Resolved cell colors (reuses Input color resolution pattern)
@@ -202,7 +203,7 @@ export function buildCellStyle(
 
     // Interaction
     cursor: disabled ? 'not-allowed' : 'text',
-    transition: 'border-color 150ms ease, box-shadow 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}`,
 
     // Prevent zoom on mobile
     WebkitTextSizeAdjust: '100%',

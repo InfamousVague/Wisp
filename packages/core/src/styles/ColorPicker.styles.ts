@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { ColorPickerSizeConfig } from '../types/ColorPicker.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Container style (vertical flex column)
@@ -105,7 +106,7 @@ export function buildColorPickerInputStyle(
     outline: 'none',
     margin: 0,
     appearance: 'none',
-    transition: 'border-color 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -171,7 +172,7 @@ export function buildColorPickerSwatchStyle(
     outline: 'none',
     boxSizing: 'border-box',
     flexShrink: 0,
-    transition: 'border-color 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

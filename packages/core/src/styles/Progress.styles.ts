@@ -3,6 +3,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ProgressSizeConfig } from '../types/Progress.types';
 import { defaultSpacing, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -100,7 +101,7 @@ export function buildFillStyle(
     width: `${percent}%`,
     borderRadius: sizeConfig.borderRadius,
     backgroundColor: colors.fill,
-    transition: 'width 300ms ease',
+    transition: `width ${durations.slow}ms ${easings.easeOut.css}`,
   };
 }
 

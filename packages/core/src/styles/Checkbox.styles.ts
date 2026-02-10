@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { CheckboxSizeConfig } from '../types/Checkbox.types';
 import { relativeLuminance } from '../utils/contrast';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Helper: detect hex color strings
@@ -146,7 +147,7 @@ export function buildBoxStyle(
     boxSizing: 'border-box',
     flexShrink: 0,
     cursor: disabled ? 'not-allowed' : 'pointer',
-    transition: 'background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, border-color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}, transform ${durations.normal}ms cubic-bezier(0.34, 1.56, 0.64, 1)`,
   };
 }
 

@@ -6,6 +6,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { BeaconVariant, BeaconSizeConfig } from '../types/Beacon.types';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Colour resolution
@@ -76,7 +77,7 @@ export function buildBeaconButtonStyle(
     outline: 'none',
     flexShrink: 0,
     position: 'relative',
-    transition: 'box-shadow 200ms ease, background-color 200ms ease',
+    transition: `box-shadow ${durations.normal}ms ${easings.easeOut.css}, background-color ${durations.normal}ms ${easings.easeOut.css}`,
   };
 }
 

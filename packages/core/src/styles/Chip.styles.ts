@@ -3,6 +3,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ChipColor, ChipVariant, ChipSizeConfig } from '../types/Chip.types';
 import { defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Color resolution helpers
@@ -162,7 +163,7 @@ export function buildChipStyle(opts: {
     userSelect: 'none',
 
     // Transition
-    transition: 'background-color 150ms ease, border-color 150ms ease, opacity 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, border-color ${durations.fast}ms ${easings.easeOut.css}, opacity ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -228,7 +229,7 @@ export function buildRemoveButtonStyle(
     cursor: 'pointer',
 
     // Transition
-    transition: 'background-color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

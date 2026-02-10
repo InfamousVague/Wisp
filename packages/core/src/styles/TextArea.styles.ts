@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { TextAreaSizeConfig } from '../types/TextArea.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Resolved textarea colors
@@ -172,7 +173,7 @@ export function buildTextAreaContainerStyle(
       ? `0 0 0 2px ${colors.focusRing}25`
       : 'none',
     cursor: disabled ? 'not-allowed' : 'text',
-    transition: 'border-color 150ms ease, box-shadow 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

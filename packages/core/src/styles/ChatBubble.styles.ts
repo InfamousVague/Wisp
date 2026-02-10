@@ -3,6 +3,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ChatBubbleAlignment, ChatBubbleVariant } from '../types/ChatBubble.types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Variant -> colors (theme-aware)
@@ -184,6 +185,6 @@ export function buildReactionChipStyle(
     color: reacted ? themeColors.brand.text : themeColors.text.secondary,
     cursor: 'pointer',
     userSelect: 'none',
-    transition: 'background-color 150ms ease, border-color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, border-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }

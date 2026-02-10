@@ -4,6 +4,7 @@ import type { TimePickerSizeConfig } from '../types/TimePicker.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography, defaultShadows } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Container style
@@ -78,7 +79,7 @@ export function buildTimePickerTriggerStyle(
       ? '0 0 0 2px ' + focusRing + '25'
       : 'none',
     cursor: isDisabled ? 'not-allowed' : 'pointer',
-    transition: 'border-color 150ms ease, box-shadow 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}`,
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: 1.4,
@@ -188,7 +189,7 @@ export function buildTimePickerOptionStyle(
     lineHeight: 1.4,
     color: isSelected ? themeColors.text.onRaised : themeColors.text.onRaisedSecondary,
     backgroundColor,
-    transition: 'background-color 100ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
     userSelect: 'none',
     flexShrink: 0,
   };

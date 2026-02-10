@@ -4,6 +4,7 @@ import type { SurfaceVariant } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ToastVariant } from '../types/Toast.types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Variant -> colors (theme-aware)
@@ -258,6 +259,6 @@ export function buildDismissStyle(colors: ToastColors): CSSStyleObject {
     backgroundColor: 'transparent',
     color: colors.dismiss,
     cursor: 'pointer',
-    transition: 'color 150ms ease',
+    transition: `color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }

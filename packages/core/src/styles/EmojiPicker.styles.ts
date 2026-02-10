@@ -7,6 +7,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { EmojiPickerSizeConfig } from '../types/EmojiPicker.types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -122,7 +123,7 @@ export function buildEmojiPickerSliderTrackStyle(
     flexDirection: 'row',
     width: '200%',
     height: '100%',
-    transition: 'transform 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+    transition: `transform ${durations.normal}ms cubic-bezier(0.4, 0, 0.2, 1)`,
     transform: open ? 'translateX(-50%)' : 'translateX(0%)',
   };
 }
@@ -160,7 +161,7 @@ export function buildEmojiPickerSkinToneTriggerStyle(
     lineHeight: 1,
     flexShrink: 0,
     overflow: 'hidden',
-    transition: 'border-color 150ms ease, background-color 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}, background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -185,7 +186,7 @@ export function buildEmojiPickerSkinToneOptionStyle(
     padding: 0,
     lineHeight: 1,
     overflow: 'hidden',
-    transition: 'border-color 150ms ease',
+    transition: `border-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -251,7 +252,7 @@ export function buildEmojiPickerTabStyle(
     padding: 0,
     color: active ? colors.tabTextActive : colors.tabText,
     borderBottom: active ? `2px solid ${colors.tabIndicator}` : '2px solid transparent',
-    transition: 'all 150ms ease',
+    transition: `all ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 
@@ -304,7 +305,7 @@ export function buildEmojiPickerCellStyle(
     cursor: 'pointer',
     fontSize: sizeConfig.emojiSize,
     padding: 0,
-    transition: 'background-color 100ms ease, transform 100ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, transform ${durations.fast}ms ${easings.easeOut.css}`,
     lineHeight: 1,
     fontFamily: 'inherit',
   };

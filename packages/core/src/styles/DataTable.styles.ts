@@ -11,6 +11,7 @@ import type { ThemeColors } from '../theme/types';
 import type { DataTableSizeConfig, DataTableVariant } from '../types/DataTable.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Table Container (outer wrapper <div>)
@@ -163,7 +164,7 @@ export function buildTableRowStyle(
   return {
     height: sizeConfig.rowHeight,
     borderBottom: `1px solid ${themeColors.border.subtle}`,
-    transition: 'background-color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
     backgroundColor,
   };
 }

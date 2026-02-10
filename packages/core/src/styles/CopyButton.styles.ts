@@ -8,6 +8,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { CopyButtonSizeConfig, CopyButtonVariant } from '../types/CopyButton.types';
 import { defaultRadii, defaultTypography } from '../theme/create-theme';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Button style
@@ -97,7 +98,7 @@ export function buildCopyButtonStyle(
     userSelect: 'none',
 
     // Transition
-    transition: 'background-color 150ms ease, color 150ms ease, box-shadow 150ms ease, opacity 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}, box-shadow ${durations.fast}ms ${easings.easeOut.css}, opacity ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
 

@@ -10,6 +10,7 @@ import type { ThemeColors } from '../theme/types';
 import type { TooltipPlacement } from '../types/Tooltip.types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Arrow size constant
@@ -92,7 +93,7 @@ export function buildTooltipStyle(
     pointerEvents: 'none',
     opacity: visible ? 1 : 0,
     transform: translateMap[placement],
-    transition: 'opacity 150ms ease, transform 150ms ease',
+    transition: `opacity ${durations.fast}ms ${easings.easeOut.css}, transform ${durations.fast}ms ${easings.easeOut.css}`,
     boxSizing: 'border-box',
     ...(variant === 'glass' ? glassStyle : undefined),
   };

@@ -7,6 +7,7 @@ import type { NavbarVariant } from '../types/Navbar.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Navbar container
@@ -112,6 +113,6 @@ export function buildNavbarItemStyle(
     color: active ? textColor : mutedColor,
     cursor: 'pointer',
     userSelect: 'none',
-    transition: 'background-color 150ms ease, color 150ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }

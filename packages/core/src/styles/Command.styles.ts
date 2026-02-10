@@ -12,6 +12,7 @@ import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Overlay
@@ -163,7 +164,7 @@ export function buildItemStyle(
     backgroundColor: isActive ? themeColors.accent.highlight : 'transparent',
     color: isDisabled ? themeColors.text.muted : themeColors.text.primary,
     opacity: isDisabled ? 0.5 : 1,
-    transition: 'background-color 100ms ease',
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
     fontFamily: fontFamilyStacks.sans,
     userSelect: 'none',
   };

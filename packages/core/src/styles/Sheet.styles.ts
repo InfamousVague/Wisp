@@ -12,6 +12,7 @@ import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
 import { defaultRadii, defaultSpacing } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
+import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Overlay
@@ -32,7 +33,7 @@ export function buildOverlayStyle(themeColors: ThemeColors): CSSStyleObject {
     bottom: 0,
     zIndex: zIndex.overlay,
     backgroundColor: themeColors.background.overlay,
-    transition: 'opacity 250ms ease',
+    transition: `opacity ${durations.normal}ms ${easings.easeOut.css}`,
   };
 }
 
