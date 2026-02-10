@@ -6,8 +6,8 @@ function TooltipPreview() {
   const colors = useThemeColors();
   return (
     <div style={{ width: '100%', maxWidth: 200, position: 'relative', paddingTop: 32 }}>
-      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', backgroundColor: colors.background.raised, borderRadius: 6, padding: '4px 10px', whiteSpace: 'nowrap' }}>
-        <Text size="xs">Tooltip text</Text>
+      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', backgroundColor: colors.text.primary, borderRadius: 6, padding: '4px 10px', whiteSpace: 'nowrap' }}>
+        <span style={{ fontSize: 12, lineHeight: 1.4, color: colors.text.inverse }}>Tooltip text</span>
       </div>
       <div style={{ textAlign: 'center' }}>
         <Text size="xs" color="secondary">Hover target ▲</Text>

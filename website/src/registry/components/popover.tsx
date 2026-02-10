@@ -6,7 +6,7 @@ function PopoverPreview() {
   const colors = useThemeColors();
   return (
     <div style={{ width: '100%', maxWidth: 200, position: 'relative', paddingTop: 48 }}>
-      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', backgroundColor: colors.background.raised, borderRadius: 8, padding: '8px 16px', border: `1px solid ${colors.accent.dividerRaised}` }}>
+      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', backgroundColor: colors.background.canvas, borderRadius: 8, padding: '8px 16px', border: `1px solid ${colors.border.subtle}`, boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}>
         <Text size="xs">Popover content</Text>
       </div>
       <div style={{ textAlign: 'center' }}>

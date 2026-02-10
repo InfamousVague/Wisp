@@ -7,16 +7,16 @@ function DropdownMenuPreview() {
   const colors = useThemeColors();
   return (
     <div style={{ width: '100%', maxWidth: 200 }}>
-      <div style={{ borderRadius: 8, border: `1px solid ${colors.border.subtle}`, backgroundColor: colors.background.raised, overflow: 'hidden', fontSize: 13 }}>
+      <div style={{ borderRadius: 8, border: `1px solid ${colors.border.subtle}`, backgroundColor: colors.background.canvas, overflow: 'hidden', fontSize: 13, boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}>
         <div style={{ padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Edit size={13} style={{ color: colors.text.onRaisedSecondary }} />
-          <span style={{ color: colors.text.onRaised }}>Edit</span>
+          <Edit size={13} style={{ color: colors.text.secondary }} />
+          <span style={{ color: colors.text.primary }}>Edit</span>
         </div>
         <div style={{ padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Copy size={13} style={{ color: colors.text.onRaisedSecondary }} />
-          <span style={{ color: colors.text.onRaised }}>Copy</span>
+          <Copy size={13} style={{ color: colors.text.secondary }} />
+          <span style={{ color: colors.text.primary }}>Copy</span>
         </div>
-        <div style={{ height: 1, backgroundColor: colors.accent.dividerRaised, margin: '2px 0' }} />
+        <div style={{ height: 1, backgroundColor: colors.border.subtle, margin: '2px 0' }} />
         <div style={{ padding: '6px 10px', display: 'flex', alignItems: 'center', gap: 8 }}>
           <Trash2 size={13} style={{ color: colors.status.danger }} />
           <span style={{ color: colors.status.danger }}>Delete</span>
