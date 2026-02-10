@@ -29,7 +29,7 @@ import {
   buildAchievementRarityStyle,
   buildAchievementDateStyle,
 } from '@wisp-ui/core/styles/AchievementCard.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
 import { Icon } from '../../primitives/icon';
 import { Progress } from '../../primitives/progress';
@@ -48,47 +48,48 @@ export function AchievementCard({
   className,
   style: userStyle,
 }: AchievementCardProps) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const colors = useMemo(
-    () => resolveAchievementColors(status, rarity, themeColors),
+    () => resolveAchievementColors(status, rarity, theme),
     [status, rarity, themeColors],
   );
 
   const cardStyle = useMemo(
-    () => buildAchievementCardStyle(colors, status, !!onClick),
+    () => buildAchievementCardStyle(colors, status, !!onClick, theme),
     [colors, status, onClick],
   );
   const iconContainerStyle = useMemo(
-    () => buildAchievementIconStyle(colors),
+    () => buildAchievementIconStyle(colors, theme),
     [colors],
   );
   const contentStyle = useMemo(
-    () => buildAchievementContentStyle(),
+    () => buildAchievementContentStyle(theme),
     [],
   );
   const titleStyle = useMemo(
-    () => buildAchievementTitleStyle(colors.text),
+    () => buildAchievementTitleStyle(colors.text, theme),
     [colors.text],
   );
   const descriptionStyle = useMemo(
-    () => buildAchievementDescriptionStyle(colors.descriptionText),
+    () => buildAchievementDescriptionStyle(colors.descriptionText, theme),
     [colors.descriptionText],
   );
   const progressTrackStyle = useMemo(
-    () => buildAchievementProgressTrackStyle(themeColors),
+    () => buildAchievementProgressTrackStyle(theme),
     [themeColors],
   );
   const progressBarStyle = useMemo(
-    () => buildAchievementProgressBarStyle(colors.rarityColor, progress),
+    () => buildAchievementProgressBarStyle(colors.rarityColor, progress, theme),
     [colors.rarityColor, progress],
   );
   const rarityStyle = useMemo(
-    () => buildAchievementRarityStyle(colors.rarityColor),
+    () => buildAchievementRarityStyle(colors.rarityColor, theme),
     [colors.rarityColor],
   );
   const dateStyle = useMemo(
-    () => buildAchievementDateStyle(themeColors),
+    () => buildAchievementDateStyle(theme),
     [themeColors],
   );
 

@@ -1,7 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ComponentSize, SemanticColor } from '../tokens/shared';
 import { resolveSemanticColor } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import { iconSizeMap } from '../types/Icon.types';
 
 /**
@@ -18,8 +18,9 @@ import { iconSizeMap } from '../types/Icon.types';
  */
 export function resolveIconColor(
   color: SemanticColor | 'currentColor' | string,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): string {
+  const { colors: themeColors } = theme;
   if (color === 'currentColor') return 'currentColor';
   return resolveSemanticColor(color, themeColors);
 }
@@ -55,7 +56,8 @@ export function buildIconStyle(size: ComponentSize): CSSStyleObject {
  * @param themeColors - Resolved theme color tokens (used for the placeholder background).
  * @returns A `CSSStyleObject` object for the skeleton `<span>`.
  */
-export function getIconSkeletonStyle(size: ComponentSize, themeColors: ThemeColors): CSSStyleObject {
+export function getIconSkeletonStyle(size: ComponentSize, theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors } = theme;
   const px = iconSizeMap[size];
   return {
     display: 'inline-block',

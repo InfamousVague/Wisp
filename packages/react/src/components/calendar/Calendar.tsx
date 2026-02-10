@@ -33,7 +33,7 @@ import {
   buildCalendarMonthYearStyle,
   buildCalendarSkeletonCellStyle,
 } from '@wisp-ui/core/styles/Calendar.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
@@ -141,7 +141,8 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calen
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = calendarSizeMap[size];
 
   // ---- Internal state ---------------------------------------------------
@@ -227,7 +228,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calen
   // ---- Styles -----------------------------------------------------------
 
   const containerStyle = useMemo(
-    () => buildCalendarContainerStyle(sizeConfig, themeColors),
+    () => buildCalendarContainerStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
   const headerStyle = useMemo(
@@ -239,11 +240,11 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calen
     [sizeConfig],
   );
   const dayHeaderStyle = useMemo(
-    () => buildCalendarDayHeaderStyle(sizeConfig, themeColors),
+    () => buildCalendarDayHeaderStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
   const monthYearStyle = useMemo(
-    () => buildCalendarMonthYearStyle(sizeConfig, themeColors),
+    () => buildCalendarMonthYearStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
@@ -252,7 +253,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calen
   // ---- Skeleton ---------------------------------------------------------
 
   if (skeleton) {
-    const skeletonCellStyle = buildCalendarSkeletonCellStyle(sizeConfig, themeColors);
+    const skeletonCellStyle = buildCalendarSkeletonCellStyle(sizeConfig, theme);
 
     return (
       <div
@@ -310,7 +311,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calen
           onClick={handlePrevMonth}
           onMouseEnter={() => setHoveredNav('prev')}
           onMouseLeave={() => setHoveredNav(null)}
-          style={buildCalendarNavButtonStyle(sizeConfig, themeColors, hoveredNav === 'prev')}
+          style={buildCalendarNavButtonStyle(sizeConfig, theme, hoveredNav === 'prev')}
         >
           <ChevronLeft size={iconSize} color="currentColor" />
         </button>
@@ -323,7 +324,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calen
           onClick={handleNextMonth}
           onMouseEnter={() => setHoveredNav('next')}
           onMouseLeave={() => setHoveredNav(null)}
-          style={buildCalendarNavButtonStyle(sizeConfig, themeColors, hoveredNav === 'next')}
+          style={buildCalendarNavButtonStyle(sizeConfig, theme, hoveredNav === 'next')}
         >
           <ChevronRight size={iconSize} color="currentColor" />
         </button>
@@ -364,7 +365,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calen
               onMouseLeave={() => setHoveredCell(null)}
               style={buildCalendarDayCellStyle(
                 sizeConfig,
-                themeColors,
+                theme,
                 isSelected,
                 isTodayCell,
                 isDisabled,

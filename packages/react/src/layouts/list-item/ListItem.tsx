@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import type { ListItemProps } from '@wisp-ui/core/types/ListItem.types';
 import { buildListItemStyle, buildLeadingStyle, buildContentStyle, buildTrailingStyle } from '@wisp-ui/core/styles/ListItem.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * ListItem — Three-region horizontal layout primitive for the Wisp design system.
@@ -49,17 +49,18 @@ export const ListItem = forwardRef<HTMLElement, ListItemProps>(function ListItem
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const [hovered, setHovered] = useState(false);
 
   const computedStyle = useMemo(
-    () => buildListItemStyle({ size, align, interactive, active, disabled, themeColors }),
+    () => buildListItemStyle({ size, align, interactive, active, disabled, theme }),
     [size, align, interactive, active, disabled, themeColors],
   );
 
   const leadingSlotStyle = useMemo(() => buildLeadingStyle(), []);
   const contentSlotStyle = useMemo(() => buildContentStyle(), []);
-  const trailingSlotStyle = useMemo(() => buildTrailingStyle(), []);
+  const trailingSlotStyle = useMemo(() => buildTrailingStyle(theme), []);
 
   const handleMouseEnter = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {

@@ -11,7 +11,7 @@ import {
   buildCodeBlockLineNumberStyle,
   buildCodeBlockCopyButtonStyle,
 } from '@wisp-ui/core/styles/CodeBlock.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * CodeBlock — Monospace code display primitive for the Wisp design system.
@@ -55,7 +55,8 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const [copied, setCopied] = useState(false);
 
     const highlightSet = useMemo(
@@ -70,27 +71,27 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
     );
 
     const wrapperStyle = useMemo(
-      () => buildCodeBlockWrapperStyle(variant, themeColors, maxHeight),
+      () => buildCodeBlockWrapperStyle(variant, theme, maxHeight),
       [variant, themeColors, maxHeight],
     );
 
     const headerStyle = useMemo(
-      () => buildCodeBlockHeaderStyle(variant, themeColors),
+      () => buildCodeBlockHeaderStyle(variant, theme),
       [variant, themeColors],
     );
 
     const preStyle = useMemo(
-      () => buildCodeBlockPreStyle(maxHeight),
-      [maxHeight],
+      () => buildCodeBlockPreStyle(theme, maxHeight),
+      [themeColors, maxHeight],
     );
 
     const lineNumberStyle = useMemo(
-      () => buildCodeBlockLineNumberStyle(variant, themeColors),
+      () => buildCodeBlockLineNumberStyle(variant, theme),
       [variant, themeColors],
     );
 
     const copyBtnStyle = useMemo(
-      () => buildCodeBlockCopyButtonStyle(variant, themeColors),
+      () => buildCodeBlockCopyButtonStyle(variant, theme),
       [variant, themeColors],
     );
 
@@ -129,7 +130,7 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
             {lines.map((line: string, i: number) => {
               const lineNum = i + 1;
               const isHighlighted = highlightSet.has(lineNum);
-              const lineStyle = buildCodeBlockLineStyle(isHighlighted, variant, themeColors);
+              const lineStyle = buildCodeBlockLineStyle(isHighlighted, variant, theme);
 
               return (
                 <div key={i} style={lineStyle}>

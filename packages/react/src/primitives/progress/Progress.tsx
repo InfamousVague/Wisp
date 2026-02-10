@@ -12,7 +12,7 @@ import {
   buildValueTextStyle,
   getProgressSkeletonStyle,
 } from '@wisp-ui/core/styles/Progress.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Progress -- Horizontal bar progress indicator for the Wisp design system.
@@ -60,7 +60,8 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(function Progr
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const baseSizeConfig = progressSizeMap[size];
 
   // Apply thickness override if provided
@@ -91,7 +92,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(function Progr
   // Colors
   // ---------------------------------------------------------------------------
   const colors = useMemo(
-    () => resolveProgressColors(color, themeColors),
+    () => resolveProgressColors(color, theme),
     [color, themeColors],
   );
 
@@ -99,7 +100,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(function Progr
   // Skeleton
   // ---------------------------------------------------------------------------
   if (skeleton) {
-    const skeletonStyle = getProgressSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getProgressSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden
@@ -125,15 +126,15 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(function Progr
     [indeterminate, sizeConfig, colors, percent],
   );
 
-  const labelRowStyle = useMemo(() => buildLabelRowStyle(), []);
+  const labelRowStyle = useMemo(() => buildLabelRowStyle(theme), []);
 
   const labelTextStyle = useMemo(
-    () => buildLabelTextStyle(sizeConfig, colors),
+    () => buildLabelTextStyle(sizeConfig, colors, theme),
     [sizeConfig, colors],
   );
 
   const valueTextStyle = useMemo(
-    () => buildValueTextStyle(sizeConfig, colors),
+    () => buildValueTextStyle(sizeConfig, colors, theme),
     [sizeConfig, colors],
   );
 

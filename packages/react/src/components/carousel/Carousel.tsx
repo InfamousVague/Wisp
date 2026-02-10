@@ -42,7 +42,7 @@ import {
   buildCarouselDotStyle,
   buildCarouselSkeletonStyle,
 } from '@wisp-ui/core/styles/Carousel.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Internal chevron SVG icons
@@ -110,7 +110,8 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const slides = useMemo(() => Children.toArray(children), [children]);
     const slideCount = slides.length;
 
@@ -227,7 +228,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
     // ----- Skeleton --------------------------------------------------------
 
     if (skeleton) {
-      const skeletonStyle = buildCarouselSkeletonStyle(themeColors, aspectRatio);
+      const skeletonStyle = buildCarouselSkeletonStyle(theme, aspectRatio);
       return (
         <div
           aria-hidden
@@ -241,14 +242,14 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
     // ----- Styles ----------------------------------------------------------
 
     const containerStyle: React.CSSProperties = {
-      ...buildCarouselContainerStyle(aspectRatio),
+      ...buildCarouselContainerStyle(theme, aspectRatio),
       ...userStyle,
     };
 
     const trackOffset = currentIndex * 100 - dragOffset;
     const trackStyle = buildCarouselTrackStyle(trackOffset, isAnimating);
     const slideStyle = buildCarouselSlideStyle();
-    const dotsContainerStyle = buildCarouselDotsContainerStyle();
+    const dotsContainerStyle = buildCarouselDotsContainerStyle(theme);
 
     // ----- Arrow visibility ------------------------------------------------
 
@@ -293,7 +294,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
           <button
             type="button"
             aria-label="Previous slide"
-            style={buildCarouselArrowStyle(themeColors, 'left', hoveredArrow === 'left')}
+            style={buildCarouselArrowStyle(theme, 'left', hoveredArrow === 'left')}
             onClick={(e) => {
               e.stopPropagation();
               goPrev();
@@ -310,7 +311,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
           <button
             type="button"
             aria-label="Next slide"
-            style={buildCarouselArrowStyle(themeColors, 'right', hoveredArrow === 'right')}
+            style={buildCarouselArrowStyle(theme, 'right', hoveredArrow === 'right')}
             onClick={(e) => {
               e.stopPropagation();
               goNext();
@@ -332,7 +333,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(
                 role="tab"
                 aria-selected={i === currentIndex}
                 aria-label={`Go to slide ${i + 1}`}
-                style={buildCarouselDotStyle(themeColors, i === currentIndex)}
+                style={buildCarouselDotStyle(theme, i === currentIndex)}
                 onClick={(e) => {
                   e.stopPropagation();
                   goTo(i);

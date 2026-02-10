@@ -7,7 +7,7 @@ import {
   resolveBadgeColors,
   getBadgeSkeletonStyle,
 } from '@wisp-ui/core/styles/Badge.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Badge — Compact label primitive for the Wisp design system.
@@ -48,18 +48,19 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = badgeSizeMap[size];
 
   // Resolve variant colors
   const colors = useMemo(
-    () => resolveBadgeColors(variant, themeColors),
+    () => resolveBadgeColors(variant, theme),
     [variant, themeColors],
   );
 
   // Skeleton early return
   if (skeleton) {
-    const skeletonStyle = getBadgeSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getBadgeSkeletonStyle(sizeConfig, theme);
     return (
       <span
         aria-hidden
@@ -71,12 +72,12 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
 
   // Build styles
   const badgeStyle = useMemo(
-    () => buildBadgeStyle(sizeConfig, colors, shape),
+    () => buildBadgeStyle(sizeConfig, colors, shape, theme),
     [sizeConfig, colors, shape],
   );
 
   const dotStyle = useMemo(
-    () => (dot ? buildDotStyle(sizeConfig, colors) : undefined),
+    () => (dot ? buildDotStyle(sizeConfig, colors, theme) : undefined),
     [dot, sizeConfig, colors],
   );
 

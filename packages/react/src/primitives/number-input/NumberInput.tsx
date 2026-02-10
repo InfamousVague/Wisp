@@ -11,7 +11,7 @@ import {
   buildLabelStyle,
   buildHintStyle,
 } from '@wisp-ui/core/styles/NumberInput.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -88,7 +88,8 @@ export const NumberInput = forwardRef<HTMLDivElement, NumberInputProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const generatedId = useId();
     const inputId = `number-input-${generatedId}`;
 
@@ -241,37 +242,37 @@ export const NumberInput = forwardRef<HTMLDivElement, NumberInputProps>(
     // Build styles
     // -----------------------------------------------------------------------
     const wrapperStyle = useMemo(
-      () => buildWrapperStyle(fullWidth),
+      () => buildWrapperStyle(fullWidth, theme),
       [fullWidth],
     );
 
     const containerStyle = useMemo(
-      () => buildContainerStyle(sizeConfig, disabled, error, focused, themeColors),
+      () => buildContainerStyle(sizeConfig, disabled, error, focused, theme),
       [sizeConfig, disabled, error, focused, themeColors],
     );
 
     const inputStyle = useMemo(
-      () => buildInputStyle(sizeConfig, themeColors),
+      () => buildInputStyle(sizeConfig, theme),
       [sizeConfig, themeColors],
     );
 
     const minusButtonStyle = useMemo(
-      () => buildButtonStyle(buttonConfig, disabled || (min !== undefined && currentValue <= min), minusHovered, themeColors),
+      () => buildButtonStyle(buttonConfig, disabled || (min !== undefined && currentValue <= min), minusHovered, theme),
       [buttonConfig, disabled, min, currentValue, minusHovered, themeColors],
     );
 
     const plusButtonStyle = useMemo(
-      () => buildButtonStyle(buttonConfig, disabled || (max !== undefined && currentValue >= max), plusHovered, themeColors),
+      () => buildButtonStyle(buttonConfig, disabled || (max !== undefined && currentValue >= max), plusHovered, theme),
       [buttonConfig, disabled, max, currentValue, plusHovered, themeColors],
     );
 
     const labelStyle = useMemo(
-      () => (label ? buildLabelStyle(sizeConfig, disabled, themeColors) : undefined),
+      () => (label ? buildLabelStyle(sizeConfig, disabled, theme) : undefined),
       [label, sizeConfig, disabled, themeColors],
     );
 
     const hintStyle = useMemo(
-      () => (hint ? buildHintStyle(sizeConfig, error, themeColors) : undefined),
+      () => (hint ? buildHintStyle(sizeConfig, error, theme) : undefined),
       [hint, sizeConfig, error, themeColors],
     );
 

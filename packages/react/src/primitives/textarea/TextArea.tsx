@@ -10,7 +10,7 @@ import {
   buildHintStyle,
   getTextAreaSkeletonStyle,
 } from '@wisp-ui/core/styles/TextArea.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * TextArea — Multi-line text input primitive for the Wisp design system.
@@ -64,7 +64,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const generatedId = useId();
   const textAreaId = providedId || generatedId;
 
@@ -100,7 +101,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
   const warningMessage = typeof warning === 'string' ? warning : undefined;
 
   const colors = useMemo(
-    () => resolveTextAreaColors(focused, hasError, hasWarning, disabled, themeColors),
+    () => resolveTextAreaColors(focused, hasError, hasWarning, disabled, theme),
     [focused, hasError, hasWarning, disabled, themeColors],
   );
 
@@ -108,7 +109,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
   // Skeleton
   // ---------------------------------------------------------------------------
   if (skeleton) {
-    const skeletonStyle = getTextAreaSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getTextAreaSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden
@@ -137,7 +138,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
   );
 
   const labelStyle = useMemo(
-    () => buildLabelStyle(sizeConfig, colors),
+    () => buildLabelStyle(sizeConfig, colors, theme),
     [sizeConfig, colors],
   );
 
@@ -146,7 +147,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
   const isStatusText = Boolean(errorMessage || warningMessage);
 
   const hintStyle = useMemo(
-    () => (bottomText ? buildHintStyle(sizeConfig, colors, isStatusText) : undefined),
+    () => (bottomText ? buildHintStyle(sizeConfig, colors, isStatusText, theme) : undefined),
     [sizeConfig, colors, isStatusText, bottomText],
   );
 

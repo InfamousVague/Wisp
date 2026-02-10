@@ -14,7 +14,7 @@ import {
   buildPingLatencyStyle,
   getPingMeterSkeletonStyle,
 } from '@wisp-ui/core/styles/PingMeter.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -101,7 +101,8 @@ export const PingMeter = forwardRef<HTMLDivElement, PingMeterProps>(function Pin
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = pingMeterSizeMap[size];
 
   // Inject keyframes once
@@ -111,7 +112,7 @@ export const PingMeter = forwardRef<HTMLDivElement, PingMeterProps>(function Pin
 
   // Skeleton early return
   if (skeleton) {
-    const skeletonStyle = getPingMeterSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getPingMeterSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden
@@ -124,7 +125,7 @@ export const PingMeter = forwardRef<HTMLDivElement, PingMeterProps>(function Pin
   // Derive quality and colors
   const quality = getQuality(latency);
   const activeBars = getActiveBars(quality);
-  const color = getLatencyColor(latency, themeColors);
+  const color = getLatencyColor(latency, theme);
 
   // Resolve which elements to show based on variant + explicit flags
   const isDot = variant === 'dot' || (variant === 'full' && showDot);
@@ -138,17 +139,17 @@ export const PingMeter = forwardRef<HTMLDivElement, PingMeterProps>(function Pin
   );
 
   const dotStyle = useMemo(
-    () => buildPingDotStyle(sizeConfig, color),
+    () => buildPingDotStyle(sizeConfig, color, theme),
     [sizeConfig, color],
   );
 
   const pulseStyle = useMemo(
-    () => buildPingDotPulseStyle(sizeConfig, color),
+    () => buildPingDotPulseStyle(sizeConfig, color, theme),
     [sizeConfig, color],
   );
 
   const latencyStyle = useMemo(
-    () => buildPingLatencyStyle(sizeConfig, themeColors),
+    () => buildPingLatencyStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
@@ -193,7 +194,7 @@ export const PingMeter = forwardRef<HTMLDivElement, PingMeterProps>(function Pin
               key={i}
               style={buildPingBarStyle(
                 sizeConfig,
-                themeColors,
+                theme,
                 i,
                 TOTAL_BARS,
                 i < activeBars,

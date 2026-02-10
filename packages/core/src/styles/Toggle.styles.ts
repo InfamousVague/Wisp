@@ -3,11 +3,10 @@
  */
 import type { CSSStyleObject } from '../types';
 import type { ComponentSize } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ToggleSizeConfig } from '../types/Toggle.types';
 import { toggleSizeMap, toggleSlimSizeMap } from '../types/Toggle.types';
 import { relativeLuminance } from '../utils/contrast';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -68,10 +67,11 @@ export interface ToggleColors {
  */
 export function resolveToggleColors(
   checked: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   checkedColor?: string,
   uncheckedColor?: string,
 ): ToggleColors {
+  const { colors: themeColors } = theme;
   if (checked) {
     // Resolve the actual track color (custom or theme accent)
     const trackColor = checkedColor || themeColors.accent.primary;
@@ -118,7 +118,8 @@ export function resolveToggleColors(
  * @param themeColors - The current theme color tokens.
  * @returns A {@link ToggleColors} object with subdued track, handle, and content values.
  */
-export function getDisabledToggleColors(themeColors: ThemeColors): ToggleColors {
+export function getDisabledToggleColors(theme: WispTheme): ToggleColors {
+  const { colors: themeColors } = theme;
   return {
     trackBg: themeColors.border.subtle,
     trackBgHover: themeColors.border.subtle,
@@ -225,7 +226,10 @@ export function buildHandleStyle(opts: {
   colors: ToggleColors;
   checked: boolean;
   hasContent: boolean;
-}): CSSStyleObject {
+},
+  theme: WispTheme,
+): CSSStyleObject {
+  const { radii } = theme;
   // Vertically center the handle within the track
   const topOffset = (opts.sizeConfig.trackHeight - opts.sizeConfig.handleSize) / 2;
 
@@ -247,7 +251,7 @@ export function buildHandleStyle(opts: {
     top: topOffset,
     width: opts.sizeConfig.handleSize,
     height: opts.sizeConfig.handleSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: opts.colors.handleBg,
     boxSizing: 'border-box',
     boxShadow: '0 1px 2px rgba(0,0,0,0.15)',
@@ -292,7 +296,10 @@ export function buildTrackContentStyle(opts: {
   sizeConfig: ToggleSizeConfig;
   side: 'checked' | 'unchecked';
   colors: ToggleColors;
-}): CSSStyleObject {
+},
+  theme: WispTheme,
+): CSSStyleObject {
+  const { spacing } = theme;
   const isChecked = opts.side === 'checked';
   const contentPadding = opts.sizeConfig.padding + 6;
 
@@ -309,7 +316,7 @@ export function buildTrackContentStyle(opts: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: defaultSpacing['2xs'],
+    gap: spacing['2xs'],
     whiteSpace: 'nowrap',
     color: opts.colors.contentColor,
     fontSize: opts.sizeConfig.trackFontSize,
@@ -332,8 +339,9 @@ export function buildTrackContentStyle(opts: {
  */
 export function getToggleSkeletonStyle(
   sizeConfig: ToggleSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     width: sizeConfig.trackWidth,

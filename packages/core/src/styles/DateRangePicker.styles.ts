@@ -5,9 +5,8 @@
 
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { DateRangePickerSizeConfig } from '../types/DateRangePicker.types';
-import { defaultSpacing, defaultRadii, defaultTypography, defaultShadows } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
 
@@ -45,13 +44,14 @@ export function buildWrapperStyle(
  */
 export function buildLabelStyle(
   sizeConfig: DateRangePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: themeColors.text.primary,
     cursor: 'default',
     userSelect: 'none',
@@ -73,10 +73,11 @@ export function buildLabelStyle(
  */
 export function buildTriggerStyle(
   sizeConfig: DateRangePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isOpen: boolean,
   disabled: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -113,8 +114,9 @@ export function buildTriggerStyle(
  * @returns A `CSSStyleObject` object for the dropdown `<div>`.
  */
 export function buildDropdownStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing, shadows } = theme;
   return {
     position: 'absolute',
     top: '100%',
@@ -122,13 +124,13 @@ export function buildDropdownStyle(
     zIndex: zIndex.dropdown,
     display: 'flex',
     flexDirection: 'row',
-    gap: defaultSpacing.lg,
-    padding: defaultSpacing.lg,
-    marginTop: defaultSpacing.xs,
+    gap: spacing.lg,
+    padding: spacing.lg,
+    marginTop: spacing.xs,
     backgroundColor: themeColors.background.raised,
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: defaultRadii.lg,
-    boxShadow: defaultShadows.md,
+    borderRadius: radii.lg,
+    boxShadow: shadows.md,
     boxSizing: 'border-box',
     fontFamily: fontFamilyStacks.sans,
   };
@@ -146,13 +148,15 @@ export function buildDropdownStyle(
  */
 export function buildCalendarHeaderStyle(
   sizeConfig: DateRangePickerSizeConfig,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingBottom: defaultSpacing.sm,
+    paddingBottom: spacing.sm,
   };
 }
 
@@ -170,9 +174,10 @@ export function buildCalendarHeaderStyle(
  */
 export function buildNavButtonStyle(
   sizeConfig: DateRangePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isHovered: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   const btnSize = sizeConfig.cellSize < 32 ? 24 : 28;
 
   return {
@@ -188,7 +193,7 @@ export function buildNavButtonStyle(
     boxSizing: 'border-box',
     width: btnSize,
     height: btnSize,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     backgroundColor: isHovered ? themeColors.accent.highlight : 'transparent',
     color: themeColors.text.onRaised,
     cursor: 'pointer',
@@ -209,10 +214,11 @@ export function buildNavButtonStyle(
  */
 export function buildMonthYearStyle(
   sizeConfig: DateRangePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     fontSize: sizeConfig.headerFontSize,
     color: themeColors.text.onRaised,
     lineHeight: 1,
@@ -232,11 +238,13 @@ export function buildMonthYearStyle(
  */
 export function buildCalendarGridStyle(
   sizeConfig: DateRangePickerSizeConfig,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'grid',
     gridTemplateColumns: `repeat(7, ${sizeConfig.cellSize}px)`,
-    gap: defaultSpacing['2xs'],
+    gap: spacing['2xs'],
   };
 }
 
@@ -253,13 +261,14 @@ export function buildCalendarGridStyle(
  */
 export function buildDayHeaderStyle(
   sizeConfig: DateRangePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     textAlign: 'center',
     fontSize: sizeConfig.dayHeaderFontSize,
     color: themeColors.text.onRaisedSecondary,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     lineHeight: 1,
     height: sizeConfig.cellSize,
     display: 'flex',
@@ -289,7 +298,7 @@ export function buildDayHeaderStyle(
  */
 export function buildRangeDayCellStyle(
   sizeConfig: DateRangePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isStart: boolean,
   isEnd: boolean,
   isInRange: boolean,
@@ -298,6 +307,7 @@ export function buildRangeDayCellStyle(
   isOutside: boolean,
   isHovered: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, typography } = theme;
   const half = sizeConfig.cellSize / 2;
 
   // Base style
@@ -317,9 +327,9 @@ export function buildRangeDayCellStyle(
     height: sizeConfig.cellSize,
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     lineHeight: 1,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: 'transparent',
     color: themeColors.text.onRaised,
     cursor: 'pointer',
@@ -397,8 +407,9 @@ export function buildRangeDayCellStyle(
  */
 export function buildSkeletonStyle(
   sizeConfig: DateRangePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     width: 220,

@@ -13,7 +13,7 @@ import {
   buildGroupTimestampStyle,
   buildGroupStatusStyle,
 } from '@wisp-ui/core/styles/MessageGroup.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { StatusIcon, ChatBubble } from '../chat-bubble/ChatBubble';
 
 /**
@@ -56,40 +56,41 @@ export const MessageGroup = forwardRef<HTMLDivElement, MessageGroupProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
 
     const groupStyle = useMemo(
-      () => buildMessageGroupStyle(align),
+      () => buildMessageGroupStyle(align, theme),
       [align],
     );
 
     const senderNameStyle = useMemo(
-      () => buildSenderNameStyle(themeColors),
+      () => buildSenderNameStyle(theme),
       [themeColors],
     );
 
     const contentRowStyle = useMemo(
-      () => buildContentRowStyle(align),
+      () => buildContentRowStyle(align, theme),
       [align],
     );
 
     const bubblesStyle = useMemo(
-      () => buildBubblesContainerStyle(align),
+      () => buildBubblesContainerStyle(align, theme),
       [align],
     );
 
     const footerStyle = useMemo(
-      () => buildGroupFooterStyle(align),
+      () => buildGroupFooterStyle(align, theme),
       [align],
     );
 
     const timestampStyle = useMemo(
-      () => buildGroupTimestampStyle(themeColors),
+      () => buildGroupTimestampStyle(theme),
       [themeColors],
     );
 
     const statusIconStyle = useMemo(
-      () => buildGroupStatusStyle(themeColors),
+      () => buildGroupStatusStyle(theme),
       [themeColors],
     );
 

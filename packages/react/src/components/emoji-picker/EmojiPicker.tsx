@@ -6,7 +6,7 @@
  */
 
 import React, { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { SearchInput } from '../search-input';
 import { Text } from '../../primitives/text';
 import {
@@ -114,7 +114,8 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = emojiPickerSizeMap[size];
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState<EmojiCategory>('smileys');
@@ -144,13 +145,13 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
 
   // Resolve colors
   const colors = useMemo(
-    () => resolveEmojiPickerColors(themeColors),
+    () => resolveEmojiPickerColors(theme),
     [themeColors],
   );
 
   // Skeleton
   if (skeleton) {
-    const skeletonStyle = buildEmojiPickerSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = buildEmojiPickerSkeletonStyle(sizeConfig, theme);
     return <div aria-hidden className={className} style={{ ...skeletonStyle, ...userStyle }} />;
   }
 
@@ -281,11 +282,11 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
     [sizeConfig, colors],
   );
   const searchRowStyle = useMemo(
-    () => buildEmojiPickerSearchRowStyle(sizeConfig),
+    () => buildEmojiPickerSearchRowStyle(sizeConfig, theme),
     [sizeConfig],
   );
   const sliderClipStyle = useMemo(
-    () => buildEmojiPickerSliderClipStyle(sizeConfig),
+    () => buildEmojiPickerSliderClipStyle(sizeConfig, theme),
     [sizeConfig],
   );
   const sliderTrackStyle = useMemo(
@@ -309,11 +310,11 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
     [sizeConfig],
   );
   const categoryLabelStyle = useMemo(
-    () => buildEmojiPickerCategoryLabelStyle(sizeConfig, colors),
+    () => buildEmojiPickerCategoryLabelStyle(sizeConfig, colors, theme),
     [sizeConfig, colors],
   );
   const cellStyle = useMemo(
-    () => buildEmojiPickerCellStyle(sizeConfig),
+    () => buildEmojiPickerCellStyle(sizeConfig, theme),
     [sizeConfig],
   );
   const cellRowStyle = useMemo(
@@ -321,7 +322,7 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
     [sizeConfig],
   );
   const noResultsStyle = useMemo(
-    () => buildEmojiPickerNoResultsStyle(colors),
+    () => buildEmojiPickerNoResultsStyle(colors, theme),
     [colors],
   );
 
@@ -366,7 +367,7 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
                     <button
                       key={tone}
                       type="button"
-                      style={buildEmojiPickerSkinToneOptionStyle(sizeConfig, colors, currentSkinTone === tone)}
+                      style={buildEmojiPickerSkinToneOptionStyle(sizeConfig, colors, currentSkinTone === tone, theme)}
                       onClick={() => handleSkinToneChange(tone)}
                       aria-label={`Skin tone: ${tone}`}
                       title={tone}

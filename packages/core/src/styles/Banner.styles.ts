@@ -3,9 +3,8 @@
  */
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { BannerVariant } from '../types/Banner.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant colors
@@ -20,8 +19,9 @@ export interface BannerColors {
 
 export function resolveBannerColors(
   variant: BannerVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): BannerColors {
+  const { colors: themeColors } = theme;
   switch (variant) {
     case 'info':
       return {
@@ -69,12 +69,14 @@ export function resolveBannerColors(
 export function buildBannerStyle(
   colors: BannerColors,
   fullWidth: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'flex-start',
-    gap: defaultSpacing.md,
-    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px`,
+    gap: spacing.md,
+    padding: `${spacing.md}px ${spacing.lg}px`,
     borderRadius: fullWidth ? 0 : 10,
     backgroundColor: colors.bg,
     border: `1px solid ${colors.border}`,
@@ -90,10 +92,12 @@ export function buildBannerStyle(
 
 export function buildBannerTitleStyle(
   colors: BannerColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1.4,
     color: colors.text,
     margin: 0,
@@ -102,10 +106,12 @@ export function buildBannerTitleStyle(
 
 export function buildBannerMessageStyle(
   colors: BannerColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.regular,
     lineHeight: 1.5,
     color: colors.text,
     margin: 0,
@@ -118,7 +124,9 @@ export function buildBannerMessageStyle(
 
 export function buildBannerDismissStyle(
   colors: BannerColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -132,6 +140,6 @@ export function buildBannerDismissStyle(
     cursor: 'pointer',
     color: colors.icon,
     flexShrink: 0,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
   };
 }

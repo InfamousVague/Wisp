@@ -1,6 +1,6 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ImageFit, ImageRadius } from '../types/Image.types';
 import { imageRadiusMap } from '../types/Image.types';
 
@@ -19,8 +19,9 @@ import { imageRadiusMap } from '../types/Image.types';
 export function buildWrapperStyle(
   radius: ImageRadius,
   aspectRatio: string | undefined,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     position: 'relative',
     overflow: 'hidden',
@@ -67,8 +68,9 @@ export function buildImageStyle(
  * @returns A `CSSStyleObject` for the fallback `<div>`.
  */
 export function buildFallbackStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     position: 'absolute',
     top: 0,
@@ -95,8 +97,9 @@ export function buildFallbackStyle(
  * @returns A `CSSStyleObject` with a pulsing animation overlaying the wrapper.
  */
 export function buildSkeletonStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     position: 'absolute',
     top: 0,

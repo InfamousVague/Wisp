@@ -8,7 +8,7 @@ import {
   buildDescriptionStyle,
   buildActionStyle,
 } from '@wisp-ui/core/styles/EmptyState.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * EmptyState -- Placeholder for empty content areas.
@@ -55,30 +55,31 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(function E
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = emptyStateSizeMap[size];
 
   const containerStyle = useMemo(
-    () => ({ ...buildContainerStyle(sizeConfig), ...userStyle }),
+    () => ({ ...buildContainerStyle(sizeConfig, theme), ...userStyle }),
     [sizeConfig, userStyle],
   );
 
   const iconStyle = useMemo(
-    () => buildIconStyle(sizeConfig, themeColors),
+    () => buildIconStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
   const titleStyle = useMemo(
-    () => buildTitleStyle(sizeConfig, themeColors),
+    () => buildTitleStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
   const descriptionStyle = useMemo(
-    () => buildDescriptionStyle(sizeConfig, themeColors),
+    () => buildDescriptionStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
-  const actionWrapperStyle = useMemo(() => buildActionStyle(), []);
+  const actionWrapperStyle = useMemo(() => buildActionStyle(theme), []);
 
   return (
     <div ref={ref} style={containerStyle} {...rest}>

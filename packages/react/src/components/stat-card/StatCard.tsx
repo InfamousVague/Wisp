@@ -5,7 +5,7 @@
  */
 
 import React, { forwardRef, useMemo } from 'react';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { Sparkline } from '../../primitives/sparkline';
 import type { StatCardProps } from '@wisp-ui/core/types/StatCard.types';
 import { statCardSizeMap } from '@wisp-ui/core/types/StatCard.types';
@@ -76,18 +76,19 @@ export const StatCard = forwardRef<HTMLDivElement, StatCardProps>(function StatC
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = statCardSizeMap[size];
 
   // Resolve colors
   const colors = useMemo(
-    () => resolveStatCardColors(variant, themeColors),
+    () => resolveStatCardColors(variant, theme),
     [variant, themeColors],
   );
 
   // Skeleton early return
   if (skeleton) {
-    const skeletonStyle = buildStatCardSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = buildStatCardSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden
@@ -99,7 +100,7 @@ export const StatCard = forwardRef<HTMLDivElement, StatCardProps>(function StatC
 
   // Styles
   const containerStyle = useMemo(
-    () => buildStatCardContainerStyle(sizeConfig, colors),
+    () => buildStatCardContainerStyle(sizeConfig, colors, theme),
     [sizeConfig, colors],
   );
 
@@ -109,27 +110,27 @@ export const StatCard = forwardRef<HTMLDivElement, StatCardProps>(function StatC
   );
 
   const textStackStyle = useMemo(
-    () => buildStatCardTextStackStyle(),
+    () => buildStatCardTextStackStyle(theme),
     [],
   );
 
   const iconContainerStyle = useMemo(
-    () => (IconComponent ? buildStatCardIconStyle(sizeConfig, colors.accent) : undefined),
+    () => (IconComponent ? buildStatCardIconStyle(sizeConfig, colors.accent, theme) : undefined),
     [IconComponent, sizeConfig, colors.accent],
   );
 
   const valueStyle = useMemo(
-    () => buildStatCardValueStyle(sizeConfig, colors),
+    () => buildStatCardValueStyle(sizeConfig, colors, theme),
     [sizeConfig, colors],
   );
 
   const labelStyle = useMemo(
-    () => buildStatCardLabelStyle(sizeConfig, colors),
+    () => buildStatCardLabelStyle(sizeConfig, colors, theme),
     [sizeConfig, colors],
   );
 
   const descriptionStyle = useMemo(
-    () => (description ? buildStatCardDescriptionStyle(sizeConfig, colors) : undefined),
+    () => (description ? buildStatCardDescriptionStyle(sizeConfig, colors, theme) : undefined),
     [description, sizeConfig, colors],
   );
 
@@ -147,7 +148,7 @@ export const StatCard = forwardRef<HTMLDivElement, StatCardProps>(function StatC
   }, [trend, colors]);
 
   const trendStyle = useMemo(
-    () => (trend !== undefined && trend !== null ? buildStatCardTrendStyle(sizeConfig, trendColor) : undefined),
+    () => (trend !== undefined && trend !== null ? buildStatCardTrendStyle(sizeConfig, trendColor, theme) : undefined),
     [trend, sizeConfig, trendColor],
   );
 

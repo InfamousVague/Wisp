@@ -5,10 +5,9 @@
 
 import type React from "react";
 import type { CSSStyleObject } from "../types";
-import type { ThemeColors } from "../theme/types";
+import type { ThemeColors, WispTheme } from '../theme/types';
 import { fontFamilyStacks, glassStyle } from "../tokens/shared";
 import type { SurfaceVariant } from "../tokens/shared";
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
 
@@ -20,17 +19,18 @@ import { durations, easings } from '../tokens/motion';
  * @returns A `CSSStyleObject` object with absolute positioning, shadow, border, and background.
  */
 export function buildContentStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   variant: SurfaceVariant = 'solid',
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing } = theme;
   return {
     position: "absolute",
     zIndex: zIndex.dropdown,
     minWidth: 180,
-    padding: defaultSpacing.xs,
+    padding: spacing.xs,
     backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     boxShadow: `0 4px 12px ${themeColors.background.overlay}`,
     outline: "none",
     fontFamily: fontFamilyStacks.sans,
@@ -52,12 +52,13 @@ export function buildContentStyle(
  *   adjusted based on the active, disabled, and danger states.
  */
 export function buildItemStyle(opts: {
-  themeColors: ThemeColors;
+  theme: WispTheme;
   disabled: boolean;
   danger: boolean;
   isActive: boolean;
 }): CSSStyleObject {
-  const { themeColors, disabled, danger, isActive } = opts;
+  const { colors: themeColors, radii, spacing, typography } = opts.theme;
+  const { disabled, danger, isActive } = opts;
 
   let backgroundColor = "transparent";
   let color = themeColors.text.primary;
@@ -79,16 +80,16 @@ export function buildItemStyle(opts: {
     display: "flex",
     alignItems: "center",
     width: "100%",
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
+    padding: `${spacing.sm}px ${spacing.md}px`,
     margin: 0,
     border: "none",
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor,
     color,
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    lineHeight: `${defaultTypography.sizes.sm.lineHeight}px`,
+    fontSize: typography.sizes.sm.fontSize,
+    lineHeight: `${typography.sizes.sm.lineHeight}px`,
     fontFamily: fontFamilyStacks.sans,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     cursor: disabled ? "not-allowed" : "pointer",
     opacity: disabled ? 0.5 : 1,
     outline: "none",
@@ -96,7 +97,7 @@ export function buildItemStyle(opts: {
     textDecoration: "none",
     userSelect: "none",
     boxSizing: "border-box",
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
     transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
@@ -124,13 +125,14 @@ export function buildItemIconStyle(): CSSStyleObject {
  * @returns A `CSSStyleObject` object with muted color and smaller font size.
  */
 export function buildShortcutStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
     marginLeft: "auto",
-    paddingLeft: defaultSpacing.lg,
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
+    paddingLeft: spacing.lg,
+    fontSize: typography.sizes.xs.fontSize,
+    lineHeight: `${typography.sizes.xs.lineHeight}px`,
     color: themeColors.text.muted,
     fontFamily: fontFamilyStacks.sans,
     flexShrink: 0,
@@ -144,11 +146,12 @@ export function buildShortcutStyle(
  * @returns A `CSSStyleObject` object rendering a 1px themed divider.
  */
 export function buildSeparatorStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     height: 1,
-    margin: `${defaultSpacing.xs}px 0`,
+    margin: `${spacing.xs}px 0`,
     backgroundColor: themeColors.border.subtle,
     border: "none",
   };

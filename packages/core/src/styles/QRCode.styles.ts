@@ -1,5 +1,5 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { QRCodeSizeConfig } from '../types/QRCode.types';
 
 // ---------------------------------------------------------------------------
@@ -22,7 +22,8 @@ export interface QRCodeColors {
  * @param themeColors - Current {@link ThemeColors}.
  * @returns A {@link QRCodeColors} object.
  */
-export function resolveQRCodeColors(themeColors: ThemeColors): QRCodeColors {
+export function resolveQRCodeColors(theme: WispTheme): QRCodeColors {
+  const { colors: themeColors } = theme;
   return {
     dark: themeColors.text.primary,
     light: themeColors.background.canvas,

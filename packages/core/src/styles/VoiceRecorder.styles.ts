@@ -4,9 +4,8 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { VoiceRecorderState, VoiceRecorderSizeConfig } from '../types/VoiceRecorder.types';
-import { defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -44,8 +43,9 @@ export interface VoiceRecorderColors {
 
 export function resolveVoiceRecorderColors(
   state: VoiceRecorderState,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): VoiceRecorderColors {
+  const { colors: themeColors } = theme;
   return {
     bg: themeColors.background.surface,
     border: themeColors.border.subtle,
@@ -113,11 +113,13 @@ export function buildRecordButtonStyle(
 export function buildTimerStyle(
   sizeConfig: VoiceRecorderSizeConfig,
   colors: VoiceRecorderColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontSize: sizeConfig.fontSize,
     fontFamily: 'monospace',
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     color: colors.timer,
     whiteSpace: 'nowrap',
     userSelect: 'none',
@@ -150,8 +152,9 @@ export function buildActionButtonStyle(
 
 export function buildVoiceRecorderSkeletonStyle(
   sizeConfig: VoiceRecorderSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'block',
     width: '100%',

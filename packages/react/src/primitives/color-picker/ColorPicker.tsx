@@ -11,7 +11,7 @@ import {
   buildColorPickerLabelStyle,
   getColorPickerSkeletonStyle,
 } from '@wisp-ui/core/styles/ColorPicker.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -110,7 +110,8 @@ export const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(function
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // ---------------------------------------------------------------------------
   // Controlled / uncontrolled colour state
@@ -185,7 +186,7 @@ export const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(function
   // Skeleton
   // ---------------------------------------------------------------------------
   if (skeleton) {
-    const skeletonStyle = getColorPickerSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getColorPickerSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden
@@ -200,10 +201,10 @@ export const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(function
   // ---------------------------------------------------------------------------
   const containerStyle = buildColorPickerContainerStyle(sizeConfig);
   const previewRowStyle = buildColorPickerPreviewRowStyle(sizeConfig);
-  const previewStyle = buildColorPickerPreviewStyle(sizeConfig, currentColor, themeColors);
-  const inputStyle = buildColorPickerInputStyle(sizeConfig, themeColors);
-  const swatchGridStyle = buildColorPickerSwatchGridStyle(sizeConfig);
-  const labelStyle = label ? buildColorPickerLabelStyle(sizeConfig, themeColors) : undefined;
+  const previewStyle = buildColorPickerPreviewStyle(sizeConfig, currentColor, theme);
+  const inputStyle = buildColorPickerInputStyle(sizeConfig, theme);
+  const swatchGridStyle = buildColorPickerSwatchGridStyle(sizeConfig, theme);
+  const labelStyle = label ? buildColorPickerLabelStyle(sizeConfig, theme) : undefined;
 
   // Disabled opacity
   const disabledStyle: React.CSSProperties | undefined = disabled
@@ -270,7 +271,7 @@ export const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(function
                   presetColor,
                   isSelected,
                   isHovered,
-                  themeColors,
+                  theme,
                 )}
                 onClick={() => updateColor(normalised)}
                 onMouseEnter={() => setHoveredSwatch(presetColor)}

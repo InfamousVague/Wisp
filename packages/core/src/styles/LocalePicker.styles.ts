@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { LocalePickerSizeConfig } from '../types/LocalePicker.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography, defaultShadows } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
 
@@ -49,8 +48,9 @@ export interface LocalePickerColors {
 export function resolveLocalePickerColors(
   focused: boolean,
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): LocalePickerColors {
+  const { colors: themeColors } = theme;
   if (disabled) {
     return {
       border: themeColors.border.subtle,
@@ -121,12 +121,14 @@ export function buildWrapperStyle(
 export function buildLabelStyle(
   sizeConfig: LocalePickerSizeConfig,
   colors: LocalePickerColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: colors.label,
     cursor: 'default',
     userSelect: 'none',
@@ -214,8 +216,9 @@ export function buildTriggerTextStyle(
  * @returns CSS properties for the dropdown `<div>`.
  */
 export function buildDropdownStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing, shadows } = theme;
   return {
     position: 'absolute',
     top: '100%',
@@ -225,11 +228,11 @@ export function buildDropdownStyle(
     boxSizing: 'border-box',
     backgroundColor: themeColors.background.raised,
     border: '1px solid ' + themeColors.border.subtle,
-    borderRadius: defaultRadii.lg,
-    boxShadow: defaultShadows.md,
+    borderRadius: radii.lg,
+    boxShadow: shadows.md,
     maxHeight: 300,
     overflow: 'hidden',
-    marginTop: defaultSpacing.xs,
+    marginTop: spacing.xs,
     display: 'flex',
     flexDirection: 'column',
   };
@@ -248,8 +251,9 @@ export function buildDropdownStyle(
  */
 export function buildSearchInputStyle(
   sizeConfig: LocalePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'block',
     width: '100%',
@@ -281,12 +285,13 @@ export function buildSearchInputStyle(
  */
 export function buildGroupHeaderStyle(
   sizeConfig: LocalePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize - 1,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1.4,
     color: themeColors.text.onRaisedSecondary,
     textTransform: 'uppercase',
@@ -312,10 +317,11 @@ export function buildGroupHeaderStyle(
  */
 export function buildOptionStyle(
   sizeConfig: LocalePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isSelected: boolean,
   isHighlighted: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   let backgroundColor = 'transparent';
   if (isHighlighted) {
     backgroundColor = themeColors.accent.highlightRaised;
@@ -325,7 +331,7 @@ export function buildOptionStyle(
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
     height: sizeConfig.optionHeight,
     padding: '0 ' + sizeConfig.paddingX + 'px',
     fontFamily: fontFamilyStacks.sans,
@@ -349,11 +355,12 @@ export function buildOptionStyle(
  *
  * @returns CSS properties for the options list `<div>`.
  */
-export function buildOptionsListStyle(): CSSStyleObject {
+export function buildOptionsListStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     overflowY: 'auto',
     flex: 1,
-    padding: `${defaultSpacing.xs}px 0`,
+    padding: `${spacing.xs}px 0`,
   };
 }
 
@@ -370,8 +377,9 @@ export function buildOptionsListStyle(): CSSStyleObject {
  */
 export function buildSkeletonStyle(
   sizeConfig: LocalePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     width: '100%',

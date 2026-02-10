@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { SliderSizeConfig } from '../types/Slider.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -46,8 +45,9 @@ export interface SliderColors {
  */
 export function resolveSliderColors(
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): SliderColors {
+  const { colors: themeColors } = theme;
   if (disabled) {
     return {
       track: themeColors.border.subtle,
@@ -145,7 +145,9 @@ export function buildThumbStyle(
   sizeConfig: SliderSizeConfig,
   colors: SliderColors,
   percent: number,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   const thumbOffset = sizeConfig.thumbSize / 2;
   return {
     position: 'absolute',
@@ -153,7 +155,7 @@ export function buildThumbStyle(
     left: `${percent}%`,
     width: sizeConfig.thumbSize,
     height: sizeConfig.thumbSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: colors.thumb,
     border: `2px solid ${colors.thumbBorder}`,
     boxShadow: colors.thumbShadow,
@@ -175,12 +177,13 @@ export function buildThumbStyle(
  *
  * @returns `CSSStyleObject` for the label-row `<div>` element.
  */
-export function buildLabelRowStyle(): CSSStyleObject {
+export function buildLabelRowStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: defaultSpacing.sm,
+    marginBottom: spacing.sm,
     fontFamily: fontFamilyStacks.sans,
   };
 }
@@ -231,8 +234,9 @@ export function buildTrackWrapperStyle(
  */
 export function getSliderSkeletonStyle(
   sizeConfig: SliderSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'block',
     width: '100%',

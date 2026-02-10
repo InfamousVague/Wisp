@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ProgressSizeConfig } from '../types/Progress.types';
-import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -32,8 +31,9 @@ export interface ProgressColors {
  */
 export function resolveProgressColors(
   color: 'default' | 'success' | 'warning' | 'danger' | 'info',
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): ProgressColors {
+  const { colors: themeColors } = theme;
   // Use border.strong for better track visibility against card backgrounds
   const track = themeColors.border.strong;
   const label = themeColors.text.primary;
@@ -138,12 +138,13 @@ export function buildIndeterminateFillStyle(
  *
  * @returns A `CSSStyleObject` object with space-between justification.
  */
-export function buildLabelRowStyle(): CSSStyleObject {
+export function buildLabelRowStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: defaultSpacing.sm,
+    marginBottom: spacing.sm,
   };
 }
 
@@ -161,12 +162,14 @@ export function buildLabelRowStyle(): CSSStyleObject {
 export function buildLabelTextStyle(
   sizeConfig: ProgressSizeConfig,
   colors: ProgressColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: colors.label,
     margin: 0,
     padding: 0,
@@ -188,12 +191,14 @@ export function buildLabelTextStyle(
 export function buildValueTextStyle(
   sizeConfig: ProgressSizeConfig,
   colors: ProgressColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.valueFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: colors.value,
     margin: 0,
     padding: 0,
@@ -214,8 +219,9 @@ export function buildValueTextStyle(
  */
 export function getProgressSkeletonStyle(
   sizeConfig: ProgressSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'block',
     width: '100%',

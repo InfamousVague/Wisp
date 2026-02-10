@@ -52,7 +52,7 @@ import {
   buildChevronStyle,
   buildContentStyle,
 } from '@wisp-ui/core/styles/Accordion.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Contexts
@@ -132,7 +132,8 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(function Acc
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const isControlled = controlledValue !== undefined;
   const [internalValues, setInternalValues] = useState<string[]>(() => normaliseValue(defaultValue));
@@ -174,7 +175,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(function Acc
 
   const rootStyle = useMemo(
     () => ({
-      ...buildAccordionStyle(themeColors, userStyle as CSSStyleObject),
+      ...buildAccordionStyle(theme, userStyle as CSSStyleObject),
       fontFamily: fontFamilyStacks.sans,
     }),
     [themeColors, userStyle],
@@ -206,7 +207,8 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(func
   { value, disabled = false, children, className, style: userStyle, ...rest },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const { openValues } = useAccordionContext();
   const isOpen = openValues.includes(value);
 
@@ -216,7 +218,7 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(func
   );
 
   const itemStyle = useMemo(
-    () => ({ ...buildItemStyle(themeColors), ...userStyle }),
+    () => ({ ...buildItemStyle(theme), ...userStyle }),
     [themeColors, userStyle],
   );
 
@@ -252,7 +254,8 @@ AccordionItem.displayName = 'AccordionItem';
  */
 export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(
   function AccordionTrigger({ icon, children, className, style: userStyle, ...rest }, ref) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const { toggle } = useAccordionContext();
     const { value, isOpen, disabled } = useAccordionItemContext();
 
@@ -270,7 +273,7 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
     }, [disabled, toggle, value]);
 
     const triggerStyle = useMemo(
-      () => buildTriggerStyle(isOpen, disabled, hovered, themeColors, userStyle as CSSStyleObject),
+      () => buildTriggerStyle(isOpen, disabled, hovered, theme, userStyle as CSSStyleObject),
       [isOpen, disabled, hovered, themeColors, userStyle],
     );
 
@@ -330,7 +333,8 @@ AccordionTrigger.displayName = 'AccordionTrigger';
  */
 export const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps>(
   function AccordionContent({ children, className, style: userStyle, ...rest }, ref) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const { isOpen } = useAccordionItemContext();
 
     const contentRef = useRef<HTMLDivElement | null>(null);
@@ -344,7 +348,7 @@ export const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps
     }, [isOpen, children]);
 
     const wrapperStyle = useMemo(
-      () => ({ ...buildContentStyle(isOpen, measuredHeight, themeColors), ...userStyle }),
+      () => ({ ...buildContentStyle(isOpen, measuredHeight, theme), ...userStyle }),
       [isOpen, measuredHeight, themeColors, userStyle],
     );
 

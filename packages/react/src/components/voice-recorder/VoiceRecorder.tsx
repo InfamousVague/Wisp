@@ -5,7 +5,7 @@
  */
 
 import React, { forwardRef, useEffect, useMemo } from 'react';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import type { VoiceRecorderProps } from '@wisp-ui/core/types/VoiceRecorder.types';
 import { voiceRecorderSizeMap } from '@wisp-ui/core/types/VoiceRecorder.types';
 import {
@@ -109,7 +109,8 @@ export const VoiceRecorder = forwardRef<HTMLDivElement, VoiceRecorderProps>(func
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = voiceRecorderSizeMap[size];
 
   useEffect(() => {
@@ -117,12 +118,12 @@ export const VoiceRecorder = forwardRef<HTMLDivElement, VoiceRecorderProps>(func
   }, [state]);
 
   const colors = useMemo(
-    () => resolveVoiceRecorderColors(state, themeColors),
+    () => resolveVoiceRecorderColors(state, theme),
     [state, themeColors],
   );
 
   if (skeleton) {
-    const skeletonStyle = buildVoiceRecorderSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = buildVoiceRecorderSkeletonStyle(sizeConfig, theme);
     return <div aria-hidden className={className} style={{ ...skeletonStyle, ...userStyle }} />;
   }
 
@@ -132,7 +133,7 @@ export const VoiceRecorder = forwardRef<HTMLDivElement, VoiceRecorderProps>(func
   );
 
   const timerStyle = useMemo(
-    () => buildTimerStyle(sizeConfig, colors),
+    () => buildTimerStyle(sizeConfig, colors, theme),
     [sizeConfig, colors],
   );
 

@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ChatBubbleAlignment } from '../types/ChatBubble.types';
-import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Group container
@@ -13,12 +12,13 @@ import { defaultSpacing, defaultTypography } from '../theme/create-theme';
  *
  * @param align - Message direction (`incoming` or `outgoing`).
  */
-export function buildMessageGroupStyle(align: ChatBubbleAlignment): CSSStyleObject {
+export function buildMessageGroupStyle(align: ChatBubbleAlignment, theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
     alignItems: align === 'outgoing' ? 'flex-end' : 'flex-start',
-    gap: defaultSpacing['2xs'],
+    gap: spacing['2xs'],
   };
 }
 
@@ -31,11 +31,12 @@ export function buildMessageGroupStyle(align: ChatBubbleAlignment): CSSStyleObje
  *
  * @param themeColors - Current theme color tokens.
  */
-export function buildSenderNameStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildSenderNameStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
-    fontWeight: defaultTypography.weights.semibold,
+    fontSize: typography.sizes.sm.fontSize,
+    lineHeight: `${typography.sizes.xs.lineHeight}px`,
+    fontWeight: typography.weights.semibold,
     fontFamily: fontFamilyStacks.sans,
     color: themeColors.text.secondary,
   };
@@ -51,12 +52,13 @@ export function buildSenderNameStyle(themeColors: ThemeColors): CSSStyleObject {
  *
  * @param align - Message direction.
  */
-export function buildContentRowStyle(align: ChatBubbleAlignment): CSSStyleObject {
+export function buildContentRowStyle(align: ChatBubbleAlignment, theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: align === 'outgoing' ? 'row-reverse' : 'row',
     alignItems: 'flex-end',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
   };
 }
 
@@ -69,12 +71,13 @@ export function buildContentRowStyle(align: ChatBubbleAlignment): CSSStyleObject
  *
  * @param align - Message direction.
  */
-export function buildBubblesContainerStyle(align: ChatBubbleAlignment): CSSStyleObject {
+export function buildBubblesContainerStyle(align: ChatBubbleAlignment, theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
     alignItems: align === 'outgoing' ? 'flex-end' : 'flex-start',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
   };
 }
 
@@ -87,12 +90,13 @@ export function buildBubblesContainerStyle(align: ChatBubbleAlignment): CSSStyle
  *
  * @param align - Message direction.
  */
-export function buildGroupFooterStyle(align: ChatBubbleAlignment): CSSStyleObject {
+export function buildGroupFooterStyle(align: ChatBubbleAlignment, theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: defaultSpacing.xs,
-    marginTop: defaultSpacing.xs,
+    gap: spacing.xs,
+    marginTop: spacing.xs,
     justifyContent: align === 'outgoing' ? 'flex-end' : 'flex-start',
   };
 }
@@ -106,10 +110,11 @@ export function buildGroupFooterStyle(align: ChatBubbleAlignment): CSSStyleObjec
  *
  * @param themeColors - Current theme color tokens.
  */
-export function buildGroupTimestampStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildGroupTimestampStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    lineHeight: `${defaultTypography.sizes['2xs'].lineHeight}px`,
+    fontSize: typography.sizes.xs.fontSize,
+    lineHeight: `${typography.sizes['2xs'].lineHeight}px`,
     color: themeColors.text.muted,
     fontFamily: fontFamilyStacks.sans,
     whiteSpace: 'nowrap',
@@ -125,7 +130,8 @@ export function buildGroupTimestampStyle(themeColors: ThemeColors): CSSStyleObje
  *
  * @param themeColors - Current theme color tokens.
  */
-export function buildGroupStatusStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildGroupStatusStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',

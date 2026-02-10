@@ -11,7 +11,7 @@ import {
   buildOptionDescriptionStyle,
   buildErrorStyle,
 } from '@wisp-ui/core/styles/SwitchGroup.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { Toggle } from '../../primitives/toggle';
 import { Checkbox } from '../../primitives/checkbox';
 import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
@@ -63,7 +63,8 @@ export const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(function
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // ---------------------------------------------------------------------------
   // Controlled / uncontrolled state
@@ -91,17 +92,17 @@ export const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(function
   // Memoised styles
   // ---------------------------------------------------------------------------
   const groupStyle = useMemo(
-    () => buildGroupStyle(orientation, themeColors, userStyle as CSSStyleObject),
+    () => buildGroupStyle(orientation, theme, userStyle as CSSStyleObject),
     [orientation, themeColors, userStyle],
   );
 
   const labelStyle = useMemo(
-    () => buildGroupLabelStyle(themeColors),
+    () => buildGroupLabelStyle(theme),
     [themeColors],
   );
 
   const descriptionStyle = useMemo(
-    () => buildGroupDescriptionStyle(themeColors),
+    () => buildGroupDescriptionStyle(theme),
     [themeColors],
   );
 
@@ -111,12 +112,12 @@ export const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(function
   );
 
   const optionItemStyle = useMemo(
-    () => buildOptionStyle(themeColors),
+    () => buildOptionStyle(theme),
     [themeColors],
   );
 
   const errorStyle = useMemo(
-    () => buildErrorStyle(themeColors),
+    () => buildErrorStyle(theme),
     [themeColors],
   );
 
@@ -163,11 +164,11 @@ export const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(function
                   }
                 }}
               >
-                <span style={buildOptionLabelStyle(isOptionDisabled ?? false, themeColors)}>
+                <span style={buildOptionLabelStyle(isOptionDisabled ?? false, theme)}>
                   {option.label}
                 </span>
                 {option.description && (
-                  <span style={buildOptionDescriptionStyle(themeColors)}>
+                  <span style={buildOptionDescriptionStyle(theme)}>
                     {option.description}
                   </span>
                 )}
@@ -235,7 +236,8 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(func
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // ---------------------------------------------------------------------------
   // Controlled / uncontrolled state
@@ -263,17 +265,17 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(func
   // Memoised styles
   // ---------------------------------------------------------------------------
   const groupStyle = useMemo(
-    () => buildGroupStyle(orientation, themeColors, userStyle as CSSStyleObject),
+    () => buildGroupStyle(orientation, theme, userStyle as CSSStyleObject),
     [orientation, themeColors, userStyle],
   );
 
   const labelStyle = useMemo(
-    () => buildGroupLabelStyle(themeColors),
+    () => buildGroupLabelStyle(theme),
     [themeColors],
   );
 
   const descriptionStyle = useMemo(
-    () => buildGroupDescriptionStyle(themeColors),
+    () => buildGroupDescriptionStyle(theme),
     [themeColors],
   );
 
@@ -283,7 +285,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(func
   );
 
   const errorStyle = useMemo(
-    () => buildErrorStyle(themeColors),
+    () => buildErrorStyle(theme),
     [themeColors],
   );
 

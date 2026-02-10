@@ -12,7 +12,7 @@ import {
   buildFeedContentStyle,
   buildFeedTimestampStyle,
 } from '@wisp-ui/core/styles/ActivityFeed.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * ActivityFeed — Chronological event list for the Wisp design system.
@@ -42,7 +42,8 @@ export const ActivityFeed = forwardRef<HTMLDivElement, ActivityFeedProps>(functi
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = activityFeedSizeMap[size];
 
   const containerStyle = useMemo(() => buildFeedContainerStyle(), []);
@@ -57,17 +58,17 @@ export const ActivityFeed = forwardRef<HTMLDivElement, ActivityFeedProps>(functi
     >
       {items.map((item, i) => {
         const isLast = i === items.length - 1;
-        const itemStyle = buildFeedItemStyle(sizeConfig);
-        const avatarStyle = buildFeedAvatarStyle(sizeConfig, themeColors, item.iconColor);
-        const contentStyle = buildFeedContentStyle(sizeConfig, themeColors);
-        const timestampStyle = buildFeedTimestampStyle(sizeConfig, themeColors);
+        const itemStyle = buildFeedItemStyle(sizeConfig, theme);
+        const avatarStyle = buildFeedAvatarStyle(sizeConfig, theme, item.iconColor);
+        const contentStyle = buildFeedContentStyle(sizeConfig, theme);
+        const timestampStyle = buildFeedTimestampStyle(sizeConfig, theme);
         const Icon = item.icon;
 
         return (
           <div key={item.id} role="article" style={itemStyle}>
             {/* Connector */}
             {showConnector && !isLast && (
-              <div style={buildFeedConnectorStyle(sizeConfig, themeColors)} />
+              <div style={buildFeedConnectorStyle(sizeConfig, theme)} />
             )}
 
             {/* Avatar / Icon */}

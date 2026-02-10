@@ -1,9 +1,8 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { SeparatorOrientation, SeparatorVariant, SeparatorSpacing } from '../types/Separator.types';
 import { separatorSpacingMap } from '../types/Separator.types';
-import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 /**
  * Resolves the separator line color from a variant name and the active theme.
@@ -14,8 +13,9 @@ import { defaultSpacing, defaultTypography } from '../theme/create-theme';
  */
 export function resolveSeparatorColor(
   variant: SeparatorVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): string {
+  const { colors: themeColors } = theme;
   switch (variant) {
     case 'subtle':
       return themeColors.border.subtle;
@@ -112,14 +112,15 @@ export function buildLineStyle(color: string, thicknessPx: number = 1): CSSStyle
  * @param themeColors - Resolved theme color tokens (used for muted text color).
  * @returns A `CSSStyleObject` object for the label `<span>`.
  */
-export function buildLabelStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildLabelStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
-    paddingLeft: defaultSpacing.md,
-    paddingRight: defaultSpacing.md,
-    fontSize: defaultTypography.sizes.xs.fontSize,
+    paddingLeft: spacing.md,
+    paddingRight: spacing.md,
+    fontSize: typography.sizes.xs.fontSize,
     lineHeight: 1.33,
     fontFamily: fontFamilyStacks.sans,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: themeColors.text.muted,
     whiteSpace: 'nowrap',
     userSelect: 'none',

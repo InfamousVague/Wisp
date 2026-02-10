@@ -5,11 +5,11 @@
 
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { PaginationSize } from '../types/Pagination.types';
 import { paginationSizeMap } from '../types/Pagination.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
+import { defaultTypography, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Root nav container
@@ -21,11 +21,12 @@ import { durations, easings } from '../tokens/motion';
  * @param disabled - When `true` the container opacity is reduced to 0.5.
  * @returns A `CSSStyleObject` object for the pagination nav container.
  */
-export function buildNavStyle(disabled: boolean): CSSStyleObject {
+export function buildNavStyle(disabled: boolean, theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: defaultSpacing['2xs'],
+    gap: spacing['2xs'],
     opacity: disabled ? 0.5 : 1,
   };
 }
@@ -97,8 +98,9 @@ function buildBaseButtonStyle(
  */
 export function buildActivePageStyle(
   size: PaginationSize,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     ...buildBaseButtonStyle(size, false),
     backgroundColor: themeColors.accent.primary,
@@ -122,8 +124,9 @@ export function buildActivePageStyle(
 export function buildInactivePageStyle(
   size: PaginationSize,
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     ...buildBaseButtonStyle(size, disabled),
     backgroundColor: 'transparent',
@@ -144,8 +147,9 @@ export function buildInactivePageStyle(
  */
 export function buildInactivePageHoverStyle(
   size: PaginationSize,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     ...buildBaseButtonStyle(size, false),
     backgroundColor: themeColors.accent.highlight,
@@ -168,8 +172,9 @@ export function buildInactivePageHoverStyle(
 export function buildArrowStyle(
   size: PaginationSize,
   isDisabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     ...buildBaseButtonStyle(size, isDisabled),
     backgroundColor: 'transparent',
@@ -190,8 +195,9 @@ export function buildArrowStyle(
  */
 export function buildArrowHoverStyle(
   size: PaginationSize,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     ...buildBaseButtonStyle(size, false),
     backgroundColor: themeColors.accent.highlight,
@@ -212,8 +218,9 @@ export function buildArrowHoverStyle(
  */
 export function buildEllipsisStyle(
   size: PaginationSize,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   const cfg = paginationSizeMap[size];
 
   return {
@@ -224,7 +231,7 @@ export function buildEllipsisStyle(
     minWidth: cfg.minWidth,
     fontFamily: fontFamilyStacks.sans,
     fontSize: cfg.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     lineHeight: 1,
     color: themeColors.text.muted,
     userSelect: 'none',

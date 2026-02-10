@@ -9,7 +9,7 @@ import React, {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { useThemeColors } from "../../providers";
+import { useTheme } from "../../providers";
 import type {
   DropdownMenuProps,
   DropdownMenuTriggerProps,
@@ -153,7 +153,8 @@ export const DropdownMenuContent = forwardRef<HTMLDivElement, DropdownMenuConten
     { children, align = "start", side = "bottom", sideOffset = 4, variant = "solid", className, style: userStyle }, ref,
   ) {
     const { open, onOpenChange, triggerRef, activeIndex, setActiveIndex } = useDropdownMenuContext();
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const contentRef = useRef<HTMLDivElement>(null);
     const resolvedRef = (ref as React.RefObject<HTMLDivElement>) || contentRef;
     const [position, setPosition] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
@@ -204,7 +205,7 @@ export const DropdownMenuContent = forwardRef<HTMLDivElement, DropdownMenuConten
       return () => clearTimeout(timer);
     }, [open, resolvedRef]);
 
-    const contentStyle = useMemo(() => buildContentStyle(themeColors, variant), [themeColors, variant]);
+    const contentStyle = useMemo(() => buildContentStyle(theme, variant), [themeColors, variant]);
     const alignTransform = useMemo(() => {
       if (align === "center") return "translateX(-50%)";
       if (align === "end") return "translateX(-100%)";
@@ -237,7 +238,8 @@ export const DropdownMenuItem = forwardRef<HTMLDivElement, DropdownMenuItemProps
     { children, onSelect, disabled = false, danger = false, icon, shortcut, style: userStyle, className }, ref,
   ) {
     const { onOpenChange, activeIndex, setActiveIndex } = useDropdownMenuContext();
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const itemRef = useRef<HTMLDivElement>(null);
     const resolvedRef = (ref as React.RefObject<HTMLDivElement>) || itemRef;
     const [hovered, setHovered] = useState(false);
@@ -253,9 +255,9 @@ export const DropdownMenuItem = forwardRef<HTMLDivElement, DropdownMenuItemProps
     });
 
     const isActive = hovered || (itemIndex >= 0 && itemIndex === activeIndex);
-    const itemStyle = useMemo(() => buildItemStyle({ themeColors, disabled, danger, isActive }), [themeColors, disabled, danger, isActive]);
+    const itemStyle = useMemo(() => buildItemStyle({ theme, disabled, danger, isActive }), [themeColors, disabled, danger, isActive]);
     const iconStyleVal = useMemo(() => buildItemIconStyle(), []);
-    const shortcutStyleVal = useMemo(() => buildShortcutStyle(themeColors), [themeColors]);
+    const shortcutStyleVal = useMemo(() => buildShortcutStyle(theme), [themeColors]);
 
     const handleClick = useCallback(() => { if (disabled) return; onSelect?.(); onOpenChange(false); }, [disabled, onSelect, onOpenChange]);
     const handleMouseEnter = useCallback(() => { if (!disabled) { setHovered(true); setActiveIndex(itemIndex); } }, [disabled, itemIndex, setActiveIndex]);
@@ -282,8 +284,9 @@ DropdownMenuItem.displayName = "DropdownMenuItem";
  */
 export const DropdownMenuSeparator = forwardRef<HTMLDivElement, DropdownMenuSeparatorProps>(
   function DropdownMenuSeparator({ style: userStyle, className }, ref) {
-    const themeColors = useThemeColors();
-    const separatorStyle = useMemo(() => buildSeparatorStyle(themeColors), [themeColors]);
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
+    const separatorStyle = useMemo(() => buildSeparatorStyle(theme), [themeColors]);
     return (<div ref={ref} role="separator" className={className} style={{ ...separatorStyle, ...userStyle }} />);
   },
 );

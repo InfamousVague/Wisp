@@ -20,7 +20,7 @@ import {
   buildTimelineSkeletonLineStyle,
   buildTimelineSkeletonLineShortStyle,
 } from '@wisp-ui/core/styles/Timeline.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Timeline — Chronological event display for the Wisp design system.
@@ -53,7 +53,8 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(function Timel
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = timelineSizeMap[size];
 
   const containerStyle = useMemo(
@@ -62,7 +63,7 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(function Timel
   );
 
   if (skeleton) {
-    const skeletonContainerStyle = buildTimelineSkeletonStyle(themeColors);
+    const skeletonContainerStyle = buildTimelineSkeletonStyle(theme);
     return (
       <div
         aria-hidden
@@ -71,11 +72,11 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(function Timel
         style={{ ...skeletonContainerStyle, ...userStyle }}
       >
         {[0, 1, 2].map((i) => (
-          <div key={i} style={buildTimelineSkeletonItemStyle(sizeConfig, themeColors)}>
-            <div style={buildTimelineSkeletonDotStyle(sizeConfig, themeColors)} />
+          <div key={i} style={buildTimelineSkeletonItemStyle(sizeConfig, theme)}>
+            <div style={buildTimelineSkeletonDotStyle(sizeConfig, theme)} />
             <div style={{ display: 'flex', flexDirection: 'column', gap: sizeConfig.contentGap, flex: 1 }}>
-              <div style={buildTimelineSkeletonLineStyle(sizeConfig, themeColors)} />
-              <div style={buildTimelineSkeletonLineShortStyle(sizeConfig, themeColors)} />
+              <div style={buildTimelineSkeletonLineStyle(sizeConfig, theme)} />
+              <div style={buildTimelineSkeletonLineShortStyle(sizeConfig, theme)} />
             </div>
           </div>
         ))}
@@ -99,12 +100,12 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(function Timel
 
         const itemStyle = buildTimelineItemStyle(sizeConfig, orientation);
         const dotContainerStyle = buildTimelineDotContainerStyle(sizeConfig, orientation);
-        const dotStyle = buildTimelineDotStyle(sizeConfig, themeColors, status, item.color);
-        const lineStyle = buildTimelineLineStyle(sizeConfig, themeColors, isLast, orientation);
-        const contentStyle = buildTimelineContentStyle(sizeConfig, themeColors, orientation, isLast);
-        const titleStyle = buildTimelineTitleStyle(sizeConfig, themeColors, status);
-        const descStyle = item.description ? buildTimelineDescriptionStyle(sizeConfig, themeColors) : undefined;
-        const timestampStyle = item.timestamp ? buildTimelineTimestampStyle(sizeConfig, themeColors) : undefined;
+        const dotStyle = buildTimelineDotStyle(sizeConfig, theme, status, item.color);
+        const lineStyle = buildTimelineLineStyle(sizeConfig, theme, isLast, orientation);
+        const contentStyle = buildTimelineContentStyle(sizeConfig, theme, orientation, isLast);
+        const titleStyle = buildTimelineTitleStyle(sizeConfig, theme, status);
+        const descStyle = item.description ? buildTimelineDescriptionStyle(sizeConfig, theme) : undefined;
+        const timestampStyle = item.timestamp ? buildTimelineTimestampStyle(sizeConfig, theme) : undefined;
 
         const iconColor = status === 'pending' ? themeColors.text.muted : '#FFFFFF';
         const iconSize = Math.round(sizeConfig.dotSize * 0.6);

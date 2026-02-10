@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { BadgeVariant, BadgeShape, BadgeSizeConfig } from '../types/Badge.types';
-import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant → colors (theme-aware)
@@ -34,8 +33,9 @@ export interface BadgeColors {
  */
 export function resolveBadgeColors(
   variant: BadgeVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): BadgeColors {
+  const { colors: themeColors } = theme;
   switch (variant) {
     case 'default':
       return {
@@ -78,7 +78,7 @@ export function resolveBadgeColors(
       };
 
     default:
-      return resolveBadgeColors('default', themeColors);
+      return resolveBadgeColors('default', theme);
   }
 }
 
@@ -98,7 +98,9 @@ export function buildBadgeStyle(
   sizeConfig: BadgeSizeConfig,
   colors: BadgeColors,
   shape: BadgeShape,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     // Layout
     display: 'inline-flex',
@@ -114,7 +116,7 @@ export function buildBadgeStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: sizeConfig.lineHeight,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     whiteSpace: 'nowrap',
 
     // Shape
@@ -144,11 +146,13 @@ export function buildBadgeStyle(
 export function buildDotStyle(
   sizeConfig: BadgeSizeConfig,
   colors: BadgeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: colors.dot,
     flexShrink: 0,
   };
@@ -167,13 +171,14 @@ export function buildDotStyle(
  */
 export function getBadgeSkeletonStyle(
   sizeConfig: BadgeSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     height: sizeConfig.fontSize * sizeConfig.lineHeight + sizeConfig.paddingY * 2 + 2,
     width: 64,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

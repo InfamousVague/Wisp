@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { AlertVariant } from '../types/Alert.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant -> colors (theme-aware)
@@ -82,19 +81,20 @@ function resolveVariantColors(
  */
 export function buildAlertStyle(
   variant: AlertVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing } = theme;
   const colors = resolveVariantColors(variant, themeColors);
 
   return {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
     boxSizing: 'border-box',
-    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px`,
-    borderRadius: defaultRadii.lg,
+    padding: `${spacing.md}px ${spacing.lg}px`,
+    borderRadius: radii.lg,
     border: `1px solid ${colors.border}`,
     backgroundColor: colors.bg,
     fontFamily: fontFamilyStacks.sans,
@@ -112,13 +112,14 @@ export function buildAlertStyle(
  * @param themeColors - Current theme colour palette.
  * @returns A `CSSStyleObject` object for the title `<p>`.
  */
-export function buildTitleStyle(themeColors: ThemeColors, variant: AlertVariant = 'default'): CSSStyleObject {
+export function buildTitleStyle(theme: WispTheme, variant: AlertVariant = 'default'): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   const isRaised = variant === 'default';
   return {
     fontFamily: fontFamilyStacks.sans,
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.43,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     color: isRaised ? themeColors.text.onRaised : themeColors.text.primary,
     margin: 0,
   };
@@ -134,13 +135,14 @@ export function buildTitleStyle(themeColors: ThemeColors, variant: AlertVariant 
  * @param themeColors - Current theme colour palette.
  * @returns A `CSSStyleObject` object for the description `<p>`.
  */
-export function buildDescriptionStyle(themeColors: ThemeColors, variant: AlertVariant = 'default'): CSSStyleObject {
+export function buildDescriptionStyle(theme: WispTheme, variant: AlertVariant = 'default'): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   const isRaised = variant === 'default';
   return {
     fontFamily: fontFamilyStacks.sans,
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.43,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     color: isRaised ? themeColors.text.onRaisedSecondary : themeColors.text.secondary,
     margin: 0,
   };
@@ -159,8 +161,9 @@ export function buildDescriptionStyle(themeColors: ThemeColors, variant: AlertVa
  */
 export function buildIconWrapperStyle(
   variant: AlertVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   const colors = resolveVariantColors(variant, themeColors);
 
   return {
@@ -183,11 +186,12 @@ export function buildIconWrapperStyle(
  *
  * @returns A `CSSStyleObject` object for the content wrapper `<div>`.
  */
-export function buildContentStyle(): CSSStyleObject {
+export function buildContentStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: defaultSpacing['2xs'],
+    gap: spacing['2xs'],
     flex: 1,
     minWidth: 0,
   };

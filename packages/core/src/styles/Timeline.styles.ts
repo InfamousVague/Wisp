@@ -3,9 +3,8 @@
  */
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { TimelineSizeConfig, TimelineOrientation, TimelineStatus } from '../types/Timeline.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -81,10 +80,11 @@ export function buildTimelineDotContainerStyle(
 
 export function buildTimelineDotStyle(
   sizeConfig: TimelineSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   status: TimelineStatus,
   color?: string,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   let bg: string;
   let boxShadow: string | undefined;
 
@@ -110,7 +110,7 @@ export function buildTimelineDotStyle(
   return {
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: bg,
     display: 'flex',
     alignItems: 'center',
@@ -129,10 +129,11 @@ export function buildTimelineDotStyle(
 
 export function buildTimelineLineStyle(
   sizeConfig: TimelineSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isLast: boolean,
   orientation: TimelineOrientation,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   if (isLast) {
     return { display: 'none' };
   }
@@ -166,10 +167,11 @@ export function buildTimelineLineStyle(
 
 export function buildTimelineContentStyle(
   sizeConfig: TimelineSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   orientation: TimelineOrientation,
   isLast: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   if (orientation === 'horizontal') {
     return {
       display: 'flex',
@@ -197,12 +199,13 @@ export function buildTimelineContentStyle(
 
 export function buildTimelineTitleStyle(
   sizeConfig: TimelineSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   status: TimelineStatus,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     lineHeight: 1.4,
     color: status === 'pending' ? themeColors.text.muted : themeColors.text.primary,
     margin: 0,
@@ -216,11 +219,12 @@ export function buildTimelineTitleStyle(
 
 export function buildTimelineDescriptionStyle(
   sizeConfig: TimelineSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontSize: sizeConfig.secondaryFontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     lineHeight: 1.4,
     color: themeColors.text.secondary,
     margin: 0,
@@ -233,11 +237,12 @@ export function buildTimelineDescriptionStyle(
 
 export function buildTimelineTimestampStyle(
   sizeConfig: TimelineSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontSize: sizeConfig.secondaryFontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     lineHeight: 1.4,
     color: themeColors.text.muted,
     margin: 0,
@@ -255,20 +260,22 @@ export function buildTimelineTimestampStyle(
  * @returns CSS properties for the skeleton `<div>`.
  */
 export function buildTimelineSkeletonStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: defaultSpacing.xl,
+    gap: spacing.xl,
     width: '100%',
   };
 }
 
 export function buildTimelineSkeletonItemStyle(
   sizeConfig: TimelineSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'flex',
     flexDirection: 'row',
@@ -279,12 +286,13 @@ export function buildTimelineSkeletonItemStyle(
 
 export function buildTimelineSkeletonDotStyle(
   sizeConfig: TimelineSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: themeColors.border.subtle,
     flexShrink: 0,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
@@ -293,12 +301,13 @@ export function buildTimelineSkeletonDotStyle(
 
 export function buildTimelineSkeletonLineStyle(
   sizeConfig: TimelineSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     width: '60%',
     height: sizeConfig.fontSize,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };
@@ -306,12 +315,13 @@ export function buildTimelineSkeletonLineStyle(
 
 export function buildTimelineSkeletonLineShortStyle(
   sizeConfig: TimelineSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     width: '40%',
     height: sizeConfig.secondaryFontSize,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

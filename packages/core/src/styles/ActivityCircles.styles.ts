@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ActivityCirclesSizeConfig } from '../types/ActivityCircles.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -21,8 +20,9 @@ const DATA_PALETTE_KEYS = ['blue', 'violet', 'amber', 'emerald', 'cyan'] as cons
  */
 export function resolveRingColor(
   index: number,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): string {
+  const { colors: themeColors } = theme;
   const key = DATA_PALETTE_KEYS[index % DATA_PALETTE_KEYS.length];
   return themeColors.data[key];
 }
@@ -48,8 +48,9 @@ export interface ActivityCirclesColors {
  * @returns An {@link ActivityCirclesColors} object.
  */
 export function resolveActivityCirclesColors(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): ActivityCirclesColors {
+  const { colors: themeColors } = theme;
   return {
     track: themeColors.border.subtle,
     labelText: themeColors.text.secondary,
@@ -134,13 +135,14 @@ export function buildActivityCirclesCenterStyle(
  *
  * @returns A {@link CSSStyleObject}.
  */
-export function buildActivityCirclesLegendStyle(): CSSStyleObject {
+export function buildActivityCirclesLegendStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    gap: defaultSpacing.md,
+    gap: spacing.md,
   };
 }
 
@@ -149,12 +151,13 @@ export function buildActivityCirclesLegendStyle(): CSSStyleObject {
  *
  * @returns A {@link CSSStyleObject}.
  */
-export function buildActivityCirclesLegendItemStyle(): CSSStyleObject {
+export function buildActivityCirclesLegendItemStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
   };
 }
 
@@ -164,11 +167,12 @@ export function buildActivityCirclesLegendItemStyle(): CSSStyleObject {
  * @param color - Ring colour.
  * @returns A {@link CSSStyleObject}.
  */
-export function buildActivityCirclesLegendDotStyle(color: string): CSSStyleObject {
+export function buildActivityCirclesLegendDotStyle(color: string, theme: WispTheme): CSSStyleObject {
+  const { radii } = theme;
   return {
     width: 8,
     height: 8,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: color,
     flexShrink: 0,
   };
@@ -184,11 +188,13 @@ export function buildActivityCirclesLegendDotStyle(color: string): CSSStyleObjec
 export function buildActivityCirclesLegendTextStyle(
   sizeConfig: ActivityCirclesSizeConfig,
   colors: ActivityCirclesColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     lineHeight: 1.4,
     color: colors.labelText,
     margin: 0,

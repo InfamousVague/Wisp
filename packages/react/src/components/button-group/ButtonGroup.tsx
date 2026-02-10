@@ -9,7 +9,7 @@ import {
   buildGroupContainerStyle,
   buildGroupItemStyle,
 } from '@wisp-ui/core/styles/ButtonGroup.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
 
 /**
@@ -48,7 +48,8 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(function
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = buttonGroupSizeMap[size];
   const [internalValue, setInternalValue] = useState(defaultValue ?? items[0]?.value);
 
@@ -65,7 +66,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(function
   );
 
   const containerStyle = useMemo(
-    () => buildGroupContainerStyle(themeColors, variant, fullWidth),
+    () => buildGroupContainerStyle(theme, variant, fullWidth),
     [themeColors, variant, fullWidth],
   );
 
@@ -95,7 +96,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(function
 
         const itemStyle = buildGroupItemStyle(
           sizeConfig,
-          themeColors,
+          theme,
           variant,
           isActive,
           isItemDisabled,

@@ -5,9 +5,8 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { TreeViewSizeConfig } from '../types/TreeView.types';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -52,8 +51,9 @@ export function buildTreeNodeStyle(
   isSelected: boolean,
   isHovered: boolean,
   isDisabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing } = theme;
   let backgroundColor = 'transparent';
   if (isSelected) {
     backgroundColor = themeColors.accent.highlight;
@@ -67,9 +67,9 @@ export function buildTreeNodeStyle(
     alignItems: 'center',
     gap: sizeConfig.gap + 4,
     paddingLeft: depth * sizeConfig.indent + 4,
-    paddingRight: defaultSpacing.xs,
+    paddingRight: spacing.xs,
     height: sizeConfig.itemHeight,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     backgroundColor,
     cursor: isDisabled ? 'not-allowed' : 'pointer',
     color: isDisabled ? themeColors.text.muted : themeColors.text.primary,
@@ -94,9 +94,10 @@ export function buildTreeNodeStyle(
  */
 export function buildTreeToggleStyle(
   sizeConfig: TreeViewSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isExpanded: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
@@ -130,8 +131,9 @@ export function buildTreeToggleStyle(
  */
 export function buildTreeIconStyle(
   sizeConfig: TreeViewSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
@@ -157,9 +159,10 @@ export function buildTreeIconStyle(
  */
 export function buildTreeLabelStyle(
   sizeConfig: TreeViewSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isDisabled: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     flex: 1,
     fontSize: sizeConfig.fontSize,
@@ -185,9 +188,10 @@ export function buildTreeLabelStyle(
  */
 export function buildTreeSkeletonRowStyle(
   sizeConfig: TreeViewSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   indent: number,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     height: sizeConfig.itemHeight,
     display: 'flex',
@@ -205,14 +209,15 @@ export function buildTreeSkeletonRowStyle(
  * @returns CSS properties for the skeleton bar `<div>`.
  */
 export function buildTreeSkeletonBarStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   width: number,
   height: number,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     width,
     height,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

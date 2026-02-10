@@ -4,7 +4,7 @@
 import React, { forwardRef, useMemo } from 'react';
 import type { TextProps } from '@wisp-ui/core/types/Text.types';
 import { buildTextStyle, resolveTextColor, getSkeletonStyle, getIconStyle } from '@wisp-ui/core/styles/Text.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Text -- Typography primitive for the Wisp design system.
@@ -64,17 +64,18 @@ export const Text = forwardRef<HTMLElement, TextProps>(function Text(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // Resolve semantic color variant to actual hex
   const resolvedColor = useMemo(
-    () => resolveTextColor(color, themeColors),
+    () => resolveTextColor(color, theme),
     [color, themeColors],
   );
 
   // Skeleton loading state
   if (skeleton) {
-    const skeletonStyle = getSkeletonStyle(size, themeColors);
+    const skeletonStyle = getSkeletonStyle(size, theme);
     return React.createElement(Component, {
       ref,
       className,

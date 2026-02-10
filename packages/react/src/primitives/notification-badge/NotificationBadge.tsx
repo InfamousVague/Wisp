@@ -9,7 +9,7 @@ import {
   buildNotificationBadgeStyle,
   ensureNotificationBadgeKeyframes,
 } from '@wisp-ui/core/styles/NotificationBadge.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * NotificationBadge — Count / dot overlay primitive for the Wisp design system.
@@ -53,21 +53,22 @@ export const NotificationBadge = forwardRef<HTMLDivElement, NotificationBadgePro
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
 
     useEffect(() => {
       if (pulse) ensureNotificationBadgeKeyframes();
     }, [pulse]);
 
     const colors = useMemo(
-      () => resolveNotificationBadgeColors(color, themeColors),
+      () => resolveNotificationBadgeColors(color, theme),
       [color, themeColors],
     );
 
     const wrapperStyle = useMemo(() => buildNotificationBadgeWrapperStyle(), []);
 
     const badgeStyle = useMemo(
-      () => buildNotificationBadgeStyle(colors, dot, invisible, pulse),
+      () => buildNotificationBadgeStyle(colors, dot, invisible, pulse, theme),
       [colors, dot, invisible, pulse],
     );
 

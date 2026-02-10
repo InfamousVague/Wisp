@@ -12,7 +12,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import type { MediaPlayerProps, PlaybackSpeed } from '@wisp-ui/core/types/MediaPlayer.types';
 import { mediaPlayerSizeMap, playbackSpeeds } from '@wisp-ui/core/types/MediaPlayer.types';
 import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
@@ -124,7 +124,8 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = mediaPlayerSizeMap[size];
   const isVideo = variant === 'video';
 
@@ -142,13 +143,13 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
   const [showControls, setShowControls] = useState(true);
 
   const colors = useMemo(
-    () => resolveMediaPlayerColors(themeColors),
+    () => resolveMediaPlayerColors(theme),
     [themeColors],
   );
 
   // Skeleton early return
   if (skeleton) {
-    const skeletonStyle = buildMediaPlayerSkeletonStyle(sizeConfig, themeColors, isVideo);
+    const skeletonStyle = buildMediaPlayerSkeletonStyle(sizeConfig, theme, isVideo);
     return (
       <div
         aria-hidden
@@ -170,7 +171,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
   );
 
   const controlBtnStyle = useMemo(
-    () => buildControlButtonStyle(sizeConfig, colors),
+    () => buildControlButtonStyle(sizeConfig, colors, theme),
     [sizeConfig, colors],
   );
 
@@ -323,7 +324,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
   // ---------------------------------------------------------------------------
 
   const volumeContainerStyle = useMemo(
-    () => buildVolumeContainerStyle(sizeConfig),
+    () => buildVolumeContainerStyle(sizeConfig, theme),
     [sizeConfig],
   );
 
@@ -333,7 +334,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
   );
 
   const speedBtnStyle = useMemo(
-    () => buildSpeedButtonStyle(sizeConfig, colors),
+    () => buildSpeedButtonStyle(sizeConfig, colors, theme),
     [sizeConfig, colors],
   );
 
@@ -432,7 +433,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
   // ---------------------------------------------------------------------------
 
   if (isVideo) {
-    const videoContainerStyle = buildVideoContainerStyle(themeColors);
+    const videoContainerStyle = buildVideoContainerStyle(theme);
     const videoElStyle = buildVideoElementStyle();
 
     return (
@@ -473,7 +474,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
   // Audio variant
   // ---------------------------------------------------------------------------
 
-  const audioInfoStyle = useMemo(() => buildAudioInfoStyle(colors), [colors]);
+  const audioInfoStyle = useMemo(() => buildAudioInfoStyle(colors, theme), [colors]);
   const audioSeekRowStyle = useMemo(() => buildAudioSeekRowStyle(sizeConfig), [sizeConfig]);
 
   return (

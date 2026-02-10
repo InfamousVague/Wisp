@@ -37,7 +37,7 @@ import React, {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { Search } from 'lucide-react';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { Spinner } from '../../primitives/spinner';
 import { Text } from '../../primitives/text';
 import { Kbd } from '../../primitives/kbd';
@@ -96,6 +96,8 @@ const CommandContext = createContext<CommandContextValue | null>(null);
 function useCommandContext(): CommandContextValue {
   const ctx = useContext(CommandContext);
   if (!ctx) {
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     throw new Error('[Wisp] Command compound components must be used within <Command>.');
   }
   return ctx;
@@ -131,7 +133,8 @@ export function Command({
   style: userStyle,
   children,
 }: CommandProps): React.JSX.Element | null {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const panelRef = useRef<HTMLDivElement>(null);
   const itemRegistryRef = useRef<Map<string, CommandItemEntry>>(new Map());
   const [search, setSearch] = useState('');
@@ -218,12 +221,12 @@ export function Command({
   );
 
   const overlayStyle = useMemo(() => ({
-    ...buildOverlayStyle(themeColors),
+    ...buildOverlayStyle(theme),
     animation: 'wisp-command-overlay-in 150ms ease',
   }), [themeColors]);
 
   const panelStyle = useMemo(() => ({
-    ...buildPanelStyle(size, themeColors, variant),
+    ...buildPanelStyle(size, theme, variant),
     animation: 'wisp-command-panel-in 150ms ease',
     ...userStyle,
   }), [size, themeColors, variant, userStyle]);
@@ -264,7 +267,8 @@ export function CommandInput({
   ...inputProps
 }: CommandInputProps): React.JSX.Element {
   const { search, onSearchChange, getVisibleItemIds, activeItemId, setActiveItemId, onItemSelect, loop } = useCommandContext();
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Auto-focus on mount
@@ -335,9 +339,9 @@ export function CommandInput({
     [getVisibleItemIds, activeItemId, setActiveItemId, onItemSelect, loop],
   );
 
-  const wrapperStyle = useMemo(() => buildInputWrapperStyle(themeColors), [themeColors]);
-  const inputStyle = useMemo(() => buildInputStyle(themeColors), [themeColors]);
-  const iconStyle = useMemo(() => buildInputIconStyle(themeColors), [themeColors]);
+  const wrapperStyle = useMemo(() => buildInputWrapperStyle(theme), [themeColors]);
+  const inputStyle = useMemo(() => buildInputStyle(theme), [themeColors]);
+  const iconStyle = useMemo(() => buildInputIconStyle(theme), [themeColors]);
 
   const Icon = IconComponent || Search;
 
@@ -377,10 +381,11 @@ export function CommandList({
   style: userStyle,
 }: CommandListProps): React.JSX.Element {
   const { loading } = useCommandContext();
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
-  const listStyle = useMemo(() => buildListStyle(), []);
-  const loadingStyle = useMemo(() => buildLoadingStyle(), []);
+  const listStyle = useMemo(() => buildListStyle(theme), [themeColors]);
+  const loadingStyle = useMemo(() => buildLoadingStyle(theme), [themeColors]);
 
   if (loading) {
     return (
@@ -409,12 +414,13 @@ export function CommandGroup({
   className,
   style: userStyle,
 }: CommandGroupProps): React.JSX.Element {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const groupId = useId();
   const groupRef = useRef<HTMLDivElement>(null);
   const [hasVisibleItems, setHasVisibleItems] = useState(true);
 
-  const headingStyle = useMemo(() => buildGroupHeadingStyle(themeColors), [themeColors]);
+  const headingStyle = useMemo(() => buildGroupHeadingStyle(theme), [themeColors]);
 
   // Check if any items in this group are visible
   useEffect(() => {
@@ -480,7 +486,8 @@ export function CommandItem({
     unregisterItem,
     filter,
   } = useCommandContext();
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const itemId = useId();
   const itemRef = useRef<HTMLDivElement>(null);
 
@@ -508,20 +515,20 @@ export function CommandItem({
   const isActive = activeItemId === itemId;
 
   const itemStyle = useMemo(
-    () => buildItemStyle(themeColors, isActive, disabled),
+    () => buildItemStyle(theme, isActive, disabled),
     [themeColors, isActive, disabled],
   );
   const iconStyle = useMemo(
-    () => buildItemIconStyle(themeColors, disabled),
+    () => buildItemIconStyle(theme, disabled),
     [themeColors, disabled],
   );
-  const labelStyle = useMemo(() => buildItemLabelStyle(), []);
+  const labelStyle = useMemo(() => buildItemLabelStyle(theme), [themeColors]);
   const descStyle = useMemo(
-    () => buildItemDescriptionStyle(themeColors),
+    () => buildItemDescriptionStyle(theme),
     [themeColors],
   );
   const shortcutStyle = useMemo(
-    () => buildItemShortcutStyle(themeColors),
+    () => buildItemShortcutStyle(theme),
     [themeColors],
   );
   const handleClick = useCallback(() => {
@@ -586,8 +593,9 @@ export function CommandSeparator({
   className,
   style: userStyle,
 }: CommandSeparatorProps): React.JSX.Element {
-  const themeColors = useThemeColors();
-  const separatorStyle = useMemo(() => buildSeparatorStyle(themeColors), [themeColors]);
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
+  const separatorStyle = useMemo(() => buildSeparatorStyle(theme), [themeColors]);
 
   return (
     <div role="separator" className={className} style={{ ...separatorStyle, ...userStyle }} />
@@ -606,7 +614,8 @@ export function CommandEmpty({
   style: userStyle,
 }: CommandEmptyProps): React.JSX.Element | null {
   const { search, getVisibleItemIds, loading } = useCommandContext();
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const [isEmpty, setIsEmpty] = useState(false);
 
   // Check visibility after render
@@ -619,7 +628,7 @@ export function CommandEmpty({
     return () => clearTimeout(timer);
   }, [search, getVisibleItemIds]);
 
-  const emptyStyle = useMemo(() => buildEmptyStyle(themeColors), [themeColors]);
+  const emptyStyle = useMemo(() => buildEmptyStyle(theme), [themeColors]);
 
   if (loading || !isEmpty) return null;
 

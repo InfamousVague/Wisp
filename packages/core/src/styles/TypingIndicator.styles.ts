@@ -1,9 +1,8 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ChatBubbleAlignment } from '../types/ChatBubble.types';
 import type { TypingIndicatorAnimation } from '../types/TypingIndicator.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Keyframe injection — inject once per document
@@ -68,11 +67,12 @@ const animationDurationMap: Record<TypingIndicatorAnimation, number> = {
 /**
  * Builds the style for the dots container (inline row of dots).
  */
-export function buildDotsContainerStyle(): CSSStyleObject {
+export function buildDotsContainerStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
   };
 }
 
@@ -93,7 +93,9 @@ export function buildDotStyle(
   animation: TypingIndicatorAnimation,
   dotSize: number,
   color: string,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   const name = animationNameMap[animation];
   const duration = animationDurationMap[animation];
   const delay = index * 150;
@@ -101,7 +103,7 @@ export function buildDotStyle(
   return {
     width: dotSize,
     height: dotSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: color,
     animation: `${name} ${duration}ms ${delay}ms infinite ease-in-out`,
     // For pulse animation, start with low opacity
@@ -121,15 +123,16 @@ export function buildDotStyle(
  */
 export function buildTypingBubbleStyle(
   align: ChatBubbleAlignment,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   const isOutgoing = align === 'outgoing';
 
   return {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px`,
+    padding: `${spacing.md}px ${spacing.lg}px`,
     borderRadius: isOutgoing ? '12px 12px 2px 12px' : '12px 12px 12px 2px',
     backgroundColor: isOutgoing ? themeColors.accent.primary : themeColors.background.raised,
     border: `1px solid ${isOutgoing ? themeColors.border.subtle : themeColors.accent.dividerRaised}`,
@@ -148,12 +151,14 @@ export function buildTypingBubbleStyle(
  */
 export function buildTypingGroupStyle(
   align: ChatBubbleAlignment,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
     alignItems: align === 'outgoing' ? 'flex-end' : 'flex-start',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
   };
 }
 
@@ -168,12 +173,14 @@ export function buildTypingGroupStyle(
  */
 export function buildTypingRowStyle(
   align: ChatBubbleAlignment,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: align === 'outgoing' ? 'row-reverse' : 'row',
     alignItems: 'flex-end',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
   };
 }
 
@@ -187,12 +194,13 @@ export function buildTypingRowStyle(
  * @param themeColors - Current theme color tokens.
  */
 export function buildTypingSenderNameStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
-    fontWeight: defaultTypography.weights.semibold,
+    fontSize: typography.sizes.sm.fontSize,
+    lineHeight: `${typography.sizes.xs.lineHeight}px`,
+    fontWeight: typography.weights.semibold,
     fontFamily: fontFamilyStacks.sans,
     color: themeColors.text.secondary,
   };

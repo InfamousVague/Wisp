@@ -26,7 +26,7 @@ import {
   buildTabFocusStyle,
   buildTabPanelStyle,
 } from '@wisp-ui/core/styles/Tabs.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /** Use `useLayoutEffect` on the client and `useEffect` during SSR. */
 const useIsomorphicLayoutEffect =
@@ -172,7 +172,8 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(function TabList
   { children, className, style: userStyle, ...rest },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const { activeValue, orientation } = useTabsContext();
   const innerRef = useRef<HTMLDivElement | null>(null);
 
@@ -217,7 +218,7 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(function TabList
   }, [activeValue, orientation]);
 
   const listStyle = useMemo(
-    () => buildTabListStyle(orientation, themeColors, userStyle as CSSStyleObject),
+    () => buildTabListStyle(orientation, theme, userStyle as CSSStyleObject),
     [orientation, themeColors, userStyle],
   );
 
@@ -247,7 +248,7 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(function TabList
             offset: indicator.offset,
             extent: indicator.extent,
             animate: shouldAnimate,
-            themeColors,
+            theme,
           })}
         />
       )}
@@ -278,7 +279,8 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
   { value, disabled = false, icon, children, className, style: userStyle, ...rest },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const { activeValue, onChange, orientation, baseId } = useTabsContext();
   const active = activeValue === value;
 
@@ -329,10 +331,10 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
   );
 
   const tabStyle = useMemo(
-    () => buildTabStyle(active, disabled, hovered, orientation, themeColors, userStyle as CSSStyleObject),
+    () => buildTabStyle(active, disabled, hovered, orientation, theme, userStyle as CSSStyleObject),
     [active, disabled, hovered, orientation, themeColors, userStyle],
   );
-  const focusStyle = useMemo(() => buildTabFocusStyle(themeColors), [themeColors]);
+  const focusStyle = useMemo(() => buildTabFocusStyle(theme), [themeColors]);
   const mergedStyle: React.CSSProperties = focusVisible ? { ...tabStyle, ...focusStyle } : tabStyle;
 
   const tabId = getTabId(baseId, value);
@@ -392,7 +394,8 @@ export const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>(function TabPa
 ) {
   const { activeValue, baseId } = useTabsContext();
   const active = activeValue === value;
-  const panelStyle = useMemo(() => buildTabPanelStyle(userStyle as CSSStyleObject), [userStyle]);
+  const { theme } = useTheme();
+  const panelStyle = useMemo(() => buildTabPanelStyle(theme, userStyle as CSSStyleObject), [theme, userStyle]);
   const tabId = getTabId(baseId, value);
   const panelId = getPanelId(baseId, value);
 

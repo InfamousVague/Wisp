@@ -5,7 +5,7 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ScrollAreaDirection, ScrollbarWidth } from '../types/ScrollArea.types';
 
 // ---------------------------------------------------------------------------
@@ -52,9 +52,10 @@ export function buildScrollAreaStyle(opts: {
   hideScrollbar: boolean;
   maxHeight?: string | number;
   maxWidth?: string | number;
-  themeColors: ThemeColors;
+  theme: WispTheme;
 }): CSSStyleObject {
-  const { direction, scrollbarWidth, hideScrollbar, maxHeight, maxWidth, themeColors } = opts;
+  const { colors: themeColors } = opts.theme;
+  const { direction, scrollbarWidth, hideScrollbar, maxHeight, maxWidth } = opts;
   const overflow = resolveOverflow(direction);
 
   // scrollbar-color is a standard CSS property: thumb-color track-color

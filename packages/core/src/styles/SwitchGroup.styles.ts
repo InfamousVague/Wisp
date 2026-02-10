@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { SwitchGroupOrientation } from '../types/SwitchGroup.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Group container
@@ -18,13 +17,14 @@ import { defaultSpacing, defaultTypography } from '../theme/create-theme';
  */
 export function buildGroupStyle(
   orientation: SwitchGroupOrientation,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: defaultSpacing.md,
+    gap: spacing.md,
     fontFamily: fontFamilyStacks.sans,
     ...userStyle,
   };
@@ -40,10 +40,11 @@ export function buildGroupStyle(
  * @param themeColors - Resolved theme color palette.
  * @returns CSS properties for the label `p` element.
  */
-export function buildGroupLabelStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildGroupLabelStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontWeight: defaultTypography.weights.medium,
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontWeight: typography.weights.medium,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.43,
     color: themeColors.text.primary,
     fontFamily: fontFamilyStacks.sans,
@@ -61,14 +62,15 @@ export function buildGroupLabelStyle(themeColors: ThemeColors): CSSStyleObject {
  * @param themeColors - Resolved theme color palette.
  * @returns CSS properties for the description `p` element.
  */
-export function buildGroupDescriptionStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildGroupDescriptionStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.38,
     color: themeColors.text.secondary,
     fontFamily: fontFamilyStacks.sans,
     margin: 0,
-    marginTop: defaultSpacing['2xs'],
+    marginTop: spacing['2xs'],
   };
 }
 
@@ -101,11 +103,12 @@ export function buildOptionsStyle(orientation: SwitchGroupOrientation): CSSStyle
  * @param themeColors - Resolved theme color palette.
  * @returns CSS properties for the option row `div`.
  */
-export function buildOptionStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildOptionStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'flex-start',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
   };
 }
 
@@ -122,10 +125,11 @@ export function buildOptionStyle(themeColors: ThemeColors): CSSStyleObject {
  */
 export function buildOptionLabelStyle(
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.43,
     color: disabled ? themeColors.text.muted : themeColors.text.primary,
     fontFamily: fontFamilyStacks.sans,
@@ -144,14 +148,15 @@ export function buildOptionLabelStyle(
  * @param themeColors - Resolved theme color palette.
  * @returns CSS properties for the option description `span`.
  */
-export function buildOptionDescriptionStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildOptionDescriptionStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.38,
     color: themeColors.text.secondary,
     fontFamily: fontFamilyStacks.sans,
     margin: 0,
-    marginTop: defaultSpacing['2xs'],
+    marginTop: spacing['2xs'],
   };
 }
 
@@ -165,9 +170,10 @@ export function buildOptionDescriptionStyle(themeColors: ThemeColors): CSSStyleO
  * @param themeColors - Resolved theme color palette.
  * @returns CSS properties for the error `p` element.
  */
-export function buildErrorStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildErrorStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.38,
     color: themeColors.status.danger,
     fontFamily: fontFamilyStacks.sans,

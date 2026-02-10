@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { AvatarSizeConfig } from '../types/Avatar.types';
-import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Group container
@@ -39,11 +38,12 @@ export function buildAvatarWrapperStyle(
   spacing: number,
   index: number,
   total: number,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     marginLeft: index === 0 ? 0 : -spacing,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     border: `2px solid ${themeColors.background.canvas}`,
     zIndex: total - index,
     position: 'relative',
@@ -67,20 +67,21 @@ export function buildAvatarWrapperStyle(
 export function buildOverflowStyle(
   sizeConfig: AvatarSizeConfig,
   spacing: number,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, typography } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: sizeConfig.container,
     height: sizeConfig.container,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: themeColors.background.raised,
     color: themeColors.text.onRaised,
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1,
     userSelect: 'none',
     marginLeft: -spacing,

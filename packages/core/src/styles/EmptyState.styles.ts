@@ -5,10 +5,9 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { EmptyStateSizeConfig } from '../types/EmptyState.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container style (centered flex column)
@@ -22,7 +21,9 @@ import { defaultSpacing, defaultTypography } from '../theme/create-theme';
  */
 export function buildContainerStyle(
   sizeConfig: EmptyStateSizeConfig,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
@@ -31,7 +32,7 @@ export function buildContainerStyle(
     textAlign: 'center',
     minHeight: sizeConfig.minHeight,
     gap: sizeConfig.gap,
-    padding: defaultSpacing.xl,
+    padding: spacing.xl,
   };
 }
 
@@ -48,14 +49,15 @@ export function buildContainerStyle(
  */
 export function buildIconStyle(
   sizeConfig: EmptyStateSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     color: themeColors.text.muted,
-    marginBottom: defaultSpacing.xs,
+    marginBottom: spacing.xs,
   };
 }
 
@@ -72,12 +74,13 @@ export function buildIconStyle(
  */
 export function buildTitleStyle(
   sizeConfig: EmptyStateSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.titleFontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1.3,
     color: themeColors.text.primary,
     margin: 0,
@@ -98,12 +101,13 @@ export function buildTitleStyle(
  */
 export function buildDescriptionStyle(
   sizeConfig: EmptyStateSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.descriptionFontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     lineHeight: 1.5,
     color: themeColors.text.secondary,
     margin: 0,
@@ -120,8 +124,9 @@ export function buildDescriptionStyle(
  *
  * @returns A `CSSStyleObject` object with top margin spacing for the action slot.
  */
-export function buildActionStyle(): CSSStyleObject {
+export function buildActionStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
-    marginTop: defaultSpacing.sm,
+    marginTop: spacing.sm,
   };
 }

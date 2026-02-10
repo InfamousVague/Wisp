@@ -11,7 +11,7 @@ import {
   buildActiveStyle,
   buildSeparatorStyle,
 } from '@wisp-ui/core/styles/Breadcrumb.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Breadcrumb -- Accessible navigation trail rendered as an ordered list inside a `nav`.
@@ -43,11 +43,12 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(function Brea
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = breadcrumbSizeMap[size];
   const navStyle = useMemo(() => buildNavStyle(), []);
   const listStyle = useMemo(() => buildListStyle(sizeConfig), [sizeConfig]);
-  const separatorStyle = useMemo(() => buildSeparatorStyle(themeColors), [themeColors]);
+  const separatorStyle = useMemo(() => buildSeparatorStyle(theme), [themeColors]);
 
   const items = React.Children.toArray(children);
 
@@ -90,12 +91,13 @@ export const BreadcrumbItem = forwardRef<HTMLLIElement, BreadcrumbItemProps>(fun
   { href, active = false, icon, children, onClick, className, style: userStyle, ...rest },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const [hovered, setHovered] = useState(false);
   const itemStyle = useMemo(() => buildItemStyle(), []);
-  const linkStyle = useMemo(() => buildLinkStyle(themeColors), [themeColors]);
-  const linkHoverStyleVal = useMemo(() => buildLinkHoverStyle(themeColors), [themeColors]);
-  const activeStyle = useMemo(() => buildActiveStyle(themeColors), [themeColors]);
+  const linkStyle = useMemo(() => buildLinkStyle(theme), [themeColors]);
+  const linkHoverStyleVal = useMemo(() => buildLinkHoverStyle(theme), [themeColors]);
+  const activeStyle = useMemo(() => buildActiveStyle(theme), [themeColors]);
 
   const handleMouseEnter = useCallback(() => setHovered(true), []);
   const handleMouseLeave = useCallback(() => setHovered(false), []);
@@ -164,8 +166,9 @@ export const BreadcrumbSeparator = forwardRef<HTMLLIElement, BreadcrumbSeparator
   { children, ...rest },
   ref,
 ) {
-  const themeColors = useThemeColors();
-  const separatorStyle = useMemo(() => buildSeparatorStyle(themeColors), [themeColors]);
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
+  const separatorStyle = useMemo(() => buildSeparatorStyle(theme), [themeColors]);
   return (
     <li ref={ref} role="presentation" style={separatorStyle} aria-hidden {...rest}>
       {children || '/'}

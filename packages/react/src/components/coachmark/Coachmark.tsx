@@ -35,7 +35,7 @@ import {
   buildCoachmarkDismissButtonStyle,
   buildCoachmarkActionButtonStyle,
 } from '@wisp-ui/core/styles/Coachmark.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { Button } from '../../primitives/button';
 import { Text } from '../../primitives/text';
 
@@ -177,7 +177,8 @@ export function Coachmark({
   className,
   style: userStyle,
 }: CoachmarkProps) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const panelRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ top: 0, left: 0 });
 
@@ -187,12 +188,12 @@ export function Coachmark({
   }, []);
 
   const colors = useMemo(
-    () => resolveCoachmarkColors(variant, themeColors),
+    () => resolveCoachmarkColors(variant, theme),
     [variant, themeColors],
   );
 
   const panelStyle = useMemo(
-    () => buildCoachmarkPanelStyle(colors),
+    () => buildCoachmarkPanelStyle(colors, theme),
     [colors],
   );
   const arrowStyle = useMemo(
@@ -200,23 +201,23 @@ export function Coachmark({
     [placement, colors],
   );
   const titleStyle = useMemo(
-    () => buildCoachmarkTitleStyle(colors.text),
+    () => buildCoachmarkTitleStyle(colors.text, theme),
     [colors.text],
   );
   const descriptionStyle = useMemo(
-    () => buildCoachmarkDescriptionStyle(colors.descriptionText),
+    () => buildCoachmarkDescriptionStyle(colors.descriptionText, theme),
     [colors.descriptionText],
   );
   const footerStyle = useMemo(
-    () => buildCoachmarkFooterStyle(),
+    () => buildCoachmarkFooterStyle(theme),
     [],
   );
   const dismissBtnStyle = useMemo(
-    () => buildCoachmarkDismissButtonStyle(themeColors),
+    () => buildCoachmarkDismissButtonStyle(theme),
     [themeColors],
   );
   const actionBtnStyle = useMemo(
-    () => buildCoachmarkActionButtonStyle(colors),
+    () => buildCoachmarkActionButtonStyle(colors, theme),
     [colors],
   );
 

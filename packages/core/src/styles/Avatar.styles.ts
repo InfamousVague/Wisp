@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { AvatarShape, AvatarSizeConfig, AvatarStatus } from '../types/Avatar.types';
-import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Status colors
@@ -17,8 +16,9 @@ import { defaultRadii, defaultTypography } from '../theme/create-theme';
  */
 export function resolveStatusColor(
   status: AvatarStatus,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): string {
+  const { colors: themeColors } = theme;
   const statusColorMap: Record<string, string> = {
     online: themeColors.status.success,
     busy: themeColors.status.danger,
@@ -63,8 +63,9 @@ export function extractInitials(name: string): string {
 export function buildContainerStyle(
   sizeConfig: AvatarSizeConfig,
   shape: AvatarShape,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     position: 'relative',
     display: 'inline-flex',
@@ -93,8 +94,9 @@ export function buildContainerStyle(
 export function buildInnerStyle(
   sizeConfig: AvatarSizeConfig,
   shape: AvatarShape,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -139,12 +141,13 @@ export function buildImageStyle(): CSSStyleObject {
  */
 export function buildInitialsStyle(
   sizeConfig: AvatarSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1,
     color: themeColors.text.inverse,
     userSelect: 'none',
@@ -169,8 +172,9 @@ export function buildStatusStyle(
   sizeConfig: AvatarSizeConfig,
   status: AvatarStatus,
   shape: AvatarShape,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   const size = sizeConfig.statusSize;
   const border = sizeConfig.statusBorder;
   const offset = shape === 'circle' ? 0 : -1;
@@ -180,8 +184,8 @@ export function buildStatusStyle(
     right: offset,
     width: size,
     height: size,
-    borderRadius: defaultRadii.full,
-    backgroundColor: resolveStatusColor(status, themeColors),
+    borderRadius: radii.full,
+    backgroundColor: resolveStatusColor(status, theme),
     border: border + 'px solid ' + themeColors.background.canvas,
     boxSizing: 'border-box',
     pointerEvents: 'none',
@@ -203,8 +207,9 @@ export function buildStatusStyle(
 export function buildSkeletonStyle(
   sizeConfig: AvatarSizeConfig,
   shape: AvatarShape,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     width: sizeConfig.container,

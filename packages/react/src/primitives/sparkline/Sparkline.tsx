@@ -5,7 +5,7 @@
  */
 
 import React, { forwardRef, useMemo, useEffect, useId } from 'react';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import type { SparklineProps } from '@wisp-ui/core/types/Sparkline.types';
 import { sparklineSizeMap } from '@wisp-ui/core/types/Sparkline.types';
 import {
@@ -109,7 +109,8 @@ export const Sparkline = forwardRef<HTMLDivElement, SparklineProps>(function Spa
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = sparklineSizeMap[size];
   const gradientId = useId();
 
@@ -120,13 +121,13 @@ export const Sparkline = forwardRef<HTMLDivElement, SparklineProps>(function Spa
 
   // Resolve colors
   const colors = useMemo(
-    () => resolveSparklineColors(color, themeColors),
+    () => resolveSparklineColors(color, theme),
     [color, themeColors],
   );
 
   // Skeleton early return
   if (skeleton) {
-    const skeletonStyle = buildSparklineSkeletonStyle(sizeConfig, responsive, themeColors);
+    const skeletonStyle = buildSparklineSkeletonStyle(sizeConfig, responsive, theme);
     return (
       <div
         aria-hidden

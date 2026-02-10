@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ChatBubbleAlignment, ChatBubbleVariant } from '../types/ChatBubble.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -34,8 +33,9 @@ export interface ChatBubbleColors {
 export function resolveChatBubbleColors(
   align: ChatBubbleAlignment,
   variant: ChatBubbleVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): ChatBubbleColors {
+  const { colors: themeColors } = theme;
   if (align === 'outgoing') {
     return {
       bg: themeColors.accent.primary,
@@ -68,19 +68,21 @@ export function resolveChatBubbleColors(
 export function buildChatBubbleStyle(
   align: ChatBubbleAlignment,
   colors: ChatBubbleColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing, typography } = theme;
   const isOutgoing = align === 'outgoing';
 
   return {
     display: 'inline-block',
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
+    padding: `${spacing.sm}px ${spacing.md}px`,
     borderRadius: isOutgoing ? '12px 12px 2px 12px' : '12px 12px 12px 2px',
     backgroundColor: colors.bg,
     border: `1px solid ${colors.border}`,
     color: colors.text,
     fontFamily: fontFamilyStacks.sans,
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    lineHeight: `${defaultTypography.sizes.sm.lineHeight}px`,
+    fontSize: typography.sizes.sm.fontSize,
+    lineHeight: `${typography.sizes.sm.lineHeight}px`,
     wordWrap: 'break-word',
     overflowWrap: 'break-word',
     boxSizing: 'border-box',
@@ -94,12 +96,13 @@ export function buildChatBubbleStyle(
 /**
  * Builds the inline style for the footer row that holds timestamp and status.
  */
-export function buildFooterStyle(align: ChatBubbleAlignment): CSSStyleObject {
+export function buildFooterStyle(align: ChatBubbleAlignment, theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: defaultSpacing.xs,
-    marginTop: defaultSpacing.xs,
+    gap: spacing.xs,
+    marginTop: spacing.xs,
     justifyContent: align === 'outgoing' ? 'flex-end' : 'flex-start',
   };
 }
@@ -111,10 +114,11 @@ export function buildFooterStyle(align: ChatBubbleAlignment): CSSStyleObject {
 /**
  * Builds the inline style for the timestamp label.
  */
-export function buildTimestampStyle(colors: ChatBubbleColors): CSSStyleObject {
+export function buildTimestampStyle(colors: ChatBubbleColors, theme: WispTheme): CSSStyleObject {
+  const { typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    lineHeight: `${defaultTypography.sizes['2xs'].lineHeight}px`,
+    fontSize: typography.sizes.xs.fontSize,
+    lineHeight: `${typography.sizes['2xs'].lineHeight}px`,
     color: colors.timestamp,
     fontFamily: fontFamilyStacks.sans,
     whiteSpace: 'nowrap',
@@ -144,12 +148,13 @@ export function buildStatusStyle(colors: ChatBubbleColors): CSSStyleObject {
 /**
  * Builds the inline style for the reactions row below the bubble.
  */
-export function buildReactionsContainerStyle(): CSSStyleObject {
+export function buildReactionsContainerStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: defaultSpacing.xs,
-    marginTop: defaultSpacing.xs,
+    gap: spacing.xs,
+    marginTop: spacing.xs,
   };
 }
 
@@ -165,8 +170,9 @@ export function buildReactionsContainerStyle(): CSSStyleObject {
  */
 export function buildReactionChipStyle(
   reacted: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing, typography } = theme;
   const chipBg = reacted
     ? themeColors.brand.surface
     : themeColors.background.surface;
@@ -174,11 +180,11 @@ export function buildReactionChipStyle(
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: defaultSpacing.xs,
-    padding: `${defaultSpacing['2xs']}px ${defaultSpacing.sm}px`,
-    borderRadius: defaultRadii.xl,
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
+    gap: spacing.xs,
+    padding: `${spacing['2xs']}px ${spacing.sm}px`,
+    borderRadius: radii.xl,
+    fontSize: typography.sizes.xs.fontSize,
+    lineHeight: `${typography.sizes.xs.lineHeight}px`,
     fontFamily: fontFamilyStacks.sans,
     border: `1px solid ${reacted ? themeColors.brand.border : themeColors.border.subtle}`,
     backgroundColor: chipBg,

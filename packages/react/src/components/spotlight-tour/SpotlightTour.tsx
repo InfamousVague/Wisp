@@ -33,7 +33,7 @@ import {
   buildSpotlightStepCountStyle,
   buildSpotlightNavButtonStyle,
 } from '@wisp-ui/core/styles/SpotlightTour.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { Button } from '../../primitives/button';
 import { Text } from '../../primitives/text';
 import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
@@ -172,7 +172,8 @@ export function SpotlightTour({
   closeOnEscape = true,
   variant = 'default',
 }: SpotlightTourProps) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const panelRef = useRef<HTMLDivElement>(null);
 
   const [internalStep, setInternalStep] = useState(0);
@@ -281,28 +282,28 @@ export function SpotlightTour({
 
   // Styles
   const popoverStyle = useMemo(
-    () => buildSpotlightPopoverStyle(themeColors, variant),
+    () => buildSpotlightPopoverStyle(theme, variant),
     [themeColors, variant],
   );
   const titleStyle = useMemo(
-    () => buildSpotlightTitleStyle(themeColors),
+    () => buildSpotlightTitleStyle(theme),
     [themeColors],
   );
   const descriptionStyle = useMemo(
-    () => buildSpotlightDescriptionStyle(themeColors),
+    () => buildSpotlightDescriptionStyle(theme),
     [themeColors],
   );
-  const footerStyle = useMemo(() => buildSpotlightFooterStyle(), []);
+  const footerStyle = useMemo(() => buildSpotlightFooterStyle(theme), []);
   const stepCountStyle = useMemo(
-    () => buildSpotlightStepCountStyle(themeColors),
+    () => buildSpotlightStepCountStyle(theme),
     [themeColors],
   );
   const prevBtnStyle = useMemo(
-    () => buildSpotlightNavButtonStyle(themeColors, false),
+    () => buildSpotlightNavButtonStyle(theme, false),
     [themeColors],
   );
   const nextBtnStyle = useMemo(
-    () => buildSpotlightNavButtonStyle(themeColors, true),
+    () => buildSpotlightNavButtonStyle(theme, true),
     [themeColors],
   );
 

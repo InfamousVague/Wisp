@@ -1,7 +1,6 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { RadioSizeConfig } from '../types/Radio.types';
-import { defaultRadii } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -50,8 +49,9 @@ export function resolveRadioColors(
   selected: boolean,
   disabled: boolean,
   error: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): RadioColors {
+  const { colors: themeColors } = theme;
   // Disabled — muted everything
   if (disabled) {
     return {
@@ -115,7 +115,9 @@ export function buildOuterCircleStyle(
   sizeConfig: RadioSizeConfig,
   colors: RadioColors,
   disabled: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
@@ -124,7 +126,7 @@ export function buildOuterCircleStyle(
     height: sizeConfig.outerSize,
     minWidth: sizeConfig.outerSize,
     minHeight: sizeConfig.outerSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: colors.outerBg,
     border: `${sizeConfig.borderWidth}px solid ${colors.outerBorder}`,
     boxSizing: 'border-box',
@@ -154,12 +156,14 @@ export function buildInnerDotStyle(
   sizeConfig: RadioSizeConfig,
   colors: RadioColors,
   selected: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'block',
     width: sizeConfig.innerSize,
     height: sizeConfig.innerSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: colors.innerBg,
     transform: selected ? 'scale(1)' : 'scale(0)',
     opacity: selected ? 1 : 0,
@@ -180,13 +184,14 @@ export function buildInnerDotStyle(
  */
 export function getRadioSkeletonStyle(
   sizeConfig: RadioSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: sizeConfig.outerSize,
     height: sizeConfig.outerSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

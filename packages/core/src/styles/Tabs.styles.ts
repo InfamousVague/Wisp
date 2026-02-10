@@ -1,7 +1,6 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { TabsOrientation } from '../types/Tabs.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -18,9 +17,10 @@ import { durations, easings } from '../tokens/motion';
  */
 export function buildTabListStyle(
   orientation: TabsOrientation,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   const base: CSSStyleObject = {
     display: 'flex',
     margin: 0,
@@ -68,8 +68,9 @@ export function buildTabIndicatorStyle(opts: {
   offset: number;
   extent: number;
   animate: boolean;
-  themeColors: ThemeColors;
+  theme: WispTheme;
 }): CSSStyleObject {
+  const { colors: themeColors, radii } = opts.theme;
   if (opts.orientation === 'horizontal') {
     return {
       position: 'absolute',
@@ -77,13 +78,13 @@ export function buildTabIndicatorStyle(opts: {
       left: 0,
       height: 2,
       width: opts.extent,
-      backgroundColor: opts.themeColors.accent.primary,
+      backgroundColor: themeColors.accent.primary,
       transform: `translateX(${opts.offset}px)`,
       transition: opts.animate
         ? 'transform 250ms cubic-bezier(0.4, 0, 0.2, 1)'
         : 'none',
       pointerEvents: 'none',
-      borderRadius: defaultRadii.sm,
+      borderRadius: radii.sm,
       zIndex: 1,
     };
   }
@@ -95,13 +96,13 @@ export function buildTabIndicatorStyle(opts: {
     top: 0,
     width: 2,
     height: opts.extent,
-    backgroundColor: opts.themeColors.accent.primary,
+    backgroundColor: themeColors.accent.primary,
     transform: `translateY(${opts.offset}px)`,
     transition: opts.animate
       ? 'transform 250ms cubic-bezier(0.4, 0, 0.2, 1)'
       : 'none',
     pointerEvents: 'none',
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     zIndex: 1,
   };
 }
@@ -126,9 +127,10 @@ export function buildTabStyle(
   disabled: boolean,
   hovered: boolean,
   orientation: TabsOrientation,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   const color = disabled
     ? themeColors.text.muted
     : active
@@ -140,13 +142,13 @@ export function buildTabStyle(
   const base: CSSStyleObject = {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: defaultSpacing.sm,
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.lg}px`,
+    gap: spacing.sm,
+    padding: `${spacing.sm}px ${spacing.lg}px`,
     border: 'none',
     background: 'none',
     color,
-    fontWeight: defaultTypography.weights.medium,
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontWeight: typography.weights.medium,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.43,
     cursor: disabled ? 'not-allowed' : 'pointer',
     opacity: disabled ? 0.5 : 1,
@@ -172,8 +174,9 @@ export function buildTabStyle(
  * @returns A `CSSStyleObject` object containing the `boxShadow` ring.
  */
 export function buildTabFocusStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     boxShadow: '0 0 0 2px ' + themeColors.background.canvas + ', 0 0 0 4px ' + themeColors.accent.primary,
   };
@@ -190,10 +193,12 @@ export function buildTabFocusStyle(
  * @returns A `CSSStyleObject` object for the panel wrapper.
  */
 export function buildTabPanelStyle(
+  theme: WispTheme,
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
-    paddingTop: defaultSpacing.lg,
+    paddingTop: spacing.lg,
     outline: 'none',
     ...userStyle,
   };

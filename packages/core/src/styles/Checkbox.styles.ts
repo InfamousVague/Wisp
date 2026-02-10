@@ -1,5 +1,5 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { CheckboxSizeConfig } from '../types/Checkbox.types';
 import { relativeLuminance } from '../utils/contrast';
 import { durations, easings } from '../tokens/motion';
@@ -64,8 +64,9 @@ export function resolveCheckboxColors(
   error: boolean,
   warning: boolean,
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CheckboxColors {
+  const { colors: themeColors } = theme;
   // Disabled — muted everything
   if (disabled) {
     return {
@@ -194,8 +195,9 @@ export function buildIconStyle(
  */
 export function getCheckboxSkeletonStyle(
   sizeConfig: CheckboxSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     width: sizeConfig.boxSize,

@@ -12,7 +12,7 @@ import {
   buildTrackContentStyle,
   getToggleSkeletonStyle,
 } from '@wisp-ui/core/styles/Toggle.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 /**
@@ -88,7 +88,8 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // ---------------------------------------------------------------------------
   // Controlled / uncontrolled state
@@ -144,15 +145,15 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle
   );
 
   const colors = useMemo(() => {
-    if (disabled) return getDisabledToggleColors(themeColors);
-    return resolveToggleColors(isChecked, themeColors, checkedColor, uncheckedColor);
+    if (disabled) return getDisabledToggleColors(theme);
+    return resolveToggleColors(isChecked, theme, checkedColor, uncheckedColor);
   }, [isChecked, disabled, themeColors, checkedColor, uncheckedColor]);
 
   // ---------------------------------------------------------------------------
   // Skeleton
   // ---------------------------------------------------------------------------
   if (skeleton) {
-    const skeletonStyle = getToggleSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getToggleSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden
@@ -173,7 +174,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle
   );
 
   const handleStyle = useMemo(
-    () => buildHandleStyle({ sizeConfig, colors, checked: isChecked, hasContent }),
+    () => buildHandleStyle({ sizeConfig, colors, checked: isChecked, hasContent }, theme),
     [sizeConfig, colors, isChecked, hasContent],
   );
 
@@ -199,12 +200,12 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle
   // Track content (checked side / unchecked side)
   // ---------------------------------------------------------------------------
   const checkedContentStyle = useMemo(
-    () => buildTrackContentStyle({ sizeConfig, side: 'checked', colors }),
+    () => buildTrackContentStyle({ sizeConfig, side: 'checked', colors }, theme),
     [sizeConfig, colors],
   );
 
   const uncheckedContentStyle = useMemo(
-    () => buildTrackContentStyle({ sizeConfig, side: 'unchecked', colors }),
+    () => buildTrackContentStyle({ sizeConfig, side: 'unchecked', colors }, theme),
     [sizeConfig, colors],
   );
 

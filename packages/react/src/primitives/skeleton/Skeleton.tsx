@@ -7,7 +7,7 @@ import {
   buildTextLineStyle,
   buildWaveOverlayStyle,
 } from '@wisp-ui/core/styles/Skeleton.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Skeleton — Placeholder loading indicator for content that has not yet loaded.
@@ -50,7 +50,8 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(function Skele
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   useEffect(() => {
     ensureSkeletonKeyframes();
@@ -59,7 +60,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(function Skele
   if (variant === 'circular') {
     const size = width ?? height ?? 48;
     const blockStyle = useMemo(
-      () => buildBlockStyle(themeColors, {
+      () => buildBlockStyle(theme, {
         width: size,
         height: size,
         borderRadius: '50%',
@@ -75,7 +76,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(function Skele
         style={{ ...blockStyle, ...userStyle }}
         {...rest}
       >
-        {animation === 'wave' && <div style={buildWaveOverlayStyle(themeColors)} />}
+        {animation === 'wave' && <div style={buildWaveOverlayStyle(theme)} />}
       </div>
     );
   }
@@ -95,7 +96,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(function Skele
         const isLast = i === lines - 1;
         const widthPercent = isLast && lines > 1 ? '60%' : '100%';
         const mb = isLast ? 0 : lineSpacing;
-        const lineStyle = buildTextLineStyle(themeColors, {
+        const lineStyle = buildTextLineStyle(theme, {
           lineHeight,
           borderRadius: resolvedRadius,
           animation,
@@ -104,7 +105,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(function Skele
         });
         elements.push(
           <div key={i} style={{ ...lineStyle, position: animation === 'wave' ? ('relative' as const) : undefined }}>
-            {animation === 'wave' && <div style={buildWaveOverlayStyle(themeColors)} />}
+            {animation === 'wave' && <div style={buildWaveOverlayStyle(theme)} />}
           </div>,
         );
       }
@@ -128,7 +129,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(function Skele
   const resolvedRadius = radius ?? 8;
 
   const blockStyle = useMemo(
-    () => buildBlockStyle(themeColors, {
+    () => buildBlockStyle(theme, {
       width: resolvedWidth,
       height: resolvedHeight,
       borderRadius: resolvedRadius,
@@ -144,7 +145,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(function Skele
       style={{ ...blockStyle, ...userStyle }}
       {...rest}
     >
-      {animation === 'wave' && <div style={buildWaveOverlayStyle(themeColors)} />}
+      {animation === 'wave' && <div style={buildWaveOverlayStyle(theme)} />}
     </div>
   );
 });

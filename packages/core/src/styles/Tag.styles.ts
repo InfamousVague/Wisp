@@ -1,9 +1,8 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { TagSizeConfig } from '../types/Tag.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { relativeLuminance } from '../utils/contrast';
-import { defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -66,8 +65,9 @@ export interface TagColors {
 export function resolveTagColors(
   selected: boolean,
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): TagColors {
+  const { colors: themeColors } = theme;
   // Disabled — muted everything, no hover
   if (disabled) {
     return {
@@ -128,7 +128,9 @@ export function buildTagStyle(
   sizeConfig: TagSizeConfig,
   colors: TagColors,
   disabled: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
@@ -145,7 +147,7 @@ export function buildTagStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: sizeConfig.lineHeight,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     whiteSpace: 'nowrap',
     userSelect: 'none',
     cursor: disabled ? 'default' : 'pointer',
@@ -203,8 +205,9 @@ export function buildCloseButtonStyle(
  */
 export function getTagSkeletonStyle(
   sizeConfig: TagSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     width: 64,

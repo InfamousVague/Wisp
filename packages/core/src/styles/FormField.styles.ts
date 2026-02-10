@@ -5,10 +5,9 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { FormFieldOrientation, FormFieldSizeConfig } from '../types/FormField.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Wrapper style
@@ -57,9 +56,10 @@ export function buildLabelStyle(
   disabled: boolean,
   orientation: FormFieldOrientation,
   labelWidth: string | number | undefined,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   onSurface: boolean = false,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   const isHorizontal = orientation === 'horizontal';
 
   const color = disabled
@@ -72,7 +72,7 @@ export function buildLabelStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     color,
     cursor: 'default',
     userSelect: 'none',
@@ -80,7 +80,7 @@ export function buildLabelStyle(
     ...(isHorizontal
       ? {
           width: labelWidth ?? 120,
-          paddingTop: defaultSpacing.sm, // Align with input text baseline
+          paddingTop: spacing.sm, // Align with input text baseline
         }
       : {}),
   };
@@ -96,11 +96,12 @@ export function buildLabelStyle(
  * @param themeColors - Active theme color tokens (uses `status.danger` for the indicator).
  * @returns A `CSSStyleObject` object for the required `<span>`.
  */
-export function buildRequiredStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildRequiredStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
     color: themeColors.status.danger,
-    marginLeft: defaultSpacing['2xs'],
-    fontWeight: defaultTypography.weights.regular,
+    marginLeft: spacing['2xs'],
+    fontWeight: typography.weights.regular,
   };
 }
 
@@ -115,14 +116,15 @@ export function buildRequiredStyle(themeColors: ThemeColors): CSSStyleObject {
  * @param orientation - Current layout orientation.
  * @returns A `CSSStyleObject` object. Returns an empty object for vertical orientation.
  */
-export function buildContentStyle(orientation: FormFieldOrientation): CSSStyleObject {
+export function buildContentStyle(orientation: FormFieldOrientation, theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   if (orientation === 'horizontal') {
     return {
       display: 'flex',
       flexDirection: 'column',
       flex: 1,
       minWidth: 0,
-      gap: defaultSpacing.xs,
+      gap: spacing.xs,
     };
   }
   return {};
@@ -143,14 +145,15 @@ export function buildContentStyle(orientation: FormFieldOrientation): CSSStyleOb
 export function buildHintStyle(
   sizeConfig: FormFieldSizeConfig,
   error: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   onSurface: boolean = false,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.hintFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     color: error
       ? themeColors.status.danger
       : onSurface

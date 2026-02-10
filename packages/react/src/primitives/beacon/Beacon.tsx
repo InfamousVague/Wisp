@@ -24,7 +24,7 @@ import {
   buildBeaconButtonStyle,
   buildBeaconPulseStyle,
 } from '@wisp-ui/core/styles/Beacon.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { Icon } from '../icon';
 import { Popover, PopoverTrigger, PopoverContent } from '../../components/popover';
 import { Info } from 'lucide-react';
@@ -81,10 +81,11 @@ export const Beacon = forwardRef<HTMLButtonElement, BeaconProps>(function Beacon
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = beaconSizeMap[size];
   const accentColor = useMemo(
-    () => resolveBeaconColor(variant, themeColors),
+    () => resolveBeaconColor(variant, theme),
     [variant, themeColors],
   );
 
@@ -94,7 +95,7 @@ export const Beacon = forwardRef<HTMLButtonElement, BeaconProps>(function Beacon
   }, [pulsing, accentColor]);
 
   const buttonStyle = useMemo(
-    () => buildBeaconButtonStyle(sizeConfig, accentColor, themeColors),
+    () => buildBeaconButtonStyle(sizeConfig, accentColor, theme),
     [sizeConfig, accentColor, themeColors],
   );
 

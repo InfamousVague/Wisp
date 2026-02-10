@@ -10,7 +10,7 @@ import {
   buildArrowHoverStyle,
   buildEllipsisStyle,
 } from '@wisp-ui/core/styles/Pagination.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Generates an array of {@link PageItem} entries representing the visible page
@@ -121,32 +121,33 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(function Pagi
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const pageItems = useMemo(
     () => generatePages(page, totalPages, siblingCount),
     [page, totalPages, siblingCount],
   );
 
-  const navStyle = useMemo(() => buildNavStyle(disabled), [disabled]);
-  const activeStyle = useMemo(() => buildActivePageStyle(size, themeColors), [size, themeColors]);
-  const inactiveStyle = useMemo(() => buildInactivePageStyle(size, disabled, themeColors), [size, disabled, themeColors]);
-  const inactiveHoverStyle = useMemo(() => buildInactivePageHoverStyle(size, themeColors), [size, themeColors]);
-  const ellipsisStyle = useMemo(() => buildEllipsisStyle(size, themeColors), [size, themeColors]);
+  const navStyle = useMemo(() => buildNavStyle(disabled, theme), [disabled]);
+  const activeStyle = useMemo(() => buildActivePageStyle(size, theme), [size, themeColors]);
+  const inactiveStyle = useMemo(() => buildInactivePageStyle(size, disabled, theme), [size, disabled, themeColors]);
+  const inactiveHoverStyle = useMemo(() => buildInactivePageHoverStyle(size, theme), [size, themeColors]);
+  const ellipsisStyle = useMemo(() => buildEllipsisStyle(size, theme), [size, themeColors]);
 
   const isAtFirst = page <= 1;
   const isAtLast = page >= totalPages;
 
   const prevArrowStyle = useMemo(
-    () => buildArrowStyle(size, isAtFirst || disabled, themeColors),
+    () => buildArrowStyle(size, isAtFirst || disabled, theme),
     [size, isAtFirst, disabled, themeColors],
   );
   const nextArrowStyle = useMemo(
-    () => buildArrowStyle(size, isAtLast || disabled, themeColors),
+    () => buildArrowStyle(size, isAtLast || disabled, theme),
     [size, isAtLast, disabled, themeColors],
   );
   const arrowHoverStyle = useMemo(
-    () => buildArrowHoverStyle(size, themeColors),
+    () => buildArrowHoverStyle(size, theme),
     [size, themeColors],
   );
 

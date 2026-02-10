@@ -2,10 +2,9 @@
  * @module CodeBlock
  */
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { CodeBlockVariant } from '../types/CodeBlock.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -17,15 +16,16 @@ import { durations, easings } from '../tokens/motion';
  */
 export function buildCodeBlockWrapperStyle(
   variant: CodeBlockVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   maxHeight?: number | string,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, typography } = theme;
   const base: CSSStyleObject = {
     position: 'relative',
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     overflow: 'hidden',
     fontFamily: fontFamilyStacks.mono,
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.6,
   };
 
@@ -56,15 +56,16 @@ export function buildCodeBlockWrapperStyle(
  */
 export function buildCodeBlockHeaderStyle(
   variant: CodeBlockVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    padding: `${spacing.sm}px ${spacing.md}px`,
+    fontSize: typography.sizes.xs.fontSize,
+    fontWeight: typography.weights.medium,
     fontFamily: fontFamilyStacks.sans,
     color: variant === 'outlined'
       ? themeColors.text.secondary
@@ -84,11 +85,13 @@ export function buildCodeBlockHeaderStyle(
  * Builds styles for the `<pre>` element containing the code.
  */
 export function buildCodeBlockPreStyle(
+  theme: WispTheme,
   maxHeight?: number | string,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     margin: 0,
-    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px`,
+    padding: `${spacing.md}px ${spacing.lg}px`,
     overflow: 'auto',
     maxHeight: maxHeight ?? undefined,
     tabSize: 2,
@@ -105,8 +108,9 @@ export function buildCodeBlockPreStyle(
 export function buildCodeBlockLineStyle(
   highlighted: boolean,
   variant: CodeBlockVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   if (!highlighted) {
     return {
       display: 'flex',
@@ -122,8 +126,8 @@ export function buildCodeBlockLineStyle(
       : themeColors.accent.highlightRaised,
     marginLeft: -16,
     marginRight: -16,
-    paddingLeft: defaultSpacing.lg,
-    paddingRight: defaultSpacing.lg,
+    paddingLeft: spacing.lg,
+    paddingRight: spacing.lg,
     borderLeft: `2px solid ${variant === 'outlined' ? themeColors.accent.primary : themeColors.accent.primary}`,
   };
 }
@@ -137,12 +141,13 @@ export function buildCodeBlockLineStyle(
  */
 export function buildCodeBlockLineNumberStyle(
   variant: CodeBlockVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     display: 'inline-block',
     width: '3ch',
-    marginRight: defaultSpacing.lg,
+    marginRight: spacing.lg,
     textAlign: 'right',
     userSelect: 'none',
     color: variant === 'outlined'
@@ -161,18 +166,19 @@ export function buildCodeBlockLineNumberStyle(
  */
 export function buildCodeBlockCopyButtonStyle(
   variant: CodeBlockVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing, typography } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: `${defaultSpacing.xs}px ${defaultSpacing.sm}px`,
+    padding: `${spacing.xs}px ${spacing.sm}px`,
     border: 'none',
-    borderRadius: defaultRadii.sm,
-    fontSize: defaultTypography.sizes.xs.fontSize,
+    borderRadius: radii.sm,
+    fontSize: typography.sizes.xs.fontSize,
     fontFamily: fontFamilyStacks.sans,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     cursor: 'pointer',
     backgroundColor: variant === 'outlined'
       ? themeColors.accent.highlight

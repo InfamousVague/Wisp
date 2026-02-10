@@ -11,7 +11,7 @@ import {
   buildDatePickerErrorStyle,
   buildDatePickerSkeletonStyle,
 } from '@wisp-ui/core/styles/DatePicker.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { Calendar } from '../calendar';
 
 // ---------------------------------------------------------------------------
@@ -90,7 +90,8 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(function D
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = datePickerSizeMap[size];
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -112,37 +113,37 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(function D
   // -------------------------------------------------------------------------
 
   const containerStyle = useMemo(
-    () => buildDatePickerContainerStyle(sizeConfig, false),
+    () => buildDatePickerContainerStyle(sizeConfig, false, theme),
     [sizeConfig],
   );
 
   const triggerStyle = useMemo(
-    () => buildDatePickerTriggerStyle(sizeConfig, themeColors, isOpen, disabled, hasError, isTriggerHovered),
+    () => buildDatePickerTriggerStyle(sizeConfig, theme, isOpen, disabled, hasError, isTriggerHovered),
     [sizeConfig, themeColors, isOpen, disabled, hasError, isTriggerHovered],
   );
 
   const dropdownStyle = useMemo(
-    () => buildDatePickerDropdownStyle(sizeConfig, themeColors),
+    () => buildDatePickerDropdownStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
   const iconStyle = useMemo(
-    () => buildDatePickerIconStyle(themeColors, disabled),
+    () => buildDatePickerIconStyle(theme, disabled),
     [themeColors, disabled],
   );
 
   const clearStyle = useMemo(
-    () => buildDatePickerClearStyle(themeColors, isClearHovered),
+    () => buildDatePickerClearStyle(theme, isClearHovered),
     [themeColors, isClearHovered],
   );
 
   const labelStyle = useMemo(
-    () => buildDatePickerLabelStyle(sizeConfig, themeColors),
+    () => buildDatePickerLabelStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
   const errorStyle = useMemo(
-    () => buildDatePickerErrorStyle(sizeConfig, themeColors),
+    () => buildDatePickerErrorStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
@@ -231,7 +232,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(function D
   // -------------------------------------------------------------------------
 
   if (skeleton) {
-    const skeletonStyle = buildDatePickerSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = buildDatePickerSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden

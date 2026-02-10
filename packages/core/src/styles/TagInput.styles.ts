@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { TagInputSizeConfig } from '../types/TagInput.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -58,8 +57,9 @@ export function resolveTagInputColors(
   error: boolean,
   warning: boolean,
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): TagInputColors {
+  const { colors: themeColors } = theme;
   const tagBase = {
     tagBg: themeColors.accent.highlight,
     tagText: themeColors.text.primary,
@@ -189,7 +189,9 @@ export function buildTagStyle(
   sizeConfig: TagInputSizeConfig,
   colors: TagInputColors,
   disabled: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
@@ -199,7 +201,7 @@ export function buildTagStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.tagFontSize,
     lineHeight: 1,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     whiteSpace: 'nowrap',
     borderRadius: sizeConfig.tagBorderRadius,
     backgroundColor: colors.tagBg,
@@ -243,7 +245,8 @@ export function buildTagRemoveStyle(
 /**
  * Returns the background color applied to the tag remove button on hover.
  */
-export function getTagRemoveHoverBg(themeColors: ThemeColors): string {
+export function getTagRemoveHoverBg(theme: WispTheme): string {
+  const { colors: themeColors } = theme;
   return themeColors.accent.highlight;
 }
 
@@ -280,12 +283,14 @@ export function buildInputStyle(
 export function buildLabelStyle(
   sizeConfig: TagInputSizeConfig,
   colors: TagInputColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: colors.label,
     cursor: 'default',
     userSelect: 'none',
@@ -299,12 +304,14 @@ export function buildLabelStyle(
 export function buildHintStyle(
   sizeConfig: TagInputSizeConfig,
   colors: TagInputColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.hintFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     color: colors.hint,
     margin: 0,
   };
@@ -316,8 +323,9 @@ export function buildHintStyle(
 
 export function buildSkeletonStyle(
   sizeConfig: TagInputSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     width: '100%',

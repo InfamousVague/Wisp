@@ -6,7 +6,7 @@ import {
   buildLabelStyle,
   resolveSeparatorColor,
 } from '@wisp-ui/core/styles/Separator.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { thicknessValues } from '@wisp-ui/core/tokens/shared';
 
 /**
@@ -48,14 +48,15 @@ export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(function Sep
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const hasLabel = label != null;
   const thicknessPx = thickness ? thicknessValues[thickness] : 1;
 
   // Resolve the line color from variant
   const lineColor = useMemo(
-    () => resolveSeparatorColor(variant, themeColors),
+    () => resolveSeparatorColor(variant, theme),
     [variant, themeColors],
   );
 
@@ -73,7 +74,7 @@ export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(function Sep
 
   // Build label style
   const labelStyle = useMemo(
-    () => (hasLabel ? buildLabelStyle(themeColors) : undefined),
+    () => (hasLabel ? buildLabelStyle(theme) : undefined),
     [hasLabel, themeColors],
   );
 

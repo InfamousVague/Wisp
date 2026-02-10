@@ -2,10 +2,9 @@
  * @module Navbar
  */
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { NavbarVariant } from '../types/Navbar.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
 
@@ -17,14 +16,15 @@ export function buildNavbarStyle(
   variant: NavbarVariant,
   sticky: boolean,
   height: number,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   const base: CSSStyleObject = {
     display: 'flex',
     alignItems: 'center',
     height,
-    paddingLeft: defaultSpacing.xl,
-    paddingRight: defaultSpacing.xl,
+    paddingLeft: spacing.xl,
+    paddingRight: spacing.xl,
     boxSizing: 'border-box',
     borderBottom: `1px solid ${themeColors.border.subtle}`,
     fontFamily: fontFamilyStacks.sans,
@@ -61,14 +61,15 @@ export function buildNavbarStyle(
 // Brand
 // ---------------------------------------------------------------------------
 
-export function buildNavbarBrandStyle(): CSSStyleObject {
+export function buildNavbarBrandStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing, typography } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
     flexShrink: 0,
-    fontWeight: defaultTypography.weights.bold,
-    fontSize: defaultTypography.sizes.base.fontSize,
+    fontWeight: typography.weights.bold,
+    fontSize: typography.sizes.base.fontSize,
     cursor: 'pointer',
     userSelect: 'none',
   };
@@ -80,12 +81,14 @@ export function buildNavbarBrandStyle(): CSSStyleObject {
 
 export function buildNavbarContentStyle(
   align: 'start' | 'center' | 'end',
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   const justifyMap = { start: 'flex-start', center: 'center', end: 'flex-end' } as const;
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
     flex: 1,
     justifyContent: justifyMap[align],
   };
@@ -97,18 +100,19 @@ export function buildNavbarContentStyle(
 
 export function buildNavbarItemStyle(
   active: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isSolid: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing, typography } = theme;
   const textColor = isSolid ? themeColors.text.onRaised : themeColors.text.primary;
   const mutedColor = isSolid ? themeColors.text.onRaisedSecondary : themeColors.text.secondary;
 
   return {
     display: 'flex',
     alignItems: 'center',
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
-    borderRadius: defaultRadii.md,
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    padding: `${spacing.sm}px ${spacing.md}px`,
+    borderRadius: radii.md,
+    fontSize: typography.sizes.sm.fontSize,
     fontWeight: active ? 600 : 400,
     color: active ? textColor : mutedColor,
     cursor: 'pointer',

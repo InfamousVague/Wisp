@@ -9,7 +9,7 @@ import {
   buildSearchInputFieldStyle,
   buildSearchInputClearButtonStyle,
 } from '@wisp-ui/core/styles/SearchInput.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { Spinner } from '../../primitives';
 
 // Inline SVG icons to avoid lucide dependency in the component
@@ -61,7 +61,8 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const [focused, setFocused] = useState(false);
     const [internalValue, setInternalValue] = useState(
       (defaultValue as string) ?? '',
@@ -74,17 +75,17 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
     const sizeConfig = searchInputSizeMap[size];
 
     const containerStyle = useMemo(
-      () => buildSearchInputContainerStyle(sizeConfig, focused, disabled, themeColors, fullWidth),
+      () => buildSearchInputContainerStyle(sizeConfig, focused, disabled, theme, fullWidth),
       [sizeConfig, focused, disabled, themeColors, fullWidth],
     );
 
     const fieldStyle = useMemo(
-      () => buildSearchInputFieldStyle(sizeConfig, themeColors),
+      () => buildSearchInputFieldStyle(sizeConfig, theme),
       [sizeConfig, themeColors],
     );
 
     const clearBtnStyle = useMemo(
-      () => buildSearchInputClearButtonStyle(themeColors),
+      () => buildSearchInputClearButtonStyle(theme),
       [themeColors],
     );
 

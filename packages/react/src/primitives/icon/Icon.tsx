@@ -2,7 +2,7 @@ import React, { forwardRef, useMemo } from 'react';
 import type { IconProps } from '@wisp-ui/core/types/Icon.types';
 import { iconSizeMap } from '@wisp-ui/core/types/Icon.types';
 import { buildIconStyle, resolveIconColor, getIconSkeletonStyle } from '@wisp-ui/core/styles/Icon.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Icon — Icon primitive for the Wisp design system.
@@ -44,17 +44,18 @@ export const Icon = forwardRef<HTMLSpanElement, IconProps>(function Icon(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // Resolve color
   const resolvedColor = useMemo(
-    () => resolveIconColor(color, themeColors),
+    () => resolveIconColor(color, theme),
     [color, themeColors],
   );
 
   // Skeleton loading state
   if (skeleton) {
-    const skeletonStyle = getIconSkeletonStyle(size, themeColors);
+    const skeletonStyle = getIconSkeletonStyle(size, theme);
     return (
       <span
         ref={ref}

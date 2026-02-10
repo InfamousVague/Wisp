@@ -2,10 +2,9 @@
  * @module Stepper
  */
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { StepperSizeConfig } from '../types/Stepper.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultTypography, defaultSpacing } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -21,8 +20,9 @@ import { durations, easings } from '../tokens/motion';
  */
 export function buildStepperContainerStyle(
   sizeConfig: StepperSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
@@ -50,10 +50,11 @@ export function buildStepperContainerStyle(
  */
 export function buildStepperButtonStyle(
   sizeConfig: StepperSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isDisabled: boolean,
   isHovered: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     // Reset
     margin: 0,
@@ -96,8 +97,9 @@ export function buildStepperButtonStyle(
  */
 export function buildStepperValueStyle(
   sizeConfig: StepperSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
     // Sizing
     minWidth: sizeConfig.buttonWidth,
@@ -109,7 +111,7 @@ export function buildStepperValueStyle(
     // Typography
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     lineHeight: 1,
     textAlign: 'center' as const,
 
@@ -122,7 +124,7 @@ export function buildStepperValueStyle(
 
     // Box model
     boxSizing: 'border-box',
-    padding: `0 ${defaultSpacing.sm}px`,
+    padding: `0 ${spacing.sm}px`,
   };
 }
 
@@ -139,8 +141,9 @@ export function buildStepperValueStyle(
  */
 export function getStepperSkeletonStyle(
   sizeConfig: StepperSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   // Total width = 2 buttons + value area (same width as a button) + 2 border pixels
   const totalWidth = sizeConfig.buttonWidth * 3 + 2;
   return {

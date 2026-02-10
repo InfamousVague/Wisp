@@ -13,6 +13,7 @@ import type {
   SidebarContextValue,
 } from '@wisp-ui/core/types/Sidebar.types';
 import type { CSSStyleObject } from '@wisp-ui/core/types';
+import type { ThemeColors } from '@wisp-ui/core/theme/types';
 import {
   buildSidebarStyle,
   buildSectionStyle,
@@ -24,7 +25,7 @@ import {
   buildItemLabelStyle,
   buildItemBadgeStyle,
 } from '@wisp-ui/core/styles/Sidebar.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -88,7 +89,8 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // Support both controlled and uncontrolled collapsed state
   const isControlled = controlledCollapsed !== undefined;
@@ -117,7 +119,7 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
   );
 
   const sidebarStyle = useMemo(
-    () => buildSidebarStyle(resolvedWidth, position, themeColors, userStyle as CSSStyleObject),
+    () => buildSidebarStyle(resolvedWidth, position, theme, userStyle as CSSStyleObject),
     [resolvedWidth, position, themeColors, userStyle],
   );
 
@@ -159,7 +161,7 @@ function CollapseToggle({
 }: {
   collapsed: boolean;
   onToggle: () => void;
-  themeColors: ReturnType<typeof useThemeColors>;
+  themeColors: ThemeColors;
 }) {
   const [hovered, setHovered] = useState(false);
 
@@ -244,7 +246,8 @@ export const SidebarSection = forwardRef<HTMLDivElement, SidebarSectionProps>(fu
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const { collapsed: sidebarCollapsed } = useSidebarContext();
   const [sectionCollapsed, setSectionCollapsed] = useState(defaultCollapsed);
 
@@ -254,7 +257,7 @@ export const SidebarSection = forwardRef<HTMLDivElement, SidebarSectionProps>(fu
   );
 
   const titleStyle = useMemo(
-    () => buildSectionTitleStyle(themeColors, collapsible),
+    () => buildSectionTitleStyle(theme, collapsible),
     [themeColors, collapsible],
   );
 
@@ -347,7 +350,8 @@ export const SidebarItem = forwardRef<HTMLDivElement, SidebarItemProps>(function
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const { collapsed: sidebarCollapsed, width: sidebarWidth } = useSidebarContext();
   const [hovered, setHovered] = useState(false);
 
@@ -371,7 +375,7 @@ export const SidebarItem = forwardRef<HTMLDivElement, SidebarItemProps>(function
   );
 
   const itemStyle = useMemo(
-    () => buildItemStyle(active, disabled, hovered, sidebarCollapsed, sidebarWidth, themeColors, userStyle as CSSStyleObject),
+    () => buildItemStyle(active, disabled, hovered, sidebarCollapsed, sidebarWidth, theme, userStyle as CSSStyleObject),
     [active, disabled, hovered, sidebarCollapsed, sidebarWidth, themeColors, userStyle],
   );
 

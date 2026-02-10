@@ -7,10 +7,9 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { DataTableSizeConfig, DataTableVariant } from '../types/DataTable.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -26,10 +25,11 @@ import { durations, easings } from '../tokens/motion';
  * @returns A `CSSStyleObject` object for the container.
  */
 export function buildTableContainerStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   variant: DataTableVariant = 'default',
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   const base: CSSStyleObject = {
     overflow: 'auto',
   };
@@ -37,7 +37,7 @@ export function buildTableContainerStyle(
   if (variant === 'card') {
     return {
       ...base,
-      borderRadius: defaultRadii.lg,
+      borderRadius: radii.lg,
       border: `1px solid ${themeColors.border.subtle}`,
       backgroundColor: themeColors.background.canvas,
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06)',
@@ -47,7 +47,7 @@ export function buildTableContainerStyle(
 
   return {
     ...base,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     border: `1px solid ${themeColors.border.subtle}`,
     ...userStyle,
   };
@@ -84,9 +84,10 @@ export function buildTableStyle(): CSSStyleObject {
  */
 export function buildTableHeaderStyle(
   sizeConfig: DataTableSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   variant: DataTableVariant = 'default',
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     height: sizeConfig.headerHeight,
     backgroundColor: themeColors.background.raised,
@@ -110,14 +111,15 @@ export function buildTableHeaderStyle(
  */
 export function buildTableHeaderCellStyle(
   sizeConfig: DataTableSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   sortable: boolean,
   align: 'left' | 'center' | 'right',
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     padding: `0 ${sizeConfig.paddingX}px`,
     fontSize: sizeConfig.headerFontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     color: themeColors.text.onRaised,
     textAlign: align,
     cursor: sortable ? 'pointer' : 'default',
@@ -146,11 +148,12 @@ export function buildTableHeaderCellStyle(
  */
 export function buildTableRowStyle(
   sizeConfig: DataTableSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isHovered: boolean,
   isSelected: boolean,
   isStriped: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   let backgroundColor: string | undefined;
 
   if (isSelected) {
@@ -184,9 +187,10 @@ export function buildTableRowStyle(
  */
 export function buildTableCellStyle(
   sizeConfig: DataTableSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   align: 'left' | 'center' | 'right',
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     padding: `0 ${sizeConfig.paddingX}px`,
     fontSize: sizeConfig.fontSize,
@@ -209,13 +213,14 @@ export function buildTableCellStyle(
  * @returns A `CSSStyleObject` object for the sort icon wrapper.
  */
 export function buildSortIconStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isActive: boolean,
   _direction: 'asc' | 'desc',
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     display: 'inline-flex',
-    marginLeft: defaultSpacing.xs,
+    marginLeft: spacing.xs,
     color: isActive ? themeColors.text.onRaised : themeColors.text.onRaisedSecondary,
   };
 }
@@ -275,9 +280,10 @@ export function buildCheckboxCellStyle(
  * @returns A `CSSStyleObject` object for the empty-state cell.
  */
 export function buildEmptyStateStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   sizeConfig: DataTableSizeConfig,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     padding: `${sizeConfig.rowHeight}px ${sizeConfig.paddingX}px`,
     textAlign: 'center',
@@ -298,11 +304,12 @@ export function buildEmptyStateStyle(
  * @returns A `CSSStyleObject` object for the skeleton bar element.
  */
 export function buildSkeletonBarStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     height: 12,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
     opacity: 0.5,

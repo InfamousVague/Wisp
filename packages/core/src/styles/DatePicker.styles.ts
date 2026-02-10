@@ -5,9 +5,8 @@
 
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { DatePickerSizeConfig } from '../types/DatePicker.types';
-import { defaultSpacing, defaultRadii, defaultTypography, defaultShadows } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
 
@@ -25,11 +24,13 @@ import { durations, easings } from '../tokens/motion';
 export function buildDatePickerContainerStyle(
   sizeConfig: DatePickerSizeConfig,
   fullWidth: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: fullWidth ? 'flex' : 'inline-flex',
     flexDirection: 'column',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
     position: 'relative',
   };
 }
@@ -51,12 +52,13 @@ export function buildDatePickerContainerStyle(
  */
 export function buildDatePickerTriggerStyle(
   sizeConfig: DatePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isOpen: boolean,
   isDisabled: boolean,
   hasError: boolean,
   isHovered: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   let borderColor = themeColors.border.strong;
   if (hasError) borderColor = themeColors.status.danger;
   else if (isOpen) borderColor = themeColors.accent.primary;
@@ -109,15 +111,16 @@ export function buildDatePickerTriggerStyle(
  */
 export function buildDatePickerDropdownStyle(
   sizeConfig: DatePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, shadows } = theme;
   return {
     position: 'absolute',
     top: sizeConfig.inputHeight + 4,
     left: 0,
     zIndex: zIndex.dropdown,
-    boxShadow: defaultShadows.md,
-    borderRadius: defaultRadii.lg,
+    boxShadow: shadows.md,
+    borderRadius: radii.lg,
     border: `1px solid ${themeColors.border.subtle}`,
     backgroundColor: themeColors.background.raised,
     overflow: 'hidden',
@@ -136,9 +139,10 @@ export function buildDatePickerDropdownStyle(
  * @returns CSS properties for the icon `<svg>` wrapper.
  */
 export function buildDatePickerIconStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isDisabled: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     color: themeColors.text.muted,
     flexShrink: 0,
@@ -159,20 +163,21 @@ export function buildDatePickerIconStyle(
  * @returns CSS properties for the clear `<button>`.
  */
 export function buildDatePickerClearStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isHovered: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing } = theme;
   return {
     appearance: 'none' as const,
     border: 'none',
     background: 'transparent',
     cursor: 'pointer',
     color: isHovered ? themeColors.text.primary : themeColors.text.muted,
-    padding: defaultSpacing['2xs'],
+    padding: spacing['2xs'],
     display: 'flex',
     alignItems: 'center',
     flexShrink: 0,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     outline: 'none',
     transition: `color ${durations.fast}ms ${easings.easeOut.css}`,
   };
@@ -191,13 +196,14 @@ export function buildDatePickerClearStyle(
  */
 export function buildDatePickerLabelStyle(
   sizeConfig: DatePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: themeColors.text.primary,
     cursor: 'default',
     userSelect: 'none',
@@ -217,13 +223,14 @@ export function buildDatePickerLabelStyle(
  */
 export function buildDatePickerErrorStyle(
   sizeConfig: DatePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize - 1,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     color: themeColors.status.danger,
     margin: 0,
   };
@@ -242,8 +249,9 @@ export function buildDatePickerErrorStyle(
  */
 export function buildDatePickerSkeletonStyle(
   sizeConfig: DatePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     width: '100%',

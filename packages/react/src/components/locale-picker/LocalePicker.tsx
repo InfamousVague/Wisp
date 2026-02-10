@@ -14,7 +14,7 @@ import {
   buildOptionsListStyle,
   buildSkeletonStyle,
 } from '@wisp-ui/core/styles/LocalePicker.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
 
 // ---------------------------------------------------------------------------
@@ -168,7 +168,8 @@ export const LocalePicker = forwardRef<HTMLDivElement, LocalePickerProps>(functi
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = localePickerSizeMap[size];
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -186,17 +187,17 @@ export const LocalePicker = forwardRef<HTMLDivElement, LocalePickerProps>(functi
 
   // Resolve colors
   const colors = useMemo(
-    () => resolveLocalePickerColors(isOpen, disabled, themeColors),
+    () => resolveLocalePickerColors(isOpen, disabled, theme),
     [isOpen, disabled, themeColors],
   );
 
   // Memoised styles
   const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig), [sizeConfig]);
-  const labelStyle = useMemo(() => buildLabelStyle(sizeConfig, colors), [sizeConfig, colors]);
+  const labelStyle = useMemo(() => buildLabelStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
   const triggerStyle = useMemo(() => buildTriggerStyle(sizeConfig, colors, disabled), [sizeConfig, colors, disabled]);
-  const dropdownStyle = useMemo(() => buildDropdownStyle(themeColors), [themeColors]);
-  const searchInputStyle = useMemo(() => buildSearchInputStyle(sizeConfig, themeColors), [sizeConfig, themeColors]);
-  const optionsListStyle = useMemo(() => buildOptionsListStyle(), []);
+  const dropdownStyle = useMemo(() => buildDropdownStyle(theme), [themeColors]);
+  const searchInputStyle = useMemo(() => buildSearchInputStyle(sizeConfig, theme), [sizeConfig, themeColors]);
+  const optionsListStyle = useMemo(() => buildOptionsListStyle(theme), []);
 
   const selectedOption = options.find((opt) => opt.code === selectedValue);
   const triggerTextStyle = useMemo(
@@ -319,7 +320,7 @@ export const LocalePicker = forwardRef<HTMLDivElement, LocalePickerProps>(functi
 
   // Skeleton
   if (skeleton) {
-    const skeletonStyle = buildSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = buildSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden
@@ -334,7 +335,7 @@ export const LocalePicker = forwardRef<HTMLDivElement, LocalePickerProps>(functi
   const renderOption = (option: LocaleOption) => {
     const isSelected = option.code === selectedValue;
     const isHighlighted = option.code === highlightedCode;
-    const optStyle = buildOptionStyle(sizeConfig, themeColors, isSelected, isHighlighted);
+    const optStyle = buildOptionStyle(sizeConfig, theme, isSelected, isHighlighted);
 
     return (
       <div
@@ -427,7 +428,7 @@ export const LocalePicker = forwardRef<HTMLDivElement, LocalePickerProps>(functi
               <>
                 {groupedOptions.sortedRegions.map((region) => (
                   <div key={region}>
-                    <div style={buildGroupHeaderStyle(sizeConfig, themeColors)}>
+                    <div style={buildGroupHeaderStyle(sizeConfig, theme)}>
                       {region}
                     </div>
                     {groupedOptions.groups[region].map(renderOption)}

@@ -1,9 +1,8 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { SelectSizeConfig } from '../types/Select.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography, defaultShadows } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
 
@@ -54,8 +53,9 @@ export function resolveSelectColors(
   focused: boolean,
   error: boolean,
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): SelectColors {
+  const { colors: themeColors } = theme;
   if (disabled) {
     return {
       border: themeColors.border.subtle,
@@ -213,23 +213,24 @@ export function buildTriggerTextStyle(
  * @returns CSS properties for the dropdown `<div>` with `role="listbox"`.
  */
 export function buildDropdownStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   variant: SurfaceVariant = 'solid',
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing, shadows } = theme;
   return {
     position: 'absolute',
     zIndex: zIndex.dropdown,
     boxSizing: 'border-box',
     backgroundColor: themeColors.background.raised,
     border: '1px solid ' + themeColors.border.subtle,
-    borderRadius: defaultRadii.md,
-    boxShadow: defaultShadows.md,
+    borderRadius: radii.md,
+    boxShadow: shadows.md,
     maxHeight: 240,
     overflowY: 'auto',
-    padding: `${defaultSpacing.xs}px 0`,
-    marginTop: defaultSpacing.xs,
+    padding: `${spacing.xs}px 0`,
+    marginTop: spacing.xs,
     ...(variant === 'glass' ? glassStyle : undefined),
-    ...(variant === 'glass' ? { borderRadius: defaultRadii.md, overflow: 'hidden' } : undefined),
+    ...(variant === 'glass' ? { borderRadius: radii.md, overflow: 'hidden' } : undefined),
   };
 }
 
@@ -249,13 +250,14 @@ export function buildDropdownStyle(
  * @returns CSS properties for the option `<div>` with `role="option"`.
  */
 export function buildOptionStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isSelected: boolean,
   isHighlighted: boolean,
   isDisabled: boolean,
   fontSize: number,
   lineHeight: number,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   let backgroundColor = 'transparent';
   if (isHighlighted && !isDisabled) {
     backgroundColor = themeColors.accent.highlightRaised;
@@ -264,8 +266,8 @@ export function buildOptionStyle(
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: defaultSpacing.sm,
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
+    gap: spacing.sm,
+    padding: `${spacing.sm}px ${spacing.md}px`,
     fontFamily: fontFamilyStacks.sans,
     fontSize,
     lineHeight,
@@ -291,12 +293,14 @@ export function buildOptionStyle(
 export function buildLabelStyle(
   sizeConfig: SelectSizeConfig,
   colors: SelectColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: colors.label,
     cursor: 'default',
     userSelect: 'none',
@@ -317,12 +321,14 @@ export function buildLabelStyle(
 export function buildHintStyle(
   sizeConfig: SelectSizeConfig,
   colors: SelectColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.hintFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     color: colors.hint,
     margin: 0,
   };
@@ -341,8 +347,9 @@ export function buildHintStyle(
  */
 export function getSelectSkeletonStyle(
   sizeConfig: SelectSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     width: '100%',

@@ -4,11 +4,10 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { AchievementStatus, AchievementRarity } from '../types/AchievementCard.types';
 import { achievementRarityMap } from '../types/AchievementCard.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -28,8 +27,9 @@ export interface AchievementCardColors {
 export function resolveAchievementColors(
   status: AchievementStatus,
   rarity: AchievementRarity,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): AchievementCardColors {
+  const { colors: themeColors } = theme;
   const rarityConfig = achievementRarityMap[rarity];
 
   if (status === 'locked') {
@@ -63,15 +63,17 @@ export function buildAchievementCardStyle(
   colors: AchievementCardColors,
   status: AchievementStatus,
   clickable: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii, spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'flex-start',
-    gap: defaultSpacing.md,
-    padding: `${defaultSpacing.lg}px ${defaultSpacing.lg}px`,
+    gap: spacing.md,
+    padding: `${spacing.lg}px ${spacing.lg}px`,
     backgroundColor: colors.bg,
     border: `1px solid ${colors.border}`,
-    borderRadius: defaultRadii.lg,
+    borderRadius: radii.lg,
     fontFamily: fontFamilyStacks.sans,
     cursor: clickable ? 'pointer' : 'default',
     transition: `opacity ${durations.normal}ms ${easings.easeOut.css}, filter ${durations.normal}ms ${easings.easeOut.css}`,
@@ -86,7 +88,9 @@ export function buildAchievementCardStyle(
 
 export function buildAchievementIconStyle(
   colors: AchievementCardColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -94,7 +98,7 @@ export function buildAchievementIconStyle(
     flexShrink: 0,
     width: 40,
     height: 40,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     backgroundColor: colors.iconBg,
     color: colors.iconColor,
   };
@@ -104,11 +108,12 @@ export function buildAchievementIconStyle(
 // Content area
 // ---------------------------------------------------------------------------
 
-export function buildAchievementContentStyle(): CSSStyleObject {
+export function buildAchievementContentStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
     flex: 1,
     minWidth: 0,
   };
@@ -120,10 +125,12 @@ export function buildAchievementContentStyle(): CSSStyleObject {
 
 export function buildAchievementTitleStyle(
   textColor: string,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1.43,
     color: textColor,
     margin: 0,
@@ -136,10 +143,12 @@ export function buildAchievementTitleStyle(
 
 export function buildAchievementDescriptionStyle(
   descriptionColor: string,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.regular,
     lineHeight: 1.46,
     color: descriptionColor,
     margin: 0,
@@ -151,14 +160,15 @@ export function buildAchievementDescriptionStyle(
 // ---------------------------------------------------------------------------
 
 export function buildAchievementProgressTrackStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing } = theme;
   return {
     width: '100%',
     height: 4,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: themeColors.border.subtle,
-    marginTop: defaultSpacing.xs,
+    marginTop: spacing.xs,
     overflow: 'hidden',
   };
 }
@@ -166,11 +176,13 @@ export function buildAchievementProgressTrackStyle(
 export function buildAchievementProgressBarStyle(
   rarityColor: string,
   progress: number,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     width: `${Math.min(Math.max(progress, 0), 100)}%`,
     height: '100%',
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: rarityColor,
     transition: `width ${durations.slow}ms ${easings.easeOut.css}`,
   };
@@ -182,13 +194,15 @@ export function buildAchievementProgressBarStyle(
 
 export function buildAchievementRarityStyle(
   rarityColor: string,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing, typography } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: defaultSpacing.xs,
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    gap: spacing.xs,
+    fontSize: typography.sizes.xs.fontSize,
+    fontWeight: typography.weights.semibold,
     color: rarityColor,
     letterSpacing: '0.02em',
     textTransform: 'uppercase',
@@ -200,11 +214,12 @@ export function buildAchievementRarityStyle(
 // ---------------------------------------------------------------------------
 
 export function buildAchievementDateStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontSize: typography.sizes.xs.fontSize,
+    fontWeight: typography.weights.regular,
     color: themeColors.text.muted,
     margin: 0,
   };

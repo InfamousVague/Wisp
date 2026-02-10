@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ColorPickerSizeConfig } from '../types/ColorPicker.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -64,8 +63,9 @@ export function buildColorPickerPreviewRowStyle(
 export function buildColorPickerPreviewStyle(
   sizeConfig: ColorPickerSizeConfig,
   color: string,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     width: sizeConfig.previewSize,
     height: sizeConfig.previewSize,
@@ -90,8 +90,9 @@ export function buildColorPickerPreviewStyle(
  */
 export function buildColorPickerInputStyle(
   sizeConfig: ColorPickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     height: sizeConfig.inputHeight,
     borderRadius: sizeConfig.borderRadius,
@@ -123,11 +124,13 @@ export function buildColorPickerInputStyle(
  */
 export function buildColorPickerSwatchGridStyle(
   _sizeConfig: ColorPickerSizeConfig,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
   };
 }
 
@@ -150,8 +153,9 @@ export function buildColorPickerSwatchStyle(
   color: string,
   isSelected: boolean,
   isHovered: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   let border: string;
   if (isSelected) {
     border = `2px solid ${themeColors.accent.primary}`;
@@ -164,7 +168,7 @@ export function buildColorPickerSwatchStyle(
   return {
     width: sizeConfig.swatchSize,
     height: sizeConfig.swatchSize,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: color,
     cursor: 'pointer',
     border,
@@ -189,13 +193,14 @@ export function buildColorPickerSwatchStyle(
  */
 export function buildColorPickerLabelStyle(
   sizeConfig: ColorPickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     color: themeColors.text.secondary,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     lineHeight: 1.4,
     cursor: 'default',
     userSelect: 'none',
@@ -217,8 +222,9 @@ export function buildColorPickerLabelStyle(
  */
 export function getColorPickerSkeletonStyle(
   sizeConfig: ColorPickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     width: 180,

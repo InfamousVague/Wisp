@@ -13,7 +13,7 @@ import {
   buildHintStyle,
   getSelectSkeletonStyle,
 } from '@wisp-ui/core/styles/Select.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Select -- A single-value dropdown selector with keyboard navigation.
@@ -62,7 +62,8 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = selectSizeMap[size];
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -78,15 +79,15 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
   const hintText = typeof error === 'string' && error.length > 0 ? error : hint;
 
   const colors = useMemo(
-    () => resolveSelectColors(isOpen, hasError, disabled, themeColors),
+    () => resolveSelectColors(isOpen, hasError, disabled, theme),
     [isOpen, hasError, disabled, themeColors],
   );
 
   const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig, fullWidth), [sizeConfig, fullWidth]);
   const triggerStyle = useMemo(() => buildTriggerStyle(sizeConfig, colors, disabled), [sizeConfig, colors, disabled]);
-  const dropdownStyle = useMemo(() => buildDropdownStyle(themeColors, variant), [themeColors, variant]);
-  const labelStyle = useMemo(() => buildLabelStyle(sizeConfig, colors), [sizeConfig, colors]);
-  const hintStyle = useMemo(() => buildHintStyle(sizeConfig, colors), [sizeConfig, colors]);
+  const dropdownStyle = useMemo(() => buildDropdownStyle(theme, variant), [themeColors, variant]);
+  const labelStyle = useMemo(() => buildLabelStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
+  const hintStyle = useMemo(() => buildHintStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
 
   const selectedOption = options.find((opt) => opt.value === selectedValue);
   const triggerTextStyle = useMemo(
@@ -176,7 +177,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
   );
 
   if (skeleton) {
-    const skeletonStyle = getSelectSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getSelectSkeletonStyle(sizeConfig, theme);
     return (
       <div aria-hidden data-testid="select-skeleton" className={className} style={{ ...skeletonStyle, ...userStyle }} />
     );
@@ -229,7 +230,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
             const isSelected = option.value === selectedValue;
             const isHighlighted = index === highlightedIndex;
             const optStyle = buildOptionStyle(
-              themeColors, isSelected, isHighlighted, Boolean(option.disabled),
+              theme, isSelected, isHighlighted, Boolean(option.disabled),
               sizeConfig.fontSize, sizeConfig.lineHeight,
             );
             return (

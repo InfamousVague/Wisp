@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { KbdSizeConfig } from '../types/Kbd.types';
-import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Build the complete kbd style object
@@ -21,8 +20,9 @@ import { defaultTypography } from '../theme/create-theme';
  */
 export function buildKbdStyle(
   sizeConfig: KbdSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     // Layout
     display: 'inline-flex',
@@ -39,7 +39,7 @@ export function buildKbdStyle(
     fontFamily: fontFamilyStacks.mono,
     fontSize: sizeConfig.fontSize,
     lineHeight: 1,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     textAlign: 'center',
     whiteSpace: 'nowrap',
 

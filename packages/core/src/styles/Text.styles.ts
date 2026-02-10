@@ -5,8 +5,8 @@ import type { CSSStyleObject } from '../types';
 import type { TextSize } from '../tokens/shared';
 import type { FontWeightKey, FontFamilyKey, SemanticColor } from '../tokens/shared';
 import { fontWeightValues, fontFamilyStacks, resolveSemanticColor } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
-import { defaultRadii, defaultTypography } from '../theme/create-theme';
+import type { ThemeColors, WispTheme } from '../theme/types';
+import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size -> font-size + line-height map
@@ -70,7 +70,8 @@ export const sizeMap: Record<TextSize, SizeConfig> = {
  * @param themeColors - The current theme color tokens.
  * @returns The resolved hex color string.
  */
-export function resolveTextColor(color: SemanticColor | string, themeColors: ThemeColors): string {
+export function resolveTextColor(color: SemanticColor | string, theme: WispTheme): string {
+  const { colors: themeColors } = theme;
   return resolveSemanticColor(color, themeColors);
 }
 
@@ -85,14 +86,15 @@ export function resolveTextColor(color: SemanticColor | string, themeColors: The
  * @param themeColors - The current theme color tokens.
  * @returns A `CSSStyleObject` object with dimensions, radius, background, and pulse animation.
  */
-export function getSkeletonStyle(size: TextSize, themeColors: ThemeColors): CSSStyleObject {
+export function getSkeletonStyle(size: TextSize, theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   const config = sizeMap[size];
   return {
     display: 'inline-block',
     height: config.skeletonHeight,
     width: '100%',
     maxWidth: 200,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

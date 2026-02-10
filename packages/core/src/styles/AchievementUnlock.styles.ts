@@ -4,18 +4,18 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { AchievementRarity } from '../types/AchievementCard.types';
 import { achievementRarityMap } from '../types/AchievementCard.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Overlay
 // ---------------------------------------------------------------------------
 
-export function buildAchievementUnlockOverlayStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildAchievementUnlockOverlayStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     position: 'fixed',
     top: 0,
@@ -36,20 +36,21 @@ export function buildAchievementUnlockOverlayStyle(themeColors: ThemeColors): CS
 // ---------------------------------------------------------------------------
 
 export function buildAchievementUnlockPanelStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   rarity: AchievementRarity,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing } = theme;
   const rarityConfig = achievementRarityMap[rarity];
   return {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: defaultSpacing.md,
-    padding: `${defaultSpacing['2xl']}px ${defaultSpacing['2xl']}px`,
+    gap: spacing.md,
+    padding: `${spacing['2xl']}px ${spacing['2xl']}px`,
     backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
     borderTop: `3px solid ${rarityConfig.color}`,
-    borderRadius: defaultRadii.lg,
+    borderRadius: radii.lg,
     fontFamily: fontFamilyStacks.sans,
     maxWidth: 400,
     width: '90%',
@@ -65,14 +66,16 @@ export function buildAchievementUnlockPanelStyle(
 
 export function buildAchievementUnlockIconStyle(
   rarityColor: string,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: 64,
     height: 64,
-    borderRadius: defaultRadii.xl,
+    borderRadius: radii.xl,
     backgroundColor: `${rarityColor}1A`,
     color: rarityColor,
     animation: 'wisp-achievement-icon-in 500ms ease-out',
@@ -84,11 +87,12 @@ export function buildAchievementUnlockIconStyle(
 // ---------------------------------------------------------------------------
 
 export function buildAchievementUnlockTitleStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.lg.fontSize,
-    fontWeight: defaultTypography.weights.bold,
+    fontSize: typography.sizes.lg.fontSize,
+    fontWeight: typography.weights.bold,
     lineHeight: 1.3,
     color: themeColors.text.primary,
     margin: 0,
@@ -101,11 +105,12 @@ export function buildAchievementUnlockTitleStyle(
 // ---------------------------------------------------------------------------
 
 export function buildAchievementUnlockDescriptionStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.regular,
     lineHeight: 1.5,
     color: themeColors.text.secondary,
     margin: 0,
@@ -119,10 +124,12 @@ export function buildAchievementUnlockDescriptionStyle(
 
 export function buildAchievementUnlockRarityStyle(
   rarityColor: string,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    fontWeight: defaultTypography.weights.bold,
+    fontSize: typography.sizes.xs.fontSize,
+    fontWeight: typography.weights.bold,
     letterSpacing: '0.08em',
     textTransform: 'uppercase',
     color: rarityColor,
@@ -135,8 +142,9 @@ export function buildAchievementUnlockRarityStyle(
 // ---------------------------------------------------------------------------
 
 export function buildAchievementUnlockCloseStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     position: 'absolute',
     top: 10,
@@ -146,7 +154,7 @@ export function buildAchievementUnlockCloseStyle(
     justifyContent: 'center',
     width: 24,
     height: 24,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     border: 'none',
     padding: 0,
     margin: 0,
@@ -162,22 +170,23 @@ export function buildAchievementUnlockCloseStyle(
 
 export function buildAchievementUnlockActionStyle(
   rarityColor: string,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing, typography } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.xl}px`,
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    padding: `${spacing.sm}px ${spacing.xl}px`,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     border: 'none',
     backgroundColor: rarityColor,
     color: themeColors.text.inverse,
     cursor: 'pointer',
     whiteSpace: 'nowrap',
-    marginTop: defaultSpacing.xs,
+    marginTop: spacing.xs,
     animation: 'wisp-achievement-text-in 400ms ease-out 400ms both',
   };
 }

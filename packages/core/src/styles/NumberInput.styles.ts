@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { InputSizeConfig } from '../types/Input.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -34,11 +33,12 @@ export const numberInputButtonSizeMap: Record<'sm' | 'md' | 'lg', NumberInputBut
  * @param fullWidth - When `true`, the wrapper stretches to 100% width.
  * @returns CSS properties for the wrapper `div`.
  */
-export function buildWrapperStyle(fullWidth: boolean): CSSStyleObject {
+export function buildWrapperStyle(fullWidth: boolean, theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: fullWidth ? 'flex' : 'inline-flex',
     flexDirection: 'column',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
     width: fullWidth ? '100%' : undefined,
   };
 }
@@ -62,8 +62,9 @@ export function buildContainerStyle(
   disabled: boolean,
   error: boolean,
   focused: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   // Resolve border color
   let borderColor: string;
   let focusRing: string = 'transparent';
@@ -84,7 +85,7 @@ export function buildContainerStyle(
     display: 'flex',
     alignItems: 'center',
     height: sizeConfig.height + 16, // more spacious than standard input
-    padding: `0 ${defaultSpacing.sm}px`,
+    padding: `0 ${spacing.sm}px`,
     border: `1px solid ${borderColor}`,
     borderRadius: sizeConfig.borderRadius + 4,
     background: disabled ? themeColors.border.subtle : 'transparent',
@@ -111,8 +112,9 @@ export function buildContainerStyle(
  */
 export function buildInputStyle(
   sizeConfig: InputSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     // Reset
     margin: 0,
@@ -131,7 +133,7 @@ export function buildInputStyle(
     // Typography
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize + 1,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     lineHeight: sizeConfig.lineHeight,
     textAlign: 'center',
 
@@ -160,8 +162,9 @@ export function buildButtonStyle(
   buttonConfig: NumberInputButtonSizeConfig,
   disabled: boolean,
   hovered: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   // Circle uses accent.primary (white in dark, black in light)
   // Slightly dimmed on hover via primaryHover, pressed via primaryActive
   const bgColor = disabled
@@ -183,7 +186,7 @@ export function buildButtonStyle(
     justifyContent: 'center',
     width: buttonConfig.buttonSize,
     height: buttonConfig.buttonSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     flexShrink: 0,
 
     // Colors
@@ -213,13 +216,14 @@ export function buildButtonStyle(
 export function buildLabelStyle(
   sizeConfig: InputSizeConfig,
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     color: disabled ? themeColors.text.muted : themeColors.text.primary,
     cursor: 'default',
     userSelect: 'none',
@@ -241,13 +245,14 @@ export function buildLabelStyle(
 export function buildHintStyle(
   sizeConfig: InputSizeConfig,
   error: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.hintFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     color: error ? themeColors.status.danger : themeColors.text.muted,
     margin: 0,
   };

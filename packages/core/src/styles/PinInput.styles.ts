@@ -7,10 +7,9 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { PinInputSizeConfig } from '../types/PinInput.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -51,8 +50,9 @@ export function resolvePinInputColors(
   error: boolean,
   warning: boolean,
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): PinInputColors {
+  const { colors: themeColors } = theme;
   if (disabled) {
     return {
       border: themeColors.border.subtle,
@@ -167,7 +167,9 @@ export function buildCellStyle(
   colors: PinInputColors,
   isFocused: boolean,
   disabled: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   const focusRing = isFocused && colors.focusRing !== 'transparent'
     ? `0 0 0 2px ${colors.focusRing}25`
     : 'none';
@@ -188,7 +190,7 @@ export function buildCellStyle(
     // Typography — monospace for code input
     fontFamily: fontFamilyStacks.mono,
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1,
     textAlign: 'center',
 
@@ -224,12 +226,14 @@ export function buildCellStyle(
 export function buildLabelStyle(
   sizeConfig: PinInputSizeConfig,
   colors: PinInputColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: colors.label,
     cursor: 'default',
     userSelect: 'none',
@@ -250,12 +254,14 @@ export function buildLabelStyle(
 export function buildHintStyle(
   sizeConfig: PinInputSizeConfig,
   colors: PinInputColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.hintFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     color: colors.hint,
     margin: 0,
   };
@@ -274,8 +280,9 @@ export function buildHintStyle(
  */
 export function buildSkeletonCellStyle(
   sizeConfig: PinInputSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     width: sizeConfig.cellSize,
     height: sizeConfig.cellSize,

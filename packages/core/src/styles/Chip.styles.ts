@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ChipColor, ChipVariant, ChipSizeConfig } from '../types/Chip.types';
-import { defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -78,8 +77,9 @@ function resolveBaseStatusColors(
 export function resolveChipColors(
   color: ChipColor,
   variant: ChipVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): ChipColors {
+  const { colors: themeColors } = theme;
   const base = resolveBaseStatusColors(color, themeColors);
 
   switch (variant) {
@@ -108,7 +108,7 @@ export function resolveChipColors(
       };
 
     default:
-      return resolveChipColors(color, 'filled', themeColors);
+      return resolveChipColors(color, 'filled', theme);
   }
 }
 
@@ -131,7 +131,10 @@ export function buildChipStyle(opts: {
   colors: ChipColors;
   clickable: boolean;
   disabled: boolean;
-}): CSSStyleObject {
+},
+  theme: WispTheme,
+): CSSStyleObject {
+  const { typography } = theme;
   return {
     // Layout
     display: 'inline-flex',
@@ -146,7 +149,7 @@ export function buildChipStyle(opts: {
     fontFamily: fontFamilyStacks.sans,
     fontSize: opts.sizeConfig.fontSize,
     lineHeight: opts.sizeConfig.lineHeight,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     whiteSpace: 'nowrap',
 
     // Shape
@@ -203,8 +206,9 @@ export function buildIconWrapperStyle(sizeConfig: ChipSizeConfig): CSSStyleObjec
 export function buildRemoveButtonStyle(
   sizeConfig: ChipSizeConfig,
   colors: ChipColors,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     // Reset
     border: 'none',
@@ -243,6 +247,7 @@ export function buildRemoveButtonStyle(
  * @param themeColors - Resolved theme color palette.
  * @returns A CSS color string for the hover background.
  */
-export function getRemoveButtonHoverBg(themeColors: ThemeColors): string {
+export function getRemoveButtonHoverBg(theme: WispTheme): string {
+  const { colors: themeColors } = theme;
   return themeColors.accent.highlight;
 }

@@ -4,9 +4,8 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { AudioWaveformColor, AudioWaveformSizeConfig } from '../types/AudioWaveform.types';
-import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Keyframe injection (singleton)
@@ -41,8 +40,9 @@ export interface AudioWaveformColors {
 
 export function resolveAudioWaveformColor(
   color: AudioWaveformColor,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): string {
+  const { colors: themeColors } = theme;
   switch (color) {
     case 'success': return themeColors.status.success;
     case 'warning': return themeColors.status.warning;
@@ -55,10 +55,11 @@ export function resolveAudioWaveformColor(
 
 export function resolveAudioWaveformColors(
   color: AudioWaveformColor,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): AudioWaveformColors {
+  const { colors: themeColors } = theme;
   return {
-    active: resolveAudioWaveformColor(color, themeColors),
+    active: resolveAudioWaveformColor(color, theme),
     inactive: themeColors.border.subtle,
     skeletonBg: themeColors.border.subtle,
   };
@@ -100,13 +101,14 @@ export function buildAudioWaveformSvgStyle(
 export function buildAudioWaveformSkeletonStyle(
   sizeConfig: AudioWaveformSizeConfig,
   responsive: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: responsive ? '100%' : sizeConfig.width,
     height: sizeConfig.height,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

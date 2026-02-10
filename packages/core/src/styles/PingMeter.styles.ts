@@ -3,9 +3,8 @@
  */
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { PingMeterSizeConfig } from '../types/PingMeter.types';
-import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Latency → color mapping
@@ -21,7 +20,8 @@ import { defaultRadii } from '../theme/create-theme';
  *   - `#f97316` (orange) for 100-200ms
  *   - `#ef4444` (red) for > 200ms
  */
-export function getLatencyColor(latency: number, themeColors: ThemeColors): string {
+export function getLatencyColor(latency: number, theme: WispTheme): string {
+  const { colors: themeColors } = theme;
   if (latency < 50) return themeColors.status.success;
   if (latency < 100) return themeColors.status.warning;
   if (latency < 200) return themeColors.status.warning;
@@ -84,11 +84,13 @@ export function buildPingMeterContainerStyle(
 export function buildPingDotStyle(
   sizeConfig: PingMeterSizeConfig,
   color: string,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: color,
     flexShrink: 0,
   };
@@ -108,14 +110,16 @@ export function buildPingDotStyle(
 export function buildPingDotPulseStyle(
   sizeConfig: PingMeterSizeConfig,
   color: string,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     position: 'absolute',
     top: 0,
     left: 0,
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: color,
     animation: 'wisp-ping-pulse 1.5s ease-in-out infinite',
   };
@@ -138,12 +142,13 @@ export function buildPingDotPulseStyle(
  */
 export function buildPingBarStyle(
   sizeConfig: PingMeterSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   barIndex: number,
   totalBars: number,
   isActive: boolean,
   color: string,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   const heightFraction = (barIndex + 1) / totalBars;
   return {
     width: sizeConfig.barWidth,
@@ -168,8 +173,9 @@ export function buildPingBarStyle(
  */
 export function buildPingLatencyStyle(
   sizeConfig: PingMeterSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     fontSize: sizeConfig.fontSize,
     fontFamily: fontFamilyStacks.mono,
@@ -192,8 +198,9 @@ export function buildPingLatencyStyle(
  */
 export function getPingMeterSkeletonStyle(
   sizeConfig: PingMeterSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     height: sizeConfig.barHeight,

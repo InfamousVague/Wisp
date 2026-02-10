@@ -5,10 +5,9 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
@@ -24,18 +23,19 @@ import { zIndex } from '../tokens/z-index';
  * @returns A `CSSStyleObject` object for the content container.
  */
 export function buildContentStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   variant: SurfaceVariant = 'solid',
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing } = theme;
   return {
     position: 'absolute',
     zIndex: zIndex.popover,
     backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     boxShadow: `0 4px 12px ${themeColors.background.overlay}`,
-    padding: defaultSpacing.md,
+    padding: spacing.md,
     boxSizing: 'border-box',
     fontFamily: fontFamilyStacks.sans,
     color: themeColors.text.primary,

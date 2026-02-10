@@ -7,8 +7,7 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -22,12 +21,14 @@ import { durations, easings } from '../tokens/motion';
  * @returns A `CSSStyleObject` object for the container `div`.
  */
 export function buildCarouselContainerStyle(
+  theme: WispTheme,
   aspectRatio?: string,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     position: 'relative',
     overflow: 'hidden',
-    borderRadius: defaultRadii.lg,
+    borderRadius: radii.lg,
     ...(aspectRatio ? { aspectRatio } : {}),
   };
 }
@@ -86,10 +87,11 @@ export function buildCarouselSlideStyle(): CSSStyleObject {
  * @returns A `CSSStyleObject` object for the arrow `button`.
  */
 export function buildCarouselArrowStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   side: 'left' | 'right',
   isHovered: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     position: 'absolute',
     top: '50%',
@@ -97,7 +99,7 @@ export function buildCarouselArrowStyle(
     ...(side === 'left' ? { left: 12 } : { right: 12 }),
     width: 36,
     height: 36,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: isHovered
       ? themeColors.background.surface
       : themeColors.background.surface + 'CC', // 80% opacity
@@ -127,7 +129,8 @@ export function buildCarouselArrowStyle(
  *
  * @returns A `CSSStyleObject` object for the dots wrapper `div`.
  */
-export function buildCarouselDotsContainerStyle(): CSSStyleObject {
+export function buildCarouselDotsContainerStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     position: 'absolute',
     bottom: 12,
@@ -135,7 +138,7 @@ export function buildCarouselDotsContainerStyle(): CSSStyleObject {
     transform: 'translateX(-50%)',
     display: 'flex',
     flexDirection: 'row',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
     zIndex: 2,
   };
 }
@@ -152,13 +155,14 @@ export function buildCarouselDotsContainerStyle(): CSSStyleObject {
  * @returns A `CSSStyleObject` object for the dot `button`.
  */
 export function buildCarouselDotStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isActive: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     width: isActive ? 24 : 8,
     height: 8,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: isActive
       ? themeColors.text.inverse
       : themeColors.text.muted,
@@ -184,12 +188,13 @@ export function buildCarouselDotStyle(
  * @returns A `CSSStyleObject` object for the skeleton `div`.
  */
 export function buildCarouselSkeletonStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   aspectRatio?: string,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     width: '100%',
-    borderRadius: defaultRadii.lg,
+    borderRadius: radii.lg,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
     ...(aspectRatio ? { aspectRatio } : { height: 200 }),

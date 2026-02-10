@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { TextAreaSizeConfig } from '../types/TextArea.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -52,8 +51,9 @@ export function resolveTextAreaColors(
   error: boolean,
   warning: boolean,
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): TextAreaColors {
+  const { colors: themeColors } = theme;
   // Disabled state
   if (disabled) {
     return {
@@ -239,12 +239,14 @@ export function buildTextAreaStyle(
 export function buildLabelStyle(
   sizeConfig: TextAreaSizeConfig,
   colors: TextAreaColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: colors.label,
     cursor: 'default',
     userSelect: 'none',
@@ -267,12 +269,14 @@ export function buildHintStyle(
   sizeConfig: TextAreaSizeConfig,
   colors: TextAreaColors,
   isError: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.hintFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     color: isError ? colors.hint : colors.hint,
     margin: 0,
   };
@@ -291,8 +295,9 @@ export function buildHintStyle(
  */
 export function getTextAreaSkeletonStyle(
   sizeConfig: TextAreaSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     width: '100%',

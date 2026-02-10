@@ -9,7 +9,7 @@ import {
   getRemoveButtonHoverBg,
   resolveChipColors,
 } from '@wisp-ui/core/styles/Chip.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Chip — Compact interactive tag/token primitive for the Wisp design system.
@@ -50,18 +50,19 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(function Chip(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = chipSizeMap[size];
 
   // Resolve variant + color -> final palette
   const colors = useMemo(
-    () => resolveChipColors(color, variant, themeColors),
+    () => resolveChipColors(color, variant, theme),
     [color, variant, themeColors],
   );
 
   // Build container style
   const chipStyle = useMemo(
-    () => buildChipStyle({ sizeConfig, colors, clickable, disabled }),
+    () => buildChipStyle({ sizeConfig, colors, clickable, disabled }, theme),
     [sizeConfig, colors, clickable, disabled],
   );
 
@@ -73,14 +74,14 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(function Chip(
 
   // Build remove button style
   const removeStyle = useMemo(
-    () => buildRemoveButtonStyle(sizeConfig, colors, themeColors),
+    () => buildRemoveButtonStyle(sizeConfig, colors, theme),
     [sizeConfig, colors, themeColors],
   );
 
   // Hover state for the remove button
   const [removeHovered, setRemoveHovered] = useState(false);
   const removeHoverBg = useMemo(
-    () => getRemoveButtonHoverBg(themeColors),
+    () => getRemoveButtonHoverBg(theme),
     [themeColors],
   );
 

@@ -7,7 +7,7 @@ import {
   buildRatingValueStyle,
   getRatingSkeletonStyle,
 } from '@wisp-ui/core/styles/Rating.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -142,7 +142,8 @@ export const Rating = forwardRef<HTMLDivElement, RatingProps>(function Rating(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // ---------------------------------------------------------------------------
   // Controlled / uncontrolled state
@@ -165,7 +166,7 @@ export const Rating = forwardRef<HTMLDivElement, RatingProps>(function Rating(
   // Skeleton
   // ---------------------------------------------------------------------------
   if (skeleton) {
-    const skeletonStyle = getRatingSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getRatingSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden
@@ -220,7 +221,7 @@ export const Rating = forwardRef<HTMLDivElement, RatingProps>(function Rating(
   // Build value label style
   // ---------------------------------------------------------------------------
   const valueLabelStyle = useMemo(
-    () => buildRatingValueStyle(sizeConfig, themeColors),
+    () => buildRatingValueStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
@@ -251,7 +252,7 @@ export const Rating = forwardRef<HTMLDivElement, RatingProps>(function Rating(
       isHovered,
       disabled,
       readOnly,
-      themeColors,
+      theme,
     );
 
     stars.push(

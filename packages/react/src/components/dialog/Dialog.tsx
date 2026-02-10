@@ -31,7 +31,7 @@ import {
   buildBodyStyle,
   buildFooterStyle,
 } from '@wisp-ui/core/styles/Dialog.styles';
-import { useThemeColors, WispProvider } from '../../providers';
+import { useTheme, WispProvider } from '../../providers';
 import { createTheme } from '@wisp-ui/core/theme/create-theme';
 
 /** Guards against injecting the CSS keyframes more than once per page. */
@@ -86,18 +86,20 @@ export function Dialog({
   className,
   style: userStyle,
 }: DialogProps): React.JSX.Element | null {
-  const ambientColors = useThemeColors();
+  const { theme: ambientTheme } = useTheme();
+  const ambientColors = ambientTheme.colors;
   const panelRef = useRef<HTMLDivElement>(null);
   const [closeHovered, setCloseHovered] = useState(false);
 
-  // When forceMode is set, resolve the forced mode's colors for the panel
-  // shell (background, borders, title, close button). Child components pick
-  // up the forced mode via the nested WispProvider.
-  const forcedColors = useMemo(
-    () => forceMode ? createTheme({ mode: forceMode }).colors : null,
+  // When forceMode is set, resolve a full forced theme for the panel shell
+  // (background, borders, title, close button). Child components pick up
+  // the forced mode via the nested WispProvider.
+  const forcedTheme = useMemo(
+    () => forceMode ? createTheme({ mode: forceMode }) : null,
     [forceMode],
   );
-  const themeColors = forcedColors ?? ambientColors;
+  const panelTheme = forcedTheme ?? ambientTheme;
+  const themeColors = panelTheme.colors;
 
   useEffect(() => {
     injectDialogAnimation();
@@ -165,25 +167,25 @@ export function Dialog({
     [closeOnOverlayClick, onClose],
   );
 
-  // Overlay always uses ambient colors so the scrim matches the app theme.
+  // Overlay always uses ambient theme so the scrim matches the app theme.
   const overlayStyle = useMemo(() => ({
-    ...buildOverlayStyle(ambientColors),
+    ...buildOverlayStyle(ambientTheme),
     animation: 'wisp-dialog-overlay-in 200ms ease',
-  }), [ambientColors]);
+  }), [ambientTheme]);
 
   const panelStyle = useMemo(() => ({
-    ...buildPanelStyle(size, themeColors, variant, !!forceMode),
+    ...buildPanelStyle(size, panelTheme, variant, !!forceMode),
     animation: 'wisp-dialog-panel-in 200ms ease',
     ...userStyle,
-  }), [size, themeColors, variant, userStyle]);
+  }), [size, panelTheme, variant, forceMode, userStyle]);
 
-  const headerStyle = useMemo(() => buildHeaderStyle(), []);
-  const titleStyleVal = useMemo(() => buildTitleStyle(themeColors), [themeColors]);
-  const descriptionStyleVal = useMemo(() => buildDescriptionStyle(themeColors), [themeColors]);
-  const closeButtonStyle = useMemo(() => buildCloseButtonStyle(themeColors), [themeColors]);
-  const closeButtonHoverStyleVal = useMemo(() => buildCloseButtonHoverStyle(themeColors), [themeColors]);
-  const bodyStyle = useMemo(() => buildBodyStyle(), []);
-  const footerStyle = useMemo(() => buildFooterStyle(themeColors), [themeColors]);
+  const headerStyle = useMemo(() => buildHeaderStyle(panelTheme), [panelTheme]);
+  const titleStyleVal = useMemo(() => buildTitleStyle(panelTheme), [panelTheme]);
+  const descriptionStyleVal = useMemo(() => buildDescriptionStyle(panelTheme), [panelTheme]);
+  const closeButtonStyle = useMemo(() => buildCloseButtonStyle(panelTheme), [panelTheme]);
+  const closeButtonHoverStyleVal = useMemo(() => buildCloseButtonHoverStyle(panelTheme), [panelTheme]);
+  const bodyStyle = useMemo(() => buildBodyStyle(panelTheme), [panelTheme]);
+  const footerStyle = useMemo(() => buildFooterStyle(panelTheme), [panelTheme]);
 
   if (!open) return null;
 

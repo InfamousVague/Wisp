@@ -4,10 +4,9 @@
 import type { CSSStyleObject } from '../types';
 import type { ComponentSize } from '../tokens/shared';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ButtonVariant, ButtonShape } from '../types/Button.types';
 import { buttonSizeMap, shapeRadiusMap } from '../types/Button.types';
-import { defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -47,9 +46,10 @@ export interface VariantColors {
  */
 export function resolveVariantColors(
   variant: ButtonVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   onSurface = false,
 ): VariantColors {
+  const { colors: themeColors } = theme;
   switch (variant) {
     // -- Primary: monochrome filled
     case 'primary':
@@ -255,7 +255,7 @@ export function resolveVariantColors(
       };
 
     default:
-      return resolveVariantColors('primary', themeColors);
+      return resolveVariantColors('primary', theme);
   }
 }
 
@@ -269,7 +269,8 @@ export function resolveVariantColors(
  * @param themeColors - The current theme color tokens.
  * @returns A {@link VariantColors} object with subdued background and text values.
  */
-export function getDisabledColors(themeColors: ThemeColors): VariantColors {
+export function getDisabledColors(theme: WispTheme): VariantColors {
+  const { colors: themeColors } = theme;
   return {
     bg: themeColors.border.subtle,
     bgHover: themeColors.border.subtle,
@@ -310,7 +311,10 @@ export function buildButtonStyle(opts: {
   fullWidth: boolean;
   disabled: boolean;
   isLoading: boolean;
-}): CSSStyleObject {
+},
+  theme: WispTheme,
+): CSSStyleObject {
+  const { typography } = theme;
   const sizeConfig = buttonSizeMap[opts.size];
   const radius = shapeRadiusMap[opts.shape];
 
@@ -340,7 +344,7 @@ export function buildButtonStyle(opts: {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: `${sizeConfig.lineHeight}px`,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
 
     // Shape
     borderRadius: radius,
@@ -381,8 +385,9 @@ export function getButtonSkeletonStyle(
   size: ComponentSize,
   shape: ButtonShape,
   fullWidth: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   const sizeConfig = buttonSizeMap[size];
   const radius = shapeRadiusMap[shape];
 
@@ -407,14 +412,15 @@ export function getButtonSkeletonStyle(
  * @param color - The foreground color used for the spinner's top-border arc.
  * @returns A `CSSStyleObject` object describing a circular, animated spinner.
  */
-export function getSpinnerStyle(size: ComponentSize, color: string): CSSStyleObject {
+export function getSpinnerStyle(size: ComponentSize, color: string, theme: WispTheme): CSSStyleObject {
+  const { radii } = theme;
   const sizeConfig = buttonSizeMap[size];
   return {
     width: sizeConfig.iconSize,
     height: sizeConfig.iconSize,
     border: `2px solid ${color}44`,
     borderTopColor: color,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     animation: 'wisp-button-spin 0.6s linear infinite',
     flexShrink: 0,
   };

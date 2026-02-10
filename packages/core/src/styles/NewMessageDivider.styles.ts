@@ -1,7 +1,6 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
-import { defaultSpacing, defaultTypography } from '../theme/create-theme';
+import type { ThemeColors, WispTheme } from '../theme/types';
 
 // ---------------------------------------------------------------------------
 // Divider container
@@ -12,14 +11,15 @@ import { defaultSpacing, defaultTypography } from '../theme/create-theme';
  *
  * Renders as a horizontal line with a centered label.
  */
-export function buildNewMessageDividerStyle(): CSSStyleObject {
+export function buildNewMessageDividerStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: defaultSpacing.md,
+    gap: spacing.md,
     width: '100%',
     boxSizing: 'border-box',
-    padding: `${defaultSpacing.sm}px 0`,
+    padding: `${spacing.sm}px 0`,
   };
 }
 
@@ -49,11 +49,12 @@ export function buildLineStyle(color: string): CSSStyleObject {
  *
  * @param color - Label text color (typically matches the line color).
  */
-export function buildLabelStyle(color: string): CSSStyleObject {
+export function buildLabelStyle(color: string, theme: WispTheme): CSSStyleObject {
+  const { typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
-    fontWeight: defaultTypography.weights.semibold,
+    fontSize: typography.sizes.xs.fontSize,
+    lineHeight: `${typography.sizes.xs.lineHeight}px`,
+    fontWeight: typography.weights.semibold,
     fontFamily: fontFamilyStacks.sans,
     color,
     textTransform: 'uppercase',

@@ -7,7 +7,7 @@ import {
   buildCloseButtonStyle,
   getTagSkeletonStyle,
 } from '@wisp-ui/core/styles/Tag.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Tag — Interactive chip/label primitive for the Wisp design system.
@@ -61,7 +61,8 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // ---------------------------------------------------------------------------
   // Hover states
@@ -110,7 +111,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
   const sizeConfig = tagSizeMap[size];
 
   const colors = useMemo(
-    () => resolveTagColors(selected, disabled, themeColors),
+    () => resolveTagColors(selected, disabled, theme),
     [selected, disabled, themeColors],
   );
 
@@ -118,7 +119,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
   // Skeleton
   // ---------------------------------------------------------------------------
   if (skeleton) {
-    const skeletonStyle = getTagSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getTagSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden
@@ -132,7 +133,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
   // Build styles
   // ---------------------------------------------------------------------------
   const tagStyle = useMemo(
-    () => buildTagStyle(sizeConfig, colors, disabled),
+    () => buildTagStyle(sizeConfig, colors, disabled, theme),
     [sizeConfig, colors, disabled],
   );
 

@@ -4,7 +4,7 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { MessageInputSizeConfig } from '../types/MessageInput.types';
 import { durations, easings } from '../tokens/motion';
 
@@ -25,7 +25,8 @@ export interface MessageInputColors {
   sendBgDisabled: string;
 }
 
-export function resolveMessageInputColors(themeColors: ThemeColors): MessageInputColors {
+export function resolveMessageInputColors(theme: WispTheme): MessageInputColors {
+  const { colors: themeColors } = theme;
   return {
     bg: themeColors.background.surface,
     border: themeColors.border.subtle,
@@ -128,8 +129,9 @@ export function buildMessageInputSendButtonStyle(
 
 export function buildMessageInputSkeletonStyle(
   sizeConfig: MessageInputSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'block',
     width: '100%',

@@ -10,7 +10,7 @@ import {
   buildBannerMessageStyle,
   buildBannerDismissStyle,
 } from '@wisp-ui/core/styles/Banner.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 /**
@@ -46,27 +46,28 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(function Banner(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const colors = useMemo(
-    () => resolveBannerColors(variant, themeColors),
+    () => resolveBannerColors(variant, theme),
     [variant, themeColors],
   );
 
   const bannerStyle = useMemo(
-    () => buildBannerStyle(colors, fullWidth),
+    () => buildBannerStyle(colors, fullWidth, theme),
     [colors, fullWidth],
   );
   const titleStyle = useMemo(
-    () => buildBannerTitleStyle(colors),
+    () => buildBannerTitleStyle(colors, theme),
     [colors],
   );
   const messageStyle = useMemo(
-    () => buildBannerMessageStyle(colors),
+    () => buildBannerMessageStyle(colors, theme),
     [colors],
   );
   const dismissStyle = useMemo(
-    () => buildBannerDismissStyle(colors),
+    () => buildBannerDismissStyle(colors, theme),
     [colors],
   );
 

@@ -32,7 +32,7 @@ import {
   buildAchievementUnlockCloseStyle,
   buildAchievementUnlockActionStyle,
 } from '@wisp-ui/core/styles/AchievementUnlock.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { Button } from '../../primitives/button';
 import { Text } from '../../primitives/text';
 import { Icon } from '../../primitives/icon';
@@ -81,7 +81,8 @@ export function AchievementUnlock({
   actionLabel,
   onAction,
 }: AchievementUnlockProps) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const rarityConfig = achievementRarityMap[rarity];
 
   // Inject animation keyframes
@@ -106,33 +107,33 @@ export function AchievementUnlock({
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [open, onClose]);
 
-  const overlayStyle = useMemo(() => buildAchievementUnlockOverlayStyle(themeColors), [themeColors]);
+  const overlayStyle = useMemo(() => buildAchievementUnlockOverlayStyle(theme), [themeColors]);
   const panelStyle = useMemo(
-    () => buildAchievementUnlockPanelStyle(themeColors, rarity),
+    () => buildAchievementUnlockPanelStyle(theme, rarity),
     [themeColors, rarity],
   );
   const iconStyle = useMemo(
-    () => buildAchievementUnlockIconStyle(rarityConfig.color),
+    () => buildAchievementUnlockIconStyle(rarityConfig.color, theme),
     [rarityConfig.color],
   );
   const titleStyle = useMemo(
-    () => buildAchievementUnlockTitleStyle(themeColors),
+    () => buildAchievementUnlockTitleStyle(theme),
     [themeColors],
   );
   const descriptionStyle = useMemo(
-    () => buildAchievementUnlockDescriptionStyle(themeColors),
+    () => buildAchievementUnlockDescriptionStyle(theme),
     [themeColors],
   );
   const rarityStyle = useMemo(
-    () => buildAchievementUnlockRarityStyle(rarityConfig.color),
+    () => buildAchievementUnlockRarityStyle(rarityConfig.color, theme),
     [rarityConfig.color],
   );
   const closeStyle = useMemo(
-    () => buildAchievementUnlockCloseStyle(themeColors),
+    () => buildAchievementUnlockCloseStyle(theme),
     [themeColors],
   );
   const actionStyle = useMemo(
-    () => buildAchievementUnlockActionStyle(rarityConfig.color, themeColors),
+    () => buildAchievementUnlockActionStyle(rarityConfig.color, theme),
     [rarityConfig.color, themeColors],
   );
 

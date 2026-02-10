@@ -32,7 +32,7 @@ import React, {
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import type {
   PopoverProps,
   PopoverTriggerProps,
@@ -317,7 +317,8 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   ) {
     const { open, setOpen, triggerRef, placement, align, offset } =
       usePopoverContext();
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const contentRef = useRef<HTMLDivElement>(null);
     const resolvedRef = (ref as React.RefObject<HTMLDivElement>) || contentRef;
 
@@ -376,7 +377,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
 
     // Build styles
     const contentStyle = useMemo(
-      () => buildContentStyle(themeColors, variant, userStyle as CSSStyleObject),
+      () => buildContentStyle(theme, variant, userStyle as CSSStyleObject),
       [themeColors, variant, userStyle],
     );
 

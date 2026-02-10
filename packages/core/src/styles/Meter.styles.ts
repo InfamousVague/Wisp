@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { MeterSizeConfig, MeterVariant } from '../types/Meter.types';
-import { defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -32,8 +31,9 @@ export function resolveSegmentColor(
   low: number,
   high: number,
   optimum: number,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): string {
+  const { colors: themeColors } = theme;
   const green = themeColors.status.success;
   const yellow = themeColors.status.warning;
   const red = themeColors.status.danger;
@@ -92,8 +92,9 @@ export function buildMeterContainerStyle(
  */
 export function buildMeterTrackStyle(
   sizeConfig: MeterSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     position: 'relative',
     width: '100%',
@@ -128,13 +129,14 @@ export function buildMeterTrackStyle(
  */
 export function buildMeterFillStyle(
   sizeConfig: MeterSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   percent: number,
   variant: MeterVariant,
   low: number = 25,
   high: number = 75,
   optimum: number = 50,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   const base: CSSStyleObject = {
     height: '100%',
     width: `${percent}%`,
@@ -151,7 +153,7 @@ export function buildMeterFillStyle(
     case 'segments':
       return {
         ...base,
-        backgroundColor: resolveSegmentColor(percent, low, high, optimum, themeColors),
+        backgroundColor: resolveSegmentColor(percent, low, high, optimum, theme),
       };
     case 'default':
     default:
@@ -175,8 +177,9 @@ export function buildMeterFillStyle(
  */
 export function buildMeterLabelStyle(
   sizeConfig: MeterSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -184,7 +187,7 @@ export function buildMeterLabelStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: themeColors.text.primary,
     margin: 0,
     padding: 0,
@@ -205,13 +208,14 @@ export function buildMeterLabelStyle(
  */
 export function buildMeterValueStyle(
   sizeConfig: MeterSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: themeColors.text.secondary,
     margin: 0,
     padding: 0,
@@ -232,8 +236,9 @@ export function buildMeterValueStyle(
  */
 export function getMeterSkeletonStyle(
   sizeConfig: MeterSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'block',
     width: '100%',

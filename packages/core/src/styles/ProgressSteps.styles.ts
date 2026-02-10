@@ -3,9 +3,8 @@
  */
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ProgressStepsSizeConfig, ProgressStepsOrientation } from '../types/ProgressSteps.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -59,9 +58,10 @@ export type StepStatus = 'completed' | 'active' | 'upcoming';
 export function buildStepDotStyle(
   sizeConfig: ProgressStepsSizeConfig,
   status: StepStatus,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   clickable: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, typography } = theme;
   let bg: string;
   let borderColor: string;
   let textColor: string;
@@ -88,7 +88,7 @@ export function buildStepDotStyle(
   return {
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: bg,
     border: `2px solid ${borderColor}`,
     display: 'flex',
@@ -97,7 +97,7 @@ export function buildStepDotStyle(
     flexShrink: 0,
     color: textColor,
     fontSize: sizeConfig.labelFontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     cursor: clickable ? 'pointer' : 'default',
     boxSizing: 'border-box',
     transition: `background-color ${durations.normal}ms ${easings.easeOut.css}, border-color ${durations.normal}ms ${easings.easeOut.css}`,
@@ -112,8 +112,9 @@ export function buildConnectorStyle(
   sizeConfig: ProgressStepsSizeConfig,
   orientation: ProgressStepsOrientation,
   isCompleted: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   const color = isCompleted ? themeColors.accent.primary : themeColors.border.strong;
 
   if (orientation === 'horizontal') {
@@ -147,8 +148,9 @@ export function buildConnectorStyle(
 export function buildStepLabelStyle(
   sizeConfig: ProgressStepsSizeConfig,
   status: StepStatus,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     fontSize: sizeConfig.labelFontSize,
     fontWeight: status === 'active' ? 600 : 500,
@@ -161,14 +163,15 @@ export function buildStepLabelStyle(
 
 export function buildStepDescriptionStyle(
   sizeConfig: ProgressStepsSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
     fontSize: sizeConfig.descriptionFontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     lineHeight: 1.4,
     color: themeColors.text.muted,
     margin: 0,
-    marginTop: defaultSpacing['2xs'],
+    marginTop: spacing['2xs'],
   };
 }

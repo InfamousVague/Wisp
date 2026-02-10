@@ -4,9 +4,8 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { EmojiPickerSizeConfig } from '../types/EmojiPicker.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -27,7 +26,8 @@ export interface EmojiPickerColors {
   skinToneActiveBorder: string;
 }
 
-export function resolveEmojiPickerColors(themeColors: ThemeColors): EmojiPickerColors {
+export function resolveEmojiPickerColors(theme: WispTheme): EmojiPickerColors {
+  const { colors: themeColors } = theme;
   return {
     bg: themeColors.background.surface,
     border: themeColors.border.subtle,
@@ -84,12 +84,14 @@ export function buildEmojiPickerHeaderStyle(
  */
 export function buildEmojiPickerSearchRowStyle(
   sizeConfig: EmojiPickerSizeConfig,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
     height: sizeConfig.searchHeight,
   };
 }
@@ -100,12 +102,14 @@ export function buildEmojiPickerSearchRowStyle(
  */
 export function buildEmojiPickerSliderClipStyle(
   sizeConfig: EmojiPickerSizeConfig,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     flex: 1,
     overflow: 'hidden',
     height: sizeConfig.searchHeight + 4,
-    padding: defaultSpacing['2xs'],
+    padding: spacing['2xs'],
     margin: -2,
     position: 'relative',
   };
@@ -170,7 +174,9 @@ export function buildEmojiPickerSkinToneOptionStyle(
   sizeConfig: EmojiPickerSizeConfig,
   colors: EmojiPickerColors,
   active: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   const optionSize = Math.round(sizeConfig.cellSize * 0.9);
   return {
     display: 'inline-flex',
@@ -178,7 +184,7 @@ export function buildEmojiPickerSkinToneOptionStyle(
     justifyContent: 'center',
     width: optionSize,
     height: optionSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     border: active ? `2px solid ${colors.skinToneActiveBorder}` : '2px solid transparent',
     backgroundColor: active ? colors.bg : 'transparent',
     cursor: 'pointer',
@@ -215,8 +221,9 @@ export function buildEmojiPickerSkinToneDotStyle(
   sizeConfig: EmojiPickerSizeConfig,
   colors: EmojiPickerColors,
   active: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
-  return buildEmojiPickerSkinToneOptionStyle(sizeConfig, colors, active);
+  return buildEmojiPickerSkinToneOptionStyle(sizeConfig, colors, active, theme);
 }
 
 export function buildEmojiPickerTabBarStyle(
@@ -275,10 +282,12 @@ export function buildEmojiPickerGridStyle(
 export function buildEmojiPickerCategoryLabelStyle(
   sizeConfig: EmojiPickerSizeConfig,
   colors: EmojiPickerColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     color: colors.categoryLabel,
     textTransform: 'capitalize',
     padding: `${sizeConfig.gap + 2}px 0 ${sizeConfig.gap}px`,
@@ -292,14 +301,16 @@ export function buildEmojiPickerCategoryLabelStyle(
 
 export function buildEmojiPickerCellStyle(
   sizeConfig: EmojiPickerSizeConfig,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: sizeConfig.cellSize,
     height: sizeConfig.cellSize,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     border: 'none',
     backgroundColor: 'transparent',
     cursor: 'pointer',
@@ -324,8 +335,9 @@ export function buildEmojiPickerCellRowStyle(
 
 export function buildEmojiPickerSkeletonStyle(
   sizeConfig: EmojiPickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'block',
     width: sizeConfig.width,
@@ -338,15 +350,17 @@ export function buildEmojiPickerSkeletonStyle(
 
 export function buildEmojiPickerNoResultsStyle(
   colors: EmojiPickerColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing, typography } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
     color: colors.categoryLabel,
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    padding: defaultSpacing.xl,
+    fontSize: typography.sizes.sm.fontSize,
+    padding: spacing.xl,
     textAlign: 'center',
   };
 }

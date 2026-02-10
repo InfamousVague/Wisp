@@ -12,7 +12,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import type { MessageInputProps } from '@wisp-ui/core/types/MessageInput.types';
 import { messageInputSizeMap } from '@wisp-ui/core/types/MessageInput.types';
 import {
@@ -81,7 +81,8 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = messageInputSizeMap[size];
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -89,12 +90,12 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
   const value = controlledValue !== undefined ? controlledValue : internalValue;
 
   const colors = useMemo(
-    () => resolveMessageInputColors(themeColors),
+    () => resolveMessageInputColors(theme),
     [themeColors],
   );
 
   if (skeleton) {
-    const skeletonStyle = buildMessageInputSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = buildMessageInputSkeletonStyle(sizeConfig, theme);
     return <div aria-hidden className={className} style={{ ...skeletonStyle, ...userStyle }} />;
   }
 

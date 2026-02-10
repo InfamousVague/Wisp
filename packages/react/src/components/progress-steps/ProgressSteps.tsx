@@ -13,7 +13,7 @@ import {
   buildStepLabelStyle,
   buildStepDescriptionStyle,
 } from '@wisp-ui/core/styles/ProgressSteps.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 // Checkmark SVG for completed steps
@@ -64,7 +64,8 @@ export const ProgressSteps = forwardRef<HTMLDivElement, ProgressStepsProps>(func
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = progressStepsSizeMap[size];
 
   const containerStyle = useMemo(
@@ -88,9 +89,9 @@ export const ProgressSteps = forwardRef<HTMLDivElement, ProgressStepsProps>(func
         const StepIcon = step.icon;
 
         const wrapperStyle = buildStepWrapperStyle(orientation, isLast);
-        const dotStyle = buildStepDotStyle(sizeConfig, status, themeColors, clickable);
-        const labelStyle = buildStepLabelStyle(sizeConfig, status, themeColors);
-        const descStyle = step.description ? buildStepDescriptionStyle(sizeConfig, themeColors) : undefined;
+        const dotStyle = buildStepDotStyle(sizeConfig, status, theme, clickable);
+        const labelStyle = buildStepLabelStyle(sizeConfig, status, theme);
+        const descStyle = step.description ? buildStepDescriptionStyle(sizeConfig, theme) : undefined;
 
         const dotContent = status === 'completed'
           ? (StepIcon ? <StepIcon size={sizeConfig.iconSize} color={themeColors.text.inverse} strokeWidth={2} /> : <CheckIcon size={sizeConfig.iconSize} color={themeColors.text.inverse} />)
@@ -101,7 +102,7 @@ export const ProgressSteps = forwardRef<HTMLDivElement, ProgressStepsProps>(func
             <div key={step.id} role="listitem" style={wrapperStyle}>
               {/* Connector line (between dots) */}
               {!isLast && (
-                <div style={buildConnectorStyle(sizeConfig, orientation, i < currentStep, themeColors)} />
+                <div style={buildConnectorStyle(sizeConfig, orientation, i < currentStep, theme)} />
               )}
 
               {/* Dot */}
@@ -140,7 +141,7 @@ export const ProgressSteps = forwardRef<HTMLDivElement, ProgressStepsProps>(func
               </div>
               {/* Vertical connector */}
               {!isLast && (
-                <div style={buildConnectorStyle(sizeConfig, orientation, i < currentStep, themeColors)} />
+                <div style={buildConnectorStyle(sizeConfig, orientation, i < currentStep, theme)} />
               )}
             </div>
 

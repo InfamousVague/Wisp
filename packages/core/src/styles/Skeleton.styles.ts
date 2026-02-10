@@ -1,5 +1,5 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { SkeletonAnimation } from '../types/Skeleton.types';
 
 // ---------------------------------------------------------------------------
@@ -73,7 +73,8 @@ export function getAnimationStyle(animation: SkeletonAnimation): CSSStyleObject 
  * @param themeColors - Current theme colour palette used for the gradient.
  * @returns A `CSSStyleObject` object positioned absolutely over the parent.
  */
-export function buildWaveOverlayStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildWaveOverlayStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     position: 'absolute',
     top: 0,
@@ -101,7 +102,7 @@ export function buildWaveOverlayStyle(themeColors: ThemeColors): CSSStyleObject 
  * @returns A `CSSStyleObject` object for the block `<div>`.
  */
 export function buildBlockStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   opts: {
     width: number | string;
     height: number | string;
@@ -109,6 +110,7 @@ export function buildBlockStyle(
     animation: SkeletonAnimation;
   },
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'block',
     width: toPx(opts.width),
@@ -154,7 +156,7 @@ export function buildTextContainerStyle(width: number | string): CSSStyleObject 
  * @returns A `CSSStyleObject` object for the line `<div>`.
  */
 export function buildTextLineStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   opts: {
     lineHeight: number;
     borderRadius: number | string;
@@ -163,6 +165,7 @@ export function buildTextLineStyle(
     marginBottom: number;
   },
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'block',
     width: opts.widthPercent,

@@ -8,7 +8,7 @@ import {
   buildContentStyle,
   buildHintStyle,
 } from '@wisp-ui/core/styles/FormField.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * FormField -- Wraps a form control with label, description, and error message.
@@ -58,7 +58,8 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(function For
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = formFieldSizeMap[size];
 
   const wrapperStyle = useMemo(
@@ -67,23 +68,23 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(function For
   );
 
   const labelStyle = useMemo(
-    () => buildLabelStyle(sizeConfig, disabled, orientation, labelWidth, themeColors, onSurface),
+    () => buildLabelStyle(sizeConfig, disabled, orientation, labelWidth, theme, onSurface),
     [sizeConfig, disabled, orientation, labelWidth, themeColors, onSurface],
   );
 
   const requiredStyle = useMemo(
-    () => buildRequiredStyle(themeColors),
+    () => buildRequiredStyle(theme),
     [themeColors],
   );
 
   const contentStyle = useMemo(
-    () => buildContentStyle(orientation),
+    () => buildContentStyle(orientation, theme),
     [orientation],
   );
 
   const hintText = error || description;
   const hintStyle = useMemo(
-    () => (hintText ? buildHintStyle(sizeConfig, !!error, themeColors, onSurface) : undefined),
+    () => (hintText ? buildHintStyle(sizeConfig, !!error, theme, onSurface) : undefined),
     [sizeConfig, error, hintText, themeColors, onSurface],
   );
 

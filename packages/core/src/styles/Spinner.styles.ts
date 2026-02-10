@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { SpinnerSizeConfig } from '../types/Spinner.types';
-import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Keyframe injection -- inject once per document
@@ -82,13 +81,14 @@ export function buildSvgStyle(sizeConfig: SpinnerSizeConfig): CSSStyleObject {
  */
 export function buildLabelStyle(
   sizeConfig: SpinnerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: themeColors.text.muted,
     margin: 0,
     padding: 0,

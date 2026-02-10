@@ -10,7 +10,7 @@ import {
   buildDropzoneDescriptionStyle,
   buildDropzoneLinkStyle,
 } from '@wisp-ui/core/styles/FileUploader.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * FileUploader — Drag-and-drop file upload for the Wisp design system.
@@ -46,28 +46,29 @@ export const FileUploader = forwardRef<HTMLDivElement, FileUploaderProps>(functi
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragOver, setIsDragOver] = useState(false);
 
   const dropzoneStyle = useMemo(
-    () => buildDropzoneStyle(themeColors, isDragOver, disabled),
+    () => buildDropzoneStyle(theme, isDragOver, disabled),
     [themeColors, isDragOver, disabled],
   );
   const iconStyle = useMemo(
-    () => buildDropzoneIconStyle(themeColors),
+    () => buildDropzoneIconStyle(theme),
     [themeColors],
   );
   const titleStyle = useMemo(
-    () => buildDropzoneTitleStyle(themeColors),
+    () => buildDropzoneTitleStyle(theme),
     [themeColors],
   );
   const descriptionStyle = useMemo(
-    () => buildDropzoneDescriptionStyle(themeColors),
+    () => buildDropzoneDescriptionStyle(theme),
     [themeColors],
   );
   const linkStyle = useMemo(
-    () => buildDropzoneLinkStyle(themeColors),
+    () => buildDropzoneLinkStyle(theme),
     [themeColors],
   );
 

@@ -2,7 +2,7 @@ import React, { forwardRef, useMemo } from 'react';
 import type { KbdProps } from '@wisp-ui/core/types/Kbd.types';
 import { kbdSizeMap } from '@wisp-ui/core/types/Kbd.types';
 import { buildKbdStyle } from '@wisp-ui/core/styles/Kbd.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Kbd — Keyboard shortcut display primitive for the Wisp design system.
@@ -30,11 +30,12 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(function Kbd(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = kbdSizeMap[size];
 
   const kbdStyle = useMemo(
-    () => buildKbdStyle(sizeConfig, themeColors),
+    () => buildKbdStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 

@@ -6,9 +6,8 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { TooltipPlacement } from '../types/Tooltip.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
 
@@ -40,7 +39,8 @@ export interface TooltipColors {
  * @param themeColors - Resolved theme color tokens.
  * @returns A {@link TooltipColors} object with inverted background and text.
  */
-export function resolveTooltipColors(themeColors: ThemeColors): TooltipColors {
+export function resolveTooltipColors(theme: WispTheme): TooltipColors {
+  const { colors: themeColors } = theme;
   return {
     bg: themeColors.text.primary,
     text: themeColors.text.inverse,
@@ -68,7 +68,9 @@ export function buildTooltipStyle(
   visible: boolean,
   placement: TooltipPlacement,
   variant: SurfaceVariant = 'solid',
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii, spacing, typography } = theme;
   const translateMap: Record<TooltipPlacement, string> = {
     top: visible ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(4px)',
     bottom: visible ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(-4px)',
@@ -80,14 +82,14 @@ export function buildTooltipStyle(
     position: 'absolute',
     zIndex: zIndex.tooltip,
     maxWidth,
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
-    borderRadius: defaultRadii.md,
+    padding: `${spacing.sm}px ${spacing.md}px`,
+    borderRadius: radii.md,
     backgroundColor: colors.bg,
     color: colors.text,
     fontFamily: fontFamilyStacks.sans,
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     whiteSpace: 'pre-wrap',
     wordWrap: 'break-word',
     pointerEvents: 'none',

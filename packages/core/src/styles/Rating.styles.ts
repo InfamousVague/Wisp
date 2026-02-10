@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { RatingSizeConfig } from '../types/Rating.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -47,8 +46,9 @@ export function buildRatingStarStyle(
   hovered: boolean,
   disabled: boolean,
   readOnly: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   const isInteractive = !disabled && !readOnly;
 
   return {
@@ -81,14 +81,15 @@ export function buildRatingStarStyle(
  */
 export function buildRatingValueStyle(
   sizeConfig: RatingSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     fontSize: sizeConfig.fontSize,
     fontFamily: fontFamilyStacks.sans,
     color: themeColors.text.secondary,
     lineHeight: 1.4,
-    marginLeft: defaultSpacing.xs,
+    marginLeft: spacing.xs,
     userSelect: 'none',
   };
 }
@@ -106,8 +107,9 @@ export function buildRatingValueStyle(
  */
 export function getRatingSkeletonStyle(
   sizeConfig: RatingSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   const totalWidth =
     sizeConfig.starSize * 5 + sizeConfig.gap * 4;
 
@@ -115,7 +117,7 @@ export function getRatingSkeletonStyle(
     display: 'inline-block',
     width: totalWidth,
     height: sizeConfig.starSize,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

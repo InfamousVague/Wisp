@@ -4,7 +4,7 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { BeaconVariant, BeaconSizeConfig } from '../types/Beacon.types';
 import { durations, easings } from '../tokens/motion';
 
@@ -29,8 +29,9 @@ export interface BeaconColors {
  */
 export function resolveBeaconColor(
   variant: BeaconVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): string {
+  const { colors: themeColors } = theme;
   switch (variant) {
     case 'info':
       return themeColors.status.info;
@@ -59,8 +60,9 @@ export function resolveBeaconColor(
 export function buildBeaconButtonStyle(
   sizeConfig: BeaconSizeConfig,
   accentColor: string,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',

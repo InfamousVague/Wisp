@@ -64,7 +64,7 @@ import {
   buildTableHeadStyle,
   buildTableCellStyle,
 } from '@wisp-ui/core/styles/Table.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -120,7 +120,8 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const contextValue = useMemo<TableContextValue>(
     () => ({ size, variant, hoverable, stickyHeader, bordered }),
@@ -128,12 +129,12 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
   );
 
   const tableStyle = useMemo(
-    () => buildTableStyle(themeColors, userStyle as CSSStyleObject),
+    () => buildTableStyle(theme, userStyle as CSSStyleObject),
     [themeColors, userStyle],
   );
 
   const wrapperStyle = useMemo(
-    () => (bordered ? buildTableBorderedWrapperStyle(themeColors) : undefined),
+    () => (bordered ? buildTableBorderedWrapperStyle(theme) : undefined),
     [bordered, themeColors],
   );
 
@@ -162,11 +163,12 @@ Table.displayName = 'Table';
  */
 export const TableHeader = forwardRef<HTMLTableSectionElement, TableHeaderProps>(
   function TableHeader({ children, className, style: userStyle, ...rest }, ref) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const { stickyHeader } = useTableContext();
 
     const headerStyle = useMemo(
-      () => buildTableHeaderStyle(stickyHeader, themeColors, userStyle as CSSStyleObject),
+      () => buildTableHeaderStyle(stickyHeader, theme, userStyle as CSSStyleObject),
       [stickyHeader, themeColors, userStyle],
     );
 
@@ -212,10 +214,11 @@ TableBody.displayName = 'TableBody';
  */
 export const TableFooter = forwardRef<HTMLTableSectionElement, TableFooterProps>(
   function TableFooter({ children, className, style: userStyle, ...rest }, ref) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
 
     const footerStyle = useMemo(
-      () => buildTableFooterStyle(themeColors, userStyle as CSSStyleObject),
+      () => buildTableFooterStyle(theme, userStyle as CSSStyleObject),
       [themeColors, userStyle],
     );
 
@@ -285,7 +288,8 @@ export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
     { selected = false, children, className, style: userStyle, ...rest },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const { variant, hoverable, bordered } = useTableContext();
 
     const [hovered, setHovered] = useState(false);
@@ -328,7 +332,7 @@ export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
           isHeaderRow,
           bordered,
           isLastRow,
-          themeColors,
+          theme,
           userStyle: userStyle as CSSStyleObject,
         }),
       [hoverable, hovered, selected, variant, isEvenRow, isHeaderRow, bordered, isLastRow, themeColors, userStyle],
@@ -364,11 +368,12 @@ export const TableHead = forwardRef<HTMLTableCellElement, TableHeadProps>(
     { align = 'left', children, className, style: userStyle, ...rest },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const { size } = useTableContext();
 
     const headStyle = useMemo(
-      () => buildTableHeadStyle({ size, align, themeColors, userStyle: userStyle as CSSStyleObject }),
+      () => buildTableHeadStyle({ size, align, theme, userStyle: userStyle as CSSStyleObject }),
       [size, align, themeColors, userStyle],
     );
 
@@ -394,11 +399,12 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
     { align = 'left', children, className, style: userStyle, ...rest },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const { size } = useTableContext();
 
     const cellStyle = useMemo(
-      () => buildTableCellStyle({ size, align, themeColors, userStyle: userStyle as CSSStyleObject }),
+      () => buildTableCellStyle({ size, align, theme, userStyle: userStyle as CSSStyleObject }),
       [size, align, themeColors, userStyle],
     );
 

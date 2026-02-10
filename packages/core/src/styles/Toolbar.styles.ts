@@ -1,7 +1,6 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors, ThemeSpacing } from '../theme/types';
+import type { ThemeColors, ThemeSpacing, WispTheme } from '../theme/types';
 import type { ToolbarVariant, ToolbarSizeConfig } from '../types/Toolbar.types';
-import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Toolbar (root) style
@@ -18,8 +17,9 @@ import { defaultRadii } from '../theme/create-theme';
 export function buildToolbarStyle(
   sizeConfig: ToolbarSizeConfig,
   variant: ToolbarVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   const base: CSSStyleObject = {
     display: 'flex',
     flexDirection: 'row',
@@ -46,7 +46,7 @@ export function buildToolbarStyle(
       display: 'inline-flex',
       backgroundColor: themeColors.background.surface,
       border: `1px solid ${themeColors.border.subtle}`,
-      borderRadius: defaultRadii.full,
+      borderRadius: radii.full,
       color: themeColors.text.onRaised,
     };
   }
@@ -95,8 +95,9 @@ export function buildGroupStyle(
  */
 export function buildSeparatorStyle(
   sizeConfig: ToolbarSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     width: 1,
     height: sizeConfig.separatorHeight,

@@ -9,7 +9,7 @@ import {
   buildMeterValueStyle,
   getMeterSkeletonStyle,
 } from '@wisp-ui/core/styles/Meter.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Meter -- Semantic gauge indicator for the Wisp design system.
@@ -60,7 +60,8 @@ export const Meter = forwardRef<HTMLDivElement, MeterProps>(function Meter(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = meterSizeMap[size];
 
   // ---------------------------------------------------------------------------
@@ -86,7 +87,7 @@ export const Meter = forwardRef<HTMLDivElement, MeterProps>(function Meter(
   // Skeleton
   // ---------------------------------------------------------------------------
   if (skeleton) {
-    const skeletonStyle = getMeterSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getMeterSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden
@@ -105,22 +106,22 @@ export const Meter = forwardRef<HTMLDivElement, MeterProps>(function Meter(
   );
 
   const trackStyle = useMemo(
-    () => buildMeterTrackStyle(sizeConfig, themeColors),
+    () => buildMeterTrackStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
   const fillStyle = useMemo(
-    () => buildMeterFillStyle(sizeConfig, themeColors, percent, variant, lowPercent, highPercent, optimumPercent),
+    () => buildMeterFillStyle(sizeConfig, theme, percent, variant, lowPercent, highPercent, optimumPercent),
     [sizeConfig, themeColors, percent, variant, lowPercent, highPercent, optimumPercent],
   );
 
   const labelRowStyle = useMemo(
-    () => buildMeterLabelStyle(sizeConfig, themeColors),
+    () => buildMeterLabelStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
   const valueTextStyle = useMemo(
-    () => buildMeterValueStyle(sizeConfig, themeColors),
+    () => buildMeterValueStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 

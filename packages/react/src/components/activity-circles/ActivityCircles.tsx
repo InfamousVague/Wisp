@@ -14,7 +14,7 @@ import {
   buildActivityCirclesLegendDotStyle,
   buildActivityCirclesLegendTextStyle,
 } from '@wisp-ui/core/styles/ActivityCircles.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * ActivityCircles — Apple-Watch-style concentric progress rings.
@@ -60,7 +60,8 @@ export const ActivityCircles = forwardRef<HTMLDivElement, ActivityCirclesProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const baseSizeConfig = activityCirclesSizeMap[size];
 
     // Apply thickness override
@@ -71,13 +72,13 @@ export const ActivityCircles = forwardRef<HTMLDivElement, ActivityCirclesProps>(
 
     // Resolve common colours
     const colors = useMemo(
-      () => resolveActivityCirclesColors(themeColors),
+      () => resolveActivityCirclesColors(theme),
       [themeColors],
     );
 
     // Resolve per-ring colours
     const ringColors = useMemo(
-      () => rings.map((ring, i) => ring.color || resolveRingColor(i, themeColors)),
+      () => rings.map((ring, i) => ring.color || resolveRingColor(i, theme)),
       [rings, themeColors],
     );
 
@@ -179,12 +180,12 @@ export const ActivityCircles = forwardRef<HTMLDivElement, ActivityCirclesProps>(
 
         {/* Legend */}
         {showLabels && (
-          <div style={buildActivityCirclesLegendStyle()}>
+          <div style={buildActivityCirclesLegendStyle(theme)}>
             {rings.map((ring, i) =>
               ring.label ? (
-                <div key={i} style={buildActivityCirclesLegendItemStyle()}>
-                  <div style={buildActivityCirclesLegendDotStyle(ringColors[i])} />
-                  <span style={buildActivityCirclesLegendTextStyle(sizeConfig, colors)}>
+                <div key={i} style={buildActivityCirclesLegendItemStyle(theme)}>
+                  <div style={buildActivityCirclesLegendDotStyle(ringColors[i], theme)} />
+                  <span style={buildActivityCirclesLegendTextStyle(sizeConfig, colors, theme)}>
                     {ring.label}
                   </span>
                 </div>

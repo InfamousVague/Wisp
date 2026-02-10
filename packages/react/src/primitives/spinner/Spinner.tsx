@@ -7,7 +7,7 @@ import {
   buildSvgStyle,
   buildLabelStyle,
 } from '@wisp-ui/core/styles/Spinner.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Spinner -- Animated loading indicator for the Wisp design system.
@@ -43,7 +43,8 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(function Spinner
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = spinnerSizeMap[size];
 
   // Inject the spin keyframe animation once
@@ -77,7 +78,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(function Spinner
   );
 
   const labelStyle = useMemo(
-    () => buildLabelStyle(sizeConfig, themeColors),
+    () => buildLabelStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 

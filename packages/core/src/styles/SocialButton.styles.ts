@@ -3,9 +3,8 @@
  */
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { SocialProviderConfig, SocialButtonSizeConfig, SocialButtonVariant } from '../types/SocialButton.types';
-import { defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -19,11 +18,12 @@ export function buildSocialButtonStyle(
   sizeConfig: SocialButtonSizeConfig,
   providerConfig: SocialProviderConfig,
   variant: SocialButtonVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   fullWidth: boolean,
   iconOnly: boolean,
   disabled: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, typography } = theme;
   const isFilled = variant === 'filled';
 
   return {
@@ -48,11 +48,11 @@ export function buildSocialButtonStyle(
     // Typography
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     lineHeight: 1,
 
     // Shape
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
 
     // Colors
     backgroundColor: isFilled ? providerConfig.bgColor : 'transparent',

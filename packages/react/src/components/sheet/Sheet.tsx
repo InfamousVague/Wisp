@@ -26,7 +26,7 @@ import {
   buildHandleBarStyle,
   buildHandlePillStyle,
 } from '@wisp-ui/core/styles/Sheet.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
@@ -60,7 +60,8 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const internalRef = useRef<HTMLDivElement>(null);
   const sheetRef = (ref as React.RefObject<HTMLDivElement>) ?? internalRef;
 
@@ -163,24 +164,24 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
   // -------------------------------------------------------------------------
   const overlayStyle = useMemo(
     () => ({
-      ...buildOverlayStyle(themeColors),
+      ...buildOverlayStyle(theme),
       opacity: animateOpen ? 1 : 0,
     }),
     [themeColors, animateOpen],
   );
 
   const sheetStyle = useMemo(
-    () => buildSheetStyle(size, animateOpen, dragOffset, themeColors, variant, userStyle as CSSStyleObject),
+    () => buildSheetStyle(size, animateOpen, dragOffset, theme, variant, userStyle as CSSStyleObject),
     [size, animateOpen, dragOffset, themeColors, variant, userStyle],
   );
 
   const handleBarStyle = useMemo(
-    () => buildHandleBarStyle(themeColors),
+    () => buildHandleBarStyle(theme),
     [themeColors],
   );
 
   const handlePillStyle = useMemo(
-    () => buildHandlePillStyle(themeColors),
+    () => buildHandlePillStyle(theme),
     [themeColors],
   );
 

@@ -9,7 +9,7 @@ import {
   buildDescriptionStyle,
   buildActionStyle,
 } from '@wisp-ui/core/styles/Alert.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Alert — Contextual feedback banner for user-facing messages.
@@ -47,27 +47,28 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const alertStyle = useMemo(
-    () => buildAlertStyle(variant, themeColors, userStyle as CSSStyleObject),
+    () => buildAlertStyle(variant, theme, userStyle as CSSStyleObject),
     [variant, themeColors, userStyle],
   );
 
   const iconStyle = useMemo(
-    () => buildIconWrapperStyle(variant, themeColors),
+    () => buildIconWrapperStyle(variant, theme),
     [variant, themeColors],
   );
 
-  const contentStyle = useMemo(() => buildContentStyle(), []);
+  const contentStyle = useMemo(() => buildContentStyle(theme), []);
 
   const titleStyle = useMemo(
-    () => buildTitleStyle(themeColors, variant),
+    () => buildTitleStyle(theme, variant),
     [themeColors, variant],
   );
 
   const descriptionStyle = useMemo(
-    () => buildDescriptionStyle(themeColors, variant),
+    () => buildDescriptionStyle(theme, variant),
     [themeColors, variant],
   );
 

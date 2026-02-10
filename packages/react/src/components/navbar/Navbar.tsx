@@ -15,7 +15,7 @@ import {
   buildNavbarContentStyle,
   buildNavbarItemStyle,
 } from '@wisp-ui/core/styles/Navbar.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -44,10 +44,11 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
 
     const navStyle = useMemo(
-      () => buildNavbarStyle(variant, sticky, height, themeColors),
+      () => buildNavbarStyle(variant, sticky, height, theme),
       [variant, sticky, height, themeColors],
     );
 
@@ -70,7 +71,8 @@ Navbar.displayName = 'Navbar';
 
 export const NavbarBrand = forwardRef<HTMLDivElement, NavbarBrandProps>(
   function NavbarBrand({ children, style: userStyle, className, ...rest }, ref) {
-    const brandStyle = useMemo(() => buildNavbarBrandStyle(), []);
+    const { theme } = useTheme();
+    const brandStyle = useMemo(() => buildNavbarBrandStyle(theme), [theme]);
 
     return (
       <div ref={ref} style={{ ...brandStyle, ...userStyle }} className={className} {...rest}>
@@ -90,7 +92,8 @@ export const NavbarContent = forwardRef<HTMLDivElement, NavbarContentProps>(
     { align = 'end', children, style: userStyle, className, ...rest },
     ref,
   ) {
-    const contentStyle = useMemo(() => buildNavbarContentStyle(align), [align]);
+    const { theme } = useTheme();
+    const contentStyle = useMemo(() => buildNavbarContentStyle(align, theme), [align, theme]);
 
     return (
       <div ref={ref} style={{ ...contentStyle, ...userStyle }} className={className} {...rest}>
@@ -110,12 +113,13 @@ export const NavbarItem = forwardRef<HTMLDivElement, NavbarItemProps>(
     { active = false, children, style: userStyle, className, ...rest },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const { variant } = useContext(NavbarContext);
     const isSolid = variant === 'solid';
 
     const itemStyle = useMemo(
-      () => buildNavbarItemStyle(active, themeColors, isSolid),
+      () => buildNavbarItemStyle(active, theme, isSolid),
       [active, themeColors, isSolid],
     );
 

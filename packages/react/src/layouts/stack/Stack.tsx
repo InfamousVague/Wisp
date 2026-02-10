@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo } from 'react';
 import type { StackProps } from '@wisp-ui/core/types/Stack.types';
 import { buildStackStyle, buildDividerStyle } from '@wisp-ui/core/styles/Stack.styles';
-import { useTheme, useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Stack -- Arranges children in a vertical or horizontal line with consistent spacing.
@@ -46,7 +46,7 @@ export const Stack = forwardRef<HTMLElement, StackProps>(function Stack(
   ref,
 ) {
   const { theme } = useTheme();
-  const themeColors = useThemeColors();
+  const themeColors = theme.colors;
 
   const stackStyle = useMemo(
     () => buildStackStyle({ direction, gap, align, justify, wrap, reverse, spacing: theme.spacing }),

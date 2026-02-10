@@ -8,7 +8,7 @@ import {
   buildLineStyle,
   buildLabelStyle,
 } from '@wisp-ui/core/styles/NewMessageDivider.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * NewMessageDivider — Marks the boundary between read and unread messages.
@@ -35,11 +35,12 @@ export const NewMessageDivider = forwardRef<HTMLDivElement, NewMessageDividerPro
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const resolvedColor = colorOverride ?? themeColors.status.danger;
 
     const dividerStyle = useMemo(
-      () => buildNewMessageDividerStyle(),
+      () => buildNewMessageDividerStyle(theme),
       [],
     );
 
@@ -49,7 +50,7 @@ export const NewMessageDivider = forwardRef<HTMLDivElement, NewMessageDividerPro
     );
 
     const labelStyle = useMemo(
-      () => buildLabelStyle(resolvedColor),
+      () => buildLabelStyle(resolvedColor, theme),
       [resolvedColor],
     );
 

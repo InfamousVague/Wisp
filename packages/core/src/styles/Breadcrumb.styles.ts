@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { BreadcrumbSizeConfig } from '../types/Breadcrumb.types';
-import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Nav wrapper style
@@ -71,8 +70,9 @@ export function buildItemStyle(): CSSStyleObject {
  * @returns A `CSSStyleObject` object for the inner `a` or `button`.
  */
 export function buildLinkStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     color: themeColors.text.secondary,
     textDecoration: 'none',
@@ -84,7 +84,7 @@ export function buildLinkStyle(
     font: 'inherit',
     display: 'inline-flex',
     alignItems: 'center',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
   };
 }
 
@@ -99,8 +99,9 @@ export function buildLinkStyle(
  * @returns A `CSSStyleObject` object merged on top of the base link style on hover.
  */
 export function buildLinkHoverStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     color: themeColors.text.primary,
   };
@@ -117,14 +118,15 @@ export function buildLinkHoverStyle(
  * @returns A `CSSStyleObject` object for the active `span`.
  */
 export function buildActiveStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
     color: themeColors.text.primary,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     display: 'inline-flex',
     alignItems: 'center',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
     cursor: 'default',
   };
 }
@@ -140,11 +142,12 @@ export function buildActiveStyle(
  * @returns A `CSSStyleObject` object for the separator `li`.
  */
 export function buildSeparatorStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     color: themeColors.text.muted,
-    padding: `0 ${defaultSpacing.sm}px`,
+    padding: `0 ${spacing.sm}px`,
     display: 'inline-flex',
     alignItems: 'center',
     userSelect: 'none',

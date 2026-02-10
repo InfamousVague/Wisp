@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { TimePickerSizeConfig } from '../types/TimePicker.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography, defaultShadows } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
 
@@ -18,11 +17,13 @@ import { durations, easings } from '../tokens/motion';
  */
 export function buildTimePickerContainerStyle(
   sizeConfig: TimePickerSizeConfig,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'inline-flex',
     flexDirection: 'column',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
     position: 'relative',
   };
 }
@@ -44,12 +45,13 @@ export function buildTimePickerContainerStyle(
  */
 export function buildTimePickerTriggerStyle(
   sizeConfig: TimePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isOpen: boolean,
   isDisabled: boolean,
   hasError: boolean,
   isHovered: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   let borderColor = themeColors.border.strong;
   let focusRing = 'transparent';
 
@@ -104,21 +106,22 @@ export function buildTimePickerTriggerStyle(
  */
 export function buildTimePickerDropdownStyle(
   sizeConfig: TimePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing, shadows } = theme;
   return {
     position: 'absolute',
     top: sizeConfig.inputHeight + 4,
     left: 0,
     zIndex: zIndex.dropdown,
     backgroundColor: themeColors.background.raised,
-    borderRadius: defaultRadii.lg,
+    borderRadius: radii.lg,
     border: '1px solid ' + themeColors.border.subtle,
-    boxShadow: defaultShadows.md,
-    padding: defaultSpacing.sm,
+    boxShadow: shadows.md,
+    padding: spacing.sm,
     display: 'flex',
     flexDirection: 'row',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
     boxSizing: 'border-box',
   };
 }
@@ -136,15 +139,16 @@ export function buildTimePickerDropdownStyle(
  */
 export function buildTimePickerColumnStyle(
   sizeConfig: TimePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     width: sizeConfig.columnWidth,
     maxHeight: 200,
     overflowY: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    gap: defaultSpacing['2xs'],
+    gap: spacing['2xs'],
   };
 }
 
@@ -163,10 +167,11 @@ export function buildTimePickerColumnStyle(
  */
 export function buildTimePickerOptionStyle(
   sizeConfig: TimePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isSelected: boolean,
   isHovered: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   const optionHeight = sizeConfig.fontSize >= 14 ? 32 : 28;
 
   let backgroundColor = 'transparent';
@@ -182,7 +187,7 @@ export function buildTimePickerOptionStyle(
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     cursor: 'pointer',
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
@@ -209,14 +214,15 @@ export function buildTimePickerOptionStyle(
  */
 export function buildTimePickerLabelStyle(
   sizeConfig: TimePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isDisabled: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: isDisabled ? themeColors.text.muted : themeColors.text.primary,
     cursor: 'default',
     userSelect: 'none',
@@ -236,13 +242,14 @@ export function buildTimePickerLabelStyle(
  */
 export function buildTimePickerErrorStyle(
   sizeConfig: TimePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize - 1,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     color: themeColors.status.danger,
     margin: 0,
   };
@@ -261,8 +268,9 @@ export function buildTimePickerErrorStyle(
  */
 export function buildTimePickerSkeletonStyle(
   sizeConfig: TimePickerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     width: '100%',

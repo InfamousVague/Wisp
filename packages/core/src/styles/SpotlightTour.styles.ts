@@ -4,10 +4,9 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { SpotlightTourVariant } from '../types/SpotlightTour.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
 
@@ -38,17 +37,18 @@ export function buildSpotlightOverlayStyle(): CSSStyleObject {
  * Builds the step popover panel style.
  */
 export function buildSpotlightPopoverStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   _variant: SpotlightTourVariant,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: defaultSpacing.sm,
-    padding: defaultSpacing.lg,
+    gap: spacing.sm,
+    padding: spacing.lg,
     backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: defaultRadii.lg,
+    borderRadius: radii.lg,
     fontFamily: fontFamilyStacks.sans,
     maxWidth: 360,
     boxShadow: '0 8px 24px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.1)',
@@ -65,11 +65,12 @@ export function buildSpotlightPopoverStyle(
  * Builds the title style.
  */
 export function buildSpotlightTitleStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.base.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontSize: typography.sizes.base.fontSize,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1.4,
     color: themeColors.text.primary,
     margin: 0,
@@ -84,11 +85,12 @@ export function buildSpotlightTitleStyle(
  * Builds the description style.
  */
 export function buildSpotlightDescriptionStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.regular,
     lineHeight: 1.46,
     color: themeColors.text.secondary,
     margin: 0,
@@ -102,13 +104,14 @@ export function buildSpotlightDescriptionStyle(
 /**
  * Builds the footer style (step count + nav buttons).
  */
-export function buildSpotlightFooterStyle(): CSSStyleObject {
+export function buildSpotlightFooterStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: defaultSpacing.sm,
-    marginTop: defaultSpacing.xs,
+    gap: spacing.sm,
+    marginTop: spacing.xs,
   };
 }
 
@@ -120,11 +123,12 @@ export function buildSpotlightFooterStyle(): CSSStyleObject {
  * Builds the step counter text style.
  */
 export function buildSpotlightStepCountStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    fontSize: typography.sizes.xs.fontSize,
+    fontWeight: typography.weights.medium,
     color: themeColors.text.muted,
     margin: 0,
   };
@@ -138,18 +142,19 @@ export function buildSpotlightStepCountStyle(
  * Builds the navigation button style (prev/next/finish).
  */
 export function buildSpotlightNavButtonStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   primary: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing, typography } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: defaultSpacing.xs,
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.lg}px`,
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    gap: spacing.xs,
+    padding: `${spacing.sm}px ${spacing.lg}px`,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.medium,
     lineHeight: 1,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     border: primary ? 'none' : `1px solid ${themeColors.border.subtle}`,
     backgroundColor: primary ? themeColors.text.primary : 'transparent',
     color: primary ? themeColors.background.canvas : themeColors.text.primary,

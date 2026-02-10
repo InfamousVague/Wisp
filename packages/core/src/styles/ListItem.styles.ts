@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ListItemSize, ListItemSizeConfig } from '../types/ListItem.types';
 import { listItemSizeMap } from '../types/ListItem.types';
-import type { ThemeColors } from '../theme/types';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import { durations, easings } from '../tokens/motion';
 
 /**
@@ -27,8 +26,9 @@ export function buildListItemStyle(opts: {
   interactive: boolean;
   active: boolean;
   disabled: boolean;
-  themeColors: ThemeColors;
+  theme: WispTheme;
 }): CSSStyleObject {
+  const { colors: themeColors, radii } = opts.theme;
   const config = listItemSizeMap[opts.size];
   const style: CSSStyleObject = {
     display: 'flex',
@@ -39,7 +39,7 @@ export function buildListItemStyle(opts: {
     paddingRight: config.paddingX,
     paddingTop: config.paddingY,
     paddingBottom: config.paddingY,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 
@@ -49,7 +49,7 @@ export function buildListItemStyle(opts: {
   }
 
   if (opts.active) {
-    style.backgroundColor = opts.themeColors.accent.highlight;
+    style.backgroundColor = themeColors.accent.highlight;
   }
 
   if (opts.disabled) {
@@ -97,11 +97,12 @@ export function buildContentStyle(): CSSStyleObject {
  * @returns A `CSSStyleObject` object that prevents shrinking and
  *   spaces multiple trailing elements with an 8 px gap.
  */
-export function buildTrailingStyle(): CSSStyleObject {
+export function buildTrailingStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     flexShrink: 0,
     display: 'flex',
     alignItems: 'center',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
   };
 }

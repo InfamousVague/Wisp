@@ -6,7 +6,7 @@ import {
   buildCheckerboardStyle,
   buildColorOverlayStyle,
 } from '@wisp-ui/core/styles/ColorSwatch.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * ColorSwatch — Displays a color sample for the Wisp design system.
@@ -40,7 +40,8 @@ export const ColorSwatch = forwardRef<HTMLDivElement, ColorSwatchProps>(function
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = colorSwatchSizeMap[size];
 
   // -----------------------------------------------------------------------
@@ -48,12 +49,12 @@ export const ColorSwatch = forwardRef<HTMLDivElement, ColorSwatchProps>(function
   // -----------------------------------------------------------------------
 
   const checkerboardWrapperStyle = useMemo(
-    () => (checkerboard ? buildCheckerboardStyle(sizeConfig, shape, themeColors) : undefined),
+    () => (checkerboard ? buildCheckerboardStyle(sizeConfig, shape, theme) : undefined),
     [checkerboard, sizeConfig, shape, themeColors],
   );
 
   const colorOverlayStyle = useMemo(
-    () => (checkerboard ? buildColorOverlayStyle(color, bordered, themeColors) : undefined),
+    () => (checkerboard ? buildColorOverlayStyle(color, bordered, theme) : undefined),
     [checkerboard, color, bordered, themeColors],
   );
 
@@ -75,7 +76,7 @@ export const ColorSwatch = forwardRef<HTMLDivElement, ColorSwatchProps>(function
   // -----------------------------------------------------------------------
 
   const swatchStyle = useMemo(
-    () => buildSwatchStyle(sizeConfig, color, shape, bordered, false, themeColors),
+    () => buildSwatchStyle(sizeConfig, color, shape, bordered, false, theme),
     [sizeConfig, color, shape, bordered, themeColors],
   );
 

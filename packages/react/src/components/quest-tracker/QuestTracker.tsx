@@ -31,7 +31,7 @@ import {
   buildQuestTrackerProgressTrackStyle,
   buildQuestTrackerProgressBarStyle,
 } from '@wisp-ui/core/styles/QuestTracker.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
 import { Icon } from '../../primitives/icon';
 import { Progress } from '../../primitives/progress';
@@ -49,7 +49,8 @@ export function QuestTracker({
   className,
   style: userStyle,
 }: QuestTrackerProps) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = questTrackerSizeMap[size];
   const [expanded, setExpanded] = useState(defaultExpanded);
 
@@ -63,7 +64,7 @@ export function QuestTracker({
   }, [controlledProgress, objectives]);
 
   const containerStyle = useMemo(
-    () => buildQuestTrackerContainerStyle(themeColors, sizeConfig),
+    () => buildQuestTrackerContainerStyle(theme, sizeConfig),
     [themeColors, sizeConfig],
   );
   const headerStyle = useMemo(
@@ -71,11 +72,11 @@ export function QuestTracker({
     [sizeConfig, collapsible],
   );
   const titleStyle = useMemo(
-    () => buildQuestTrackerTitleStyle(themeColors, sizeConfig),
+    () => buildQuestTrackerTitleStyle(theme, sizeConfig),
     [themeColors, sizeConfig],
   );
   const chevronStyle = useMemo(
-    () => buildQuestTrackerChevronStyle(themeColors, expanded),
+    () => buildQuestTrackerChevronStyle(theme, expanded),
     [themeColors, expanded],
   );
   const listStyle = useMemo(
@@ -83,11 +84,11 @@ export function QuestTracker({
     [sizeConfig],
   );
   const progressTrackStyle = useMemo(
-    () => buildQuestTrackerProgressTrackStyle(themeColors),
+    () => buildQuestTrackerProgressTrackStyle(theme),
     [themeColors],
   );
   const progressBarStyle = useMemo(
-    () => buildQuestTrackerProgressBarStyle(themeColors, progress),
+    () => buildQuestTrackerProgressBarStyle(theme, progress),
     [themeColors, progress],
   );
 
@@ -127,10 +128,10 @@ export function QuestTracker({
         <div style={listStyle as React.CSSProperties}>
           {objectives.map((obj) => {
             const status: QuestObjectiveStatus = obj.status || 'incomplete';
-            const objStyle = buildQuestTrackerObjectiveStyle(!!onObjectiveClick);
-            const indicatorStyle = buildQuestTrackerIndicatorStyle(themeColors, sizeConfig, status);
-            const labelStyle = buildQuestTrackerLabelStyle(themeColors, sizeConfig, status);
-            const counterStyle = buildQuestTrackerCounterStyle(themeColors, sizeConfig);
+            const objStyle = buildQuestTrackerObjectiveStyle(!!onObjectiveClick, theme);
+            const indicatorStyle = buildQuestTrackerIndicatorStyle(theme, sizeConfig, status);
+            const labelStyle = buildQuestTrackerLabelStyle(theme, sizeConfig, status);
+            const counterStyle = buildQuestTrackerCounterStyle(theme, sizeConfig);
             const hasCounter = obj.current !== undefined && obj.target !== undefined;
 
             return (

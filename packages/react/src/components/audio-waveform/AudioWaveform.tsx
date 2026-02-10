@@ -6,7 +6,7 @@
  */
 
 import React, { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import type { AudioWaveformProps } from '@wisp-ui/core/types/AudioWaveform.types';
 import { audioWaveformSizeMap } from '@wisp-ui/core/types/AudioWaveform.types';
 import {
@@ -39,7 +39,8 @@ export const AudioWaveform = forwardRef<HTMLDivElement, AudioWaveformProps>(func
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = audioWaveformSizeMap[size];
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
@@ -50,13 +51,13 @@ export const AudioWaveform = forwardRef<HTMLDivElement, AudioWaveformProps>(func
 
   // Resolve colors
   const colors = useMemo(
-    () => resolveAudioWaveformColors(color, themeColors),
+    () => resolveAudioWaveformColors(color, theme),
     [color, themeColors],
   );
 
   // Skeleton early return
   if (skeleton) {
-    const skeletonStyle = buildAudioWaveformSkeletonStyle(sizeConfig, responsive, themeColors);
+    const skeletonStyle = buildAudioWaveformSkeletonStyle(sizeConfig, responsive, theme);
     return (
       <div
         aria-hidden

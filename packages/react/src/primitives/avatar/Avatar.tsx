@@ -11,7 +11,7 @@ import {
   buildSkeletonStyle,
   extractInitials,
 } from '@wisp-ui/core/styles/Avatar.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Avatar — Displays a user or entity representation as an image, initials, or icon.
@@ -48,7 +48,8 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = avatarSizeMap[size];
   const [imgError, setImgError] = useState(false);
 
@@ -57,24 +58,24 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
   }, []);
 
   const containerStyle = useMemo(
-    () => buildContainerStyle(sizeConfig, shape, themeColors),
+    () => buildContainerStyle(sizeConfig, shape, theme),
     [sizeConfig, shape, themeColors],
   );
 
   const innerStyle = useMemo(
-    () => buildInnerStyle(sizeConfig, shape, themeColors),
+    () => buildInnerStyle(sizeConfig, shape, theme),
     [sizeConfig, shape, themeColors],
   );
 
   const imgStyle = useMemo(() => buildImageStyle(), []);
 
   const initialsStyle = useMemo(
-    () => buildInitialsStyle(sizeConfig, themeColors),
+    () => buildInitialsStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
   if (skeleton) {
-    const skeletonStyle = buildSkeletonStyle(sizeConfig, shape, themeColors);
+    const skeletonStyle = buildSkeletonStyle(sizeConfig, shape, theme);
     return (
       <div
         aria-hidden
@@ -127,7 +128,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
       </div>
       {status && (
         <span
-          style={buildStatusStyle(sizeConfig, status, shape, themeColors)}
+          style={buildStatusStyle(sizeConfig, status, shape, theme)}
           aria-hidden
         />
       )}

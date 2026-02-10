@@ -1,9 +1,8 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { SidebarPosition, SidebarWidth } from '../types/Sidebar.types';
 import { sidebarWidthMap } from '../types/Sidebar.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -22,9 +21,10 @@ import { durations, easings } from '../tokens/motion';
 export function buildSidebarStyle(
   width: SidebarWidth,
   position: SidebarPosition,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   const resolvedWidth = sidebarWidthMap[width];
   const borderSide = position === 'left' ? 'borderRight' : 'borderLeft';
 
@@ -34,8 +34,8 @@ export function buildSidebarStyle(
     height: '100%',
     width: resolvedWidth,
     minWidth: resolvedWidth,
-    paddingTop: defaultSpacing.sm,
-    paddingBottom: defaultSpacing.sm,
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.sm,
     backgroundColor: themeColors.background.surface,
     [borderSide]: `1px solid ${themeColors.border.subtle}`,
     color: themeColors.text.onRaised,
@@ -81,16 +81,17 @@ export function buildSectionStyle(
  * @returns A `CSSStyleObject` object for the title button element.
  */
 export function buildSectionTitleStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   collapsible: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px ${defaultSpacing.xs}px`,
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    padding: `${spacing.md}px ${spacing.lg}px ${spacing.xs}px`,
+    fontSize: typography.sizes.xs.fontSize,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1.45,
     letterSpacing: 0.5,
     textTransform: 'uppercase',
@@ -171,9 +172,10 @@ export function buildItemStyle(
   hovered: boolean,
   sidebarCollapsed: boolean,
   sidebarWidth: SidebarWidth,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing, typography } = theme;
   let backgroundColor = 'transparent';
   let color = themeColors.text.onRaised;
 
@@ -187,11 +189,11 @@ export function buildItemStyle(
   const base: CSSStyleObject = {
     display: 'flex',
     alignItems: 'center',
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     backgroundColor,
     color,
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.medium,
     lineHeight: 1.43,
     fontFamily: fontFamilyStacks.sans,
     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -227,9 +229,9 @@ export function buildItemStyle(
   return {
     ...base,
     justifyContent: 'flex-start',
-    gap: defaultSpacing.md,
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.lg}px`,
-    margin: `${defaultSpacing['2xs']}px ${defaultSpacing.sm}px`,
+    gap: spacing.md,
+    padding: `${spacing.sm}px ${spacing.lg}px`,
+    margin: `${spacing['2xs']}px ${spacing.sm}px`,
     ...userStyle,
   };
 }

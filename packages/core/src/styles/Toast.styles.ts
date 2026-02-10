@@ -1,9 +1,8 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ToastVariant } from '../types/Toast.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -44,8 +43,9 @@ export interface ToastColors {
  */
 export function resolveToastColors(
   variant: ToastVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): ToastColors {
+  const { colors: themeColors } = theme;
   const base = {
     description: themeColors.text.secondary,
     dismiss: themeColors.text.muted,
@@ -98,7 +98,7 @@ export function resolveToastColors(
       };
 
     default:
-      return resolveToastColors('default', themeColors);
+      return resolveToastColors('default', theme);
   }
 }
 
@@ -116,15 +116,17 @@ export function resolveToastColors(
 export function buildToastStyle(
   colors: ToastColors,
   surface: SurfaceVariant = 'solid',
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii, spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
     boxSizing: 'border-box',
-    padding: `${defaultSpacing.md}px ${defaultSpacing.md}px`,
-    borderRadius: defaultRadii.lg,
+    padding: `${spacing.md}px ${spacing.md}px`,
+    borderRadius: radii.lg,
     border: `1px solid ${colors.border}`,
     backgroundColor: colors.bg,
     fontFamily: fontFamilyStacks.sans,
@@ -164,11 +166,12 @@ export function buildIconStyle(colors: ToastColors): CSSStyleObject {
  *
  * @returns A `CSSStyleObject` object for the content `<div>`.
  */
-export function buildContentStyle(): CSSStyleObject {
+export function buildContentStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: defaultSpacing['2xs'],
+    gap: spacing['2xs'],
     flex: 1,
     minWidth: 0,
   };
@@ -184,12 +187,13 @@ export function buildContentStyle(): CSSStyleObject {
  * @param colors - Resolved color tokens from {@link resolveToastColors}.
  * @returns A `CSSStyleObject` object for the title `<p>`.
  */
-export function buildTitleStyle(colors: ToastColors): CSSStyleObject {
+export function buildTitleStyle(colors: ToastColors, theme: WispTheme): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    lineHeight: `${defaultTypography.sizes.sm.lineHeight}px`,
-    fontWeight: defaultTypography.weights.medium,
+    fontSize: typography.sizes.sm.fontSize,
+    lineHeight: `${typography.sizes.sm.lineHeight}px`,
+    fontWeight: typography.weights.medium,
     color: colors.text,
     margin: 0,
   };
@@ -205,12 +209,13 @@ export function buildTitleStyle(colors: ToastColors): CSSStyleObject {
  * @param colors - Resolved color tokens from {@link resolveToastColors}.
  * @returns A `CSSStyleObject` object for the description `<p>`.
  */
-export function buildDescriptionStyle(colors: ToastColors): CSSStyleObject {
+export function buildDescriptionStyle(colors: ToastColors, theme: WispTheme): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
-    fontWeight: defaultTypography.weights.regular,
+    fontSize: typography.sizes.sm.fontSize,
+    lineHeight: `${typography.sizes.xs.lineHeight}px`,
+    fontWeight: typography.weights.regular,
     color: colors.description,
     margin: 0,
   };
@@ -244,7 +249,8 @@ export function buildActionStyle(): CSSStyleObject {
  * @param colors - Resolved color tokens from {@link resolveToastColors}.
  * @returns A `CSSStyleObject` object for the dismiss `<button>`.
  */
-export function buildDismissStyle(colors: ToastColors): CSSStyleObject {
+export function buildDismissStyle(colors: ToastColors, theme: WispTheme): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -255,7 +261,7 @@ export function buildDismissStyle(colors: ToastColors): CSSStyleObject {
     padding: 0,
     margin: 0,
     border: 'none',
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: 'transparent',
     color: colors.dismiss,
     cursor: 'pointer',

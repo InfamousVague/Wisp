@@ -14,7 +14,7 @@ import {
   buildEmptyStyle,
   getComboboxSkeletonStyle,
 } from '@wisp-ui/core/styles/Combobox.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Combobox -- An autocomplete-enabled dropdown selector with type-ahead filtering.
@@ -65,7 +65,8 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Com
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const generatedId = useId();
   const inputId = generatedId;
   const listboxId = generatedId + '-listbox';
@@ -274,12 +275,12 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Com
   const errorMessage = typeof error === 'string' ? error : undefined;
 
   const colors = useMemo(
-    () => resolveComboboxColors(isOpen, hasError, disabled, themeColors),
+    () => resolveComboboxColors(isOpen, hasError, disabled, theme),
     [isOpen, hasError, disabled, themeColors],
   );
 
   if (skeleton) {
-    const skeletonStyle = getComboboxSkeletonStyle(sizeConfig, themeColors, fullWidth);
+    const skeletonStyle = getComboboxSkeletonStyle(sizeConfig, theme, fullWidth);
     return (
       <div
         aria-hidden
@@ -292,11 +293,11 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Com
   const wrapperStyle = buildWrapperStyle(sizeConfig, fullWidth);
   const triggerStyle = buildTriggerStyle(sizeConfig, colors, disabled);
   const comboboxInputStyle = buildComboboxInputStyle(sizeConfig, colors);
-  const labelStyleObj = buildLabelStyle(sizeConfig, colors);
+  const labelStyleObj = buildLabelStyle(sizeConfig, colors, theme);
 
   const bottomText = errorMessage || hint;
   const isStatusText = Boolean(errorMessage);
-  const hintStyleObj = bottomText ? buildHintStyle(sizeConfig, colors, isStatusText) : undefined;
+  const hintStyleObj = bottomText ? buildHintStyle(sizeConfig, colors, isStatusText, theme) : undefined;
 
   const chevronColor = colors.icon;
   const chevronSize = sizeConfig.iconSize;
@@ -384,7 +385,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Com
             id={listboxId}
             aria-label={label || 'Options'}
             style={{
-              ...buildDropdownStyle(themeColors, variant),
+              ...buildDropdownStyle(theme, variant),
               top: dropdownPosition.top,
               left: dropdownPosition.left,
               width: dropdownPosition.width,
@@ -394,7 +395,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Com
             }}
           >
             {filteredOptions.length === 0 ? (
-              <div style={buildEmptyStyle(themeColors)} role="option" aria-disabled="true" aria-selected={false}>
+              <div style={buildEmptyStyle(theme)} role="option" aria-disabled="true" aria-selected={false}>
                 {emptyMessage}
               </div>
             ) : (
@@ -410,7 +411,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Com
                     role="option"
                     aria-selected={isSelected}
                     aria-disabled={isDisabled || undefined}
-                    style={buildOptionStyle(themeColors, isHighlighted, isSelected, isDisabled)}
+                    style={buildOptionStyle(theme, isHighlighted, isSelected, isDisabled)}
                     onClick={() => {
                       if (!isDisabled) {
                         selectOption(opt.value);

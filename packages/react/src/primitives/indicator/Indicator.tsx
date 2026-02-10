@@ -9,7 +9,7 @@ import {
   buildIndicatorDotStyle,
   buildIndicatorContainerStyle,
 } from '@wisp-ui/core/styles/Indicator.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // Inject pulse keyframe once
 let pulseInjected = false;
@@ -48,18 +48,19 @@ export const Indicator = forwardRef<HTMLSpanElement, IndicatorProps>(function In
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   useEffect(() => {
     if (state === 'active') injectPulseKeyframe();
   }, [state]);
 
   const sizeConfig = indicatorSizeMap[size];
-  const color = useMemo(() => resolveIndicatorColor(variant, themeColors), [variant, themeColors]);
+  const color = useMemo(() => resolveIndicatorColor(variant, theme), [variant, themeColors]);
 
   const containerStyle = useMemo(() => buildIndicatorContainerStyle(), []);
   const dotStyle = useMemo(
-    () => buildIndicatorDotStyle(sizeConfig, color, state),
+    () => buildIndicatorDotStyle(sizeConfig, color, state, theme),
     [sizeConfig, color, state],
   );
 

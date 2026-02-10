@@ -5,12 +5,11 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { CommandSize } from '../types/Command.types';
 import { commandSizeMap } from '../types/Command.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
 
@@ -18,7 +17,8 @@ import { durations, easings } from '../tokens/motion';
 // Overlay
 // ---------------------------------------------------------------------------
 
-export function buildOverlayStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildOverlayStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     position: 'fixed',
     top: 0,
@@ -40,9 +40,10 @@ export function buildOverlayStyle(themeColors: ThemeColors): CSSStyleObject {
 
 export function buildPanelStyle(
   size: CommandSize,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   variant: SurfaceVariant = 'solid',
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   const base: CSSStyleObject = {
     position: 'relative',
     display: 'flex',
@@ -52,7 +53,7 @@ export function buildPanelStyle(
     maxHeight: 420,
     backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: defaultRadii.lg,
+    borderRadius: radii.lg,
     boxShadow: '0 16px 48px rgba(0, 0, 0, 0.4)',
     outline: 'none',
     overflow: 'hidden',
@@ -60,7 +61,7 @@ export function buildPanelStyle(
   };
 
   if (variant === 'glass') {
-    return { ...base, ...glassStyle, borderRadius: defaultRadii.lg, overflow: 'hidden' };
+    return { ...base, ...glassStyle, borderRadius: radii.lg, overflow: 'hidden' };
   }
 
   return base;
@@ -70,13 +71,14 @@ export function buildPanelStyle(
 // Input wrapper
 // ---------------------------------------------------------------------------
 
-export function buildInputWrapperStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildInputWrapperStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: defaultSpacing.sm,
-    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px`,
+    gap: spacing.sm,
+    padding: `${spacing.md}px ${spacing.lg}px`,
     borderBottom: `1px solid ${themeColors.border.subtle}`,
     flexShrink: 0,
   };
@@ -86,15 +88,16 @@ export function buildInputWrapperStyle(themeColors: ThemeColors): CSSStyleObject
 // Input
 // ---------------------------------------------------------------------------
 
-export function buildInputStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildInputStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     flex: 1,
     border: 'none',
     outline: 'none',
     backgroundColor: 'transparent',
     color: themeColors.text.primary,
-    fontSize: defaultTypography.sizes.base.fontSize,
-    lineHeight: `${defaultTypography.sizes.base.lineHeight}px`,
+    fontSize: typography.sizes.base.fontSize,
+    lineHeight: `${typography.sizes.base.lineHeight}px`,
     fontFamily: fontFamilyStacks.sans,
     padding: 0,
     margin: 0,
@@ -105,7 +108,8 @@ export function buildInputStyle(themeColors: ThemeColors): CSSStyleObject {
 // Input icon
 // ---------------------------------------------------------------------------
 
-export function buildInputIconStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildInputIconStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -118,11 +122,12 @@ export function buildInputIconStyle(themeColors: ThemeColors): CSSStyleObject {
 // List container
 // ---------------------------------------------------------------------------
 
-export function buildListStyle(): CSSStyleObject {
+export function buildListStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     overflowY: 'auto',
     maxHeight: 320,
-    padding: `${defaultSpacing.sm}px 0`,
+    padding: `${spacing.sm}px 0`,
     flex: 1,
   };
 }
@@ -131,12 +136,13 @@ export function buildListStyle(): CSSStyleObject {
 // Group heading
 // ---------------------------------------------------------------------------
 
-export function buildGroupHeadingStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildGroupHeadingStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.lg}px ${defaultSpacing.xs}px`,
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    fontWeight: defaultTypography.weights.medium,
-    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
+    padding: `${spacing.sm}px ${spacing.lg}px ${spacing.xs}px`,
+    fontSize: typography.sizes.xs.fontSize,
+    fontWeight: typography.weights.medium,
+    lineHeight: `${typography.sizes.xs.lineHeight}px`,
     color: themeColors.text.muted,
     textTransform: 'uppercase',
     letterSpacing: 1,
@@ -150,16 +156,17 @@ export function buildGroupHeadingStyle(themeColors: ThemeColors): CSSStyleObject
 // ---------------------------------------------------------------------------
 
 export function buildItemStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isActive: boolean,
   isDisabled: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: defaultSpacing.md,
-    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px`,
+    gap: spacing.md,
+    padding: `${spacing.md}px ${spacing.lg}px`,
     cursor: isDisabled ? 'default' : 'pointer',
     backgroundColor: isActive ? themeColors.accent.highlight : 'transparent',
     color: isDisabled ? themeColors.text.muted : themeColors.text.primary,
@@ -175,9 +182,10 @@ export function buildItemStyle(
 // ---------------------------------------------------------------------------
 
 export function buildItemIconStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isDisabled: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -192,13 +200,14 @@ export function buildItemIconStyle(
 // Item label area
 // ---------------------------------------------------------------------------
 
-export function buildItemLabelStyle(): CSSStyleObject {
+export function buildItemLabelStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     flex: 1,
     minWidth: 0,
     display: 'flex',
     flexDirection: 'column',
-    gap: defaultSpacing['2xs'],
+    gap: spacing['2xs'],
   };
 }
 
@@ -206,10 +215,11 @@ export function buildItemLabelStyle(): CSSStyleObject {
 // Item description
 // ---------------------------------------------------------------------------
 
-export function buildItemDescriptionStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildItemDescriptionStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
+    fontSize: typography.sizes.xs.fontSize,
+    lineHeight: `${typography.sizes.xs.lineHeight}px`,
     color: themeColors.text.secondary,
   };
 }
@@ -218,15 +228,16 @@ export function buildItemDescriptionStyle(themeColors: ThemeColors): CSSStyleObj
 // Item shortcut
 // ---------------------------------------------------------------------------
 
-export function buildItemShortcutStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildItemShortcutStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
     marginLeft: 'auto',
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
+    fontSize: typography.sizes.xs.fontSize,
+    lineHeight: `${typography.sizes.xs.lineHeight}px`,
     color: themeColors.text.secondary,
     fontFamily: fontFamilyStacks.sans,
     display: 'flex',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
     flexShrink: 0,
   };
 }
@@ -235,18 +246,19 @@ export function buildItemShortcutStyle(themeColors: ThemeColors): CSSStyleObject
 // Shortcut key
 // ---------------------------------------------------------------------------
 
-export function buildShortcutKeyStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildShortcutKeyStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, radii, spacing, typography } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: 20,
     height: 20,
-    padding: `0 ${defaultSpacing.xs}px`,
-    fontSize: defaultTypography.sizes.xs.fontSize,
-    fontWeight: defaultTypography.weights.medium,
-    lineHeight: `${defaultTypography.sizes.sm.lineHeight}px`,
-    borderRadius: defaultRadii.sm,
+    padding: `0 ${spacing.xs}px`,
+    fontSize: typography.sizes.xs.fontSize,
+    fontWeight: typography.weights.medium,
+    lineHeight: `${typography.sizes.sm.lineHeight}px`,
+    borderRadius: radii.sm,
     backgroundColor: themeColors.accent.highlight,
     color: themeColors.text.secondary,
   };
@@ -256,10 +268,11 @@ export function buildShortcutKeyStyle(themeColors: ThemeColors): CSSStyleObject 
 // Separator
 // ---------------------------------------------------------------------------
 
-export function buildSeparatorStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildSeparatorStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     height: 1,
-    margin: `${defaultSpacing.xs}px 0`,
+    margin: `${spacing.xs}px 0`,
     backgroundColor: themeColors.border.subtle,
   };
 }
@@ -268,12 +281,13 @@ export function buildSeparatorStyle(themeColors: ThemeColors): CSSStyleObject {
 // Empty state
 // ---------------------------------------------------------------------------
 
-export function buildEmptyStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildEmptyStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
-    padding: `${defaultSpacing['2xl']}px ${defaultSpacing.lg}px`,
+    padding: `${spacing['2xl']}px ${spacing.lg}px`,
     textAlign: 'center',
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    lineHeight: `${defaultTypography.sizes.sm.lineHeight}px`,
+    fontSize: typography.sizes.sm.fontSize,
+    lineHeight: `${typography.sizes.sm.lineHeight}px`,
     color: themeColors.text.muted,
     fontFamily: fontFamilyStacks.sans,
   };
@@ -283,11 +297,12 @@ export function buildEmptyStyle(themeColors: ThemeColors): CSSStyleObject {
 // Loading state
 // ---------------------------------------------------------------------------
 
-export function buildLoadingStyle(): CSSStyleObject {
+export function buildLoadingStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: `${defaultSpacing.xl}px ${defaultSpacing.lg}px`,
+    padding: `${spacing.xl}px ${spacing.lg}px`,
   };
 }

@@ -3,9 +3,8 @@
  */
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ActivityFeedSizeConfig } from '../types/ActivityFeed.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -25,14 +24,16 @@ export function buildFeedContainerStyle(): CSSStyleObject {
 
 export function buildFeedItemStyle(
   sizeConfig: ActivityFeedSizeConfig,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-start',
     gap: sizeConfig.gap,
     position: 'relative',
-    padding: `${defaultSpacing.md}px 0`,
+    padding: `${spacing.md}px 0`,
   };
 }
 
@@ -42,13 +43,14 @@ export function buildFeedItemStyle(
 
 export function buildFeedAvatarStyle(
   sizeConfig: ActivityFeedSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   iconColor?: string,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, typography } = theme;
   return {
     width: sizeConfig.avatarSize,
     height: sizeConfig.avatarSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: iconColor || themeColors.accent.highlight,
     display: 'flex',
     alignItems: 'center',
@@ -57,7 +59,7 @@ export function buildFeedAvatarStyle(
     overflow: 'hidden',
     color: themeColors.text.secondary,
     fontSize: sizeConfig.secondaryFontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     position: 'relative',
     zIndex: 1,
   };
@@ -69,8 +71,9 @@ export function buildFeedAvatarStyle(
 
 export function buildFeedConnectorStyle(
   sizeConfig: ActivityFeedSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     position: 'absolute',
     left: sizeConfig.avatarSize / 2 - sizeConfig.lineWidth / 2,
@@ -87,8 +90,9 @@ export function buildFeedConnectorStyle(
 
 export function buildFeedContentStyle(
   sizeConfig: ActivityFeedSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     fontSize: sizeConfig.primaryFontSize,
     lineHeight: 1.5,
@@ -99,13 +103,14 @@ export function buildFeedContentStyle(
 
 export function buildFeedTimestampStyle(
   sizeConfig: ActivityFeedSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     fontSize: sizeConfig.secondaryFontSize,
     lineHeight: 1.4,
     color: themeColors.text.muted,
     margin: 0,
-    marginTop: defaultSpacing['2xs'],
+    marginTop: spacing['2xs'],
   };
 }

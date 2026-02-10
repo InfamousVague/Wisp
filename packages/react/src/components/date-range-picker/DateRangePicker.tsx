@@ -14,7 +14,7 @@ import {
   buildRangeDayCellStyle,
   buildSkeletonStyle,
 } from '@wisp-ui/core/styles/DateRangePicker.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import type { ThemeColors } from '@wisp-ui/core/theme/types';
 
 // ---------------------------------------------------------------------------
@@ -92,6 +92,7 @@ function CalendarMonth({
   sizeConfig,
   themeColors,
 }: CalendarMonthProps) {
+  const { theme } = useTheme();
   const daysInMonth = getDaysInMonth(year, month);
   const firstDay = getFirstDayOfMonth(year, month);
 
@@ -124,8 +125,8 @@ function CalendarMonth({
     });
   }
 
-  const gridStyle = buildCalendarGridStyle(sizeConfig);
-  const dayHeaderStyle = buildDayHeaderStyle(sizeConfig, themeColors);
+  const gridStyle = buildCalendarGridStyle(sizeConfig, theme);
+  const dayHeaderStyle = buildDayHeaderStyle(sizeConfig, theme);
 
   // Determine effective end for highlighting: if we have start but no end, use hovered
   const effectiveEnd = rangeEnd || (rangeStart && hoveredDate && !isBeforeDay(hoveredDate, rangeStart) ? hoveredDate : null);
@@ -160,7 +161,7 @@ function CalendarMonth({
 
           const cellStyle = buildRangeDayCellStyle(
             sizeConfig,
-            themeColors,
+            theme,
             isStart,
             isEnd,
             isInRange,
@@ -232,7 +233,8 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = dateRangePickerSizeMap[size];
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -372,7 +374,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
 
   // Skeleton
   if (skeleton) {
-    const skeletonStyle = buildSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = buildSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden
@@ -391,11 +393,11 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
   const hasValue = currentRange.start != null && currentRange.end != null;
 
   const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig), [sizeConfig]);
-  const labelStyleObj = useMemo(() => buildLabelStyle(sizeConfig, themeColors), [sizeConfig, themeColors]);
-  const triggerStyle = useMemo(() => buildTriggerStyle(sizeConfig, themeColors, isOpen, disabled), [sizeConfig, themeColors, isOpen, disabled]);
-  const dropdownStyle = useMemo(() => buildDropdownStyle(themeColors), [themeColors]);
-  const headerStyle = useMemo(() => buildCalendarHeaderStyle(sizeConfig), [sizeConfig]);
-  const monthYearStyle = useMemo(() => buildMonthYearStyle(sizeConfig, themeColors), [sizeConfig, themeColors]);
+  const labelStyleObj = useMemo(() => buildLabelStyle(sizeConfig, theme), [sizeConfig, themeColors]);
+  const triggerStyle = useMemo(() => buildTriggerStyle(sizeConfig, theme, isOpen, disabled), [sizeConfig, themeColors, isOpen, disabled]);
+  const dropdownStyle = useMemo(() => buildDropdownStyle(theme), [themeColors]);
+  const headerStyle = useMemo(() => buildCalendarHeaderStyle(sizeConfig, theme), [sizeConfig]);
+  const monthYearStyle = useMemo(() => buildMonthYearStyle(sizeConfig, theme), [sizeConfig, themeColors]);
 
   return (
     <div ref={ref} className={className} style={{ ...wrapperStyle, ...userStyle }} {...rest}>
@@ -464,7 +466,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
             <div style={headerStyle}>
               <button
                 type="button"
-                style={buildNavButtonStyle(sizeConfig, themeColors, hoveredNav === 'prev')}
+                style={buildNavButtonStyle(sizeConfig, theme, hoveredNav === 'prev')}
                 onMouseEnter={() => setHoveredNav('prev')}
                 onMouseLeave={() => setHoveredNav(null)}
                 onClick={goToPrevMonth}
@@ -517,7 +519,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
 
               <button
                 type="button"
-                style={buildNavButtonStyle(sizeConfig, themeColors, hoveredNav === 'next')}
+                style={buildNavButtonStyle(sizeConfig, theme, hoveredNav === 'next')}
                 onMouseEnter={() => setHoveredNav('next')}
                 onMouseLeave={() => setHoveredNav(null)}
                 onClick={goToNextMonth}

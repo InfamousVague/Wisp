@@ -3,7 +3,7 @@ import type { SegmentedControlProps } from '@wisp-ui/core/types/SegmentedControl
 import type { CSSStyleObject } from '@wisp-ui/core/types';
 import { segmentedControlSizeMap } from '@wisp-ui/core/types/SegmentedControl.types';
 import { buildContainerStyle, buildSegmentStyle, buildIndicatorStyle } from '@wisp-ui/core/styles/SegmentedControl.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /** Use `useLayoutEffect` on the client and `useEffect` during SSR. */
 const useIsomorphicLayoutEffect =
@@ -39,7 +39,8 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
       className, style: userStyle, ...rest },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const isControlled = controlledValue !== undefined;
     const [internalValue, setInternalValue] = useState<string | undefined>(defaultValue);
     const selectedValue = isControlled ? controlledValue : internalValue;
@@ -108,7 +109,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
     }, [selectedValue, options, size, fullWidth]);
 
     const containerStyle = useMemo(
-      () => buildContainerStyle({ fullWidth, themeColors, userStyle: userStyle as CSSStyleObject }),
+      () => buildContainerStyle({ fullWidth, theme, userStyle: userStyle as CSSStyleObject }),
       [fullWidth, themeColors, userStyle],
     );
 
@@ -125,7 +126,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
               width: indicatorRect.w,
               height: sizeConfig.height,
               animate: shouldAnimate,
-              themeColors,
+              theme,
             })}
           />
         )}
@@ -135,7 +136,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
           const isSegmentDisabled = disabled || Boolean(option.disabled);
           const isHovered = hoveredIndex === index;
           const segStyle = buildSegmentStyle({
-            size, isActive, isDisabled: isSegmentDisabled, isHovered, fullWidth, themeColors,
+            size, isActive, isDisabled: isSegmentDisabled, isHovered, fullWidth, theme,
           });
           return (
             <button

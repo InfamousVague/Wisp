@@ -16,7 +16,7 @@ import {
   calculatePosition,
   resolveTooltipColors,
 } from "@wisp-ui/core/styles/Tooltip.styles";
-import { useThemeColors } from "../../providers";
+import { useTheme } from "../../providers";
 
 /**
  * Tooltip -- Hover/focus-triggered popover displaying contextual text content.
@@ -51,7 +51,8 @@ export const Tooltip = forwardRef<HTMLElement, TooltipProps>(function Tooltip(
   },
   _ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const tooltipId = useId();
 
   const [isVisible, setIsVisible] = useState(false);
@@ -65,7 +66,7 @@ export const Tooltip = forwardRef<HTMLElement, TooltipProps>(function Tooltip(
 
   // Resolve colors
   const colors = useMemo(
-    () => resolveTooltipColors(themeColors),
+    () => resolveTooltipColors(theme),
     [themeColors],
   );
 
@@ -115,7 +116,7 @@ export const Tooltip = forwardRef<HTMLElement, TooltipProps>(function Tooltip(
 
   // Build styles
   const tooltipStyle = useMemo(
-    () => buildTooltipStyle(colors, maxWidth, isVisible, placement, variant),
+    () => buildTooltipStyle(colors, maxWidth, isVisible, placement, variant, theme),
     [colors, maxWidth, isVisible, placement, variant],
   );
 

@@ -5,7 +5,7 @@
  */
 
 import React, { forwardRef, useCallback, useMemo } from 'react';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import type { ReactionBarProps } from '@wisp-ui/core/types/ReactionBar.types';
 import { reactionBarSizeMap } from '@wisp-ui/core/types/ReactionBar.types';
 import {
@@ -49,16 +49,17 @@ export const ReactionBar = forwardRef<HTMLDivElement, ReactionBarProps>(function
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = reactionBarSizeMap[size];
 
   const colors = useMemo(
-    () => resolveReactionBarColors(themeColors),
+    () => resolveReactionBarColors(theme),
     [themeColors],
   );
 
   if (skeleton) {
-    const skeletonStyle = buildReactionBarSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = buildReactionBarSkeletonStyle(sizeConfig, theme);
     return <div aria-hidden className={className} style={{ ...skeletonStyle, ...userStyle }} />;
   }
 
@@ -88,8 +89,8 @@ export const ReactionBar = forwardRef<HTMLDivElement, ReactionBarProps>(function
     >
       {visibleReactions.map((reaction) => {
         const isActive = reaction.active ?? false;
-        const btnStyle = buildReactionButtonStyle(sizeConfig, colors, isActive);
-        const countStyle = buildReactionCountStyle(sizeConfig, colors, isActive);
+        const btnStyle = buildReactionButtonStyle(sizeConfig, colors, isActive, theme);
+        const countStyle = buildReactionCountStyle(sizeConfig, colors, isActive, theme);
 
         return (
           <button

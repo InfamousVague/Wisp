@@ -4,9 +4,8 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ReactionBarSizeConfig } from '../types/ReactionBar.types';
-import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -25,7 +24,8 @@ export interface ReactionBarColors {
   addButtonColor: string;
 }
 
-export function resolveReactionBarColors(themeColors: ThemeColors): ReactionBarColors {
+export function resolveReactionBarColors(theme: WispTheme): ReactionBarColors {
+  const { colors: themeColors } = theme;
   return {
     bg: themeColors.background.surface,
     border: themeColors.border.subtle,
@@ -63,16 +63,18 @@ export function buildReactionButtonStyle(
   sizeConfig: ReactionBarSizeConfig,
   colors: ReactionBarColors,
   active: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
     height: sizeConfig.buttonSize,
     minWidth: sizeConfig.buttonSize,
-    paddingLeft: defaultSpacing.sm,
-    paddingRight: defaultSpacing.sm,
+    paddingLeft: spacing.sm,
+    paddingRight: spacing.sm,
     borderRadius: sizeConfig.borderRadius - 2,
     border: `1px solid ${active ? colors.buttonBorderActive : colors.buttonBorder}`,
     backgroundColor: active ? colors.buttonBgActive : colors.buttonBg,
@@ -87,10 +89,12 @@ export function buildReactionCountStyle(
   sizeConfig: ReactionBarSizeConfig,
   colors: ReactionBarColors,
   active: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontSize: sizeConfig.countFontSize,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: active ? colors.textActive : colors.text,
     lineHeight: 1,
     userSelect: 'none',
@@ -121,8 +125,9 @@ export function buildAddButtonStyle(
 
 export function buildReactionBarSkeletonStyle(
   sizeConfig: ReactionBarSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'inline-block',
     width: sizeConfig.buttonSize * 5 + sizeConfig.gap * 4 + sizeConfig.padding * 2,

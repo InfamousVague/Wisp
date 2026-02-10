@@ -7,7 +7,7 @@ import {
   buildFallbackStyle,
   buildSkeletonStyle,
 } from '@wisp-ui/core/styles/Image.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Image — Displays an image with built-in loading, error, and skeleton states.
@@ -48,7 +48,8 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const [status, setStatus] = useState<'loading' | 'loaded' | 'error'>('loading');
 
   // Reset state when src changes
@@ -73,7 +74,7 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
   );
 
   const wrapperStyle = useMemo(
-    () => buildWrapperStyle(radius, aspectRatio, themeColors),
+    () => buildWrapperStyle(radius, aspectRatio, theme),
     [radius, aspectRatio, themeColors],
   );
 
@@ -83,12 +84,12 @@ export const Image = forwardRef<HTMLDivElement, ImageProps>(function Image(
   );
 
   const fallbackStyle = useMemo(
-    () => buildFallbackStyle(themeColors),
+    () => buildFallbackStyle(theme),
     [themeColors],
   );
 
   const skeletonStyle = useMemo(
-    () => buildSkeletonStyle(themeColors),
+    () => buildSkeletonStyle(theme),
     [themeColors],
   );
 

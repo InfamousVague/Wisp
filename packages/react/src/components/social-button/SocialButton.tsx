@@ -5,7 +5,7 @@ import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import type { SocialButtonProps } from '@wisp-ui/core/types/SocialButton.types';
 import { socialButtonSizeMap, socialProviderConfigs } from '@wisp-ui/core/types/SocialButton.types';
 import { buildSocialButtonStyle } from '@wisp-ui/core/styles/SocialButton.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Provider SVG icons (inline for zero-dependency)
@@ -128,7 +128,8 @@ export const SocialButton = forwardRef<HTMLButtonElement, SocialButtonProps>(fun
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = socialButtonSizeMap[size];
   const providerConfig = socialProviderConfigs[provider];
   const ProviderIcon = providerIcons[provider];
@@ -136,7 +137,7 @@ export const SocialButton = forwardRef<HTMLButtonElement, SocialButtonProps>(fun
   const [hovered, setHovered] = useState(false);
 
   const baseStyle = useMemo(
-    () => buildSocialButtonStyle(sizeConfig, providerConfig, variant, themeColors, fullWidth, iconOnly, !!disabled),
+    () => buildSocialButtonStyle(sizeConfig, providerConfig, variant, theme, fullWidth, iconOnly, !!disabled),
     [sizeConfig, providerConfig, variant, themeColors, fullWidth, iconOnly, disabled],
   );
 

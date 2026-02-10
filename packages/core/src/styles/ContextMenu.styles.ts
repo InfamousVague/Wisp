@@ -2,9 +2,8 @@
  * @module ContextMenu
  */
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
 
@@ -13,16 +12,17 @@ import { durations, easings } from '../tokens/motion';
 // ---------------------------------------------------------------------------
 
 export function buildContextMenuContentStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing } = theme;
   return {
     position: 'fixed',
     zIndex: zIndex.popover,
     minWidth: 180,
-    padding: `${defaultSpacing.xs}px 0`,
+    padding: `${spacing.xs}px 0`,
     backgroundColor: themeColors.background.raised,
     border: `1px solid ${themeColors.accent.dividerRaised}`,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     boxShadow: '0 8px 30px rgba(0,0,0,0.25)',
     fontFamily: fontFamilyStacks.sans,
     outline: 'none',
@@ -36,8 +36,9 @@ export function buildContextMenuContentStyle(
 export function buildContextMenuItemStyle(
   destructive: boolean,
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   const textColor = destructive
     ? themeColors.status.danger
     : themeColors.text.onRaised;
@@ -45,9 +46,9 @@ export function buildContextMenuItemStyle(
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: defaultSpacing.sm,
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    gap: spacing.sm,
+    padding: `${spacing.sm}px ${spacing.md}px`,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.4,
     fontFamily: fontFamilyStacks.sans,
     color: disabled ? themeColors.text.muted : textColor,
@@ -62,8 +63,9 @@ export function buildContextMenuItemStyle(
 }
 
 export function buildContextMenuItemHoverStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     backgroundColor: themeColors.accent.highlightRaised,
   };
@@ -74,11 +76,12 @@ export function buildContextMenuItemHoverStyle(
 // ---------------------------------------------------------------------------
 
 export function buildContextMenuShortcutStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     marginLeft: 'auto',
-    fontSize: defaultTypography.sizes.xs.fontSize,
+    fontSize: typography.sizes.xs.fontSize,
     color: themeColors.accent.mutedRaised,
     fontFamily: fontFamilyStacks.sans,
   };
@@ -89,11 +92,12 @@ export function buildContextMenuShortcutStyle(
 // ---------------------------------------------------------------------------
 
 export function buildContextMenuSeparatorStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     height: 1,
-    margin: `${defaultSpacing.xs}px 0`,
+    margin: `${spacing.xs}px 0`,
     backgroundColor: themeColors.accent.dividerRaised,
   };
 }

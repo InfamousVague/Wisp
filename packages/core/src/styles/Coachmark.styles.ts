@@ -4,10 +4,9 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { CoachmarkVariant, CoachmarkPlacement } from '../types/Coachmark.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Colour resolution
@@ -27,8 +26,9 @@ export interface CoachmarkColors {
  */
 export function resolveCoachmarkColors(
   variant: CoachmarkVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CoachmarkColors {
+  const { colors: themeColors } = theme;
   switch (variant) {
     case 'info':
       return {
@@ -75,15 +75,17 @@ export function resolveCoachmarkColors(
  */
 export function buildCoachmarkPanelStyle(
   colors: CoachmarkColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii, spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: defaultSpacing.sm,
-    padding: defaultSpacing.lg,
+    gap: spacing.sm,
+    padding: spacing.lg,
     backgroundColor: colors.bg,
     border: `1px solid ${colors.border}`,
-    borderRadius: defaultRadii.lg,
+    borderRadius: radii.lg,
     fontFamily: fontFamilyStacks.sans,
     maxWidth: 320,
     boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08)',
@@ -160,10 +162,12 @@ export function buildCoachmarkArrowStyle(
  */
 export function buildCoachmarkTitleStyle(
   textColor: string,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1.43,
     color: textColor,
     margin: 0,
@@ -179,10 +183,12 @@ export function buildCoachmarkTitleStyle(
  */
 export function buildCoachmarkDescriptionStyle(
   descriptionColor: string,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.regular,
     lineHeight: 1.46,
     color: descriptionColor,
     margin: 0,
@@ -196,13 +202,14 @@ export function buildCoachmarkDescriptionStyle(
 /**
  * Builds the footer area style (action + dismiss buttons).
  */
-export function buildCoachmarkFooterStyle(): CSSStyleObject {
+export function buildCoachmarkFooterStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    gap: defaultSpacing.sm,
-    marginTop: defaultSpacing.xs,
+    gap: spacing.sm,
+    marginTop: spacing.xs,
   };
 }
 
@@ -214,16 +221,17 @@ export function buildCoachmarkFooterStyle(): CSSStyleObject {
  * Builds the dismiss button style.
  */
 export function buildCoachmarkDismissButtonStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing, typography } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    padding: `${spacing.sm}px ${spacing.md}px`,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.medium,
     lineHeight: 1,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     border: 'none',
     backgroundColor: 'transparent',
     color: themeColors.text.muted,
@@ -241,15 +249,17 @@ export function buildCoachmarkDismissButtonStyle(
  */
 export function buildCoachmarkActionButtonStyle(
   colors: CoachmarkColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii, spacing, typography } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.lg}px`,
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    padding: `${spacing.sm}px ${spacing.lg}px`,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.medium,
     lineHeight: 1,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     border: `1px solid ${colors.border}`,
     backgroundColor: 'transparent',
     color: colors.text,

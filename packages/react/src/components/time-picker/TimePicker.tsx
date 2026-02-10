@@ -11,7 +11,7 @@ import {
   buildTimePickerErrorStyle,
   buildTimePickerSkeletonStyle,
 } from '@wisp-ui/core/styles/TimePicker.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
 
 // ---------------------------------------------------------------------------
@@ -125,7 +125,8 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(function T
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = timePickerSizeMap[size];
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -169,25 +170,25 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(function T
   }, [minuteStep]);
 
   // Styles
-  const containerStyle = useMemo(() => buildTimePickerContainerStyle(sizeConfig), [sizeConfig]);
+  const containerStyle = useMemo(() => buildTimePickerContainerStyle(sizeConfig, theme), [sizeConfig]);
   const triggerStyle = useMemo(
-    () => buildTimePickerTriggerStyle(sizeConfig, themeColors, isOpen, disabled, hasError, false),
+    () => buildTimePickerTriggerStyle(sizeConfig, theme, isOpen, disabled, hasError, false),
     [sizeConfig, themeColors, isOpen, disabled, hasError],
   );
   const dropdownStyle = useMemo(
-    () => buildTimePickerDropdownStyle(sizeConfig, themeColors),
+    () => buildTimePickerDropdownStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
   const columnStyle = useMemo(
-    () => buildTimePickerColumnStyle(sizeConfig, themeColors),
+    () => buildTimePickerColumnStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
   const labelStyle = useMemo(
-    () => buildTimePickerLabelStyle(sizeConfig, themeColors, disabled),
+    () => buildTimePickerLabelStyle(sizeConfig, theme, disabled),
     [sizeConfig, themeColors, disabled],
   );
   const errorStyle = useMemo(
-    () => buildTimePickerErrorStyle(sizeConfig, themeColors),
+    () => buildTimePickerErrorStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
@@ -288,7 +289,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(function T
 
   // Skeleton
   if (skeleton) {
-    const skeletonStyle = buildTimePickerSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = buildTimePickerSkeletonStyle(sizeConfig, theme);
     return (
       <div aria-hidden data-testid="time-picker-skeleton" className={className} style={{ ...skeletonStyle, ...userStyle }} />
     );
@@ -339,7 +340,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(function T
                   role="option"
                   aria-selected={isSelected}
                   data-selected={isSelected || undefined}
-                  style={buildTimePickerOptionStyle(sizeConfig, themeColors, isSelected, hoveredHour === hour)}
+                  style={buildTimePickerOptionStyle(sizeConfig, theme, isSelected, hoveredHour === hour)}
                   onClick={() => handleHourSelect(hour)}
                   onMouseEnter={() => setHoveredHour(hour)}
                   onMouseLeave={() => setHoveredHour(null)}
@@ -360,7 +361,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(function T
                   role="option"
                   aria-selected={isSelected}
                   data-selected={isSelected || undefined}
-                  style={buildTimePickerOptionStyle(sizeConfig, themeColors, isSelected, hoveredMinute === minute)}
+                  style={buildTimePickerOptionStyle(sizeConfig, theme, isSelected, hoveredMinute === minute)}
                   onClick={() => handleMinuteSelect(minute)}
                   onMouseEnter={() => setHoveredMinute(minute)}
                   onMouseLeave={() => setHoveredMinute(null)}
@@ -382,7 +383,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(function T
                     role="option"
                     aria-selected={isSelected}
                     data-selected={isSelected || undefined}
-                    style={buildTimePickerOptionStyle(sizeConfig, themeColors, isSelected, hoveredPeriod === period)}
+                    style={buildTimePickerOptionStyle(sizeConfig, theme, isSelected, hoveredPeriod === period)}
                     onClick={() => handlePeriodSelect(period)}
                     onMouseEnter={() => setHoveredPeriod(period)}
                     onMouseLeave={() => setHoveredPeriod(null)}

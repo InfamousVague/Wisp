@@ -7,9 +7,8 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { SparklineColor, SparklineSizeConfig } from '../types/Sparkline.types';
-import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Keyframe injection (singleton)
@@ -49,8 +48,9 @@ export interface SparklineColors {
  */
 export function resolveSparklineColor(
   color: SparklineColor,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): string {
+  const { colors: themeColors } = theme;
   switch (color) {
     case 'success': return themeColors.status.success;
     case 'warning': return themeColors.status.warning;
@@ -66,10 +66,11 @@ export function resolveSparklineColor(
  */
 export function resolveSparklineColors(
   color: SparklineColor,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): SparklineColors {
+  const { colors: themeColors } = theme;
   return {
-    stroke: resolveSparklineColor(color, themeColors),
+    stroke: resolveSparklineColor(color, theme),
     skeletonBg: themeColors.border.subtle,
   };
 }
@@ -117,13 +118,14 @@ export function buildSparklineSvgStyle(
 export function buildSparklineSkeletonStyle(
   sizeConfig: SparklineSizeConfig,
   responsive: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: responsive ? '100%' : sizeConfig.width,
     height: sizeConfig.height,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

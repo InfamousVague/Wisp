@@ -9,7 +9,7 @@ import {
   buildAvatarWrapperStyle,
   buildOverflowStyle,
 } from '@wisp-ui/core/styles/AvatarGroup.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * AvatarGroup — Displays a stack of overlapping avatars with an optional
@@ -46,7 +46,8 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const sizeConfig = avatarSizeMap[size];
 
     const allChildren = React.Children.toArray(children);
@@ -58,7 +59,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
     const groupStyle = useMemo(() => buildGroupStyle(), []);
 
     const overflowStyle = useMemo(
-      () => buildOverflowStyle(sizeConfig, spacing, themeColors),
+      () => buildOverflowStyle(sizeConfig, spacing, theme),
       [sizeConfig, spacing, themeColors],
     );
 
@@ -76,7 +77,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
             spacing,
             index,
             visibleCount,
-            themeColors,
+            theme,
           );
 
           // Clone each Avatar child to inject the group's size prop

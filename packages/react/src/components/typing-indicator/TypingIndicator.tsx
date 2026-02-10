@@ -12,7 +12,7 @@ import {
   buildTypingRowStyle,
   buildTypingSenderNameStyle,
 } from '@wisp-ui/core/styles/TypingIndicator.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Dot count
@@ -66,7 +66,8 @@ export const TypingIndicator = forwardRef<HTMLDivElement, TypingIndicatorProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
 
     // Inject keyframes on mount (SSR-safe)
     useEffect(() => {
@@ -76,7 +77,7 @@ export const TypingIndicator = forwardRef<HTMLDivElement, TypingIndicatorProps>(
     const dotColor = color ?? themeColors.text.muted;
 
     const dotsContainerStyle = useMemo(
-      () => buildDotsContainerStyle(),
+      () => buildDotsContainerStyle(theme),
       [],
     );
 
@@ -86,7 +87,7 @@ export const TypingIndicator = forwardRef<HTMLDivElement, TypingIndicatorProps>(
         {DOT_INDICES.map((i) => (
           <span
             key={i}
-            style={buildDotStyle(i, animation, dotSize, dotColor)}
+            style={buildDotStyle(i, animation, dotSize, dotColor, theme)}
           />
         ))}
       </div>
@@ -110,22 +111,22 @@ export const TypingIndicator = forwardRef<HTMLDivElement, TypingIndicatorProps>(
 
     // ---- Bubble mode: wrap in ChatBubble-shaped container ----
     const bubbleStyle = useMemo(
-      () => buildTypingBubbleStyle(align, themeColors),
+      () => buildTypingBubbleStyle(align, theme),
       [align, themeColors],
     );
 
     const groupStyle = useMemo(
-      () => buildTypingGroupStyle(align),
+      () => buildTypingGroupStyle(align, theme),
       [align],
     );
 
     const rowStyle = useMemo(
-      () => buildTypingRowStyle(align),
+      () => buildTypingRowStyle(align, theme),
       [align],
     );
 
     const senderNameStyle = useMemo(
-      () => buildTypingSenderNameStyle(themeColors),
+      () => buildTypingSenderNameStyle(theme),
       [themeColors],
     );
 

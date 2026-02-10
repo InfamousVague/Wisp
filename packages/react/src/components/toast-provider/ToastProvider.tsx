@@ -15,6 +15,7 @@ import {
   buildToastItemWrapperStyle,
 } from '@wisp-ui/core/styles/ToastProvider.styles';
 import { Toast } from '../../primitives';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -53,6 +54,7 @@ export function ToastProvider({
   max = 5,
   children,
 }: ToastProviderProps) {
+  const { theme } = useTheme();
   const [toasts, setToasts] = useState<ToastItem[]>([]);
   const timersRef = useRef<Map<string, ReturnType<typeof setTimeout>>>(new Map());
 
@@ -124,7 +126,7 @@ export function ToastProvider({
   );
 
   const containerStyle = useMemo(
-    () => buildToastContainerStyle(position),
+    () => buildToastContainerStyle(position, theme),
     [position],
   );
 

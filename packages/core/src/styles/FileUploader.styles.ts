@@ -3,8 +3,7 @@
  */
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -12,18 +11,19 @@ import { durations, easings } from '../tokens/motion';
 // ---------------------------------------------------------------------------
 
 export function buildDropzoneStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isDragOver: boolean,
   disabled: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: defaultSpacing.sm,
-    padding: `${defaultSpacing['2xl']}px ${defaultSpacing.xl}px`,
-    borderRadius: defaultRadii.lg,
+    gap: spacing.sm,
+    padding: `${spacing['2xl']}px ${spacing.xl}px`,
+    borderRadius: radii.lg,
     border: `2px dashed ${isDragOver ? themeColors.accent.primary : themeColors.border.strong}`,
     backgroundColor: isDragOver ? themeColors.accent.highlight : 'transparent',
     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -41,15 +41,16 @@ export function buildDropzoneStyle(
 // ---------------------------------------------------------------------------
 
 export function buildDropzoneIconStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: 44,
     height: 44,
-    borderRadius: defaultRadii.lg,
+    borderRadius: radii.lg,
     backgroundColor: themeColors.accent.highlight,
     color: themeColors.text.secondary,
   };
@@ -60,11 +61,12 @@ export function buildDropzoneIconStyle(
 // ---------------------------------------------------------------------------
 
 export function buildDropzoneTitleStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1.4,
     color: themeColors.text.primary,
     margin: 0,
@@ -72,11 +74,12 @@ export function buildDropzoneTitleStyle(
 }
 
 export function buildDropzoneDescriptionStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontSize: defaultTypography.sizes.sm.fontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontSize: typography.sizes.sm.fontSize,
+    fontWeight: typography.weights.regular,
     lineHeight: 1.4,
     color: themeColors.text.muted,
     margin: 0,
@@ -88,11 +91,12 @@ export function buildDropzoneDescriptionStyle(
 // ---------------------------------------------------------------------------
 
 export function buildDropzoneLinkStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     color: themeColors.accent.primary,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     cursor: 'pointer',
     textDecoration: 'underline',
     textUnderlineOffset: 2,

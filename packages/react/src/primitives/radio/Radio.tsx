@@ -17,7 +17,7 @@ import {
   buildInnerDotStyle,
   getRadioSkeletonStyle,
 } from '@wisp-ui/core/styles/Radio.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
@@ -102,7 +102,8 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(function R
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // ---------------------------------------------------------------------------
   // Controlled / uncontrolled state
@@ -124,7 +125,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(function R
   // ---------------------------------------------------------------------------
   if (skeleton) {
     const sizeConfig = radioSizeMap[size];
-    const skeletonStyle = getRadioSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getRadioSkeletonStyle(sizeConfig, theme);
     const count = React.Children.count(children) || 3;
     return (
       <div
@@ -236,7 +237,8 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>(function Radio(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const group = useRadioGroupContext();
 
   const disabled = localDisabled || group.disabled;
@@ -335,18 +337,18 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>(function Radio(
   // Resolve colors + styles
   // ---------------------------------------------------------------------------
   const colors = useMemo(
-    () => resolveRadioColors(selected, disabled, group.error, themeColors),
+    () => resolveRadioColors(selected, disabled, group.error, theme),
     [selected, disabled, group.error, themeColors],
   );
 
   const outerStyle = useMemo(
-    () => buildOuterCircleStyle(sizeConfig, colors, disabled),
-    [sizeConfig, colors, disabled],
+    () => buildOuterCircleStyle(sizeConfig, colors, disabled, theme),
+    [sizeConfig, colors, disabled, themeColors],
   );
 
   const innerStyle = useMemo(
-    () => buildInnerDotStyle(sizeConfig, colors, selected),
-    [sizeConfig, colors, selected],
+    () => buildInnerDotStyle(sizeConfig, colors, selected, theme),
+    [sizeConfig, colors, selected, themeColors],
   );
 
   // Hover and focus-visible overrides

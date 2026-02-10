@@ -2,11 +2,11 @@
  * @module SearchInput
  */
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ComponentSize } from '../tokens/shared';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
+import { defaultTypography, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size map (reuse Input dimensions)
@@ -37,9 +37,10 @@ export function buildSearchInputContainerStyle(
   sizeConfig: SearchInputSizeConfig,
   focused: boolean,
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   fullWidth: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -65,8 +66,9 @@ export function buildSearchInputContainerStyle(
 
 export function buildSearchInputFieldStyle(
   sizeConfig: SearchInputSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     margin: 0,
     padding: 0,
@@ -91,16 +93,17 @@ export function buildSearchInputFieldStyle(
 // ---------------------------------------------------------------------------
 
 export function buildSearchInputClearButtonStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: defaultSpacing['2xs'],
+    padding: spacing['2xs'],
     margin: 0,
     border: 'none',
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     background: 'transparent',
     color: themeColors.text.muted,
     cursor: 'pointer',

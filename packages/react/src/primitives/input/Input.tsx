@@ -10,7 +10,7 @@ import {
   buildHintStyle,
   getInputSkeletonStyle,
 } from '@wisp-ui/core/styles/Input.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Input -- Text input primitive for the Wisp design system.
@@ -79,7 +79,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const generatedId = useId();
   const inputId = providedId || generatedId;
 
@@ -115,7 +116,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const warningMessage = typeof warning === 'string' ? warning : undefined;
 
   const colors = useMemo(
-    () => resolveInputColors(focused, hasError, hasWarning, disabled, themeColors),
+    () => resolveInputColors(focused, hasError, hasWarning, disabled, theme),
     [focused, hasError, hasWarning, disabled, themeColors],
   );
 
@@ -123,7 +124,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   // Skeleton
   // ---------------------------------------------------------------------------
   if (skeleton) {
-    const skeletonStyle = getInputSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getInputSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden
@@ -155,7 +156,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   );
 
   const labelStyle = useMemo(
-    () => buildLabelStyle(sizeConfig, colors),
+    () => buildLabelStyle(sizeConfig, colors, theme),
     [sizeConfig, colors],
   );
 
@@ -164,7 +165,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const isStatusText = Boolean(errorMessage || warningMessage);
 
   const hintStyle = useMemo(
-    () => (bottomText ? buildHintStyle(sizeConfig, colors, isStatusText) : undefined),
+    () => (bottomText ? buildHintStyle(sizeConfig, colors, isStatusText, theme) : undefined),
     [sizeConfig, colors, isStatusText, bottomText],
   );
 

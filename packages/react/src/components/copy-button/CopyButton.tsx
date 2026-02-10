@@ -7,7 +7,7 @@ import React, { forwardRef, useMemo, useState, useCallback, useEffect, useRef } 
 import type { CopyButtonProps } from '@wisp-ui/core/types/CopyButton.types';
 import { copyButtonSizeMap } from '@wisp-ui/core/types/CopyButton.types';
 import { buildCopyButtonStyle, getCopyButtonSkeletonStyle } from '@wisp-ui/core/styles/CopyButton.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Inline SVG icons
@@ -77,7 +77,8 @@ export const CopyButton = forwardRef<HTMLButtonElement, CopyButtonProps>(functio
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = copyButtonSizeMap[size];
 
   const [isCopied, setIsCopied] = useState(false);
@@ -123,14 +124,14 @@ export const CopyButton = forwardRef<HTMLButtonElement, CopyButtonProps>(functio
 
   // Skeleton
   if (skeleton) {
-    const skeletonStyle = getCopyButtonSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getCopyButtonSkeletonStyle(sizeConfig, theme);
     return (
       <div aria-hidden data-testid="copy-button-skeleton" className={className} style={{ ...skeletonStyle, ...userStyle }} />
     );
   }
 
   const buttonStyle = useMemo(
-    () => buildCopyButtonStyle(sizeConfig, themeColors, variant, isCopied, hovered, disabled),
+    () => buildCopyButtonStyle(sizeConfig, theme, variant, isCopied, hovered, disabled),
     [sizeConfig, themeColors, variant, isCopied, hovered, disabled],
   );
 

@@ -14,7 +14,7 @@ import {
   buildValueTextStyle,
   buildLabelTextStyle,
 } from '@wisp-ui/core/styles/CircularProgress.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * CircularProgress -- Circular progress indicator for the Wisp design system.
@@ -64,7 +64,8 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const baseSizeConfig = circularProgressSizeMap[size];
 
     // Apply thickness override if provided
@@ -101,7 +102,7 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
     // Colors
     // -----------------------------------------------------------------------
     const colors = useMemo(
-      () => resolveCircularProgressColors(color, themeColors),
+      () => resolveCircularProgressColors(color, theme),
       [color, themeColors],
     );
 
@@ -154,12 +155,12 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
     );
 
     const valueTextStyle = useMemo(
-      () => buildValueTextStyle(sizeConfig, colors),
+      () => buildValueTextStyle(sizeConfig, colors, theme),
       [sizeConfig, colors],
     );
 
     const labelTextStyle = useMemo(
-      () => buildLabelTextStyle(sizeConfig, colors),
+      () => buildLabelTextStyle(sizeConfig, colors, theme),
       [sizeConfig, colors],
     );
 

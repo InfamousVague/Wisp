@@ -4,9 +4,8 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ReadReceiptStatus, ReadReceiptSizeConfig } from '../types/ReadReceipt.types';
-import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -20,8 +19,9 @@ export interface ReadReceiptColors {
 
 export function resolveReadReceiptColors(
   status: ReadReceiptStatus,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): ReadReceiptColors {
+  const { colors: themeColors } = theme;
   const base: ReadReceiptColors = {
     icon: themeColors.text.muted,
     label: themeColors.text.muted,
@@ -84,13 +84,14 @@ export function buildReadReceiptLabelStyle(
 
 export function buildReadReceiptSkeletonStyle(
   sizeConfig: ReadReceiptSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: sizeConfig.iconSize * 3,
     height: sizeConfig.iconSize,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

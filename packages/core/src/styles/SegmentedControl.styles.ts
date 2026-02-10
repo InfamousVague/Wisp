@@ -1,9 +1,8 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { SegmentedControlSize, SegmentedControlSizeConfig } from '../types/SegmentedControl.types';
 import { segmentedControlSizeMap } from '../types/SegmentedControl.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 /**
@@ -17,17 +16,18 @@ import { durations, easings } from '../tokens/motion';
  */
 export function buildContainerStyle(opts: {
   fullWidth: boolean;
-  themeColors: ThemeColors;
+  theme: WispTheme;
   userStyle?: CSSStyleObject;
 }): CSSStyleObject {
+  const { colors: themeColors, radii, spacing } = opts.theme;
   return {
     display: opts.fullWidth ? 'flex' : 'inline-flex',
     flexDirection: 'row' as const,
     alignItems: 'center',
     position: 'relative',
-    backgroundColor: opts.themeColors.border.subtle,
-    borderRadius: defaultRadii.lg,
-    padding: defaultSpacing.xs,
+    backgroundColor: themeColors.border.subtle,
+    borderRadius: radii.lg,
+    padding: spacing.xs,
     boxSizing: 'border-box' as const,
     width: opts.fullWidth ? '100%' : undefined,
     gap: 0,
@@ -51,16 +51,17 @@ export function buildIndicatorStyle(opts: {
   width: number;
   height: number;
   animate: boolean;
-  themeColors: ThemeColors;
+  theme: WispTheme;
 }): CSSStyleObject {
+  const { colors: themeColors, radii } = opts.theme;
   return {
     position: 'absolute',
     top: 3,
     left: 0,
     height: opts.height,
     width: opts.width,
-    borderRadius: defaultRadii.md,
-    backgroundColor: opts.themeColors.accent.primary,
+    borderRadius: radii.md,
+    backgroundColor: themeColors.accent.primary,
     transform: `translateX(${opts.offsetX}px)`,
     transition: opts.animate
       ? 'transform 250ms cubic-bezier(0.4, 0, 0.2, 1), width 250ms cubic-bezier(0.4, 0, 0.2, 1)'
@@ -88,8 +89,9 @@ export function buildSegmentStyle(opts: {
   isDisabled: boolean;
   isHovered: boolean;
   fullWidth: boolean;
-  themeColors: ThemeColors;
+  theme: WispTheme;
 }): CSSStyleObject {
+  const { colors: themeColors, radii, spacing, typography } = opts.theme;
   const sizeConfig: SegmentedControlSizeConfig = segmentedControlSizeMap[opts.size];
 
   return {
@@ -101,22 +103,22 @@ export function buildSegmentStyle(opts: {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
     height: sizeConfig.height,
     paddingLeft: sizeConfig.paddingX,
     paddingRight: sizeConfig.paddingX,
     flex: opts.fullWidth ? 1 : undefined,
     boxSizing: 'border-box' as const,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     backgroundColor: 'transparent',
     color: opts.isActive
-      ? opts.themeColors.text.inverse
+      ? themeColors.text.inverse
       : opts.isHovered && !opts.isDisabled
-        ? opts.themeColors.text.primary
-        : opts.themeColors.text.secondary,
+        ? themeColors.text.primary
+        : themeColors.text.secondary,
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     lineHeight: 1,
     whiteSpace: 'nowrap' as const,
     cursor: opts.isDisabled ? 'not-allowed' : 'pointer',

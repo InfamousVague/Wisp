@@ -52,7 +52,7 @@ import {
   buildEmptyStateStyle,
   buildSkeletonBarStyle,
 } from '@wisp-ui/core/styles/DataTable.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
 import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
@@ -151,7 +151,8 @@ function DataTableInner<T extends Record<string, any>>(
   }: DataTableProps<T>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = dataTableSizeMap[size];
 
   // -- Hover tracking per row ------------------------------------------------
@@ -164,12 +165,12 @@ function DataTableInner<T extends Record<string, any>>(
 
   // -- Memoised styles -------------------------------------------------------
   const containerStyle = useMemo(
-    () => buildTableContainerStyle(themeColors, variant, userStyle as CSSStyleObject),
+    () => buildTableContainerStyle(theme, variant, userStyle as CSSStyleObject),
     [themeColors, variant, userStyle],
   );
   const tableStyle = useMemo(() => buildTableStyle(), []);
   const headerStyle = useMemo(
-    () => buildTableHeaderStyle(sizeConfig, themeColors, variant),
+    () => buildTableHeaderStyle(sizeConfig, theme, variant),
     [sizeConfig, themeColors, variant],
   );
   const checkboxCellStyle = useMemo(
@@ -181,11 +182,11 @@ function DataTableInner<T extends Record<string, any>>(
     [sizeConfig],
   );
   const emptyStyle = useMemo(
-    () => buildEmptyStateStyle(themeColors, sizeConfig),
+    () => buildEmptyStateStyle(theme, sizeConfig),
     [themeColors, sizeConfig],
   );
   const skeletonBarStyle = useMemo(
-    () => buildSkeletonBarStyle(themeColors),
+    () => buildSkeletonBarStyle(theme),
     [themeColors],
   );
 
@@ -269,7 +270,7 @@ function DataTableInner<T extends Record<string, any>>(
       const isActiveSort = sort?.key === col.key;
       const cellStyle = buildTableHeaderCellStyle(
         sizeConfig,
-        themeColors,
+        theme,
         isSortable,
         col.align ?? 'left',
       );
@@ -292,7 +293,7 @@ function DataTableInner<T extends Record<string, any>>(
             {isSortable && isActiveSort && (
               <span
                 style={buildSortIconStyle(
-                  themeColors,
+                  theme,
                   true,
                   sort!.direction,
                 )}
@@ -305,7 +306,7 @@ function DataTableInner<T extends Record<string, any>>(
               </span>
             )}
             {isSortable && !isActiveSort && (
-              <span style={buildSortIconStyle(themeColors, false, 'asc')}>
+              <span style={buildSortIconStyle(theme, false, 'asc')}>
                 <SortAscIcon size={sizeConfig.headerFontSize} color="currentColor" />
               </span>
             )}
@@ -323,7 +324,7 @@ function DataTableInner<T extends Record<string, any>>(
       return Array.from({ length: skeletonRows }, (_, rowIndex) => {
         const rowStyle = buildTableRowStyle(
           sizeConfig,
-          themeColors,
+          theme,
           false,
           false,
           false,
@@ -336,7 +337,7 @@ function DataTableInner<T extends Record<string, any>>(
               </td>
             )}
             {columns.map((col, colIndex) => {
-              const cellStyle = buildTableCellStyle(sizeConfig, themeColors, col.align ?? 'left');
+              const cellStyle = buildTableCellStyle(sizeConfig, theme, col.align ?? 'left');
               // Vary skeleton bar width for visual interest
               const widths = ['60%', '80%', '45%', '70%', '55%'];
               return (
@@ -366,7 +367,7 @@ function DataTableInner<T extends Record<string, any>>(
       const isStriped = striped && rowIndex % 2 === 1;
       const rowStyle = buildTableRowStyle(
         sizeConfig,
-        themeColors,
+        theme,
         isHovered,
         isSelected,
         isStriped,
@@ -393,7 +394,7 @@ function DataTableInner<T extends Record<string, any>>(
           )}
           {columns.map((col) => {
             const cellValue = (row as any)[col.key];
-            const cellStyle = buildTableCellStyle(sizeConfig, themeColors, col.align ?? 'left');
+            const cellStyle = buildTableCellStyle(sizeConfig, theme, col.align ?? 'left');
             return (
               <td key={col.key} style={cellStyle}>
                 {col.render ? col.render(cellValue, row) : cellValue}

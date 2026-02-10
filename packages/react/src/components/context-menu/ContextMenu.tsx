@@ -16,7 +16,7 @@ import {
   buildContextMenuShortcutStyle,
   buildContextMenuSeparatorStyle,
 } from '@wisp-ui/core/styles/ContextMenu.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -97,7 +97,8 @@ ContextMenuTrigger.displayName = 'ContextMenuTrigger';
 
 export const ContextMenuContent = forwardRef<HTMLDivElement, ContextMenuContentProps>(
   function ContextMenuContent({ children, style: userStyle, className, ...rest }, ref) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const { open, position, closeMenu } = useContext(ContextMenuContext);
     const contentRef = useRef<HTMLDivElement | null>(null);
 
@@ -124,7 +125,7 @@ export const ContextMenuContent = forwardRef<HTMLDivElement, ContextMenuContentP
     }, [open, closeMenu]);
 
     const contentStyle = useMemo(
-      () => buildContextMenuContentStyle(themeColors),
+      () => buildContextMenuContentStyle(theme),
       [themeColors],
     );
 
@@ -174,17 +175,18 @@ export const ContextMenuItem = forwardRef<HTMLDivElement, ContextMenuItemProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
     const { closeMenu } = useContext(ContextMenuContext);
     const [hovered, setHovered] = useState(false);
 
     const itemStyle = useMemo(
-      () => buildContextMenuItemStyle(destructive, disabled, themeColors),
+      () => buildContextMenuItemStyle(destructive, disabled, theme),
       [destructive, disabled, themeColors],
     );
 
     const shortcutStyle = useMemo(
-      () => buildContextMenuShortcutStyle(themeColors),
+      () => buildContextMenuShortcutStyle(theme),
       [themeColors],
     );
 
@@ -225,10 +227,11 @@ ContextMenuItem.displayName = 'ContextMenuItem';
 
 export const ContextMenuSeparator = forwardRef<HTMLDivElement, ContextMenuSeparatorProps>(
   function ContextMenuSeparator({ style: userStyle, className, ...rest }, ref) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
 
     const separatorStyle = useMemo(
-      () => buildContextMenuSeparatorStyle(themeColors),
+      () => buildContextMenuSeparatorStyle(theme),
       [themeColors],
     );
 

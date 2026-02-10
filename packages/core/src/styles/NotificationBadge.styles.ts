@@ -2,10 +2,9 @@
  * @module NotificationBadge
  */
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { NotificationBadgeColor } from '../types/NotificationBadge.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultRadii, defaultTypography, defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color → resolved colors
@@ -30,8 +29,9 @@ export interface NotificationBadgeColorSet {
  */
 export function resolveNotificationBadgeColors(
   color: NotificationBadgeColor,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): NotificationBadgeColorSet {
+  const { colors: themeColors } = theme;
   switch (color) {
     case 'danger':
       return { bg: themeColors.status.danger, text: themeColors.text.inverse };
@@ -44,7 +44,7 @@ export function resolveNotificationBadgeColors(
     case 'default':
       return { bg: themeColors.accent.primary, text: themeColors.text.inverse };
     default:
-      return resolveNotificationBadgeColors('danger', themeColors);
+      return resolveNotificationBadgeColors('danger', theme);
   }
 }
 
@@ -81,7 +81,9 @@ export function buildNotificationBadgeStyle(
   dot: boolean,
   invisible: boolean,
   pulse: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii, spacing, typography } = theme;
   if (invisible) {
     return { display: 'none' };
   }
@@ -97,9 +99,9 @@ export function buildNotificationBadgeStyle(
     boxSizing: 'border-box',
     backgroundColor: colors.bg,
     color: colors.text,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     fontFamily: fontFamilyStacks.sans,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1,
     userSelect: 'none',
     pointerEvents: 'none',
@@ -121,8 +123,8 @@ export function buildNotificationBadgeStyle(
     ...base,
     minWidth: 20,
     height: 20,
-    padding: `0 ${defaultSpacing.sm}px`,
-    fontSize: defaultTypography.sizes.xs.fontSize,
+    padding: `0 ${spacing.sm}px`,
+    fontSize: typography.sizes.xs.fontSize,
     animation: pulse ? 'wisp-notification-badge-pulse 1.5s ease-in-out infinite' : undefined,
   };
 }

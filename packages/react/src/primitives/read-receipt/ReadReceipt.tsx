@@ -6,7 +6,7 @@
  */
 
 import React, { forwardRef, useMemo } from 'react';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import type { ReadReceiptProps, ReadReceiptStatus } from '@wisp-ui/core/types/ReadReceipt.types';
 import { readReceiptSizeMap } from '@wisp-ui/core/types/ReadReceipt.types';
 import {
@@ -97,16 +97,17 @@ export const ReadReceipt = forwardRef<HTMLSpanElement, ReadReceiptProps>(functio
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = readReceiptSizeMap[size];
 
   const colors = useMemo(
-    () => resolveReadReceiptColors(status, themeColors),
+    () => resolveReadReceiptColors(status, theme),
     [status, themeColors],
   );
 
   if (skeleton) {
-    const skeletonStyle = buildReadReceiptSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = buildReadReceiptSkeletonStyle(sizeConfig, theme);
     return <span aria-hidden className={className} style={{ ...skeletonStyle, ...userStyle }} />;
   }
 

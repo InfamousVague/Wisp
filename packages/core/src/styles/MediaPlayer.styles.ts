@@ -4,9 +4,8 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { MediaPlayerSizeConfig } from '../types/MediaPlayer.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -26,7 +25,8 @@ export interface MediaPlayerColors {
   border: string;
 }
 
-export function resolveMediaPlayerColors(themeColors: ThemeColors): MediaPlayerColors {
+export function resolveMediaPlayerColors(theme: WispTheme): MediaPlayerColors {
+  const { colors: themeColors } = theme;
   return {
     bg: themeColors.background.sunken,
     controlBg: themeColors.background.surface,
@@ -63,7 +63,8 @@ export function buildMediaPlayerContainerStyle(
   };
 }
 
-export function buildVideoContainerStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildVideoContainerStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     position: 'relative',
     width: '100%',
@@ -117,14 +118,16 @@ export function buildControlBarStyle(
 export function buildControlButtonStyle(
   sizeConfig: MediaPlayerSizeConfig,
   colors: MediaPlayerColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: sizeConfig.iconSize + 8,
     height: sizeConfig.iconSize + 8,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     border: 'none',
     backgroundColor: 'transparent',
     color: colors.icon,
@@ -195,11 +198,13 @@ export function buildTimeDisplayStyle(
 
 export function buildVolumeContainerStyle(
   sizeConfig: MediaPlayerSizeConfig,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
     flexShrink: 0,
   };
 }
@@ -222,21 +227,23 @@ export function buildVolumeSliderStyle(
 export function buildSpeedButtonStyle(
   sizeConfig: MediaPlayerSizeConfig,
   colors: MediaPlayerColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii, spacing, typography } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     height: sizeConfig.iconSize + 4,
-    paddingLeft: defaultSpacing.xs,
-    paddingRight: defaultSpacing.xs,
-    borderRadius: defaultRadii.sm,
+    paddingLeft: spacing.xs,
+    paddingRight: spacing.xs,
+    borderRadius: radii.sm,
     border: 'none',
     backgroundColor: 'transparent',
     color: colors.textSecondary,
     cursor: 'pointer',
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     fontFamily: 'monospace',
     flexShrink: 0,
     transition: `color ${durations.fast}ms ${easings.easeOut.css}`,
@@ -245,12 +252,14 @@ export function buildSpeedButtonStyle(
 
 export function buildAudioInfoStyle(
   colors: MediaPlayerColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
-    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px ${defaultSpacing.xs}px`,
-    gap: defaultSpacing['2xs'],
+    padding: `${spacing.md}px ${spacing.lg}px ${spacing.xs}px`,
+    gap: spacing['2xs'],
   };
 }
 
@@ -268,9 +277,10 @@ export function buildAudioSeekRowStyle(
 
 export function buildMediaPlayerSkeletonStyle(
   sizeConfig: MediaPlayerSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isVideo: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'block',
     width: '100%',

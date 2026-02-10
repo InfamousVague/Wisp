@@ -5,9 +5,8 @@
 
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { CalendarSizeConfig } from '../types/Calendar.types';
-import { defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -23,12 +22,13 @@ import { durations, easings } from '../tokens/motion';
  */
 export function buildCalendarContainerStyle(
   sizeConfig: CalendarSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     padding: sizeConfig.padding,
     backgroundColor: themeColors.background.raised,
-    borderRadius: defaultRadii.lg,
+    borderRadius: radii.lg,
     border: `1px solid ${themeColors.border.subtle}`,
     fontFamily: fontFamilyStacks.sans,
     display: 'inline-block',
@@ -72,9 +72,10 @@ export function buildCalendarHeaderStyle(
  */
 export function buildCalendarNavButtonStyle(
   sizeConfig: CalendarSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isHovered: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   const btnSize = sizeConfig.cellSize < 36 ? 28 : 36;
 
   return {
@@ -97,7 +98,7 @@ export function buildCalendarNavButtonStyle(
     height: btnSize,
 
     // Shape
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
 
     // Color
     backgroundColor: isHovered ? themeColors.accent.highlight : 'transparent',
@@ -144,13 +145,14 @@ export function buildCalendarGridStyle(
  */
 export function buildCalendarDayHeaderStyle(
   sizeConfig: CalendarSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     textAlign: 'center',
     fontSize: sizeConfig.dayHeaderFontSize,
     color: themeColors.text.onRaisedSecondary,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     lineHeight: 1,
     height: sizeConfig.cellSize,
     display: 'flex',
@@ -179,7 +181,7 @@ export function buildCalendarDayHeaderStyle(
  */
 export function buildCalendarDayCellStyle(
   sizeConfig: CalendarSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isSelected: boolean,
   isToday: boolean,
   isDisabled: boolean,
@@ -187,6 +189,7 @@ export function buildCalendarDayCellStyle(
   isHovered: boolean,
   isInRange: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, radii, typography } = theme;
   // Base style
   const style: CSSStyleObject = {
     // Reset
@@ -211,11 +214,11 @@ export function buildCalendarDayCellStyle(
     // Typography
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     lineHeight: 1,
 
     // Shape
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
 
     // Color defaults
     backgroundColor: 'transparent',
@@ -280,10 +283,11 @@ export function buildCalendarDayCellStyle(
  */
 export function buildCalendarMonthYearStyle(
   sizeConfig: CalendarSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     fontSize: sizeConfig.headerFontSize,
     color: themeColors.text.onRaised,
     lineHeight: 1,
@@ -304,12 +308,13 @@ export function buildCalendarMonthYearStyle(
  */
 export function buildCalendarSkeletonCellStyle(
   sizeConfig: CalendarSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     width: sizeConfig.cellSize,
     height: sizeConfig.cellSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

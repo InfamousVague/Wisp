@@ -18,7 +18,7 @@ import {
   buildQRCodeSvgStyle,
   buildQRCodeLogoOverlayStyle,
 } from '@wisp-ui/core/styles/QRCode.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Gradient SVG defs helper
@@ -176,7 +176,8 @@ export const QRCode = forwardRef<HTMLDivElement, QRCodeProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const sizeConfig = qrCodeSizeMap[size];
     const instanceId = useId();
     const gradientId = `qr-grad-${instanceId}`;
@@ -185,7 +186,7 @@ export const QRCode = forwardRef<HTMLDivElement, QRCodeProps>(
     // Colours
     // -----------------------------------------------------------------------
     const defaultColors = useMemo(
-      () => resolveQRCodeColors(themeColors),
+      () => resolveQRCodeColors(theme),
       [themeColors],
     );
 

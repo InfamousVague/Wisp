@@ -1,9 +1,8 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { CardVariant, CardPadding, CardRadius } from '../types/Card.types';
 import { cardPaddingMap, cardRadiusMap } from '../types/Card.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
-import { defaultShadows } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 /**
@@ -31,14 +30,15 @@ export interface CardVariantStyles {
  */
 export function resolveVariantStyles(
   variant: CardVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CardVariantStyles {
+  const { colors: themeColors, shadows } = theme;
   switch (variant) {
     case 'elevated':
       return {
         backgroundColor: themeColors.background.surface,
         border: `1px solid ${themeColors.border.subtle}`,
-        boxShadow: defaultShadows.sm,
+        boxShadow: shadows.sm,
       };
     case 'outlined':
       return {
@@ -61,7 +61,7 @@ export function resolveVariantStyles(
         WebkitBackdropFilter: glassStyle.WebkitBackdropFilter,
       };
     default:
-      return resolveVariantStyles('elevated', themeColors);
+      return resolveVariantStyles('elevated', theme);
   }
 }
 
@@ -81,25 +81,26 @@ export function buildCardStyle(opts: {
   disabled: boolean;
   hovered: boolean;
   pressed: boolean;
-  themeColors: ThemeColors;
+  theme: WispTheme;
 }): CSSStyleObject {
-  const variantStyles = resolveVariantStyles(opts.variant, opts.themeColors);
+  const { colors: themeColors } = opts.theme;
+  const variantStyles = resolveVariantStyles(opts.variant, opts.theme);
   const paddingValue = cardPaddingMap[opts.padding];
   const radiusValue = cardRadiusMap[opts.radius];
   const border = opts.selected
-    ? `1px solid ${opts.themeColors.accent.primary}`
+    ? `1px solid ${themeColors.accent.primary}`
     : variantStyles.border;
   let backgroundColor = variantStyles.backgroundColor;
   if (opts.interactive && !opts.disabled) {
     if (opts.pressed || opts.hovered) {
-      backgroundColor = opts.themeColors.background.raised;
+      backgroundColor = themeColors.background.raised;
     }
   }
   // Cards with opaque dark backgrounds need light text; outlined is transparent
   // so it inherits the page text colour.
   const color = opts.variant === 'outlined'
-    ? opts.themeColors.text.primary
-    : opts.themeColors.text.onRaised;
+    ? themeColors.text.primary
+    : themeColors.text.onRaised;
 
   return {
     boxSizing: 'border-box',
@@ -132,8 +133,9 @@ export function buildCardStyle(opts: {
 export function getCardSkeletonStyle(
   padding: CardPadding,
   radius: CardRadius,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     boxSizing: 'border-box',
     padding: cardPaddingMap[padding],

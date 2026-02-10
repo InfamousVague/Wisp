@@ -4,10 +4,9 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { QuestTrackerSizeConfig } from '../types/QuestTracker.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -15,15 +14,16 @@ import { durations, easings } from '../tokens/motion';
 // ---------------------------------------------------------------------------
 
 export function buildQuestTrackerContainerStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   sizeConfig: QuestTrackerSizeConfig,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: defaultRadii.lg,
+    borderRadius: radii.lg,
     fontFamily: fontFamilyStacks.sans,
     overflow: 'hidden',
   };
@@ -52,12 +52,13 @@ export function buildQuestTrackerHeaderStyle(
 // ---------------------------------------------------------------------------
 
 export function buildQuestTrackerTitleStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   sizeConfig: QuestTrackerSizeConfig,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontSize: sizeConfig.titleFontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1.4,
     color: themeColors.text.primary,
     margin: 0,
@@ -69,9 +70,10 @@ export function buildQuestTrackerTitleStyle(
 // ---------------------------------------------------------------------------
 
 export function buildQuestTrackerChevronStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   expanded: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -103,11 +105,13 @@ export function buildQuestTrackerListStyle(
 
 export function buildQuestTrackerObjectiveStyle(
   clickable: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
     cursor: clickable ? 'pointer' : 'default',
   };
 }
@@ -117,10 +121,11 @@ export function buildQuestTrackerObjectiveStyle(
 // ---------------------------------------------------------------------------
 
 export function buildQuestTrackerIndicatorStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   sizeConfig: QuestTrackerSizeConfig,
   status: 'incomplete' | 'complete' | 'in-progress',
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   const base: CSSStyleObject = {
     display: 'flex',
     alignItems: 'center',
@@ -161,13 +166,14 @@ export function buildQuestTrackerIndicatorStyle(
 // ---------------------------------------------------------------------------
 
 export function buildQuestTrackerLabelStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   sizeConfig: QuestTrackerSizeConfig,
   status: 'incomplete' | 'complete' | 'in-progress',
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontSize: sizeConfig.labelFontSize,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     lineHeight: 1.43,
     color: status === 'complete' ? themeColors.text.muted : themeColors.text.primary,
     textDecoration: status === 'complete' ? 'line-through' : 'none',
@@ -182,12 +188,13 @@ export function buildQuestTrackerLabelStyle(
 // ---------------------------------------------------------------------------
 
 export function buildQuestTrackerCounterStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   sizeConfig: QuestTrackerSizeConfig,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     fontSize: sizeConfig.labelFontSize - 1,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: themeColors.text.muted,
     whiteSpace: 'nowrap',
   };
@@ -198,8 +205,9 @@ export function buildQuestTrackerCounterStyle(
 // ---------------------------------------------------------------------------
 
 export function buildQuestTrackerProgressTrackStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     width: '100%',
     height: 4,
@@ -209,9 +217,10 @@ export function buildQuestTrackerProgressTrackStyle(
 }
 
 export function buildQuestTrackerProgressBarStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   progress: number,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     width: `${Math.min(Math.max(progress, 0), 100)}%`,
     height: '100%',

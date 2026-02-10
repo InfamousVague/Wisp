@@ -11,7 +11,7 @@ import {
   buildActionStyle,
   buildDismissStyle,
 } from '@wisp-ui/core/styles/Toast.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Toast — Notification banner primitive for the Wisp design system.
@@ -56,21 +56,22 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const [dismissHovered, setDismissHovered] = useState(false);
 
   const colors = useMemo(
-    () => resolveToastColors(variant, themeColors),
+    () => resolveToastColors(variant, theme),
     [variant, themeColors],
   );
 
-  const toastStyle = useMemo(() => buildToastStyle(colors, surface), [colors, surface]);
+  const toastStyle = useMemo(() => buildToastStyle(colors, surface, theme), [colors, surface]);
   const iconStyle = useMemo(() => buildIconStyle(colors), [colors]);
-  const contentStyle = useMemo(() => buildContentStyle(), []);
-  const titleStyle = useMemo(() => buildTitleStyle(colors), [colors]);
-  const descriptionStyle = useMemo(() => buildDescriptionStyle(colors), [colors]);
+  const contentStyle = useMemo(() => buildContentStyle(theme), []);
+  const titleStyle = useMemo(() => buildTitleStyle(colors, theme), [colors]);
+  const descriptionStyle = useMemo(() => buildDescriptionStyle(colors, theme), [colors]);
   const actionWrapperStyle = useMemo(() => buildActionStyle(), []);
-  const dismissStyle = useMemo(() => buildDismissStyle(colors), [colors]);
+  const dismissStyle = useMemo(() => buildDismissStyle(colors, theme), [colors]);
 
   const handleDismissEnter = useCallback(() => setDismissHovered(true), []);
   const handleDismissLeave = useCallback(() => setDismissHovered(false), []);

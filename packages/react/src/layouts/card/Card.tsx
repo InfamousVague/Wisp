@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
 import type { CardProps } from '@wisp-ui/core/types/Card.types';
 import { buildCardStyle, getCardSkeletonStyle } from '@wisp-ui/core/styles/Card.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * Card — A surface container for grouping related content.
@@ -45,7 +45,8 @@ export const Card = forwardRef<HTMLElement, CardProps>(function Card(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
 
@@ -78,7 +79,7 @@ export const Card = forwardRef<HTMLElement, CardProps>(function Card(
   );
 
   if (skeleton) {
-    const skeletonStyle = getCardSkeletonStyle(padding, radius, themeColors);
+    const skeletonStyle = getCardSkeletonStyle(padding, radius, theme);
     return (
       <div
         aria-hidden
@@ -100,7 +101,7 @@ export const Card = forwardRef<HTMLElement, CardProps>(function Card(
         disabled,
         hovered,
         pressed,
-        themeColors,
+        theme,
       }),
     [variant, padding, radius, interactive, selected, disabled, hovered, pressed, themeColors],
   );

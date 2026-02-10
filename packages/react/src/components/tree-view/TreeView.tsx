@@ -37,7 +37,7 @@ import {
   buildTreeSkeletonRowStyle,
   buildTreeSkeletonBarStyle,
 } from '@wisp-ui/core/styles/TreeView.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import type { ThemeColors } from '@wisp-ui/core/theme/types';
 
 // ---------------------------------------------------------------------------
@@ -70,6 +70,7 @@ function TreeNodeRow({
   onToggleExpand,
   onSelectNode,
 }: TreeNodeRowProps) {
+  const { theme } = useTheme();
   const [hovered, setHovered] = useState(false);
 
   const hasChildren = Array.isArray(node.children) && node.children.length > 0;
@@ -123,22 +124,22 @@ function TreeNodeRow({
   );
 
   const nodeStyle = useMemo(
-    () => buildTreeNodeStyle(sizeConfig, depth, isSelected, hovered, isDisabled, themeColors),
+    () => buildTreeNodeStyle(sizeConfig, depth, isSelected, hovered, isDisabled, theme),
     [sizeConfig, depth, isSelected, hovered, isDisabled, themeColors],
   );
 
   const toggleStyle = useMemo(
-    () => buildTreeToggleStyle(sizeConfig, themeColors, isExpanded),
+    () => buildTreeToggleStyle(sizeConfig, theme, isExpanded),
     [sizeConfig, themeColors, isExpanded],
   );
 
   const iconStyle = useMemo(
-    () => buildTreeIconStyle(sizeConfig, themeColors),
+    () => buildTreeIconStyle(sizeConfig, theme),
     [sizeConfig, themeColors],
   );
 
   const labelStyle = useMemo(
-    () => buildTreeLabelStyle(sizeConfig, themeColors, isDisabled),
+    () => buildTreeLabelStyle(sizeConfig, theme, isDisabled),
     [sizeConfig, themeColors, isDisabled],
   );
 
@@ -264,7 +265,8 @@ export const TreeView = forwardRef<HTMLDivElement, TreeViewProps>(function TreeV
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = treeViewSizeMap[size];
 
   // -- Expanded state (controlled / uncontrolled) -------------------------
@@ -338,9 +340,9 @@ export const TreeView = forwardRef<HTMLDivElement, TreeViewProps>(function TreeV
         {skeletonRows.map((row, i) => (
           <div
             key={i}
-            style={buildTreeSkeletonRowStyle(sizeConfig, themeColors, row.indent)}
+            style={buildTreeSkeletonRowStyle(sizeConfig, theme, row.indent)}
           >
-            <div style={buildTreeSkeletonBarStyle(themeColors, row.width, 12)} />
+            <div style={buildTreeSkeletonBarStyle(theme, row.width, 12)} />
           </div>
         ))}
       </div>

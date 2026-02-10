@@ -5,9 +5,8 @@
 
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { CopyButtonSizeConfig, CopyButtonVariant } from '../types/CopyButton.types';
-import { defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -27,12 +26,13 @@ import { durations, easings } from '../tokens/motion';
  */
 export function buildCopyButtonStyle(
   sizeConfig: CopyButtonSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   variant: CopyButtonVariant,
   isCopied: boolean,
   isHovered: boolean,
   isDisabled: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   const isMinimal = variant === 'minimal';
 
   // Base background
@@ -81,7 +81,7 @@ export function buildCopyButtonStyle(
     // Typography
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     lineHeight: 1,
 
     // Shape
@@ -115,13 +115,14 @@ export function buildCopyButtonStyle(
  */
 export function getCopyButtonSkeletonStyle(
   sizeConfig: CopyButtonSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: sizeConfig.height * 2.5,
     height: sizeConfig.height,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

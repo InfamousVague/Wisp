@@ -18,7 +18,7 @@ import {
   buildSkeletonCellStyle,
 } from '@wisp-ui/core/styles/PinInput.styles';
 import { useControllable } from '../../hooks/use-controllable';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * PinInput — A row of single-character input cells for entering verification
@@ -75,7 +75,8 @@ export const PinInput = forwardRef<HTMLDivElement, PinInputProps>(function PinIn
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = pinInputSizeMap[size];
 
   // ---------------------------------------------------------------------------
@@ -244,14 +245,14 @@ export const PinInput = forwardRef<HTMLDivElement, PinInputProps>(function PinIn
 
   const isFocused = focusedIndex >= 0;
   const colors = useMemo(
-    () => resolvePinInputColors(isFocused, hasError, hasWarning, disabled, themeColors),
+    () => resolvePinInputColors(isFocused, hasError, hasWarning, disabled, theme),
     [isFocused, hasError, hasWarning, disabled, themeColors],
   );
 
   const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig), [sizeConfig]);
   const containerStyle = useMemo(() => buildCellContainerStyle(sizeConfig), [sizeConfig]);
-  const labelStyleObj = useMemo(() => buildLabelStyle(sizeConfig, colors), [sizeConfig, colors]);
-  const hintStyleObj = useMemo(() => buildHintStyle(sizeConfig, colors), [sizeConfig, colors]);
+  const labelStyleObj = useMemo(() => buildLabelStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
+  const hintStyleObj = useMemo(() => buildHintStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
 
   const mergedStyle = useMemo(
     () => (userStyle ? { ...wrapperStyle, ...userStyle } : wrapperStyle),
@@ -263,7 +264,7 @@ export const PinInput = forwardRef<HTMLDivElement, PinInputProps>(function PinIn
   // ---------------------------------------------------------------------------
 
   if (skeleton) {
-    const skeletonCellStyle = buildSkeletonCellStyle(sizeConfig, themeColors);
+    const skeletonCellStyle = buildSkeletonCellStyle(sizeConfig, theme);
     return (
       <div
         ref={ref}
@@ -292,8 +293,8 @@ export const PinInput = forwardRef<HTMLDivElement, PinInputProps>(function PinIn
       <div style={containerStyle} role="group" aria-label={label || 'Pin input'}>
         {Array.from({ length }, (_, i) => {
           const cellIsFocused = focusedIndex === i;
-          const cellColors = resolvePinInputColors(cellIsFocused, hasError, hasWarning, disabled, themeColors);
-          const style = buildCellStyle(sizeConfig, cellColors, cellIsFocused, disabled);
+          const cellColors = resolvePinInputColors(cellIsFocused, hasError, hasWarning, disabled, theme);
+          const style = buildCellStyle(sizeConfig, cellColors, cellIsFocused, disabled, theme);
 
           const displayValue = mask && chars[i] ? '•' : chars[i];
 

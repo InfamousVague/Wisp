@@ -1,9 +1,8 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { InputSizeConfig } from '../types/Input.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
 
@@ -54,8 +53,9 @@ export function resolveComboboxColors(
   focused: boolean,
   error: boolean,
   disabled: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): ComboboxColors {
+  const { colors: themeColors } = theme;
   if (disabled) {
     return {
       border: themeColors.border.subtle,
@@ -216,12 +216,14 @@ export function buildComboboxInputStyle(
 export function buildLabelStyle(
   sizeConfig: InputSizeConfig,
   colors: ComboboxColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: colors.label,
     cursor: 'default',
     userSelect: 'none',
@@ -244,12 +246,14 @@ export function buildHintStyle(
   sizeConfig: InputSizeConfig,
   colors: ComboboxColors,
   isError: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.hintFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     color: colors.hint,
     margin: 0,
   };
@@ -271,23 +275,24 @@ export function buildHintStyle(
  * @returns CSS properties for the dropdown `<div>` with `role="listbox"`.
  */
 export function buildDropdownStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   variant: SurfaceVariant = 'solid',
 ): CSSStyleObject {
+  const { colors: themeColors, radii, spacing } = theme;
   return {
     position: 'absolute',
     zIndex: zIndex.dropdown,
     backgroundColor: themeColors.background.raised,
     border: '1px solid ' + themeColors.border.subtle,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     boxShadow:
       '0 4px 12px ' + themeColors.background.overlay,
     maxHeight: 240,
     overflowY: 'auto',
-    padding: `${defaultSpacing.xs}px 0`,
+    padding: `${spacing.xs}px 0`,
     boxSizing: 'border-box',
     ...(variant === 'glass' ? glassStyle : undefined),
-    ...(variant === 'glass' ? { borderRadius: defaultRadii.md, overflow: 'hidden' } : undefined),
+    ...(variant === 'glass' ? { borderRadius: radii.md, overflow: 'hidden' } : undefined),
   };
 }
 
@@ -305,18 +310,19 @@ export function buildDropdownStyle(
  * @returns CSS properties for the option `<div>` with `role="option"`.
  */
 export function buildOptionStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   isHighlighted: boolean,
   isSelected: boolean,
   isDisabled: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: defaultSpacing.sm,
-    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
+    gap: spacing.sm,
+    padding: `${spacing.sm}px ${spacing.md}px`,
     fontFamily: fontFamilyStacks.sans,
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.43,
     color: isDisabled ? themeColors.text.muted : themeColors.text.onRaised,
     backgroundColor: isHighlighted
@@ -343,14 +349,15 @@ export function buildOptionStyle(
  * @param themeColors - Active theme color tokens.
  * @returns CSS properties for the empty-state `<div>`.
  */
-export function buildEmptyStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildEmptyStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: `${defaultSpacing.lg}px ${defaultSpacing.md}px`,
+    padding: `${spacing.lg}px ${spacing.md}px`,
     fontFamily: fontFamilyStacks.sans,
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.43,
     color: themeColors.text.muted,
     userSelect: 'none',
@@ -370,9 +377,10 @@ export function buildEmptyStyle(themeColors: ThemeColors): CSSStyleObject {
  */
 export function getComboboxSkeletonStyle(
   sizeConfig: InputSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   fullWidth: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'block',
     width: fullWidth ? '100%' : 240,

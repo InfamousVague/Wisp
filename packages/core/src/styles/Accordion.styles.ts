@@ -5,8 +5,7 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
-import { defaultSpacing, defaultTypography } from '../theme/create-theme';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -21,9 +20,10 @@ import { durations, easings } from '../tokens/motion';
  * @returns A `CSSStyleObject` object for the accordion root.
  */
 export function buildAccordionStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
@@ -43,8 +43,9 @@ export function buildAccordionStyle(
  * @returns A `CSSStyleObject` object for the item element.
  */
 export function buildItemStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     borderBottom: '1px solid ' + themeColors.border.subtle,
   };
@@ -68,9 +69,10 @@ export function buildTriggerStyle(
   isOpen: boolean,
   isDisabled: boolean,
   isHovered: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors, spacing, typography } = theme;
   const color = isDisabled
     ? themeColors.text.primary
     : isHovered
@@ -82,15 +84,15 @@ export function buildTriggerStyle(
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    padding: `${defaultSpacing.md}px 0`,
+    padding: `${spacing.md}px 0`,
     background: 'none',
     border: 'none',
     cursor: isDisabled ? 'not-allowed' : 'pointer',
     color,
-    fontWeight: defaultTypography.weights.medium,
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontWeight: typography.weights.medium,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.43,
-    gap: defaultSpacing.sm,
+    gap: spacing.sm,
     opacity: isDisabled ? 0.5 : 1,
     outline: 'none',
     textAlign: 'left',
@@ -139,15 +141,16 @@ export function buildChevronStyle(
 export function buildContentStyle(
   isOpen: boolean,
   measuredHeight: number,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     overflow: 'hidden',
     transition: `max-height ${durations.normal}ms cubic-bezier(0.4, 0, 0.2, 1), padding-bottom ${durations.normal}ms cubic-bezier(0.4, 0, 0.2, 1)`,
     maxHeight: isOpen ? measuredHeight : 0,
     paddingBottom: isOpen ? 12 : 0,
     color: themeColors.text.secondary,
-    fontSize: defaultTypography.sizes.sm.fontSize,
+    fontSize: typography.sizes.sm.fontSize,
     lineHeight: 1.57,
   };
 }

@@ -2,7 +2,7 @@ import React, { forwardRef, useMemo, createContext, useContext } from 'react';
 import type { ToolbarProps, ToolbarGroupProps, ToolbarSeparatorProps, ToolbarSizeConfig } from '@wisp-ui/core/types/Toolbar.types';
 import { toolbarSizeMap } from '@wisp-ui/core/types/Toolbar.types';
 import { buildToolbarStyle, buildGroupStyle, buildSeparatorStyle } from '@wisp-ui/core/styles/Toolbar.styles';
-import { useTheme, useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Context — shares size config with child components
@@ -69,11 +69,12 @@ export const Toolbar = forwardRef<HTMLDivElement, ToolbarProps>(function Toolbar
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = toolbarSizeMap[size];
 
   const toolbarStyle = useMemo(
-    () => buildToolbarStyle(sizeConfig, variant, themeColors),
+    () => buildToolbarStyle(sizeConfig, variant, theme),
     [sizeConfig, variant, themeColors],
   );
 
@@ -128,7 +129,6 @@ export const ToolbarGroup = forwardRef<HTMLDivElement, ToolbarGroupProps>(functi
   ref,
 ) {
   const { theme } = useTheme();
-
   const groupStyle = useMemo(
     () => buildGroupStyle(gap, theme.spacing),
     [gap, theme.spacing],
@@ -172,10 +172,11 @@ ToolbarGroup.displayName = 'ToolbarGroup';
 export const ToolbarSeparator = forwardRef<HTMLDivElement, ToolbarSeparatorProps>(
   function ToolbarSeparator({ style: userStyle, ...rest }, ref) {
     const { sizeConfig } = useToolbarContext();
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+    const themeColors = theme.colors;
 
     const separatorStyle = useMemo(
-      () => buildSeparatorStyle(sizeConfig, themeColors),
+      () => buildSeparatorStyle(sizeConfig, theme),
       [sizeConfig, themeColors],
     );
 

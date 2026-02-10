@@ -12,7 +12,7 @@ import {
   getButtonSkeletonStyle,
   getSpinnerStyle,
 } from '@wisp-ui/core/styles/Button.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { Text } from '../text';
 
 /**
@@ -122,7 +122,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const internalRef = useRef<HTMLButtonElement>(null);
   const buttonRef = (ref as React.RefObject<HTMLButtonElement>) || internalRef;
 
@@ -141,8 +142,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
 
   // Resolve colors
   const variantColors = useMemo(() => {
-    if (disabled && !isLoading) return getDisabledColors(themeColors);
-    return resolveVariantColors(variant, themeColors, onSurface);
+    if (disabled && !isLoading) return getDisabledColors(theme);
+    return resolveVariantColors(variant, theme, onSurface);
   }, [variant, disabled, isLoading, themeColors, onSurface]);
 
   // Build style
@@ -156,7 +157,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         fullWidth,
         disabled: disabled || isLoading,
         isLoading,
-      }),
+      }, theme),
     [size, shape, variantColors, isIconOnly, fullWidth, disabled, isLoading],
   );
 
@@ -210,7 +211,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
 
   // Skeleton loading state
   if (skeleton) {
-    const skeletonStyle = getButtonSkeletonStyle(size, shape, fullWidth, themeColors);
+    const skeletonStyle = getButtonSkeletonStyle(size, shape, fullWidth, theme);
     return (
       <div
         aria-hidden
@@ -253,7 +254,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
 
   // Spinner
   const spinner = isLoading ? (
-    <span style={getSpinnerStyle(size, variantColors.text)} />
+    <span style={getSpinnerStyle(size, variantColors.text, theme)} />
   ) : null;
 
   // Resolve text size for this button size

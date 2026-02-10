@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo } from 'react';
 import type { ScrollAreaProps } from '@wisp-ui/core/types/ScrollArea.types';
 import { buildScrollAreaStyle } from '@wisp-ui/core/styles/ScrollArea.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * ScrollArea -- A styled scrollable container with theme-aware scrollbar colors.
@@ -47,7 +47,8 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(function S
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   const scrollStyle = useMemo(
     () => buildScrollAreaStyle({
@@ -56,7 +57,7 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(function S
       hideScrollbar,
       maxHeight,
       maxWidth,
-      themeColors,
+      theme,
     }),
     [direction, scrollbarWidth, hideScrollbar, maxHeight, maxWidth, themeColors],
   );

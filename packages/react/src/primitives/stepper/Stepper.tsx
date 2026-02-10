@@ -10,7 +10,7 @@ import {
   buildStepperValueStyle,
   getStepperSkeletonStyle,
 } from '@wisp-ui/core/styles/Stepper.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -77,7 +77,8 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
 
     // -----------------------------------------------------------------------
     // Internal state (uncontrolled mode)
@@ -138,7 +139,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
     // Skeleton
     // -----------------------------------------------------------------------
     if (skeleton) {
-      const skeletonStyle = getStepperSkeletonStyle(sizeConfig, themeColors);
+      const skeletonStyle = getStepperSkeletonStyle(sizeConfig, theme);
       return (
         <div
           aria-hidden
@@ -159,22 +160,22 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
     // Build styles
     // -----------------------------------------------------------------------
     const containerStyle = useMemo(
-      () => buildStepperContainerStyle(sizeConfig, themeColors),
+      () => buildStepperContainerStyle(sizeConfig, theme),
       [sizeConfig, themeColors],
     );
 
     const minusButtonStyle = useMemo(
-      () => buildStepperButtonStyle(sizeConfig, themeColors, minusDisabled, minusHovered),
+      () => buildStepperButtonStyle(sizeConfig, theme, minusDisabled, minusHovered),
       [sizeConfig, themeColors, minusDisabled, minusHovered],
     );
 
     const plusButtonStyle = useMemo(
-      () => buildStepperButtonStyle(sizeConfig, themeColors, plusDisabled, plusHovered),
+      () => buildStepperButtonStyle(sizeConfig, theme, plusDisabled, plusHovered),
       [sizeConfig, themeColors, plusDisabled, plusHovered],
     );
 
     const valueStyle = useMemo(
-      () => buildStepperValueStyle(sizeConfig, themeColors),
+      () => buildStepperValueStyle(sizeConfig, theme),
       [sizeConfig, themeColors],
     );
 

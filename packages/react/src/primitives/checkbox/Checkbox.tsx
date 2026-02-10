@@ -7,7 +7,7 @@ import {
   buildIconStyle,
   getCheckboxSkeletonStyle,
 } from '@wisp-ui/core/styles/Checkbox.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 /**
@@ -72,7 +72,8 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(function Che
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // ---------------------------------------------------------------------------
   // Controlled / uncontrolled state
@@ -171,7 +172,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(function Che
   const sizeConfig = checkboxSizeMap[size];
 
   const colors = useMemo(
-    () => resolveCheckboxColors(isChecked, indeterminate, error, warning, disabled, themeColors),
+    () => resolveCheckboxColors(isChecked, indeterminate, error, warning, disabled, theme),
     [isChecked, indeterminate, error, warning, disabled, themeColors],
   );
 
@@ -179,7 +180,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(function Che
   // Skeleton
   // ---------------------------------------------------------------------------
   if (skeleton) {
-    const skeletonStyle = getCheckboxSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getCheckboxSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden

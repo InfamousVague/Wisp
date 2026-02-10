@@ -2,9 +2,8 @@
  * @module Indicator
  */
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { IndicatorVariant, IndicatorState, IndicatorSizeConfig } from '../types/Indicator.types';
-import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant → color
@@ -15,8 +14,9 @@ import { defaultRadii } from '../theme/create-theme';
  */
 export function resolveIndicatorColor(
   variant: IndicatorVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): string {
+  const { colors: themeColors } = theme;
   switch (variant) {
     case 'neutral':
       return themeColors.text.muted;
@@ -44,11 +44,13 @@ export function buildIndicatorDotStyle(
   sizeConfig: IndicatorSizeConfig,
   color: string,
   state: IndicatorState,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   const base: CSSStyleObject = {
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: defaultRadii.full,
+    borderRadius: radii.full,
     flexShrink: 0,
   };
 

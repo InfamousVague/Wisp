@@ -5,12 +5,11 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { SheetSize } from '../types/Sheet.types';
 import { sheetSizeMap } from '../types/Sheet.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
-import { defaultRadii, defaultSpacing } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
 
@@ -24,7 +23,8 @@ import { durations, easings } from '../tokens/motion';
  * @param themeColors - Resolved theme colour tokens.
  * @returns A `CSSStyleObject` object for the overlay element.
  */
-export function buildOverlayStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildOverlayStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     position: 'fixed',
     top: 0,
@@ -57,10 +57,11 @@ export function buildSheetStyle(
   size: SheetSize,
   isOpen: boolean,
   dragOffset: number,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   variant: SurfaceVariant = 'solid',
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   const maxHeight = sheetSizeMap[size];
   const translateY = isOpen ? dragOffset : window?.innerHeight ?? 1000;
 
@@ -97,12 +98,13 @@ export function buildSheetStyle(
  * @param themeColors - Resolved theme colour tokens.
  * @returns A `CSSStyleObject` object for the handle bar area.
  */
-export function buildHandleBarStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildHandleBarStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, spacing } = theme;
   return {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: `${defaultSpacing.md}px 0 ${defaultSpacing.xs}px 0`,
+    padding: `${spacing.md}px 0 ${spacing.xs}px 0`,
     cursor: 'grab',
     touchAction: 'none',
     userSelect: 'none',
@@ -115,11 +117,12 @@ export function buildHandleBarStyle(themeColors: ThemeColors): CSSStyleObject {
  * @param themeColors - Resolved theme colour tokens.
  * @returns A `CSSStyleObject` object for the handle pill.
  */
-export function buildHandlePillStyle(themeColors: ThemeColors): CSSStyleObject {
+export function buildHandlePillStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     width: 36,
     height: 4,
-    borderRadius: defaultRadii.sm,
+    borderRadius: radii.sm,
     backgroundColor: themeColors.accent.mutedRaised,
   };
 }

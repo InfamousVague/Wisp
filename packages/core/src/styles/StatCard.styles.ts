@@ -4,9 +4,8 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { StatCardVariant, StatCardSizeConfig } from '../types/StatCard.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -38,8 +37,9 @@ export interface StatCardColors {
  */
 export function resolveStatCardColors(
   variant: StatCardVariant,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): StatCardColors {
+  const { colors: themeColors } = theme;
   let accent: string;
 
   switch (variant) {
@@ -74,7 +74,9 @@ export function resolveStatCardColors(
 export function buildStatCardContainerStyle(
   sizeConfig: StatCardSizeConfig,
   colors: StatCardColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     flexDirection: 'row',
@@ -82,7 +84,7 @@ export function buildStatCardContainerStyle(
     justifyContent: 'space-between',
     padding: sizeConfig.padding,
     gap: sizeConfig.gap,
-    borderRadius: defaultRadii.lg,
+    borderRadius: radii.lg,
     border: `1px solid ${colors.border}`,
     backgroundColor: colors.bg,
     boxSizing: 'border-box',
@@ -111,11 +113,12 @@ export function buildStatCardContentStyle(
 /**
  * Text stack (label, value, description).
  */
-export function buildStatCardTextStackStyle(): CSSStyleObject {
+export function buildStatCardTextStackStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: defaultSpacing['2xs'],
+    gap: spacing['2xs'],
     flex: 1,
     minWidth: 0,
   };
@@ -127,14 +130,16 @@ export function buildStatCardTextStackStyle(): CSSStyleObject {
 export function buildStatCardIconStyle(
   sizeConfig: StatCardSizeConfig,
   accentColor: string,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: sizeConfig.iconSize + 8,
     height: sizeConfig.iconSize + 8,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     backgroundColor: accentColor + '14', // ~8% opacity
     color: accentColor,
     flexShrink: 0,
@@ -147,11 +152,13 @@ export function buildStatCardIconStyle(
 export function buildStatCardValueStyle(
   sizeConfig: StatCardSizeConfig,
   colors: StatCardColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontSize: sizeConfig.valueFontSize,
     lineHeight: `${sizeConfig.valueLineHeight}px`,
-    fontWeight: defaultTypography.weights.bold,
+    fontWeight: typography.weights.bold,
     color: colors.value,
     letterSpacing: '-0.02em',
     margin: 0,
@@ -164,11 +171,13 @@ export function buildStatCardValueStyle(
 export function buildStatCardLabelStyle(
   sizeConfig: StatCardSizeConfig,
   colors: StatCardColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     color: colors.label,
     margin: 0,
   };
@@ -180,11 +189,13 @@ export function buildStatCardLabelStyle(
 export function buildStatCardDescriptionStyle(
   sizeConfig: StatCardSizeConfig,
   colors: StatCardColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontSize: sizeConfig.descriptionFontSize,
     lineHeight: 1.4,
-    fontWeight: defaultTypography.weights.regular,
+    fontWeight: typography.weights.regular,
     color: colors.description,
     margin: 0,
   };
@@ -211,13 +222,15 @@ export function buildStatCardRightStyle(
 export function buildStatCardTrendStyle(
   sizeConfig: StatCardSizeConfig,
   trendColor: string,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing, typography } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: defaultSpacing.xs,
+    gap: spacing.xs,
     fontSize: sizeConfig.trendFontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     color: trendColor,
     lineHeight: 1,
   };
@@ -228,13 +241,14 @@ export function buildStatCardTrendStyle(
  */
 export function buildStatCardSkeletonStyle(
   sizeConfig: StatCardSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'block',
     width: '100%',
     height: sizeConfig.padding * 2 + sizeConfig.valueLineHeight + sizeConfig.labelFontSize * 1.4 + 4,
-    borderRadius: defaultRadii.lg,
+    borderRadius: radii.lg,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

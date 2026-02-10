@@ -16,7 +16,7 @@ import {
   buildReactionsContainerStyle,
   buildReactionChipStyle,
 } from '@wisp-ui/core/styles/ChatBubble.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
 // Inline SVG status icons
@@ -100,25 +100,26 @@ export const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
 
     const colors = useMemo(
-      () => resolveChatBubbleColors(align, variant, themeColors),
+      () => resolveChatBubbleColors(align, variant, theme),
       [align, variant, themeColors],
     );
 
     const bubbleStyle = useMemo(
-      () => buildChatBubbleStyle(align, colors),
+      () => buildChatBubbleStyle(align, colors, theme),
       [align, colors],
     );
 
     const footerStyle = useMemo(
-      () => buildFooterStyle(align),
+      () => buildFooterStyle(align, theme),
       [align],
     );
 
     const timestampStyle = useMemo(
-      () => buildTimestampStyle(colors),
+      () => buildTimestampStyle(colors, theme),
       [colors],
     );
 
@@ -128,7 +129,7 @@ export const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(
     );
 
     const reactionsContainerStyle = useMemo(
-      () => buildReactionsContainerStyle(),
+      () => buildReactionsContainerStyle(theme),
       [],
     );
 
@@ -156,7 +157,6 @@ export const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(
                 <ReactionChip
                   key={reaction.emoji}
                   reaction={reaction}
-                  themeColors={themeColors}
                   onClick={handleReactionClick}
                 />
               ))}
@@ -192,15 +192,15 @@ ChatBubble.displayName = 'ChatBubble';
 
 function ReactionChip({
   reaction,
-  themeColors,
   onClick,
 }: {
   reaction: ChatBubbleReaction;
-  themeColors: ReturnType<typeof useThemeColors>;
   onClick: (emoji: string) => void;
 }) {
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const chipStyle = useMemo(
-    () => buildReactionChipStyle(reaction.reacted ?? false, themeColors),
+    () => buildReactionChipStyle(reaction.reacted ?? false, theme),
     [reaction.reacted, themeColors],
   );
 

@@ -1,8 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { CircularProgressSizeConfig } from '../types/CircularProgress.types';
-import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -31,8 +30,9 @@ export interface CircularProgressColors {
  */
 export function resolveCircularProgressColors(
   color: 'default' | 'success' | 'warning' | 'danger' | 'info',
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CircularProgressColors {
+  const { colors: themeColors } = theme;
   const track = themeColors.border.subtle;
   const valueText = themeColors.text.primary;
   const labelText = themeColors.text.secondary;
@@ -244,11 +244,13 @@ export function buildHalfCenterContentStyle(
 export function buildValueTextStyle(
   sizeConfig: CircularProgressSizeConfig,
   colors: CircularProgressColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: defaultTypography.weights.semibold,
+    fontWeight: typography.weights.semibold,
     lineHeight: 1,
     color: colors.valueText,
     margin: 0,
@@ -271,11 +273,13 @@ export function buildValueTextStyle(
 export function buildLabelTextStyle(
   sizeConfig: CircularProgressSizeConfig,
   colors: CircularProgressColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: Math.max(sizeConfig.fontSize - 2, 10),
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     lineHeight: 1.4,
     color: colors.labelText,
     margin: 0,

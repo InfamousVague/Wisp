@@ -1,5 +1,5 @@
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ColorSwatchShape, ColorSwatchSizeConfig } from '../types/ColorSwatch.types';
 
 // ---------------------------------------------------------------------------
@@ -50,8 +50,9 @@ export function buildSwatchStyle(
   shape: ColorSwatchShape,
   bordered: boolean,
   hasCheckerboard: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     // Layout
     display: 'inline-flex',
@@ -98,8 +99,9 @@ export function buildSwatchStyle(
 export function buildCheckerboardStyle(
   sizeConfig: ColorSwatchSizeConfig,
   shape: ColorSwatchShape,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     position: 'relative',
     display: 'inline-flex',
@@ -128,8 +130,9 @@ export function buildCheckerboardStyle(
 export function buildColorOverlayStyle(
   color: string,
   bordered: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     position: 'absolute',
     inset: 0,

@@ -7,11 +7,10 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { TableSize, TableCellAlignment, TableVariant } from '../types/Table.types';
 import { tableSizePaddingMap, tableSizeFontMap } from '../types/Table.types';
 import { fontFamilyStacks } from '../tokens/shared';
-import { defaultRadii, defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -26,11 +25,12 @@ import { durations, easings } from '../tokens/motion';
  * @returns CSS properties for the bordered wrapper.
  */
 export function buildTableBorderedWrapperStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { colors: themeColors, radii } = theme;
   return {
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
     overflow: 'hidden',
   };
 }
@@ -47,9 +47,10 @@ export function buildTableBorderedWrapperStyle(
  * @returns Merged CSS properties for the `<table>` element.
  */
 export function buildTableStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     width: '100%',
     borderCollapse: 'collapse',
@@ -75,9 +76,10 @@ export function buildTableStyle(
  */
 export function buildTableHeaderStyle(
   stickyHeader: boolean,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   const base: CSSStyleObject = {};
 
   if (stickyHeader) {
@@ -119,13 +121,14 @@ export function buildTableBodyStyle(
  * @returns Merged CSS properties for the `<tfoot>` element.
  */
 export function buildTableFooterStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   return {
     borderTop: '1px solid ' + themeColors.border.subtle,
     backgroundColor: themeColors.background.surface,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     ...userStyle,
   };
 }
@@ -158,17 +161,18 @@ export function buildTableRowStyle(opts: {
   isHeaderRow: boolean;
   bordered: boolean;
   isLastRow: boolean;
-  themeColors: ThemeColors;
+  theme: WispTheme;
   userStyle?: CSSStyleObject;
 }): CSSStyleObject {
+  const { colors: themeColors } = opts.theme;
   let backgroundColor: string | undefined;
 
   if (opts.selected) {
-    backgroundColor = opts.themeColors.accent.highlight;
+    backgroundColor = themeColors.accent.highlight;
   } else if (opts.hoverable && opts.hovered && !opts.isHeaderRow) {
-    backgroundColor = opts.themeColors.accent.highlight;
+    backgroundColor = themeColors.accent.highlight;
   } else if (opts.variant === 'striped' && opts.isEvenRow && !opts.isHeaderRow) {
-    backgroundColor = opts.themeColors.accent.highlight;
+    backgroundColor = themeColors.accent.highlight;
   }
 
   // Hide the bottom border on the last body row when bordered,
@@ -176,7 +180,7 @@ export function buildTableRowStyle(opts: {
   const hideBorder = opts.bordered && opts.isLastRow && !opts.isHeaderRow;
 
   return {
-    borderBottom: hideBorder ? 'none' : '1px solid ' + opts.themeColors.border.subtle,
+    borderBottom: hideBorder ? 'none' : '1px solid ' + themeColors.border.subtle,
     transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
     backgroundColor,
     ...opts.userStyle,
@@ -201,9 +205,10 @@ export function buildTableRowStyle(opts: {
 export function buildTableHeadStyle(opts: {
   size: TableSize;
   align: TableCellAlignment;
-  themeColors: ThemeColors;
+  theme: WispTheme;
   userStyle?: CSSStyleObject;
 }): CSSStyleObject {
+  const { colors: themeColors, typography } = opts.theme;
   const padding = tableSizePaddingMap[opts.size];
   const font = tableSizeFontMap[opts.size];
 
@@ -212,9 +217,9 @@ export function buildTableHeadStyle(opts: {
     textAlign: opts.align,
     fontSize: font.fontSize,
     lineHeight: font.lineHeight,
-    fontWeight: defaultTypography.weights.semibold,
-    color: opts.themeColors.text.secondary,
-    backgroundColor: opts.themeColors.background.surface,
+    fontWeight: typography.weights.semibold,
+    color: themeColors.text.secondary,
+    backgroundColor: themeColors.background.surface,
     whiteSpace: 'nowrap',
     ...opts.userStyle,
   };
@@ -238,9 +243,10 @@ export function buildTableHeadStyle(opts: {
 export function buildTableCellStyle(opts: {
   size: TableSize;
   align: TableCellAlignment;
-  themeColors: ThemeColors;
+  theme: WispTheme;
   userStyle?: CSSStyleObject;
 }): CSSStyleObject {
+  const { colors: themeColors, typography } = opts.theme;
   const padding = tableSizePaddingMap[opts.size];
   const font = tableSizeFontMap[opts.size];
 
@@ -249,8 +255,8 @@ export function buildTableCellStyle(opts: {
     textAlign: opts.align,
     fontSize: font.fontSize,
     lineHeight: font.lineHeight,
-    fontWeight: defaultTypography.weights.regular,
-    color: opts.themeColors.text.primary,
+    fontWeight: typography.weights.regular,
+    color: themeColors.text.primary,
     ...opts.userStyle,
   };
 }

@@ -10,7 +10,7 @@ import {
   buildTrackWrapperStyle,
   getSliderSkeletonStyle,
 } from '@wisp-ui/core/styles/Slider.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 import { fontFamilyStacks, thicknessValues } from '@wisp-ui/core/tokens/shared';
 import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
@@ -95,7 +95,8 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
 
   // ---------------------------------------------------------------------------
   // Controlled / uncontrolled state
@@ -265,7 +266,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
   }, [baseSizeConfig, thickness]);
 
   const colors = useMemo(
-    () => resolveSliderColors(disabled, themeColors),
+    () => resolveSliderColors(disabled, theme),
     [disabled, themeColors],
   );
 
@@ -273,7 +274,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
   // Skeleton
   // ---------------------------------------------------------------------------
   if (skeleton) {
-    const skeletonStyle = getSliderSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = getSliderSkeletonStyle(sizeConfig, theme);
     return (
       <div
         aria-hidden
@@ -299,8 +300,8 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
   const trackWrapperStyle = buildTrackWrapperStyle(sizeConfig, disabled);
   const trackStyle = buildTrackStyle(sizeConfig, colors);
   const filledTrackStyle = buildFilledTrackStyle(sizeConfig, colors, percent);
-  const thumbStyle = buildThumbStyle(sizeConfig, colors, percent);
-  const labelRowStyle = buildLabelRowStyle();
+  const thumbStyle = buildThumbStyle(sizeConfig, colors, percent, theme);
+  const labelRowStyle = buildLabelRowStyle(theme);
 
   // ---------------------------------------------------------------------------
   // Wrapper style

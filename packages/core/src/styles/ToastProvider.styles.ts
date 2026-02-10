@@ -3,9 +3,9 @@
  */
 import type { CSSStyleObject } from '../types';
 import type { ToastPosition } from '../types/ToastProvider.types';
-import { defaultSpacing } from '../theme/create-theme';
 import { zIndex } from '../tokens/z-index';
 import { durations, easings } from '../tokens/motion';
+import type { WispTheme } from '../theme/types';
 
 // ---------------------------------------------------------------------------
 // Container positioning
@@ -13,14 +13,16 @@ import { durations, easings } from '../tokens/motion';
 
 export function buildToastContainerStyle(
   position: ToastPosition,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { spacing } = theme;
   const base: CSSStyleObject = {
     position: 'fixed',
     zIndex: zIndex.toast,
     display: 'flex',
     flexDirection: 'column',
-    gap: defaultSpacing.sm,
-    padding: defaultSpacing.lg,
+    gap: spacing.sm,
+    padding: spacing.lg,
     pointerEvents: 'none',
     maxWidth: 420,
     width: '100%',

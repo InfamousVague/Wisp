@@ -3,9 +3,8 @@
  */
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
-import type { ThemeColors } from '../theme/types';
+import type { ThemeColors, WispTheme } from '../theme/types';
 import type { ButtonGroupVariant, ButtonGroupSizeConfig } from '../types/ButtonGroup.types';
-import { defaultTypography } from '../theme/create-theme';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -16,10 +15,11 @@ import { durations, easings } from '../tokens/motion';
  * Builds the wrapper style for the button group.
  */
 export function buildGroupContainerStyle(
-  themeColors: ThemeColors,
+  theme: WispTheme,
   variant: ButtonGroupVariant,
   fullWidth: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors } = theme;
   return {
     display: fullWidth ? 'flex' : 'inline-flex',
     width: fullWidth ? '100%' : undefined,
@@ -41,7 +41,7 @@ export function buildGroupContainerStyle(
  */
 export function buildGroupItemStyle(
   sizeConfig: ButtonGroupSizeConfig,
-  themeColors: ThemeColors,
+  theme: WispTheme,
   variant: ButtonGroupVariant,
   isActive: boolean,
   isDisabled: boolean,
@@ -49,6 +49,7 @@ export function buildGroupItemStyle(
   isLast: boolean,
   fullWidth: boolean,
 ): CSSStyleObject {
+  const { colors: themeColors, typography } = theme;
   let bg: string;
   let textColor: string;
   let borderRight: string | undefined;
@@ -102,7 +103,7 @@ export function buildGroupItemStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: `${sizeConfig.lineHeight}px`,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
 
     // Colors
     backgroundColor: bg,

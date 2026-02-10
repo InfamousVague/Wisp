@@ -18,7 +18,7 @@ import {
   buildRadarChartLegendDotStyle,
   buildRadarChartLegendTextStyle,
 } from '@wisp-ui/core/styles/RadarChart.styles';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * RadarChart — Multi-axis radar (spider) chart.
@@ -63,19 +63,20 @@ export const RadarChart = forwardRef<HTMLDivElement, RadarChartProps>(
     },
     ref,
   ) {
-    const themeColors = useThemeColors();
+    const { theme } = useTheme();
+  const themeColors = theme.colors;
     const sizeConfig = radarChartSizeMap[size];
 
     // -----------------------------------------------------------------------
     // Colours
     // -----------------------------------------------------------------------
     const chartColors = useMemo(
-      () => resolveRadarChartColors(themeColors),
+      () => resolveRadarChartColors(theme),
       [themeColors],
     );
 
     const seriesColors = useMemo(
-      () => series.map((s, i) => s.color || resolveSeriesColor(i, themeColors)),
+      () => series.map((s, i) => s.color || resolveSeriesColor(i, theme)),
       [series, themeColors],
     );
 
@@ -250,11 +251,11 @@ export const RadarChart = forwardRef<HTMLDivElement, RadarChartProps>(
 
         {/* Legend */}
         {showLegend && (
-          <div style={buildRadarChartLegendStyle()}>
+          <div style={buildRadarChartLegendStyle(theme)}>
             {series.map((s, i) => (
-              <div key={i} style={buildRadarChartLegendItemStyle()}>
-                <div style={buildRadarChartLegendDotStyle(seriesColors[i])} />
-                <span style={buildRadarChartLegendTextStyle(sizeConfig, chartColors)}>
+              <div key={i} style={buildRadarChartLegendItemStyle(theme)}>
+                <div style={buildRadarChartLegendDotStyle(seriesColors[i], theme)} />
+                <span style={buildRadarChartLegendTextStyle(sizeConfig, chartColors, theme)}>
                   {s.label}
                 </span>
               </div>

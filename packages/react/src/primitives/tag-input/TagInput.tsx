@@ -22,7 +22,7 @@ import {
   buildSkeletonStyle,
 } from '@wisp-ui/core/styles/TagInput.styles';
 import { useControllable } from '../../hooks/use-controllable';
-import { useThemeColors } from '../../providers';
+import { useTheme } from '../../providers';
 
 /**
  * TagInput — A multi-value input that renders tags as removable chips,
@@ -79,7 +79,8 @@ export const TagInput = forwardRef<HTMLDivElement, TagInputProps>(function TagIn
   },
   ref,
 ) {
-  const themeColors = useThemeColors();
+  const { theme } = useTheme();
+  const themeColors = theme.colors;
   const sizeConfig = tagInputSizeMap[size];
 
   // ---------------------------------------------------------------------------
@@ -232,31 +233,31 @@ export const TagInput = forwardRef<HTMLDivElement, TagInputProps>(function TagIn
   // ---------------------------------------------------------------------------
 
   const colors = useMemo(
-    () => resolveTagInputColors(focused, hasError, hasWarning, disabled, themeColors),
+    () => resolveTagInputColors(focused, hasError, hasWarning, disabled, theme),
     [focused, hasError, hasWarning, disabled, themeColors],
   );
 
   const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig, fullWidth), [sizeConfig, fullWidth]);
   const contStyle = useMemo(() => buildContainerStyle(sizeConfig, colors, disabled), [sizeConfig, colors, disabled]);
-  const tagStyle = useMemo(() => buildTagStyle(sizeConfig, colors, disabled), [sizeConfig, colors, disabled]);
+  const tagStyle = useMemo(() => buildTagStyle(sizeConfig, colors, disabled, theme), [sizeConfig, colors, disabled]);
   const tagRemoveBaseStyle = useMemo(() => buildTagRemoveStyle(sizeConfig, colors), [sizeConfig, colors]);
   const inputStyle = useMemo(() => buildInputStyle(sizeConfig, colors), [sizeConfig, colors]);
-  const labelStyleObj = useMemo(() => buildLabelStyle(sizeConfig, colors), [sizeConfig, colors]);
-  const hintStyleObj = useMemo(() => buildHintStyle(sizeConfig, colors), [sizeConfig, colors]);
+  const labelStyleObj = useMemo(() => buildLabelStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
+  const hintStyleObj = useMemo(() => buildHintStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
 
   const mergedStyle = useMemo(
     () => (userStyle ? { ...wrapperStyle, ...userStyle } : wrapperStyle),
     [wrapperStyle, userStyle],
   );
 
-  const removeHoverBg = useMemo(() => getTagRemoveHoverBg(themeColors), [themeColors]);
+  const removeHoverBg = useMemo(() => getTagRemoveHoverBg(theme), [themeColors]);
 
   // ---------------------------------------------------------------------------
   // Skeleton
   // ---------------------------------------------------------------------------
 
   if (skeleton) {
-    const skeletonStyle = buildSkeletonStyle(sizeConfig, themeColors);
+    const skeletonStyle = buildSkeletonStyle(sizeConfig, theme);
     return (
       <div ref={ref} aria-hidden className={className} style={mergedStyle} {...rest}>
         {label && <label style={labelStyleObj}>{label}</label>}
