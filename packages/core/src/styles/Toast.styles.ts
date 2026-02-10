@@ -188,7 +188,7 @@ export function buildTitleStyle(colors: ToastColors): CSSStyleObject {
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: defaultTypography.sizes.sm.fontSize,
-    lineHeight: defaultTypography.sizes.sm.lineHeight,
+    lineHeight: `${defaultTypography.sizes.sm.lineHeight}px`,
     fontWeight: defaultTypography.weights.medium,
     color: colors.text,
     margin: 0,
@@ -209,7 +209,7 @@ export function buildDescriptionStyle(colors: ToastColors): CSSStyleObject {
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: defaultTypography.sizes.sm.fontSize,
-    lineHeight: defaultTypography.sizes.xs.lineHeight,
+    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
     fontWeight: defaultTypography.weights.regular,
     color: colors.description,
     margin: 0,

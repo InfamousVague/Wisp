@@ -69,16 +69,21 @@ export function buildVoiceRecorderContainerStyle(
   sizeConfig: VoiceRecorderSizeConfig,
   colors: VoiceRecorderColors,
 ): CSSStyleObject {
+  // Vertical padding centers buttons; horizontal padding is half the
+  // difference between container height and button size so buttons
+  // sit flush against the visual edge of the pill.
+  const hPad = (sizeConfig.height - sizeConfig.buttonSize) / 2;
   return {
     display: 'flex',
     alignItems: 'center',
     gap: sizeConfig.gap,
-    padding: `0 ${sizeConfig.padding}px`,
+    padding: `0 ${hPad}px`,
     height: sizeConfig.height,
     borderRadius: sizeConfig.borderRadius,
     border: `1px solid ${colors.border}`,
     backgroundColor: colors.bg,
     width: '100%',
+    boxSizing: 'border-box',
   };
 }
 

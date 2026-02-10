@@ -94,7 +94,7 @@ export function buildInputStyle(themeColors: ThemeColors): CSSStyleObject {
     backgroundColor: 'transparent',
     color: themeColors.text.primary,
     fontSize: defaultTypography.sizes.base.fontSize,
-    lineHeight: defaultTypography.sizes.base.lineHeight,
+    lineHeight: `${defaultTypography.sizes.base.lineHeight}px`,
     fontFamily: fontFamilyStacks.sans,
     padding: 0,
     margin: 0,
@@ -136,7 +136,7 @@ export function buildGroupHeadingStyle(themeColors: ThemeColors): CSSStyleObject
     padding: `${defaultSpacing.sm}px ${defaultSpacing.lg}px ${defaultSpacing.xs}px`,
     fontSize: defaultTypography.sizes.xs.fontSize,
     fontWeight: defaultTypography.weights.medium,
-    lineHeight: defaultTypography.sizes.xs.lineHeight,
+    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
     color: themeColors.text.muted,
     textTransform: 'uppercase',
     letterSpacing: 1,
@@ -209,7 +209,7 @@ export function buildItemLabelStyle(): CSSStyleObject {
 export function buildItemDescriptionStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
     fontSize: defaultTypography.sizes.xs.fontSize,
-    lineHeight: defaultTypography.sizes.xs.lineHeight,
+    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
     color: themeColors.text.secondary,
   };
 }
@@ -222,7 +222,7 @@ export function buildItemShortcutStyle(themeColors: ThemeColors): CSSStyleObject
   return {
     marginLeft: 'auto',
     fontSize: defaultTypography.sizes.xs.fontSize,
-    lineHeight: defaultTypography.sizes.xs.lineHeight,
+    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
     color: themeColors.text.secondary,
     fontFamily: fontFamilyStacks.sans,
     display: 'flex',
@@ -245,7 +245,7 @@ export function buildShortcutKeyStyle(themeColors: ThemeColors): CSSStyleObject 
     padding: `0 ${defaultSpacing.xs}px`,
     fontSize: defaultTypography.sizes.xs.fontSize,
     fontWeight: defaultTypography.weights.medium,
-    lineHeight: defaultTypography.sizes.sm.lineHeight,
+    lineHeight: `${defaultTypography.sizes.sm.lineHeight}px`,
     borderRadius: defaultRadii.sm,
     backgroundColor: themeColors.accent.highlight,
     color: themeColors.text.secondary,
@@ -273,7 +273,7 @@ export function buildEmptyStyle(themeColors: ThemeColors): CSSStyleObject {
     padding: `${defaultSpacing['2xl']}px ${defaultSpacing.lg}px`,
     textAlign: 'center',
     fontSize: defaultTypography.sizes.sm.fontSize,
-    lineHeight: defaultTypography.sizes.sm.lineHeight,
+    lineHeight: `${defaultTypography.sizes.sm.lineHeight}px`,
     color: themeColors.text.muted,
     fontFamily: fontFamilyStacks.sans,
   };

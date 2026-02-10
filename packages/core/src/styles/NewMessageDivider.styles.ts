@@ -52,7 +52,7 @@ export function buildLineStyle(color: string): CSSStyleObject {
 export function buildLabelStyle(color: string): CSSStyleObject {
   return {
     fontSize: defaultTypography.sizes.xs.fontSize,
-    lineHeight: defaultTypography.sizes.xs.lineHeight,
+    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
     fontWeight: defaultTypography.weights.semibold,
     fontFamily: fontFamilyStacks.sans,
     color,

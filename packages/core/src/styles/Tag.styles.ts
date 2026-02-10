@@ -86,7 +86,7 @@ export function resolveTagColors(
     const accentBg = themeColors.accent.primary;
     // Auto-detect whether accent is light or dark to pick contrasting text
     const accentIsLight = isHexColor(accentBg) && relativeLuminance(accentBg) > 0.4;
-    const textColor = accentIsLight ? themeColors.text.primary : themeColors.text.inverse;
+    const textColor = accentIsLight ? '#0A0E15' : '#F7F8FA';
     const closeHoverBg = accentIsLight ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.15)';
 
     return {

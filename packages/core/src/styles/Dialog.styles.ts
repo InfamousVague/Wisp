@@ -112,7 +112,7 @@ export function buildTitleStyle(themeColors: ThemeColors): CSSStyleObject {
     fontFamily: fontFamilyStacks.sans,
     fontSize: defaultTypography.sizes.lg.fontSize,
     fontWeight: defaultTypography.weights.semibold,
-    lineHeight: defaultTypography.sizes.lg.lineHeight,
+    lineHeight: `${defaultTypography.sizes.lg.lineHeight}px`,
     color: themeColors.text.onRaised,
   };
 }
@@ -129,7 +129,7 @@ export function buildDescriptionStyle(themeColors: ThemeColors): CSSStyleObject 
     fontFamily: fontFamilyStacks.sans,
     fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: defaultTypography.weights.regular,
-    lineHeight: defaultTypography.sizes.sm.lineHeight,
+    lineHeight: `${defaultTypography.sizes.sm.lineHeight}px`,
     color: themeColors.text.onRaisedSecondary,
   };
 }

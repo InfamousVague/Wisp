@@ -39,8 +39,8 @@ export function resolveChatBubbleColors(
   if (align === 'outgoing') {
     return {
       bg: themeColors.accent.primary,
-      text: themeColors.text.primary,
-      timestamp: themeColors.text.secondary,
+      text: themeColors.text.inverse,
+      timestamp: themeColors.text.muted,
       border: themeColors.border.subtle,
     };
   }
@@ -80,7 +80,7 @@ export function buildChatBubbleStyle(
     color: colors.text,
     fontFamily: fontFamilyStacks.sans,
     fontSize: defaultTypography.sizes.sm.fontSize,
-    lineHeight: defaultTypography.sizes.sm.lineHeight,
+    lineHeight: `${defaultTypography.sizes.sm.lineHeight}px`,
     wordWrap: 'break-word',
     overflowWrap: 'break-word',
     boxSizing: 'border-box',
@@ -114,7 +114,7 @@ export function buildFooterStyle(align: ChatBubbleAlignment): CSSStyleObject {
 export function buildTimestampStyle(colors: ChatBubbleColors): CSSStyleObject {
   return {
     fontSize: defaultTypography.sizes.xs.fontSize,
-    lineHeight: defaultTypography.sizes['2xs'].lineHeight,
+    lineHeight: `${defaultTypography.sizes['2xs'].lineHeight}px`,
     color: colors.timestamp,
     fontFamily: fontFamilyStacks.sans,
     whiteSpace: 'nowrap',
@@ -178,7 +178,7 @@ export function buildReactionChipStyle(
     padding: `${defaultSpacing['2xs']}px ${defaultSpacing.sm}px`,
     borderRadius: defaultRadii.xl,
     fontSize: defaultTypography.sizes.xs.fontSize,
-    lineHeight: defaultTypography.sizes.xs.lineHeight,
+    lineHeight: `${defaultTypography.sizes.xs.lineHeight}px`,
     fontFamily: fontFamilyStacks.sans,
     border: `1px solid ${reacted ? themeColors.brand.border : themeColors.border.subtle}`,
     backgroundColor: chipBg,
