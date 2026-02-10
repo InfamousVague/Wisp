@@ -28,15 +28,15 @@ export interface MessageInputColors {
 export function resolveMessageInputColors(theme: WispTheme): MessageInputColors {
   const { colors: themeColors } = theme;
   return {
-    bg: themeColors.background.surface,
-    border: themeColors.border.subtle,
+    bg: 'transparent',
+    border: themeColors.border.strong,
     borderFocus: themeColors.accent.primary,
     text: themeColors.text.primary,
     placeholder: themeColors.text.muted,
     icon: themeColors.text.muted,
     iconHover: themeColors.text.secondary,
     sendBg: themeColors.accent.primary,
-    sendIcon: themeColors.background.surface,
+    sendIcon: themeColors.text.inverse,
     sendBgDisabled: themeColors.border.subtle,
   };
 }

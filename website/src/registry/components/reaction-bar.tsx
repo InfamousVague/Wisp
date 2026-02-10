@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactionBar, VStack, Text, useThemeColors } from '@wisp-ui/react';
+import { ReactionBar, VStack, Text } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
 
 const sampleReactions = [
@@ -8,15 +8,6 @@ const sampleReactions = [
   { emoji: '😂', count: 2 },
   { emoji: '🎉', count: 1 },
 ];
-
-function ReactionBarPreview() {
-  const colors = useThemeColors();
-  return (
-    <div style={{ pointerEvents: 'none', backgroundColor: colors.background.surface, borderRadius: 8, padding: 8 }}>
-      <ReactionBar reactions={sampleReactions} size="sm" showAddButton={false} />
-    </div>
-  );
-}
 
 export const reactionBarEntry: ComponentEntry = {
   slug: 'reaction-bar',
@@ -27,7 +18,11 @@ export const reactionBarEntry: ComponentEntry = {
   variantCount: 1,
   keywords: ['reaction', 'emoji', 'like', 'chat', 'message', 'bar', 'toggle', 'social'],
 
-  cardPreview: <ReactionBarPreview />,
+  cardPreview: (
+    <div style={{ pointerEvents: 'none' }}>
+      <ReactionBar reactions={sampleReactions} size="sm" showAddButton={false} />
+    </div>
+  ),
 
   examples: [
     {

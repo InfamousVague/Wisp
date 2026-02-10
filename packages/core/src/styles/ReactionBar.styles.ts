@@ -27,7 +27,7 @@ export interface ReactionBarColors {
 export function resolveReactionBarColors(theme: WispTheme): ReactionBarColors {
   const { colors: themeColors } = theme;
   return {
-    bg: themeColors.background.surface,
+    bg: 'transparent',
     border: themeColors.border.subtle,
     buttonBg: 'transparent',
     buttonBgActive: themeColors.accent.highlight,
