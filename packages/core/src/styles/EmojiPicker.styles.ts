@@ -77,7 +77,8 @@ export function buildEmojiPickerHeaderStyle(
 
 /**
  * Outer wrapper for the search/skin-tone slider. Clips overflow so that
- * the two panels slide in and out horizontally.
+ * the two panels slide in and out horizontally. Padding prevents the
+ * input border/focus ring from being clipped.
  */
 export function buildEmojiPickerSearchRowStyle(
   sizeConfig: EmojiPickerSizeConfig,
@@ -85,7 +86,9 @@ export function buildEmojiPickerSearchRowStyle(
   return {
     position: 'relative',
     overflow: 'hidden',
-    height: sizeConfig.searchHeight,
+    height: sizeConfig.searchHeight + 4,
+    padding: 2,
+    margin: -2,
   };
 }
 

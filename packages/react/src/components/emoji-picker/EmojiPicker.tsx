@@ -7,7 +7,7 @@
 
 import React, { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useThemeColors } from '../../providers';
-import { Input } from '../../primitives/input';
+import { SearchInput } from '../search-input';
 import { Text } from '../../primitives/text';
 import {
   Clock,
@@ -20,7 +20,6 @@ import {
   Lightbulb,
   Heart,
   Flag,
-  Search,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type {
@@ -340,15 +339,16 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
             {/* Panel 1: Search bar + skin tone trigger button */}
             <div style={sliderPanelStyle}>
               {showSearch && (
-                <Input
+                <SearchInput
                   size={size}
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
+                  onClear={() => setSearch('')}
                   placeholder={searchPlaceholder}
-                  icon={Search as any}
                   aria-label="Search emoji"
                   autoFocus={autoFocusSearch}
-                  style={{ width: '100%', flex: 1 }}
+                  fullWidth
+                  style={{ flex: 1 }}
                 />
               )}
               {showSkinTones && (

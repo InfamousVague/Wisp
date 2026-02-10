@@ -306,7 +306,9 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
   }), [sizeConfig, colors]);
 
   const sliderClipStyle = useMemo<ViewStyle>(() => ({
-    height: sizeConfig.searchHeight,
+    height: sizeConfig.searchHeight + 4,
+    padding: 2,
+    margin: -2,
     overflow: 'hidden',
   }), [sizeConfig]);
 
