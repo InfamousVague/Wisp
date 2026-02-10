@@ -16,6 +16,8 @@ export const lightColors: ThemeColors = {
   background: {
     /** Root-level light canvas — pure white. */
     canvas: '#FFFFFF',
+    /** Recessed / inset areas — subtle cool off-white. */
+    sunken: '#F4F4F5',
     /** Card / panel surface — near-black. */
     surface: '#09090B',
     /** Elevated elements (popovers, tooltips) — dark. */

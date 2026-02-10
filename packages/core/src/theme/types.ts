@@ -38,6 +38,7 @@ export type ThemeMode = 'dark' | 'light';
  * | Token     | Purpose                                         |
  * | --------- | ----------------------------------------------- |
  * | `canvas`  | Root-level page / screen background              |
+ * | `sunken`  | Recessed areas like wells, preview panels, inputs|
  * | `surface` | Cards, panels, and content containers            |
  * | `raised`  | Elevated elements such as popovers and tooltips  |
  * | `overlay` | Semi-transparent scrim behind modals / drawers   |
@@ -45,6 +46,8 @@ export type ThemeMode = 'dark' | 'light';
 export interface BackgroundColors {
   /** Root-level page / screen background. */
   canvas: string;
+  /** Recessed / inset areas — preview wells, code blocks, input fields. */
+  sunken: string;
   /** Cards, panels, and content containers. */
   surface: string;
   /** Elevated elements such as popovers and tooltips. */

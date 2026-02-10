@@ -15,8 +15,10 @@ export const darkColors: ThemeColors = {
   background: {
     /** Root-level dark canvas — true black. */
     canvas: '#000000',
-    /** Card / panel surface — near-black. */
-    surface: '#0A0A0A',
+    /** Recessed / inset areas — lifted from true black for visible contrast. */
+    sunken: '#0E0E0E',
+    /** Card / panel surface — slightly lifted dark. */
+    surface: '#0C0C0C',
     /** Elevated elements (popovers, tooltips, dropdowns). */
     raised: '#161616',
     /** Semi-transparent scrim for modals and drawers. */
