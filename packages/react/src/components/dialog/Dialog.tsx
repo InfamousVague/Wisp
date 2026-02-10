@@ -32,6 +32,7 @@ import {
   buildFooterStyle,
 } from '@wisp-ui/core/styles/Dialog.styles';
 import { useTheme, WispProvider } from '../../providers';
+import { Text } from '../../primitives';
 import { createTheme } from '@wisp-ui/core/theme/create-theme';
 
 /** Guards against injecting the CSS keyframes more than once per page. */
@@ -199,9 +200,9 @@ export function Dialog({
           </div>
         )}
         <div style={{ flex: 1 }}>
-          <h2 id="wisp-dialog-title" style={titleStyleVal}>{title}</h2>
+          <Text as="h2" id="wisp-dialog-title" style={titleStyleVal}>{title}</Text>
           {description && (
-            <p id="wisp-dialog-description" style={descriptionStyleVal}>{description}</p>
+            <Text as="p" id="wisp-dialog-description" style={descriptionStyleVal}>{description}</Text>
           )}
         </div>
         {showCloseButton && (

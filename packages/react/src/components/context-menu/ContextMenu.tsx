@@ -17,6 +17,7 @@ import {
   buildContextMenuSeparatorStyle,
 } from '@wisp-ui/core/styles/ContextMenu.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives/text';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -213,8 +214,8 @@ export const ContextMenuItem = forwardRef<HTMLDivElement, ContextMenuItemProps>(
         {...rest}
       >
         {icon && <span style={{ display: 'flex', flexShrink: 0 }}>{icon}</span>}
-        <span style={{ flex: 1 }}>{children}</span>
-        {shortcut && <span style={shortcutStyle}>{shortcut}</span>}
+        <Text style={{ flex: 1 }}>{children}</Text>
+        {shortcut && <Text style={shortcutStyle}>{shortcut}</Text>}
       </div>
     );
   },

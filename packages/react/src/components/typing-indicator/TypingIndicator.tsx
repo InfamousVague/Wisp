@@ -13,6 +13,7 @@ import {
   buildTypingSenderNameStyle,
 } from '@wisp-ui/core/styles/TypingIndicator.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives';
 
 // ---------------------------------------------------------------------------
 // Dot count
@@ -140,7 +141,7 @@ export const TypingIndicator = forwardRef<HTMLDivElement, TypingIndicatorProps>(
         {...rest}
       >
         {/* Sender name above the row */}
-        {sender && <span style={senderNameStyle}>{sender}</span>}
+        {sender && <Text style={senderNameStyle}>{sender}</Text>}
 
         {/* Avatar + Bubble side-by-side */}
         <div style={rowStyle}>

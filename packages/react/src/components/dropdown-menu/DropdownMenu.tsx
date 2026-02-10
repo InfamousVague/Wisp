@@ -10,6 +10,7 @@ import React, {
 } from "react";
 import { createPortal } from "react-dom";
 import { useTheme } from "../../providers";
+import { Text } from "../../primitives/text";
 import type {
   DropdownMenuProps,
   DropdownMenuTriggerProps,
@@ -268,8 +269,8 @@ export const DropdownMenuItem = forwardRef<HTMLDivElement, DropdownMenuItemProps
         aria-disabled={disabled || undefined} className={className} style={{ ...itemStyle, ...userStyle }}
         onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         {icon && <span style={iconStyleVal}>{icon}</span>}
-        <span style={{ flex: 1 }}>{children}</span>
-        {shortcut && <span style={shortcutStyleVal}>{shortcut}</span>}
+        <Text style={{ flex: 1 }}>{children}</Text>
+        {shortcut && <Text style={shortcutStyleVal}>{shortcut}</Text>}
       </div>
     );
   },

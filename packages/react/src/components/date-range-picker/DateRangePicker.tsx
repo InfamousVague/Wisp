@@ -15,6 +15,7 @@ import {
   buildSkeletonStyle,
 } from '@wisp-ui/core/styles/DateRangePicker.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives/text';
 import type { ThemeColors } from '@wisp-ui/core/theme/types';
 
 // ---------------------------------------------------------------------------
@@ -399,7 +400,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
 
   return (
     <div ref={ref} className={className} style={{ ...wrapperStyle, ...userStyle }} {...rest}>
-      {label && <span style={labelStyleObj}>{label}</span>}
+      {label && <Text style={labelStyleObj}>{label}</Text>}
 
       <button
         ref={triggerRef}
@@ -431,9 +432,9 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
           <line x1="3" y1="10" x2="21" y2="10" />
         </svg>
 
-        <span style={{ flex: 1, color: hasValue ? undefined : themeColors.text.muted }}>
+        <Text style={{ flex: 1, color: hasValue ? undefined : themeColors.text.muted }}>
           {hasValue && currentRange.start ? formatDateShort(currentRange.start) : placeholder}
-        </span>
+        </Text>
 
         {hasValue && currentRange.end && (
           <>
@@ -452,7 +453,7 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
               <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
 
-            <span>{formatDateShort(currentRange.end)}</span>
+            <Text>{formatDateShort(currentRange.end)}</Text>
           </>
         )}
       </button>
@@ -484,9 +485,9 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
                 </svg>
               </button>
 
-              <span style={monthYearStyle}>
+              <Text style={monthYearStyle}>
                 {monthNames[displayMonth]} {displayYear}
-              </span>
+              </Text>
 
               <div style={{ width: sizeConfig.cellSize < 32 ? 24 : 28 }} />
             </div>
@@ -512,9 +513,9 @@ export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
             <div style={headerStyle}>
               <div style={{ width: sizeConfig.cellSize < 32 ? 24 : 28 }} />
 
-              <span style={monthYearStyle}>
+              <Text style={monthYearStyle}>
                 {monthNames[rightMonth]} {rightYear}
-              </span>
+              </Text>
 
               <button
                 type="button"

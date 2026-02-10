@@ -13,6 +13,7 @@ import {
   getProgressSkeletonStyle,
 } from '@wisp-ui/core/styles/Progress.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../text';
 
 /**
  * Progress -- Horizontal bar progress indicator for the Wisp design system.
@@ -171,9 +172,9 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(function Progr
       {/* Label row */}
       {(label || showValue) && (
         <div style={labelRowStyle}>
-          {label && <span style={labelTextStyle}>{label}</span>}
+          {label && <Text style={labelTextStyle}>{label}</Text>}
           {showValue && !indeterminate && (
-            <span style={valueTextStyle}>{displayValue}</span>
+            <Text style={valueTextStyle}>{displayValue}</Text>
           )}
         </div>
       )}

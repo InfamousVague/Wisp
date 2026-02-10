@@ -9,6 +9,7 @@ import {
   buildLabelStyle,
 } from '@wisp-ui/core/styles/NewMessageDivider.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives';
 
 /**
  * NewMessageDivider — Marks the boundary between read and unread messages.
@@ -63,7 +64,7 @@ export const NewMessageDivider = forwardRef<HTMLDivElement, NewMessageDividerPro
         {...rest}
       >
         <div style={lineStyle} />
-        <span style={labelStyle}>{label}</span>
+        <Text style={labelStyle}>{label}</Text>
         <div style={lineStyle} />
       </div>
     );

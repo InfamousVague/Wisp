@@ -8,6 +8,7 @@ import {
   getTagSkeletonStyle,
 } from '@wisp-ui/core/styles/Tag.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../text';
 
 /**
  * Tag — Interactive chip/label primitive for the Wisp design system.
@@ -182,7 +183,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
       )}
 
       {/* Tag label */}
-      <span>{children}</span>
+      <Text>{children}</Text>
 
       {/* Close / remove button */}
       {onRemove && (

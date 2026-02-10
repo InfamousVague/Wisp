@@ -10,6 +10,7 @@ import {
   getMeterSkeletonStyle,
 } from '@wisp-ui/core/styles/Meter.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../text';
 
 /**
  * Meter -- Semantic gauge indicator for the Wisp design system.
@@ -146,8 +147,8 @@ export const Meter = forwardRef<HTMLDivElement, MeterProps>(function Meter(
       {/* Label row */}
       {(label || showValue) && (
         <div style={labelRowStyle}>
-          {label && <span>{label}</span>}
-          {showValue && <span style={valueTextStyle}>{displayValue}</span>}
+          {label && <Text>{label}</Text>}
+          {showValue && <Text style={valueTextStyle}>{displayValue}</Text>}
         </div>
       )}
 

@@ -23,6 +23,7 @@ import {
 } from '@wisp-ui/core/styles/TagInput.styles';
 import { useControllable } from '../../hooks/use-controllable';
 import { useTheme } from '../../providers';
+import { Text } from '../text';
 
 /**
  * TagInput — A multi-value input that renders tags as removable chips,
@@ -260,7 +261,7 @@ export const TagInput = forwardRef<HTMLDivElement, TagInputProps>(function TagIn
     const skeletonStyle = buildSkeletonStyle(sizeConfig, theme);
     return (
       <div ref={ref} aria-hidden className={className} style={mergedStyle} {...rest}>
-        {label && <label style={labelStyleObj}>{label}</label>}
+        {label && <Text as="label" style={labelStyleObj}>{label}</Text>}
         <div style={skeletonStyle} />
       </div>
     );
@@ -297,7 +298,7 @@ export const TagInput = forwardRef<HTMLDivElement, TagInputProps>(function TagIn
 
   return (
     <div ref={ref} className={className} style={mergedStyle} {...rest}>
-      {label && <label style={labelStyleObj}>{label}</label>}
+      {label && <Text as="label" style={labelStyleObj}>{label}</Text>}
 
       <div
         ref={containerRef}
@@ -385,7 +386,7 @@ function TagChip({
 
   return (
     <span style={style} data-testid="tag-chip">
-      <span>{label}</span>
+      <Text>{label}</Text>
       <button
         type="button"
         aria-label={`Remove ${label}`}

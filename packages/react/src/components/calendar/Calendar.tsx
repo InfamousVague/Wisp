@@ -34,6 +34,7 @@ import {
   buildCalendarSkeletonCellStyle,
 } from '@wisp-ui/core/styles/Calendar.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives/text';
 import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
@@ -316,7 +317,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calen
           <ChevronLeft size={iconSize} color="currentColor" />
         </button>
 
-        <span style={monthYearStyle}>{monthYearLabel}</span>
+        <Text style={monthYearStyle}>{monthYearLabel}</Text>
 
         <button
           type="button"

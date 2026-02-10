@@ -14,6 +14,7 @@ import {
   buildGroupStatusStyle,
 } from '@wisp-ui/core/styles/MessageGroup.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives';
 import { StatusIcon, ChatBubble } from '../chat-bubble/ChatBubble';
 
 /**
@@ -120,7 +121,7 @@ export const MessageGroup = forwardRef<HTMLDivElement, MessageGroupProps>(
         {...rest}
       >
         {/* Sender name above the content row */}
-        {sender && <span style={senderNameStyle}>{sender}</span>}
+        {sender && <Text style={senderNameStyle}>{sender}</Text>}
 
         {/* Avatar + Bubbles side-by-side */}
         <div style={contentRowStyle}>
@@ -133,7 +134,7 @@ export const MessageGroup = forwardRef<HTMLDivElement, MessageGroupProps>(
         {/* Group-level footer: timestamp + status */}
         {showFooter && (
           <div style={footerStyle} data-testid="group-footer">
-            {timestamp && <span style={timestampStyle}>{timestamp}</span>}
+            {timestamp && <Text style={timestampStyle}>{timestamp}</Text>}
             {status && (
               <span style={statusIconStyle}>
                 <StatusIcon

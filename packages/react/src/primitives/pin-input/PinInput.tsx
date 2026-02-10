@@ -19,6 +19,7 @@ import {
 } from '@wisp-ui/core/styles/PinInput.styles';
 import { useControllable } from '../../hooks/use-controllable';
 import { useTheme } from '../../providers';
+import { Text } from '../text';
 
 /**
  * PinInput — A row of single-character input cells for entering verification
@@ -288,7 +289,7 @@ export const PinInput = forwardRef<HTMLDivElement, PinInputProps>(function PinIn
 
   return (
     <div ref={ref} className={className} style={mergedStyle} {...rest}>
-      {label && <label style={labelStyleObj}>{label}</label>}
+      {label && <Text as="label" style={labelStyleObj}>{label}</Text>}
 
       <div style={containerStyle} role="group" aria-label={label || 'Pin input'}>
         {Array.from({ length }, (_, i) => {

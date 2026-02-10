@@ -12,6 +12,7 @@ import {
   buildDatePickerSkeletonStyle,
 } from '@wisp-ui/core/styles/DatePicker.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives/text';
 import { Calendar } from '../calendar';
 
 // ---------------------------------------------------------------------------
@@ -260,7 +261,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(function D
       style={{ ...containerStyle, ...userStyle }}
       {...rest}
     >
-      {label && <span style={labelStyle}>{label}</span>}
+      {label && <Text style={labelStyle}>{label}</Text>}
 
       <button
         ref={triggerRef}
@@ -347,7 +348,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(function D
       )}
 
       {/* Error message */}
-      {errorText && <span style={errorStyle}>{errorText}</span>}
+      {errorText && <Text style={errorStyle}>{errorText}</Text>}
     </div>
   );
 });

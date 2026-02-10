@@ -8,6 +8,7 @@ import {
   buildLabelStyle,
 } from '@wisp-ui/core/styles/Spinner.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../text';
 
 /**
  * Spinner -- Animated loading indicator for the Wisp design system.
@@ -118,7 +119,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(function Spinner
           strokeLinecap="round"
         />
       </svg>
-      {label && <span style={labelStyle}>{label}</span>}
+      {label && <Text style={labelStyle}>{label}</Text>}
     </div>
   );
 });

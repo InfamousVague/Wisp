@@ -15,6 +15,7 @@ import {
   buildLabelTextStyle,
 } from '@wisp-ui/core/styles/CircularProgress.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../text';
 
 /**
  * CircularProgress -- Circular progress indicator for the Wisp design system.
@@ -241,14 +242,14 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
             {hasCenterContent && (
               <div style={centerContentStyle}>
                 {children != null ? children : (
-                  <span style={valueTextStyle}>{displayValue}</span>
+                  <Text style={valueTextStyle}>{displayValue}</Text>
                 )}
               </div>
             )}
           </div>
 
           {/* Label below */}
-          {label && <span style={labelTextStyle}>{label}</span>}
+          {label && <Text style={labelTextStyle}>{label}</Text>}
         </div>
       );
     }
@@ -325,14 +326,14 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
           {hasCenterContent && (
             <div style={centerContentStyle}>
               {children != null ? children : (
-                <span style={valueTextStyle}>{displayValue}</span>
+                <Text style={valueTextStyle}>{displayValue}</Text>
               )}
             </div>
           )}
         </div>
 
         {/* Label below */}
-        {label && <span style={labelTextStyle}>{label}</span>}
+        {label && <Text style={labelTextStyle}>{label}</Text>}
       </div>
     );
   },

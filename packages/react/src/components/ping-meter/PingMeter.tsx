@@ -15,6 +15,7 @@ import {
   getPingMeterSkeletonStyle,
 } from '@wisp-ui/core/styles/PingMeter.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -207,7 +208,7 @@ export const PingMeter = forwardRef<HTMLDivElement, PingMeterProps>(function Pin
 
       {/* Latency text */}
       {isLatencyText && (
-        <span style={latencyStyle}>{latency}ms</span>
+        <Text style={latencyStyle}>{latency}ms</Text>
       )}
     </div>
   );

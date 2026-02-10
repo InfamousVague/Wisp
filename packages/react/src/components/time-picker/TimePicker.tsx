@@ -12,6 +12,7 @@ import {
   buildTimePickerSkeletonStyle,
 } from '@wisp-ui/core/styles/TimePicker.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives/text';
 import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
 
 // ---------------------------------------------------------------------------
@@ -297,7 +298,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(function T
 
   return (
     <div ref={ref} className={className} style={{ ...containerStyle, ...userStyle }} onKeyDown={handleKeyDown} {...restProps}>
-      {label && <span style={labelStyle}>{label}</span>}
+      {label && <Text style={labelStyle}>{label}</Text>}
 
       <button
         ref={triggerRef}
@@ -397,7 +398,7 @@ export const TimePicker = forwardRef<HTMLDivElement, TimePickerProps>(function T
         </div>
       )}
 
-      {errorText && <span style={errorStyle}>{errorText}</span>}
+      {errorText && <Text style={errorStyle}>{errorText}</Text>}
     </div>
   );
 });

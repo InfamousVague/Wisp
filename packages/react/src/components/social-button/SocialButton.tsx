@@ -6,6 +6,7 @@ import type { SocialButtonProps } from '@wisp-ui/core/types/SocialButton.types';
 import { socialButtonSizeMap, socialProviderConfigs } from '@wisp-ui/core/types/SocialButton.types';
 import { buildSocialButtonStyle } from '@wisp-ui/core/styles/SocialButton.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives';
 
 // ---------------------------------------------------------------------------
 // Provider SVG icons (inline for zero-dependency)
@@ -174,7 +175,7 @@ export const SocialButton = forwardRef<HTMLButtonElement, SocialButtonProps>(fun
     >
       {ProviderIcon && <ProviderIcon size={sizeConfig.iconSize} color={iconColor} />}
       {!iconOnly && (
-        <span>{action} {providerConfig.name}</span>
+        <Text>{action} {providerConfig.name}</Text>
       )}
     </button>
   );

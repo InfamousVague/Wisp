@@ -15,6 +15,7 @@ import {
   buildSkeletonStyle,
 } from '@wisp-ui/core/styles/LocalePicker.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives/text';
 import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
 
 // ---------------------------------------------------------------------------
@@ -374,7 +375,7 @@ export const LocalePicker = forwardRef<HTMLDivElement, LocalePickerProps>(functi
       style={{ ...wrapperStyle, ...userStyle }}
       {...restProps}
     >
-      {label && <span style={labelStyle}>{label}</span>}
+      {label && <Text style={labelStyle}>{label}</Text>}
 
       <button
         ref={triggerRef}

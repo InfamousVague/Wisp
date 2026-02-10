@@ -6,6 +6,7 @@
 
 import React, { forwardRef, useEffect, useMemo } from 'react';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives';
 import type { VoiceRecorderProps } from '@wisp-ui/core/types/VoiceRecorder.types';
 import { voiceRecorderSizeMap } from '@wisp-ui/core/types/VoiceRecorder.types';
 import {
@@ -175,7 +176,7 @@ export const VoiceRecorder = forwardRef<HTMLDivElement, VoiceRecorderProps>(func
         <button type="button" style={recordBtnStyle} aria-label="Recording">
           <MicIcon size={sizeConfig.iconSize} />
         </button>
-        <span style={timerStyle}>{formatDuration(duration)}</span>
+        <Text style={timerStyle}>{formatDuration(duration)}</Text>
         <div style={{ flex: 1 }} />
         {onPause && (
           <button type="button" style={pauseBtnStyle} onClick={onPause} aria-label="Pause recording">
@@ -201,8 +202,8 @@ export const VoiceRecorder = forwardRef<HTMLDivElement, VoiceRecorderProps>(func
         style={{ ...containerStyle, ...userStyle }}
         {...rest}
       >
-        <span style={{ ...timerStyle, color: colors.icon }}>{formatDuration(duration)}</span>
-        <span style={{ fontSize: sizeConfig.fontSize - 2, color: colors.icon }}>Paused</span>
+        <Text style={{ ...timerStyle, color: colors.icon }}>{formatDuration(duration)}</Text>
+        <Text style={{ fontSize: sizeConfig.fontSize - 2, color: colors.icon }}>Paused</Text>
         <div style={{ flex: 1 }} />
         <button type="button" style={resumeBtnStyle} onClick={onResume} aria-label="Resume recording">
           <PlayIcon size={sizeConfig.iconSize} />
@@ -228,7 +229,7 @@ export const VoiceRecorder = forwardRef<HTMLDivElement, VoiceRecorderProps>(func
       <button type="button" style={cancelBtnStyle} onClick={onCancel} aria-label="Delete recording">
         <TrashIcon size={sizeConfig.iconSize} />
       </button>
-      <span style={timerStyle}>{formatDuration(duration)}</span>
+      <Text style={timerStyle}>{formatDuration(duration)}</Text>
       <div style={{ flex: 1 }} />
       <button type="button" style={sendBtnStyle} onClick={onSend} aria-label="Send recording">
         <SendIcon size={sizeConfig.iconSize * 0.8} />

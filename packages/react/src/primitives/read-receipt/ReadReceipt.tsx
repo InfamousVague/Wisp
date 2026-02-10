@@ -7,6 +7,7 @@
 
 import React, { forwardRef, useMemo } from 'react';
 import { useTheme } from '../../providers';
+import { Text } from '../text';
 import type { ReadReceiptProps, ReadReceiptStatus } from '@wisp-ui/core/types/ReadReceipt.types';
 import { readReceiptSizeMap } from '@wisp-ui/core/types/ReadReceipt.types';
 import {
@@ -139,8 +140,8 @@ export const ReadReceipt = forwardRef<HTMLSpanElement, ReadReceiptProps>(functio
       <span style={iconStyle}>
         <StatusIcon status={status} size={sizeConfig.iconSize} />
       </span>
-      {timestamp && <span style={labelStyle}>{timestamp}</span>}
-      {showLabel && <span style={labelStyle}>{label}</span>}
+      {timestamp && <Text style={labelStyle}>{timestamp}</Text>}
+      {showLabel && <Text style={labelStyle}>{label}</Text>}
     </span>
   );
 });

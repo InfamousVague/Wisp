@@ -14,6 +14,7 @@ import {
   getSelectSkeletonStyle,
 } from '@wisp-ui/core/styles/Select.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives/text';
 
 /**
  * Select -- A single-value dropdown selector with keyboard navigation.
@@ -185,7 +186,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
 
   return (
     <div ref={ref} className={className} style={{ ...wrapperStyle, ...userStyle }}>
-      {label && <span style={labelStyle}>{label}</span>}
+      {label && <Text style={labelStyle}>{label}</Text>}
 
       <button
         ref={triggerRef}
@@ -264,7 +265,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
         </div>
       )}
 
-      {hintText && <span style={hintStyle}>{hintText}</span>}
+      {hintText && <Text style={hintStyle}>{hintText}</Text>}
     </div>
   );
 });

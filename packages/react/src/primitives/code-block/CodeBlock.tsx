@@ -12,6 +12,7 @@ import {
   buildCodeBlockCopyButtonStyle,
 } from '@wisp-ui/core/styles/CodeBlock.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../text';
 
 /**
  * CodeBlock — Monospace code display primitive for the Wisp design system.
@@ -112,7 +113,7 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
       <div style={{ ...wrapperStyle, ...userStyle }} className={className}>
         {showHeader && (
           <div style={headerStyle}>
-            <span>{language ?? ''}</span>
+            <Text>{language ?? ''}</Text>
             {copyable && (
               <button
                 type="button"
@@ -135,7 +136,7 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
               return (
                 <div key={i} style={lineStyle}>
                   {showLineNumbers && (
-                    <span style={lineNumberStyle}>{lineNum}</span>
+                    <Text style={lineNumberStyle}>{lineNum}</Text>
                   )}
                   <span style={{ flex: 1 }}>
                     {tokenisedLines && tokenisedLines[i]

@@ -17,6 +17,7 @@ import {
   buildReactionChipStyle,
 } from '@wisp-ui/core/styles/ChatBubble.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives';
 
 // ---------------------------------------------------------------------------
 // Inline SVG status icons
@@ -167,7 +168,7 @@ export const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(
         {/* Timestamp + Status footer rendered BELOW the bubble */}
         {showFooter && (
           <div style={footerStyle}>
-            {timestamp && <span style={timestampStyle}>{timestamp}</span>}
+            {timestamp && <Text style={timestampStyle}>{timestamp}</Text>}
             {status && (
               <span style={statusIconStyle}>
                 <StatusIcon

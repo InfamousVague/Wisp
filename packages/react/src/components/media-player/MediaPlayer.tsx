@@ -13,6 +13,7 @@ import React, {
   useState,
 } from 'react';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives';
 import type { MediaPlayerProps, PlaybackSpeed } from '@wisp-ui/core/types/MediaPlayer.types';
 import { mediaPlayerSizeMap, playbackSpeeds } from '@wisp-ui/core/types/MediaPlayer.types';
 import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
@@ -368,9 +369,9 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
 
       {/* Time */}
       {showTime && (
-        <span style={timeStyle}>
+        <Text style={timeStyle}>
           {formatTime(currentTime)} / {formatTime(duration)}
-        </span>
+        </Text>
       )}
 
       {/* Spacer for audio variant */}
@@ -506,27 +507,27 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
       {(title || artist) && (
         <div style={audioInfoStyle}>
           {title && (
-            <span style={{ fontSize: sizeConfig.fontSize + 2, fontWeight: defaultTypography.weights.semibold, color: colors.text }}>
+            <Text style={{ fontSize: sizeConfig.fontSize + 2, fontWeight: defaultTypography.weights.semibold, color: colors.text }}>
               {title}
-            </span>
+            </Text>
           )}
           {artist && (
-            <span style={{ fontSize: sizeConfig.fontSize, color: colors.textSecondary }}>
+            <Text style={{ fontSize: sizeConfig.fontSize, color: colors.textSecondary }}>
               {artist}
-            </span>
+            </Text>
           )}
         </div>
       )}
 
       {/* Seek bar row */}
       <div style={audioSeekRowStyle}>
-        {showTime && <span style={timeStyle}>{formatTime(currentTime)}</span>}
+        {showTime && <Text style={timeStyle}>{formatTime(currentTime)}</Text>}
         <div ref={seekRef} style={{ ...seekContainerStyle, height: 24 }} onClick={handleSeek}>
           <div style={seekTrackStyle}>
             <div style={seekFillStyle} />
           </div>
         </div>
-        {showTime && <span style={timeStyle}>{formatTime(duration)}</span>}
+        {showTime && <Text style={timeStyle}>{formatTime(duration)}</Text>}
       </div>
 
       {/* Control bar */}

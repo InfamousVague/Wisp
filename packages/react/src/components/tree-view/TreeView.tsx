@@ -38,6 +38,7 @@ import {
   buildTreeSkeletonBarStyle,
 } from '@wisp-ui/core/styles/TreeView.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives';
 import type { ThemeColors } from '@wisp-ui/core/theme/types';
 
 // ---------------------------------------------------------------------------
@@ -207,7 +208,7 @@ function TreeNodeRow({
         )}
 
         {/* Label */}
-        <span style={labelStyle}>{node.label}</span>
+        <Text style={labelStyle}>{node.label}</Text>
       </div>
 
       {/* Recursively render children when expanded */}

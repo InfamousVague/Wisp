@@ -12,6 +12,7 @@ import {
   buildErrorStyle,
 } from '@wisp-ui/core/styles/SwitchGroup.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../../primitives/text';
 import { Toggle } from '../../primitives/toggle';
 import { Checkbox } from '../../primitives/checkbox';
 import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
@@ -136,8 +137,8 @@ export const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(function
       {/* Group header */}
       {(label || description) && (
         <div>
-          {label && <p style={labelStyle}>{label}</p>}
-          {description && <p style={descriptionStyle}>{description}</p>}
+          {label && <Text as="p" style={labelStyle}>{label}</Text>}
+          {description && <Text as="p" style={descriptionStyle}>{description}</Text>}
         </div>
       )}
 
@@ -179,7 +180,7 @@ export const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(function
       </div>
 
       {/* Error */}
-      {error && <p style={errorStyle}>{error}</p>}
+      {error && <Text as="p" style={errorStyle}>{error}</Text>}
     </div>
   );
 });
@@ -304,8 +305,8 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(func
       {/* Group header */}
       {(label || description) && (
         <div>
-          {label && <p style={labelStyle}>{label}</p>}
-          {description && <p style={descriptionStyle}>{description}</p>}
+          {label && <Text as="p" style={labelStyle}>{label}</Text>}
+          {description && <Text as="p" style={descriptionStyle}>{description}</Text>}
         </div>
       )}
 
@@ -330,7 +331,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(func
       </div>
 
       {/* Error */}
-      {error && <p style={errorStyle}>{error}</p>}
+      {error && <Text as="p" style={errorStyle}>{error}</Text>}
     </div>
   );
 });

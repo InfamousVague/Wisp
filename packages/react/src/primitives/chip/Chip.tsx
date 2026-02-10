@@ -10,6 +10,7 @@ import {
   resolveChipColors,
 } from '@wisp-ui/core/styles/Chip.styles';
 import { useTheme } from '../../providers';
+import { Text } from '../text';
 
 /**
  * Chip — Compact interactive tag/token primitive for the Wisp design system.
@@ -121,7 +122,7 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps>(function Chip(
     >
       {icon && <span style={iconWrapperStyle}>{icon}</span>}
 
-      <span>{children}</span>
+      <Text>{children}</Text>
 
       {removable && (
         <button
