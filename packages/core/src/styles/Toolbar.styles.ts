@@ -34,9 +34,9 @@ export function buildToolbarStyle(
   if (variant === 'elevated') {
     return {
       ...base,
-      backgroundColor: themeColors.background.surface,
+      backgroundColor: themeColors.background.sunken,
       borderBottom: `1px solid ${themeColors.border.subtle}`,
-      color: themeColors.text.onRaised,
+      color: themeColors.text.primary,
     };
   }
 
@@ -44,10 +44,10 @@ export function buildToolbarStyle(
     return {
       ...base,
       display: 'inline-flex',
-      backgroundColor: themeColors.background.surface,
+      backgroundColor: themeColors.background.sunken,
       border: `1px solid ${themeColors.border.subtle}`,
       borderRadius: radii.full,
-      color: themeColors.text.onRaised,
+      color: themeColors.text.primary,
     };
   }
 
