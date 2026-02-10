@@ -3,8 +3,8 @@
  * @description React Native EmojiPicker for the Wisp design system.
  *
  * Full-featured emoji selection panel with category tabs, keyword search,
- * skin tone selector, and scroll-synced navigation via onScroll offset
- * tracking (RN alternative to IntersectionObserver).
+ * skin tone selector (hand button that expands to show all tones), and
+ * scroll-synced navigation via onScroll offset tracking.
  */
 
 import React, { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
@@ -27,7 +27,7 @@ import { EMOJI_DATA } from './emoji-data';
 import { useThemeColors } from '../../providers';
 
 // ---------------------------------------------------------------------------
-// Category labels
+// Category labels & icons
 // ---------------------------------------------------------------------------
 
 const CATEGORY_LABELS: Record<EmojiCategory, string> = {
@@ -56,7 +56,7 @@ const CATEGORY_ICONS: Record<EmojiCategory, string> = {
   flags: '\u{1F3F3}',
 };
 
-const SKIN_TONE_PREVIEW = '\u{1F44B}';
+const SKIN_TONE_HAND = '\u{1F44B}';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -125,11 +125,12 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
 
   const currentSkinTone = controlledSkinTone ?? internalSkinTone;
 
+  // --- Skin tone handlers ---
+
   const handleSkinToneChange = useCallback(
     (tone: SkinTone) => {
       if (controlledSkinTone === undefined) setInternalSkinTone(tone);
       onSkinToneChange?.(tone);
-      // Close the picker after selection
       setSkinToneOpen(false);
       Animated.timing(skinToneAnim, {
         toValue: 0,
@@ -150,10 +151,14 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     }).start();
   }, [skinToneOpen, skinToneAnim]);
 
+  // --- Colors ---
+
   const colors = useMemo(
     () => resolveEmojiPickerColors(themeColors),
     [themeColors],
   );
+
+  // --- Skeleton ---
 
   if (skeleton) {
     const skeletonStyle: ViewStyle = {
@@ -164,6 +169,8 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     };
     return <View style={[skeletonStyle, userStyle as ViewStyle]} />;
   }
+
+  // --- Emoji data ---
 
   const allEmojis = emojis ?? EMOJI_DATA;
 
@@ -203,6 +210,8 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     return cats;
   }, [recent, dataCategories]);
 
+  // --- Skin tone application ---
+
   const applySkinTone = useCallback(
     (emoji: string, item?: EmojiItem): string => {
       if (!item?.skinToneSupport || currentSkinTone === 'default') return emoji;
@@ -219,7 +228,8 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     [onSelect, applySkinTone],
   );
 
-  // Scroll-tab sync via onScroll offset tracking
+  // --- Scroll-tab sync ---
+
   const handleScroll = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (isScrollingProgrammatically.current || search.trim()) return;
     const y = e.nativeEvent.contentOffset.y + 20;
@@ -254,7 +264,18 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
   const isSearching = search.trim().length > 0;
   const hasResults = isSearching ? filteredEmojis.length > 0 : true;
 
+  // --- Derived sizes ---
+  // The trigger button is a square matching the search bar height
+  const triggerSize = sizeConfig.searchHeight;
+  // Font size for the hand emoji in the trigger button — RN emoji render
+  // much larger than the font size suggests, so keep it small
+  const triggerHandFontSize = Math.round(triggerSize * 0.5);
+  // Each option in the expanded row
+  const optionSize = Math.round(sizeConfig.cellSize * 0.9);
+  const optionFontSize = Math.round(optionSize * 0.55);
+
   // ---- Styles ----
+
   const containerStyle = useMemo<ViewStyle>(() => ({
     width: sizeConfig.width,
     height: sizeConfig.height,
@@ -291,28 +312,29 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     paddingHorizontal: sizeConfig.padding,
   }), [sizeConfig, colors, themeColors]);
 
-  const skinToneButtonStyle = useMemo<ViewStyle>(() => ({
-    width: sizeConfig.searchHeight,
-    height: sizeConfig.searchHeight,
+  const skinTriggerStyle = useMemo<ViewStyle>(() => ({
+    width: triggerSize,
+    height: triggerSize,
     borderRadius: sizeConfig.borderRadius / 2,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
     backgroundColor: skinToneOpen ? themeColors.background.sunken : 'transparent',
     borderWidth: 1,
     borderColor: skinToneOpen ? colors.skinToneActiveBorder : colors.border,
-  }), [sizeConfig, colors, themeColors, skinToneOpen]);
+  }), [triggerSize, sizeConfig, colors, themeColors, skinToneOpen]);
 
   const skinToneRowStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     paddingVertical: 6,
-    paddingHorizontal: 4,
+    paddingHorizontal: 8,
     backgroundColor: themeColors.background.sunken,
     borderRadius: sizeConfig.borderRadius / 2,
     borderWidth: 1,
     borderColor: colors.border,
-    marginTop: sizeConfig.gap,
+    marginTop: sizeConfig.gap + 2,
   }), [sizeConfig, colors, themeColors]);
 
   const tabBarStyle = useMemo<ViewStyle>(() => ({
@@ -358,14 +380,9 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     paddingVertical: 40,
   }), []);
 
-  // Skin tone hand size for the trigger button
-  const handFontSize = Math.round(sizeConfig.searchHeight * 0.55);
-  // Skin tone option size inside the expanded row
-  const skinToneOptionSize = Math.round(sizeConfig.skinToneDotSize * 1.4);
-
   return (
     <View ref={ref} style={[containerStyle, userStyle as ViewStyle]} {...rest}>
-      {/* Header: Search + Skin Tone trigger */}
+      {/* ── Header: Search bar + skin tone trigger ── */}
       <View style={headerStyle}>
         <View style={searchRowStyle}>
           {showSearch && (
@@ -381,18 +398,18 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
           {showSkinTones && (
             <Pressable
               onPress={toggleSkinTonePicker}
-              style={skinToneButtonStyle}
+              style={skinTriggerStyle}
               accessibilityLabel="Select skin tone"
               accessibilityRole="button"
             >
-              <Text style={{ fontSize: handFontSize }}>
-                {SKIN_TONE_PREVIEW}{SKIN_TONE_MODIFIERS[currentSkinTone]}
+              <Text style={{ fontSize: triggerHandFontSize }}>
+                {SKIN_TONE_HAND}{SKIN_TONE_MODIFIERS[currentSkinTone]}
               </Text>
             </Pressable>
           )}
         </View>
 
-        {/* Expanded skin tone row */}
+        {/* ── Expanded skin tone options ── */}
         {showSkinTones && skinToneOpen && (
           <Animated.View
             style={[
@@ -402,7 +419,7 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
                 transform: [{
                   translateY: skinToneAnim.interpolate({
                     inputRange: [0, 1],
-                    outputRange: [-8, 0],
+                    outputRange: [-6, 0],
                   }),
                 }],
               },
@@ -410,25 +427,26 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
           >
             {skinTones.map((tone: SkinTone) => {
               const isActive = currentSkinTone === tone;
-              const optionStyle: ViewStyle = {
-                width: skinToneOptionSize,
-                height: skinToneOptionSize,
-                borderRadius: skinToneOptionSize / 2,
+              const optStyle: ViewStyle = {
+                width: optionSize,
+                height: optionSize,
+                borderRadius: optionSize / 2,
                 alignItems: 'center',
                 justifyContent: 'center',
+                overflow: 'hidden',
                 borderWidth: isActive ? 2 : 0,
                 borderColor: isActive ? colors.skinToneActiveBorder : 'transparent',
-                backgroundColor: isActive ? (themeColors.background.surface) : 'transparent',
+                backgroundColor: isActive ? themeColors.background.surface : 'transparent',
               };
               return (
                 <Pressable
                   key={tone}
                   onPress={() => handleSkinToneChange(tone)}
                   accessibilityLabel={`Skin tone: ${tone}`}
-                  style={optionStyle}
+                  style={optStyle}
                 >
-                  <Text style={{ fontSize: skinToneOptionSize * 0.6 }}>
-                    {SKIN_TONE_PREVIEW}{SKIN_TONE_MODIFIERS[tone]}
+                  <Text style={{ fontSize: optionFontSize }}>
+                    {SKIN_TONE_HAND}{SKIN_TONE_MODIFIERS[tone]}
                   </Text>
                 </Pressable>
               );
@@ -437,7 +455,7 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
         )}
       </View>
 
-      {/* Category tabs */}
+      {/* ── Category tabs ── */}
       {showCategories && !isSearching && (
         <View style={tabBarStyle}>
           {tabCategories.map((cat) => {
@@ -461,7 +479,7 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
         </View>
       )}
 
-      {/* Emoji grid */}
+      {/* ── Emoji grid ── */}
       <ScrollView
         ref={scrollRef}
         onScroll={handleScroll}
