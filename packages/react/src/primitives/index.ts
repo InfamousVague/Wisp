@@ -261,6 +261,14 @@ export { notificationBadgeColors } from './notification-badge';
 // CodeBlock
 // ---------------------------------------------------------------------------
 
-export { CodeBlock } from './code-block';
-export type { CodeBlockProps, CodeBlockVariant } from './code-block';
+export { CodeBlock, createShikiHighlighter } from './code-block';
+export type { CodeBlockProps, CodeBlockVariant, SyntaxToken, SyntaxHighlighter, ShikiHighlighterOptions, ShikiHighlighterResult } from './code-block';
 export { codeBlockVariants } from './code-block';
+
+// ---------------------------------------------------------------------------
+// Beacon
+// ---------------------------------------------------------------------------
+
+export { Beacon } from './beacon';
+export type { BeaconProps, BeaconVariant, BeaconSize, BeaconSizeConfig } from './beacon';
+export { beaconVariants, beaconSizes, beaconSizeMap } from './beacon';

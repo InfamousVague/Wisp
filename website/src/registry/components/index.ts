@@ -44,6 +44,11 @@ import { typingIndicatorEntry } from './typing-indicator';
 import { activityCirclesEntry } from './activity-circles';
 import { radarChartEntry } from './radar-chart';
 import { qrCodeEntry } from './qr-code';
+import { coachmarkEntry } from './coachmark';
+import { spotlightTourEntry } from './spotlight-tour';
+import { achievementCardEntry } from './achievement-card';
+import { questTrackerEntry } from './quest-tracker';
+import { achievementUnlockEntry } from './achievement-unlock';
 
 
 export const componentEntries: ComponentEntry[] = [
@@ -92,4 +97,9 @@ export const componentEntries: ComponentEntry[] = [
   activityCirclesEntry,
   radarChartEntry,
   qrCodeEntry,
+  coachmarkEntry,
+  spotlightTourEntry,
+  achievementCardEntry,
+  questTrackerEntry,
+  achievementUnlockEntry,
 ];

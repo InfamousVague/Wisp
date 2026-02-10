@@ -31,6 +31,7 @@ import { colorPickerEntry } from './color-picker';
 import { stepperEntry } from './stepper';
 import { notificationBadgeEntry } from './notification-badge';
 import { codeBlockEntry } from './code-block';
+import { beaconEntry } from './beacon';
 
 export const primitiveEntries: ComponentEntry[] = [
   textEntry,
@@ -65,4 +66,5 @@ export const primitiveEntries: ComponentEntry[] = [
   stepperEntry,
   notificationBadgeEntry,
   codeBlockEntry,
+  beaconEntry,
 ];

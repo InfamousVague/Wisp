@@ -343,3 +343,42 @@ export { QRCode } from './qr-code';
 export type { QRCodeProps, QRCodeSize, QRCodeSizeConfig, QRCodeDotStyle, QRCodeErrorLevel, QRCodeEyeFrameStyle, QRCodeEyePupilStyle, QRCodeGradient, QRCodeGradientStop } from './qr-code';
 export { qrCodeSizes, qrCodeSizeMap, qrCodeDotStyles, qrCodeErrorLevels, qrCodeEyeFrameStyles, qrCodeEyePupilStyles } from './qr-code';
 
+// ---------------------------------------------------------------------------
+// Coachmark
+// ---------------------------------------------------------------------------
+
+export { Coachmark } from './coachmark';
+export type { CoachmarkProps, CoachmarkVariant, CoachmarkPlacement, CoachmarkAlign } from './coachmark';
+export { coachmarkVariants, coachmarkPlacements, coachmarkAligns } from './coachmark';
+
+// ---------------------------------------------------------------------------
+// SpotlightTour
+// ---------------------------------------------------------------------------
+
+export { SpotlightTour } from './spotlight-tour';
+export type { SpotlightTourProps, SpotlightTourStep, SpotlightTourVariant } from './spotlight-tour';
+export { spotlightTourVariants } from './spotlight-tour';
+
+// ---------------------------------------------------------------------------
+// AchievementCard
+// ---------------------------------------------------------------------------
+
+export { AchievementCard } from './achievement-card';
+export type { AchievementCardProps, AchievementStatus, AchievementRarity, AchievementRarityConfig } from './achievement-card';
+export { achievementStatuses, achievementRarities, achievementRarityMap } from './achievement-card';
+
+// ---------------------------------------------------------------------------
+// QuestTracker
+// ---------------------------------------------------------------------------
+
+export { QuestTracker } from './quest-tracker';
+export type { QuestTrackerProps, QuestObjective, QuestObjectiveStatus, QuestTrackerSize, QuestTrackerSizeConfig } from './quest-tracker';
+export { questObjectiveStatuses, questTrackerSizes, questTrackerSizeMap } from './quest-tracker';
+
+// ---------------------------------------------------------------------------
+// AchievementUnlock
+// ---------------------------------------------------------------------------
+
+export { AchievementUnlock } from './achievement-unlock';
+export type { AchievementUnlockProps } from './achievement-unlock';
+

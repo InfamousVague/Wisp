@@ -179,8 +179,11 @@ export type { StepperProps, StepperSize, StepperSizeConfig } from './primitives'
 export { NotificationBadge, notificationBadgeColors } from './primitives';
 export type { NotificationBadgeProps, NotificationBadgeColor } from './primitives';
 
-export { CodeBlock, codeBlockVariants } from './primitives';
-export type { CodeBlockProps, CodeBlockVariant } from './primitives';
+export { CodeBlock, codeBlockVariants, createShikiHighlighter } from './primitives';
+export type { CodeBlockProps, CodeBlockVariant, SyntaxToken, SyntaxHighlighter, ShikiHighlighterOptions, ShikiHighlighterResult } from './primitives';
+
+export { Beacon, beaconVariants, beaconSizes, beaconSizeMap } from './primitives';
+export type { BeaconProps, BeaconVariant, BeaconSize, BeaconSizeConfig } from './primitives';
 
 // ─── Layouts ────────────────────────────────────────────────────
 export { Stack, HStack, VStack, stackDirections, stackAligns, stackJustifys } from './layouts';
@@ -372,6 +375,21 @@ export type { RadarChartProps, RadarChartSeries, RadarChartSize, RadarChartSizeC
 
 export { QRCode, qrCodeSizes, qrCodeSizeMap, qrCodeDotStyles, qrCodeErrorLevels, qrCodeEyeFrameStyles, qrCodeEyePupilStyles } from './components';
 export type { QRCodeProps, QRCodeSize, QRCodeSizeConfig, QRCodeDotStyle, QRCodeErrorLevel, QRCodeEyeFrameStyle, QRCodeEyePupilStyle, QRCodeGradient, QRCodeGradientStop } from './components';
+
+export { Coachmark, coachmarkVariants, coachmarkPlacements, coachmarkAligns } from './components';
+export type { CoachmarkProps, CoachmarkVariant, CoachmarkPlacement, CoachmarkAlign } from './components';
+
+export { SpotlightTour, spotlightTourVariants } from './components';
+export type { SpotlightTourProps, SpotlightTourStep, SpotlightTourVariant } from './components';
+
+export { AchievementCard, achievementStatuses, achievementRarities, achievementRarityMap } from './components';
+export type { AchievementCardProps, AchievementStatus, AchievementRarity, AchievementRarityConfig } from './components';
+
+export { QuestTracker, questObjectiveStatuses, questTrackerSizes, questTrackerSizeMap } from './components';
+export type { QuestTrackerProps, QuestObjective, QuestObjectiveStatus, QuestTrackerSize, QuestTrackerSizeConfig } from './components';
+
+export { AchievementUnlock } from './components';
+export type { AchievementUnlockProps } from './components';
 
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';
