@@ -76,6 +76,7 @@ function renderEyeFrame(
   moduleSize: number,
   style: QRCodeEyeFrameStyle,
   fill: string,
+  bgFill: string,
 ): React.ReactElement {
   const size = 7 * moduleSize;
   const innerSize = 5 * moduleSize;
@@ -86,7 +87,7 @@ function renderEyeFrame(
       return (
         <g>
           <circle cx={x + size / 2} cy={y + size / 2} r={size / 2} fill={fill} />
-          <circle cx={x + size / 2} cy={y + size / 2} r={innerSize / 2} fill="inherit" className="qr-eye-cutout" />
+          <circle cx={x + size / 2} cy={y + size / 2} r={innerSize / 2} fill={bgFill} />
         </g>
       );
     case 'rounded': {
@@ -94,7 +95,7 @@ function renderEyeFrame(
       return (
         <g>
           <rect x={x} y={y} width={size} height={size} rx={rx} ry={rx} fill={fill} />
-          <rect x={x + innerOffset} y={y + innerOffset} width={innerSize} height={innerSize} rx={rx * 0.7} ry={rx * 0.7} fill="inherit" className="qr-eye-cutout" />
+          <rect x={x + innerOffset} y={y + innerOffset} width={innerSize} height={innerSize} rx={rx * 0.7} ry={rx * 0.7} fill={bgFill} />
         </g>
       );
     }
@@ -102,7 +103,7 @@ function renderEyeFrame(
       return (
         <g>
           <rect x={x} y={y} width={size} height={size} fill={fill} />
-          <rect x={x + innerOffset} y={y + innerOffset} width={innerSize} height={innerSize} fill="inherit" className="qr-eye-cutout" />
+          <rect x={x + innerOffset} y={y + innerOffset} width={innerSize} height={innerSize} fill={bgFill} />
         </g>
       );
   }
@@ -244,22 +245,7 @@ export const QRCode = forwardRef<HTMLDivElement, QRCodeProps>(
 
         return (
           <g key={`eye-${i}`}>
-            {/* Frame (outer ring) — cutout filled with background */}
-            <g>
-              {(() => {
-                const frame = renderEyeFrame(ex, ey, moduleSize, eyeFrameStyle, eyeFill);
-                // We need to manually set the cutout fill to the background color
-                return React.cloneElement(frame, {},
-                  ...React.Children.map(frame.props.children, (child: React.ReactElement) => {
-                    if (child?.props?.className === 'qr-eye-cutout') {
-                      return React.cloneElement(child, { fill: light });
-                    }
-                    return child;
-                  }) || [],
-                );
-              })()}
-            </g>
-            {/* Pupil (inner square) */}
+            {renderEyeFrame(ex, ey, moduleSize, eyeFrameStyle, eyeFill, light)}
             {renderEyePupil(pupilX, pupilY, moduleSize, eyePupilStyle, eyeFill)}
           </g>
         );
@@ -277,17 +263,16 @@ export const QRCode = forwardRef<HTMLDivElement, QRCodeProps>(
         return null;
       }
 
-      // Skip finder pattern modules if custom eyes are enabled
+      // Skip finder pattern core modules when custom eyes handle them
       if (hasCustomEyes && isInFinderCore(row, col, moduleCount)) {
         return null;
       }
 
       const { x, y, size: mSize } = getModuleRect(row, col, moduleSize, quietZoneOffset);
-      const isFinder = isFinderPattern(row, col, moduleCount);
       const key = `${row}-${col}`;
 
-      // Finder patterns always use square style when not using custom eyes
-      if (isFinder && !hasCustomEyes) {
+      // When no custom eyes, finder pattern area (including separators) uses square style
+      if (!hasCustomEyes && isFinderPattern(row, col, moduleCount)) {
         return <rect key={key} x={x} y={y} width={mSize} height={mSize} fill={dotFill} />;
       }
 
@@ -332,6 +317,7 @@ export const QRCode = forwardRef<HTMLDivElement, QRCodeProps>(
           <svg
             viewBox={`0 0 ${sizeConfig.dimension} ${sizeConfig.dimension}`}
             xmlns="http://www.w3.org/2000/svg"
+            shapeRendering="crispEdges"
             style={{ width: sizeConfig.dimension, height: sizeConfig.dimension, display: 'block' }}
           >
             {/* Gradient defs */}
@@ -351,8 +337,12 @@ export const QRCode = forwardRef<HTMLDivElement, QRCodeProps>(
               row.map((_, colIdx) => renderModule(rowIdx, colIdx)),
             )}
 
-            {/* Custom finder-pattern eyes */}
-            {eyeElements}
+            {/* Custom finder-pattern eyes (rendered with geometricPrecision for smooth curves) */}
+            {eyeElements && (
+              <g shapeRendering="geometricPrecision">
+                {eyeElements}
+              </g>
+            )}
 
             {/* Logo background */}
             {hasLogo && (() => {
