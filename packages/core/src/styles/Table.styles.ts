@@ -13,6 +13,27 @@ import { tableSizePaddingMap, tableSizeFontMap } from '../types/Table.types';
 import { fontFamilyStacks } from '../tokens/shared';
 
 // ---------------------------------------------------------------------------
+// Table bordered wrapper (<div>)
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds the inline styles for the card-like wrapper `<div>` that encloses
+ * the `<table>` when the `bordered` prop is enabled.
+ *
+ * @param themeColors - Current theme colour tokens.
+ * @returns CSS properties for the bordered wrapper.
+ */
+export function buildTableBorderedWrapperStyle(
+  themeColors: ThemeColors,
+): CSSStyleObject {
+  return {
+    border: `1px solid ${themeColors.border.subtle}`,
+    borderRadius: 8,
+    overflow: 'hidden',
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Table (root <table>)
 // ---------------------------------------------------------------------------
 
@@ -133,6 +154,8 @@ export function buildTableRowStyle(opts: {
   variant: TableVariant;
   isEvenRow: boolean;
   isHeaderRow: boolean;
+  bordered: boolean;
+  isLastRow: boolean;
   themeColors: ThemeColors;
   userStyle?: CSSStyleObject;
 }): CSSStyleObject {
@@ -146,8 +169,12 @@ export function buildTableRowStyle(opts: {
     backgroundColor = opts.themeColors.accent.highlight;
   }
 
+  // Hide the bottom border on the last body row when bordered,
+  // so it doesn't double up against the wrapper border.
+  const hideBorder = opts.bordered && opts.isLastRow && !opts.isHeaderRow;
+
   return {
-    borderBottom: '1px solid ' + opts.themeColors.border.subtle,
+    borderBottom: hideBorder ? 'none' : '1px solid ' + opts.themeColors.border.subtle,
     transition: 'background-color 150ms ease',
     backgroundColor,
     ...opts.userStyle,

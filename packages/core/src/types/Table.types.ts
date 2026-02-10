@@ -75,6 +75,8 @@ export interface TableContextValue {
   hoverable: boolean;
   /** Whether the table header is sticky. */
   stickyHeader: boolean;
+  /** Whether the table is wrapped in a card-like bordered container. */
+  bordered: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -105,6 +107,13 @@ export interface TableProps
    * @default false
    */
   stickyHeader?: boolean;
+  /**
+   * When `true`, the table is wrapped in a card-like container with
+   * rounded corners and a border. The last row's bottom border is
+   * hidden for a clean look.
+   * @default false
+   */
+  bordered?: boolean;
   /** Table content — typically {@link TableHeader}, {@link TableBody}, and {@link TableFooter}. */
   children: React.ReactNode;
 }

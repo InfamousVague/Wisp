@@ -55,6 +55,7 @@ import type {
 } from '@wisp-ui/core/types/Table.types';
 import type { CSSStyleObject } from '@wisp-ui/core/types';
 import {
+  buildTableBorderedWrapperStyle,
   buildTableStyle,
   buildTableHeaderStyle,
   buildTableBodyStyle,
@@ -111,6 +112,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
     variant = 'default',
     hoverable = false,
     stickyHeader = false,
+    bordered = false,
     children,
     className,
     style: userStyle,
@@ -121,8 +123,8 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
   const themeColors = useThemeColors();
 
   const contextValue = useMemo<TableContextValue>(
-    () => ({ size, variant, hoverable, stickyHeader }),
-    [size, variant, hoverable, stickyHeader],
+    () => ({ size, variant, hoverable, stickyHeader, bordered }),
+    [size, variant, hoverable, stickyHeader, bordered],
   );
 
   const tableStyle = useMemo(
@@ -130,11 +132,20 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
     [themeColors, userStyle],
   );
 
+  const wrapperStyle = useMemo(
+    () => (bordered ? buildTableBorderedWrapperStyle(themeColors) : undefined),
+    [bordered, themeColors],
+  );
+
+  const table = (
+    <table ref={ref} className={className} style={tableStyle} role="table" {...rest}>
+      {children}
+    </table>
+  );
+
   return (
     <TableContext.Provider value={contextValue}>
-      <table ref={ref} className={className} style={tableStyle} role="table" {...rest}>
-        {children}
-      </table>
+      {bordered ? <div style={wrapperStyle}>{table}</div> : table}
     </TableContext.Provider>
   );
 });
@@ -249,6 +260,19 @@ function useRowIndex(node: HTMLTableRowElement | null): number {
 }
 
 /**
+ * Internal helper that determines whether a `<tr>` is the last child
+ * of its parent section, used to hide the bottom border in bordered mode.
+ *
+ * @param node - The table row DOM element, or `null` before mount.
+ * @returns `true` when this is the last row in its section.
+ * @internal
+ */
+function useIsLastRow(node: HTMLTableRowElement | null): boolean {
+  if (!node || !node.parentElement) return false;
+  return node === node.parentElement.lastElementChild;
+}
+
+/**
  * Renders an HTML `<tr>` element with support for hover highlighting,
  * selection state, and striped-variant background colouring.
  *
@@ -262,7 +286,7 @@ export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
     ref,
   ) {
     const themeColors = useThemeColors();
-    const { variant, hoverable } = useTableContext();
+    const { variant, hoverable, bordered } = useTableContext();
 
     const [hovered, setHovered] = useState(false);
     const [rowNode, setRowNode] = useState<HTMLTableRowElement | null>(null);
@@ -270,6 +294,7 @@ export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
     const isHeaderRow = useIsHeaderRow(rowNode);
     const rowIndex = useRowIndex(rowNode);
     const isEvenRow = rowIndex % 2 === 1; // 0-indexed, so index 1,3,5 are visually "even" (2nd,4th,6th)
+    const isLastRow = useIsLastRow(rowNode);
 
     // Merge forwarded ref + internal ref
     const setRefs = useCallback(
@@ -301,10 +326,12 @@ export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
           variant,
           isEvenRow,
           isHeaderRow,
+          bordered,
+          isLastRow,
           themeColors,
           userStyle: userStyle as CSSStyleObject,
         }),
-      [hoverable, hovered, selected, variant, isEvenRow, isHeaderRow, themeColors, userStyle],
+      [hoverable, hovered, selected, variant, isEvenRow, isHeaderRow, bordered, isLastRow, themeColors, userStyle],
     );
 
     return (
