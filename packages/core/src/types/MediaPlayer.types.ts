@@ -4,8 +4,9 @@
  * playback with seek bar, volume control, playback speed, and fullscreen.
  */
 
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant
@@ -39,7 +40,7 @@ export interface MediaPlayerSizeConfig {
   /** Volume slider width. */
   volumeWidth: number;
   /** Border radius. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
 }
 
 export const mediaPlayerSizeMap: Record<MediaPlayerSize, MediaPlayerSizeConfig> = {
@@ -52,8 +53,7 @@ export const mediaPlayerSizeMap: Record<MediaPlayerSize, MediaPlayerSizeConfig> 
     padding: defaultSpacing.sm,
     gap: defaultSpacing.sm,
     volumeWidth: 60,
-    borderRadius: defaultRadii.md,
-  },
+    borderRadius: 'md' },
   md: {
     controlBarHeight: 44,
     iconSize: 18,
@@ -63,8 +63,7 @@ export const mediaPlayerSizeMap: Record<MediaPlayerSize, MediaPlayerSizeConfig> 
     padding: defaultSpacing.md,
     gap: defaultSpacing.sm,
     volumeWidth: 80,
-    borderRadius: defaultRadii.lg,
-  },
+    borderRadius: 'lg' },
   lg: {
     controlBarHeight: 52,
     iconSize: 22,
@@ -74,9 +73,7 @@ export const mediaPlayerSizeMap: Record<MediaPlayerSize, MediaPlayerSizeConfig> 
     padding: defaultSpacing.lg,
     gap: defaultSpacing.md,
     volumeWidth: 100,
-    borderRadius: defaultRadii.xl,
-  },
-};
+    borderRadius: 'xl' } };
 
 // ---------------------------------------------------------------------------
 // Playback speed

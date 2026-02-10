@@ -151,7 +151,9 @@ export function buildTriggerStyle(
   sizeConfig: LocalePickerSizeConfig,
   colors: LocalePickerColors,
   disabled: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -161,7 +163,7 @@ export function buildTriggerStyle(
     paddingLeft: sizeConfig.paddingX,
     paddingRight: sizeConfig.paddingX,
     backgroundColor: colors.bg === 'transparent' ? 'transparent' : colors.bg,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     boxSizing: 'border-box',
     border: '1px solid ' + colors.border,
     boxShadow: colors.focusRing !== 'transparent'
@@ -379,12 +381,12 @@ export function buildSkeletonStyle(
   sizeConfig: LocalePickerSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: '100%',
     height: sizeConfig.inputHeight,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

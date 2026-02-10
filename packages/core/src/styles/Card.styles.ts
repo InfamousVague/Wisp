@@ -83,10 +83,10 @@ export function buildCardStyle(opts: {
   pressed: boolean;
   theme: WispTheme;
 }): CSSStyleObject {
-  const { colors: themeColors } = opts.theme;
+  const { colors: themeColors, radii } = opts.theme;
   const variantStyles = resolveVariantStyles(opts.variant, opts.theme);
   const paddingValue = cardPaddingMap[opts.padding];
-  const radiusValue = cardRadiusMap[opts.radius];
+  const radiusValue = radii[cardRadiusMap[opts.radius]];
   const border = opts.selected
     ? `1px solid ${themeColors.accent.primary}`
     : variantStyles.border;
@@ -135,11 +135,11 @@ export function getCardSkeletonStyle(
   radius: CardRadius,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     boxSizing: 'border-box',
     padding: cardPaddingMap[padding],
-    borderRadius: cardRadiusMap[radius],
+    borderRadius: radii[cardRadiusMap[radius]],
     backgroundColor: themeColors.border.subtle,
     minHeight: 120,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',

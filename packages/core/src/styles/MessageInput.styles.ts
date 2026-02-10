@@ -48,13 +48,15 @@ export function resolveMessageInputColors(theme: WispTheme): MessageInputColors 
 export function buildMessageInputContainerStyle(
   sizeConfig: MessageInputSizeConfig,
   colors: MessageInputColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     alignItems: 'flex-end',
     gap: sizeConfig.gap,
     padding: `${sizeConfig.padding / 2}px ${sizeConfig.padding}px`,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     border: `1px solid ${colors.border}`,
     backgroundColor: colors.bg,
     transition: `border-color ${durations.fast}ms ${easings.easeOut.css}`,
@@ -131,12 +133,12 @@ export function buildMessageInputSkeletonStyle(
   sizeConfig: MessageInputSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'block',
     width: '100%',
     height: sizeConfig.minHeight + sizeConfig.padding,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

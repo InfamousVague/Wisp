@@ -32,7 +32,7 @@ export function buildCopyButtonStyle(
   isHovered: boolean,
   isDisabled: boolean,
 ): CSSStyleObject {
-  const { colors: themeColors, typography } = theme;
+  const { colors: themeColors, typography, radii } = theme;
   const isMinimal = variant === 'minimal';
 
   // Base background
@@ -85,7 +85,7 @@ export function buildCopyButtonStyle(
     lineHeight: 1,
 
     // Shape
-    borderRadius: isMinimal ? 4 : 6,
+    borderRadius: radii.sm,
 
     // Colors
     backgroundColor,

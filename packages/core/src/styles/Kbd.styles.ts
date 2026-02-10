@@ -22,7 +22,7 @@ export function buildKbdStyle(
   sizeConfig: KbdSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors, typography } = theme;
+  const { colors: themeColors, typography, radii } = theme;
   return {
     // Layout
     display: 'inline-flex',
@@ -44,7 +44,7 @@ export function buildKbdStyle(
     whiteSpace: 'nowrap',
 
     // Shape
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
 
     // Colors
     backgroundColor: themeColors.background.raised,

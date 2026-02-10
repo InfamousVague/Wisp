@@ -314,9 +314,9 @@ export function buildButtonStyle(opts: {
 },
   theme: WispTheme,
 ): CSSStyleObject {
-  const { typography } = theme;
+  const { typography, radii } = theme;
   const sizeConfig = buttonSizeMap[opts.size];
-  const radius = shapeRadiusMap[opts.shape];
+  const radius = radii[shapeRadiusMap[opts.shape]];
 
   const style: CSSStyleObject = {
     // Reset
@@ -387,9 +387,9 @@ export function getButtonSkeletonStyle(
   fullWidth: boolean,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   const sizeConfig = buttonSizeMap[size];
-  const radius = shapeRadiusMap[shape];
+  const radius = radii[shapeRadiusMap[shape]];
 
   return {
     display: fullWidth ? 'block' : 'inline-block',

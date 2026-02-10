@@ -128,8 +128,8 @@ export const VoiceRecorder = forwardRef<HTMLDivElement, VoiceRecorderProps>(func
   }
 
   const containerStyle = useMemo(
-    () => buildVoiceRecorderContainerStyle(sizeConfig, colors),
-    [sizeConfig, colors],
+    () => buildVoiceRecorderContainerStyle(sizeConfig, colors, theme),
+    [sizeConfig, colors, theme],
   );
 
   const timerStyle = useMemo(

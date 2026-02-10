@@ -1,3 +1,4 @@
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
 import { defaultTypography } from '../theme/create-theme';
@@ -35,18 +36,18 @@ export interface AvatarSizeConfig {
   /** Border width around the status indicator dot in pixels. */
   statusBorder: number;
   /** Border radius applied when {@link AvatarShape} is `'square'`. */
-  squareRadius: number;
+  squareRadius: keyof ThemeRadii;
 }
 
 /**
  * Maps each {@link AvatarSize} to its corresponding {@link AvatarSizeConfig}.
  */
 export const avatarSizeMap: Record<AvatarSize, AvatarSizeConfig> = {
-  xs: { container: 24, fontSize: defaultTypography.sizes['2xs'].fontSize, iconSize: 12, statusSize: 8, statusBorder: 1.5, squareRadius: 4 },
-  sm: { container: 32, fontSize: defaultTypography.sizes.xs.fontSize, iconSize: 16, statusSize: 10, statusBorder: 2, squareRadius: 6 },
-  md: { container: 40, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 20, statusSize: 12, statusBorder: 2, squareRadius: 8 },
-  lg: { container: 48, fontSize: defaultTypography.sizes.base.fontSize, iconSize: 24, statusSize: 14, statusBorder: 2, squareRadius: 10 },
-  xl: { container: 64, fontSize: defaultTypography.sizes.xl.fontSize, iconSize: 28, statusSize: 16, statusBorder: 2.5, squareRadius: 12 },
+  xs: { container: 24, fontSize: defaultTypography.sizes['2xs'].fontSize, iconSize: 12, statusSize: 8, statusBorder: 1.5, squareRadius: 'sm' },
+  sm: { container: 32, fontSize: defaultTypography.sizes.xs.fontSize, iconSize: 16, statusSize: 10, statusBorder: 2, squareRadius: 'sm' },
+  md: { container: 40, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 20, statusSize: 12, statusBorder: 2, squareRadius: 'md' },
+  lg: { container: 48, fontSize: defaultTypography.sizes.base.fontSize, iconSize: 24, statusSize: 14, statusBorder: 2, squareRadius: 'md' },
+  xl: { container: 64, fontSize: defaultTypography.sizes.xl.fontSize, iconSize: 28, statusSize: 16, statusBorder: 2.5, squareRadius: 'lg' },
 };
 
 /**

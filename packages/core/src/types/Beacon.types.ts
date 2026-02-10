@@ -5,9 +5,9 @@
  * A pulsing icon button that opens a popover with help content.
  */
 
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
 import type { PopoverPlacement, PopoverAlign } from './Popover.types';
-import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variants
@@ -36,15 +36,14 @@ export interface BeaconSizeConfig {
   /** Icon size in pixels. */
   iconSize: number;
   /** Border radius (half of buttonSize for a circle). */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
 }
 
 /** Maps each {@link BeaconSize} to its dimensional config. */
 export const beaconSizeMap: Record<BeaconSize, BeaconSizeConfig> = {
-  sm: { buttonSize: 18, iconSize: 14, borderRadius: defaultRadii.md },
-  md: { buttonSize: 22, iconSize: 16, borderRadius: defaultRadii.lg },
-  lg: { buttonSize: 28, iconSize: 20, borderRadius: defaultRadii.xl },
-};
+  sm: { buttonSize: 18, iconSize: 14, borderRadius: 'md' },
+  md: { buttonSize: 22, iconSize: 16, borderRadius: 'lg' },
+  lg: { buttonSize: 28, iconSize: 20, borderRadius: 'xl' } };
 
 // ---------------------------------------------------------------------------
 // Props

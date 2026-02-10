@@ -161,8 +161,8 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
 
   // Styles
   const containerStyle = useMemo(
-    () => buildMediaPlayerContainerStyle(sizeConfig, colors, isVideo),
-    [sizeConfig, colors, isVideo],
+    () => buildMediaPlayerContainerStyle(sizeConfig, colors, isVideo, theme),
+    [sizeConfig, colors, isVideo, theme],
   );
 
   const controlBarStyle = useMemo(

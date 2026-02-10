@@ -65,11 +65,11 @@ export function buildColorPickerPreviewStyle(
   color: string,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     width: sizeConfig.previewSize,
     height: sizeConfig.previewSize,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: color,
     border: `1px solid ${themeColors.border.subtle}`,
     flexShrink: 0,
@@ -92,10 +92,10 @@ export function buildColorPickerInputStyle(
   sizeConfig: ColorPickerSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     height: sizeConfig.inputHeight,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     border: `1px solid ${themeColors.border.strong}`,
     backgroundColor: 'transparent',
     color: themeColors.text.primary,
@@ -224,12 +224,12 @@ export function getColorPickerSkeletonStyle(
   sizeConfig: ColorPickerSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: 180,
     height: sizeConfig.previewSize + sizeConfig.gap + sizeConfig.swatchSize * 2 + 6,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

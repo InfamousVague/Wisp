@@ -1,5 +1,6 @@
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Chip Sizes
@@ -46,7 +47,7 @@ export interface ChipSizeConfig {
   /** CSS line-height multiplier. */
   lineHeight: number;
   /** Border radius in pixels. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
   /** Gap between icon, text, and remove button in pixels. */
   gap: number;
   /** Leading icon size in pixels. */
@@ -64,35 +65,31 @@ export const chipSizeMap: Record<ChipSize, ChipSizeConfig> = {
     paddingY: defaultSpacing['2xs'],
     fontSize: defaultTypography.sizes.xs.fontSize,
     lineHeight: 1.33,
-    borderRadius: defaultRadii.sm,
+    borderRadius: 'sm',
     gap: defaultSpacing.xs,
     iconSize: 12,
     removeButtonSize: 16,
-    removeIconSize: 10,
-  },
+    removeIconSize: 10 },
   md: {
     paddingX: defaultSpacing.md,
     paddingY: defaultSpacing.xs,
     fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.38,
-    borderRadius: defaultRadii.md,
+    borderRadius: 'md',
     gap: defaultSpacing.sm,
     iconSize: 14,
     removeButtonSize: 18,
-    removeIconSize: 12,
-  },
+    removeIconSize: 12 },
   lg: {
     paddingX: defaultSpacing.md,
     paddingY: defaultSpacing.sm,
     fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.43,
-    borderRadius: defaultRadii.md,
+    borderRadius: 'md',
     gap: defaultSpacing.sm,
     iconSize: 16,
     removeButtonSize: 20,
-    removeIconSize: 14,
-  },
-};
+    removeIconSize: 14 } };
 
 // ---------------------------------------------------------------------------
 // Props

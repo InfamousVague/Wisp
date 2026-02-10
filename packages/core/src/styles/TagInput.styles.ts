@@ -161,7 +161,9 @@ export function buildContainerStyle(
   sizeConfig: TagInputSizeConfig,
   colors: TagInputColors,
   disabled: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     flexWrap: 'wrap',
@@ -170,7 +172,7 @@ export function buildContainerStyle(
     minHeight: sizeConfig.minHeight,
     padding: `${sizeConfig.paddingY}px ${sizeConfig.paddingX}px`,
     backgroundColor: colors.bg,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     boxSizing: 'border-box',
     border: `1px solid ${colors.border}`,
     boxShadow: colors.focusRing !== 'transparent'
@@ -325,12 +327,12 @@ export function buildSkeletonStyle(
   sizeConfig: TagInputSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: '100%',
     height: sizeConfig.minHeight,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

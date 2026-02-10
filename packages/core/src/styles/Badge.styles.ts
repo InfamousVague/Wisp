@@ -100,7 +100,7 @@ export function buildBadgeStyle(
   shape: BadgeShape,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { typography } = theme;
+  const { typography, radii } = theme;
   return {
     // Layout
     display: 'inline-flex',
@@ -120,7 +120,7 @@ export function buildBadgeStyle(
     whiteSpace: 'nowrap',
 
     // Shape
-    borderRadius: shape === 'pill' ? 9999 : sizeConfig.badgeRadius,
+    borderRadius: shape === 'pill' ? radii.full : radii[sizeConfig.badgeRadius],
 
     // Colors
     backgroundColor: colors.bg,

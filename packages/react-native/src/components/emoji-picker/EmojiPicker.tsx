@@ -344,14 +344,14 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     backgroundColor: themeColors.background.sunken,
     borderWidth: 1,
     borderColor: colors.border,
-    borderRadius: sizeConfig.borderRadius / 2,
+    borderRadius: theme.radii[sizeConfig.borderRadius] / 2,
     paddingHorizontal: sizeConfig.padding,
   }), [sizeConfig, colors, themeColors]);
 
   const skinTriggerStyle = useMemo<ViewStyle>(() => ({
     width: triggerSize,
     height: triggerSize,
-    borderRadius: sizeConfig.borderRadius / 2,
+    borderRadius: theme.radii[sizeConfig.borderRadius] / 2,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',

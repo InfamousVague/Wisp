@@ -1,3 +1,4 @@
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
 
 /** Available card visual variant options. */
@@ -27,11 +28,11 @@ export const cardRadii = ['none', 'sm', 'md', 'lg'] as const;
 export type CardRadius = (typeof cardRadii)[number];
 
 /** Maps each {@link CardRadius} to its pixel value. */
-export const cardRadiusMap: Record<CardRadius, number> = {
-  none: 0,
-  sm: 8,
-  md: 12,
-  lg: 16,
+export const cardRadiusMap: Record<CardRadius, keyof ThemeRadii> = {
+  none: 'none',
+  sm: 'md',
+  md: 'lg',
+  lg: 'xl',
 };
 
 /**

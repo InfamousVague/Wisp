@@ -51,7 +51,7 @@ export function buildTimePickerTriggerStyle(
   hasError: boolean,
   isHovered: boolean,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   let borderColor = themeColors.border.strong;
   let focusRing = 'transparent';
 
@@ -74,7 +74,7 @@ export function buildTimePickerTriggerStyle(
     paddingLeft: sizeConfig.paddingX,
     paddingRight: sizeConfig.paddingX,
     backgroundColor: isDisabled ? themeColors.border.subtle : 'transparent',
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     boxSizing: 'border-box',
     border: '1px solid ' + borderColor,
     boxShadow: focusRing !== 'transparent'
@@ -270,12 +270,12 @@ export function buildTimePickerSkeletonStyle(
   sizeConfig: TimePickerSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: '100%',
     height: sizeConfig.inputHeight,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

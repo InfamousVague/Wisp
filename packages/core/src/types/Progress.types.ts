@@ -1,7 +1,7 @@
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
 import type { Thickness } from '../tokens/shared';
-import { defaultRadii } from '../theme/create-theme';
 
 /**
  * Tuple of valid progress-bar size literals, re-exported from the shared
@@ -29,7 +29,7 @@ export interface ProgressSizeConfig {
   /** Track height in pixels. */
   height: number;
   /** Border radius for the track and fill, in pixels. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
   /** Font size for the label text above the bar. */
   labelFontSize: number;
   /** Font size for the value text above the bar. */
@@ -43,12 +43,11 @@ export interface ProgressSizeConfig {
  * Provides pre-defined dimension tokens for all five progress sizes.
  */
 export const progressSizeMap: Record<ComponentSize, ProgressSizeConfig> = {
-  xs: { height: 4, borderRadius: defaultRadii.sm, labelFontSize: 12, valueFontSize: 12 },
-  sm: { height: 6, borderRadius: defaultRadii.sm, labelFontSize: 13, valueFontSize: 13 },
-  md: { height: 8, borderRadius: defaultRadii.sm, labelFontSize: 14, valueFontSize: 14 },
-  lg: { height: 10, borderRadius: defaultRadii.sm, labelFontSize: 15, valueFontSize: 15 },
-  xl: { height: 12, borderRadius: defaultRadii.md, labelFontSize: 16, valueFontSize: 16 },
-};
+  xs: { height: 4, borderRadius: 'sm', labelFontSize: 12, valueFontSize: 12 },
+  sm: { height: 6, borderRadius: 'sm', labelFontSize: 13, valueFontSize: 13 },
+  md: { height: 8, borderRadius: 'sm', labelFontSize: 14, valueFontSize: 14 },
+  lg: { height: 10, borderRadius: 'sm', labelFontSize: 15, valueFontSize: 15 },
+  xl: { height: 12, borderRadius: 'md', labelFontSize: 16, valueFontSize: 16 } };
 
 // ---------------------------------------------------------------------------
 // Props

@@ -138,8 +138,8 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
   );
 
   const closeButtonStyle = useMemo(
-    () => buildCloseButtonStyle(sizeConfig, colors),
-    [sizeConfig, colors],
+    () => buildCloseButtonStyle(sizeConfig, colors, theme),
+    [sizeConfig, colors, theme],
   );
 
   // Apply hover backgrounds

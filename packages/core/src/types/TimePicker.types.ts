@@ -1,5 +1,6 @@
+import type { ThemeRadii } from '../theme/types';
 import type { HTMLAttributes } from 'react';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // TimePicker Size
@@ -38,7 +39,7 @@ export interface TimePickerSizeConfig {
   /** Size of the clock icon in pixels. */
   iconSize: number;
   /** Border radius of the trigger in pixels. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
   /** Horizontal padding inside the trigger in pixels. */
   paddingX: number;
   /** Width of each column (hours, minutes, AM/PM) in the dropdown in pixels. */
@@ -53,10 +54,9 @@ export interface TimePickerSizeConfig {
  * used for layout and typography calculations.
  */
 export const timePickerSizeMap: Record<TimePickerSize, TimePickerSizeConfig> = {
-  sm: { inputHeight: 28, fontSize: defaultTypography.sizes.xs.fontSize, iconSize: 14, borderRadius: defaultRadii.md, paddingX: defaultSpacing.md, columnWidth: 48 },
-  md: { inputHeight: 34, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 16, borderRadius: defaultRadii.md, paddingX: defaultSpacing.md, columnWidth: 56 },
-  lg: { inputHeight: 40, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 18, borderRadius: defaultRadii.md, paddingX: defaultSpacing.lg, columnWidth: 64 },
-};
+  sm: { inputHeight: 28, fontSize: defaultTypography.sizes.xs.fontSize, iconSize: 14, borderRadius: 'md', paddingX: defaultSpacing.md, columnWidth: 48 },
+  md: { inputHeight: 34, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 16, borderRadius: 'md', paddingX: defaultSpacing.md, columnWidth: 56 },
+  lg: { inputHeight: 40, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 18, borderRadius: 'md', paddingX: defaultSpacing.lg, columnWidth: 64 } };
 
 // ---------------------------------------------------------------------------
 // TimePicker Format

@@ -1,6 +1,7 @@
 /**
  * @module Button
  */
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
 import { defaultSpacing, defaultTypography } from '../theme/create-theme';
@@ -73,10 +74,10 @@ export type ButtonShape = (typeof buttonShapes)[number];
 /**
  * Maps each {@link ButtonShape} to its corresponding CSS `border-radius` value in pixels.
  */
-export const shapeRadiusMap: Record<ButtonShape, number> = {
-  rounded: 8,
-  pill: 9999,
-  square: 0,
+export const shapeRadiusMap: Record<ButtonShape, keyof ThemeRadii> = {
+  rounded: 'md',
+  pill: 'full',
+  square: 'none',
 };
 
 // ---------------------------------------------------------------------------

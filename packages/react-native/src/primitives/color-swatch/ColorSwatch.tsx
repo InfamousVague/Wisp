@@ -65,6 +65,7 @@ export interface ColorSwatchProps extends Omit<ViewProps, 'children'> {
 function resolveBorderRadius(
   shape: ColorSwatchShape,
   sizeConfig: ColorSwatchSizeConfig,
+  radii: import('@wisp-ui/core/theme/types').ThemeRadii,
 ): number {
   switch (shape) {
     case 'circle':
@@ -72,7 +73,7 @@ function resolveBorderRadius(
     case 'square':
       return 0;
     case 'rounded':
-      return sizeConfig.borderRadius;
+      return radii[sizeConfig.borderRadius];
     default:
       return sizeConfig.size / 2;
   }
@@ -117,7 +118,7 @@ export const ColorSwatch = forwardRef<View, ColorSwatchProps>(function ColorSwat
   const swatchStyle = useMemo<ViewStyle>(() => ({
     width: sizeConfig.size,
     height: sizeConfig.size,
-    borderRadius: resolveBorderRadius(shape, sizeConfig),
+    borderRadius: resolveBorderRadius(shape, sizeConfig, theme.radii),
     backgroundColor: color,
     borderWidth: bordered ? 1 : 0,
     borderColor: bordered ? themeColors.border.subtle : 'transparent',

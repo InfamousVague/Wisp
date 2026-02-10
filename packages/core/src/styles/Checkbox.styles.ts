@@ -133,7 +133,9 @@ export function buildBoxStyle(
   sizeConfig: CheckboxSizeConfig,
   colors: CheckboxColors,
   disabled: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
@@ -142,7 +144,7 @@ export function buildBoxStyle(
     height: sizeConfig.boxSize,
     minWidth: sizeConfig.boxSize,
     minHeight: sizeConfig.boxSize,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: colors.boxBg,
     border: `1.5px solid ${colors.boxBorder}`,
     boxSizing: 'border-box',
@@ -197,12 +199,12 @@ export function getCheckboxSkeletonStyle(
   sizeConfig: CheckboxSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: sizeConfig.boxSize,
     height: sizeConfig.boxSize,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

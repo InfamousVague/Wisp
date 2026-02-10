@@ -19,11 +19,11 @@ export function buildGroupContainerStyle(
   variant: ButtonGroupVariant,
   fullWidth: boolean,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: fullWidth ? 'flex' : 'inline-flex',
     width: fullWidth ? '100%' : undefined,
-    borderRadius: variant === 'ghost' ? 10 : 8,
+    borderRadius: variant === 'ghost' ? radii.lg : radii.md,
     overflow: 'hidden',
     border: variant === 'outline' ? `1px solid ${themeColors.border.strong}` : 'none',
     backgroundColor: variant === 'ghost' ? themeColors.accent.highlight : 'transparent',
@@ -49,7 +49,7 @@ export function buildGroupItemStyle(
   isLast: boolean,
   fullWidth: boolean,
 ): CSSStyleObject {
-  const { colors: themeColors, typography } = theme;
+  const { colors: themeColors, typography, radii } = theme;
   let bg: string;
   let textColor: string;
   let borderRight: string | undefined;
@@ -111,7 +111,7 @@ export function buildGroupItemStyle(
     borderRight,
 
     // Shape
-    borderRadius: variant === 'ghost' ? 7 : undefined,
+    borderRadius: variant === 'ghost' ? radii.md : undefined,
     boxShadow: variant === 'ghost' && isActive
       ? '0 1px 3px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.06)'
       : 'none',

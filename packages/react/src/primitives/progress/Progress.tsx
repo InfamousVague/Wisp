@@ -68,7 +68,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(function Progr
   const sizeConfig = useMemo(() => {
     if (!thickness) return baseSizeConfig;
     const h = thicknessValues[thickness];
-    return { ...baseSizeConfig, height: h, borderRadius: Math.round(h / 2) };
+    return { ...baseSizeConfig, height: h, borderRadius: h <= 6 ? 'sm' as const : 'md' as const };
   }, [baseSizeConfig, thickness]);
 
   // ---------------------------------------------------------------------------
@@ -114,16 +114,16 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(function Progr
   // Build styles
   // ---------------------------------------------------------------------------
   const trackStyle = useMemo(
-    () => buildTrackStyle(sizeConfig, colors),
-    [sizeConfig, colors],
+    () => buildTrackStyle(sizeConfig, colors, theme),
+    [sizeConfig, colors, theme],
   );
 
   const fillStyle = useMemo(
     () =>
       indeterminate
-        ? buildIndeterminateFillStyle(sizeConfig, colors)
-        : buildFillStyle(sizeConfig, colors, percent),
-    [indeterminate, sizeConfig, colors, percent],
+        ? buildIndeterminateFillStyle(sizeConfig, colors, theme)
+        : buildFillStyle(sizeConfig, colors, percent, theme),
+    [indeterminate, sizeConfig, colors, percent, theme],
   );
 
   const labelRowStyle = useMemo(() => buildLabelRowStyle(theme), []);

@@ -291,7 +291,7 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Com
   }
 
   const wrapperStyle = buildWrapperStyle(sizeConfig, fullWidth);
-  const triggerStyle = buildTriggerStyle(sizeConfig, colors, disabled);
+  const triggerStyle = buildTriggerStyle(sizeConfig, colors, disabled, theme);
   const comboboxInputStyle = buildComboboxInputStyle(sizeConfig, colors);
   const labelStyleObj = buildLabelStyle(sizeConfig, colors, theme);
 

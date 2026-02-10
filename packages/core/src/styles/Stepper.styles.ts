@@ -22,13 +22,13 @@ export function buildStepperContainerStyle(
   sizeConfig: StepperSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
     height: sizeConfig.height,
     border: `1px solid ${themeColors.border.strong}`,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     overflow: 'hidden',
     boxSizing: 'border-box',
     gap: sizeConfig.gap,
@@ -143,14 +143,14 @@ export function getStepperSkeletonStyle(
   sizeConfig: StepperSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   // Total width = 2 buttons + value area (same width as a button) + 2 border pixels
   const totalWidth = sizeConfig.buttonWidth * 3 + 2;
   return {
     display: 'inline-block',
     width: totalWidth,
     height: sizeConfig.height,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

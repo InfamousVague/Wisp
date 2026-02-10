@@ -134,7 +134,7 @@ export function buildChipStyle(opts: {
 },
   theme: WispTheme,
 ): CSSStyleObject {
-  const { typography } = theme;
+  const { typography, radii } = theme;
   return {
     // Layout
     display: 'inline-flex',
@@ -153,7 +153,7 @@ export function buildChipStyle(opts: {
     whiteSpace: 'nowrap',
 
     // Shape
-    borderRadius: opts.sizeConfig.borderRadius,
+    borderRadius: radii[opts.sizeConfig.borderRadius],
 
     // Colors
     backgroundColor: opts.colors.bg,
@@ -208,7 +208,7 @@ export function buildRemoveButtonStyle(
   colors: ChipColors,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     // Reset
     border: 'none',
@@ -226,7 +226,7 @@ export function buildRemoveButtonStyle(
     // Sizing
     width: sizeConfig.removeButtonSize,
     height: sizeConfig.removeButtonSize,
-    borderRadius: sizeConfig.borderRadius > 4 ? sizeConfig.borderRadius - 2 : 2,
+    borderRadius: radii[sizeConfig.borderRadius] > 4 ? radii[sizeConfig.borderRadius] - 2 : 2,
 
     // Colors
     color: colors.text,

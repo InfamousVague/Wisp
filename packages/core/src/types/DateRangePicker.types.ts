@@ -3,8 +3,9 @@
  * @description Type definitions for the Wisp DateRangePicker component.
  */
 
+import type { ThemeRadii } from '../theme/types';
 import type { HTMLAttributes } from 'react';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Date Range
@@ -37,7 +38,7 @@ export interface DateRangePickerSizeConfig {
   /** Size of the calendar icon in pixels. */
   iconSize: number;
   /** Border radius of the trigger in pixels. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
   /** Horizontal padding inside the trigger in pixels. */
   paddingX: number;
   /** Width and height of each day cell in pixels. */
@@ -56,10 +57,9 @@ export interface DateRangePickerSizeConfig {
  * resolve sizing tokens.
  */
 export const dateRangePickerSizeMap: Record<DateRangePickerSize, DateRangePickerSizeConfig> = {
-  sm: { inputHeight: 28, fontSize: defaultTypography.sizes.xs.fontSize, iconSize: 14, borderRadius: defaultRadii.md, paddingX: defaultSpacing.md, cellSize: 28, headerFontSize: 13, dayHeaderFontSize: 11 },
-  md: { inputHeight: 34, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 16, borderRadius: defaultRadii.md, paddingX: defaultSpacing.md, cellSize: 32, headerFontSize: 14, dayHeaderFontSize: 12 },
-  lg: { inputHeight: 40, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 18, borderRadius: defaultRadii.md, paddingX: defaultSpacing.lg, cellSize: 36, headerFontSize: 16, dayHeaderFontSize: 13 },
-};
+  sm: { inputHeight: 28, fontSize: defaultTypography.sizes.xs.fontSize, iconSize: 14, borderRadius: 'md', paddingX: defaultSpacing.md, cellSize: 28, headerFontSize: 13, dayHeaderFontSize: 11 },
+  md: { inputHeight: 34, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 16, borderRadius: 'md', paddingX: defaultSpacing.md, cellSize: 32, headerFontSize: 14, dayHeaderFontSize: 12 },
+  lg: { inputHeight: 40, fontSize: defaultTypography.sizes.sm.fontSize, iconSize: 18, borderRadius: 'md', paddingX: defaultSpacing.lg, cellSize: 36, headerFontSize: 16, dayHeaderFontSize: 13 } };
 
 // ---------------------------------------------------------------------------
 // Props

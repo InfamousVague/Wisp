@@ -94,7 +94,7 @@ export const Chip = forwardRef<View, ChipProps>(function Chip(
           style={{
             width: sizeConfig.removeButtonSize,
             height: sizeConfig.removeButtonSize,
-            borderRadius: sizeConfig.borderRadius > 4 ? sizeConfig.borderRadius - 2 : 2,
+            borderRadius: theme.radii[sizeConfig.borderRadius] > 4 ? theme.radii[sizeConfig.borderRadius] - 2 : 2,
             alignItems: 'center',
             justifyContent: 'center',
           }}

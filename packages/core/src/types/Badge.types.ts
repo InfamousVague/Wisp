@@ -1,3 +1,4 @@
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
 import { defaultSpacing, defaultTypography } from '../theme/create-theme';
@@ -53,7 +54,7 @@ export interface BadgeSizeConfig {
   /** Unitless CSS line-height multiplier. */
   lineHeight: number;
   /** Border radius in pixels used when {@link BadgeProps.shape} is `'badge'`. */
-  badgeRadius: number;
+  badgeRadius: keyof ThemeRadii;
   /** Diameter of the dot indicator in pixels. */
   dotSize: number;
   /** Gap between internal elements (dot/icon and text) in pixels. */
@@ -69,9 +70,9 @@ export interface BadgeSizeConfig {
  * Pre-defined for `sm`, `md`, and `lg`.
  */
 export const badgeSizeMap: Record<BadgeSize, BadgeSizeConfig> = {
-  sm: { paddingX: defaultSpacing.sm, paddingY: defaultSpacing['2xs'], fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 1.33, badgeRadius: 4, dotSize: 6, gap: defaultSpacing.xs, iconSize: 12 },
-  md: { paddingX: defaultSpacing.md, paddingY: defaultSpacing.xs, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.38, badgeRadius: 5, dotSize: 6, gap: defaultSpacing.sm, iconSize: 14 },
-  lg: { paddingX: defaultSpacing.md, paddingY: defaultSpacing.xs, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.43, badgeRadius: 6, dotSize: 8, gap: defaultSpacing.sm, iconSize: 16 },
+  sm: { paddingX: defaultSpacing.sm, paddingY: defaultSpacing['2xs'], fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 1.33, badgeRadius: 'sm', dotSize: 6, gap: defaultSpacing.xs, iconSize: 12 },
+  md: { paddingX: defaultSpacing.md, paddingY: defaultSpacing.xs, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.38, badgeRadius: 'sm', dotSize: 6, gap: defaultSpacing.sm, iconSize: 14 },
+  lg: { paddingX: defaultSpacing.md, paddingY: defaultSpacing.xs, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.43, badgeRadius: 'sm', dotSize: 8, gap: defaultSpacing.sm, iconSize: 16 },
 };
 
 // ---------------------------------------------------------------------------

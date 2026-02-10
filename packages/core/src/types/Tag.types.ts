@@ -1,6 +1,7 @@
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Tag sizes — subset of ComponentSize
@@ -33,7 +34,7 @@ export interface TagSizeConfig {
   /** Unitless CSS line-height multiplier. */
   lineHeight: number;
   /** Border radius in pixels. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
   /** Gap between internal elements in pixels. */
   gap: number;
   /** Close button container size in pixels. */
@@ -49,10 +50,9 @@ export interface TagSizeConfig {
  * Pre-defined for `sm`, `md`, and `lg`.
  */
 export const tagSizeMap: Record<TagSize, TagSizeConfig> = {
-  sm: { height: 24, paddingX: defaultSpacing.sm, fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 1.33, borderRadius: defaultRadii.sm, gap: defaultSpacing.xs, closeSize: 16, closeIconSize: 10 },
-  md: { height: 28, paddingX: defaultSpacing.md, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.38, borderRadius: defaultRadii.sm, gap: defaultSpacing.sm, closeSize: 18, closeIconSize: 12 },
-  lg: { height: 32, paddingX: defaultSpacing.md, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.43, borderRadius: defaultRadii.md, gap: defaultSpacing.sm, closeSize: 20, closeIconSize: 14 },
-};
+  sm: { height: 24, paddingX: defaultSpacing.sm, fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 1.33, borderRadius: 'sm', gap: defaultSpacing.xs, closeSize: 16, closeIconSize: 10 },
+  md: { height: 28, paddingX: defaultSpacing.md, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.38, borderRadius: 'sm', gap: defaultSpacing.sm, closeSize: 18, closeIconSize: 12 },
+  lg: { height: 32, paddingX: defaultSpacing.md, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.43, borderRadius: 'md', gap: defaultSpacing.sm, closeSize: 20, closeIconSize: 14 } };
 
 // ---------------------------------------------------------------------------
 // Props

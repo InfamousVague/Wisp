@@ -175,7 +175,9 @@ export function buildInputContainerStyle(
   disabled: boolean,
   hasIcon: boolean,
   hasTrailingIcon: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -184,7 +186,7 @@ export function buildInputContainerStyle(
     paddingLeft: hasIcon ? sizeConfig.paddingX - 2 : sizeConfig.paddingX,
     paddingRight: hasTrailingIcon ? sizeConfig.paddingX - 2 : sizeConfig.paddingX,
     backgroundColor: colors.bg,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     boxSizing: 'border-box',
     border: `1px solid ${colors.border}`,
     boxShadow: colors.focusRing !== 'transparent'
@@ -315,12 +317,12 @@ export function getInputSkeletonStyle(
   sizeConfig: InputSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: '100%',
     height: sizeConfig.height,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

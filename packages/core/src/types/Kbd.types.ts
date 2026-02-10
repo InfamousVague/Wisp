@@ -1,5 +1,6 @@
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Kbd Sizes
@@ -26,7 +27,7 @@ export interface KbdSizeConfig {
   /** Vertical padding in pixels. */
   paddingY: number;
   /** Border radius in pixels. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
   /** Minimum width to keep single-character keys square-ish, in pixels. */
   minWidth: number;
   /** Gap between consecutive keys rendered inside the same Kbd, in pixels. */
@@ -37,10 +38,9 @@ export interface KbdSizeConfig {
  * Maps each {@link KbdSize} to its corresponding {@link KbdSizeConfig}.
  */
 export const kbdSizeMap: Record<KbdSize, KbdSizeConfig> = {
-  sm: { fontSize: defaultTypography.sizes.xs.fontSize, paddingX: defaultSpacing.xs, paddingY: defaultSpacing['2xs'], borderRadius: defaultRadii.sm, minWidth: 18, gap: defaultSpacing['2xs'] },
-  md: { fontSize: defaultTypography.sizes.xs.fontSize, paddingX: defaultSpacing.sm, paddingY: defaultSpacing['2xs'], borderRadius: defaultRadii.sm, minWidth: 22, gap: defaultSpacing.xs },
-  lg: { fontSize: defaultTypography.sizes.sm.fontSize, paddingX: defaultSpacing.sm, paddingY: defaultSpacing.xs, borderRadius: defaultRadii.md, minWidth: 26, gap: defaultSpacing.xs },
-};
+  sm: { fontSize: defaultTypography.sizes.xs.fontSize, paddingX: defaultSpacing.xs, paddingY: defaultSpacing['2xs'], borderRadius: 'sm', minWidth: 18, gap: defaultSpacing['2xs'] },
+  md: { fontSize: defaultTypography.sizes.xs.fontSize, paddingX: defaultSpacing.sm, paddingY: defaultSpacing['2xs'], borderRadius: 'sm', minWidth: 22, gap: defaultSpacing.xs },
+  lg: { fontSize: defaultTypography.sizes.sm.fontSize, paddingX: defaultSpacing.sm, paddingY: defaultSpacing.xs, borderRadius: 'md', minWidth: 26, gap: defaultSpacing.xs } };
 
 // ---------------------------------------------------------------------------
 // Props

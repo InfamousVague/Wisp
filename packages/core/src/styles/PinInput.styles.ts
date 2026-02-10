@@ -169,7 +169,7 @@ export function buildCellStyle(
   disabled: boolean,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { typography } = theme;
+  const { typography, radii } = theme;
   const focusRing = isFocused && colors.focusRing !== 'transparent'
     ? `0 0 0 2px ${colors.focusRing}25`
     : 'none';
@@ -200,7 +200,7 @@ export function buildCellStyle(
 
     // Border
     border: `1px solid ${isFocused ? colors.focusRing !== 'transparent' ? colors.focusRing : colors.border : colors.border}`,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     boxShadow: focusRing,
 
     // Interaction
@@ -282,11 +282,11 @@ export function buildSkeletonCellStyle(
   sizeConfig: PinInputSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     width: sizeConfig.cellSize,
     height: sizeConfig.cellSize,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
     flexShrink: 0,

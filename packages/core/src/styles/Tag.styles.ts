@@ -130,7 +130,7 @@ export function buildTagStyle(
   disabled: boolean,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { typography } = theme;
+  const { typography, radii } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
@@ -142,7 +142,7 @@ export function buildTagStyle(
     backgroundColor: colors.bg,
     color: colors.text,
     border: `1px solid ${colors.border}`,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     boxSizing: 'border-box',
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
@@ -170,7 +170,9 @@ export function buildTagStyle(
 export function buildCloseButtonStyle(
   sizeConfig: TagSizeConfig,
   colors: TagColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     // Reset button defaults
     margin: 0,
@@ -184,7 +186,7 @@ export function buildCloseButtonStyle(
     justifyContent: 'center',
     width: sizeConfig.closeSize,
     height: sizeConfig.closeSize,
-    borderRadius: sizeConfig.borderRadius > 4 ? sizeConfig.borderRadius - 2 : 2,
+    borderRadius: radii[sizeConfig.borderRadius] > 4 ? radii[sizeConfig.borderRadius] - 2 : 2,
     backgroundColor: colors.closeBg,
     cursor: 'pointer',
     flexShrink: 0,
@@ -207,12 +209,12 @@ export function getTagSkeletonStyle(
   sizeConfig: TagSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: 64,
     height: sizeConfig.height,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

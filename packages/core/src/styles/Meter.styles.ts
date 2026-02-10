@@ -94,12 +94,12 @@ export function buildMeterTrackStyle(
   sizeConfig: MeterSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     position: 'relative',
     width: '100%',
     height: sizeConfig.height,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     overflow: 'hidden',
   };
@@ -136,11 +136,11 @@ export function buildMeterFillStyle(
   high: number = 75,
   optimum: number = 50,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   const base: CSSStyleObject = {
     height: '100%',
     width: `${percent}%`,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     transition: `width ${durations.slow}ms ${easings.easeOut.css}, background-color ${durations.slow}ms ${easings.easeOut.css}`,
   };
 
@@ -238,12 +238,12 @@ export function getMeterSkeletonStyle(
   sizeConfig: MeterSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'block',
     width: '100%',
     height: sizeConfig.height,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

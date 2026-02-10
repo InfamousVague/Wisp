@@ -194,7 +194,7 @@ export const LocalePicker = forwardRef<HTMLDivElement, LocalePickerProps>(functi
   // Memoised styles
   const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig), [sizeConfig]);
   const labelStyle = useMemo(() => buildLabelStyle(sizeConfig, colors, theme), [sizeConfig, colors]);
-  const triggerStyle = useMemo(() => buildTriggerStyle(sizeConfig, colors, disabled), [sizeConfig, colors, disabled]);
+  const triggerStyle = useMemo(() => buildTriggerStyle(sizeConfig, colors, disabled, theme), [sizeConfig, colors, disabled, theme]);
   const dropdownStyle = useMemo(() => buildDropdownStyle(theme), [themeColors]);
   const searchInputStyle = useMemo(() => buildSearchInputStyle(sizeConfig, theme), [sizeConfig, themeColors]);
   const optionsListStyle = useMemo(() => buildOptionsListStyle(theme), []);

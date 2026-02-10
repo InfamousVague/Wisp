@@ -4,8 +4,9 @@
  * button with live waveform preview and timer for chat voice messages.
  */
 
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // State
@@ -35,14 +36,13 @@ export interface VoiceRecorderSizeConfig {
   /** Gap between elements. */
   gap: number;
   /** Border radius. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
 }
 
 export const voiceRecorderSizeMap: Record<VoiceRecorderSize, VoiceRecorderSizeConfig> = {
-  sm: { height: 40, buttonSize: 32, iconSize: 16, fontSize: defaultTypography.sizes.xs.fontSize, padding: defaultSpacing.sm, gap: defaultSpacing.sm, borderRadius: defaultRadii.xl },
-  md: { height: 48, buttonSize: 40, iconSize: 20, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.md, gap: defaultSpacing.md, borderRadius: defaultRadii.xl },
-  lg: { height: 56, buttonSize: 48, iconSize: 24, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.lg, gap: defaultSpacing.md, borderRadius: defaultRadii.xl },
-};
+  sm: { height: 40, buttonSize: 32, iconSize: 16, fontSize: defaultTypography.sizes.xs.fontSize, padding: defaultSpacing.sm, gap: defaultSpacing.sm, borderRadius: 'xl' },
+  md: { height: 48, buttonSize: 40, iconSize: 20, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.md, gap: defaultSpacing.md, borderRadius: 'xl' },
+  lg: { height: 56, buttonSize: 48, iconSize: 24, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.lg, gap: defaultSpacing.md, borderRadius: 'xl' } };
 
 // ---------------------------------------------------------------------------
 // Props

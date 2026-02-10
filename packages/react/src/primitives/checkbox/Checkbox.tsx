@@ -194,8 +194,8 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(function Che
   // Build styles
   // ---------------------------------------------------------------------------
   const boxStyle = useMemo(
-    () => buildBoxStyle(sizeConfig, colors, disabled),
-    [sizeConfig, colors, disabled],
+    () => buildBoxStyle(sizeConfig, colors, disabled, theme),
+    [sizeConfig, colors, disabled, theme],
   );
 
   const iconStyle = useMemo(

@@ -274,8 +274,8 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
 
   // ---- Styles ----
   const containerStyle = useMemo(
-    () => buildEmojiPickerContainerStyle(sizeConfig, colors),
-    [sizeConfig, colors],
+    () => buildEmojiPickerContainerStyle(sizeConfig, colors, theme),
+    [sizeConfig, colors, theme],
   );
   const headerStyle = useMemo(
     () => buildEmojiPickerHeaderStyle(sizeConfig, colors),
@@ -298,8 +298,8 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
     [],
   );
   const skinToneTriggerStyle = useMemo(
-    () => buildEmojiPickerSkinToneTriggerStyle(sizeConfig, colors, skinToneOpen),
-    [sizeConfig, colors, skinToneOpen],
+    () => buildEmojiPickerSkinToneTriggerStyle(sizeConfig, colors, skinToneOpen, theme),
+    [sizeConfig, colors, skinToneOpen, theme],
   );
   const tabBarStyle = useMemo(
     () => buildEmojiPickerTabBarStyle(sizeConfig, colors),

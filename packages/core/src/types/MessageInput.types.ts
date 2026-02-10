@@ -4,8 +4,9 @@
  * input with send, attachment, and emoji support.
  */
 
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size
@@ -28,16 +29,15 @@ export interface MessageInputSizeConfig {
   /** Icon size. */
   iconSize: number;
   /** Border radius. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
   /** Gap between elements. */
   gap: number;
 }
 
 export const messageInputSizeMap: Record<MessageInputSize, MessageInputSizeConfig> = {
-  sm: { minHeight: 36, maxHeight: 120, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.sm, iconButtonSize: 28, iconSize: 16, borderRadius: defaultRadii.xl, gap: defaultSpacing.xs },
-  md: { minHeight: 44, maxHeight: 160, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.md, iconButtonSize: 34, iconSize: 18, borderRadius: defaultRadii.xl, gap: defaultSpacing.sm },
-  lg: { minHeight: 52, maxHeight: 200, fontSize: defaultTypography.sizes.base.fontSize, padding: defaultSpacing.lg, iconButtonSize: 40, iconSize: 20, borderRadius: defaultRadii.xl, gap: defaultSpacing.sm },
-};
+  sm: { minHeight: 36, maxHeight: 120, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.sm, iconButtonSize: 28, iconSize: 16, borderRadius: 'xl', gap: defaultSpacing.xs },
+  md: { minHeight: 44, maxHeight: 160, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.md, iconButtonSize: 34, iconSize: 18, borderRadius: 'xl', gap: defaultSpacing.sm },
+  lg: { minHeight: 52, maxHeight: 200, fontSize: defaultTypography.sizes.base.fontSize, padding: defaultSpacing.lg, iconButtonSize: 40, iconSize: 20, borderRadius: 'xl', gap: defaultSpacing.sm } };
 
 // ---------------------------------------------------------------------------
 // Props

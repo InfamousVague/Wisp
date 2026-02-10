@@ -1,5 +1,5 @@
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
-import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Swatch Sizes
@@ -32,18 +32,17 @@ export interface ColorSwatchSizeConfig {
   /** Width and height of the swatch in pixels. */
   size: number;
   /** Border radius applied when {@link ColorSwatchShape} is `'rounded'`, in pixels. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
 }
 
 /**
  * Maps each {@link ColorSwatchSize} to its corresponding {@link ColorSwatchSizeConfig}.
  */
 export const colorSwatchSizeMap: Record<ColorSwatchSize, ColorSwatchSizeConfig> = {
-  sm: { size: 16, borderRadius: defaultRadii.sm },
-  md: { size: 24, borderRadius: defaultRadii.sm },
-  lg: { size: 32, borderRadius: defaultRadii.md },
-  xl: { size: 48, borderRadius: defaultRadii.md },
-};
+  sm: { size: 16, borderRadius: 'sm' },
+  md: { size: 24, borderRadius: 'sm' },
+  lg: { size: 32, borderRadius: 'md' },
+  xl: { size: 48, borderRadius: 'md' } };
 
 // ---------------------------------------------------------------------------
 // Props

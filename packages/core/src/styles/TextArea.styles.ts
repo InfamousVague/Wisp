@@ -157,7 +157,9 @@ export function buildTextAreaContainerStyle(
   sizeConfig: TextAreaSizeConfig,
   colors: TextAreaColors,
   disabled: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     minHeight: sizeConfig.minHeight,
@@ -166,7 +168,7 @@ export function buildTextAreaContainerStyle(
     paddingTop: sizeConfig.paddingY,
     paddingBottom: sizeConfig.paddingY,
     backgroundColor: colors.bg,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     boxSizing: 'border-box',
     border: `1px solid ${colors.border}`,
     boxShadow: colors.focusRing !== 'transparent'
@@ -297,12 +299,12 @@ export function getTextAreaSkeletonStyle(
   sizeConfig: TextAreaSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: '100%',
     height: sizeConfig.minHeight,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

@@ -128,8 +128,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
   );
 
   const containerStyle = useMemo(
-    () => buildTextAreaContainerStyle(sizeConfig, colors, disabled),
-    [sizeConfig, colors, disabled],
+    () => buildTextAreaContainerStyle(sizeConfig, colors, disabled, theme),
+    [sizeConfig, colors, disabled, theme],
   );
 
   const textAreaStyle = useMemo(

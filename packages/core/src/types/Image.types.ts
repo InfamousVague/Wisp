@@ -1,3 +1,4 @@
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
 
 /** Available object-fit values for the image element. */
@@ -15,13 +16,13 @@ export type ImageRadius = (typeof imageRadii)[number];
 /**
  * Maps each {@link ImageRadius} to its corresponding pixel value.
  */
-export const imageRadiusMap: Record<ImageRadius, number> = {
-  none: 0,
-  sm: 4,
-  md: 8,
-  lg: 12,
-  xl: 16,
-  full: 9999,
+export const imageRadiusMap: Record<ImageRadius, keyof ThemeRadii> = {
+  none: 'none',
+  sm: 'sm',
+  md: 'md',
+  lg: 'lg',
+  xl: 'xl',
+  full: 'full',
 };
 
 /**

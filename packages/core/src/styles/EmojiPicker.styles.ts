@@ -50,13 +50,15 @@ export function resolveEmojiPickerColors(theme: WispTheme): EmojiPickerColors {
 export function buildEmojiPickerContainerStyle(
   sizeConfig: EmojiPickerSizeConfig,
   colors: EmojiPickerColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
     width: sizeConfig.width,
     height: sizeConfig.height,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     border: `1px solid ${colors.border}`,
     backgroundColor: colors.bg,
     overflow: 'hidden',
@@ -149,14 +151,16 @@ export function buildEmojiPickerSkinToneTriggerStyle(
   sizeConfig: EmojiPickerSizeConfig,
   colors: EmojiPickerColors,
   open: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: sizeConfig.searchHeight,
     height: sizeConfig.searchHeight,
-    borderRadius: sizeConfig.borderRadius / 2,
+    borderRadius: radii[sizeConfig.borderRadius] / 2,
     border: `1px solid ${open ? colors.skinToneActiveBorder : colors.border}`,
     backgroundColor: open ? colors.tabHoverBg : 'transparent',
     cursor: 'pointer',
@@ -337,12 +341,12 @@ export function buildEmojiPickerSkeletonStyle(
   sizeConfig: EmojiPickerSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'block',
     width: sizeConfig.width,
     height: sizeConfig.height,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

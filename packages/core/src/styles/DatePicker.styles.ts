@@ -58,7 +58,7 @@ export function buildDatePickerTriggerStyle(
   hasError: boolean,
   isHovered: boolean,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   let borderColor = themeColors.border.strong;
   if (hasError) borderColor = themeColors.status.danger;
   else if (isOpen) borderColor = themeColors.accent.primary;
@@ -79,7 +79,7 @@ export function buildDatePickerTriggerStyle(
     paddingLeft: sizeConfig.paddingX,
     paddingRight: sizeConfig.paddingX,
     backgroundColor: 'transparent',
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     boxSizing: 'border-box',
     border: `1px solid ${borderColor}`,
     boxShadow,
@@ -251,12 +251,12 @@ export function buildDatePickerSkeletonStyle(
   sizeConfig: DatePickerSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: '100%',
     height: sizeConfig.inputHeight,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

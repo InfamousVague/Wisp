@@ -1,6 +1,7 @@
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 /**
  * Re-exported tuple of valid textarea size literals.
@@ -41,7 +42,7 @@ export interface TextAreaSizeConfig {
   /** Line height multiplier */
   lineHeight: number;
   /** Border radius of the textarea container */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
   /** Font size for the label text */
   labelFontSize: number;
   /** Font size for the hint/error text */
@@ -56,12 +57,11 @@ export interface TextAreaSizeConfig {
  * dimensions, font sizes, and border radii for each size variant.
  */
 export const textAreaSizeMap: Record<ComponentSize, TextAreaSizeConfig> = {
-  xs: { minHeight: 60, paddingX: defaultSpacing.sm, paddingY: defaultSpacing.sm, fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 1.5, borderRadius: defaultRadii.md, labelFontSize: 12, hintFontSize: 11 },
-  sm: { minHeight: 72, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.5, borderRadius: defaultRadii.md, labelFontSize: 13, hintFontSize: 12 },
-  md: { minHeight: 88, paddingX: defaultSpacing.md, paddingY: defaultSpacing.md, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.57, borderRadius: defaultRadii.md, labelFontSize: 14, hintFontSize: 13 },
-  lg: { minHeight: 104, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 1.6, borderRadius: defaultRadii.md, labelFontSize: 15, hintFontSize: 14 },
-  xl: { minHeight: 120, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.lg, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 1.625, borderRadius: defaultRadii.lg, labelFontSize: 16, hintFontSize: 15 },
-};
+  xs: { minHeight: 60, paddingX: defaultSpacing.sm, paddingY: defaultSpacing.sm, fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 1.5, borderRadius: 'md', labelFontSize: 12, hintFontSize: 11 },
+  sm: { minHeight: 72, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.5, borderRadius: 'md', labelFontSize: 13, hintFontSize: 12 },
+  md: { minHeight: 88, paddingX: defaultSpacing.md, paddingY: defaultSpacing.md, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.57, borderRadius: 'md', labelFontSize: 14, hintFontSize: 13 },
+  lg: { minHeight: 104, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 1.6, borderRadius: 'md', labelFontSize: 15, hintFontSize: 14 },
+  xl: { minHeight: 120, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.lg, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 1.625, borderRadius: 'lg', labelFontSize: 16, hintFontSize: 15 } };
 
 // ---------------------------------------------------------------------------
 // Props

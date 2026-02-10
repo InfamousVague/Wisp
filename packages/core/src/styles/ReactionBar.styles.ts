@@ -46,13 +46,15 @@ export function resolveReactionBarColors(theme: WispTheme): ReactionBarColors {
 export function buildReactionBarContainerStyle(
   sizeConfig: ReactionBarSizeConfig,
   colors: ReactionBarColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
     gap: sizeConfig.gap,
     padding: sizeConfig.padding,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: colors.bg,
     border: `1px solid ${colors.border}`,
     flexWrap: 'wrap',
@@ -65,7 +67,7 @@ export function buildReactionButtonStyle(
   active: boolean,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { spacing } = theme;
+  const { spacing, radii } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
@@ -75,7 +77,7 @@ export function buildReactionButtonStyle(
     minWidth: sizeConfig.buttonSize,
     paddingLeft: spacing.sm,
     paddingRight: spacing.sm,
-    borderRadius: sizeConfig.borderRadius - 2,
+    borderRadius: radii[sizeConfig.borderRadius] - 2,
     border: `1px solid ${active ? colors.buttonBorderActive : colors.buttonBorder}`,
     backgroundColor: active ? colors.buttonBgActive : colors.buttonBg,
     cursor: 'pointer',
@@ -104,14 +106,16 @@ export function buildReactionCountStyle(
 export function buildAddButtonStyle(
   sizeConfig: ReactionBarSizeConfig,
   colors: ReactionBarColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: sizeConfig.buttonSize,
     height: sizeConfig.buttonSize,
-    borderRadius: sizeConfig.borderRadius - 2,
+    borderRadius: radii[sizeConfig.borderRadius] - 2,
     border: `1px dashed ${colors.border}`,
     backgroundColor: 'transparent',
     cursor: 'pointer',
@@ -127,12 +131,12 @@ export function buildReactionBarSkeletonStyle(
   sizeConfig: ReactionBarSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: sizeConfig.buttonSize * 5 + sizeConfig.gap * 4 + sizeConfig.padding * 2,
     height: sizeConfig.buttonSize + sizeConfig.padding * 2,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

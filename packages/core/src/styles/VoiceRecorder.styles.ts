@@ -68,7 +68,9 @@ export function resolveVoiceRecorderColors(
 export function buildVoiceRecorderContainerStyle(
   sizeConfig: VoiceRecorderSizeConfig,
   colors: VoiceRecorderColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   // Vertical padding centers buttons; horizontal padding is half the
   // difference between container height and button size so buttons
   // sit flush against the visual edge of the pill.
@@ -79,7 +81,7 @@ export function buildVoiceRecorderContainerStyle(
     gap: sizeConfig.gap,
     padding: `0 ${hPad}px`,
     height: sizeConfig.height,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     border: `1px solid ${colors.border}`,
     backgroundColor: colors.bg,
     width: '100%',
@@ -154,12 +156,12 @@ export function buildVoiceRecorderSkeletonStyle(
   sizeConfig: VoiceRecorderSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'block',
     width: '100%',
     height: sizeConfig.height,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

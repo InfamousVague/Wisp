@@ -4,8 +4,9 @@
  * emoji reaction bar for chat messages.
  */
 
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing} from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size
@@ -24,16 +25,15 @@ export interface ReactionBarSizeConfig {
   /** Gap between buttons. */
   gap: number;
   /** Border radius. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
   /** Count font size. */
   countFontSize: number;
 }
 
 export const reactionBarSizeMap: Record<ReactionBarSize, ReactionBarSizeConfig> = {
-  sm: { buttonSize: 28, emojiSize: 14, padding: defaultSpacing.xs, gap: defaultSpacing['2xs'], borderRadius: defaultRadii.xl, countFontSize: 10 },
-  md: { buttonSize: 36, emojiSize: 18, padding: defaultSpacing.sm, gap: defaultSpacing.xs, borderRadius: defaultRadii.xl, countFontSize: 11 },
-  lg: { buttonSize: 44, emojiSize: 22, padding: defaultSpacing.sm, gap: defaultSpacing.sm, borderRadius: defaultRadii.xl, countFontSize: 12 },
-};
+  sm: { buttonSize: 28, emojiSize: 14, padding: defaultSpacing.xs, gap: defaultSpacing['2xs'], borderRadius: 'xl', countFontSize: 10 },
+  md: { buttonSize: 36, emojiSize: 18, padding: defaultSpacing.sm, gap: defaultSpacing.xs, borderRadius: 'xl', countFontSize: 11 },
+  lg: { buttonSize: 44, emojiSize: 22, padding: defaultSpacing.sm, gap: defaultSpacing.sm, borderRadius: 'xl', countFontSize: 12 } };
 
 // ---------------------------------------------------------------------------
 // Reaction

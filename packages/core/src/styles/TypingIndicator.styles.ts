@@ -125,7 +125,7 @@ export function buildTypingBubbleStyle(
   align: ChatBubbleAlignment,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors, spacing } = theme;
+  const { colors: themeColors, spacing, radii } = theme;
   const isOutgoing = align === 'outgoing';
 
   return {
@@ -133,7 +133,7 @@ export function buildTypingBubbleStyle(
     alignItems: 'center',
     justifyContent: 'center',
     padding: `${spacing.md}px ${spacing.lg}px`,
-    borderRadius: isOutgoing ? '12px 12px 2px 12px' : '12px 12px 12px 2px',
+    borderRadius: isOutgoing ? `${radii.lg}px ${radii.lg}px 2px ${radii.lg}px` : `${radii.lg}px ${radii.lg}px ${radii.lg}px 2px`,
     backgroundColor: isOutgoing ? themeColors.accent.primary : themeColors.background.raised,
     border: `1px solid ${isOutgoing ? themeColors.border.subtle : themeColors.accent.dividerRaised}`,
     boxSizing: 'border-box',

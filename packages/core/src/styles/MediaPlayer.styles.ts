@@ -49,12 +49,14 @@ export function buildMediaPlayerContainerStyle(
   sizeConfig: MediaPlayerSizeConfig,
   colors: MediaPlayerColors,
   isVideo: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     border: `1px solid ${colors.border}`,
     backgroundColor: colors.bg,
     overflow: 'hidden',
@@ -280,12 +282,12 @@ export function buildMediaPlayerSkeletonStyle(
   theme: WispTheme,
   isVideo: boolean,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'block',
     width: '100%',
     height: isVideo ? 300 : sizeConfig.controlBarHeight + 60,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

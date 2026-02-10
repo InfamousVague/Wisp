@@ -68,12 +68,14 @@ export function resolveProgressColors(
 export function buildTrackStyle(
   sizeConfig: ProgressSizeConfig,
   colors: ProgressColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     position: 'relative',
     width: '100%',
     height: sizeConfig.height,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: colors.track,
     overflow: 'hidden',
   };
@@ -95,11 +97,13 @@ export function buildFillStyle(
   sizeConfig: ProgressSizeConfig,
   colors: ProgressColors,
   percent: number,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     height: '100%',
     width: `${percent}%`,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: colors.fill,
     transition: `width ${durations.slow}ms ${easings.easeOut.css}`,
   };
@@ -119,11 +123,13 @@ export function buildFillStyle(
 export function buildIndeterminateFillStyle(
   sizeConfig: ProgressSizeConfig,
   colors: ProgressColors,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     height: '100%',
     width: '40%',
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: colors.fill,
     animation: 'wisp-progress-indeterminate 1.5s ease-in-out infinite',
   };
@@ -221,12 +227,12 @@ export function getProgressSkeletonStyle(
   sizeConfig: ProgressSizeConfig,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'block',
     width: '100%',
     height: sizeConfig.height,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

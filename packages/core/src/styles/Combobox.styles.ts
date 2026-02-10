@@ -147,7 +147,9 @@ export function buildTriggerStyle(
   sizeConfig: InputSizeConfig,
   colors: ComboboxColors,
   disabled: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
@@ -156,7 +158,7 @@ export function buildTriggerStyle(
     paddingLeft: sizeConfig.paddingX,
     paddingRight: sizeConfig.paddingX - 2,
     backgroundColor: colors.bg,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     boxSizing: 'border-box',
     border: '1px solid ' + colors.border,
     boxShadow:
@@ -380,12 +382,12 @@ export function getComboboxSkeletonStyle(
   theme: WispTheme,
   fullWidth: boolean,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'block',
     width: fullWidth ? '100%' : 240,
     height: sizeConfig.height,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

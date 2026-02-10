@@ -70,13 +70,13 @@ export function buildChatBubbleStyle(
   colors: ChatBubbleColors,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { spacing, typography } = theme;
+  const { spacing, typography, radii } = theme;
   const isOutgoing = align === 'outgoing';
 
   return {
     display: 'inline-block',
     padding: `${spacing.sm}px ${spacing.md}px`,
-    borderRadius: isOutgoing ? '12px 12px 2px 12px' : '12px 12px 12px 2px',
+    borderRadius: isOutgoing ? `${radii.lg}px ${radii.lg}px 2px ${radii.lg}px` : `${radii.lg}px ${radii.lg}px ${radii.lg}px 2px`,
     backgroundColor: colors.bg,
     border: `1px solid ${colors.border}`,
     color: colors.text,

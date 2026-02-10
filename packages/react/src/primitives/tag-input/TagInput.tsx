@@ -238,7 +238,7 @@ export const TagInput = forwardRef<HTMLDivElement, TagInputProps>(function TagIn
   );
 
   const wrapperStyle = useMemo(() => buildWrapperStyle(sizeConfig, fullWidth), [sizeConfig, fullWidth]);
-  const contStyle = useMemo(() => buildContainerStyle(sizeConfig, colors, disabled), [sizeConfig, colors, disabled]);
+  const contStyle = useMemo(() => buildContainerStyle(sizeConfig, colors, disabled, theme), [sizeConfig, colors, disabled, theme]);
   const tagStyle = useMemo(() => buildTagStyle(sizeConfig, colors, disabled, theme), [sizeConfig, colors, disabled]);
   const tagRemoveBaseStyle = useMemo(() => buildTagRemoveStyle(sizeConfig, colors), [sizeConfig, colors]);
   const inputStyle = useMemo(() => buildInputStyle(sizeConfig, colors), [sizeConfig, colors]);

@@ -96,14 +96,14 @@ export function buildInnerStyle(
   shape: AvatarShape,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: sizeConfig.container,
     height: sizeConfig.container,
-    borderRadius: shape === 'circle' ? '50%' : sizeConfig.squareRadius,
+    borderRadius: shape === 'circle' ? '50%' : radii[sizeConfig.squareRadius],
     backgroundColor: themeColors.accent.primary,
     overflow: 'hidden',
   };
@@ -209,12 +209,12 @@ export function buildSkeletonStyle(
   shape: AvatarShape,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-block',
     width: sizeConfig.container,
     height: sizeConfig.container,
-    borderRadius: shape === 'circle' ? '50%' : sizeConfig.squareRadius,
+    borderRadius: shape === 'circle' ? '50%' : radii[sizeConfig.squareRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

@@ -64,8 +64,8 @@ export const ReactionBar = forwardRef<HTMLDivElement, ReactionBarProps>(function
   }
 
   const containerStyle = useMemo(
-    () => buildReactionBarContainerStyle(sizeConfig, colors),
-    [sizeConfig, colors],
+    () => buildReactionBarContainerStyle(sizeConfig, colors, theme),
+    [sizeConfig, colors, theme],
   );
 
   const visibleReactions = maxVisible ? reactions.slice(0, maxVisible) : reactions;
@@ -121,7 +121,7 @@ export const ReactionBar = forwardRef<HTMLDivElement, ReactionBarProps>(function
       {showAddButton && (
         <button
           type="button"
-          style={buildAddButtonStyle(sizeConfig, colors)}
+          style={buildAddButtonStyle(sizeConfig, colors, theme)}
           onClick={onAddClick}
           aria-label="Add reaction"
         >

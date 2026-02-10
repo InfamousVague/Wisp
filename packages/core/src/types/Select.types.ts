@@ -1,6 +1,7 @@
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
 import type { ComponentSize, SurfaceVariant } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 export { componentSizes as selectSizes } from '../tokens/shared';
 export type { ComponentSize as SelectSize } from '../tokens/shared';
@@ -41,7 +42,7 @@ export interface SelectSizeConfig {
   /** CSS line-height multiplier for the trigger and option text. */
   lineHeight: number;
   /** Border radius of the trigger button in pixels. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
   /** Size of leading and chevron icons in pixels. */
   iconSize: number;
   /** Font size for the label text in pixels. */
@@ -58,12 +59,11 @@ export interface SelectSizeConfig {
  * {@link SelectSizeConfig} used for layout and typography calculations.
  */
 export const selectSizeMap: Record<ComponentSize, SelectSizeConfig> = {
-  xs: { height: 28, paddingX: defaultSpacing.sm, paddingY: defaultSpacing.xs, fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 1.33, borderRadius: defaultRadii.md, iconSize: 14, labelFontSize: 12, hintFontSize: 11 },
-  sm: { height: 32, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.38, borderRadius: defaultRadii.md, iconSize: 16, labelFontSize: 13, hintFontSize: 12 },
-  md: { height: 38, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.43, borderRadius: defaultRadii.md, iconSize: 18, labelFontSize: 14, hintFontSize: 13 },
-  lg: { height: 44, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 1.47, borderRadius: defaultRadii.md, iconSize: 20, labelFontSize: 15, hintFontSize: 14 },
-  xl: { height: 52, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 1.5, borderRadius: defaultRadii.lg, iconSize: 22, labelFontSize: 16, hintFontSize: 15 },
-};
+  xs: { height: 28, paddingX: defaultSpacing.sm, paddingY: defaultSpacing.xs, fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 1.33, borderRadius: 'md', iconSize: 14, labelFontSize: 12, hintFontSize: 11 },
+  sm: { height: 32, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.38, borderRadius: 'md', iconSize: 16, labelFontSize: 13, hintFontSize: 12 },
+  md: { height: 38, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 1.43, borderRadius: 'md', iconSize: 18, labelFontSize: 14, hintFontSize: 13 },
+  lg: { height: 44, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 1.47, borderRadius: 'md', iconSize: 20, labelFontSize: 15, hintFontSize: 14 },
+  xl: { height: 52, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: defaultTypography.sizes.base.fontSize, lineHeight: 1.5, borderRadius: 'lg', iconSize: 22, labelFontSize: 16, hintFontSize: 15 } };
 
 /**
  * Props accepted by the {@link Select} component.

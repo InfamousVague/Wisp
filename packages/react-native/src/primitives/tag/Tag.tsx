@@ -88,7 +88,7 @@ export const Tag = forwardRef<View, TagProps>(function Tag(
           style={{
             width: sizeConfig.closeSize,
             height: sizeConfig.closeSize,
-            borderRadius: sizeConfig.borderRadius > 4 ? sizeConfig.borderRadius - 2 : 2,
+            borderRadius: theme.radii[sizeConfig.borderRadius] > 4 ? theme.radii[sizeConfig.borderRadius] - 2 : 2,
             alignItems: 'center',
             justifyContent: 'center',
           }}

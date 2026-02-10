@@ -1,6 +1,7 @@
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size tokens
@@ -42,7 +43,7 @@ export interface TagInputSizeConfig {
   /** Line height multiplier. */
   lineHeight: number;
   /** Border radius of the outer container. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
   /** Gap between tags and the input. */
   gap: number;
   /** Height of each tag chip. */
@@ -77,7 +78,7 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
     paddingY: defaultSpacing.xs,
     fontSize: defaultTypography.sizes.xs.fontSize,
     lineHeight: 1.33,
-    borderRadius: defaultRadii.md,
+    borderRadius: 'md',
     gap: defaultSpacing.xs,
     tagHeight: 20,
     tagFontSize: 11,
@@ -86,15 +87,14 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
     tagRemoveSize: 10,
     iconSize: 14,
     labelFontSize: 12,
-    hintFontSize: 11,
-  },
+    hintFontSize: 11 },
   sm: {
     minHeight: 32,
     paddingX: defaultSpacing.sm,
     paddingY: defaultSpacing.xs,
     fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.38,
-    borderRadius: defaultRadii.md,
+    borderRadius: 'md',
     gap: defaultSpacing.xs,
     tagHeight: 22,
     tagFontSize: 12,
@@ -103,15 +103,14 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
     tagRemoveSize: 12,
     iconSize: 16,
     labelFontSize: 13,
-    hintFontSize: 12,
-  },
+    hintFontSize: 12 },
   md: {
     minHeight: 38,
     paddingX: defaultSpacing.md,
     paddingY: defaultSpacing.sm,
     fontSize: defaultTypography.sizes.sm.fontSize,
     lineHeight: 1.43,
-    borderRadius: defaultRadii.md,
+    borderRadius: 'md',
     gap: defaultSpacing.sm,
     tagHeight: 26,
     tagFontSize: 13,
@@ -120,15 +119,14 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
     tagRemoveSize: 14,
     iconSize: 18,
     labelFontSize: 14,
-    hintFontSize: 13,
-  },
+    hintFontSize: 13 },
   lg: {
     minHeight: 44,
     paddingX: defaultSpacing.md,
     paddingY: defaultSpacing.sm,
     fontSize: defaultTypography.sizes.base.fontSize,
     lineHeight: 1.47,
-    borderRadius: defaultRadii.md,
+    borderRadius: 'md',
     gap: defaultSpacing.sm,
     tagHeight: 28,
     tagFontSize: 14,
@@ -137,15 +135,14 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
     tagRemoveSize: 14,
     iconSize: 20,
     labelFontSize: 15,
-    hintFontSize: 14,
-  },
+    hintFontSize: 14 },
   xl: {
     minHeight: 52,
     paddingX: defaultSpacing.lg,
     paddingY: defaultSpacing.sm,
     fontSize: defaultTypography.sizes.base.fontSize,
     lineHeight: 1.5,
-    borderRadius: defaultRadii.lg,
+    borderRadius: 'lg',
     gap: defaultSpacing.sm,
     tagHeight: 32,
     tagFontSize: 15,
@@ -154,9 +151,7 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
     tagRemoveSize: 16,
     iconSize: 22,
     labelFontSize: 16,
-    hintFontSize: 15,
-  },
-};
+    hintFontSize: 15 } };
 
 // ---------------------------------------------------------------------------
 // Tag item

@@ -64,7 +64,7 @@ export function buildContainerStyle(
   focused: boolean,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors, spacing } = theme;
+  const { colors: themeColors, spacing, radii } = theme;
   // Resolve border color
   let borderColor: string;
   let focusRing: string = 'transparent';
@@ -87,7 +87,7 @@ export function buildContainerStyle(
     height: sizeConfig.height + 16, // more spacious than standard input
     padding: `0 ${spacing.sm}px`,
     border: `1px solid ${borderColor}`,
-    borderRadius: sizeConfig.borderRadius + 4,
+    borderRadius: radii[sizeConfig.borderRadius] + 4,
     background: disabled ? themeColors.border.subtle : 'transparent',
     boxSizing: 'border-box',
     boxShadow:

@@ -146,8 +146,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   );
 
   const containerStyle = useMemo(
-    () => buildInputContainerStyle(sizeConfig, colors, disabled, hasLeadingIcon, hasTrailingIcon),
-    [sizeConfig, colors, disabled, hasLeadingIcon, hasTrailingIcon],
+    () => buildInputContainerStyle(sizeConfig, colors, disabled, hasLeadingIcon, hasTrailingIcon, theme),
+    [sizeConfig, colors, disabled, hasLeadingIcon, hasTrailingIcon, theme],
   );
 
   const inputStyle = useMemo(

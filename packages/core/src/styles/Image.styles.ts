@@ -21,11 +21,11 @@ export function buildWrapperStyle(
   aspectRatio: string | undefined,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     position: 'relative',
     overflow: 'hidden',
-    borderRadius: imageRadiusMap[radius],
+    borderRadius: radii[imageRadiusMap[radius]],
     display: 'inline-block',
     backgroundColor: themeColors.border.subtle,
     ...(aspectRatio ? { aspectRatio, width: '100%' } : {}),

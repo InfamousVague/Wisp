@@ -9,7 +9,6 @@ import type { ThemeColors, WispTheme } from '../theme/types';
 import type { PaginationSize } from '../types/Pagination.types';
 import { paginationSizeMap } from '../types/Pagination.types';
 import { durations, easings } from '../tokens/motion';
-import { defaultTypography, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Root nav container
@@ -27,8 +26,7 @@ export function buildNavStyle(disabled: boolean, theme: WispTheme): CSSStyleObje
     display: 'flex',
     alignItems: 'center',
     gap: spacing['2xs'],
-    opacity: disabled ? 0.5 : 1,
-  };
+    opacity: disabled ? 0.5 : 1 };
 }
 
 // ---------------------------------------------------------------------------
@@ -46,7 +44,9 @@ export function buildNavStyle(disabled: boolean, theme: WispTheme): CSSStyleObje
 function buildBaseButtonStyle(
   size: PaginationSize,
   disabled: boolean,
+  theme: WispTheme,
 ): CSSStyleObject {
+  const { radii, typography } = theme;
   const cfg = paginationSizeMap[size];
 
   return {
@@ -70,19 +70,18 @@ function buildBaseButtonStyle(
     // Typography
     fontFamily: fontFamilyStacks.sans,
     fontSize: cfg.fontSize,
-    fontWeight: defaultTypography.weights.medium,
+    fontWeight: typography.weights.medium,
     lineHeight: 1,
 
     // Shape
-    borderRadius: defaultRadii.md,
+    borderRadius: radii.md,
 
     // Interaction
     cursor: disabled ? 'not-allowed' : 'pointer',
     userSelect: 'none',
 
     // Transition
-    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}`,
-  };
+    transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}` };
 }
 
 // ---------------------------------------------------------------------------
@@ -102,11 +101,10 @@ export function buildActivePageStyle(
 ): CSSStyleObject {
   const { colors: themeColors } = theme;
   return {
-    ...buildBaseButtonStyle(size, false),
+    ...buildBaseButtonStyle(size, false, theme),
     backgroundColor: themeColors.accent.primary,
     color: themeColors.text.inverse,
-    cursor: 'default',
-  };
+    cursor: 'default' };
 }
 
 // ---------------------------------------------------------------------------
@@ -128,10 +126,9 @@ export function buildInactivePageStyle(
 ): CSSStyleObject {
   const { colors: themeColors } = theme;
   return {
-    ...buildBaseButtonStyle(size, disabled),
+    ...buildBaseButtonStyle(size, disabled, theme),
     backgroundColor: 'transparent',
-    color: themeColors.text.secondary,
-  };
+    color: themeColors.text.secondary };
 }
 
 // ---------------------------------------------------------------------------
@@ -151,10 +148,9 @@ export function buildInactivePageHoverStyle(
 ): CSSStyleObject {
   const { colors: themeColors } = theme;
   return {
-    ...buildBaseButtonStyle(size, false),
+    ...buildBaseButtonStyle(size, false, theme),
     backgroundColor: themeColors.accent.highlight,
-    color: themeColors.text.secondary,
-  };
+    color: themeColors.text.secondary };
 }
 
 // ---------------------------------------------------------------------------
@@ -176,10 +172,9 @@ export function buildArrowStyle(
 ): CSSStyleObject {
   const { colors: themeColors } = theme;
   return {
-    ...buildBaseButtonStyle(size, isDisabled),
+    ...buildBaseButtonStyle(size, isDisabled, theme),
     backgroundColor: 'transparent',
-    color: isDisabled ? themeColors.text.muted : themeColors.text.secondary,
-  };
+    color: isDisabled ? themeColors.text.muted : themeColors.text.secondary };
 }
 
 // ---------------------------------------------------------------------------
@@ -199,10 +194,9 @@ export function buildArrowHoverStyle(
 ): CSSStyleObject {
   const { colors: themeColors } = theme;
   return {
-    ...buildBaseButtonStyle(size, false),
+    ...buildBaseButtonStyle(size, false, theme),
     backgroundColor: themeColors.accent.highlight,
-    color: themeColors.text.secondary,
-  };
+    color: themeColors.text.secondary };
 }
 
 // ---------------------------------------------------------------------------
@@ -235,6 +229,5 @@ export function buildEllipsisStyle(
     lineHeight: 1,
     color: themeColors.text.muted,
     userSelect: 'none',
-    letterSpacing: 1,
-  };
+    letterSpacing: 1 };
 }

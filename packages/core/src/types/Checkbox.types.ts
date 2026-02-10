@@ -1,6 +1,7 @@
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
-import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { defaultSpacing} from '../theme/create-theme';
 
 /**
  * Re-exported tuple of valid checkbox size literals.
@@ -33,7 +34,7 @@ export interface CheckboxSizeConfig {
   /** Width and height of the checkbox square in pixels. */
   boxSize: number;
   /** Border radius of the checkbox square in pixels. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
   /** Width and height of the checkmark / dash SVG icon in pixels. */
   iconSize: number;
   /** SVG `strokeWidth` for the checkmark / dash path. */
@@ -54,12 +55,11 @@ export interface CheckboxSizeConfig {
  * dimensions, font sizes, and border radii for each size variant.
  */
 export const checkboxSizeMap: Record<ComponentSize, CheckboxSizeConfig> = {
-  xs: { boxSize: 14, borderRadius: defaultRadii.sm, iconSize: 10, iconStrokeWidth: 2.5, labelFontSize: 12, labelLineHeight: 1.33, gap: defaultSpacing.sm },
-  sm: { boxSize: 16, borderRadius: defaultRadii.sm, iconSize: 12, iconStrokeWidth: 2.5, labelFontSize: 13, labelLineHeight: 1.38, gap: defaultSpacing.sm },
-  md: { boxSize: 18, borderRadius: defaultRadii.sm, iconSize: 14, iconStrokeWidth: 2, labelFontSize: 14, labelLineHeight: 1.43, gap: defaultSpacing.sm },
-  lg: { boxSize: 20, borderRadius: defaultRadii.sm, iconSize: 16, iconStrokeWidth: 2, labelFontSize: 15, labelLineHeight: 1.47, gap: defaultSpacing.md },
-  xl: { boxSize: 24, borderRadius: defaultRadii.md, iconSize: 18, iconStrokeWidth: 2, labelFontSize: 16, labelLineHeight: 1.5, gap: defaultSpacing.md },
-};
+  xs: { boxSize: 14, borderRadius: 'sm', iconSize: 10, iconStrokeWidth: 2.5, labelFontSize: 12, labelLineHeight: 1.33, gap: defaultSpacing.sm },
+  sm: { boxSize: 16, borderRadius: 'sm', iconSize: 12, iconStrokeWidth: 2.5, labelFontSize: 13, labelLineHeight: 1.38, gap: defaultSpacing.sm },
+  md: { boxSize: 18, borderRadius: 'sm', iconSize: 14, iconStrokeWidth: 2, labelFontSize: 14, labelLineHeight: 1.43, gap: defaultSpacing.sm },
+  lg: { boxSize: 20, borderRadius: 'sm', iconSize: 16, iconStrokeWidth: 2, labelFontSize: 15, labelLineHeight: 1.47, gap: defaultSpacing.md },
+  xl: { boxSize: 24, borderRadius: 'md', iconSize: 18, iconStrokeWidth: 2, labelFontSize: 16, labelLineHeight: 1.5, gap: defaultSpacing.md } };
 
 // ---------------------------------------------------------------------------
 // Props

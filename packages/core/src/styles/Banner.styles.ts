@@ -71,13 +71,13 @@ export function buildBannerStyle(
   fullWidth: boolean,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { spacing } = theme;
+  const { spacing, radii } = theme;
   return {
     display: 'flex',
     alignItems: 'flex-start',
     gap: spacing.md,
     padding: `${spacing.md}px ${spacing.lg}px`,
-    borderRadius: fullWidth ? 0 : 10,
+    borderRadius: fullWidth ? radii.none : radii.lg,
     backgroundColor: colors.bg,
     border: `1px solid ${colors.border}`,
     fontFamily: fontFamilyStacks.sans,

@@ -100,8 +100,8 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
   }
 
   const containerStyle = useMemo(
-    () => buildMessageInputContainerStyle(sizeConfig, colors),
-    [sizeConfig, colors],
+    () => buildMessageInputContainerStyle(sizeConfig, colors, theme),
+    [sizeConfig, colors, theme],
   );
 
   const textareaStyle = useMemo(

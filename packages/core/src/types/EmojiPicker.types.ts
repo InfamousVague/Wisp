@@ -5,9 +5,10 @@
  * and scroll-synced navigation.
  */
 
+import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
 import type { LucideIcon } from 'lucide-react';
-import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Skin Tones (Fitzpatrick scale)
@@ -23,8 +24,7 @@ export const SKIN_TONE_MODIFIERS: Record<SkinTone, string> = {
   'medium-light': '\u{1F3FC}',
   medium: '\u{1F3FD}',
   'medium-dark': '\u{1F3FE}',
-  dark: '\u{1F3FF}',
-};
+  dark: '\u{1F3FF}' };
 
 // ---------------------------------------------------------------------------
 // Size
@@ -53,7 +53,7 @@ export interface EmojiPickerSizeConfig {
   /** Search input height. */
   searchHeight: number;
   /** Border radius. */
-  borderRadius: number;
+  borderRadius: keyof ThemeRadii;
   /** Icon size for category tabs (Lucide icons). */
   tabIconSize: number;
   /** Number of emoji columns in the grid. */
@@ -63,10 +63,9 @@ export interface EmojiPickerSizeConfig {
 }
 
 export const emojiPickerSizeMap: Record<EmojiPickerSize, EmojiPickerSizeConfig> = {
-  sm: { width: 280, height: 320, cellSize: 30, emojiSize: 18, fontSize: defaultTypography.sizes.xs.fontSize, padding: defaultSpacing.sm, gap: defaultSpacing['2xs'], tabHeight: 32, searchHeight: 32, borderRadius: defaultRadii.lg, tabIconSize: 14, columnsCount: 8, skinToneDotSize: 18 },
-  md: { width: 340, height: 400, cellSize: 36, emojiSize: 22, fontSize: defaultTypography.sizes.xs.fontSize, padding: defaultSpacing.md, gap: defaultSpacing['2xs'], tabHeight: 36, searchHeight: 36, borderRadius: defaultRadii.xl, tabIconSize: 16, columnsCount: 8, skinToneDotSize: 22 },
-  lg: { width: 400, height: 480, cellSize: 44, emojiSize: 28, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.lg, gap: defaultSpacing.xs, tabHeight: 42, searchHeight: 40, borderRadius: defaultRadii.xl, tabIconSize: 18, columnsCount: 8, skinToneDotSize: 26 },
-};
+  sm: { width: 280, height: 320, cellSize: 30, emojiSize: 18, fontSize: defaultTypography.sizes.xs.fontSize, padding: defaultSpacing.sm, gap: defaultSpacing['2xs'], tabHeight: 32, searchHeight: 32, borderRadius: 'lg', tabIconSize: 14, columnsCount: 8, skinToneDotSize: 18 },
+  md: { width: 340, height: 400, cellSize: 36, emojiSize: 22, fontSize: defaultTypography.sizes.xs.fontSize, padding: defaultSpacing.md, gap: defaultSpacing['2xs'], tabHeight: 36, searchHeight: 36, borderRadius: 'xl', tabIconSize: 16, columnsCount: 8, skinToneDotSize: 22 },
+  lg: { width: 400, height: 480, cellSize: 44, emojiSize: 28, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.lg, gap: defaultSpacing.xs, tabHeight: 42, searchHeight: 40, borderRadius: 'xl', tabIconSize: 18, columnsCount: 8, skinToneDotSize: 26 } };
 
 // ---------------------------------------------------------------------------
 // Emoji categories & data

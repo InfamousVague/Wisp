@@ -62,14 +62,14 @@ export function buildBeaconButtonStyle(
   accentColor: string,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { colors: themeColors } = theme;
+  const { colors: themeColors, radii } = theme;
   return {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: sizeConfig.buttonSize,
     height: sizeConfig.buttonSize,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: radii[sizeConfig.borderRadius],
     border: `1.5px solid ${accentColor}33`,
     padding: 0,
     margin: 0,
