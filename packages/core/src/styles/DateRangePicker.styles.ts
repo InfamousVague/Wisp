@@ -127,7 +127,7 @@ export function buildDropdownStyle(
     gap: spacing.lg,
     padding: spacing.lg,
     marginTop: spacing.xs,
-    backgroundColor: themeColors.background.raised,
+    backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
     borderRadius: radii.lg,
     boxShadow: shadows.md,
@@ -195,7 +195,7 @@ export function buildNavButtonStyle(
     height: btnSize,
     borderRadius: radii.md,
     backgroundColor: isHovered ? themeColors.accent.highlight : 'transparent',
-    color: themeColors.text.onRaised,
+    color: themeColors.text.primary,
     cursor: 'pointer',
     transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
@@ -220,7 +220,7 @@ export function buildMonthYearStyle(
   return {
     fontWeight: typography.weights.semibold,
     fontSize: sizeConfig.headerFontSize,
-    color: themeColors.text.onRaised,
+    color: themeColors.text.primary,
     lineHeight: 1,
     userSelect: 'none',
   };
@@ -267,7 +267,7 @@ export function buildDayHeaderStyle(
   return {
     textAlign: 'center',
     fontSize: sizeConfig.dayHeaderFontSize,
-    color: themeColors.text.onRaisedSecondary,
+    color: themeColors.text.secondary,
     fontWeight: typography.weights.medium,
     lineHeight: 1,
     height: sizeConfig.cellSize,
@@ -308,7 +308,6 @@ export function buildRangeDayCellStyle(
   isHovered: boolean,
 ): CSSStyleObject {
   const { colors: themeColors, radii, typography } = theme;
-  const half = sizeConfig.cellSize / 2;
 
   // Base style
   const style: CSSStyleObject = {
@@ -331,7 +330,7 @@ export function buildRangeDayCellStyle(
     lineHeight: 1,
     borderRadius: radii.full,
     backgroundColor: 'transparent',
-    color: themeColors.text.onRaised,
+    color: themeColors.text.primary,
     cursor: 'pointer',
     userSelect: 'none',
     transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}`,
@@ -340,7 +339,7 @@ export function buildRangeDayCellStyle(
   // --- State overrides (order matters: disabled > start/end > inRange > today > hover > outside) ---
 
   if (isDisabled) {
-    style.color = themeColors.text.onRaisedSecondary;
+    style.color = themeColors.text.secondary;
     style.opacity = 0.4;
     style.cursor = 'not-allowed';
     return style;
@@ -359,7 +358,7 @@ export function buildRangeDayCellStyle(
     style.backgroundColor = themeColors.accent.primary;
     style.color = themeColors.text.inverse;
     style.fontWeight = 600;
-    style.borderRadius = `${half}px 0 0 ${half}px`;
+    style.borderRadius = '50%';
     return style;
   }
 
@@ -367,18 +366,18 @@ export function buildRangeDayCellStyle(
     style.backgroundColor = themeColors.accent.primary;
     style.color = themeColors.text.inverse;
     style.fontWeight = 600;
-    style.borderRadius = `0 ${half}px ${half}px 0`;
+    style.borderRadius = '50%';
     return style;
   }
 
   if (isInRange) {
     style.backgroundColor = themeColors.accent.highlight;
-    style.color = themeColors.text.onRaised;
-    style.borderRadius = 0;
+    style.color = themeColors.text.primary;
+    style.borderRadius = '50%';
   }
 
   if (isOutside) {
-    style.color = themeColors.text.onRaisedSecondary;
+    style.color = themeColors.text.secondary;
     style.opacity = 0.4;
   }
 

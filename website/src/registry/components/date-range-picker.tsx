@@ -21,7 +21,7 @@ export const dateRangePickerEntry: ComponentEntry = {
     {
       title: 'Basic',
       render: (
-        <div style={{ width: '100%', maxWidth: 300 }}>
+        <div style={{ width: '100%', maxWidth: 300, paddingBottom: 300 }}>
           <DateRangePicker label="Trip dates" placeholder="Select dates" />
         </div>
       ),
@@ -35,7 +35,7 @@ export const dateRangePickerEntry: ComponentEntry = {
     {
       title: 'Sizes',
       render: (
-        <VStack gap="md" style={{ width: '100%', maxWidth: 300 }}>
+        <VStack gap="md" style={{ width: '100%', maxWidth: 300, paddingBottom: 300 }}>
           {(['sm', 'md', 'lg'] as const).map((size) => (
             <DateRangePicker key={size} placeholder={size} size={size} />
           ))}
