@@ -165,8 +165,8 @@ export function buildCarouselDotStyle(
     height: 8,
     borderRadius: radii.full,
     backgroundColor: isActive
-      ? themeColors.text.inverse
-      : themeColors.text.muted + '66',
+      ? '#FFFFFF'
+      : 'rgba(255, 255, 255, 0.4)',
     transition: `width ${durations.slow}ms cubic-bezier(0.4, 0, 0.2, 1), min-width ${durations.slow}ms cubic-bezier(0.4, 0, 0.2, 1), background-color ${durations.slow}ms cubic-bezier(0.4, 0, 0.2, 1)`,
     cursor: 'pointer',
     border: 'none',
