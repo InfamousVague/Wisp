@@ -7,7 +7,7 @@ export const messageInputEntry: ComponentEntry = {
   name: 'MessageInput',
   category: 'components',
   description:
-    'Rich chat input with auto-expanding textarea, send button, attachment trigger, and emoji trigger. Complete message composition experience.',
+    'Rich chat input with auto-expanding textarea, send button, attachment trigger, and built-in emoji picker. Complete message composition experience.',
   variantCount: 1,
   keywords: ['message', 'input', 'chat', 'send', 'compose', 'text', 'attachment', 'emoji', 'textarea'],
 
@@ -30,6 +30,7 @@ export const messageInputEntry: ComponentEntry = {
       ),
       code: `import { MessageInput } from '@wisp-ui/react';
 
+// Emoji picker is built-in — click the smiley to open it.
 <MessageInput
   placeholder="Type a message..."
   onSubmit={(value) => handleSend(value)}
@@ -91,7 +92,8 @@ export const messageInputEntry: ComponentEntry = {
     { name: 'showAttachment', type: 'boolean', default: 'true', description: 'Show attachment button.' },
     { name: 'onAttachmentClick', type: '() => void', description: 'Called when attachment is clicked.' },
     { name: 'showEmoji', type: 'boolean', default: 'true', description: 'Show emoji trigger button.' },
-    { name: 'onEmojiClick', type: '() => void', description: 'Called when emoji button is clicked.' },
+    { name: 'onEmojiClick', type: '() => void', description: 'Called when emoji button is clicked (disables built-in picker).' },
+    { name: 'onEmojiSelect', type: '(emoji: string) => void', description: 'Called when an emoji is selected from the built-in picker.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Disable the input.' },
     { name: 'sending', type: 'boolean', default: 'false', description: 'Show sending state.' },
     { name: 'autoExpand', type: 'boolean', default: 'true', description: 'Auto-expand textarea.' },
