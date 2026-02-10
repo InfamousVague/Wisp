@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTheme, useThemeColors, Button, Text, Kbd, Toggle, Dialog, ThemeEditor } from '@wisp-ui/react';
-import { Search, Settings } from 'lucide-react';
+import { useTheme, useThemeColors, Button, Text, Kbd, Toggle, Icon, Dialog, ThemeEditor } from '@wisp-ui/react';
+import { Search, Settings, Sun, Moon } from 'lucide-react';
 
 interface TopBarProps {
   onSearchOpen?: () => void;
@@ -53,8 +53,9 @@ export function TopBar({ onSearchOpen }: TopBarProps) {
       <Toggle
         checked={mode === 'dark'}
         onChange={toggleMode}
-        size="sm"
-        slim
+        size="md"
+        checkedContent={<Icon icon={Moon} size="xs" color="white" />}
+        uncheckedContent={<Icon icon={Sun} size="xs" color="white" />}
       />
 
       {/* Theme editor icon */}
