@@ -76,7 +76,7 @@ function PreviewArea({ children }: { children: React.ReactNode }) {
     <div
       style={{
         padding: 20,
-        backgroundColor: 'transparent',
+        backgroundColor: colors.background.canvas,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
