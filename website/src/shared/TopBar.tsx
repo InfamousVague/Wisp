@@ -54,8 +54,8 @@ export function TopBar({ onSearchOpen }: TopBarProps) {
         checked={mode === 'dark'}
         onChange={toggleMode}
         size="md"
-        checkedContent={<Icon icon={Moon} size="xs" color="white" />}
-        uncheckedContent={<Icon icon={Sun} size="xs" color="white" />}
+        checkedContent={<Icon icon={Moon} size="xs" color="inherit" />}
+        uncheckedContent={<Icon icon={Sun} size="xs" color="inherit" />}
       />
 
       {/* Theme editor icon */}
