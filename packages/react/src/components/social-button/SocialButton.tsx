@@ -175,7 +175,7 @@ export const SocialButton = forwardRef<HTMLButtonElement, SocialButtonProps>(fun
     >
       {ProviderIcon && <ProviderIcon size={sizeConfig.iconSize} color={iconColor} />}
       {!iconOnly && (
-        <Text>{action} {providerConfig.name}</Text>
+        <Text color="inherit">{action} {providerConfig.name}</Text>
       )}
     </button>
   );

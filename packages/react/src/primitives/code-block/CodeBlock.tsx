@@ -113,7 +113,7 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
       <div style={{ ...wrapperStyle, ...userStyle }} className={className}>
         {showHeader && (
           <div style={headerStyle}>
-            <Text>{language ?? ''}</Text>
+            <Text color="inherit">{language ?? ''}</Text>
             {copyable && (
               <button
                 type="button"
@@ -136,7 +136,7 @@ export const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
               return (
                 <div key={i} style={lineStyle}>
                   {showLineNumbers && (
-                    <Text style={lineNumberStyle}>{lineNum}</Text>
+                    <Text color="inherit" style={lineNumberStyle}>{lineNum}</Text>
                   )}
                   <span style={{ flex: 1 }}>
                     {tokenisedLines && tokenisedLines[i]

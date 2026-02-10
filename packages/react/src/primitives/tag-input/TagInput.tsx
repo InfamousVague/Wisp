@@ -386,7 +386,7 @@ function TagChip({
 
   return (
     <span style={style} data-testid="tag-chip">
-      <Text>{label}</Text>
+      <Text color="inherit">{label}</Text>
       <button
         type="button"
         aria-label={`Remove ${label}`}
