@@ -2,6 +2,7 @@
  * @module ActivityFeed
  */
 import type React from 'react';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Sizes
@@ -31,8 +32,8 @@ export interface ActivityFeedSizeConfig {
 
 /** Size → config lookup. */
 export const activityFeedSizeMap: Record<ActivityFeedSize, ActivityFeedSizeConfig> = {
-  sm: { avatarSize: 28, primaryFontSize: 13, secondaryFontSize: 12, gap: 10, itemGap: 0, lineWidth: 2 },
-  md: { avatarSize: 36, primaryFontSize: 14, secondaryFontSize: 13, gap: 12, itemGap: 0, lineWidth: 2 },
+  sm: { avatarSize: 28, primaryFontSize: 13, secondaryFontSize: 12, gap: defaultSpacing.md, itemGap: 0, lineWidth: 2 },
+  md: { avatarSize: 36, primaryFontSize: 14, secondaryFontSize: 13, gap: defaultSpacing.md, itemGap: 0, lineWidth: 2 },
 };
 
 // ---------------------------------------------------------------------------

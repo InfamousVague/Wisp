@@ -3,6 +3,7 @@ import { View, FlatList, Pressable, Dimensions } from 'react-native';
 import type { ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 export interface CarouselProps {
   children: React.ReactNode; autoPlay?: boolean; autoPlayInterval?: number; loop?: boolean;
@@ -53,7 +54,7 @@ export const Carousel = forwardRef<View, CarouselProps>(function Carousel(
   const canNext = loop || cur < cnt - 1;
 
   return (
-    <View ref={ref} style={[{overflow:'hidden',borderRadius:8}, aspectRatio?{aspectRatio}:undefined, us]}
+    <View ref={ref} style={[{overflow:'hidden',borderRadius:defaultRadii.md}, aspectRatio?{aspectRatio}:undefined, us]}
       onLayout={(e) => setCw(e.nativeEvent.layout.width)}>
       <FlatList ref={flRef} data={slides} horizontal pagingEnabled showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={onEnd} initialScrollIndex={defaultIndex}
@@ -62,21 +63,21 @@ export const Carousel = forwardRef<View, CarouselProps>(function Carousel(
         renderItem={({item}) => <View style={{width:cw,flex:1}}>{item as React.ReactNode}</View>} />
       {showArrows && canPrev && (
         <Pressable onPress={goPrev} accessibilityLabel="Previous slide"
-          style={{position:'absolute',left:8,top:'50%',marginTop:-16,width:32,height:32,borderRadius:16,backgroundColor:'rgba(0,0,0,0.4)',alignItems:'center',justifyContent:'center'}}>
+          style={{position:'absolute',left:8,top:'50%',marginTop:-16,width:32,height:32,borderRadius:defaultRadii.xl,backgroundColor:'rgba(0,0,0,0.4)',alignItems:'center',justifyContent:'center'}}>
           <Svg width={20} height={20} viewBox="0 0 24 24" fill="none"><Path d="M15 18l-6-6 6-6" stroke="#fff" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" /></Svg>
         </Pressable>
       )}
       {showArrows && canNext && (
         <Pressable onPress={goNext} accessibilityLabel="Next slide"
-          style={{position:'absolute',right:8,top:'50%',marginTop:-16,width:32,height:32,borderRadius:16,backgroundColor:'rgba(0,0,0,0.4)',alignItems:'center',justifyContent:'center'}}>
+          style={{position:'absolute',right:8,top:'50%',marginTop:-16,width:32,height:32,borderRadius:defaultRadii.xl,backgroundColor:'rgba(0,0,0,0.4)',alignItems:'center',justifyContent:'center'}}>
           <Svg width={20} height={20} viewBox="0 0 24 24" fill="none"><Path d="M9 18l6-6-6-6" stroke="#fff" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" /></Svg>
         </Pressable>
       )}
       {showDots && cnt > 1 && (
-        <View style={{position:'absolute',bottom:12,alignSelf:'center',flexDirection:'row',gap:6}}>
+        <View style={{position:'absolute',bottom:12,alignSelf:'center',flexDirection:'row',gap:defaultSpacing.sm}}>
           {slides.map((_,i) => (
             <Pressable key={i} onPress={() => goTo(i)} accessibilityLabel={'Go to slide '+(i+1)}
-              style={{width:8,height:8,borderRadius:4,backgroundColor:i===cur?'#fff':'rgba(255,255,255,0.4)'}} />
+              style={{width:8,height:8,borderRadius:defaultRadii.sm,backgroundColor:i===cur?'#fff':'rgba(255,255,255,0.4)'}} />
           ))}
         </View>
       )}

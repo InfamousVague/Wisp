@@ -3,6 +3,7 @@ import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 type SocialProvider = 'google' | 'apple' | 'facebook' | 'github' | 'x' | 'microsoft' | 'discord' | 'slack';
 type SocialButtonSize = 'sm' | 'md' | 'lg';
@@ -21,9 +22,9 @@ const providers: Record<SocialProvider, ProviderConfig> = {
 };
 
 const sizeMap: Record<SocialButtonSize, { height: number; paddingX: number; fontSize: number; iconSize: number; gap: number }> = {
-  sm: { height: 36, paddingX: 14, fontSize: 13, iconSize: 18, gap: 8 },
-  md: { height: 40, paddingX: 16, fontSize: 14, iconSize: 20, gap: 10 },
-  lg: { height: 44, paddingX: 20, fontSize: 15, iconSize: 22, gap: 12 },
+  sm: { height: 36, paddingX: 14, fontSize: 13, iconSize: 18, gap: defaultSpacing.sm },
+  md: { height: 40, paddingX: 16, fontSize: 14, iconSize: 20, gap: defaultSpacing.md },
+  lg: { height: 44, paddingX: 20, fontSize: 15, iconSize: 22, gap: defaultSpacing.md },
 };
 
 function GoogleIcon({ size }: { size: number }) {
@@ -136,7 +137,7 @@ export const SocialButton = forwardRef<View, SocialButtonProps>(function SocialB
   const btnStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
     height: cfg.height, paddingHorizontal: iconOnly ? cfg.gap : cfg.paddingX,
-    borderRadius: 8, borderWidth: 1, borderColor,
+    borderRadius: defaultRadii.md, borderWidth: 1, borderColor,
     backgroundColor: bg, gap: cfg.gap,
     opacity: disabled ? 0.4 : 1,
     ...(fullWidth ? { width: '100%' } : {}),
@@ -150,7 +151,7 @@ export const SocialButton = forwardRef<View, SocialButtonProps>(function SocialB
       style={[btnStyle, userStyle]}>
       {ProviderIcon && <ProviderIcon size={cfg.iconSize} color={iconColor} />}
       {!iconOnly && (
-        <RNText style={{ fontSize: cfg.fontSize, fontWeight: '500', color: fg } as TextStyle}>
+        <RNText style={{ fontSize: cfg.fontSize, fontWeight: defaultTypography.weights.medium, color: fg } as TextStyle}>
           {action} {pc.name}
         </RNText>
       )}

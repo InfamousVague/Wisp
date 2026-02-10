@@ -54,6 +54,7 @@ import {
 } from '@wisp-ui/core/styles/DataTable.styles';
 import { useThemeColors } from '../../providers';
 import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
+import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Sort Icons
@@ -331,7 +332,7 @@ function DataTableInner<T extends Record<string, any>>(
           <tr key={`skeleton-${rowIndex}`} style={rowStyle}>
             {selectable && (
               <td style={checkboxCellStyle}>
-                <div style={{ ...skeletonBarStyle, width: sizeConfig.checkboxSize, height: sizeConfig.checkboxSize, borderRadius: 2 }} />
+                <div style={{ ...skeletonBarStyle, width: sizeConfig.checkboxSize, height: sizeConfig.checkboxSize, borderRadius: defaultRadii.sm }} />
               </td>
             )}
             {columns.map((col, colIndex) => {

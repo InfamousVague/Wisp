@@ -3,12 +3,13 @@ import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 type CalendarSize = 'sm' | 'md' | 'lg';
 const calendarSizeMap: Record<CalendarSize, { cellSize: number; fontSize: number; headerFontSize: number; gap: number; padding: number }> = {
-  sm: { cellSize: 28, fontSize: 12, headerFontSize: 13, gap: 2, padding: 8 },
-  md: { cellSize: 36, fontSize: 14, headerFontSize: 14, gap: 4, padding: 12 },
-  lg: { cellSize: 44, fontSize: 16, headerFontSize: 16, gap: 4, padding: 16 },
+  sm: { cellSize: 28, fontSize: 12, headerFontSize: 13, gap: defaultSpacing['2xs'], padding: defaultSpacing.sm },
+  md: { cellSize: 36, fontSize: 14, headerFontSize: 14, gap: defaultSpacing.xs, padding: defaultSpacing.md },
+  lg: { cellSize: 44, fontSize: 16, headerFontSize: 16, gap: defaultSpacing.xs, padding: defaultSpacing.lg },
 };
 
 export interface CalendarProps {
@@ -77,18 +78,18 @@ export const Calendar = forwardRef<View, CalendarProps>(function Calendar(
   return (
     <View ref={ref} style={[{ padding: cfg.padding, alignSelf: 'flex-start' }, userStyle]}>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: cfg.gap * 2, width: gw }}>
-        <Pressable onPress={prev} accessibilityLabel="Previous month" style={{ width: 28, height: 28, alignItems: 'center', justifyContent: 'center', borderRadius: 6 }}>
+        <Pressable onPress={prev} accessibilityLabel="Previous month" style={{ width: 28, height: 28, alignItems: 'center', justifyContent: 'center', borderRadius: defaultRadii.md }}>
           <Svg width={ic} height={ic} viewBox="0 0 24 24" fill="none"><Path d="M15 18l-6-6 6-6" stroke={tc.text.secondary} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" /></Svg>
         </Pressable>
-        <RNText style={{ fontSize: cfg.headerFontSize, fontWeight: '600', color: tc.text.primary } as TextStyle}>{label}</RNText>
-        <Pressable onPress={next} accessibilityLabel="Next month" style={{ width: 28, height: 28, alignItems: 'center', justifyContent: 'center', borderRadius: 6 }}>
+        <RNText style={{ fontSize: cfg.headerFontSize, fontWeight: defaultTypography.weights.semibold, color: tc.text.primary } as TextStyle}>{label}</RNText>
+        <Pressable onPress={next} accessibilityLabel="Next month" style={{ width: 28, height: 28, alignItems: 'center', justifyContent: 'center', borderRadius: defaultRadii.md }}>
           <Svg width={ic} height={ic} viewBox="0 0 24 24" fill="none"><Path d="M9 18l6-6-6-6" stroke={tc.text.secondary} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" /></Svg>
         </Pressable>
       </View>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: gw, gap: cfg.gap }}>
         {headers.map((h, i) => (
           <View key={'h-'+i} style={{ width: cfg.cellSize, height: cfg.cellSize, alignItems: 'center', justifyContent: 'center' }}>
-            <RNText style={{ fontSize: cfg.fontSize - 2, fontWeight: '600', color: tc.text.muted } as TextStyle}>{h}</RNText>
+            <RNText style={{ fontSize: cfg.fontSize - 2, fontWeight: defaultTypography.weights.semibold, color: tc.text.muted } as TextStyle}>{h}</RNText>
           </View>
         ))}
         {grid.map((d, i) => {

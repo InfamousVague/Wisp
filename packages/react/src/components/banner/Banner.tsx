@@ -11,6 +11,7 @@ import {
   buildBannerDismissStyle,
 } from '@wisp-ui/core/styles/Banner.styles';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 /**
  * Banner — Inline notification banner for the Wisp design system.
@@ -79,7 +80,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(function Banner(
     >
       {/* Icon */}
       {Icon && (
-        <div style={{ flexShrink: 0, marginTop: 1 }}>
+        <div style={{ flexShrink: 0, marginTop: defaultSpacing['2xs'] }}>
           <Icon size={18} color={colors.icon} strokeWidth={2} />
         </div>
       )}

@@ -6,6 +6,7 @@
  */
 
 import type React from 'react';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Objective statuses
@@ -63,9 +64,9 @@ export interface QuestTrackerSizeConfig {
 
 /** Size map. */
 export const questTrackerSizeMap: Record<QuestTrackerSize, QuestTrackerSizeConfig> = {
-  sm: { titleFontSize: 13, labelFontSize: 12, indicatorSize: 16, gap: 6, padding: '10px 14px' },
-  md: { titleFontSize: 14, labelFontSize: 13, indicatorSize: 18, gap: 8, padding: '14px 16px' },
-  lg: { titleFontSize: 16, labelFontSize: 14, indicatorSize: 20, gap: 10, padding: '16px 20px' },
+  sm: { titleFontSize: 13, labelFontSize: 12, indicatorSize: 16, gap: defaultSpacing.sm, padding: '10px 14px' },
+  md: { titleFontSize: 14, labelFontSize: 13, indicatorSize: 18, gap: defaultSpacing.sm, padding: '14px 16px' },
+  lg: { titleFontSize: 16, labelFontSize: 14, indicatorSize: 20, gap: defaultSpacing.md, padding: '16px 20px' },
 };
 
 // ---------------------------------------------------------------------------

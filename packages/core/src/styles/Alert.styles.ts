@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { AlertVariant } from '../types/Alert.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant -> colors (theme-aware)
@@ -90,10 +91,10 @@ export function buildAlertStyle(
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: defaultSpacing.sm,
     boxSizing: 'border-box',
-    padding: '12px 16px',
-    borderRadius: 10,
+    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px`,
+    borderRadius: defaultRadii.lg,
     border: `1px solid ${colors.border}`,
     backgroundColor: colors.bg,
     fontFamily: fontFamilyStacks.sans,
@@ -117,7 +118,7 @@ export function buildTitleStyle(themeColors: ThemeColors, variant: AlertVariant 
     fontFamily: fontFamilyStacks.sans,
     fontSize: 14,
     lineHeight: 1.43,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     color: isRaised ? themeColors.text.onRaised : themeColors.text.primary,
     margin: 0,
   };
@@ -139,7 +140,7 @@ export function buildDescriptionStyle(themeColors: ThemeColors, variant: AlertVa
     fontFamily: fontFamilyStacks.sans,
     fontSize: 14,
     lineHeight: 1.43,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     color: isRaised ? themeColors.text.onRaisedSecondary : themeColors.text.secondary,
     margin: 0,
   };
@@ -186,7 +187,7 @@ export function buildContentStyle(): CSSStyleObject {
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: 2,
+    gap: defaultSpacing['2xs'],
     flex: 1,
     minWidth: 0,
   };

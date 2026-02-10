@@ -2,11 +2,12 @@ import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 const sizeMap = {
-  sm: { dotSize: 10, lineWidth: 2, fontSize: 13, secondaryFontSize: 11, gap: 12, contentGap: 4 },
-  md: { dotSize: 12, lineWidth: 2, fontSize: 14, secondaryFontSize: 12, gap: 16, contentGap: 6 },
-  lg: { dotSize: 16, lineWidth: 2, fontSize: 16, secondaryFontSize: 13, gap: 20, contentGap: 8 },
+  sm: { dotSize: 10, lineWidth: 2, fontSize: 13, secondaryFontSize: 11, gap: defaultSpacing.md, contentGap: 4 },
+  md: { dotSize: 12, lineWidth: 2, fontSize: 14, secondaryFontSize: 12, gap: defaultSpacing.lg, contentGap: 6 },
+  lg: { dotSize: 16, lineWidth: 2, fontSize: 16, secondaryFontSize: 13, gap: defaultSpacing.xl, contentGap: 8 },
 } as const;
 
 type TimelineSize = keyof typeof sizeMap;
@@ -81,7 +82,7 @@ export const Timeline = forwardRef<View, TimelineProps>(function Timeline(
               {!isLast && <View style={lineStyle} />}
             </View>
             <View style={{ flex: 1, gap: cfg.contentGap, paddingTop: 0 }}>
-              <RNText style={{ fontSize: cfg.fontSize, fontWeight: '500', color: themeColors.text.primary } as TextStyle}>
+              <RNText style={{ fontSize: cfg.fontSize, fontWeight: defaultTypography.weights.medium, color: themeColors.text.primary } as TextStyle}>
                 {item.title}
               </RNText>
               {item.description && (

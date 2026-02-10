@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { BreadcrumbSizeConfig } from '../types/Breadcrumb.types';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Nav wrapper style
@@ -83,7 +84,7 @@ export function buildLinkStyle(
     font: 'inherit',
     display: 'inline-flex',
     alignItems: 'center',
-    gap: 4,
+    gap: defaultSpacing.xs,
   };
 }
 
@@ -120,10 +121,10 @@ export function buildActiveStyle(
 ): CSSStyleObject {
   return {
     color: themeColors.text.primary,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     display: 'inline-flex',
     alignItems: 'center',
-    gap: 4,
+    gap: defaultSpacing.xs,
     cursor: 'default',
   };
 }

@@ -2,6 +2,7 @@ import React, { forwardRef, useMemo, useState, useCallback, useRef, createContex
 import { View, Pressable, Modal, StyleSheet } from 'react-native';
 import type { ViewStyle } from 'react-native';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -126,8 +127,8 @@ export const PopoverContent = forwardRef<View, PopoverContentProps>(function Pop
   const contentStyle = useMemo<ViewStyle>(
     () => ({
       backgroundColor: themeColors.background.raised,
-      borderRadius: 12,
-      padding: 16,
+      borderRadius: defaultRadii.lg,
+      padding: defaultSpacing.lg,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 4 },
       shadowOpacity: 0.15,

@@ -4,6 +4,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { IndicatorVariant, IndicatorState, IndicatorSizeConfig } from '../types/Indicator.types';
+import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant → color
@@ -47,7 +48,7 @@ export function buildIndicatorDotStyle(
   const base: CSSStyleObject = {
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     flexShrink: 0,
   };
 

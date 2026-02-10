@@ -5,6 +5,7 @@
  */
 
 import type React from 'react';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // State
@@ -38,9 +39,9 @@ export interface VoiceRecorderSizeConfig {
 }
 
 export const voiceRecorderSizeMap: Record<VoiceRecorderSize, VoiceRecorderSizeConfig> = {
-  sm: { height: 40, buttonSize: 32, iconSize: 16, fontSize: 12, padding: 8, gap: 8, borderRadius: 20 },
-  md: { height: 48, buttonSize: 40, iconSize: 20, fontSize: 13, padding: 12, gap: 10, borderRadius: 24 },
-  lg: { height: 56, buttonSize: 48, iconSize: 24, fontSize: 14, padding: 16, gap: 12, borderRadius: 28 },
+  sm: { height: 40, buttonSize: 32, iconSize: 16, fontSize: 12, padding: defaultSpacing.sm, gap: defaultSpacing.sm, borderRadius: defaultRadii.xl },
+  md: { height: 48, buttonSize: 40, iconSize: 20, fontSize: 13, padding: defaultSpacing.md, gap: defaultSpacing.md, borderRadius: defaultRadii.xl },
+  lg: { height: 56, buttonSize: 48, iconSize: 24, fontSize: 14, padding: defaultSpacing.lg, gap: defaultSpacing.md, borderRadius: defaultRadii.xl },
 };
 
 // ---------------------------------------------------------------------------

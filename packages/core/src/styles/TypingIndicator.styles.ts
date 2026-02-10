@@ -3,6 +3,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ChatBubbleAlignment } from '../types/ChatBubble.types';
 import type { TypingIndicatorAnimation } from '../types/TypingIndicator.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Keyframe injection — inject once per document
@@ -71,7 +72,7 @@ export function buildDotsContainerStyle(): CSSStyleObject {
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: 4,
+    gap: defaultSpacing.xs,
   };
 }
 
@@ -100,7 +101,7 @@ export function buildDotStyle(
   return {
     width: dotSize,
     height: dotSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: color,
     animation: `${name} ${duration}ms ${delay}ms infinite ease-in-out`,
     // For pulse animation, start with low opacity
@@ -128,7 +129,7 @@ export function buildTypingBubbleStyle(
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '12px 16px',
+    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px`,
     borderRadius: isOutgoing ? '12px 12px 2px 12px' : '12px 12px 12px 2px',
     backgroundColor: isOutgoing ? '#FFFFFF' : '#0C0C0E',
     border: `1px solid ${isOutgoing ? '#E4E4E7' : '#2A2A2A'}`,
@@ -152,7 +153,7 @@ export function buildTypingGroupStyle(
     display: 'flex',
     flexDirection: 'column',
     alignItems: align === 'outgoing' ? 'flex-end' : 'flex-start',
-    gap: 4,
+    gap: defaultSpacing.xs,
   };
 }
 
@@ -172,7 +173,7 @@ export function buildTypingRowStyle(
     display: 'flex',
     flexDirection: align === 'outgoing' ? 'row-reverse' : 'row',
     alignItems: 'flex-end',
-    gap: 8,
+    gap: defaultSpacing.sm,
   };
 }
 
@@ -191,7 +192,7 @@ export function buildTypingSenderNameStyle(
   return {
     fontSize: 13,
     lineHeight: '18px',
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     fontFamily: fontFamilyStacks.sans,
     color: themeColors.text.secondary,
   };

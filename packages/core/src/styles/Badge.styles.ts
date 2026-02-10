@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { BadgeVariant, BadgeShape, BadgeSizeConfig } from '../types/Badge.types';
+import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant → colors (theme-aware)
@@ -113,7 +114,7 @@ export function buildBadgeStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: sizeConfig.lineHeight,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     whiteSpace: 'nowrap',
 
     // Shape
@@ -147,7 +148,7 @@ export function buildDotStyle(
   return {
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: colors.dot,
     flexShrink: 0,
   };
@@ -172,7 +173,7 @@ export function getBadgeSkeletonStyle(
     display: 'inline-block',
     height: sizeConfig.fontSize * sizeConfig.lineHeight + sizeConfig.paddingY * 2 + 2,
     width: 64,
-    borderRadius: 9999,
+    borderRadius: defaultRadii.full,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

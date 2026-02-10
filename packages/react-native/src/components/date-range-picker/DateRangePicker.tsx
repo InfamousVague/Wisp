@@ -3,6 +3,7 @@ import { View, Pressable, Modal, ScrollView, SafeAreaView, StyleSheet, Text as R
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path, Polyline } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 type DRPSize = 'sm' | 'md' | 'lg';
 export interface DateRange { start: Date | null; end: Date | null; }
@@ -39,8 +40,8 @@ function CalMonth({ year, month, rs, re, onPress, minD, maxD, cs, fs, tc }: any)
   const gw = cs * 7 + 2 * 6;
   return (
     <View style={{width:gw}}>
-      <View style={{flexDirection:'row',flexWrap:'wrap',gap:2}}>
-        {DN.map((d) => <View key={d} style={{width:cs,height:cs,alignItems:'center',justifyContent:'center'}}><RNText style={{fontSize:fs-2,fontWeight:'600',color:tc.text.muted} as TextStyle}>{d}</RNText></View>)}
+      <View style={{flexDirection:'row',flexWrap:'wrap',gap:defaultSpacing['2xs']}}>
+        {DN.map((d) => <View key={d} style={{width:cs,height:cs,alignItems:'center',justifyContent:'center'}}><RNText style={{fontSize:fs-2,fontWeight:defaultTypography.weights.semibold,color:tc.text.muted} as TextStyle}>{d}</RNText></View>)}
         {cells.map((c,idx) => {
           const dis = c.out || (minD && isBefore(c.date,minD)) || (maxD && isBefore(maxD,c.date));
           const isS = rs && isSameDay(c.date,rs); const isE = re && isSameDay(c.date,re);
@@ -88,13 +89,13 @@ export const DateRangePicker = forwardRef<View, DateRangePickerProps>(function D
   useEffect(() => { if(cr.start){setDY(cr.start.getFullYear());setDM(cr.start.getMonth());} }, [cr.start?.getTime()]);
 
   const hv = cr.start != null && cr.end != null;
-  const tStyle = useMemo<ViewStyle>(() => ({flexDirection:'row',alignItems:'center',height:cfg.height,paddingHorizontal:cfg.paddingX,borderRadius:8,borderWidth:1,borderColor:tc.border.subtle,backgroundColor:tc.background.surface,gap:8,opacity:disabled?0.4:1}), [cfg,tc,disabled]);
+  const tStyle = useMemo<ViewStyle>(() => ({flexDirection:'row',alignItems:'center',height:cfg.height,paddingHorizontal:cfg.paddingX,borderRadius:defaultRadii.md,borderWidth:1,borderColor:tc.border.subtle,backgroundColor:tc.background.surface,gap:defaultSpacing.sm,opacity:disabled?0.4:1}), [cfg,tc,disabled]);
 
   const closeAndReset = useCallback(() => { setOpen(false); if(phase==='end'){setPending(null);setPhase('start');} }, [phase]);
 
   return (
-    <View ref={ref} style={[{gap:6},us]}>
-      {label && <RNText style={{fontSize:14,fontWeight:'500',color:tc.text.primary} as TextStyle}>{label}</RNText>}
+    <View ref={ref} style={[{gap:defaultSpacing.sm},us]}>
+      {label && <RNText style={{fontSize:14,fontWeight:defaultTypography.weights.medium,color:tc.text.primary} as TextStyle}>{label}</RNText>}
       <Pressable onPress={() => !disabled && setOpen(true)} disabled={disabled} accessibilityRole="button" style={tStyle}>
         <Svg width={cfg.iconSize} height={cfg.iconSize} viewBox="0 0 24 24" fill="none"><Path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke={tc.text.secondary} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" /></Svg>
         <RNText style={{flex:1,fontSize:cfg.fontSize,color:hv?tc.text.primary:tc.text.muted} as TextStyle} numberOfLines={1}>
@@ -105,23 +106,23 @@ export const DateRangePicker = forwardRef<View, DateRangePickerProps>(function D
         <Pressable style={[StyleSheet.absoluteFill,{backgroundColor:'rgba(0,0,0,0.5)'}]} onPress={closeAndReset}>
           <SafeAreaView style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <Pressable onPress={(e)=>e.stopPropagation()}>
-              <View style={{backgroundColor:tc.background.raised,borderRadius:16,overflow:'hidden',padding:12,shadowColor:'#000',shadowOffset:{width:0,height:8},shadowOpacity:0.2,shadowRadius:24,elevation:8}}>
+              <View style={{backgroundColor:tc.background.raised,borderRadius:defaultRadii.xl,overflow:'hidden',padding:defaultSpacing.md,shadowColor:'#000',shadowOffset:{width:0,height:8},shadowOpacity:0.2,shadowRadius:24,elevation:8}}>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                  <View style={{flexDirection:'row',gap:16}}>
+                  <View style={{flexDirection:'row',gap:defaultSpacing.lg}}>
                     <View>
-                      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:8}}>
+                      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:defaultSpacing.sm}}>
                         <Pressable onPress={goPrev} style={{width:28,height:28,alignItems:'center',justifyContent:'center'}}>
                           <Svg width={16} height={16} viewBox="0 0 24 24" fill="none"><Polyline points="15 18 9 12 15 6" stroke={tc.text.secondary} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" /></Svg>
                         </Pressable>
-                        <RNText style={{fontSize:cfg.hFs,fontWeight:'600',color:tc.text.onRaised} as TextStyle}>{MN[dM]} {dY}</RNText>
+                        <RNText style={{fontSize:cfg.hFs,fontWeight:defaultTypography.weights.semibold,color:tc.text.onRaised} as TextStyle}>{MN[dM]} {dY}</RNText>
                         <View style={{width:28}} />
                       </View>
                       <CalMonth year={dY} month={dM} rs={as} re={ae} onPress={onDatePress} minD={minDate} maxD={maxDate} cs={cfg.cellSize} fs={cfg.fontSize} tc={tc} />
                     </View>
                     <View>
-                      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:8}}>
+                      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:defaultSpacing.sm}}>
                         <View style={{width:28}} />
-                        <RNText style={{fontSize:cfg.hFs,fontWeight:'600',color:tc.text.onRaised} as TextStyle}>{MN[rM]} {rY}</RNText>
+                        <RNText style={{fontSize:cfg.hFs,fontWeight:defaultTypography.weights.semibold,color:tc.text.onRaised} as TextStyle}>{MN[rM]} {rY}</RNText>
                         <Pressable onPress={goNext} style={{width:28,height:28,alignItems:'center',justifyContent:'center'}}>
                           <Svg width={16} height={16} viewBox="0 0 24 24" fill="none"><Polyline points="9 18 15 12 9 6" stroke={tc.text.secondary} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" /></Svg>
                         </Pressable>

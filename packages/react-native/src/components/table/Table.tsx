@@ -2,6 +2,7 @@ import React, { forwardRef, useMemo, createContext, useContext } from 'react';
 import { View, ScrollView, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { useThemeColors } from '../../providers';
+import { defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Types & Context
@@ -55,7 +56,7 @@ export const Table = forwardRef<View, TableProps>(function Table(
     () => ({
       borderWidth: 1,
       borderColor: themeColors.border.subtle,
-      borderRadius: 8,
+      borderRadius: defaultRadii.md,
       overflow: 'hidden',
     }),
     [themeColors],
@@ -236,7 +237,7 @@ export const TableHead = forwardRef<View, TableHeadProps>(function TableHead(
       <RNText
         style={{
           fontSize: cfg.headerFontSize,
-          fontWeight: '600',
+          fontWeight: defaultTypography.weights.semibold,
           color: themeColors.text.secondary,
           textAlign: rnAlign,
         } as TextStyle}

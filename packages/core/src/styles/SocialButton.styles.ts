@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { SocialProviderConfig, SocialButtonSizeConfig, SocialButtonVariant } from '../types/SocialButton.types';
+import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Button style
@@ -46,11 +47,11 @@ export function buildSocialButtonStyle(
     // Typography
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
 
     // Shape
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
 
     // Colors
     backgroundColor: isFilled ? providerConfig.bgColor : 'transparent',

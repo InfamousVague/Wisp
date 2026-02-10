@@ -8,6 +8,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Content panel style
@@ -31,9 +32,9 @@ export function buildContentStyle(
     zIndex: 9999,
     backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     boxShadow: `0 4px 12px ${themeColors.background.overlay}`,
-    padding: 12,
+    padding: defaultSpacing.md,
     boxSizing: 'border-box',
     fontFamily: fontFamilyStacks.sans,
     color: themeColors.text.primary,

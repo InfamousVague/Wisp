@@ -3,6 +3,7 @@
  */
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
+import { defaultSpacing } from '../theme/create-theme';
 
 // Re-export shared tokens
 export { componentSizes as toggleSizes } from '../tokens/shared';
@@ -45,11 +46,11 @@ export interface ToggleSizeConfig {
  * Provides five size steps from `xs` (32 px wide) through `xl` (68 px wide).
  */
 export const toggleSizeMap: Record<ComponentSize, ToggleSizeConfig> = {
-  xs: { trackWidth: 32, trackHeight: 18, handleSize: 14, padding: 2, translateX: 14, trackIconSize: 10, trackFontSize: 8, handleIconSize: 10 },
-  sm: { trackWidth: 40, trackHeight: 22, handleSize: 18, padding: 2, translateX: 18, trackIconSize: 12, trackFontSize: 9, handleIconSize: 12 },
-  md: { trackWidth: 48, trackHeight: 26, handleSize: 22, padding: 2, translateX: 22, trackIconSize: 14, trackFontSize: 10, handleIconSize: 14 },
-  lg: { trackWidth: 56, trackHeight: 30, handleSize: 26, padding: 2, translateX: 26, trackIconSize: 16, trackFontSize: 11, handleIconSize: 16 },
-  xl: { trackWidth: 68, trackHeight: 36, handleSize: 32, padding: 2, translateX: 32, trackIconSize: 20, trackFontSize: 12, handleIconSize: 20 },
+  xs: { trackWidth: 32, trackHeight: 18, handleSize: 14, padding: defaultSpacing['2xs'], translateX: 14, trackIconSize: 10, trackFontSize: 8, handleIconSize: 10 },
+  sm: { trackWidth: 40, trackHeight: 22, handleSize: 18, padding: defaultSpacing['2xs'], translateX: 18, trackIconSize: 12, trackFontSize: 9, handleIconSize: 12 },
+  md: { trackWidth: 48, trackHeight: 26, handleSize: 22, padding: defaultSpacing['2xs'], translateX: 22, trackIconSize: 14, trackFontSize: 10, handleIconSize: 14 },
+  lg: { trackWidth: 56, trackHeight: 30, handleSize: 26, padding: defaultSpacing['2xs'], translateX: 26, trackIconSize: 16, trackFontSize: 11, handleIconSize: 16 },
+  xl: { trackWidth: 68, trackHeight: 36, handleSize: 32, padding: defaultSpacing['2xs'], translateX: 32, trackIconSize: 20, trackFontSize: 12, handleIconSize: 20 },
 };
 
 // ---------------------------------------------------------------------------
@@ -64,11 +65,11 @@ export const toggleSizeMap: Record<ComponentSize, ToggleSizeConfig> = {
  * padding for a more compact appearance. Used when the `slim` prop is `true`.
  */
 export const toggleSlimSizeMap: Record<ComponentSize, ToggleSizeConfig> = {
-  xs: { trackWidth: 28, trackHeight: 14, handleSize: 12, padding: 1, translateX: 14, trackIconSize: 8, trackFontSize: 7, handleIconSize: 8 },
-  sm: { trackWidth: 36, trackHeight: 18, handleSize: 16, padding: 1, translateX: 18, trackIconSize: 10, trackFontSize: 8, handleIconSize: 10 },
-  md: { trackWidth: 44, trackHeight: 22, handleSize: 20, padding: 1, translateX: 22, trackIconSize: 12, trackFontSize: 9, handleIconSize: 12 },
-  lg: { trackWidth: 52, trackHeight: 26, handleSize: 24, padding: 1, translateX: 26, trackIconSize: 14, trackFontSize: 10, handleIconSize: 14 },
-  xl: { trackWidth: 64, trackHeight: 32, handleSize: 30, padding: 1, translateX: 32, trackIconSize: 18, trackFontSize: 11, handleIconSize: 18 },
+  xs: { trackWidth: 28, trackHeight: 14, handleSize: 12, padding: defaultSpacing['2xs'], translateX: 14, trackIconSize: 8, trackFontSize: 7, handleIconSize: 8 },
+  sm: { trackWidth: 36, trackHeight: 18, handleSize: 16, padding: defaultSpacing['2xs'], translateX: 18, trackIconSize: 10, trackFontSize: 8, handleIconSize: 10 },
+  md: { trackWidth: 44, trackHeight: 22, handleSize: 20, padding: defaultSpacing['2xs'], translateX: 22, trackIconSize: 12, trackFontSize: 9, handleIconSize: 12 },
+  lg: { trackWidth: 52, trackHeight: 26, handleSize: 24, padding: defaultSpacing['2xs'], translateX: 26, trackIconSize: 14, trackFontSize: 10, handleIconSize: 14 },
+  xl: { trackWidth: 64, trackHeight: 32, handleSize: 30, padding: defaultSpacing['2xs'], translateX: 32, trackIconSize: 18, trackFontSize: 11, handleIconSize: 18 },
 };
 
 // ---------------------------------------------------------------------------

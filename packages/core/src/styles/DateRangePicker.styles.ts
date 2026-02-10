@@ -7,6 +7,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { DateRangePickerSizeConfig } from '../types/DateRangePicker.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Wrapper
@@ -48,7 +49,7 @@ export function buildLabelStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: 1.4,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: themeColors.text.primary,
     cursor: 'default',
     userSelect: 'none',
@@ -119,12 +120,12 @@ export function buildDropdownStyle(
     zIndex: 9999,
     display: 'flex',
     flexDirection: 'row',
-    gap: 16,
-    padding: 16,
-    marginTop: 4,
+    gap: defaultSpacing.lg,
+    padding: defaultSpacing.lg,
+    marginTop: defaultSpacing.xs,
     backgroundColor: themeColors.background.raised,
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: 12,
+    borderRadius: defaultRadii.lg,
     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
     boxSizing: 'border-box',
     fontFamily: fontFamilyStacks.sans,
@@ -149,7 +150,7 @@ export function buildCalendarHeaderStyle(
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingBottom: 8,
+    paddingBottom: defaultSpacing.sm,
   };
 }
 
@@ -185,7 +186,7 @@ export function buildNavButtonStyle(
     boxSizing: 'border-box',
     width: btnSize,
     height: btnSize,
-    borderRadius: 6,
+    borderRadius: defaultRadii.md,
     backgroundColor: isHovered ? themeColors.accent.highlight : 'transparent',
     color: themeColors.text.onRaised,
     cursor: 'pointer',
@@ -209,7 +210,7 @@ export function buildMonthYearStyle(
   themeColors: ThemeColors,
 ): CSSStyleObject {
   return {
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     fontSize: sizeConfig.headerFontSize,
     color: themeColors.text.onRaised,
     lineHeight: 1,
@@ -233,7 +234,7 @@ export function buildCalendarGridStyle(
   return {
     display: 'grid',
     gridTemplateColumns: `repeat(7, ${sizeConfig.cellSize}px)`,
-    gap: 2,
+    gap: defaultSpacing['2xs'],
   };
 }
 
@@ -256,7 +257,7 @@ export function buildDayHeaderStyle(
     textAlign: 'center',
     fontSize: sizeConfig.dayHeaderFontSize,
     color: themeColors.text.onRaisedSecondary,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
     height: sizeConfig.cellSize,
     display: 'flex',
@@ -314,9 +315,9 @@ export function buildRangeDayCellStyle(
     height: sizeConfig.cellSize,
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: 1,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: 'transparent',
     color: themeColors.text.onRaised,
     cursor: 'pointer',

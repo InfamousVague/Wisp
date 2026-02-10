@@ -8,6 +8,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { FormFieldOrientation, FormFieldSizeConfig } from '../types/FormField.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Wrapper style
@@ -71,7 +72,7 @@ export function buildLabelStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     color,
     cursor: 'default',
     userSelect: 'none',
@@ -79,7 +80,7 @@ export function buildLabelStyle(
     ...(isHorizontal
       ? {
           width: labelWidth ?? 120,
-          paddingTop: 8, // Align with input text baseline
+          paddingTop: defaultSpacing.sm, // Align with input text baseline
         }
       : {}),
   };
@@ -98,8 +99,8 @@ export function buildLabelStyle(
 export function buildRequiredStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
     color: themeColors.status.danger,
-    marginLeft: 2,
-    fontWeight: 400,
+    marginLeft: defaultSpacing['2xs'],
+    fontWeight: defaultTypography.weights.regular,
   };
 }
 
@@ -121,7 +122,7 @@ export function buildContentStyle(orientation: FormFieldOrientation): CSSStyleOb
       flexDirection: 'column',
       flex: 1,
       minWidth: 0,
-      gap: 4,
+      gap: defaultSpacing.xs,
     };
   }
   return {};
@@ -149,7 +150,7 @@ export function buildHintStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.hintFontSize,
     lineHeight: 1.4,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     color: error
       ? themeColors.status.danger
       : onSurface

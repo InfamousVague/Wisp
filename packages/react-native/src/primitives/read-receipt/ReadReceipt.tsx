@@ -13,6 +13,7 @@ import type { ReadReceiptStatus, ReadReceiptSize } from '@wisp-ui/core/types/Rea
 import { readReceiptSizeMap } from '@wisp-ui/core/types/ReadReceipt.types';
 import { resolveReadReceiptColors } from '@wisp-ui/core/styles/ReadReceipt.styles';
 import { useThemeColors } from '../../providers';
+import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Status → unicode icon map
@@ -83,7 +84,7 @@ export const ReadReceipt = forwardRef<View, ReadReceiptProps>(
       const skeletonStyle: ViewStyle = {
         width: sizeConfig.iconSize * 3,
         height: sizeConfig.iconSize,
-        borderRadius: 4,
+        borderRadius: defaultRadii.sm,
         backgroundColor: themeColors.border.subtle,
       };
       return <View ref={ref} style={[skeletonStyle, userStyle]} {...rest} />;

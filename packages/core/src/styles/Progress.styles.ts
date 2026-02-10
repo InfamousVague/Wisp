@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ProgressSizeConfig } from '../types/Progress.types';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -141,7 +142,7 @@ export function buildLabelRowStyle(): CSSStyleObject {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 6,
+    marginBottom: defaultSpacing.sm,
   };
 }
 
@@ -164,7 +165,7 @@ export function buildLabelTextStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: colors.label,
     margin: 0,
     padding: 0,
@@ -191,7 +192,7 @@ export function buildValueTextStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.valueFontSize,
     lineHeight: 1.4,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: colors.value,
     margin: 0,
     padding: 0,

@@ -17,6 +17,7 @@ import type {
 import { resolveChatBubbleColors } from '@wisp-ui/core/styles/ChatBubble.styles';
 import { useThemeColors } from '../../providers';
 import Svg, { Path } from 'react-native-svg';
+import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -96,10 +97,10 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
   );
 
   const bubbleStyle = useMemo<ViewStyle>(() => ({
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
+    paddingHorizontal: defaultSpacing.md,
+    paddingVertical: defaultSpacing.sm,
+    borderTopLeftRadius: defaultRadii.lg,
+    borderTopRightRadius: defaultRadii.lg,
     borderBottomLeftRadius: isOutgoing ? 12 : 2,
     borderBottomRightRadius: isOutgoing ? 2 : 12,
     backgroundColor: colors.bg,
@@ -117,8 +118,8 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
   const footerStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
-    marginTop: 4,
+    gap: defaultSpacing.xs,
+    marginTop: defaultSpacing.xs,
     justifyContent: isOutgoing ? 'flex-end' : 'flex-start',
   }), [isOutgoing]);
 
@@ -131,8 +132,8 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
   const reactionsContainerStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 4,
-    marginTop: 6,
+    gap: defaultSpacing.xs,
+    marginTop: defaultSpacing.sm,
   }), []);
 
   const handleReactionClick = useCallback(
@@ -160,10 +161,10 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
-                  gap: 4,
-                  paddingHorizontal: 8,
-                  paddingVertical: 4,
-                  borderRadius: 12,
+                  gap: defaultSpacing.xs,
+                  paddingHorizontal: defaultSpacing.sm,
+                  paddingVertical: defaultSpacing.xs,
+                  borderRadius: defaultRadii.lg,
                   borderWidth: 1,
                   borderColor: reaction.reacted
                     ? themeColors.brand.primary

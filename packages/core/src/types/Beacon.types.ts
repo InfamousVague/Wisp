@@ -7,6 +7,7 @@
 
 import type React from 'react';
 import type { PopoverPlacement, PopoverAlign } from './Popover.types';
+import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variants
@@ -40,9 +41,9 @@ export interface BeaconSizeConfig {
 
 /** Maps each {@link BeaconSize} to its dimensional config. */
 export const beaconSizeMap: Record<BeaconSize, BeaconSizeConfig> = {
-  sm: { buttonSize: 18, iconSize: 14, borderRadius: 9 },
-  md: { buttonSize: 22, iconSize: 16, borderRadius: 11 },
-  lg: { buttonSize: 28, iconSize: 20, borderRadius: 14 },
+  sm: { buttonSize: 18, iconSize: 14, borderRadius: defaultRadii.md },
+  md: { buttonSize: 22, iconSize: 16, borderRadius: defaultRadii.lg },
+  lg: { buttonSize: 28, iconSize: 20, borderRadius: defaultRadii.xl },
 };
 
 // ---------------------------------------------------------------------------

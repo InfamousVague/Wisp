@@ -2,6 +2,7 @@
  * @module Timeline
  */
 import type React from 'react';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Sizes
@@ -31,9 +32,9 @@ export interface TimelineSizeConfig {
 
 /** Size -> config lookup. */
 export const timelineSizeMap: Record<TimelineSize, TimelineSizeConfig> = {
-  sm: { dotSize: 10, lineWidth: 2, fontSize: 13, secondaryFontSize: 11, gap: 12, contentGap: 4 },
-  md: { dotSize: 12, lineWidth: 2, fontSize: 14, secondaryFontSize: 12, gap: 16, contentGap: 6 },
-  lg: { dotSize: 16, lineWidth: 2, fontSize: 16, secondaryFontSize: 13, gap: 20, contentGap: 8 },
+  sm: { dotSize: 10, lineWidth: 2, fontSize: 13, secondaryFontSize: 11, gap: defaultSpacing.md, contentGap: 4 },
+  md: { dotSize: 12, lineWidth: 2, fontSize: 14, secondaryFontSize: 12, gap: defaultSpacing.lg, contentGap: 6 },
+  lg: { dotSize: 16, lineWidth: 2, fontSize: 16, secondaryFontSize: 13, gap: defaultSpacing.xl, contentGap: 8 },
 };
 
 // ---------------------------------------------------------------------------

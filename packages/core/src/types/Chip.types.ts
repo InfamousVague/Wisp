@@ -1,4 +1,5 @@
 import type React from 'react';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Chip Sizes
@@ -59,34 +60,34 @@ export interface ChipSizeConfig {
 /** Maps each {@link ChipSize} to its corresponding dimension tokens. */
 export const chipSizeMap: Record<ChipSize, ChipSizeConfig> = {
   sm: {
-    paddingX: 8,
-    paddingY: 2,
+    paddingX: defaultSpacing.sm,
+    paddingY: defaultSpacing['2xs'],
     fontSize: 12,
     lineHeight: 1.33,
-    borderRadius: 4,
-    gap: 4,
+    borderRadius: defaultRadii.sm,
+    gap: defaultSpacing.xs,
     iconSize: 12,
     removeButtonSize: 16,
     removeIconSize: 10,
   },
   md: {
-    paddingX: 10,
-    paddingY: 4,
+    paddingX: defaultSpacing.md,
+    paddingY: defaultSpacing.xs,
     fontSize: 13,
     lineHeight: 1.38,
-    borderRadius: 6,
-    gap: 5,
+    borderRadius: defaultRadii.md,
+    gap: defaultSpacing.sm,
     iconSize: 14,
     removeButtonSize: 18,
     removeIconSize: 12,
   },
   lg: {
-    paddingX: 12,
-    paddingY: 6,
+    paddingX: defaultSpacing.md,
+    paddingY: defaultSpacing.sm,
     fontSize: 14,
     lineHeight: 1.43,
-    borderRadius: 8,
-    gap: 6,
+    borderRadius: defaultRadii.md,
+    gap: defaultSpacing.sm,
     iconSize: 16,
     removeButtonSize: 20,
     removeIconSize: 14,

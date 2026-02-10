@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { KbdSizeConfig } from '../types/Kbd.types';
+import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Build the complete kbd style object
@@ -38,7 +39,7 @@ export function buildKbdStyle(
     fontFamily: fontFamilyStacks.mono,
     fontSize: sizeConfig.fontSize,
     lineHeight: 1,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     textAlign: 'center',
     whiteSpace: 'nowrap',
 

@@ -11,6 +11,7 @@ import { View, Text, ScrollView, Pressable } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { CodeBlockVariant } from '@wisp-ui/core/types/CodeBlock.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -71,7 +72,7 @@ export const CodeBlock = forwardRef<View, CodeBlockProps>(
     const isOutlined = variant === 'outlined';
 
     const containerStyle = useMemo<ViewStyle>(() => ({
-      borderRadius: 8,
+      borderRadius: defaultRadii.md,
       borderWidth: isOutlined ? 1 : 0,
       borderColor: isOutlined ? themeColors.border.subtle : 'transparent',
       backgroundColor: themeColors.background.raised,
@@ -83,15 +84,15 @@ export const CodeBlock = forwardRef<View, CodeBlockProps>(
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      paddingHorizontal: 12,
-      paddingVertical: 8,
+      paddingHorizontal: defaultSpacing.md,
+      paddingVertical: defaultSpacing.sm,
       borderBottomWidth: 1,
       borderBottomColor: themeColors.border.subtle,
     }), [themeColors]);
 
     const headerTextStyle = useMemo<TextStyle>(() => ({
       fontSize: 12,
-      fontWeight: '500',
+      fontWeight: defaultTypography.weights.medium,
       color: themeColors.text.muted,
       textTransform: 'uppercase',
     }), [themeColors]);
@@ -107,7 +108,7 @@ export const CodeBlock = forwardRef<View, CodeBlockProps>(
       color: themeColors.text.muted,
       textAlign: 'right',
       minWidth: 28,
-      paddingRight: 12,
+      paddingRight: defaultSpacing.md,
       lineHeight: 20,
     }), [themeColors]);
 
@@ -142,7 +143,7 @@ export const CodeBlock = forwardRef<View, CodeBlockProps>(
         )}
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <View style={{ padding: 12 }}>
+          <View style={{ padding: defaultSpacing.md }}>
             {lines.map((line, i) => {
               const lineNum = i + 1;
               const isHighlighted = highlightSet.has(lineNum);

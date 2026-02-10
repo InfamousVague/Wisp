@@ -5,11 +5,12 @@ import Svg, { Polyline } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
 import { Collapse } from '../../layouts/collapse';
 import type { ThemeColors } from '@wisp-ui/core/theme/types';
+import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 const sizeMap = {
-  sm: { fontSize: 12, lineHeight: 18, iconSize: 14, indent: 16, itemHeight: 28, gap: 2 },
-  md: { fontSize: 13, lineHeight: 20, iconSize: 16, indent: 20, itemHeight: 32, gap: 2 },
-  lg: { fontSize: 14, lineHeight: 22, iconSize: 18, indent: 24, itemHeight: 36, gap: 4 },
+  sm: { fontSize: 12, lineHeight: 18, iconSize: 14, indent: 16, itemHeight: 28, gap: defaultSpacing['2xs'] },
+  md: { fontSize: 13, lineHeight: 20, iconSize: 16, indent: 20, itemHeight: 32, gap: defaultSpacing['2xs'] },
+  lg: { fontSize: 14, lineHeight: 22, iconSize: 18, indent: 24, itemHeight: 36, gap: defaultSpacing.xs },
 } as const;
 
 type TreeViewSize = keyof typeof sizeMap;
@@ -72,8 +73,8 @@ function TreeNodeRow({
     alignItems: 'center',
     height: sizeConfig.itemHeight,
     paddingLeft: depth * sizeConfig.indent,
-    paddingRight: 8,
-    borderRadius: 6,
+    paddingRight: defaultSpacing.sm,
+    borderRadius: defaultRadii.md,
     backgroundColor: isSelected ? themeColors.accent.highlight : 'transparent',
     opacity: node.disabled ? 0.4 : 1,
   };
@@ -124,7 +125,7 @@ function TreeNodeRow({
         )}
 
         {Icon && (
-          <View style={{ marginRight: 6 }}>
+          <View style={{ marginRight: defaultSpacing.sm }}>
             <Icon size={sizeConfig.iconSize} color={themeColors.text.secondary} strokeWidth={2} />
           </View>
         )}

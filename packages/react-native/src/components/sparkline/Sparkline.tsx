@@ -12,6 +12,7 @@ import Svg, { Path, Rect, Circle } from 'react-native-svg';
 import type { SparklineVariant, SparklineSize, SparklineColor } from '@wisp-ui/core/types/Sparkline.types';
 import { sparklineSizeMap } from '@wisp-ui/core/types/Sparkline.types';
 import { useThemeColors } from '../../providers';
+import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -73,7 +74,7 @@ export const Sparkline = forwardRef<View, SparklineProps>(
       const skeletonStyle: ViewStyle = {
         width: sizeConfig.width,
         height: sizeConfig.height,
-        borderRadius: 4,
+        borderRadius: defaultRadii.sm,
         backgroundColor: themeColors.border.subtle,
       };
       return <View ref={ref} style={[skeletonStyle, userStyle]} {...rest} />;

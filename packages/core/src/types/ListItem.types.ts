@@ -11,6 +11,7 @@
 
 import type React from 'react';
 import type { ThemeSpacing } from '../theme/types';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size
@@ -44,9 +45,9 @@ export interface ListItemSizeConfig {
  * Maps each {@link ListItemSize} to its {@link ListItemSizeConfig} dimension tokens.
  */
 export const listItemSizeMap: Record<ListItemSize, ListItemSizeConfig> = {
-  sm: { minHeight: 28, paddingX: 8, paddingY: 2, gap: 8 },
-  md: { minHeight: 36, paddingX: 12, paddingY: 4, gap: 10 },
-  lg: { minHeight: 44, paddingX: 16, paddingY: 6, gap: 12 },
+  sm: { minHeight: 28, paddingX: defaultSpacing.sm, paddingY: defaultSpacing['2xs'], gap: defaultSpacing.sm },
+  md: { minHeight: 36, paddingX: defaultSpacing.md, paddingY: defaultSpacing.xs, gap: defaultSpacing.md },
+  lg: { minHeight: 44, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.sm, gap: defaultSpacing.md },
 };
 
 // ---------------------------------------------------------------------------

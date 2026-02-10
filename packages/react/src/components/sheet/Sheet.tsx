@@ -12,7 +12,7 @@
  * @example
  * ```tsx
  * <Sheet open={isOpen} onClose={() => setIsOpen(false)} size="md">
- *   <div style={{ padding: 24 }}>Sheet content</div>
+ *   <div style={{ padding: defaultSpacing.xl }}>Sheet content</div>
  * </Sheet>
  * ```
  */
@@ -27,6 +27,7 @@ import {
   buildHandlePillStyle,
 } from '@wisp-ui/core/styles/Sheet.styles';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Drag dismiss threshold — if user drags more than this distance, close

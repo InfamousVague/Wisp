@@ -15,6 +15,7 @@ import {
   resolveRadarChartColors,
 } from '@wisp-ui/core/styles/RadarChart.styles';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface RadarChartProps {
   axes: string[];
@@ -209,21 +210,21 @@ export const RadarChart = forwardRef<View, RadarChartProps>(
 
         {/* Legend */}
         {showLegend && (
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 16 }}>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: defaultSpacing.lg }}>
             {series.map((s, i) => (
-              <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+              <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: defaultSpacing.sm }}>
                 <View
                   style={{
                     width: 8,
                     height: 8,
-                    borderRadius: 4,
+                    borderRadius: defaultRadii.sm,
                     backgroundColor: seriesColors[i],
                   }}
                 />
                 <RNText
                   style={{
                     fontSize: sizeConfig.legendFontSize,
-                    fontWeight: '500',
+                    fontWeight: defaultTypography.weights.medium,
                     color: chartColors.legendText,
                   }}
                 >

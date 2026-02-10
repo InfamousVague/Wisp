@@ -3,6 +3,7 @@ import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ToastVariant } from '../types/Toast.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant -> colors (theme-aware)
@@ -119,10 +120,10 @@ export function buildToastStyle(
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: defaultSpacing.sm,
     boxSizing: 'border-box',
-    padding: '10px 12px',
-    borderRadius: 10,
+    padding: `${defaultSpacing.md}px ${defaultSpacing.md}px`,
+    borderRadius: defaultRadii.lg,
     border: `1px solid ${colors.border}`,
     backgroundColor: colors.bg,
     fontFamily: fontFamilyStacks.sans,
@@ -166,7 +167,7 @@ export function buildContentStyle(): CSSStyleObject {
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: 2,
+    gap: defaultSpacing['2xs'],
     flex: 1,
     minWidth: 0,
   };
@@ -187,7 +188,7 @@ export function buildTitleStyle(colors: ToastColors): CSSStyleObject {
     fontFamily: fontFamilyStacks.sans,
     fontSize: 14,
     lineHeight: '20px',
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: colors.text,
     margin: 0,
   };
@@ -208,7 +209,7 @@ export function buildDescriptionStyle(colors: ToastColors): CSSStyleObject {
     fontFamily: fontFamilyStacks.sans,
     fontSize: 13,
     lineHeight: '18px',
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     color: colors.description,
     margin: 0,
   };
@@ -253,7 +254,7 @@ export function buildDismissStyle(colors: ToastColors): CSSStyleObject {
     padding: 0,
     margin: 0,
     border: 'none',
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor: 'transparent',
     color: colors.dismiss,
     cursor: 'pointer',

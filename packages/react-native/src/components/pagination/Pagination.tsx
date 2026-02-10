@@ -3,11 +3,12 @@ import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 const sizeMap = {
-  sm: { height: 28, fontSize: 12, minWidth: 28, iconSize: 14, gap: 4 },
-  md: { height: 34, fontSize: 14, minWidth: 34, iconSize: 16, gap: 6 },
-  lg: { height: 40, fontSize: 15, minWidth: 40, iconSize: 18, gap: 8 },
+  sm: { height: 28, fontSize: 12, minWidth: 28, iconSize: 14, gap: defaultSpacing.xs },
+  md: { height: 34, fontSize: 14, minWidth: 34, iconSize: 16, gap: defaultSpacing.sm },
+  lg: { height: 40, fontSize: 15, minWidth: 40, iconSize: 18, gap: defaultSpacing.sm },
 } as const;
 
 type PaginationSize = keyof typeof sizeMap;

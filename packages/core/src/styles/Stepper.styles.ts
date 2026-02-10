@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { StepperSizeConfig } from '../types/Stepper.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container style (the bordered row with [- button] [value] [+ button])
@@ -107,7 +108,7 @@ export function buildStepperValueStyle(
     // Typography
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
     textAlign: 'center' as const,
 

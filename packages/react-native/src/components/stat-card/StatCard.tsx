@@ -13,6 +13,7 @@ import type { StatCardVariant, StatCardSize } from '@wisp-ui/core/types/StatCard
 import { statCardSizeMap } from '@wisp-ui/core/types/StatCard.types';
 import { resolveStatCardColors } from '@wisp-ui/core/styles/StatCard.styles';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -71,7 +72,7 @@ export const StatCard = forwardRef<View, StatCardProps>(
       const skeletonStyle: ViewStyle = {
         width: '100%',
         height: sizeConfig.padding * 2 + sizeConfig.valueLineHeight + sizeConfig.labelFontSize * 1.4 + 4,
-        borderRadius: 12,
+        borderRadius: defaultRadii.lg,
         backgroundColor: themeColors.border.subtle,
       };
       return <View style={[skeletonStyle, userStyle as ViewStyle]} />;
@@ -83,7 +84,7 @@ export const StatCard = forwardRef<View, StatCardProps>(
       justifyContent: 'space-between',
       padding: sizeConfig.padding,
       gap: sizeConfig.gap,
-      borderRadius: 12,
+      borderRadius: defaultRadii.lg,
       borderWidth: 1,
       borderColor: colors.border,
       backgroundColor: colors.bg,
@@ -103,32 +104,32 @@ export const StatCard = forwardRef<View, StatCardProps>(
       justifyContent: 'center',
       width: sizeConfig.iconSize + 8,
       height: sizeConfig.iconSize + 8,
-      borderRadius: 8,
+      borderRadius: defaultRadii.md,
       backgroundColor: colors.accent + '14',
     }), [sizeConfig, colors]);
 
     const textStackStyle = useMemo<ViewStyle>(() => ({
       flex: 1,
-      gap: 2,
+      gap: defaultSpacing['2xs'],
     }), []);
 
     const labelTextStyle = useMemo<TextStyle>(() => ({
       fontSize: sizeConfig.labelFontSize,
-      fontWeight: '500',
+      fontWeight: defaultTypography.weights.medium,
       color: colors.label,
     }), [sizeConfig, colors]);
 
     const valueTextStyle = useMemo<TextStyle>(() => ({
       fontSize: sizeConfig.valueFontSize,
       lineHeight: sizeConfig.valueLineHeight,
-      fontWeight: '700',
+      fontWeight: defaultTypography.weights.bold,
       color: colors.value,
       letterSpacing: -0.5,
     }), [sizeConfig, colors]);
 
     const descTextStyle = useMemo<TextStyle>(() => ({
       fontSize: sizeConfig.descriptionFontSize,
-      fontWeight: '400',
+      fontWeight: defaultTypography.weights.regular,
       color: colors.description,
     }), [sizeConfig, colors]);
 
@@ -146,7 +147,7 @@ export const StatCard = forwardRef<View, StatCardProps>(
 
     const trendTextStyle = useMemo<TextStyle>(() => ({
       fontSize: sizeConfig.trendFontSize,
-      fontWeight: '600',
+      fontWeight: defaultTypography.weights.semibold,
       color: trendColor,
     }), [sizeConfig, trendColor]);
 

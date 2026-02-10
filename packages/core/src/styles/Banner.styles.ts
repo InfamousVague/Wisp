@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { BannerVariant } from '../types/Banner.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant colors
@@ -72,8 +73,8 @@ export function buildBannerStyle(
   return {
     display: 'flex',
     alignItems: 'flex-start',
-    gap: 12,
-    padding: '12px 16px',
+    gap: defaultSpacing.md,
+    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px`,
     borderRadius: fullWidth ? 0 : 10,
     backgroundColor: colors.bg,
     border: `1px solid ${colors.border}`,
@@ -92,7 +93,7 @@ export function buildBannerTitleStyle(
 ): CSSStyleObject {
   return {
     fontSize: 14,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1.4,
     color: colors.text,
     margin: 0,
@@ -104,7 +105,7 @@ export function buildBannerMessageStyle(
 ): CSSStyleObject {
   return {
     fontSize: 14,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.5,
     color: colors.text,
     margin: 0,
@@ -131,6 +132,6 @@ export function buildBannerDismissStyle(
     cursor: 'pointer',
     color: colors.icon,
     flexShrink: 0,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
   };
 }

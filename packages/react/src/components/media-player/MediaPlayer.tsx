@@ -15,6 +15,7 @@ import React, {
 import { useThemeColors } from '../../providers';
 import type { MediaPlayerProps, PlaybackSpeed } from '@wisp-ui/core/types/MediaPlayer.types';
 import { mediaPlayerSizeMap, playbackSpeeds } from '@wisp-ui/core/types/MediaPlayer.types';
+import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
 import {
   resolveMediaPlayerColors,
   buildMediaPlayerContainerStyle,
@@ -504,7 +505,7 @@ export const MediaPlayer = forwardRef<HTMLDivElement, MediaPlayerProps>(function
       {(title || artist) && (
         <div style={audioInfoStyle}>
           {title && (
-            <span style={{ fontSize: sizeConfig.fontSize + 2, fontWeight: 600, color: colors.text }}>
+            <span style={{ fontSize: sizeConfig.fontSize + 2, fontWeight: defaultTypography.weights.semibold, color: colors.text }}>
               {title}
             </span>
           )}

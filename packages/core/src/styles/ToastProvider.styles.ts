@@ -3,6 +3,7 @@
  */
 import type { CSSStyleObject } from '../types';
 import type { ToastPosition } from '../types/ToastProvider.types';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container positioning
@@ -16,8 +17,8 @@ export function buildToastContainerStyle(
     zIndex: 9999,
     display: 'flex',
     flexDirection: 'column',
-    gap: 8,
-    padding: 16,
+    gap: defaultSpacing.sm,
+    padding: defaultSpacing.lg,
     pointerEvents: 'none',
     maxWidth: 420,
     width: '100%',

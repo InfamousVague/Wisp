@@ -4,6 +4,7 @@ import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
 import { tagInputSizeMap } from '@wisp-ui/core/types/TagInput.types';
 import { resolveTagInputColors } from '@wisp-ui/core/styles/TagInput.styles';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface TagInputProps {
   size?: ComponentSize;
@@ -136,9 +137,9 @@ export const TagInput = forwardRef<View, TagInputProps>(function TagInput(
         <RNText
           style={{
             fontSize: sizeConfig.fontSize,
-            fontWeight: '500',
+            fontWeight: defaultTypography.weights.medium,
             color: colors.label,
-            marginBottom: 6,
+            marginBottom: defaultSpacing.sm,
           }}
         >
           {label}
@@ -151,10 +152,10 @@ export const TagInput = forwardRef<View, TagInputProps>(function TagInput(
           flexDirection: 'row',
           flexWrap: 'wrap',
           alignItems: 'center',
-          gap: 4,
+          gap: defaultSpacing.xs,
           minHeight: sizeConfig.minHeight,
           paddingHorizontal: sizeConfig.paddingX,
-          paddingVertical: 4,
+          paddingVertical: defaultSpacing.xs,
           borderWidth: 1,
           borderColor: colors.border,
           borderRadius: sizeConfig.borderRadius,
@@ -168,10 +169,10 @@ export const TagInput = forwardRef<View, TagInputProps>(function TagInput(
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              gap: 2,
-              paddingHorizontal: 6,
-              paddingVertical: 2,
-              borderRadius: 4,
+              gap: defaultSpacing['2xs'],
+              paddingHorizontal: defaultSpacing.sm,
+              paddingVertical: defaultSpacing['2xs'],
+              borderRadius: defaultRadii.sm,
               backgroundColor: colors.tagBg,
               borderWidth: 1,
               borderColor: colors.tagBorder,
@@ -180,7 +181,7 @@ export const TagInput = forwardRef<View, TagInputProps>(function TagInput(
             <RNText
               style={{
                 fontSize: sizeConfig.fontSize - 1,
-                fontWeight: '500',
+                fontWeight: defaultTypography.weights.medium,
                 color: colors.tagText,
               }}
             >
@@ -190,7 +191,7 @@ export const TagInput = forwardRef<View, TagInputProps>(function TagInput(
               onPress={() => !disabled && removeTag(index)}
               accessibilityLabel={`Remove ${tag}`}
               hitSlop={4}
-              style={{ padding: 1 }}
+              style={{ padding: defaultSpacing['2xs'] }}
             >
               <View style={{ width: sizeConfig.tagRemoveSize, height: sizeConfig.tagRemoveSize }}>
                 <View
@@ -240,7 +241,7 @@ export const TagInput = forwardRef<View, TagInputProps>(function TagInput(
             minWidth: 60,
             fontSize: sizeConfig.fontSize,
             color: colors.text,
-            paddingVertical: 2,
+            paddingVertical: defaultSpacing['2xs'],
             padding: 0,
           }}
           blurOnSubmit={false}
@@ -252,7 +253,7 @@ export const TagInput = forwardRef<View, TagInputProps>(function TagInput(
           style={{
             fontSize: sizeConfig.fontSize - 2,
             color: colors.hint,
-            marginTop: 4,
+            marginTop: defaultSpacing.xs,
           }}
         >
           {bottomText}

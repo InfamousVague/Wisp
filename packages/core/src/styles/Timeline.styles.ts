@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { TimelineSizeConfig, TimelineOrientation, TimelineStatus } from '../types/Timeline.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -108,7 +109,7 @@ export function buildTimelineDotStyle(
   return {
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: bg,
     display: 'flex',
     alignItems: 'center',
@@ -200,7 +201,7 @@ export function buildTimelineTitleStyle(
 ): CSSStyleObject {
   return {
     fontSize: sizeConfig.fontSize,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1.4,
     color: status === 'pending' ? themeColors.text.muted : themeColors.text.primary,
     margin: 0,
@@ -218,7 +219,7 @@ export function buildTimelineDescriptionStyle(
 ): CSSStyleObject {
   return {
     fontSize: sizeConfig.secondaryFontSize,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.4,
     color: themeColors.text.secondary,
     margin: 0,
@@ -235,7 +236,7 @@ export function buildTimelineTimestampStyle(
 ): CSSStyleObject {
   return {
     fontSize: sizeConfig.secondaryFontSize,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.4,
     color: themeColors.text.muted,
     margin: 0,
@@ -258,7 +259,7 @@ export function buildTimelineSkeletonStyle(
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: 20,
+    gap: defaultSpacing.xl,
     width: '100%',
   };
 }
@@ -282,7 +283,7 @@ export function buildTimelineSkeletonDotStyle(
   return {
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: themeColors.border.subtle,
     flexShrink: 0,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
@@ -296,7 +297,7 @@ export function buildTimelineSkeletonLineStyle(
   return {
     width: '60%',
     height: sizeConfig.fontSize,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };
@@ -309,7 +310,7 @@ export function buildTimelineSkeletonLineShortStyle(
   return {
     width: '40%',
     height: sizeConfig.secondaryFontSize,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

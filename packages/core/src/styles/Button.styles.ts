@@ -7,6 +7,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ButtonVariant, ButtonShape } from '../types/Button.types';
 import { buttonSizeMap, shapeRadiusMap } from '../types/Button.types';
+import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant -> colors (theme-aware)
@@ -338,7 +339,7 @@ export function buildButtonStyle(opts: {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: `${sizeConfig.lineHeight}px`,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
 
     // Shape
     borderRadius: radius,
@@ -412,7 +413,7 @@ export function getSpinnerStyle(size: ComponentSize, color: string): CSSStyleObj
     height: sizeConfig.iconSize,
     border: `2px solid ${color}44`,
     borderTopColor: color,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     animation: 'wisp-button-spin 0.6s linear infinite',
     flexShrink: 0,
   };

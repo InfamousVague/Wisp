@@ -24,6 +24,7 @@ import { resolveProgressColors } from '@wisp-ui/core/styles/Progress.styles';
 import type { ProgressColors } from '@wisp-ui/core/styles/Progress.styles';
 import { useThemeColors } from '../../providers';
 import { Text } from '../text';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -175,20 +176,20 @@ export const Progress = forwardRef<View, ProgressProps>(function Progress(
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 6,
+    marginBottom: defaultSpacing.sm,
   }), []);
 
   const labelTextStyle = useMemo<TextStyle>(() => ({
     fontSize: sizeConfig.labelFontSize,
     lineHeight: Math.round(sizeConfig.labelFontSize * 1.4),
-    fontWeight: '500',
+    fontWeight: defaultTypography.weights.medium,
     color: colors.label,
   }), [sizeConfig, colors]);
 
   const valueTextStyle = useMemo<TextStyle>(() => ({
     fontSize: sizeConfig.valueFontSize,
     lineHeight: Math.round(sizeConfig.valueFontSize * 1.4),
-    fontWeight: '500',
+    fontWeight: defaultTypography.weights.medium,
     color: colors.value,
   }), [sizeConfig, colors]);
 

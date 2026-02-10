@@ -8,6 +8,7 @@ import type { CSSStyleObject } from "../types";
 import type { ThemeColors } from "../theme/types";
 import { fontFamilyStacks, glassStyle } from "../tokens/shared";
 import type { SurfaceVariant } from "../tokens/shared";
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 /**
  * Builds the style for the dropdown content panel (the floating menu container).
@@ -24,10 +25,10 @@ export function buildContentStyle(
     position: "absolute",
     zIndex: 9999,
     minWidth: 180,
-    padding: 4,
+    padding: defaultSpacing.xs,
     backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     boxShadow: `0 4px 12px ${themeColors.background.overlay}`,
     outline: "none",
     fontFamily: fontFamilyStacks.sans,
@@ -79,13 +80,13 @@ export function buildItemStyle(opts: {
     padding: "8px 12px",
     margin: 0,
     border: "none",
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor,
     color,
     fontSize: 14,
     lineHeight: "20px",
     fontFamily: fontFamilyStacks.sans,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     cursor: disabled ? "not-allowed" : "pointer",
     opacity: disabled ? 0.5 : 1,
     outline: "none",
@@ -93,7 +94,7 @@ export function buildItemStyle(opts: {
     textDecoration: "none",
     userSelect: "none",
     boxSizing: "border-box",
-    gap: 8,
+    gap: defaultSpacing.sm,
     transition: "background-color 120ms ease",
   };
 }
@@ -125,7 +126,7 @@ export function buildShortcutStyle(
 ): CSSStyleObject {
   return {
     marginLeft: "auto",
-    paddingLeft: 16,
+    paddingLeft: defaultSpacing.lg,
     fontSize: 12,
     lineHeight: "16px",
     color: themeColors.text.muted,

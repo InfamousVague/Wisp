@@ -3,6 +3,7 @@ import { View, Pressable, Modal, TextInput, FlatList, SafeAreaView, StyleSheet, 
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path, Circle, Line } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 type CommandSize = 'sm' | 'md' | 'lg';
 const commandSizeMap: Record<CommandSize, number> = { sm: 400, md: 520, lg: 640 };
@@ -62,10 +63,10 @@ export function Command({ open, onOpenChange, onSelect, size = 'md', filter, loa
   return (
     <Modal visible={open} transparent animationType="fade" onRequestClose={() => onOpenChange(false)} statusBarTranslucent>
       <Pressable style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.5)' }]} onPress={() => onOpenChange(false)}>
-        <SafeAreaView style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 80 }}>
+        <SafeAreaView style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: defaultSpacing['4xl'] }}>
           <Pressable onPress={(e) => e.stopPropagation()}>
             <View style={[{
-              backgroundColor: tc.background.raised, borderRadius: 16, overflow: 'hidden',
+              backgroundColor: tc.background.raised, borderRadius: defaultRadii.xl, overflow: 'hidden',
               width: commandSizeMap[size], maxHeight: 400,
               shadowColor: '#000', shadowOffset: { width: 0, height: 8 },
               shadowOpacity: 0.25, shadowRadius: 24, elevation: 10,
@@ -95,7 +96,7 @@ export function CommandInput({ placeholder = 'Type a command or search...', icon
   useEffect(() => { setTimeout(() => inputRef.current?.focus(), 100); }, []);
 
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 12, borderBottomWidth: 1, borderBottomColor: tc.border.subtle, gap: 8 }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: defaultSpacing.md, borderBottomWidth: 1, borderBottomColor: tc.border.subtle, gap: defaultSpacing.sm }}>
       {IconComp ? (
         <IconComp size={18} />
       ) : (
@@ -119,9 +120,9 @@ export function CommandList({ children, style: userStyle }: CommandListProps) {
   const { loading } = useCommandContext();
   const tc = useThemeColors();
   if (loading) {
-    return <View style={[{ padding: 24, alignItems: 'center' }, userStyle]}><ActivityIndicator color={tc.accent.primary} /></View>;
+    return <View style={[{ padding: defaultSpacing.xl, alignItems: 'center' }, userStyle]}><ActivityIndicator color={tc.accent.primary} /></View>;
   }
-  return <View style={[{ paddingVertical: 4, maxHeight: 300 }, userStyle]}>{children}</View>;
+  return <View style={[{ paddingVertical: defaultSpacing.xs, maxHeight: 300 }, userStyle]}>{children}</View>;
 }
 CommandList.displayName = 'CommandList';
 
@@ -132,7 +133,7 @@ export function CommandGroup({ heading, children, style: userStyle }: CommandGro
   return (
     <View style={userStyle}>
       {heading && (
-        <RNText style={{ fontSize: 11, fontWeight: '600', color: tc.text.muted, paddingHorizontal: 12, paddingTop: 8, paddingBottom: 4, textTransform: 'uppercase', letterSpacing: 0.5 } as TextStyle}>{heading}</RNText>
+        <RNText style={{ fontSize: 11, fontWeight: defaultTypography.weights.semibold, color: tc.text.muted, paddingHorizontal: defaultSpacing.md, paddingTop: defaultSpacing.sm, paddingBottom: defaultSpacing.xs, textTransform: 'uppercase', letterSpacing: 0.5 } as TextStyle}>{heading}</RNText>
       )}
       {children}
     </View>
@@ -168,11 +169,11 @@ export function CommandItem({ value, onSelect: onItemSelect, disabled = false, i
 
   return (
     <Pressable onPress={handlePress} disabled={disabled}
-      style={({ pressed }) => [{ flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 8, paddingHorizontal: 12, backgroundColor: pressed ? tc.accent.highlight : 'transparent', opacity: disabled ? 0.4 : 1, borderRadius: 6, marginHorizontal: 4 }, userStyle]}>
+      style={({ pressed }) => [{ flexDirection: 'row', alignItems: 'center', gap: defaultSpacing.sm, paddingVertical: defaultSpacing.sm, paddingHorizontal: defaultSpacing.md, backgroundColor: pressed ? tc.accent.highlight : 'transparent', opacity: disabled ? 0.4 : 1, borderRadius: defaultRadii.md, marginHorizontal: defaultSpacing.xs }, userStyle]}>
       {IconComp && <View style={{ width: 20, alignItems: 'center' }}><IconComp size={18} /></View>}
       <View style={{ flex: 1 }}>
         <RNText style={{ fontSize: 14, color: tc.text.onRaised } as TextStyle}>{children}</RNText>
-        {description && <RNText style={{ fontSize: 12, color: tc.text.muted, marginTop: 2 } as TextStyle}>{description}</RNText>}
+        {description && <RNText style={{ fontSize: 12, color: tc.text.muted, marginTop: defaultSpacing['2xs'] } as TextStyle}>{description}</RNText>}
       </View>
     </Pressable>
   );
@@ -183,7 +184,7 @@ export interface CommandSeparatorProps { style?: ViewStyle; }
 
 export function CommandSeparator({ style: userStyle }: CommandSeparatorProps) {
   const tc = useThemeColors();
-  return <View style={[{ height: 1, backgroundColor: tc.border.subtle, marginVertical: 4 }, userStyle]} />;
+  return <View style={[{ height: 1, backgroundColor: tc.border.subtle, marginVertical: defaultSpacing.xs }, userStyle]} />;
 }
 CommandSeparator.displayName = 'CommandSeparator';
 
@@ -192,7 +193,7 @@ export interface CommandEmptyProps { children?: React.ReactNode; style?: ViewSty
 export function CommandEmpty({ children, style: userStyle }: CommandEmptyProps) {
   const tc = useThemeColors();
   return (
-    <View style={[{ padding: 24, alignItems: 'center' }, userStyle]}>
+    <View style={[{ padding: defaultSpacing.xl, alignItems: 'center' }, userStyle]}>
       <RNText style={{ fontSize: 14, color: tc.text.muted } as TextStyle}>{children || 'No results found.'}</RNText>
     </View>
   );

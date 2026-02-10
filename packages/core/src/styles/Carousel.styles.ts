@@ -8,6 +8,7 @@
 
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -25,7 +26,7 @@ export function buildCarouselContainerStyle(
   return {
     position: 'relative',
     overflow: 'hidden',
-    borderRadius: 12,
+    borderRadius: defaultRadii.lg,
     ...(aspectRatio ? { aspectRatio } : {}),
   };
 }
@@ -95,7 +96,7 @@ export function buildCarouselArrowStyle(
     ...(side === 'left' ? { left: 12 } : { right: 12 }),
     width: 36,
     height: 36,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: isHovered
       ? themeColors.background.surface
       : themeColors.background.surface + 'CC', // 80% opacity
@@ -133,7 +134,7 @@ export function buildCarouselDotsContainerStyle(): CSSStyleObject {
     transform: 'translateX(-50%)',
     display: 'flex',
     flexDirection: 'row',
-    gap: 6,
+    gap: defaultSpacing.sm,
     zIndex: 2,
   };
 }
@@ -156,7 +157,7 @@ export function buildCarouselDotStyle(
   return {
     width: isActive ? 24 : 8,
     height: 8,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor: isActive
       ? '#FFFFFF'
       : 'rgba(255, 255, 255, 0.5)',
@@ -187,7 +188,7 @@ export function buildCarouselSkeletonStyle(
 ): CSSStyleObject {
   return {
     width: '100%',
-    borderRadius: 12,
+    borderRadius: defaultRadii.lg,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
     ...(aspectRatio ? { aspectRatio } : { height: 200 }),

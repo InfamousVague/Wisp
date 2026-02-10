@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { AvatarSizeConfig } from '../types/Avatar.types';
+import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Group container
@@ -42,7 +43,7 @@ export function buildAvatarWrapperStyle(
 ): CSSStyleObject {
   return {
     marginLeft: index === 0 ? 0 : -spacing,
-    borderRadius: 9999,
+    borderRadius: defaultRadii.full,
     border: `2px solid ${themeColors.background.canvas}`,
     zIndex: total - index,
     position: 'relative',
@@ -74,12 +75,12 @@ export function buildOverflowStyle(
     justifyContent: 'center',
     width: sizeConfig.container,
     height: sizeConfig.container,
-    borderRadius: 9999,
+    borderRadius: defaultRadii.full,
     backgroundColor: themeColors.background.raised,
     color: themeColors.text.onRaised,
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1,
     userSelect: 'none',
     marginLeft: -spacing,

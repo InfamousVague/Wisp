@@ -3,6 +3,7 @@ import { View, Text as RNText } from 'react-native';
 import type { FormFieldSize } from '@wisp-ui/core/types/FormField.types';
 import { formFieldSizeMap } from '@wisp-ui/core/types/FormField.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export type FormFieldOrientation = 'vertical' | 'horizontal';
 
@@ -90,19 +91,19 @@ export const FormField = forwardRef<View, FormFieldProps>(function FormField(
       {label && (
         <View
           style={[
-            isHorizontal ? { width: labelWidth, flexShrink: 0, paddingTop: 8 } : undefined,
+            isHorizontal ? { width: labelWidth, flexShrink: 0, paddingTop: defaultSpacing.sm } : undefined,
           ]}
         >
           <RNText
             style={{
               fontSize: sizeConfig.labelFontSize,
-              fontWeight: '600',
+              fontWeight: defaultTypography.weights.semibold,
               color: labelColor,
             }}
           >
             {label}
             {required && (
-              <RNText style={{ color: themeColors.status.danger, fontWeight: '400' }}>
+              <RNText style={{ color: themeColors.status.danger, fontWeight: defaultTypography.weights.regular }}>
                 {' *'}
               </RNText>
             )}
@@ -111,7 +112,7 @@ export const FormField = forwardRef<View, FormFieldProps>(function FormField(
       )}
 
       {isHorizontal ? (
-        <View style={{ flex: 1, gap: 4 }}>
+        <View style={{ flex: 1, gap: defaultSpacing.xs }}>
           {children}
           {hintText && (
             <RNText

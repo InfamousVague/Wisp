@@ -3,6 +3,7 @@ import { View, Pressable, Animated, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle, LayoutChangeEvent } from 'react-native';
 import type { SegmentedControlOption } from '@wisp-ui/core/types/SegmentedControl.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 const sizeMap = {
   sm: { height: 28, fontSize: 12, paddingX: 10 },
@@ -83,7 +84,7 @@ export const SegmentedControl = forwardRef<View, SegmentedControlProps>(function
       height: cfg.height,
       borderRadius: cfg.height / 2,
       backgroundColor: themeColors.background.surface,
-      padding: 2,
+      padding: defaultSpacing['2xs'],
       alignSelf: fullWidth ? 'stretch' : 'flex-start',
       position: 'relative',
       overflow: 'hidden',
@@ -119,7 +120,7 @@ export const SegmentedControl = forwardRef<View, SegmentedControlProps>(function
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: 6,
+          gap: defaultSpacing.sm,
           paddingHorizontal: cfg.paddingX,
           opacity: isOptionDisabled ? 0.4 : 1,
           zIndex: 1,

@@ -34,6 +34,7 @@ import { Text } from '../../primitives/text';
 import { Icon } from '../../primitives/icon';
 import { Progress } from '../../primitives/progress';
 import { Trophy, Lock, CheckCircle } from 'lucide-react';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 export function AchievementCard({
   title,
@@ -116,7 +117,7 @@ export function AchievementCard({
       {/* Content */}
       <div style={contentStyle as React.CSSProperties}>
         {/* Title row */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: defaultSpacing.sm }}>
           <Text as="p" size="sm" weight="semibold" style={titleStyle as React.CSSProperties}>{title}</Text>
           {status === 'unlocked' && (
             <Text size="xs" weight="medium" style={rarityStyle as React.CSSProperties}>
@@ -131,12 +132,12 @@ export function AchievementCard({
 
         {/* Progress bar for in-progress */}
         {status === 'in-progress' && (
-          <Progress value={progress} size="xs" style={{ marginTop: 8 }} />
+          <Progress value={progress} size="xs" style={{ marginTop: defaultSpacing.sm }} />
         )}
 
         {/* Unlocked check + date */}
         {status === 'unlocked' && unlockedAt && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: defaultSpacing.xs, marginTop: defaultSpacing['2xs'] }}>
             <Icon icon={CheckCircle} size="xs" style={{ color: colors.rarityColor }} />
             <Text size="xs" style={dateStyle as React.CSSProperties}>{unlockedAt}</Text>
           </div>

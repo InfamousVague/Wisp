@@ -6,6 +6,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { VoiceRecorderState, VoiceRecorderSizeConfig } from '../types/VoiceRecorder.types';
+import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Keyframe injection
@@ -110,7 +111,7 @@ export function buildTimerStyle(
   return {
     fontSize: sizeConfig.fontSize,
     fontFamily: 'monospace',
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     color: colors.timer,
     whiteSpace: 'nowrap',
     userSelect: 'none',

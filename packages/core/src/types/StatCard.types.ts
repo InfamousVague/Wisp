@@ -6,6 +6,7 @@
 
 import type React from 'react';
 import type { SparklineSize } from './Sparkline.types';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant
@@ -44,7 +45,7 @@ export interface StatCardSizeConfig {
 
 export const statCardSizeMap: Record<StatCardSize, StatCardSizeConfig> = {
   sm: {
-    padding: 12,
+    padding: defaultSpacing.md,
     valueFontSize: 24,
     valueLineHeight: 32,
     labelFontSize: 13,
@@ -52,10 +53,10 @@ export const statCardSizeMap: Record<StatCardSize, StatCardSizeConfig> = {
     trendFontSize: 12,
     iconSize: 20,
     sparklineSize: 'sm',
-    gap: 8,
+    gap: defaultSpacing.sm,
   },
   md: {
-    padding: 16,
+    padding: defaultSpacing.lg,
     valueFontSize: 30,
     valueLineHeight: 38,
     labelFontSize: 14,
@@ -63,10 +64,10 @@ export const statCardSizeMap: Record<StatCardSize, StatCardSizeConfig> = {
     trendFontSize: 12,
     iconSize: 24,
     sparklineSize: 'md',
-    gap: 12,
+    gap: defaultSpacing.md,
   },
   lg: {
-    padding: 24,
+    padding: defaultSpacing.xl,
     valueFontSize: 36,
     valueLineHeight: 44,
     labelFontSize: 16,
@@ -74,7 +75,7 @@ export const statCardSizeMap: Record<StatCardSize, StatCardSizeConfig> = {
     trendFontSize: 13,
     iconSize: 28,
     sparklineSize: 'lg',
-    gap: 16,
+    gap: defaultSpacing.lg,
   },
 };
 

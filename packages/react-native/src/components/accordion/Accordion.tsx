@@ -4,6 +4,7 @@ import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
 import { Collapse } from '../../layouts/collapse';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -211,8 +212,8 @@ export const AccordionTrigger = forwardRef<View, AccordionTriggerProps>(function
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      paddingVertical: 14,
-      paddingHorizontal: 4,
+      paddingVertical: defaultSpacing.lg,
+      paddingHorizontal: defaultSpacing.xs,
     }),
     [],
   );
@@ -258,7 +259,7 @@ export const AccordionContent = forwardRef<View, AccordionContentProps>(function
 
   return (
     <Collapse open={isOpen}>
-      <View ref={ref} style={[{ paddingBottom: 14, paddingHorizontal: 4 }, userStyle]}>
+      <View ref={ref} style={[{ paddingBottom: defaultSpacing.lg, paddingHorizontal: defaultSpacing.xs }, userStyle]}>
         {children}
       </View>
     </Collapse>

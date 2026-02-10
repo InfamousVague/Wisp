@@ -7,6 +7,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { DatePickerSizeConfig } from '../types/DatePicker.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -26,7 +27,7 @@ export function buildDatePickerContainerStyle(
   return {
     display: fullWidth ? 'flex' : 'inline-flex',
     flexDirection: 'column',
-    gap: 4,
+    gap: defaultSpacing.xs,
     position: 'relative',
   };
 }
@@ -114,7 +115,7 @@ export function buildDatePickerDropdownStyle(
     left: 0,
     zIndex: 50,
     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
-    borderRadius: 12,
+    borderRadius: defaultRadii.lg,
     border: `1px solid ${themeColors.border.subtle}`,
     backgroundColor: themeColors.background.raised,
     overflow: 'hidden',
@@ -165,11 +166,11 @@ export function buildDatePickerClearStyle(
     background: 'transparent',
     cursor: 'pointer',
     color: isHovered ? themeColors.text.primary : themeColors.text.muted,
-    padding: 2,
+    padding: defaultSpacing['2xs'],
     display: 'flex',
     alignItems: 'center',
     flexShrink: 0,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     outline: 'none',
     transition: 'color 150ms ease',
   };
@@ -194,7 +195,7 @@ export function buildDatePickerLabelStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: 1.4,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: themeColors.text.primary,
     cursor: 'default',
     userSelect: 'none',
@@ -220,7 +221,7 @@ export function buildDatePickerErrorStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize - 1,
     lineHeight: 1.4,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     color: themeColors.status.danger,
     margin: 0,
   };

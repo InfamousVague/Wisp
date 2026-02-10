@@ -10,6 +10,7 @@ import type { CommandSize } from '../types/Command.types';
 import { commandSizeMap } from '../types/Command.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Overlay
@@ -49,7 +50,7 @@ export function buildPanelStyle(
     maxHeight: 420,
     backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: 12,
+    borderRadius: defaultRadii.lg,
     boxShadow: '0 16px 48px rgba(0, 0, 0, 0.4)',
     outline: 'none',
     overflow: 'hidden',
@@ -57,7 +58,7 @@ export function buildPanelStyle(
   };
 
   if (variant === 'glass') {
-    return { ...base, ...glassStyle, borderRadius: 12, overflow: 'hidden' };
+    return { ...base, ...glassStyle, borderRadius: defaultRadii.lg, overflow: 'hidden' };
   }
 
   return base;
@@ -72,8 +73,8 @@ export function buildInputWrapperStyle(themeColors: ThemeColors): CSSStyleObject
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
-    padding: '12px 16px',
+    gap: defaultSpacing.sm,
+    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px`,
     borderBottom: `1px solid ${themeColors.border.subtle}`,
     flexShrink: 0,
   };
@@ -119,7 +120,7 @@ export function buildListStyle(): CSSStyleObject {
   return {
     overflowY: 'auto',
     maxHeight: 320,
-    padding: '8px 0',
+    padding: `${defaultSpacing.sm}px 0`,
     flex: 1,
   };
 }
@@ -130,9 +131,9 @@ export function buildListStyle(): CSSStyleObject {
 
 export function buildGroupHeadingStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
-    padding: '8px 16px 4px',
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.lg}px ${defaultSpacing.xs}px`,
     fontSize: 11,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: '16px',
     color: themeColors.text.muted,
     textTransform: 'uppercase',
@@ -155,8 +156,8 @@ export function buildItemStyle(
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
-    padding: '10px 16px',
+    gap: defaultSpacing.md,
+    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px`,
     cursor: isDisabled ? 'default' : 'pointer',
     backgroundColor: isActive ? themeColors.accent.highlight : 'transparent',
     color: isDisabled ? themeColors.text.muted : themeColors.text.primary,
@@ -195,7 +196,7 @@ export function buildItemLabelStyle(): CSSStyleObject {
     minWidth: 0,
     display: 'flex',
     flexDirection: 'column',
-    gap: 2,
+    gap: defaultSpacing['2xs'],
   };
 }
 
@@ -223,7 +224,7 @@ export function buildItemShortcutStyle(themeColors: ThemeColors): CSSStyleObject
     color: themeColors.text.secondary,
     fontFamily: fontFamilyStacks.sans,
     display: 'flex',
-    gap: 4,
+    gap: defaultSpacing.xs,
     flexShrink: 0,
   };
 }
@@ -241,9 +242,9 @@ export function buildShortcutKeyStyle(themeColors: ThemeColors): CSSStyleObject 
     height: 20,
     padding: '0 4px',
     fontSize: 11,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: '20px',
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor: themeColors.accent.highlight,
     color: themeColors.text.secondary,
   };
@@ -256,7 +257,7 @@ export function buildShortcutKeyStyle(themeColors: ThemeColors): CSSStyleObject 
 export function buildSeparatorStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
     height: 1,
-    margin: '4px 0',
+    margin: `${defaultSpacing.xs}px 0`,
     backgroundColor: themeColors.border.subtle,
   };
 }
@@ -267,7 +268,7 @@ export function buildSeparatorStyle(themeColors: ThemeColors): CSSStyleObject {
 
 export function buildEmptyStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
-    padding: '32px 16px',
+    padding: `${defaultSpacing['2xl']}px ${defaultSpacing.lg}px`,
     textAlign: 'center',
     fontSize: 14,
     lineHeight: '20px',
@@ -285,6 +286,6 @@ export function buildLoadingStyle(): CSSStyleObject {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '24px 16px',
+    padding: `${defaultSpacing.xl}px ${defaultSpacing.lg}px`,
   };
 }

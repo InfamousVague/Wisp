@@ -8,6 +8,7 @@ import type { ThemeColors } from '../theme/types';
 import type { AchievementRarity } from '../types/AchievementCard.types';
 import { achievementRarityMap } from '../types/AchievementCard.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Overlay
@@ -42,12 +43,12 @@ export function buildAchievementUnlockPanelStyle(
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: 12,
-    padding: '28px 32px',
+    gap: defaultSpacing.md,
+    padding: `${defaultSpacing['2xl']}px ${defaultSpacing['2xl']}px`,
     backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
     borderTop: `3px solid ${rarityConfig.color}`,
-    borderRadius: 12,
+    borderRadius: defaultRadii.lg,
     fontFamily: fontFamilyStacks.sans,
     maxWidth: 400,
     width: '90%',
@@ -70,7 +71,7 @@ export function buildAchievementUnlockIconStyle(
     justifyContent: 'center',
     width: 64,
     height: 64,
-    borderRadius: 32,
+    borderRadius: defaultRadii.xl,
     backgroundColor: `${rarityColor}1A`,
     color: rarityColor,
     animation: 'wisp-achievement-icon-in 500ms ease-out',
@@ -86,7 +87,7 @@ export function buildAchievementUnlockTitleStyle(
 ): CSSStyleObject {
   return {
     fontSize: 18,
-    fontWeight: 700,
+    fontWeight: defaultTypography.weights.bold,
     lineHeight: 1.3,
     color: themeColors.text.primary,
     margin: 0,
@@ -103,7 +104,7 @@ export function buildAchievementUnlockDescriptionStyle(
 ): CSSStyleObject {
   return {
     fontSize: 14,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.5,
     color: themeColors.text.secondary,
     margin: 0,
@@ -120,7 +121,7 @@ export function buildAchievementUnlockRarityStyle(
 ): CSSStyleObject {
   return {
     fontSize: 11,
-    fontWeight: 700,
+    fontWeight: defaultTypography.weights.bold,
     letterSpacing: '0.08em',
     textTransform: 'uppercase',
     color: rarityColor,
@@ -144,7 +145,7 @@ export function buildAchievementUnlockCloseStyle(
     justifyContent: 'center',
     width: 24,
     height: 24,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     border: 'none',
     padding: 0,
     margin: 0,
@@ -164,17 +165,17 @@ export function buildAchievementUnlockActionStyle(
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    padding: '8px 20px',
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.xl}px`,
     fontSize: 14,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     border: 'none',
     backgroundColor: rarityColor,
     color: '#FFFFFF',
     cursor: 'pointer',
     whiteSpace: 'nowrap',
-    marginTop: 4,
+    marginTop: defaultSpacing.xs,
     animation: 'wisp-achievement-text-in 400ms ease-out 400ms both',
   };
 }

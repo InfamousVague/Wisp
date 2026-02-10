@@ -9,6 +9,7 @@
  */
 
 import type React from 'react';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size variants
@@ -41,9 +42,9 @@ export interface EmptyStateSizeConfig {
 
 /** Map from {@link EmptyStateSize} token to its resolved {@link EmptyStateSizeConfig}. */
 export const emptyStateSizeMap: Record<EmptyStateSize, EmptyStateSizeConfig> = {
-  sm: { iconSize: 32, titleFontSize: 14, descriptionFontSize: 12, minHeight: 160, gap: 8 },
-  md: { iconSize: 48, titleFontSize: 18, descriptionFontSize: 14, minHeight: 240, gap: 12 },
-  lg: { iconSize: 64, titleFontSize: 24, descriptionFontSize: 16, minHeight: 320, gap: 16 },
+  sm: { iconSize: 32, titleFontSize: 14, descriptionFontSize: 12, minHeight: 160, gap: defaultSpacing.sm },
+  md: { iconSize: 48, titleFontSize: 18, descriptionFontSize: 14, minHeight: 240, gap: defaultSpacing.md },
+  lg: { iconSize: 64, titleFontSize: 24, descriptionFontSize: 16, minHeight: 320, gap: defaultSpacing.lg },
 };
 
 // ---------------------------------------------------------------------------

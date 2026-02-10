@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { SelectSizeConfig } from '../types/Select.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Resolved select colors
@@ -219,14 +220,14 @@ export function buildDropdownStyle(
     boxSizing: 'border-box',
     backgroundColor: themeColors.background.raised,
     border: '1px solid ' + themeColors.border.subtle,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
     maxHeight: 240,
     overflowY: 'auto',
-    padding: '4px 0',
-    marginTop: 4,
+    padding: `${defaultSpacing.xs}px 0`,
+    marginTop: defaultSpacing.xs,
     ...(variant === 'glass' ? glassStyle : undefined),
-    ...(variant === 'glass' ? { borderRadius: 8, overflow: 'hidden' } : undefined),
+    ...(variant === 'glass' ? { borderRadius: defaultRadii.md, overflow: 'hidden' } : undefined),
   };
 }
 
@@ -261,8 +262,8 @@ export function buildOptionStyle(
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: 8,
-    padding: '8px 12px',
+    gap: defaultSpacing.sm,
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
     fontFamily: fontFamilyStacks.sans,
     fontSize,
     lineHeight,
@@ -293,7 +294,7 @@ export function buildLabelStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: colors.label,
     cursor: 'default',
     userSelect: 'none',
@@ -319,7 +320,7 @@ export function buildHintStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.hintFontSize,
     lineHeight: 1.4,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     color: colors.hint,
     margin: 0,
   };

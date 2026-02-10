@@ -10,6 +10,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { DataTableSizeConfig, DataTableVariant } from '../types/DataTable.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Table Container (outer wrapper <div>)
@@ -35,7 +36,7 @@ export function buildTableContainerStyle(
   if (variant === 'card') {
     return {
       ...base,
-      borderRadius: 12,
+      borderRadius: defaultRadii.lg,
       border: `1px solid ${themeColors.border.subtle}`,
       backgroundColor: themeColors.background.canvas,
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06)',
@@ -45,7 +46,7 @@ export function buildTableContainerStyle(
 
   return {
     ...base,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     border: `1px solid ${themeColors.border.subtle}`,
     ...userStyle,
   };
@@ -115,7 +116,7 @@ export function buildTableHeaderCellStyle(
   return {
     padding: `0 ${sizeConfig.paddingX}px`,
     fontSize: sizeConfig.headerFontSize,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     color: themeColors.text.onRaised,
     textAlign: align,
     cursor: sortable ? 'pointer' : 'default',
@@ -213,7 +214,7 @@ export function buildSortIconStyle(
 ): CSSStyleObject {
   return {
     display: 'inline-flex',
-    marginLeft: 4,
+    marginLeft: defaultSpacing.xs,
     color: isActive ? themeColors.text.onRaised : themeColors.text.onRaisedSecondary,
   };
 }
@@ -300,7 +301,7 @@ export function buildSkeletonBarStyle(
 ): CSSStyleObject {
   return {
     height: 12,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
     opacity: 0.5,

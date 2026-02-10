@@ -1,5 +1,6 @@
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Badge Sizes
@@ -68,9 +69,9 @@ export interface BadgeSizeConfig {
  * Pre-defined for `sm`, `md`, and `lg`.
  */
 export const badgeSizeMap: Record<BadgeSize, BadgeSizeConfig> = {
-  sm: { paddingX: 8, paddingY: 2, fontSize: 12, lineHeight: 1.33, badgeRadius: 4, dotSize: 6, gap: 4, iconSize: 12 },
-  md: { paddingX: 10, paddingY: 3, fontSize: 13, lineHeight: 1.38, badgeRadius: 5, dotSize: 6, gap: 5, iconSize: 14 },
-  lg: { paddingX: 12, paddingY: 4, fontSize: 14, lineHeight: 1.43, badgeRadius: 6, dotSize: 8, gap: 6, iconSize: 16 },
+  sm: { paddingX: defaultSpacing.sm, paddingY: defaultSpacing['2xs'], fontSize: 12, lineHeight: 1.33, badgeRadius: 4, dotSize: 6, gap: defaultSpacing.xs, iconSize: 12 },
+  md: { paddingX: defaultSpacing.md, paddingY: defaultSpacing.xs, fontSize: 13, lineHeight: 1.38, badgeRadius: 5, dotSize: 6, gap: defaultSpacing.sm, iconSize: 14 },
+  lg: { paddingX: defaultSpacing.md, paddingY: defaultSpacing.xs, fontSize: 14, lineHeight: 1.43, badgeRadius: 6, dotSize: 8, gap: defaultSpacing.sm, iconSize: 16 },
 };
 
 // ---------------------------------------------------------------------------

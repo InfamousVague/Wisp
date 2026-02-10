@@ -14,6 +14,7 @@ import {
   buildStepDescriptionStyle,
 } from '@wisp-ui/core/styles/ProgressSteps.styles';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 // Checkmark SVG for completed steps
 function CheckIcon({ size, color }: { size: number; color: string }) {
@@ -144,7 +145,7 @@ export const ProgressSteps = forwardRef<HTMLDivElement, ProgressStepsProps>(func
             </div>
 
             {/* Label + description */}
-            <div style={{ marginLeft: sizeConfig.gap, paddingTop: 4 }}>
+            <div style={{ marginLeft: sizeConfig.gap, paddingTop: defaultSpacing.xs }}>
               <div style={labelStyle}>{step.label}</div>
               {step.description && <div style={descStyle}>{step.description}</div>}
             </div>

@@ -3,6 +3,7 @@
  */
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
+import { defaultSpacing } from '../theme/create-theme';
 
 // Re-export shared tokens
 export { componentSizes as buttonSizes } from '../tokens/shared';
@@ -115,11 +116,11 @@ export interface ButtonSizeConfig {
  * Provides five size steps from `xs` (28 px tall) through `xl` (48 px tall).
  */
 export const buttonSizeMap: Record<ComponentSize, ButtonSizeConfig> = {
-  xs: { height: 28, paddingX: 10, paddingY: 4, fontSize: 12, lineHeight: 18, iconSize: 14, gap: 4, iconOnlyPadding: 6 },
-  sm: { height: 32, paddingX: 12, paddingY: 6, fontSize: 14, lineHeight: 20, iconSize: 16, gap: 6, iconOnlyPadding: 7 },
-  md: { height: 36, paddingX: 14, paddingY: 8, fontSize: 14, lineHeight: 20, iconSize: 16, gap: 6, iconOnlyPadding: 9 },
-  lg: { height: 40, paddingX: 16, paddingY: 10, fontSize: 16, lineHeight: 24, iconSize: 20, gap: 8, iconOnlyPadding: 9 },
-  xl: { height: 48, paddingX: 20, paddingY: 12, fontSize: 16, lineHeight: 24, iconSize: 20, gap: 8, iconOnlyPadding: 13 },
+  xs: { height: 28, paddingX: defaultSpacing.md, paddingY: defaultSpacing.xs, fontSize: 12, lineHeight: 18, iconSize: 14, gap: defaultSpacing.xs, iconOnlyPadding: 6 },
+  sm: { height: 32, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: 14, lineHeight: 20, iconSize: 16, gap: defaultSpacing.sm, iconOnlyPadding: 7 },
+  md: { height: 36, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.sm, fontSize: 14, lineHeight: 20, iconSize: 16, gap: defaultSpacing.sm, iconOnlyPadding: 9 },
+  lg: { height: 40, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: 16, lineHeight: 24, iconSize: 20, gap: defaultSpacing.sm, iconOnlyPadding: 9 },
+  xl: { height: 48, paddingX: defaultSpacing.xl, paddingY: defaultSpacing.md, fontSize: 16, lineHeight: 24, iconSize: 20, gap: defaultSpacing.sm, iconOnlyPadding: 13 },
 };
 
 // ---------------------------------------------------------------------------

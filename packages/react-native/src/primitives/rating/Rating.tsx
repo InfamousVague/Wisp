@@ -4,6 +4,7 @@ import Svg, { Path, Defs, ClipPath, Rect } from 'react-native-svg';
 import type { RatingSize } from '@wisp-ui/core/types/Rating.types';
 import { ratingSizeMap } from '@wisp-ui/core/types/Rating.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface RatingProps {
   value?: number;
@@ -148,9 +149,9 @@ export const Rating = forwardRef<View, RatingProps>(function Rating(
         <RNText
           style={{
             fontSize: sizeConfig.fontSize,
-            fontWeight: '500',
+            fontWeight: defaultTypography.weights.medium,
             color: themeColors.text.secondary,
-            marginLeft: 4,
+            marginLeft: defaultSpacing.xs,
           }}
         >
           {currentValue}

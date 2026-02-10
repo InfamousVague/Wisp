@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { SliderSizeConfig } from '../types/Slider.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Slider color tokens
@@ -151,7 +152,7 @@ export function buildThumbStyle(
     left: `${percent}%`,
     width: sizeConfig.thumbSize,
     height: sizeConfig.thumbSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: colors.thumb,
     border: `2px solid ${colors.thumbBorder}`,
     boxShadow: colors.thumbShadow,
@@ -178,7 +179,7 @@ export function buildLabelRowStyle(): CSSStyleObject {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 6,
+    marginBottom: defaultSpacing.sm,
     fontFamily: fontFamilyStacks.sans,
   };
 }

@@ -7,6 +7,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { TreeViewSizeConfig } from '../types/TreeView.types';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Tree container
@@ -65,9 +66,9 @@ export function buildTreeNodeStyle(
     alignItems: 'center',
     gap: sizeConfig.gap + 4,
     paddingLeft: depth * sizeConfig.indent + 4,
-    paddingRight: 4,
+    paddingRight: defaultSpacing.xs,
     height: sizeConfig.itemHeight,
-    borderRadius: 6,
+    borderRadius: defaultRadii.md,
     backgroundColor,
     cursor: isDisabled ? 'not-allowed' : 'pointer',
     color: isDisabled ? themeColors.text.muted : themeColors.text.primary,
@@ -210,7 +211,7 @@ export function buildTreeSkeletonBarStyle(
   return {
     width,
     height,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

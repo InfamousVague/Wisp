@@ -5,6 +5,7 @@ import Svg, { Path } from 'react-native-svg';
 import type { BannerVariant } from '@wisp-ui/core/types/Banner.types';
 import { resolveBannerColors } from '@wisp-ui/core/styles/Banner.styles';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface BannerProps {
   children: React.ReactNode;
@@ -43,9 +44,9 @@ export const Banner = forwardRef<View, BannerProps>(function Banner(
     () => ({
       flexDirection: 'row',
       alignItems: 'flex-start',
-      gap: 12,
-      paddingVertical: 12,
-      paddingHorizontal: 16,
+      gap: defaultSpacing.md,
+      paddingVertical: defaultSpacing.md,
+      paddingHorizontal: defaultSpacing.lg,
       borderRadius: fullWidth ? 0 : 10,
       backgroundColor: colors.bg,
       borderWidth: 1,
@@ -58,7 +59,7 @@ export const Banner = forwardRef<View, BannerProps>(function Banner(
   const titleStyle = useMemo<TextStyle>(
     () => ({
       fontSize: 14,
-      fontWeight: '600',
+      fontWeight: defaultTypography.weights.semibold,
       lineHeight: 20,
       color: colors.text,
     }),
@@ -68,7 +69,7 @@ export const Banner = forwardRef<View, BannerProps>(function Banner(
   const messageStyle = useMemo<TextStyle>(
     () => ({
       fontSize: 14,
-      fontWeight: '400',
+      fontWeight: defaultTypography.weights.regular,
       lineHeight: 21,
       color: colors.text,
     }),
@@ -82,7 +83,7 @@ export const Banner = forwardRef<View, BannerProps>(function Banner(
       style={[containerStyle, userStyle]}
     >
       {icon && (
-        <View style={{ flexShrink: 0, marginTop: 1 }}>
+        <View style={{ flexShrink: 0, marginTop: defaultSpacing['2xs'] }}>
           {icon}
         </View>
       )}

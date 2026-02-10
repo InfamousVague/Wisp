@@ -31,6 +31,7 @@ import { radioSizeMap } from '@wisp-ui/core/types/Radio.types';
 import { resolveRadioColors } from '@wisp-ui/core/styles/Radio.styles';
 import { useThemeColors } from '../../providers';
 import { Text } from '../text';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -307,7 +308,7 @@ export const Radio = forwardRef<View, RadioProps>(function Radio(
   const hasText = Boolean(label || description);
 
   const textContainer = hasText ? (
-    <View style={{ flexDirection: 'column', gap: 2, flexShrink: 1 }}>
+    <View style={{ flexDirection: 'column', gap: defaultSpacing['2xs'], flexShrink: 1 }}>
       {label && (
         <Text style={labelStyle}>{label}</Text>
       )}

@@ -12,6 +12,7 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { AvatarSize } from '@wisp-ui/core/types/Avatar.types';
 import { avatarSizeMap } from '@wisp-ui/core/types/Avatar.types';
 import { useThemeColors } from '../../providers';
+import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -79,7 +80,7 @@ export const AvatarGroup = forwardRef<View, AvatarGroupProps>(
     const overflowTextStyle = useMemo<TextStyle>(
       () => ({
         fontSize: sizeConfig.fontSize,
-        fontWeight: '600',
+        fontWeight: defaultTypography.weights.semibold,
         color: themeColors.text.onRaised,
       }),
       [sizeConfig, themeColors],

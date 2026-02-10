@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ChipColor, ChipVariant, ChipSizeConfig } from '../types/Chip.types';
+import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution helpers
@@ -144,7 +145,7 @@ export function buildChipStyle(opts: {
     fontFamily: fontFamilyStacks.sans,
     fontSize: opts.sizeConfig.fontSize,
     lineHeight: opts.sizeConfig.lineHeight,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     whiteSpace: 'nowrap',
 
     // Shape

@@ -36,6 +36,7 @@ import { pinInputSizeMap } from '@wisp-ui/core/types/PinInput.types';
 import { resolvePinInputColors } from '@wisp-ui/core/styles/PinInput.styles';
 import { useThemeColors } from '../../providers';
 import { Text } from '../text';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -283,9 +284,9 @@ export const PinInput = forwardRef<View, PinInputProps>(function PinInput(
     const colors = resolvePinInputColors(false, hasError, hasWarning, disabled, themeColors);
     return {
       fontSize: sizeConfig.labelFontSize,
-      fontWeight: '500',
+      fontWeight: defaultTypography.weights.medium,
       color: colors.label,
-      marginBottom: 2,
+      marginBottom: defaultSpacing['2xs'],
     };
   }, [label, sizeConfig, hasError, hasWarning, disabled, themeColors]);
 
@@ -295,7 +296,7 @@ export const PinInput = forwardRef<View, PinInputProps>(function PinInput(
     return {
       fontSize: sizeConfig.hintFontSize,
       color: isStatusText ? colors.hint : colors.hint,
-      marginTop: 2,
+      marginTop: defaultSpacing['2xs'],
     };
   }, [bottomText, sizeConfig, hasError, hasWarning, disabled, isStatusText, themeColors]);
 
@@ -308,7 +309,7 @@ export const PinInput = forwardRef<View, PinInputProps>(function PinInput(
         width: sizeConfig.cellSize,
         height: sizeConfig.cellSize,
         fontSize: sizeConfig.fontSize,
-        fontWeight: '600',
+        fontWeight: defaultTypography.weights.semibold,
         fontFamily: 'Courier',
         textAlign: 'center',
         color: colors.text,

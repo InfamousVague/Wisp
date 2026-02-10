@@ -1,6 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { RadioSizeConfig } from '../types/Radio.types';
+import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Resolved color set
@@ -122,7 +123,7 @@ export function buildOuterCircleStyle(
     height: sizeConfig.outerSize,
     minWidth: sizeConfig.outerSize,
     minHeight: sizeConfig.outerSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: colors.outerBg,
     border: `${sizeConfig.borderWidth}px solid ${colors.outerBorder}`,
     boxSizing: 'border-box',
@@ -157,7 +158,7 @@ export function buildInnerDotStyle(
     display: 'block',
     width: sizeConfig.innerSize,
     height: sizeConfig.innerSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: colors.innerBg,
     transform: selected ? 'scale(1)' : 'scale(0)',
     opacity: selected ? 1 : 0,
@@ -184,7 +185,7 @@ export function getRadioSkeletonStyle(
     display: 'inline-block',
     width: sizeConfig.outerSize,
     height: sizeConfig.outerSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

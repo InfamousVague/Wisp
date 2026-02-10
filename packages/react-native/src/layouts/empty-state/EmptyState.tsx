@@ -3,6 +3,7 @@ import { View, Text as RNText } from 'react-native';
 import type { EmptyStateSize } from '@wisp-ui/core/types/EmptyState.types';
 import { emptyStateSizeMap } from '@wisp-ui/core/types/EmptyState.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface EmptyStateProps {
   /** Icon element displayed above the title. */
@@ -34,20 +35,20 @@ export const EmptyState = forwardRef<View, EmptyStateProps>(function EmptyState(
           justifyContent: 'center',
           minHeight: sizeConfig.minHeight,
           gap: sizeConfig.gap,
-          padding: 24,
+          padding: defaultSpacing.xl,
         },
         userStyle,
       ]}
     >
       {icon && (
-        <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 4 }}>
+        <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: defaultSpacing.xs }}>
           {icon}
         </View>
       )}
       <RNText
         style={{
           fontSize: sizeConfig.titleFontSize,
-          fontWeight: '600',
+          fontWeight: defaultTypography.weights.semibold,
           color: themeColors.text.primary,
           textAlign: 'center',
         }}
@@ -58,7 +59,7 @@ export const EmptyState = forwardRef<View, EmptyStateProps>(function EmptyState(
         <RNText
           style={{
             fontSize: sizeConfig.descriptionFontSize,
-            fontWeight: '400',
+            fontWeight: defaultTypography.weights.regular,
             color: themeColors.text.secondary,
             textAlign: 'center',
             maxWidth: 320,
@@ -67,7 +68,7 @@ export const EmptyState = forwardRef<View, EmptyStateProps>(function EmptyState(
           {description}
         </RNText>
       )}
-      {action && <View style={{ marginTop: 8 }}>{action}</View>}
+      {action && <View style={{ marginTop: defaultSpacing.sm }}>{action}</View>}
     </View>
   );
 });

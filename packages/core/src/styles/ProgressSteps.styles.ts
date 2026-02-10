@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ProgressStepsSizeConfig, ProgressStepsOrientation } from '../types/ProgressSteps.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -86,7 +87,7 @@ export function buildStepDotStyle(
   return {
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: bg,
     border: `2px solid ${borderColor}`,
     display: 'flex',
@@ -95,7 +96,7 @@ export function buildStepDotStyle(
     flexShrink: 0,
     color: textColor,
     fontSize: sizeConfig.labelFontSize,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     cursor: clickable ? 'pointer' : 'default',
     boxSizing: 'border-box',
     transition: 'background-color 200ms ease, border-color 200ms ease',
@@ -163,10 +164,10 @@ export function buildStepDescriptionStyle(
 ): CSSStyleObject {
   return {
     fontSize: sizeConfig.descriptionFontSize,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.4,
     color: themeColors.text.muted,
     margin: 0,
-    marginTop: 2,
+    marginTop: defaultSpacing['2xs'],
   };
 }

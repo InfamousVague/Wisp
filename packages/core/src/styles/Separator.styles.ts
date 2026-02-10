@@ -3,6 +3,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { SeparatorOrientation, SeparatorVariant, SeparatorSpacing } from '../types/Separator.types';
 import { separatorSpacingMap } from '../types/Separator.types';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 /**
  * Resolves the separator line color from a variant name and the active theme.
@@ -113,12 +114,12 @@ export function buildLineStyle(color: string, thicknessPx: number = 1): CSSStyle
  */
 export function buildLabelStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
-    paddingLeft: 12,
-    paddingRight: 12,
+    paddingLeft: defaultSpacing.md,
+    paddingRight: defaultSpacing.md,
     fontSize: 12,
     lineHeight: 1.33,
     fontFamily: fontFamilyStacks.sans,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: themeColors.text.muted,
     whiteSpace: 'nowrap',
     userSelect: 'none',

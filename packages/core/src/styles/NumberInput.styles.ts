@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { InputSizeConfig } from '../types/Input.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size config for the circular stepper buttons
@@ -36,7 +37,7 @@ export function buildWrapperStyle(fullWidth: boolean): CSSStyleObject {
   return {
     display: fullWidth ? 'flex' : 'inline-flex',
     flexDirection: 'column',
-    gap: 6,
+    gap: defaultSpacing.sm,
     width: fullWidth ? '100%' : undefined,
   };
 }
@@ -129,7 +130,7 @@ export function buildInputStyle(
     // Typography
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize + 1,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: sizeConfig.lineHeight,
     textAlign: 'center',
 
@@ -181,7 +182,7 @@ export function buildButtonStyle(
     justifyContent: 'center',
     width: buttonConfig.buttonSize,
     height: buttonConfig.buttonSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     flexShrink: 0,
 
     // Colors
@@ -217,7 +218,7 @@ export function buildLabelStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     color: disabled ? themeColors.text.muted : themeColors.text.primary,
     cursor: 'default',
     userSelect: 'none',
@@ -245,7 +246,7 @@ export function buildHintStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.hintFontSize,
     lineHeight: 1.4,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     color: error ? themeColors.status.danger : themeColors.text.muted,
     margin: 0,
   };

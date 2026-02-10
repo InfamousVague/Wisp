@@ -1,5 +1,6 @@
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Tag sizes — subset of ComponentSize
@@ -48,9 +49,9 @@ export interface TagSizeConfig {
  * Pre-defined for `sm`, `md`, and `lg`.
  */
 export const tagSizeMap: Record<TagSize, TagSizeConfig> = {
-  sm: { height: 24, paddingX: 8, fontSize: 12, lineHeight: 1.33, borderRadius: 4, gap: 4, closeSize: 16, closeIconSize: 10 },
-  md: { height: 28, paddingX: 10, fontSize: 13, lineHeight: 1.38, borderRadius: 5, gap: 5, closeSize: 18, closeIconSize: 12 },
-  lg: { height: 32, paddingX: 12, fontSize: 14, lineHeight: 1.43, borderRadius: 6, gap: 6, closeSize: 20, closeIconSize: 14 },
+  sm: { height: 24, paddingX: defaultSpacing.sm, fontSize: 12, lineHeight: 1.33, borderRadius: defaultRadii.sm, gap: defaultSpacing.xs, closeSize: 16, closeIconSize: 10 },
+  md: { height: 28, paddingX: defaultSpacing.md, fontSize: 13, lineHeight: 1.38, borderRadius: defaultRadii.sm, gap: defaultSpacing.sm, closeSize: 18, closeIconSize: 12 },
+  lg: { height: 32, paddingX: defaultSpacing.md, fontSize: 14, lineHeight: 1.43, borderRadius: defaultRadii.md, gap: defaultSpacing.sm, closeSize: 20, closeIconSize: 14 },
 };
 
 // ---------------------------------------------------------------------------

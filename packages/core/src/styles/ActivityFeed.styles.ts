@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ActivityFeedSizeConfig } from '../types/ActivityFeed.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -31,7 +32,7 @@ export function buildFeedItemStyle(
     alignItems: 'flex-start',
     gap: sizeConfig.gap,
     position: 'relative',
-    padding: '12px 0',
+    padding: `${defaultSpacing.md}px 0`,
   };
 }
 
@@ -47,7 +48,7 @@ export function buildFeedAvatarStyle(
   return {
     width: sizeConfig.avatarSize,
     height: sizeConfig.avatarSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: iconColor || themeColors.accent.highlight,
     display: 'flex',
     alignItems: 'center',
@@ -56,7 +57,7 @@ export function buildFeedAvatarStyle(
     overflow: 'hidden',
     color: themeColors.text.secondary,
     fontSize: sizeConfig.secondaryFontSize,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     position: 'relative',
     zIndex: 1,
   };
@@ -105,6 +106,6 @@ export function buildFeedTimestampStyle(
     lineHeight: 1.4,
     color: themeColors.text.muted,
     margin: 0,
-    marginTop: 2,
+    marginTop: defaultSpacing['2xs'],
   };
 }

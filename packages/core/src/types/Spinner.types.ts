@@ -1,5 +1,6 @@
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
+import { defaultSpacing } from '../theme/create-theme';
 
 /**
  * Tuple of valid spinner size literals, re-exported from the shared
@@ -41,11 +42,11 @@ export interface SpinnerSizeConfig {
  * Provides pre-defined dimension tokens for all five spinner sizes.
  */
 export const spinnerSizeMap: Record<ComponentSize, SpinnerSizeConfig> = {
-  xs: { size: 16, strokeWidth: 2, labelFontSize: 11, gap: 6 },
-  sm: { size: 20, strokeWidth: 2.5, labelFontSize: 12, gap: 8 },
-  md: { size: 28, strokeWidth: 3, labelFontSize: 13, gap: 8 },
-  lg: { size: 36, strokeWidth: 3, labelFontSize: 14, gap: 10 },
-  xl: { size: 48, strokeWidth: 4, labelFontSize: 15, gap: 12 },
+  xs: { size: 16, strokeWidth: 2, labelFontSize: 11, gap: defaultSpacing.sm },
+  sm: { size: 20, strokeWidth: 2.5, labelFontSize: 12, gap: defaultSpacing.sm },
+  md: { size: 28, strokeWidth: 3, labelFontSize: 13, gap: defaultSpacing.sm },
+  lg: { size: 36, strokeWidth: 3, labelFontSize: 14, gap: defaultSpacing.md },
+  xl: { size: 48, strokeWidth: 4, labelFontSize: 15, gap: defaultSpacing.md },
 };
 
 // ---------------------------------------------------------------------------

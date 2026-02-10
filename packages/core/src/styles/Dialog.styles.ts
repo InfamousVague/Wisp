@@ -10,6 +10,7 @@ import type { DialogSize } from '../types/Dialog.types';
 import { dialogSizeMap } from '../types/Dialog.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Overlay
@@ -33,7 +34,7 @@ export function buildOverlayStyle(themeColors: ThemeColors): CSSStyleObject {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: themeColors.background.overlay,
-    padding: 24,
+    padding: defaultSpacing.xl,
   };
 }
 
@@ -69,7 +70,7 @@ export function buildPanelStyle(
       ? themeColors.background.canvas
       : themeColors.background.raised,
     border: '1px solid ' + themeColors.accent.dividerRaised,
-    borderRadius: 16,
+    borderRadius: defaultRadii.xl,
     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
     outline: 'none',
     overflow: 'hidden',
@@ -91,8 +92,8 @@ export function buildHeaderStyle(): CSSStyleObject {
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
-    padding: '24px 24px 16px 24px',
-    gap: 12,
+    padding: `${defaultSpacing.xl}px ${defaultSpacing.xl}px ${defaultSpacing.lg}px ${defaultSpacing.xl}px`,
+    gap: defaultSpacing.md,
     flexShrink: 0,
   };
 }
@@ -108,7 +109,7 @@ export function buildTitleStyle(themeColors: ThemeColors): CSSStyleObject {
     margin: 0,
     fontFamily: fontFamilyStacks.sans,
     fontSize: 18,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: '28px',
     color: themeColors.text.onRaised,
   };
@@ -125,7 +126,7 @@ export function buildDescriptionStyle(themeColors: ThemeColors): CSSStyleObject 
     margin: '4px 0 0 0',
     fontFamily: fontFamilyStacks.sans,
     fontSize: 14,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: '20px',
     color: themeColors.text.onRaisedSecondary,
   };
@@ -151,12 +152,12 @@ export function buildCloseButtonStyle(themeColors: ThemeColors): CSSStyleObject 
     padding: 0,
     margin: 0,
     border: 'none',
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     backgroundColor: 'transparent',
     color: themeColors.text.onRaisedSecondary,
     cursor: 'pointer',
     flexShrink: 0,
-    marginLeft: 8,
+    marginLeft: defaultSpacing.sm,
     transition: 'background-color 150ms ease, color 150ms ease',
   };
 }
@@ -185,7 +186,7 @@ export function buildCloseButtonHoverStyle(themeColors: ThemeColors): CSSStyleOb
  */
 export function buildBodyStyle(): CSSStyleObject {
   return {
-    padding: 24,
+    padding: defaultSpacing.xl,
     overflowY: 'auto',
     flex: 1,
     fontFamily: fontFamilyStacks.sans,
@@ -208,8 +209,8 @@ export function buildFooterStyle(themeColors: ThemeColors): CSSStyleObject {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    gap: 8,
-    padding: '16px 24px',
+    gap: defaultSpacing.sm,
+    padding: `${defaultSpacing.lg}px ${defaultSpacing.xl}px`,
     borderTop: '1px solid ' + themeColors.accent.dividerRaised,
     flexShrink: 0,
   };

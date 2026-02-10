@@ -13,6 +13,7 @@ import type { BadgeSize, BadgeVariant, BadgeShape } from '@wisp-ui/core/types/Ba
 import { badgeSizeMap } from '@wisp-ui/core/types/Badge.types';
 import { resolveBadgeColors } from '@wisp-ui/core/styles/Badge.styles';
 import { useThemeColors } from '../../providers';
+import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -71,7 +72,7 @@ export const Badge = forwardRef<View, BadgeProps>(function Badge(
     fontSize: sizeConfig.fontSize,
     lineHeight: sizeConfig.fontSize * sizeConfig.lineHeight,
     color: colors.text,
-    fontWeight: '500',
+    fontWeight: defaultTypography.weights.medium,
   }), [sizeConfig, colors]);
 
   const dotStyle = useMemo<ViewStyle | undefined>(() => {

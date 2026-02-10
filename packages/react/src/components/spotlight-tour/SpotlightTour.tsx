@@ -36,6 +36,7 @@ import {
 import { useThemeColors } from '../../providers';
 import { Button } from '../../primitives/button';
 import { Text } from '../../primitives/text';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Keyframe injection (singleton)
@@ -417,7 +418,7 @@ export function SpotlightTour({
           ) : (
             <span />
           )}
-          <div style={{ display: 'flex', gap: 6 }}>
+          <div style={{ display: 'flex', gap: defaultSpacing.sm }}>
             {!isFirstStep && (
               <Button variant="tertiary" size="sm" style={prevBtnStyle as React.CSSProperties} onClick={prev}>
                 {prevLabel}

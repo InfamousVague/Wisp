@@ -11,6 +11,7 @@ import type { ThemeColors } from '../theme/types';
 import type { TableSize, TableCellAlignment, TableVariant } from '../types/Table.types';
 import { tableSizePaddingMap, tableSizeFontMap } from '../types/Table.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Table bordered wrapper (<div>)
@@ -28,7 +29,7 @@ export function buildTableBorderedWrapperStyle(
 ): CSSStyleObject {
   return {
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     overflow: 'hidden',
   };
 }
@@ -123,7 +124,7 @@ export function buildTableFooterStyle(
   return {
     borderTop: '1px solid ' + themeColors.border.subtle,
     backgroundColor: themeColors.background.surface,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     ...userStyle,
   };
 }
@@ -210,7 +211,7 @@ export function buildTableHeadStyle(opts: {
     textAlign: opts.align,
     fontSize: font.fontSize,
     lineHeight: font.lineHeight,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     color: opts.themeColors.text.secondary,
     backgroundColor: opts.themeColors.background.surface,
     whiteSpace: 'nowrap',
@@ -247,7 +248,7 @@ export function buildTableCellStyle(opts: {
     textAlign: opts.align,
     fontSize: font.fontSize,
     lineHeight: font.lineHeight,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     color: opts.themeColors.text.primary,
     ...opts.userStyle,
   };

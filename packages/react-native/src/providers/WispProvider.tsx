@@ -31,6 +31,9 @@ export interface WispThemeContextValue {
   colors: ThemeColors;
   toggleMode: () => void;
   setMode: (mode: ThemeMode) => void;
+  overrides: Omit<ThemeOverrides, 'mode'>;
+  setOverrides: (overrides: Omit<ThemeOverrides, 'mode'>) => void;
+  resetOverrides: () => void;
 }
 
 // ---------------------------------------------------------------------------
@@ -61,14 +64,21 @@ export function WispProvider({
   children,
 }: WispProviderProps): React.JSX.Element {
   const [mode, setModeState] = useState<ThemeMode>(initialMode);
+  const [overrideState, setOverrideState] = useState<Omit<ThemeOverrides, 'mode'>>(
+    overrides ?? {},
+  );
 
   useEffect(() => {
     setModeState(initialMode);
   }, [initialMode]);
 
+  useEffect(() => {
+    setOverrideState(overrides ?? {});
+  }, [overrides]);
+
   const theme = useMemo<WispTheme>(
-    () => createTheme({ ...overrides, mode }),
-    [mode, overrides],
+    () => createTheme({ ...overrideState, mode }),
+    [mode, overrideState],
   );
 
   const toggleMode = useCallback(() => {
@@ -79,9 +89,29 @@ export function WispProvider({
     setModeState(next);
   }, []);
 
+  const setOverridesCallback = useCallback(
+    (next: Omit<ThemeOverrides, 'mode'>) => {
+      setOverrideState(next);
+    },
+    [],
+  );
+
+  const resetOverrides = useCallback(() => {
+    setOverrideState(overrides ?? {});
+  }, [overrides]);
+
   const contextValue = useMemo<WispThemeContextValue>(
-    () => ({ theme, mode, colors: theme.colors, toggleMode, setMode }),
-    [theme, mode, toggleMode, setMode],
+    () => ({
+      theme,
+      mode,
+      colors: theme.colors,
+      toggleMode,
+      setMode,
+      overrides: overrideState,
+      setOverrides: setOverridesCallback,
+      resetOverrides,
+    }),
+    [theme, mode, toggleMode, setMode, overrideState, setOverridesCallback, resetOverrides],
   );
 
   return (

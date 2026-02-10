@@ -1,6 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Divider container
@@ -15,10 +16,10 @@ export function buildNewMessageDividerStyle(): CSSStyleObject {
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: 12,
+    gap: defaultSpacing.md,
     width: '100%',
     boxSizing: 'border-box',
-    padding: '8px 0',
+    padding: `${defaultSpacing.sm}px 0`,
   };
 }
 
@@ -52,7 +53,7 @@ export function buildLabelStyle(color: string): CSSStyleObject {
   return {
     fontSize: 12,
     lineHeight: '16px',
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     fontFamily: fontFamilyStacks.sans,
     color,
     textTransform: 'uppercase',

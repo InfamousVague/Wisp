@@ -4,6 +4,7 @@
  */
 
 import type React from 'react';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Sizes
@@ -37,9 +38,9 @@ export interface CopyButtonSizeConfig {
  * resolve sizing tokens.
  */
 export const copyButtonSizeMap: Record<CopyButtonSize, CopyButtonSizeConfig> = {
-  sm: { height: 28, iconSize: 14, fontSize: 12, paddingX: 10, gap: 4 },
-  md: { height: 32, iconSize: 16, fontSize: 13, paddingX: 12, gap: 6 },
-  lg: { height: 36, iconSize: 18, fontSize: 14, paddingX: 14, gap: 6 },
+  sm: { height: 28, iconSize: 14, fontSize: 12, paddingX: defaultSpacing.md, gap: defaultSpacing.xs },
+  md: { height: 32, iconSize: 16, fontSize: 13, paddingX: defaultSpacing.md, gap: defaultSpacing.sm },
+  lg: { height: 36, iconSize: 18, fontSize: 14, paddingX: defaultSpacing.lg, gap: defaultSpacing.sm },
 };
 
 // ---------------------------------------------------------------------------

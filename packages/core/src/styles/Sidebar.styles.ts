@@ -3,6 +3,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { SidebarPosition, SidebarWidth } from '../types/Sidebar.types';
 import { sidebarWidthMap } from '../types/Sidebar.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Sidebar container
@@ -32,8 +33,8 @@ export function buildSidebarStyle(
     height: '100%',
     width: resolvedWidth,
     minWidth: resolvedWidth,
-    paddingTop: 8,
-    paddingBottom: 8,
+    paddingTop: defaultSpacing.sm,
+    paddingBottom: defaultSpacing.sm,
     backgroundColor: themeColors.background.surface,
     [borderSide]: `1px solid ${themeColors.border.subtle}`,
     color: themeColors.text.onRaised,
@@ -86,9 +87,9 @@ export function buildSectionTitleStyle(
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '12px 16px 4px',
+    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px ${defaultSpacing.xs}px`,
     fontSize: 11,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1.45,
     letterSpacing: 0.5,
     textTransform: 'uppercase',
@@ -185,11 +186,11 @@ export function buildItemStyle(
   const base: CSSStyleObject = {
     display: 'flex',
     alignItems: 'center',
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     backgroundColor,
     color,
     fontSize: 14,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1.43,
     fontFamily: fontFamilyStacks.sans,
     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -225,9 +226,9 @@ export function buildItemStyle(
   return {
     ...base,
     justifyContent: 'flex-start',
-    gap: 12,
-    padding: '8px 16px',
-    margin: '2px 8px',
+    gap: defaultSpacing.md,
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.lg}px`,
+    margin: `${defaultSpacing['2xs']}px ${defaultSpacing.sm}px`,
     ...userStyle,
   };
 }

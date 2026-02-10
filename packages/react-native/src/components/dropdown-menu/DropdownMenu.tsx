@@ -2,6 +2,7 @@ import React, { forwardRef, useMemo, useState, useCallback, createContext, useCo
 import { View, Pressable, Modal, ScrollView, StyleSheet, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -127,8 +128,8 @@ export const DropdownMenuContent = forwardRef<View, DropdownMenuContentProps>(fu
   const contentStyle = useMemo<ViewStyle>(
     () => ({
       backgroundColor: themeColors.background.raised,
-      borderRadius: 12,
-      paddingVertical: 6,
+      borderRadius: defaultRadii.lg,
+      paddingVertical: defaultSpacing.sm,
       minWidth: 180,
       maxWidth: 280,
       shadowColor: '#000',
@@ -187,9 +188,9 @@ export const DropdownMenuItem = forwardRef<View, DropdownMenuItemProps>(function
   const itemStyle: ViewStyle = {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 14,
+    gap: defaultSpacing.md,
+    paddingVertical: defaultSpacing.md,
+    paddingHorizontal: defaultSpacing.lg,
     opacity: disabled ? 0.4 : 1,
   };
 
@@ -224,7 +225,7 @@ export const DropdownMenuSeparator = forwardRef<View, DropdownMenuSeparatorProps
       <View
         ref={ref}
         style={[
-          { height: 1, backgroundColor: themeColors.border.subtle, marginVertical: 4, marginHorizontal: 6 },
+          { height: 1, backgroundColor: themeColors.border.subtle, marginVertical: defaultSpacing.xs, marginHorizontal: defaultSpacing.sm },
           userStyle,
         ]}
       />

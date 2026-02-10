@@ -4,6 +4,7 @@ import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
 import { Calendar } from '../calendar';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 type DatePickerSize = 'sm' | 'md' | 'lg';
 
@@ -71,15 +72,15 @@ export const DatePicker = forwardRef<View, DatePickerProps>(function DatePicker(
 
   const triggerStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row', alignItems: 'center', height: cfg.height, paddingHorizontal: cfg.paddingX,
-    borderRadius: 8, borderWidth: 1, borderColor: hasError ? themeColors.status.danger : themeColors.border.subtle,
-    backgroundColor: themeColors.background.surface, gap: 8, opacity: disabled ? 0.4 : 1,
+    borderRadius: defaultRadii.md, borderWidth: 1, borderColor: hasError ? themeColors.status.danger : themeColors.border.subtle,
+    backgroundColor: themeColors.background.surface, gap: defaultSpacing.sm, opacity: disabled ? 0.4 : 1,
   }), [cfg, hasError, themeColors, disabled]);
 
   const displayText = selectedDate ? formatDate(selectedDate, format) : undefined;
 
   return (
-    <View ref={ref} style={[{ gap: 6 }, userStyle]}>
-      {label && <RNText style={{ fontSize: 14, fontWeight: '500', color: themeColors.text.primary } as TextStyle}>{label}</RNText>}
+    <View ref={ref} style={[{ gap: defaultSpacing.sm }, userStyle]}>
+      {label && <RNText style={{ fontSize: 14, fontWeight: defaultTypography.weights.medium, color: themeColors.text.primary } as TextStyle}>{label}</RNText>}
       <Pressable onPress={() => !disabled && setIsOpen(true)} disabled={disabled} accessibilityRole="button" style={triggerStyle}>
         <Svg width={cfg.iconSize} height={cfg.iconSize} viewBox="0 0 24 24" fill="none">
           <Path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke={themeColors.text.secondary} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
@@ -100,7 +101,7 @@ export const DatePicker = forwardRef<View, DatePickerProps>(function DatePicker(
         <Pressable style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.5)' }]} onPress={() => setIsOpen(false)}>
           <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Pressable onPress={(e) => e.stopPropagation()}>
-              <View style={{ backgroundColor: themeColors.background.raised, borderRadius: 16, overflow: 'hidden', shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.2, shadowRadius: 24, elevation: 8 }}>
+              <View style={{ backgroundColor: themeColors.background.raised, borderRadius: defaultRadii.xl, overflow: 'hidden', shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.2, shadowRadius: 24, elevation: 8 }}>
                 <Calendar value={selectedDate} onChange={handleSelect} size={size} minDate={minDate} maxDate={maxDate} disabledDates={disabledDates} />
               </View>
             </Pressable>

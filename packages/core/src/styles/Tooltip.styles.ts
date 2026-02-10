@@ -8,6 +8,7 @@ import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { TooltipPlacement } from '../types/Tooltip.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Arrow size constant
@@ -77,14 +78,14 @@ export function buildTooltipStyle(
     position: 'absolute',
     zIndex: 9999,
     maxWidth,
-    padding: '6px 10px',
-    borderRadius: 6,
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
+    borderRadius: defaultRadii.md,
     backgroundColor: colors.bg,
     color: colors.text,
     fontFamily: fontFamilyStacks.sans,
     fontSize: 13,
     lineHeight: 1.4,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     whiteSpace: 'pre-wrap',
     wordWrap: 'break-word',
     pointerEvents: 'none',

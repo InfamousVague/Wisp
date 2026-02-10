@@ -4,6 +4,7 @@ import type { TagSize } from '@wisp-ui/core/types/Tag.types';
 import { tagSizeMap } from '@wisp-ui/core/types/Tag.types';
 import { resolveTagColors } from '@wisp-ui/core/styles/Tag.styles';
 import { useThemeColors } from '../../providers';
+import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface TagProps {
   children: React.ReactNode;
@@ -72,7 +73,7 @@ export const Tag = forwardRef<View, TagProps>(function Tag(
         style={{
           fontSize: sizeConfig.fontSize,
           lineHeight: sizeConfig.fontSize * sizeConfig.lineHeight,
-          fontWeight: '500',
+          fontWeight: defaultTypography.weights.medium,
           color: colors.text,
         }}
       >

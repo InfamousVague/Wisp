@@ -8,6 +8,7 @@ import type { ThemeColors } from '../theme/types';
 import type { AchievementStatus, AchievementRarity } from '../types/AchievementCard.types';
 import { achievementRarityMap } from '../types/AchievementCard.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Colour resolution
@@ -65,11 +66,11 @@ export function buildAchievementCardStyle(
   return {
     display: 'flex',
     alignItems: 'flex-start',
-    gap: 12,
-    padding: '14px 16px',
+    gap: defaultSpacing.md,
+    padding: `${defaultSpacing.lg}px ${defaultSpacing.lg}px`,
     backgroundColor: colors.bg,
     border: `1px solid ${colors.border}`,
-    borderRadius: 10,
+    borderRadius: defaultRadii.lg,
     fontFamily: fontFamilyStacks.sans,
     cursor: clickable ? 'pointer' : 'default',
     transition: 'opacity 200ms ease, filter 200ms ease',
@@ -92,7 +93,7 @@ export function buildAchievementIconStyle(
     flexShrink: 0,
     width: 40,
     height: 40,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     backgroundColor: colors.iconBg,
     color: colors.iconColor,
   };
@@ -106,7 +107,7 @@ export function buildAchievementContentStyle(): CSSStyleObject {
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: 4,
+    gap: defaultSpacing.xs,
     flex: 1,
     minWidth: 0,
   };
@@ -121,7 +122,7 @@ export function buildAchievementTitleStyle(
 ): CSSStyleObject {
   return {
     fontSize: 14,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1.43,
     color: textColor,
     margin: 0,
@@ -137,7 +138,7 @@ export function buildAchievementDescriptionStyle(
 ): CSSStyleObject {
   return {
     fontSize: 13,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.46,
     color: descriptionColor,
     margin: 0,
@@ -154,9 +155,9 @@ export function buildAchievementProgressTrackStyle(
   return {
     width: '100%',
     height: 4,
-    borderRadius: 2,
+    borderRadius: defaultRadii.sm,
     backgroundColor: themeColors.border.subtle,
-    marginTop: 4,
+    marginTop: defaultSpacing.xs,
     overflow: 'hidden',
   };
 }
@@ -168,7 +169,7 @@ export function buildAchievementProgressBarStyle(
   return {
     width: `${Math.min(Math.max(progress, 0), 100)}%`,
     height: '100%',
-    borderRadius: 2,
+    borderRadius: defaultRadii.sm,
     backgroundColor: rarityColor,
     transition: 'width 500ms ease',
   };
@@ -184,9 +185,9 @@ export function buildAchievementRarityStyle(
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: 4,
+    gap: defaultSpacing.xs,
     fontSize: 11,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     color: rarityColor,
     letterSpacing: '0.02em',
     textTransform: 'uppercase',
@@ -202,7 +203,7 @@ export function buildAchievementDateStyle(
 ): CSSStyleObject {
   return {
     fontSize: 11,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     color: themeColors.text.muted,
     margin: 0,
   };

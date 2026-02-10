@@ -11,6 +11,7 @@ import { View, Pressable, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { NavbarVariant } from '@wisp-ui/core/types/Navbar.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -46,7 +47,7 @@ export const Navbar = forwardRef<View, NavbarProps>(
         flexDirection: 'row',
         alignItems: 'center',
         height,
-        paddingHorizontal: 24,
+        paddingHorizontal: defaultSpacing.xl,
         borderBottomWidth: 1,
         borderBottomColor: themeColors.border.subtle,
       };
@@ -97,7 +98,7 @@ export const NavbarBrand = forwardRef<View, NavbarBrandProps>(
     const brandStyle = useMemo<ViewStyle>(() => ({
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 8,
+      gap: defaultSpacing.sm,
       flexShrink: 0,
     }), []);
 
@@ -128,7 +129,7 @@ export const NavbarContent = forwardRef<View, NavbarContentProps>(
     const contentStyle = useMemo<ViewStyle>(() => ({
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 4,
+      gap: defaultSpacing.xs,
       flex: 1,
       justifyContent: justifyMap[align],
     }), [align]);
@@ -164,9 +165,9 @@ export const NavbarItem = forwardRef<View, NavbarItemProps>(
     const itemStyle = useMemo<ViewStyle>(() => ({
       flexDirection: 'row',
       alignItems: 'center',
-      paddingVertical: 6,
-      paddingHorizontal: 12,
-      borderRadius: 6,
+      paddingVertical: defaultSpacing.sm,
+      paddingHorizontal: defaultSpacing.md,
+      borderRadius: defaultRadii.md,
     }), []);
 
     const textStyle = useMemo<TextStyle>(() => {

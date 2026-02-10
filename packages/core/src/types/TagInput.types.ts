@@ -1,5 +1,6 @@
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size tokens
@@ -72,12 +73,12 @@ export interface TagInputSizeConfig {
 export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
   xs: {
     minHeight: 28,
-    paddingX: 6,
-    paddingY: 4,
+    paddingX: defaultSpacing.sm,
+    paddingY: defaultSpacing.xs,
     fontSize: 12,
     lineHeight: 1.33,
-    borderRadius: 6,
-    gap: 4,
+    borderRadius: defaultRadii.md,
+    gap: defaultSpacing.xs,
     tagHeight: 20,
     tagFontSize: 11,
     tagBorderRadius: 4,
@@ -89,12 +90,12 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
   },
   sm: {
     minHeight: 32,
-    paddingX: 8,
-    paddingY: 4,
+    paddingX: defaultSpacing.sm,
+    paddingY: defaultSpacing.xs,
     fontSize: 13,
     lineHeight: 1.38,
-    borderRadius: 6,
-    gap: 4,
+    borderRadius: defaultRadii.md,
+    gap: defaultSpacing.xs,
     tagHeight: 22,
     tagFontSize: 12,
     tagBorderRadius: 4,
@@ -106,12 +107,12 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
   },
   md: {
     minHeight: 38,
-    paddingX: 10,
-    paddingY: 6,
+    paddingX: defaultSpacing.md,
+    paddingY: defaultSpacing.sm,
     fontSize: 14,
     lineHeight: 1.43,
-    borderRadius: 8,
-    gap: 6,
+    borderRadius: defaultRadii.md,
+    gap: defaultSpacing.sm,
     tagHeight: 26,
     tagFontSize: 13,
     tagBorderRadius: 6,
@@ -123,12 +124,12 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
   },
   lg: {
     minHeight: 44,
-    paddingX: 12,
-    paddingY: 6,
+    paddingX: defaultSpacing.md,
+    paddingY: defaultSpacing.sm,
     fontSize: 15,
     lineHeight: 1.47,
-    borderRadius: 8,
-    gap: 6,
+    borderRadius: defaultRadii.md,
+    gap: defaultSpacing.sm,
     tagHeight: 28,
     tagFontSize: 14,
     tagBorderRadius: 6,
@@ -140,12 +141,12 @@ export const tagInputSizeMap: Record<ComponentSize, TagInputSizeConfig> = {
   },
   xl: {
     minHeight: 52,
-    paddingX: 14,
-    paddingY: 8,
+    paddingX: defaultSpacing.lg,
+    paddingY: defaultSpacing.sm,
     fontSize: 16,
     lineHeight: 1.5,
-    borderRadius: 10,
-    gap: 8,
+    borderRadius: defaultRadii.lg,
+    gap: defaultSpacing.sm,
     tagHeight: 32,
     tagFontSize: 15,
     tagBorderRadius: 8,

@@ -22,6 +22,7 @@ import { checkboxSizeMap } from '@wisp-ui/core/types/Checkbox.types';
 import { resolveCheckboxColors } from '@wisp-ui/core/styles/Checkbox.styles';
 import { useThemeColors } from '../../providers';
 import { Text } from '../text';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -243,7 +244,7 @@ export const Checkbox = forwardRef<View, CheckboxProps>(function Checkbox(
   const hasText = Boolean(label || description);
 
   const textContainer = hasText ? (
-    <View style={{ flexDirection: 'column', gap: 2, flexShrink: 1 }}>
+    <View style={{ flexDirection: 'column', gap: defaultSpacing['2xs'], flexShrink: 1 }}>
       {label && (
         <Text style={labelStyle}>{label}</Text>
       )}

@@ -7,6 +7,7 @@ import type { ThemeColors } from '../theme/types';
 import type { ToggleSizeConfig } from '../types/Toggle.types';
 import { toggleSizeMap, toggleSlimSizeMap } from '../types/Toggle.types';
 import { relativeLuminance } from '../utils/contrast';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Helper: detect hex color strings
@@ -245,7 +246,7 @@ export function buildHandleStyle(opts: {
     top: topOffset,
     width: opts.sizeConfig.handleSize,
     height: opts.sizeConfig.handleSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: opts.colors.handleBg,
     boxSizing: 'border-box',
     boxShadow: '0 1px 2px rgba(0,0,0,0.15)',
@@ -307,7 +308,7 @@ export function buildTrackContentStyle(opts: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 2,
+    gap: defaultSpacing['2xs'],
     whiteSpace: 'nowrap',
     color: opts.colors.contentColor,
     fontSize: opts.sizeConfig.trackFontSize,

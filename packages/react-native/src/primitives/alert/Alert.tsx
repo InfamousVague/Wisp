@@ -3,6 +3,7 @@ import { View, Text as RNText } from 'react-native';
 import type { AlertVariant } from '@wisp-ui/core/types/Alert.types';
 import { useThemeColors } from '../../providers';
 import type { ThemeColors } from '@wisp-ui/core/theme/types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface AlertProps {
   variant?: AlertVariant;
@@ -56,10 +57,10 @@ export const Alert = forwardRef<View, AlertProps>(function Alert(
         {
           flexDirection: 'row',
           alignItems: 'center',
-          gap: 10,
-          padding: 12,
-          paddingHorizontal: 16,
-          borderRadius: 10,
+          gap: defaultSpacing.md,
+          padding: defaultSpacing.md,
+          paddingHorizontal: defaultSpacing.lg,
+          borderRadius: defaultRadii.lg,
           borderWidth: 1,
           borderColor: colors.border,
           backgroundColor: colors.bg,
@@ -73,13 +74,13 @@ export const Alert = forwardRef<View, AlertProps>(function Alert(
         </View>
       )}
 
-      <View style={{ flex: 1, gap: 2 }}>
+      <View style={{ flex: 1, gap: defaultSpacing['2xs'] }}>
         {title && (
           <RNText
             style={{
               fontSize: 14,
               lineHeight: 20,
-              fontWeight: '600',
+              fontWeight: defaultTypography.weights.semibold,
               color: isRaised ? themeColors.text.onRaised : themeColors.text.primary,
             }}
           >
@@ -91,7 +92,7 @@ export const Alert = forwardRef<View, AlertProps>(function Alert(
             style={{
               fontSize: 14,
               lineHeight: 20,
-              fontWeight: '400',
+              fontWeight: defaultTypography.weights.regular,
               color: isRaised ? themeColors.text.onRaisedSecondary : themeColors.text.secondary,
             }}
           >

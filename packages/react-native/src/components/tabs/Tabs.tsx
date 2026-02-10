@@ -2,6 +2,7 @@ import React, { forwardRef, useMemo, useState, useCallback, useRef, createContex
 import { View, Pressable, ScrollView, Animated, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle, LayoutChangeEvent } from 'react-native';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -173,7 +174,7 @@ export const TabList = forwardRef<View, TabListProps>(function TabList(
             width: indicatorW,
             height: 2,
             backgroundColor: themeColors.accent.primary,
-            borderRadius: 1,
+            borderRadius: defaultRadii.sm,
           }}
         />
       )}
@@ -208,9 +209,9 @@ export const Tab = forwardRef<View, TabProps & { _registerLayout?: (value: strin
       () => ({
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 6,
-        paddingVertical: 10,
-        paddingHorizontal: 14,
+        gap: defaultSpacing.sm,
+        paddingVertical: defaultSpacing.md,
+        paddingHorizontal: defaultSpacing.lg,
         opacity: disabled ? 0.4 : 1,
       }),
       [disabled],

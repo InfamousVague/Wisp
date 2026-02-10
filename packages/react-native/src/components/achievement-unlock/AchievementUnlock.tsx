@@ -12,6 +12,7 @@ import type { ViewStyle, TextStyle } from 'react-native';
 import type { AchievementRarity } from '@wisp-ui/core/types/AchievementCard.types';
 import { achievementRarityMap } from '@wisp-ui/core/types/AchievementCard.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -94,14 +95,14 @@ export const AchievementUnlock = forwardRef<View, AchievementUnlockProps>(
       top: 60,
       left: 16,
       right: 16,
-      padding: 16,
-      borderRadius: 12,
+      padding: defaultSpacing.lg,
+      borderRadius: defaultRadii.lg,
       borderWidth: 1,
       borderColor: rarityConfig.color + '40',
       backgroundColor: themeColors.background.surface,
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 12,
+      gap: defaultSpacing.md,
       zIndex: 9999,
       elevation: 10,
       shadowColor: '#000',
@@ -113,7 +114,7 @@ export const AchievementUnlock = forwardRef<View, AchievementUnlockProps>(
     const iconContainerStyle = useMemo<ViewStyle>(() => ({
       width: 44,
       height: 44,
-      borderRadius: 22,
+      borderRadius: defaultRadii.xl,
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: rarityConfig.color + '20',
@@ -121,19 +122,19 @@ export const AchievementUnlock = forwardRef<View, AchievementUnlockProps>(
 
     const titleStyle = useMemo<TextStyle>(() => ({
       fontSize: 14,
-      fontWeight: '600',
+      fontWeight: defaultTypography.weights.semibold,
       color: themeColors.text.primary,
     }), [themeColors]);
 
     const descStyle = useMemo<TextStyle>(() => ({
       fontSize: 12,
       color: themeColors.text.muted,
-      marginTop: 2,
+      marginTop: defaultSpacing['2xs'],
     }), [themeColors]);
 
     const unlockLabel = useMemo<TextStyle>(() => ({
       fontSize: 11,
-      fontWeight: '700',
+      fontWeight: defaultTypography.weights.bold,
       color: rarityConfig.color,
       textTransform: 'uppercase',
       letterSpacing: 0.5,
@@ -141,7 +142,7 @@ export const AchievementUnlock = forwardRef<View, AchievementUnlockProps>(
 
     const actionStyle = useMemo<TextStyle>(() => ({
       fontSize: 13,
-      fontWeight: '600',
+      fontWeight: defaultTypography.weights.semibold,
       color: themeColors.accent.primary,
     }), [themeColors]);
 

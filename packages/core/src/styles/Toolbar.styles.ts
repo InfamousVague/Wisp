@@ -1,6 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors, ThemeSpacing } from '../theme/types';
 import type { ToolbarVariant, ToolbarSizeConfig } from '../types/Toolbar.types';
+import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Toolbar (root) style
@@ -45,7 +46,7 @@ export function buildToolbarStyle(
       display: 'inline-flex',
       backgroundColor: themeColors.background.surface,
       border: `1px solid ${themeColors.border.subtle}`,
-      borderRadius: 9999,
+      borderRadius: defaultRadii.full,
       color: themeColors.text.onRaised,
     };
   }

@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { InputSizeConfig } from '../types/Input.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Resolved combobox colors
@@ -218,7 +219,7 @@ export function buildLabelStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: colors.label,
     cursor: 'default',
     userSelect: 'none',
@@ -246,7 +247,7 @@ export function buildHintStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.hintFontSize,
     lineHeight: 1.4,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     color: colors.hint,
     margin: 0,
   };
@@ -276,15 +277,15 @@ export function buildDropdownStyle(
     zIndex: 9999,
     backgroundColor: themeColors.background.raised,
     border: '1px solid ' + themeColors.border.subtle,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     boxShadow:
       '0 4px 12px ' + themeColors.background.overlay,
     maxHeight: 240,
     overflowY: 'auto',
-    padding: '4px 0',
+    padding: `${defaultSpacing.xs}px 0`,
     boxSizing: 'border-box',
     ...(variant === 'glass' ? glassStyle : undefined),
-    ...(variant === 'glass' ? { borderRadius: 8, overflow: 'hidden' } : undefined),
+    ...(variant === 'glass' ? { borderRadius: defaultRadii.md, overflow: 'hidden' } : undefined),
   };
 }
 
@@ -310,8 +311,8 @@ export function buildOptionStyle(
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: 8,
-    padding: '8px 12px',
+    gap: defaultSpacing.sm,
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
     fontFamily: fontFamilyStacks.sans,
     fontSize: 14,
     lineHeight: 1.43,
@@ -345,7 +346,7 @@ export function buildEmptyStyle(themeColors: ThemeColors): CSSStyleObject {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '16px 12px',
+    padding: `${defaultSpacing.lg}px ${defaultSpacing.md}px`,
     fontFamily: fontFamilyStacks.sans,
     fontSize: 14,
     lineHeight: 1.43,

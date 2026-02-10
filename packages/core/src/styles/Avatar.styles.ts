@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { AvatarShape, AvatarSizeConfig, AvatarStatus } from '../types/Avatar.types';
+import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Status colors
@@ -151,7 +152,7 @@ export function buildInitialsStyle(
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1,
     color: themeColors.text.inverse,
     userSelect: 'none',
@@ -187,7 +188,7 @@ export function buildStatusStyle(
     right: offset,
     width: size,
     height: size,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: resolveStatusColor(status, themeColors),
     border: border + 'px solid ' + themeColors.background.canvas,
     boxSizing: 'border-box',

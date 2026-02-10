@@ -4,6 +4,7 @@ import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
 import { Overlay } from '../../layouts/overlay';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 type DialogSize = 'sm' | 'md' | 'lg';
 
@@ -67,7 +68,7 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
       width: maxWidth,
       maxWidth,
       backgroundColor: themeColors.background.raised,
-      borderRadius: 16,
+      borderRadius: defaultRadii.xl,
       overflow: 'hidden',
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 8 },
@@ -82,9 +83,9 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
     () => ({
       flexDirection: 'row',
       alignItems: 'flex-start',
-      padding: 20,
+      padding: defaultSpacing.xl,
       paddingBottom: children ? 12 : 20,
-      gap: 12,
+      gap: defaultSpacing.md,
     }),
     [children],
   );
@@ -92,7 +93,7 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
   const titleStyle = useMemo<TextStyle>(
     () => ({
       fontSize: 16,
-      fontWeight: '600',
+      fontWeight: defaultTypography.weights.semibold,
       color: themeColors.text.onRaised,
     }),
     [themeColors],
@@ -102,7 +103,7 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
     () => ({
       fontSize: 14,
       color: themeColors.text.onRaisedSecondary,
-      marginTop: 4,
+      marginTop: defaultSpacing.xs,
     }),
     [themeColors],
   );
@@ -121,7 +122,7 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
       >
         {(title || description || icon || showCloseButton) && (
           <View style={headerStyle}>
-            {icon && <View style={{ flexShrink: 0, marginTop: 2 }}>{icon}</View>}
+            {icon && <View style={{ flexShrink: 0, marginTop: defaultSpacing['2xs'] }}>{icon}</View>}
             <View style={{ flex: 1, minWidth: 0 }}>
               {title && <RNText style={titleStyle}>{title}</RNText>}
               {description && <RNText style={descStyle}>{description}</RNText>}
@@ -136,7 +137,7 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
                   height: 28,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  borderRadius: 6,
+                  borderRadius: defaultRadii.md,
                   marginTop: -2,
                   marginRight: -4,
                 }}
@@ -150,7 +151,7 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
         )}
 
         {children && (
-          <View style={{ paddingHorizontal: 20, paddingBottom: footer ? 12 : 20 }}>
+          <View style={{ paddingHorizontal: defaultSpacing.xl, paddingBottom: footer ? 12 : 20 }}>
             {children}
           </View>
         )}
@@ -160,8 +161,8 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
             style={{
               flexDirection: 'row',
               justifyContent: 'flex-end',
-              gap: 8,
-              padding: 16,
+              gap: defaultSpacing.sm,
+              padding: defaultSpacing.lg,
               borderTopWidth: 1,
               borderTopColor: themeColors.border.subtle,
             }}

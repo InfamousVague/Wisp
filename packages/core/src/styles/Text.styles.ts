@@ -6,6 +6,7 @@ import type { TextSize } from '../tokens/shared';
 import type { FontWeightKey, FontFamilyKey, SemanticColor } from '../tokens/shared';
 import { fontWeightValues, fontFamilyStacks, resolveSemanticColor } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
+import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size -> font-size + line-height map
@@ -91,7 +92,7 @@ export function getSkeletonStyle(size: TextSize, themeColors: ThemeColors): CSSS
     height: config.skeletonHeight,
     width: '100%',
     maxWidth: 200,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

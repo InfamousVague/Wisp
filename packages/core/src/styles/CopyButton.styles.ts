@@ -7,6 +7,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { CopyButtonSizeConfig, CopyButtonVariant } from '../types/CopyButton.types';
+import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Button style
@@ -79,7 +80,7 @@ export function buildCopyButtonStyle(
     // Typography
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
 
     // Shape
@@ -119,7 +120,7 @@ export function getCopyButtonSkeletonStyle(
     display: 'inline-block',
     width: sizeConfig.height * 2.5,
     height: sizeConfig.height,
-    borderRadius: 6,
+    borderRadius: defaultRadii.md,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

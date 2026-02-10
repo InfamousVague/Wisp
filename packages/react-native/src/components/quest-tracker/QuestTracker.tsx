@@ -11,6 +11,7 @@ import type { ViewStyle, TextStyle } from 'react-native';
 import type { QuestObjective, QuestTrackerSize } from '@wisp-ui/core/types/QuestTracker.types';
 import { questTrackerSizeMap } from '@wisp-ui/core/types/QuestTracker.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -59,7 +60,7 @@ export const QuestTracker = forwardRef<View, QuestTrackerProps>(
     }, [controlledProgress, objectives]);
 
     const containerStyle = useMemo<ViewStyle>(() => ({
-      borderRadius: 12,
+      borderRadius: defaultRadii.lg,
       borderWidth: 1,
       borderColor: themeColors.border.subtle,
       backgroundColor: themeColors.background.surface,
@@ -71,28 +72,28 @@ export const QuestTracker = forwardRef<View, QuestTrackerProps>(
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      paddingHorizontal: 16,
-      paddingVertical: 14,
+      paddingHorizontal: defaultSpacing.lg,
+      paddingVertical: defaultSpacing.lg,
     }), []);
 
     const titleStyle = useMemo<TextStyle>(() => ({
       fontSize: sizeConfig.titleFontSize,
-      fontWeight: '600',
+      fontWeight: defaultTypography.weights.semibold,
       color: themeColors.text.primary,
     }), [sizeConfig, themeColors]);
 
     const progressBarBg = useMemo<ViewStyle>(() => ({
       height: 4,
-      borderRadius: 2,
+      borderRadius: defaultRadii.sm,
       backgroundColor: themeColors.border.subtle,
-      marginHorizontal: 16,
-      marginBottom: 12,
+      marginHorizontal: defaultSpacing.lg,
+      marginBottom: defaultSpacing.md,
       overflow: 'hidden',
     }), [themeColors]);
 
     const progressBarFill = useMemo<ViewStyle>(() => ({
       height: 4,
-      borderRadius: 2,
+      borderRadius: defaultRadii.sm,
       backgroundColor: themeColors.accent.primary,
       width: `${Math.min(100, Math.max(0, progress))}%`,
     }), [progress, themeColors]);
@@ -101,7 +102,7 @@ export const QuestTracker = forwardRef<View, QuestTrackerProps>(
       flexDirection: 'row',
       alignItems: 'center',
       gap: sizeConfig.gap,
-      paddingHorizontal: 16,
+      paddingHorizontal: defaultSpacing.lg,
       paddingVertical: sizeConfig.gap,
     }), [sizeConfig]);
 

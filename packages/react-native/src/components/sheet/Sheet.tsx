@@ -2,6 +2,7 @@ import React, { forwardRef, useMemo, useRef, useEffect, useCallback } from 'reac
 import { View, Pressable, Animated, PanResponder, Dimensions, Modal, StyleSheet } from 'react-native';
 import type { ViewStyle } from 'react-native';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 type SheetSize = 'sm' | 'md' | 'lg' | 'full';
 
@@ -84,8 +85,8 @@ export const Sheet = forwardRef<View, SheetProps>(function Sheet(
       right: 0,
       maxHeight,
       backgroundColor: themeColors.background.raised,
-      borderTopLeftRadius: 16,
-      borderTopRightRadius: 16,
+      borderTopLeftRadius: defaultRadii.xl,
+      borderTopRightRadius: defaultRadii.xl,
       overflow: 'hidden',
       shadowColor: '#000',
       shadowOffset: { width: 0, height: -4 },
@@ -100,11 +101,11 @@ export const Sheet = forwardRef<View, SheetProps>(function Sheet(
     () => ({
       width: 36,
       height: 4,
-      borderRadius: 2,
+      borderRadius: defaultRadii.sm,
       backgroundColor: themeColors.border.strong,
       alignSelf: 'center',
-      marginTop: 8,
-      marginBottom: 8,
+      marginTop: defaultSpacing.sm,
+      marginBottom: defaultSpacing.sm,
     }),
     [themeColors],
   );
@@ -133,7 +134,7 @@ export const Sheet = forwardRef<View, SheetProps>(function Sheet(
           <View {...panResponder.panHandlers}>
             <View style={handleStyle} />
           </View>
-          <View style={{ flex: 1, paddingHorizontal: 16, paddingBottom: 16 }}>
+          <View style={{ flex: 1, paddingHorizontal: defaultSpacing.lg, paddingBottom: defaultSpacing.lg }}>
             {children}
           </View>
         </Animated.View>

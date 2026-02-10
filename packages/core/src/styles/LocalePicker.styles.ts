@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { LocalePickerSizeConfig } from '../types/LocalePicker.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Resolved locale-picker colors
@@ -123,7 +124,7 @@ export function buildLabelStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: 1.4,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: colors.label,
     cursor: 'default',
     userSelect: 'none',
@@ -222,11 +223,11 @@ export function buildDropdownStyle(
     boxSizing: 'border-box',
     backgroundColor: themeColors.background.raised,
     border: '1px solid ' + themeColors.border.subtle,
-    borderRadius: 12,
+    borderRadius: defaultRadii.lg,
     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
     maxHeight: 300,
     overflow: 'hidden',
-    marginTop: 4,
+    marginTop: defaultSpacing.xs,
     display: 'flex',
     flexDirection: 'column',
   };
@@ -283,7 +284,7 @@ export function buildGroupHeaderStyle(
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize - 1,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1.4,
     color: themeColors.text.onRaisedSecondary,
     textTransform: 'uppercase',
@@ -322,7 +323,7 @@ export function buildOptionStyle(
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: defaultSpacing.sm,
     height: sizeConfig.optionHeight,
     padding: '0 ' + sizeConfig.paddingX + 'px',
     fontFamily: fontFamilyStacks.sans,
@@ -350,7 +351,7 @@ export function buildOptionsListStyle(): CSSStyleObject {
   return {
     overflowY: 'auto',
     flex: 1,
-    padding: '4px 0',
+    padding: `${defaultSpacing.xs}px 0`,
   };
 }
 

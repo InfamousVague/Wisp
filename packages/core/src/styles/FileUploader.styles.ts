@@ -4,6 +4,7 @@
 import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Dropzone container
@@ -19,9 +20,9 @@ export function buildDropzoneStyle(
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 8,
-    padding: '32px 24px',
-    borderRadius: 12,
+    gap: defaultSpacing.sm,
+    padding: `${defaultSpacing['2xl']}px ${defaultSpacing.xl}px`,
+    borderRadius: defaultRadii.lg,
     border: `2px dashed ${isDragOver ? themeColors.accent.primary : themeColors.border.strong}`,
     backgroundColor: isDragOver ? themeColors.accent.highlight : 'transparent',
     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -47,7 +48,7 @@ export function buildDropzoneIconStyle(
     justifyContent: 'center',
     width: 44,
     height: 44,
-    borderRadius: 10,
+    borderRadius: defaultRadii.lg,
     backgroundColor: themeColors.accent.highlight,
     color: themeColors.text.secondary,
   };
@@ -62,7 +63,7 @@ export function buildDropzoneTitleStyle(
 ): CSSStyleObject {
   return {
     fontSize: 14,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1.4,
     color: themeColors.text.primary,
     margin: 0,
@@ -74,7 +75,7 @@ export function buildDropzoneDescriptionStyle(
 ): CSSStyleObject {
   return {
     fontSize: 13,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.4,
     color: themeColors.text.muted,
     margin: 0,
@@ -90,7 +91,7 @@ export function buildDropzoneLinkStyle(
 ): CSSStyleObject {
   return {
     color: themeColors.accent.primary,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     cursor: 'pointer',
     textDecoration: 'underline',
     textUnderlineOffset: 2,

@@ -3,6 +3,7 @@ import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path, Polyline, Line } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 export interface FileUploaderProps {
   accept?: string;
@@ -31,8 +32,8 @@ export const FileUploader = forwardRef<View, FileUploaderProps>(function FileUpl
 
   const dropzoneStyle = useMemo<ViewStyle>(() => ({
     borderWidth: 2, borderStyle: 'dashed', borderColor: tc.border.subtle,
-    borderRadius: 12, padding: 24, alignItems: 'center', justifyContent: 'center',
-    backgroundColor: tc.background.surface, opacity: disabled ? 0.4 : 1, gap: 8,
+    borderRadius: defaultRadii.lg, padding: defaultSpacing.xl, alignItems: 'center', justifyContent: 'center',
+    backgroundColor: tc.background.surface, opacity: disabled ? 0.4 : 1, gap: defaultSpacing.sm,
   }), [tc, disabled]);
 
   const DefaultIcon = () => (

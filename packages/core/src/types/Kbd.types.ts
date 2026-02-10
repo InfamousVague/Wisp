@@ -1,4 +1,5 @@
 import type React from 'react';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Kbd Sizes
@@ -36,9 +37,9 @@ export interface KbdSizeConfig {
  * Maps each {@link KbdSize} to its corresponding {@link KbdSizeConfig}.
  */
 export const kbdSizeMap: Record<KbdSize, KbdSizeConfig> = {
-  sm: { fontSize: 11, paddingX: 4, paddingY: 1, borderRadius: 4, minWidth: 18, gap: 2 },
-  md: { fontSize: 12, paddingX: 6, paddingY: 2, borderRadius: 5, minWidth: 22, gap: 3 },
-  lg: { fontSize: 14, paddingX: 8, paddingY: 3, borderRadius: 6, minWidth: 26, gap: 4 },
+  sm: { fontSize: 11, paddingX: defaultSpacing.xs, paddingY: defaultSpacing['2xs'], borderRadius: defaultRadii.sm, minWidth: 18, gap: defaultSpacing['2xs'] },
+  md: { fontSize: 12, paddingX: defaultSpacing.sm, paddingY: defaultSpacing['2xs'], borderRadius: defaultRadii.sm, minWidth: 22, gap: defaultSpacing.xs },
+  lg: { fontSize: 14, paddingX: defaultSpacing.sm, paddingY: defaultSpacing.xs, borderRadius: defaultRadii.md, minWidth: 26, gap: defaultSpacing.xs },
 };
 
 // ---------------------------------------------------------------------------

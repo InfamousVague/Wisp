@@ -4,6 +4,7 @@ import type { ViewStyle } from 'react-native';
 import type { ToolbarSizeConfig, ToolbarSize, ToolbarVariant } from '@wisp-ui/core/types/Toolbar.types';
 import { toolbarSizeMap } from '@wisp-ui/core/types/Toolbar.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -58,7 +59,7 @@ export const Toolbar = forwardRef<View, ToolbarProps>(function Toolbar(
         return {
           ...base,
           backgroundColor: themeColors.background.raised,
-          borderRadius: 10,
+          borderRadius: defaultRadii.lg,
           shadowColor: '#000',
           shadowOffset: { width: 0, height: 1 },
           shadowOpacity: 0.15,
@@ -162,7 +163,7 @@ export const ToolbarSeparator = forwardRef<View, ToolbarSeparatorProps>(
         width: 1,
         height: sizeConfig.separatorHeight,
         backgroundColor: themeColors.border.subtle,
-        marginHorizontal: 4,
+        marginHorizontal: defaultSpacing.xs,
       }),
       [sizeConfig, themeColors],
     );

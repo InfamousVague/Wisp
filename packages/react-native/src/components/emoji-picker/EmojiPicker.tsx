@@ -25,6 +25,7 @@ import type { EmojiPickerSize } from '@wisp-ui/core/types/EmojiPicker.types';
 import { resolveEmojiPickerColors } from '@wisp-ui/core/styles/EmojiPicker.styles';
 import { EMOJI_DATA } from './emoji-data';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Category labels & icons
@@ -308,14 +309,14 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
   const searchRowStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: defaultSpacing.sm,
     height: sizeConfig.searchHeight,
   }), [sizeConfig]);
 
   const sliderClipStyle = useMemo<ViewStyle>(() => ({
     flex: 1,
     height: sizeConfig.searchHeight + 4,
-    padding: 2,
+    padding: defaultSpacing['2xs'],
     margin: -2,
     overflow: 'hidden',
   }), [sizeConfig]);
@@ -371,10 +372,10 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
 
   const categoryLabelStyle = useMemo<TextStyle>(() => ({
     fontSize: sizeConfig.fontSize - 1,
-    fontWeight: '600',
+    fontWeight: defaultTypography.weights.semibold,
     color: colors.categoryLabel,
     paddingHorizontal: sizeConfig.padding,
-    paddingVertical: 4,
+    paddingVertical: defaultSpacing.xs,
   }), [sizeConfig, colors]);
 
   const cellRowStyle = useMemo<ViewStyle>(() => ({
@@ -398,7 +399,7 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
   const noResultsStyle = useMemo<ViewStyle>(() => ({
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 40,
+    paddingVertical: defaultSpacing['2xl'],
   }), []);
 
   return (

@@ -9,6 +9,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { SparklineColor, SparklineSizeConfig } from '../types/Sparkline.types';
+import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Keyframe injection (singleton)
@@ -122,7 +123,7 @@ export function buildSparklineSkeletonStyle(
     display: 'inline-block',
     width: responsive ? '100%' : sizeConfig.width,
     height: sizeConfig.height,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

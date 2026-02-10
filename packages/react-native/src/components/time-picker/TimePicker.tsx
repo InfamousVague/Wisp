@@ -3,6 +3,7 @@ import { View, Pressable, Modal, FlatList, SafeAreaView, StyleSheet, Text as RNT
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 type TimePickerSize = 'sm' | 'md' | 'lg';
 type TimePickerFormat = '12h' | '24h';
@@ -46,7 +47,7 @@ export const TimePicker = forwardRef<View, TimePickerProps>(function TimePicker(
   const onMin = useCallback((m: number) => { commit(sH24 ?? (format==='24h'?0:12), m); }, [format, sH24, commit]);
   const onPeriod = useCallback((p: 'AM'|'PM') => { commit(to24h(s12?.hour12??12, p), sMin??0); }, [s12, sMin, commit]);
 
-  const tStyle = useMemo<ViewStyle>(() => ({ flexDirection:'row', alignItems:'center', height:cfg.height, paddingHorizontal:cfg.paddingX, borderRadius:8, borderWidth:1, borderColor: hasErr ? tc.status.danger : tc.border.subtle, backgroundColor:tc.background.surface, gap:8, opacity: disabled?0.4:1 }), [cfg,hasErr,tc,disabled]);
+  const tStyle = useMemo<ViewStyle>(() => ({ flexDirection:'row', alignItems:'center', height:cfg.height, paddingHorizontal:cfg.paddingX, borderRadius:defaultRadii.md, borderWidth:1, borderColor: hasErr ? tc.status.danger : tc.border.subtle, backgroundColor:tc.background.surface, gap:defaultSpacing.sm, opacity: disabled?0.4:1 }), [cfg,hasErr,tc,disabled]);
   const disp = val ? fmtDisplay(val, format) : '';
 
   const renderCol = (data: (number|string)[], selVal: number|string|null, onSel: (v:any)=>void, kp: string) => (
@@ -55,7 +56,7 @@ export const TimePicker = forwardRef<View, TimePickerProps>(function TimePicker(
       getItemLayout={(_,idx) => ({ length:IH, offset:IH*idx, index:idx })}
       renderItem={({ item }) => {
         const isSel = item === selVal;
-        return (<Pressable onPress={() => onSel(item)} style={({ pressed }) => ({ height:IH, alignItems:'center', justifyContent:'center', backgroundColor: isSel?tc.accent.highlight : pressed?tc.accent.highlight:'transparent', borderRadius:6 })}>
+        return (<Pressable onPress={() => onSel(item)} style={({ pressed }) => ({ height:IH, alignItems:'center', justifyContent:'center', backgroundColor: isSel?tc.accent.highlight : pressed?tc.accent.highlight:'transparent', borderRadius:defaultRadii.md })}>
           <RNText style={{ fontSize:cfg.fontSize, fontWeight: isSel?'600':'400', color: isSel?tc.accent.primary:tc.text.onRaised } as TextStyle}>
             {typeof item === 'number' ? (kp==='h' && format==='12h' ? String(item) : pad(item)) : item}
           </RNText>
@@ -64,8 +65,8 @@ export const TimePicker = forwardRef<View, TimePickerProps>(function TimePicker(
   );
 
   return (
-    <View ref={ref} style={[{gap:6}, us]}>
-      {label && <RNText style={{fontSize:14,fontWeight:'500',color:tc.text.primary} as TextStyle}>{label}</RNText>}
+    <View ref={ref} style={[{gap:defaultSpacing.sm}, us]}>
+      {label && <RNText style={{fontSize:14,fontWeight:defaultTypography.weights.medium,color:tc.text.primary} as TextStyle}>{label}</RNText>}
       <Pressable onPress={() => !disabled && setOpen(true)} disabled={disabled} accessibilityRole="button" style={tStyle}>
         <Svg width={cfg.iconSize} height={cfg.iconSize} viewBox="0 0 24 24" fill="none"><Path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke={tc.text.secondary} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" /></Svg>
         <RNText style={{flex:1,fontSize:cfg.fontSize,color:disp?tc.text.primary:tc.text.muted} as TextStyle} numberOfLines={1}>{disp || placeholder}</RNText>
@@ -75,11 +76,11 @@ export const TimePicker = forwardRef<View, TimePickerProps>(function TimePicker(
         <Pressable style={[StyleSheet.absoluteFill,{backgroundColor:'rgba(0,0,0,0.5)'}]} onPress={() => setOpen(false)}>
           <SafeAreaView style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <Pressable onPress={(e) => e.stopPropagation()}>
-              <View style={{flexDirection:'row',backgroundColor:tc.background.raised,borderRadius:16,overflow:'hidden',padding:8,gap:4,shadowColor:'#000',shadowOffset:{width:0,height:8},shadowOpacity:0.2,shadowRadius:24,elevation:8}}>
+              <View style={{flexDirection:'row',backgroundColor:tc.background.raised,borderRadius:defaultRadii.xl,overflow:'hidden',padding:defaultSpacing.sm,gap:defaultSpacing.xs,shadowColor:'#000',shadowOffset:{width:0,height:8},shadowOpacity:0.2,shadowRadius:24,elevation:8}}>
                 {renderCol(hours, format==='24h'?sH24:s12?.hour12??null, onHour, 'h')}
-                <View style={{width:1,backgroundColor:tc.border.subtle,marginVertical:8}} />
+                <View style={{width:1,backgroundColor:tc.border.subtle,marginVertical:defaultSpacing.sm}} />
                 {renderCol(mins, sMin, onMin, 'm')}
-                {format==='12h' && <><View style={{width:1,backgroundColor:tc.border.subtle,marginVertical:8}} />{renderCol(['AM','PM'], s12?.period??null, onPeriod, 'p')}</>}
+                {format==='12h' && <><View style={{width:1,backgroundColor:tc.border.subtle,marginVertical:defaultSpacing.sm}} />{renderCol(['AM','PM'], s12?.period??null, onPeriod, 'p')}</>}
               </View>
             </Pressable>
           </SafeAreaView>

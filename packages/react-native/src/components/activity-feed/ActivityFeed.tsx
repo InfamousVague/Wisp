@@ -2,10 +2,11 @@ import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText, Image } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 const sizeMap = {
-  sm: { avatarSize: 28, primaryFontSize: 13, secondaryFontSize: 12, gap: 10, lineWidth: 2 },
-  md: { avatarSize: 36, primaryFontSize: 14, secondaryFontSize: 13, gap: 12, lineWidth: 2 },
+  sm: { avatarSize: 28, primaryFontSize: 13, secondaryFontSize: 12, gap: defaultSpacing.md, lineWidth: 2 },
+  md: { avatarSize: 36, primaryFontSize: 14, secondaryFontSize: 13, gap: defaultSpacing.md, lineWidth: 2 },
 } as const;
 
 type ActivityFeedSize = keyof typeof sizeMap;
@@ -59,7 +60,7 @@ export const ActivityFeed = forwardRef<View, ActivityFeedProps>(function Activit
                 ) : Icon ? (
                   <Icon size={cfg.avatarSize * 0.5} color={item.iconColor ?? themeColors.text.secondary} strokeWidth={2} />
                 ) : item.avatarInitials ? (
-                  <RNText style={{ fontSize: cfg.avatarSize * 0.4, fontWeight: '600', color: themeColors.text.primary } as TextStyle}>
+                  <RNText style={{ fontSize: cfg.avatarSize * 0.4, fontWeight: defaultTypography.weights.semibold, color: themeColors.text.primary } as TextStyle}>
                     {item.avatarInitials}
                   </RNText>
                 ) : null}
@@ -77,7 +78,7 @@ export const ActivityFeed = forwardRef<View, ActivityFeedProps>(function Activit
                 />
               )}
             </View>
-            <View style={{ flex: 1, paddingBottom: isLast ? 0 : cfg.gap, gap: 2 }}>
+            <View style={{ flex: 1, paddingBottom: isLast ? 0 : cfg.gap, gap: defaultSpacing['2xs'] }}>
               <RNText style={{ fontSize: cfg.primaryFontSize, color: themeColors.text.primary } as TextStyle}>
                 {item.content}
               </RNText>

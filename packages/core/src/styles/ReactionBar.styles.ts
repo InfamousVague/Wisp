@@ -6,6 +6,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { ReactionBarSizeConfig } from '../types/ReactionBar.types';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -66,11 +67,11 @@ export function buildReactionButtonStyle(
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 3,
+    gap: defaultSpacing.xs,
     height: sizeConfig.buttonSize,
     minWidth: sizeConfig.buttonSize,
-    paddingLeft: 6,
-    paddingRight: 6,
+    paddingLeft: defaultSpacing.sm,
+    paddingRight: defaultSpacing.sm,
     borderRadius: sizeConfig.borderRadius - 2,
     border: `1px solid ${active ? colors.buttonBorderActive : colors.buttonBorder}`,
     backgroundColor: active ? colors.buttonBgActive : colors.buttonBg,
@@ -88,7 +89,7 @@ export function buildReactionCountStyle(
 ): CSSStyleObject {
   return {
     fontSize: sizeConfig.countFontSize,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: active ? colors.textActive : colors.text,
     lineHeight: 1,
     userSelect: 'none',

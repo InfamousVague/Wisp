@@ -4,6 +4,7 @@ import type { ViewStyle, TextStyle } from 'react-native';
 import type { SwitchGroupOption, SwitchGroupOrientation } from '@wisp-ui/core/types/SwitchGroup.types';
 import { useThemeColors } from '../../providers';
 import { Toggle } from '../../primitives/toggle';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface SwitchGroupProps {
   label?: string;
@@ -52,7 +53,7 @@ export const SwitchGroup = forwardRef<View, SwitchGroupProps>(function SwitchGro
 
   const containerStyle = useMemo<ViewStyle>(
     () => ({
-      gap: 12,
+      gap: defaultSpacing.md,
     }),
     [],
   );
@@ -69,7 +70,7 @@ export const SwitchGroup = forwardRef<View, SwitchGroupProps>(function SwitchGro
   const labelStyle = useMemo<TextStyle>(
     () => ({
       fontSize: 14,
-      fontWeight: '600',
+      fontWeight: defaultTypography.weights.semibold,
       color: themeColors.text.primary,
     }),
     [themeColors],
@@ -79,7 +80,7 @@ export const SwitchGroup = forwardRef<View, SwitchGroupProps>(function SwitchGro
     () => ({
       fontSize: 13,
       color: themeColors.text.secondary,
-      marginTop: 2,
+      marginTop: defaultSpacing['2xs'],
     }),
     [themeColors],
   );
@@ -87,7 +88,7 @@ export const SwitchGroup = forwardRef<View, SwitchGroupProps>(function SwitchGro
   const optionLabelStyle = useMemo<TextStyle>(
     () => ({
       fontSize: 14,
-      fontWeight: '400',
+      fontWeight: defaultTypography.weights.regular,
       color: themeColors.text.primary,
     }),
     [themeColors],
@@ -97,7 +98,7 @@ export const SwitchGroup = forwardRef<View, SwitchGroupProps>(function SwitchGro
     () => ({
       fontSize: 12,
       color: themeColors.text.secondary,
-      marginTop: 2,
+      marginTop: defaultSpacing['2xs'],
     }),
     [themeColors],
   );
@@ -106,7 +107,7 @@ export const SwitchGroup = forwardRef<View, SwitchGroupProps>(function SwitchGro
     () => ({
       fontSize: 12,
       color: themeColors.status.danger,
-      marginTop: 4,
+      marginTop: defaultSpacing.xs,
     }),
     [themeColors],
   );
@@ -135,7 +136,7 @@ export const SwitchGroup = forwardRef<View, SwitchGroupProps>(function SwitchGro
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                gap: 12,
+                gap: defaultSpacing.md,
                 opacity: isOptionDisabled ? 0.4 : 1,
               }}
             >

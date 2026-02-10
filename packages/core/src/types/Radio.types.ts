@@ -1,5 +1,6 @@
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
+import { defaultSpacing } from '../theme/create-theme';
 
 /**
  * Ordered tuple of valid radio sizes, re-exported from shared tokens.
@@ -46,11 +47,11 @@ export interface RadioSizeConfig {
  * dimensions for the indicator, dot, and typography at every size tier.
  */
 export const radioSizeMap: Record<ComponentSize, RadioSizeConfig> = {
-  xs: { outerSize: 14, innerSize: 6, borderWidth: 1.5, labelFontSize: 12, labelLineHeight: 1.33, gap: 6 },
-  sm: { outerSize: 16, innerSize: 7, borderWidth: 1.5, labelFontSize: 13, labelLineHeight: 1.38, gap: 8 },
-  md: { outerSize: 18, innerSize: 8, borderWidth: 2, labelFontSize: 14, labelLineHeight: 1.43, gap: 8 },
-  lg: { outerSize: 20, innerSize: 9, borderWidth: 2, labelFontSize: 15, labelLineHeight: 1.47, gap: 10 },
-  xl: { outerSize: 24, innerSize: 10, borderWidth: 2, labelFontSize: 16, labelLineHeight: 1.5, gap: 12 },
+  xs: { outerSize: 14, innerSize: 6, borderWidth: 1.5, labelFontSize: 12, labelLineHeight: 1.33, gap: defaultSpacing.sm },
+  sm: { outerSize: 16, innerSize: 7, borderWidth: 1.5, labelFontSize: 13, labelLineHeight: 1.38, gap: defaultSpacing.sm },
+  md: { outerSize: 18, innerSize: 8, borderWidth: 2, labelFontSize: 14, labelLineHeight: 1.43, gap: defaultSpacing.sm },
+  lg: { outerSize: 20, innerSize: 9, borderWidth: 2, labelFontSize: 15, labelLineHeight: 1.47, gap: defaultSpacing.md },
+  xl: { outerSize: 24, innerSize: 10, borderWidth: 2, labelFontSize: 16, labelLineHeight: 1.5, gap: defaultSpacing.md },
 };
 
 // ---------------------------------------------------------------------------

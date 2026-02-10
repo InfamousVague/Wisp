@@ -7,6 +7,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { CoachmarkVariant, CoachmarkPlacement } from '../types/Coachmark.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Colour resolution
@@ -78,11 +79,11 @@ export function buildCoachmarkPanelStyle(
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: 8,
-    padding: 16,
+    gap: defaultSpacing.sm,
+    padding: defaultSpacing.lg,
     backgroundColor: colors.bg,
     border: `1px solid ${colors.border}`,
-    borderRadius: 10,
+    borderRadius: defaultRadii.lg,
     fontFamily: fontFamilyStacks.sans,
     maxWidth: 320,
     boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08)',
@@ -162,7 +163,7 @@ export function buildCoachmarkTitleStyle(
 ): CSSStyleObject {
   return {
     fontSize: 14,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1.43,
     color: textColor,
     margin: 0,
@@ -181,7 +182,7 @@ export function buildCoachmarkDescriptionStyle(
 ): CSSStyleObject {
   return {
     fontSize: 13,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.46,
     color: descriptionColor,
     margin: 0,
@@ -200,8 +201,8 @@ export function buildCoachmarkFooterStyle(): CSSStyleObject {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    gap: 8,
-    marginTop: 4,
+    gap: defaultSpacing.sm,
+    marginTop: defaultSpacing.xs,
   };
 }
 
@@ -218,11 +219,11 @@ export function buildCoachmarkDismissButtonStyle(
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    padding: '5px 12px',
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
     fontSize: 13,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
-    borderRadius: 6,
+    borderRadius: defaultRadii.md,
     border: 'none',
     backgroundColor: 'transparent',
     color: themeColors.text.muted,
@@ -244,11 +245,11 @@ export function buildCoachmarkActionButtonStyle(
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    padding: '5px 14px',
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.lg}px`,
     fontSize: 13,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
-    borderRadius: 6,
+    borderRadius: defaultRadii.md,
     border: `1px solid ${colors.border}`,
     backgroundColor: 'transparent',
     color: colors.text,

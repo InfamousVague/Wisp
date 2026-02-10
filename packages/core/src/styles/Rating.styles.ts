@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { RatingSizeConfig } from '../types/Rating.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container style (wraps stars + optional value label)
@@ -86,7 +87,7 @@ export function buildRatingValueStyle(
     fontFamily: fontFamilyStacks.sans,
     color: themeColors.text.secondary,
     lineHeight: 1.4,
-    marginLeft: 4,
+    marginLeft: defaultSpacing.xs,
     userSelect: 'none',
   };
 }
@@ -113,7 +114,7 @@ export function getRatingSkeletonStyle(
     display: 'inline-block',
     width: totalWidth,
     height: sizeConfig.starSize,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

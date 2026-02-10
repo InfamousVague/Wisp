@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { CircularProgressSizeConfig } from '../types/CircularProgress.types';
+import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -247,7 +248,7 @@ export function buildValueTextStyle(
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1,
     color: colors.valueText,
     margin: 0,
@@ -274,7 +275,7 @@ export function buildLabelTextStyle(
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: Math.max(sizeConfig.fontSize - 2, 10),
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1.4,
     color: colors.labelText,
     margin: 0,

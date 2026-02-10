@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { InputSizeConfig } from '../types/Input.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Resolved input colors
@@ -256,7 +257,7 @@ export function buildLabelStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: colors.label,
     cursor: 'default',
     userSelect: 'none',
@@ -285,7 +286,7 @@ export function buildHintStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.hintFontSize,
     lineHeight: 1.4,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     color: isError ? colors.hint : colors.hint,
     margin: 0,
   };

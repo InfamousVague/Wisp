@@ -4,6 +4,7 @@ import type { ViewProps } from 'react-native';
 import { colorPickerSizeMap } from '@wisp-ui/core/types/ColorPicker.types';
 import type { ColorPickerSize, ColorPickerSizeConfig } from '@wisp-ui/core/types/ColorPicker.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -142,9 +143,9 @@ export const ColorPicker = forwardRef<View, ColorPickerProps>(function ColorPick
         <Text
           style={{
             fontSize: sizeConfig.fontSize,
-            fontWeight: '600',
+            fontWeight: defaultTypography.weights.semibold,
             color: tc.text.primary,
-            marginBottom: 2,
+            marginBottom: defaultSpacing['2xs'],
           }}
         >
           {label}
@@ -187,7 +188,7 @@ export const ColorPicker = forwardRef<View, ColorPickerProps>(function ColorPick
               borderWidth: 1,
               borderColor: tc.border.subtle,
               borderRadius: sizeConfig.borderRadius,
-              paddingHorizontal: 8,
+              paddingHorizontal: defaultSpacing.sm,
             }}
           />
         )}

@@ -1,4 +1,5 @@
 import type { HTMLAttributes } from 'react';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // TimePicker Size
@@ -52,9 +53,9 @@ export interface TimePickerSizeConfig {
  * used for layout and typography calculations.
  */
 export const timePickerSizeMap: Record<TimePickerSize, TimePickerSizeConfig> = {
-  sm: { inputHeight: 28, fontSize: 12, iconSize: 14, borderRadius: 6, paddingX: 10, columnWidth: 48 },
-  md: { inputHeight: 34, fontSize: 13, iconSize: 16, borderRadius: 8, paddingX: 12, columnWidth: 56 },
-  lg: { inputHeight: 40, fontSize: 14, iconSize: 18, borderRadius: 8, paddingX: 14, columnWidth: 64 },
+  sm: { inputHeight: 28, fontSize: 12, iconSize: 14, borderRadius: defaultRadii.md, paddingX: defaultSpacing.md, columnWidth: 48 },
+  md: { inputHeight: 34, fontSize: 13, iconSize: 16, borderRadius: defaultRadii.md, paddingX: defaultSpacing.md, columnWidth: 56 },
+  lg: { inputHeight: 40, fontSize: 14, iconSize: 18, borderRadius: defaultRadii.md, paddingX: defaultSpacing.lg, columnWidth: 64 },
 };
 
 // ---------------------------------------------------------------------------

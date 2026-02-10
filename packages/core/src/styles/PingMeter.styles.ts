@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { PingMeterSizeConfig } from '../types/PingMeter.types';
+import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Latency → color mapping
@@ -87,7 +88,7 @@ export function buildPingDotStyle(
   return {
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: color,
     flexShrink: 0,
   };
@@ -114,7 +115,7 @@ export function buildPingDotPulseStyle(
     left: 0,
     width: sizeConfig.dotSize,
     height: sizeConfig.dotSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: color,
     animation: 'wisp-ping-pulse 1.5s ease-in-out infinite',
   };

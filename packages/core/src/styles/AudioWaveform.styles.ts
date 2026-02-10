@@ -6,6 +6,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { AudioWaveformColor, AudioWaveformSizeConfig } from '../types/AudioWaveform.types';
+import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Keyframe injection (singleton)
@@ -105,7 +106,7 @@ export function buildAudioWaveformSkeletonStyle(
     display: 'inline-block',
     width: responsive ? '100%' : sizeConfig.width,
     height: sizeConfig.height,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

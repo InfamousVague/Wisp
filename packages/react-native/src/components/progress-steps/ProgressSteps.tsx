@@ -3,11 +3,12 @@ import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 const sizeMap = {
-  sm: { dotSize: 24, lineThickness: 2, labelFontSize: 12, descFontSize: 11, iconSize: 14, gap: 8 },
-  md: { dotSize: 32, lineThickness: 2, labelFontSize: 14, descFontSize: 12, iconSize: 16, gap: 10 },
-  lg: { dotSize: 40, lineThickness: 2, labelFontSize: 15, descFontSize: 13, iconSize: 20, gap: 12 },
+  sm: { dotSize: 24, lineThickness: 2, labelFontSize: 12, descFontSize: 11, iconSize: 14, gap: defaultSpacing.sm },
+  md: { dotSize: 32, lineThickness: 2, labelFontSize: 14, descFontSize: 12, iconSize: 16, gap: defaultSpacing.md },
+  lg: { dotSize: 40, lineThickness: 2, labelFontSize: 15, descFontSize: 13, iconSize: 20, gap: defaultSpacing.md },
 } as const;
 
 type ProgressStepsSize = keyof typeof sizeMap;
@@ -86,7 +87,7 @@ export const ProgressSteps = forwardRef<View, ProgressStepsProps>(function Progr
           : Icon ? (
               <Icon size={cfg.iconSize} color={status === 'active' ? '#fff' : themeColors.text.muted} strokeWidth={2} />
             ) : (
-              <RNText style={{ fontSize: cfg.labelFontSize, fontWeight: '600', color: status === 'active' ? '#fff' : themeColors.text.muted } as TextStyle}>
+              <RNText style={{ fontSize: cfg.labelFontSize, fontWeight: defaultTypography.weights.semibold, color: status === 'active' ? '#fff' : themeColors.text.muted } as TextStyle}>
                 {i + 1}
               </RNText>
             );
@@ -116,7 +117,7 @@ export const ProgressSteps = forwardRef<View, ProgressStepsProps>(function Progr
                   {step.label}
                 </RNText>
                 {step.description && (
-                  <RNText style={{ fontSize: cfg.descFontSize, color: themeColors.text.secondary, textAlign: 'center', marginTop: 2 } as TextStyle}>
+                  <RNText style={{ fontSize: cfg.descFontSize, color: themeColors.text.secondary, textAlign: 'center', marginTop: defaultSpacing['2xs'] } as TextStyle}>
                     {step.description}
                   </RNText>
                 )}
@@ -136,7 +137,7 @@ export const ProgressSteps = forwardRef<View, ProgressStepsProps>(function Progr
                 {dotContent}
               </Pressable>
               {!isLast && (
-                <View style={{ flex: 1, width: cfg.lineThickness, backgroundColor: lineColor, marginVertical: 4 }} />
+                <View style={{ flex: 1, width: cfg.lineThickness, backgroundColor: lineColor, marginVertical: defaultSpacing.xs }} />
               )}
             </View>
             <View style={{ flex: 1, paddingBottom: isLast ? 0 : cfg.gap }}>
@@ -144,7 +145,7 @@ export const ProgressSteps = forwardRef<View, ProgressStepsProps>(function Progr
                 {step.label}
               </RNText>
               {step.description && (
-                <RNText style={{ fontSize: cfg.descFontSize, color: themeColors.text.secondary, marginTop: 2 } as TextStyle}>
+                <RNText style={{ fontSize: cfg.descFontSize, color: themeColors.text.secondary, marginTop: defaultSpacing['2xs'] } as TextStyle}>
                   {step.description}
                 </RNText>
               )}

@@ -5,6 +5,7 @@ import type { CircularProgressSize } from '@wisp-ui/core/types/CircularProgress.
 import { circularProgressSizeMap } from '@wisp-ui/core/types/CircularProgress.types';
 import { resolveCircularProgressColors } from '@wisp-ui/core/styles/CircularProgress.styles';
 import { useThemeColors } from '../../providers';
+import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 type ColorVariant = 'default' | 'success' | 'warning' | 'danger' | 'info';
 
@@ -160,7 +161,7 @@ export const CircularProgress = forwardRef<View, CircularProgressProps>(
                 <RNText
                   style={{
                     fontSize: sizeConfig.fontSize,
-                    fontWeight: '600',
+                    fontWeight: defaultTypography.weights.semibold,
                     color: colors.valueText,
                   }}
                 >

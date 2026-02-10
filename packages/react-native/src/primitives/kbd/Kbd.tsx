@@ -17,6 +17,7 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { KbdSize } from '@wisp-ui/core/types/Kbd.types';
 import { kbdSizeMap } from '@wisp-ui/core/types/Kbd.types';
 import { useThemeColors } from '../../providers';
+import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -84,7 +85,7 @@ export const Kbd = forwardRef<View, KbdProps>(function Kbd(
     fontFamily: 'monospace',
     fontSize: sizeConfig.fontSize,
     lineHeight: sizeConfig.fontSize,
-    fontWeight: '500',
+    fontWeight: defaultTypography.weights.medium,
     textAlign: 'center',
     color: themeColors.text.onRaisedSecondary,
   }), [sizeConfig, themeColors]);

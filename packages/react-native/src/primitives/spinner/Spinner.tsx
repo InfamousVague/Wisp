@@ -19,6 +19,7 @@ import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
 import { spinnerSizeMap } from '@wisp-ui/core/types/Spinner.types';
 import { useThemeColors } from '../../providers';
 import { Text } from '../text';
+import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -111,7 +112,7 @@ export const Spinner = forwardRef<View, SpinnerProps>(function Spinner(
   const labelStyle = useMemo<TextStyle>(() => ({
     fontSize: sizeConfig.labelFontSize,
     lineHeight: Math.round(sizeConfig.labelFontSize * 1.4),
-    fontWeight: '500',
+    fontWeight: defaultTypography.weights.medium,
     color: themeColors.text.muted,
   }), [sizeConfig, themeColors]);
 

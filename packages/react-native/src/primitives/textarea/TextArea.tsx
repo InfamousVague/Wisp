@@ -28,6 +28,7 @@ import { textAreaSizeMap } from '@wisp-ui/core/types/TextArea.types';
 import { resolveTextAreaColors } from '@wisp-ui/core/styles/TextArea.styles';
 import { useThemeColors } from '../../providers';
 import { Text } from '../text';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -160,9 +161,9 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea(
 
   const labelStyle = useMemo<TextStyle>(() => ({
     fontSize: sizeConfig.labelFontSize,
-    fontWeight: '500',
+    fontWeight: defaultTypography.weights.medium,
     color: colors.label,
-    marginBottom: 2,
+    marginBottom: defaultSpacing['2xs'],
   }), [sizeConfig, colors]);
 
   const bottomText = errorMessage || warningMessage || hint;
@@ -173,7 +174,7 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea(
     return {
       fontSize: sizeConfig.hintFontSize,
       color: isStatus ? colors.border : colors.hint,
-      marginTop: 2,
+      marginTop: defaultSpacing['2xs'],
     };
   }, [bottomText, sizeConfig, colors, errorMessage, warningMessage]);
 

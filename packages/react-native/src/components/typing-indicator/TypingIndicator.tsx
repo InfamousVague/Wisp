@@ -13,6 +13,7 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { ChatBubbleAlignment } from '@wisp-ui/core/types/ChatBubble.types';
 import type { TypingIndicatorAnimation } from '@wisp-ui/core/types/TypingIndicator.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -148,7 +149,7 @@ export const TypingIndicator = forwardRef<View, TypingIndicatorProps>(function T
   const dotsContainerStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: defaultSpacing.xs,
   }), []);
 
   const dots = (
@@ -182,10 +183,10 @@ export const TypingIndicator = forwardRef<View, TypingIndicatorProps>(function T
 
   // ---- Bubble mode ----
   const bubbleStyle = useMemo<ViewStyle>(() => ({
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
+    paddingHorizontal: defaultSpacing.lg,
+    paddingVertical: defaultSpacing.md,
+    borderTopLeftRadius: defaultRadii.lg,
+    borderTopRightRadius: defaultRadii.lg,
     borderBottomLeftRadius: isOutgoing ? 12 : 2,
     borderBottomRightRadius: isOutgoing ? 2 : 12,
     backgroundColor: isOutgoing ? '#FFFFFF' : themeColors.background.surface,
@@ -196,19 +197,19 @@ export const TypingIndicator = forwardRef<View, TypingIndicatorProps>(function T
   const groupStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'column',
     alignItems: isOutgoing ? 'flex-end' : 'flex-start',
-    gap: 4,
+    gap: defaultSpacing.xs,
   }), [isOutgoing]);
 
   const rowStyle = useMemo<ViewStyle>(() => ({
     flexDirection: isOutgoing ? 'row-reverse' : 'row',
     alignItems: 'flex-end',
-    gap: 8,
+    gap: defaultSpacing.sm,
   }), [isOutgoing]);
 
   const senderNameStyle = useMemo<TextStyle>(() => ({
     fontSize: 13,
     lineHeight: 18,
-    fontWeight: '600',
+    fontWeight: defaultTypography.weights.semibold,
     color: themeColors.text.secondary,
   }), [themeColors]);
 

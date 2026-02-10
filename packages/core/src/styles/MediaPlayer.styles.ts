@@ -6,6 +6,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { MediaPlayerSizeConfig } from '../types/MediaPlayer.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -122,7 +123,7 @@ export function buildControlButtonStyle(
     justifyContent: 'center',
     width: sizeConfig.iconSize + 8,
     height: sizeConfig.iconSize + 8,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     border: 'none',
     backgroundColor: 'transparent',
     color: colors.icon,
@@ -197,7 +198,7 @@ export function buildVolumeContainerStyle(
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: 4,
+    gap: defaultSpacing.xs,
     flexShrink: 0,
   };
 }
@@ -226,15 +227,15 @@ export function buildSpeedButtonStyle(
     alignItems: 'center',
     justifyContent: 'center',
     height: sizeConfig.iconSize + 4,
-    paddingLeft: 4,
-    paddingRight: 4,
-    borderRadius: 4,
+    paddingLeft: defaultSpacing.xs,
+    paddingRight: defaultSpacing.xs,
+    borderRadius: defaultRadii.sm,
     border: 'none',
     backgroundColor: 'transparent',
     color: colors.textSecondary,
     cursor: 'pointer',
     fontSize: sizeConfig.fontSize,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     fontFamily: 'monospace',
     flexShrink: 0,
     transition: 'color 150ms ease',
@@ -247,8 +248,8 @@ export function buildAudioInfoStyle(
   return {
     display: 'flex',
     flexDirection: 'column',
-    padding: '12px 16px 4px',
-    gap: 2,
+    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px ${defaultSpacing.xs}px`,
+    gap: defaultSpacing['2xs'],
   };
 }
 

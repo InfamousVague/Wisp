@@ -4,6 +4,7 @@ import type { ViewStyle, TextStyle } from 'react-native';
 import type { SwitchGroupOption, SwitchGroupOrientation } from '@wisp-ui/core/types/SwitchGroup.types';
 import { useThemeColors } from '../../providers';
 import { Checkbox } from '../../primitives/checkbox';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface CheckboxGroupProps {
   label?: string;
@@ -51,7 +52,7 @@ export const CheckboxGroup = forwardRef<View, CheckboxGroupProps>(function Check
   );
 
   const containerStyle = useMemo<ViewStyle>(
-    () => ({ gap: 12 }),
+    () => ({ gap: defaultSpacing.md }),
     [],
   );
 
@@ -67,7 +68,7 @@ export const CheckboxGroup = forwardRef<View, CheckboxGroupProps>(function Check
   const labelStyle = useMemo<TextStyle>(
     () => ({
       fontSize: 14,
-      fontWeight: '600',
+      fontWeight: defaultTypography.weights.semibold,
       color: themeColors.text.primary,
     }),
     [themeColors],
@@ -77,7 +78,7 @@ export const CheckboxGroup = forwardRef<View, CheckboxGroupProps>(function Check
     () => ({
       fontSize: 13,
       color: themeColors.text.secondary,
-      marginTop: 2,
+      marginTop: defaultSpacing['2xs'],
     }),
     [themeColors],
   );
@@ -86,7 +87,7 @@ export const CheckboxGroup = forwardRef<View, CheckboxGroupProps>(function Check
     () => ({
       fontSize: 12,
       color: themeColors.status.danger,
-      marginTop: 4,
+      marginTop: defaultSpacing.xs,
     }),
     [themeColors],
   );

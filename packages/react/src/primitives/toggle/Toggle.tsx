@@ -13,6 +13,7 @@ import {
   getToggleSkeletonStyle,
 } from '@wisp-ui/core/styles/Toggle.styles';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 /**
  * Toggle -- Switch primitive for the Wisp design system.
@@ -215,7 +216,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle
   const spacerItemStyle: React.CSSProperties = {
     display: 'flex',
     alignItems: 'center',
-    gap: 2,
+    gap: defaultSpacing['2xs'],
     // Reserve space: content padding + content + handle + handle padding
     paddingLeft: sizeConfig.padding + 6,
     paddingRight: sizeConfig.handleSize + sizeConfig.padding + 4,

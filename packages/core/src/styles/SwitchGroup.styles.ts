@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { SwitchGroupOrientation } from '../types/SwitchGroup.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Group container
@@ -23,7 +24,7 @@ export function buildGroupStyle(
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: 12,
+    gap: defaultSpacing.md,
     fontFamily: fontFamilyStacks.sans,
     ...userStyle,
   };
@@ -41,7 +42,7 @@ export function buildGroupStyle(
  */
 export function buildGroupLabelStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     fontSize: 14,
     lineHeight: 1.43,
     color: themeColors.text.primary,
@@ -67,7 +68,7 @@ export function buildGroupDescriptionStyle(themeColors: ThemeColors): CSSStyleOb
     color: themeColors.text.secondary,
     fontFamily: fontFamilyStacks.sans,
     margin: 0,
-    marginTop: 2,
+    marginTop: defaultSpacing['2xs'],
   };
 }
 
@@ -104,7 +105,7 @@ export function buildOptionStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
     display: 'flex',
     alignItems: 'flex-start',
-    gap: 10,
+    gap: defaultSpacing.sm,
   };
 }
 
@@ -150,7 +151,7 @@ export function buildOptionDescriptionStyle(themeColors: ThemeColors): CSSStyleO
     color: themeColors.text.secondary,
     fontFamily: fontFamilyStacks.sans,
     margin: 0,
-    marginTop: 2,
+    marginTop: defaultSpacing['2xs'],
   };
 }
 

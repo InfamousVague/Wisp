@@ -7,6 +7,7 @@ import {
   resolveStatusColor,
 } from '@wisp-ui/core/styles/Avatar.styles';
 import { useThemeColors } from '../../providers';
+import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface AvatarProps {
   src?: string;
@@ -87,7 +88,7 @@ export const Avatar = forwardRef<View, AvatarProps>(function Avatar(
         <RNText
           style={{
             fontSize: sizeConfig.fontSize,
-            fontWeight: '600',
+            fontWeight: defaultTypography.weights.semibold,
             color: themeColors.text.inverse,
           }}
         >

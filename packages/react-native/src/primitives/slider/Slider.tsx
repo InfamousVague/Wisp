@@ -21,6 +21,7 @@ import { resolveSliderColors } from '@wisp-ui/core/styles/Slider.styles';
 import { thicknessValues } from '@wisp-ui/core/tokens/shared';
 import { useThemeColors } from '../../providers';
 import { Text } from '../text';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -193,7 +194,7 @@ export const Slider = forwardRef<View, SliderProps>(function Slider(
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 6,
+    marginBottom: defaultSpacing.sm,
   }), []);
 
   const trackWrapperStyle = useMemo<ViewStyle>(() => {

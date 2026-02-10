@@ -9,6 +9,7 @@ import React, { forwardRef, useMemo } from 'react';
 import { View, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -40,7 +41,7 @@ export const NewMessageDivider = forwardRef<View, NewMessageDividerProps>(functi
   const containerStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: defaultSpacing.md,
   }), []);
 
   const lineStyle = useMemo<ViewStyle>(() => ({
@@ -53,7 +54,7 @@ export const NewMessageDivider = forwardRef<View, NewMessageDividerProps>(functi
   const labelStyle = useMemo<TextStyle>(() => ({
     fontSize: 12,
     lineHeight: 16,
-    fontWeight: '600',
+    fontWeight: defaultTypography.weights.semibold,
     color: resolvedColor,
   }), [resolvedColor]);
 

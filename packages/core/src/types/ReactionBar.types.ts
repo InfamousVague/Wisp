@@ -5,6 +5,7 @@
  */
 
 import type React from 'react';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size
@@ -29,9 +30,9 @@ export interface ReactionBarSizeConfig {
 }
 
 export const reactionBarSizeMap: Record<ReactionBarSize, ReactionBarSizeConfig> = {
-  sm: { buttonSize: 28, emojiSize: 14, padding: 4, gap: 2, borderRadius: 16, countFontSize: 10 },
-  md: { buttonSize: 36, emojiSize: 18, padding: 6, gap: 4, borderRadius: 20, countFontSize: 11 },
-  lg: { buttonSize: 44, emojiSize: 22, padding: 8, gap: 6, borderRadius: 24, countFontSize: 12 },
+  sm: { buttonSize: 28, emojiSize: 14, padding: defaultSpacing.xs, gap: defaultSpacing['2xs'], borderRadius: defaultRadii.xl, countFontSize: 10 },
+  md: { buttonSize: 36, emojiSize: 18, padding: defaultSpacing.sm, gap: defaultSpacing.xs, borderRadius: defaultRadii.xl, countFontSize: 11 },
+  lg: { buttonSize: 44, emojiSize: 22, padding: defaultSpacing.sm, gap: defaultSpacing.sm, borderRadius: defaultRadii.xl, countFontSize: 12 },
 };
 
 // ---------------------------------------------------------------------------

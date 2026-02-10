@@ -6,6 +6,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { StatCardVariant, StatCardSizeConfig } from '../types/StatCard.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -81,7 +82,7 @@ export function buildStatCardContainerStyle(
     justifyContent: 'space-between',
     padding: sizeConfig.padding,
     gap: sizeConfig.gap,
-    borderRadius: 12,
+    borderRadius: defaultRadii.lg,
     border: `1px solid ${colors.border}`,
     backgroundColor: colors.bg,
     boxSizing: 'border-box',
@@ -114,7 +115,7 @@ export function buildStatCardTextStackStyle(): CSSStyleObject {
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: 2,
+    gap: defaultSpacing['2xs'],
     flex: 1,
     minWidth: 0,
   };
@@ -133,7 +134,7 @@ export function buildStatCardIconStyle(
     justifyContent: 'center',
     width: sizeConfig.iconSize + 8,
     height: sizeConfig.iconSize + 8,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     backgroundColor: accentColor + '14', // ~8% opacity
     color: accentColor,
     flexShrink: 0,
@@ -150,7 +151,7 @@ export function buildStatCardValueStyle(
   return {
     fontSize: sizeConfig.valueFontSize,
     lineHeight: `${sizeConfig.valueLineHeight}px`,
-    fontWeight: 700,
+    fontWeight: defaultTypography.weights.bold,
     color: colors.value,
     letterSpacing: '-0.02em',
     margin: 0,
@@ -167,7 +168,7 @@ export function buildStatCardLabelStyle(
   return {
     fontSize: sizeConfig.labelFontSize,
     lineHeight: 1.4,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: colors.label,
     margin: 0,
   };
@@ -183,7 +184,7 @@ export function buildStatCardDescriptionStyle(
   return {
     fontSize: sizeConfig.descriptionFontSize,
     lineHeight: 1.4,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     color: colors.description,
     margin: 0,
   };
@@ -214,9 +215,9 @@ export function buildStatCardTrendStyle(
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: 4,
+    gap: defaultSpacing.xs,
     fontSize: sizeConfig.trendFontSize,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     color: trendColor,
     lineHeight: 1,
   };
@@ -233,7 +234,7 @@ export function buildStatCardSkeletonStyle(
     display: 'block',
     width: '100%',
     height: sizeConfig.padding * 2 + sizeConfig.valueLineHeight + sizeConfig.labelFontSize * 1.4 + 4,
-    borderRadius: 12,
+    borderRadius: defaultRadii.lg,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

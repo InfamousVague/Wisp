@@ -11,6 +11,7 @@ import Svg, { Path, Polyline } from 'react-native-svg';
 import type { SidebarWidth, SidebarPosition, SidebarContextValue } from '@wisp-ui/core/types/Sidebar.types';
 import { sidebarWidthMap } from '@wisp-ui/core/types/Sidebar.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -97,7 +98,7 @@ export const Sidebar = forwardRef<View, SidebarProps>(function Sidebar(
             backgroundColor: themeColors.background.surface,
             [borderSide]: 1,
             borderColor: themeColors.border.subtle,
-            paddingVertical: 8,
+            paddingVertical: defaultSpacing.sm,
           },
           userStyle,
         ]}
@@ -140,8 +141,8 @@ function CollapseToggle({
       style={{
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 12,
-        paddingHorizontal: 8,
+        paddingVertical: defaultSpacing.md,
+        paddingHorizontal: defaultSpacing.sm,
         borderTopWidth: 1,
         borderTopColor: themeColors.border.subtle,
       }}
@@ -211,15 +212,15 @@ export const SidebarSection = forwardRef<View, SidebarSectionProps>(function Sid
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            paddingHorizontal: 16,
-            paddingTop: 12,
-            paddingBottom: 4,
+            paddingHorizontal: defaultSpacing.lg,
+            paddingTop: defaultSpacing.md,
+            paddingBottom: defaultSpacing.xs,
           }}
         >
           <RNText
             style={{
               fontSize: 11,
-              fontWeight: '600',
+              fontWeight: defaultTypography.weights.semibold,
               letterSpacing: 0.5,
               textTransform: 'uppercase',
               color: themeColors.text.onRaisedSecondary,
@@ -308,8 +309,8 @@ export const SidebarItem = forwardRef<View, SidebarItemProps>(function SidebarIt
         width: squareSize,
         height: squareSize,
         marginHorizontal: horizontalMargin,
-        marginVertical: 2,
-        borderRadius: 8,
+        marginVertical: defaultSpacing['2xs'],
+        borderRadius: defaultRadii.md,
         backgroundColor,
         opacity: disabled ? 0.4 : 1,
       };
@@ -318,12 +319,12 @@ export const SidebarItem = forwardRef<View, SidebarItemProps>(function SidebarIt
     return {
       flexDirection: 'row' as const,
       alignItems: 'center' as const,
-      gap: 12,
-      paddingHorizontal: 16,
-      paddingVertical: 8,
+      gap: defaultSpacing.md,
+      paddingHorizontal: defaultSpacing.lg,
+      paddingVertical: defaultSpacing.sm,
       marginHorizontal: horizontalMargin,
-      marginVertical: 2,
-      borderRadius: 8,
+      marginVertical: defaultSpacing['2xs'],
+      borderRadius: defaultRadii.md,
       backgroundColor,
       opacity: disabled ? 0.4 : 1,
     };
@@ -350,7 +351,7 @@ export const SidebarItem = forwardRef<View, SidebarItemProps>(function SidebarIt
           style={{
             flex: 1,
             fontSize: 14,
-            fontWeight: '500',
+            fontWeight: defaultTypography.weights.medium,
             color,
           }}
         >

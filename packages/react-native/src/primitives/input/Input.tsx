@@ -25,6 +25,7 @@ import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
 import { inputSizeMap } from '@wisp-ui/core/types/Input.types';
 import { resolveInputColors } from '@wisp-ui/core/styles/Input.styles';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -97,7 +98,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
   );
 
   const wrapperStyle = useMemo<ViewStyle>(() => ({
-    gap: 4,
+    gap: defaultSpacing.xs,
     ...(fullWidth ? { width: '100%' } : { alignSelf: 'flex-start' }),
   }), [fullWidth]);
 
@@ -110,7 +111,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.bg,
-    gap: 8,
+    gap: defaultSpacing.sm,
     opacity: disabled ? 0.5 : 1,
   }), [sizeConfig, colors, disabled]);
 
@@ -124,9 +125,9 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
 
   const labelStyle = useMemo<TextStyle>(() => ({
     fontSize: sizeConfig.labelFontSize,
-    fontWeight: '500',
+    fontWeight: defaultTypography.weights.medium,
     color: colors.label,
-    marginBottom: 2,
+    marginBottom: defaultSpacing['2xs'],
   }), [sizeConfig, colors]);
 
   const bottomText = errorMessage || warningMessage || hint;
@@ -137,7 +138,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
     return {
       fontSize: sizeConfig.hintFontSize,
       color: isStatus ? colors.border : colors.hint,
-      marginTop: 2,
+      marginTop: defaultSpacing['2xs'],
     };
   }, [bottomText, sizeConfig, colors, errorMessage, warningMessage]);
 

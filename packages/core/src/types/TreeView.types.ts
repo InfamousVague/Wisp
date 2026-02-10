@@ -5,6 +5,7 @@
  */
 
 import type React from 'react';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // TreeView Size
@@ -58,9 +59,9 @@ export interface TreeViewSizeConfig {
  * {@link TreeViewSizeConfig} used for layout and typography calculations.
  */
 export const treeViewSizeMap: Record<TreeViewSize, TreeViewSizeConfig> = {
-  sm: { fontSize: 12, lineHeight: 18, iconSize: 14, indent: 16, itemHeight: 28, gap: 2 },
-  md: { fontSize: 13, lineHeight: 20, iconSize: 16, indent: 20, itemHeight: 32, gap: 2 },
-  lg: { fontSize: 14, lineHeight: 22, iconSize: 18, indent: 24, itemHeight: 36, gap: 4 },
+  sm: { fontSize: 12, lineHeight: 18, iconSize: 14, indent: 16, itemHeight: 28, gap: defaultSpacing['2xs'] },
+  md: { fontSize: 13, lineHeight: 20, iconSize: 16, indent: 20, itemHeight: 32, gap: defaultSpacing['2xs'] },
+  lg: { fontSize: 14, lineHeight: 22, iconSize: 18, indent: 24, itemHeight: 36, gap: defaultSpacing.xs },
 };
 
 // ---------------------------------------------------------------------------

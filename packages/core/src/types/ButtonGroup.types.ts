@@ -3,6 +3,7 @@
  */
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Sizes
@@ -32,10 +33,10 @@ export interface ButtonGroupSizeConfig {
 
 /** Size → config lookup. */
 export const buttonGroupSizeMap: Record<ButtonGroupSize, ButtonGroupSizeConfig> = {
-  xs: { height: 28, paddingX: 10, fontSize: 12, lineHeight: 18, iconSize: 14, gap: 4 },
-  sm: { height: 32, paddingX: 12, fontSize: 13, lineHeight: 20, iconSize: 16, gap: 4 },
-  md: { height: 36, paddingX: 14, fontSize: 14, lineHeight: 20, iconSize: 16, gap: 6 },
-  lg: { height: 40, paddingX: 16, fontSize: 14, lineHeight: 24, iconSize: 20, gap: 6 },
+  xs: { height: 28, paddingX: defaultSpacing.md, fontSize: 12, lineHeight: 18, iconSize: 14, gap: defaultSpacing.xs },
+  sm: { height: 32, paddingX: defaultSpacing.md, fontSize: 13, lineHeight: 20, iconSize: 16, gap: defaultSpacing.xs },
+  md: { height: 36, paddingX: defaultSpacing.lg, fontSize: 14, lineHeight: 20, iconSize: 16, gap: defaultSpacing.sm },
+  lg: { height: 40, paddingX: defaultSpacing.lg, fontSize: 14, lineHeight: 24, iconSize: 20, gap: defaultSpacing.sm },
 };
 
 // ---------------------------------------------------------------------------

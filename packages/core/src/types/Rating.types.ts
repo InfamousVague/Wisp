@@ -3,6 +3,7 @@
  * @description Type definitions for the Rating primitive.
  */
 import type React from 'react';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size tokens
@@ -52,9 +53,9 @@ export interface RatingSizeConfig {
  * star icons and value label at every size tier.
  */
 export const ratingSizeMap: Record<RatingSize, RatingSizeConfig> = {
-  sm: { starSize: 16, gap: 2, fontSize: 12 },
-  md: { starSize: 20, gap: 3, fontSize: 14 },
-  lg: { starSize: 28, gap: 4, fontSize: 16 },
+  sm: { starSize: 16, gap: defaultSpacing['2xs'], fontSize: 12 },
+  md: { starSize: 20, gap: defaultSpacing.xs, fontSize: 14 },
+  lg: { starSize: 28, gap: defaultSpacing.xs, fontSize: 16 },
 };
 
 // ---------------------------------------------------------------------------

@@ -12,6 +12,7 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { NotificationBadgeColor } from '@wisp-ui/core/types/NotificationBadge.types';
 import { resolveNotificationBadgeColors } from '@wisp-ui/core/styles/NotificationBadge.styles';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -108,7 +109,7 @@ export const NotificationBadge = forwardRef<View, NotificationBadgeProps>(
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colors.bg,
-        borderRadius: 9999,
+        borderRadius: defaultRadii.full,
         zIndex: 1,
       };
 
@@ -116,12 +117,12 @@ export const NotificationBadge = forwardRef<View, NotificationBadgeProps>(
         return { ...base, width: 8, height: 8, minWidth: 8 };
       }
 
-      return { ...base, minWidth: 20, height: 20, paddingHorizontal: 6 };
+      return { ...base, minWidth: 20, height: 20, paddingHorizontal: defaultSpacing.sm };
     }, [colors, dot]);
 
     const textStyle = useMemo<TextStyle>(() => ({
       fontSize: 11,
-      fontWeight: '600',
+      fontWeight: defaultTypography.weights.semibold,
       color: colors.text,
       lineHeight: 14,
       textAlign: 'center',

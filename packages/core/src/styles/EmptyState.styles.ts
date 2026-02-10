@@ -8,6 +8,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { EmptyStateSizeConfig } from '../types/EmptyState.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container style (centered flex column)
@@ -30,7 +31,7 @@ export function buildContainerStyle(
     textAlign: 'center',
     minHeight: sizeConfig.minHeight,
     gap: sizeConfig.gap,
-    padding: 24,
+    padding: defaultSpacing.xl,
   };
 }
 
@@ -54,7 +55,7 @@ export function buildIconStyle(
     alignItems: 'center',
     justifyContent: 'center',
     color: themeColors.text.muted,
-    marginBottom: 4,
+    marginBottom: defaultSpacing.xs,
   };
 }
 
@@ -76,7 +77,7 @@ export function buildTitleStyle(
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.titleFontSize,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1.3,
     color: themeColors.text.primary,
     margin: 0,
@@ -102,7 +103,7 @@ export function buildDescriptionStyle(
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.descriptionFontSize,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.5,
     color: themeColors.text.secondary,
     margin: 0,
@@ -121,6 +122,6 @@ export function buildDescriptionStyle(
  */
 export function buildActionStyle(): CSSStyleObject {
   return {
-    marginTop: 8,
+    marginTop: defaultSpacing.sm,
   };
 }

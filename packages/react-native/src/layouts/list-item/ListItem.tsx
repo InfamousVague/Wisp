@@ -3,6 +3,7 @@ import { View, Pressable } from 'react-native';
 import type { ListItemSize } from '@wisp-ui/core/types/ListItem.types';
 import { listItemSizeMap } from '@wisp-ui/core/types/ListItem.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 export interface ListItemProps {
   children?: React.ReactNode;
@@ -56,7 +57,7 @@ export const ListItem = forwardRef<View, ListItemProps>(function ListItem(
       minHeight: config.minHeight,
       paddingHorizontal: config.paddingX,
       paddingVertical: config.paddingY,
-      borderRadius: 8,
+      borderRadius: defaultRadii.md,
       backgroundColor,
       opacity: disabled ? 0.5 : 1,
     }),
@@ -74,7 +75,7 @@ export const ListItem = forwardRef<View, ListItemProps>(function ListItem(
         {children}
       </View>
       {trailing && (
-        <View style={{ flexShrink: 0, flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+        <View style={{ flexShrink: 0, flexDirection: 'row', alignItems: 'center', gap: defaultSpacing.sm }}>
           {trailing}
         </View>
       )}

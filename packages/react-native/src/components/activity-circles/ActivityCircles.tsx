@@ -10,6 +10,7 @@ import {
   resolveActivityCirclesColors,
 } from '@wisp-ui/core/styles/ActivityCircles.styles';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface ActivityCirclesProps {
   rings: ActivityCirclesRing[];
@@ -135,22 +136,22 @@ export const ActivityCircles = forwardRef<View, ActivityCirclesProps>(
 
         {/* Legend */}
         {showLabels && (
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 12 }}>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: defaultSpacing.md }}>
             {rings.map((ring, i) =>
               ring.label ? (
-                <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: defaultSpacing.sm }}>
                   <View
                     style={{
                       width: 8,
                       height: 8,
-                      borderRadius: 4,
+                      borderRadius: defaultRadii.sm,
                       backgroundColor: ringColors[i],
                     }}
                   />
                   <RNText
                     style={{
                       fontSize: sizeConfig.fontSize,
-                      fontWeight: '500',
+                      fontWeight: defaultTypography.weights.medium,
                       color: colors.labelText,
                     }}
                   >

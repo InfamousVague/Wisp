@@ -57,6 +57,12 @@ export interface WispThemeContextValue {
   toggleMode: () => void;
   /** Explicitly set the theme mode to a specific {@link ThemeMode}. */
   setMode: (mode: ThemeMode) => void;
+  /** The current theme overrides (excluding mode). */
+  overrides: Omit<ThemeOverrides, 'mode'>;
+  /** Replace the current theme overrides (triggers live re-theme). */
+  setOverrides: (overrides: Omit<ThemeOverrides, 'mode'>) => void;
+  /** Reset overrides back to the initial prop value (or empty). */
+  resetOverrides: () => void;
 }
 
 // ---------------------------------------------------------------------------
@@ -231,16 +237,24 @@ export function WispProvider({
   children,
 }: WispProviderProps): React.JSX.Element {
   const [mode, setModeState] = useState<ThemeMode>(initialMode);
+  const [overrideState, setOverrideState] = useState<Omit<ThemeOverrides, 'mode'>>(
+    overrides ?? {},
+  );
 
   // Re-sync when the controlled `mode` prop changes from above.
   useEffect(() => {
     setModeState(initialMode);
   }, [initialMode]);
 
+  // Re-sync when the controlled `overrides` prop changes from above.
+  useEffect(() => {
+    setOverrideState(overrides ?? {});
+  }, [overrides]);
+
   // Build the resolved theme whenever mode or overrides change.
   const theme = useMemo<WispTheme>(
-    () => createTheme({ ...overrides, mode }),
-    [mode, overrides],
+    () => createTheme({ ...overrideState, mode }),
+    [mode, overrideState],
   );
 
   // Inject / update CSS custom properties on the document root (web only).
@@ -266,6 +280,19 @@ export function WispProvider({
     setModeState(next);
   }, []);
 
+  /** Replace the current overrides (triggers live re-theme). */
+  const setOverridesCallback = useCallback(
+    (next: Omit<ThemeOverrides, 'mode'>) => {
+      setOverrideState(next);
+    },
+    [],
+  );
+
+  /** Reset overrides back to the initial prop value. */
+  const resetOverrides = useCallback(() => {
+    setOverrideState(overrides ?? {});
+  }, [overrides]);
+
   const contextValue = useMemo<WispThemeContextValue>(
     () => ({
       theme,
@@ -273,8 +300,11 @@ export function WispProvider({
       colors: theme.colors,
       toggleMode,
       setMode,
+      overrides: overrideState,
+      setOverrides: setOverridesCallback,
+      resetOverrides,
     }),
-    [theme, mode, toggleMode, setMode],
+    [theme, mode, toggleMode, setMode, overrideState, setOverridesCallback, resetOverrides],
   );
 
   // Compose the provider tree.  When haptics are enabled we lazily wrap

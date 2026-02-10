@@ -4,6 +4,7 @@ import Svg, { Path } from 'react-native-svg';
 import type { BreadcrumbSize } from '@wisp-ui/core/types/Breadcrumb.types';
 import { breadcrumbSizeMap } from '@wisp-ui/core/types/Breadcrumb.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Breadcrumb
@@ -58,7 +59,7 @@ export const Breadcrumb = forwardRef<View, BreadcrumbProps>(function Breadcrumb(
       {items.map((child, index) => (
         <React.Fragment key={index}>
           {index > 0 && (
-            <View style={{ paddingHorizontal: 6, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ paddingHorizontal: defaultSpacing.sm, alignItems: 'center', justifyContent: 'center' }}>
               {separator || defaultSeparator}
             </View>
           )}
@@ -99,7 +100,7 @@ export const BreadcrumbItem = forwardRef<View, BreadcrumbItemProps>(function Bre
   const content = (
     <View
       ref={!onPress || active ? ref : undefined}
-      style={[{ flexDirection: 'row', alignItems: 'center', gap: 4 }, userStyle]}
+      style={[{ flexDirection: 'row', alignItems: 'center', gap: defaultSpacing.xs }, userStyle]}
     >
       {icon && <View style={{ alignItems: 'center', justifyContent: 'center' }}>{icon}</View>}
       <RNText style={{ color: textColor, fontWeight }}>
@@ -138,7 +139,7 @@ export const BreadcrumbSeparator = forwardRef<View, BreadcrumbSeparatorProps>(
     return (
       <View
         ref={ref}
-        style={[{ paddingHorizontal: 6, alignItems: 'center', justifyContent: 'center' }, userStyle]}
+        style={[{ paddingHorizontal: defaultSpacing.sm, alignItems: 'center', justifyContent: 'center' }, userStyle]}
       >
         {children || (
           <RNText style={{ color: themeColors.text.muted }}>/</RNText>

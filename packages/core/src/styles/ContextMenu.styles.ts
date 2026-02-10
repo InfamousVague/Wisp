@@ -4,6 +4,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Content (dropdown panel)
@@ -16,10 +17,10 @@ export function buildContextMenuContentStyle(
     position: 'fixed',
     zIndex: 9999,
     minWidth: 180,
-    padding: '4px 0',
+    padding: `${defaultSpacing.xs}px 0`,
     backgroundColor: themeColors.background.raised,
     border: `1px solid ${themeColors.accent.dividerRaised}`,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     boxShadow: '0 8px 30px rgba(0,0,0,0.25)',
     fontFamily: fontFamilyStacks.sans,
     outline: 'none',
@@ -42,8 +43,8 @@ export function buildContextMenuItemStyle(
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: 8,
-    padding: '8px 12px',
+    gap: defaultSpacing.sm,
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
     fontSize: 13,
     lineHeight: 1.4,
     fontFamily: fontFamilyStacks.sans,
@@ -90,7 +91,7 @@ export function buildContextMenuSeparatorStyle(
 ): CSSStyleObject {
   return {
     height: 1,
-    margin: '4px 0',
+    margin: `${defaultSpacing.xs}px 0`,
     backgroundColor: themeColors.accent.dividerRaised,
   };
 }

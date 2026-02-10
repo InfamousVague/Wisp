@@ -6,6 +6,7 @@
 
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Accordion root
@@ -80,15 +81,15 @@ export function buildTriggerStyle(
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    padding: '12px 0',
+    padding: `${defaultSpacing.md}px 0`,
     background: 'none',
     border: 'none',
     cursor: isDisabled ? 'not-allowed' : 'pointer',
     color,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     fontSize: 14,
     lineHeight: 1.43,
-    gap: 8,
+    gap: defaultSpacing.sm,
     opacity: isDisabled ? 0.5 : 1,
     outline: 'none',
     textAlign: 'left',

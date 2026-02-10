@@ -4,6 +4,7 @@
  */
 
 import type { HTMLAttributes } from 'react';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Date Range
@@ -55,9 +56,9 @@ export interface DateRangePickerSizeConfig {
  * resolve sizing tokens.
  */
 export const dateRangePickerSizeMap: Record<DateRangePickerSize, DateRangePickerSizeConfig> = {
-  sm: { inputHeight: 28, fontSize: 12, iconSize: 14, borderRadius: 6, paddingX: 10, cellSize: 28, headerFontSize: 13, dayHeaderFontSize: 11 },
-  md: { inputHeight: 34, fontSize: 13, iconSize: 16, borderRadius: 8, paddingX: 12, cellSize: 32, headerFontSize: 14, dayHeaderFontSize: 12 },
-  lg: { inputHeight: 40, fontSize: 14, iconSize: 18, borderRadius: 8, paddingX: 14, cellSize: 36, headerFontSize: 16, dayHeaderFontSize: 13 },
+  sm: { inputHeight: 28, fontSize: 12, iconSize: 14, borderRadius: defaultRadii.md, paddingX: defaultSpacing.md, cellSize: 28, headerFontSize: 13, dayHeaderFontSize: 11 },
+  md: { inputHeight: 34, fontSize: 13, iconSize: 16, borderRadius: defaultRadii.md, paddingX: defaultSpacing.md, cellSize: 32, headerFontSize: 14, dayHeaderFontSize: 12 },
+  lg: { inputHeight: 40, fontSize: 14, iconSize: 18, borderRadius: defaultRadii.md, paddingX: defaultSpacing.lg, cellSize: 36, headerFontSize: 16, dayHeaderFontSize: 13 },
 };
 
 // ---------------------------------------------------------------------------

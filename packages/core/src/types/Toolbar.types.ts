@@ -11,6 +11,7 @@
 
 import type React from 'react';
 import type { ThemeSpacing } from '../theme/types';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size
@@ -50,9 +51,9 @@ export interface ToolbarSizeConfig {
 
 /** Maps each {@link ToolbarSize} to its concrete {@link ToolbarSizeConfig}. */
 export const toolbarSizeMap: Record<ToolbarSize, ToolbarSizeConfig> = {
-  sm: { height: 40, paddingX: 8, gap: 4, separatorHeight: 16 },
-  md: { height: 48, paddingX: 12, gap: 6, separatorHeight: 20 },
-  lg: { height: 56, paddingX: 16, gap: 8, separatorHeight: 24 },
+  sm: { height: 40, paddingX: defaultSpacing.sm, gap: defaultSpacing.xs, separatorHeight: 16 },
+  md: { height: 48, paddingX: defaultSpacing.md, gap: defaultSpacing.sm, separatorHeight: 20 },
+  lg: { height: 56, paddingX: defaultSpacing.lg, gap: defaultSpacing.sm, separatorHeight: 24 },
 };
 
 // ---------------------------------------------------------------------------

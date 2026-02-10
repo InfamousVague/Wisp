@@ -1,5 +1,6 @@
 import type React from 'react';
 import type { ComponentSize, SurfaceVariant } from '../tokens/shared';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 export { componentSizes as selectSizes } from '../tokens/shared';
 export type { ComponentSize as SelectSize } from '../tokens/shared';
@@ -57,11 +58,11 @@ export interface SelectSizeConfig {
  * {@link SelectSizeConfig} used for layout and typography calculations.
  */
 export const selectSizeMap: Record<ComponentSize, SelectSizeConfig> = {
-  xs: { height: 28, paddingX: 8, paddingY: 4, fontSize: 12, lineHeight: 1.33, borderRadius: 6, iconSize: 14, labelFontSize: 12, hintFontSize: 11 },
-  sm: { height: 32, paddingX: 10, paddingY: 6, fontSize: 13, lineHeight: 1.38, borderRadius: 6, iconSize: 16, labelFontSize: 13, hintFontSize: 12 },
-  md: { height: 38, paddingX: 12, paddingY: 8, fontSize: 14, lineHeight: 1.43, borderRadius: 8, iconSize: 18, labelFontSize: 14, hintFontSize: 13 },
-  lg: { height: 44, paddingX: 14, paddingY: 10, fontSize: 15, lineHeight: 1.47, borderRadius: 8, iconSize: 20, labelFontSize: 15, hintFontSize: 14 },
-  xl: { height: 52, paddingX: 16, paddingY: 12, fontSize: 16, lineHeight: 1.5, borderRadius: 10, iconSize: 22, labelFontSize: 16, hintFontSize: 15 },
+  xs: { height: 28, paddingX: defaultSpacing.sm, paddingY: defaultSpacing.xs, fontSize: 12, lineHeight: 1.33, borderRadius: defaultRadii.md, iconSize: 14, labelFontSize: 12, hintFontSize: 11 },
+  sm: { height: 32, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: 13, lineHeight: 1.38, borderRadius: defaultRadii.md, iconSize: 16, labelFontSize: 13, hintFontSize: 12 },
+  md: { height: 38, paddingX: defaultSpacing.md, paddingY: defaultSpacing.sm, fontSize: 14, lineHeight: 1.43, borderRadius: defaultRadii.md, iconSize: 18, labelFontSize: 14, hintFontSize: 13 },
+  lg: { height: 44, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: 15, lineHeight: 1.47, borderRadius: defaultRadii.md, iconSize: 20, labelFontSize: 15, hintFontSize: 14 },
+  xl: { height: 52, paddingX: defaultSpacing.lg, paddingY: defaultSpacing.md, fontSize: 16, lineHeight: 1.5, borderRadius: defaultRadii.lg, iconSize: 22, labelFontSize: 16, hintFontSize: 15 },
 };
 
 /**

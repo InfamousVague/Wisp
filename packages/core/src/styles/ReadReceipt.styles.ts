@@ -6,6 +6,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { ReadReceiptStatus, ReadReceiptSizeConfig } from '../types/ReadReceipt.types';
+import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -89,7 +90,7 @@ export function buildReadReceiptSkeletonStyle(
     display: 'inline-block',
     width: sizeConfig.iconSize * 3,
     height: sizeConfig.iconSize,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

@@ -1,5 +1,6 @@
 import type React from 'react';
 import type { Thickness } from '../tokens/shared';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size
@@ -39,10 +40,10 @@ export interface ActivityCirclesSizeConfig {
  * Maps each {@link ActivityCirclesSize} to its {@link ActivityCirclesSizeConfig}.
  */
 export const activityCirclesSizeMap: Record<ActivityCirclesSize, ActivityCirclesSizeConfig> = {
-  sm: { diameter: 64, strokeWidth: 6, gap: 3, fontSize: 10 },
-  md: { diameter: 120, strokeWidth: 10, gap: 4, fontSize: 12 },
-  lg: { diameter: 180, strokeWidth: 14, gap: 5, fontSize: 14 },
-  xl: { diameter: 240, strokeWidth: 18, gap: 6, fontSize: 18 },
+  sm: { diameter: 64, strokeWidth: 6, gap: defaultSpacing.xs, fontSize: 10 },
+  md: { diameter: 120, strokeWidth: 10, gap: defaultSpacing.xs, fontSize: 12 },
+  lg: { diameter: 180, strokeWidth: 14, gap: defaultSpacing.sm, fontSize: 14 },
+  xl: { diameter: 240, strokeWidth: 18, gap: defaultSpacing.sm, fontSize: 18 },
 };
 
 // ---------------------------------------------------------------------------

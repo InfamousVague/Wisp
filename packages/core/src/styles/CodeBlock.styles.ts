@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { CodeBlockVariant } from '../types/CodeBlock.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Wrapper style (<div> around everything)
@@ -20,7 +21,7 @@ export function buildCodeBlockWrapperStyle(
 ): CSSStyleObject {
   const base: CSSStyleObject = {
     position: 'relative',
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     overflow: 'hidden',
     fontFamily: fontFamilyStacks.mono,
     fontSize: 13,
@@ -60,9 +61,9 @@ export function buildCodeBlockHeaderStyle(
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '8px 12px',
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
     fontSize: 11,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     fontFamily: fontFamilyStacks.sans,
     color: variant === 'outlined'
       ? themeColors.text.secondary
@@ -86,7 +87,7 @@ export function buildCodeBlockPreStyle(
 ): CSSStyleObject {
   return {
     margin: 0,
-    padding: '12px 16px',
+    padding: `${defaultSpacing.md}px ${defaultSpacing.lg}px`,
     overflow: 'auto',
     maxHeight: maxHeight ?? undefined,
     tabSize: 2,
@@ -120,8 +121,8 @@ export function buildCodeBlockLineStyle(
       : themeColors.accent.highlightRaised,
     marginLeft: -16,
     marginRight: -16,
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingLeft: defaultSpacing.lg,
+    paddingRight: defaultSpacing.lg,
     borderLeft: `2px solid ${variant === 'outlined' ? themeColors.accent.primary : themeColors.accent.primary}`,
   };
 }
@@ -140,7 +141,7 @@ export function buildCodeBlockLineNumberStyle(
   return {
     display: 'inline-block',
     width: '3ch',
-    marginRight: 16,
+    marginRight: defaultSpacing.lg,
     textAlign: 'right',
     userSelect: 'none',
     color: variant === 'outlined'
@@ -165,12 +166,12 @@ export function buildCodeBlockCopyButtonStyle(
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '4px 8px',
+    padding: `${defaultSpacing.xs}px ${defaultSpacing.sm}px`,
     border: 'none',
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     fontSize: 11,
     fontFamily: fontFamilyStacks.sans,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     cursor: 'pointer',
     backgroundColor: variant === 'outlined'
       ? themeColors.accent.highlight

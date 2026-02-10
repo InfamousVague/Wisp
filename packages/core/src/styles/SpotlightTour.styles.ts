@@ -7,6 +7,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { SpotlightTourVariant } from '../types/SpotlightTour.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Overlay
@@ -41,11 +42,11 @@ export function buildSpotlightPopoverStyle(
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: 8,
-    padding: 16,
+    gap: defaultSpacing.sm,
+    padding: defaultSpacing.lg,
     backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: 10,
+    borderRadius: defaultRadii.lg,
     fontFamily: fontFamilyStacks.sans,
     maxWidth: 360,
     boxShadow: '0 8px 24px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.1)',
@@ -66,7 +67,7 @@ export function buildSpotlightTitleStyle(
 ): CSSStyleObject {
   return {
     fontSize: 15,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1.4,
     color: themeColors.text.primary,
     margin: 0,
@@ -85,7 +86,7 @@ export function buildSpotlightDescriptionStyle(
 ): CSSStyleObject {
   return {
     fontSize: 13,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.46,
     color: themeColors.text.secondary,
     margin: 0,
@@ -104,8 +105,8 @@ export function buildSpotlightFooterStyle(): CSSStyleObject {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: 8,
-    marginTop: 4,
+    gap: defaultSpacing.sm,
+    marginTop: defaultSpacing.xs,
   };
 }
 
@@ -121,7 +122,7 @@ export function buildSpotlightStepCountStyle(
 ): CSSStyleObject {
   return {
     fontSize: 12,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: themeColors.text.muted,
     margin: 0,
   };
@@ -141,12 +142,12 @@ export function buildSpotlightNavButtonStyle(
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: 4,
-    padding: '5px 14px',
+    gap: defaultSpacing.xs,
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.lg}px`,
     fontSize: 13,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
-    borderRadius: 6,
+    borderRadius: defaultRadii.md,
     border: primary ? 'none' : `1px solid ${themeColors.border.subtle}`,
     backgroundColor: primary ? themeColors.text.primary : 'transparent',
     color: primary ? themeColors.background.canvas : themeColors.text.primary,

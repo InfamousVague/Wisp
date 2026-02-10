@@ -1,4 +1,5 @@
 import type React from 'react';
+import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Swatch Sizes
@@ -38,10 +39,10 @@ export interface ColorSwatchSizeConfig {
  * Maps each {@link ColorSwatchSize} to its corresponding {@link ColorSwatchSizeConfig}.
  */
 export const colorSwatchSizeMap: Record<ColorSwatchSize, ColorSwatchSizeConfig> = {
-  sm: { size: 16, borderRadius: 3 },
-  md: { size: 24, borderRadius: 4 },
-  lg: { size: 32, borderRadius: 6 },
-  xl: { size: 48, borderRadius: 8 },
+  sm: { size: 16, borderRadius: defaultRadii.sm },
+  md: { size: 24, borderRadius: defaultRadii.sm },
+  lg: { size: 32, borderRadius: defaultRadii.md },
+  xl: { size: 48, borderRadius: defaultRadii.md },
 };
 
 // ---------------------------------------------------------------------------

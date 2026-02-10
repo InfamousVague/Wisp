@@ -20,6 +20,7 @@ import { resolveToastColors } from '@wisp-ui/core/styles/Toast.styles';
 import type { ToastColors } from '@wisp-ui/core/styles/Toast.styles';
 import { useThemeColors } from '../../providers';
 import { Text } from '../text';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -117,10 +118,10 @@ export const Toast = forwardRef<View, ToastProps>(function Toast(
   const containerStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'flex-start',
-    gap: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    borderRadius: 10,
+    gap: defaultSpacing.md,
+    paddingVertical: defaultSpacing.md,
+    paddingHorizontal: defaultSpacing.md,
+    borderRadius: defaultRadii.lg,
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.bg,
@@ -136,20 +137,20 @@ export const Toast = forwardRef<View, ToastProps>(function Toast(
 
   const contentStyle = useMemo<ViewStyle>(() => ({
     flex: 1,
-    gap: 2,
+    gap: defaultSpacing['2xs'],
   }), []);
 
   const titleStyle = useMemo<TextStyle>(() => ({
     fontSize: 14,
     lineHeight: 20,
-    fontWeight: '500',
+    fontWeight: defaultTypography.weights.medium,
     color: colors.text,
   }), [colors]);
 
   const descriptionStyle = useMemo<TextStyle>(() => ({
     fontSize: 13,
     lineHeight: 18,
-    fontWeight: '400',
+    fontWeight: defaultTypography.weights.regular,
     color: colors.description,
   }), [colors]);
 
@@ -165,7 +166,7 @@ export const Toast = forwardRef<View, ToastProps>(function Toast(
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
   }), []);
 
   const dismissTextStyle = useMemo<TextStyle>(() => ({

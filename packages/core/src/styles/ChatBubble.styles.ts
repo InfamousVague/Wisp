@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ChatBubbleAlignment, ChatBubbleVariant } from '../types/ChatBubble.types';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant -> colors (theme-aware)
@@ -71,7 +72,7 @@ export function buildChatBubbleStyle(
 
   return {
     display: 'inline-block',
-    padding: '8px 12px',
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
     borderRadius: isOutgoing ? '12px 12px 2px 12px' : '12px 12px 12px 2px',
     backgroundColor: colors.bg,
     border: `1px solid ${colors.border}`,
@@ -96,8 +97,8 @@ export function buildFooterStyle(align: ChatBubbleAlignment): CSSStyleObject {
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: 4,
-    marginTop: 4,
+    gap: defaultSpacing.xs,
+    marginTop: defaultSpacing.xs,
     justifyContent: align === 'outgoing' ? 'flex-end' : 'flex-start',
   };
 }
@@ -146,8 +147,8 @@ export function buildReactionsContainerStyle(): CSSStyleObject {
   return {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: 4,
-    marginTop: 4,
+    gap: defaultSpacing.xs,
+    marginTop: defaultSpacing.xs,
   };
 }
 
@@ -172,9 +173,9 @@ export function buildReactionChipStyle(
   return {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: 4,
-    padding: '2px 8px',
-    borderRadius: 999,
+    gap: defaultSpacing.xs,
+    padding: `${defaultSpacing['2xs']}px ${defaultSpacing.sm}px`,
+    borderRadius: defaultRadii.xl,
     fontSize: 12,
     lineHeight: '18px',
     fontFamily: fontFamilyStacks.sans,

@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ActivityCirclesSizeConfig } from '../types/ActivityCircles.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -139,7 +140,7 @@ export function buildActivityCirclesLegendStyle(): CSSStyleObject {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    gap: 12,
+    gap: defaultSpacing.md,
   };
 }
 
@@ -153,7 +154,7 @@ export function buildActivityCirclesLegendItemStyle(): CSSStyleObject {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: defaultSpacing.sm,
   };
 }
 
@@ -167,7 +168,7 @@ export function buildActivityCirclesLegendDotStyle(color: string): CSSStyleObjec
   return {
     width: 8,
     height: 8,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: color,
     flexShrink: 0,
   };
@@ -187,7 +188,7 @@ export function buildActivityCirclesLegendTextStyle(
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1.4,
     color: colors.labelText,
     margin: 0,

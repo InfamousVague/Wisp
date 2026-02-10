@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { NotificationBadgeColor } from '../types/NotificationBadge.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color → resolved colors
@@ -96,9 +97,9 @@ export function buildNotificationBadgeStyle(
     boxSizing: 'border-box',
     backgroundColor: colors.bg,
     color: colors.text,
-    borderRadius: 9999,
+    borderRadius: defaultRadii.full,
     fontFamily: fontFamilyStacks.sans,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1,
     userSelect: 'none',
     pointerEvents: 'none',

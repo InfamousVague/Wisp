@@ -21,6 +21,7 @@ import { meterSizeMap } from '@wisp-ui/core/types/Meter.types';
 import { resolveSegmentColor } from '@wisp-ui/core/styles/Meter.styles';
 import { useThemeColors } from '../../providers';
 import { Text } from '../text';
+import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -153,14 +154,14 @@ export const Meter = forwardRef<View, MeterProps>(function Meter(
   const labelTextStyle = useMemo<TextStyle>(() => ({
     fontSize: sizeConfig.fontSize,
     lineHeight: sizeConfig.fontSize * 1.4,
-    fontWeight: '500',
+    fontWeight: defaultTypography.weights.medium,
     color: themeColors.text.primary,
   }), [sizeConfig, themeColors]);
 
   const valueTextStyle = useMemo<TextStyle>(() => ({
     fontSize: sizeConfig.fontSize,
     lineHeight: sizeConfig.fontSize * 1.4,
-    fontWeight: '500',
+    fontWeight: defaultTypography.weights.medium,
     color: themeColors.text.secondary,
   }), [sizeConfig, themeColors]);
 

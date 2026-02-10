@@ -10,6 +10,7 @@ import type { SheetSize } from '../types/Sheet.types';
 import { sheetSizeMap } from '../types/Sheet.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
+import { defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Overlay
@@ -116,7 +117,7 @@ export function buildHandlePillStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
     width: 36,
     height: 4,
-    borderRadius: 2,
+    borderRadius: defaultRadii.sm,
     backgroundColor: themeColors.accent.mutedRaised,
   };
 }

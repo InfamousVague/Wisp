@@ -4,6 +4,7 @@ import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
 import type { SelectOption } from '../select/Select';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 type ComboboxSize = 'sm' | 'md' | 'lg';
 
@@ -84,11 +85,11 @@ export const Combobox = forwardRef<View, ComboboxProps>(function Combobox(
       alignItems: 'center',
       height: cfg.height,
       paddingHorizontal: cfg.paddingX,
-      borderRadius: 8,
+      borderRadius: defaultRadii.md,
       borderWidth: 1,
       borderColor: hasError ? themeColors.status.danger : themeColors.border.subtle,
       backgroundColor: themeColors.background.surface,
-      gap: 8,
+      gap: defaultSpacing.sm,
       alignSelf: fullWidth ? 'stretch' : 'flex-start',
       opacity: disabled ? 0.4 : 1,
     }),
@@ -98,9 +99,9 @@ export const Combobox = forwardRef<View, ComboboxProps>(function Combobox(
   const errorMsg = typeof error === 'string' ? error : undefined;
 
   return (
-    <View ref={ref} style={[{ gap: 6 }, userStyle]}>
+    <View ref={ref} style={[{ gap: defaultSpacing.sm }, userStyle]}>
       {label && (
-        <RNText style={{ fontSize: 14, fontWeight: '500', color: themeColors.text.primary } as TextStyle}>
+        <RNText style={{ fontSize: 14, fontWeight: defaultTypography.weights.medium, color: themeColors.text.primary } as TextStyle}>
           {label}
         </RNText>
       )}
@@ -123,11 +124,11 @@ export const Combobox = forwardRef<View, ComboboxProps>(function Combobox(
 
       <Modal visible={isOpen} transparent animationType="fade" onRequestClose={() => setIsOpen(false)} statusBarTranslucent>
         <Pressable style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.5)' }]} onPress={() => setIsOpen(false)}>
-          <SafeAreaView style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24 }}>
+          <SafeAreaView style={{ flex: 1, justifyContent: 'center', paddingHorizontal: defaultSpacing.xl }}>
             <Pressable onPress={(e) => e.stopPropagation()}>
               <View style={{
                 backgroundColor: themeColors.background.raised,
-                borderRadius: 16,
+                borderRadius: defaultRadii.xl,
                 maxHeight: '70%',
                 overflow: 'hidden',
                 shadowColor: '#000',
@@ -136,7 +137,7 @@ export const Combobox = forwardRef<View, ComboboxProps>(function Combobox(
                 shadowRadius: 24,
                 elevation: 8,
               }}>
-                <View style={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8 }}>
+                <View style={{ paddingHorizontal: defaultSpacing.lg, paddingTop: defaultSpacing.md, paddingBottom: defaultSpacing.sm }}>
                   <TextInput
                     value={searchText}
                     onChangeText={setSearchText}
@@ -145,10 +146,10 @@ export const Combobox = forwardRef<View, ComboboxProps>(function Combobox(
                     autoFocus
                     style={{
                       height: 36,
-                      borderRadius: 8,
+                      borderRadius: defaultRadii.md,
                       borderWidth: 1,
                       borderColor: themeColors.border.subtle,
-                      paddingHorizontal: 12,
+                      paddingHorizontal: defaultSpacing.md,
                       fontSize: 14,
                       color: themeColors.text.onRaised,
                       backgroundColor: themeColors.background.surface,
@@ -159,7 +160,7 @@ export const Combobox = forwardRef<View, ComboboxProps>(function Combobox(
                   data={filteredOptions}
                   keyExtractor={(item) => item.value}
                   ListEmptyComponent={
-                    <View style={{ padding: 24, alignItems: 'center' }}>
+                    <View style={{ padding: defaultSpacing.xl, alignItems: 'center' }}>
                       <RNText style={{ fontSize: 14, color: themeColors.text.onRaisedSecondary } as TextStyle}>
                         {emptyMessage}
                       </RNText>
@@ -175,9 +176,9 @@ export const Combobox = forwardRef<View, ComboboxProps>(function Combobox(
                         style={({ pressed }) => ({
                           flexDirection: 'row',
                           alignItems: 'center',
-                          gap: 12,
-                          paddingVertical: 12,
-                          paddingHorizontal: 16,
+                          gap: defaultSpacing.md,
+                          paddingVertical: defaultSpacing.md,
+                          paddingHorizontal: defaultSpacing.lg,
                           backgroundColor: pressed ? themeColors.accent.highlight : 'transparent',
                           opacity: isDisabled ? 0.4 : 1,
                         })}
@@ -188,7 +189,7 @@ export const Combobox = forwardRef<View, ComboboxProps>(function Combobox(
                             {item.label}
                           </RNText>
                           {item.description && (
-                            <RNText style={{ fontSize: 12, color: themeColors.text.onRaisedSecondary, marginTop: 2 } as TextStyle}>
+                            <RNText style={{ fontSize: 12, color: themeColors.text.onRaisedSecondary, marginTop: defaultSpacing['2xs'] } as TextStyle}>
                               {item.description}
                             </RNText>
                           )}

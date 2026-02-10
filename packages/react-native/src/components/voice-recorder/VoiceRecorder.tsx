@@ -13,6 +13,7 @@ import type { VoiceRecorderState, VoiceRecorderSize } from '@wisp-ui/core/types/
 import { voiceRecorderSizeMap } from '@wisp-ui/core/types/VoiceRecorder.types';
 import { resolveVoiceRecorderColors } from '@wisp-ui/core/styles/VoiceRecorder.styles';
 import { useThemeColors } from '../../providers';
+import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -148,7 +149,7 @@ export const VoiceRecorder = forwardRef<View, VoiceRecorderProps>(
 
     const timerStyle = useMemo<TextStyle>(() => ({
       fontSize: sizeConfig.fontSize,
-      fontWeight: '600',
+      fontWeight: defaultTypography.weights.semibold,
       color: colors.timer,
       fontVariant: ['tabular-nums'],
       minWidth: 40,

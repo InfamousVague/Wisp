@@ -12,6 +12,7 @@ import {
 } from '@wisp-ui/core/styles/Slider.styles';
 import { useThemeColors } from '../../providers';
 import { fontFamilyStacks, thicknessValues } from '@wisp-ui/core/tokens/shared';
+import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -329,7 +330,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
             <span
               style={{
                 fontSize: sizeConfig.labelFontSize,
-                fontWeight: 500,
+                fontWeight: defaultTypography.weights.medium,
                 color: colors.label,
                 lineHeight: 1.4,
               }}

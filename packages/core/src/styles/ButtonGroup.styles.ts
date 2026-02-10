@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ButtonGroupVariant, ButtonGroupSizeConfig } from '../types/ButtonGroup.types';
+import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container style
@@ -100,7 +101,7 @@ export function buildGroupItemStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: `${sizeConfig.lineHeight}px`,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
 
     // Colors
     backgroundColor: bg,

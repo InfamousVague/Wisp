@@ -12,6 +12,7 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { ChatBubbleAlignment, ChatBubbleStatus } from '@wisp-ui/core/types/ChatBubble.types';
 import { useThemeColors } from '../../providers';
 import { ChatBubble, StatusIcon } from '../chat-bubble/ChatBubble';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -49,34 +50,34 @@ export const MessageGroup = forwardRef<View, MessageGroupProps>(function Message
   const groupStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'column',
     alignItems: isOutgoing ? 'flex-end' : 'flex-start',
-    gap: 2,
+    gap: defaultSpacing['2xs'],
   }), [isOutgoing]);
 
   const senderNameStyle = useMemo<TextStyle>(() => ({
     fontSize: 13,
     lineHeight: 18,
-    fontWeight: '600',
+    fontWeight: defaultTypography.weights.semibold,
     color: themeColors.text.secondary,
-    marginBottom: 4,
+    marginBottom: defaultSpacing.xs,
   }), [themeColors]);
 
   const contentRowStyle = useMemo<ViewStyle>(() => ({
     flexDirection: isOutgoing ? 'row-reverse' : 'row',
     alignItems: 'flex-end',
-    gap: 8,
+    gap: defaultSpacing.sm,
   }), [isOutgoing]);
 
   const bubblesStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'column',
     alignItems: isOutgoing ? 'flex-end' : 'flex-start',
-    gap: 4,
+    gap: defaultSpacing.xs,
   }), [isOutgoing]);
 
   const footerStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
-    marginTop: 4,
+    gap: defaultSpacing.xs,
+    marginTop: defaultSpacing.xs,
     justifyContent: isOutgoing ? 'flex-end' : 'flex-start',
   }), [isOutgoing]);
 

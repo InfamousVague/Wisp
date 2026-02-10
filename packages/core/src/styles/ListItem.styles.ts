@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import type { ListItemSize, ListItemSizeConfig } from '../types/ListItem.types';
 import { listItemSizeMap } from '../types/ListItem.types';
 import type { ThemeColors } from '../theme/types';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 /**
  * Builds the root `CSSProperties` for a {@link ListItem}.
@@ -37,7 +38,7 @@ export function buildListItemStyle(opts: {
     paddingRight: config.paddingX,
     paddingTop: config.paddingY,
     paddingBottom: config.paddingY,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     transition: 'background-color 150ms ease',
   };
 
@@ -100,6 +101,6 @@ export function buildTrailingStyle(): CSSStyleObject {
     flexShrink: 0,
     display: 'flex',
     alignItems: 'center',
-    gap: 8,
+    gap: defaultSpacing.sm,
   };
 }

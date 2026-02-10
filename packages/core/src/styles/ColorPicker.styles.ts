@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { ColorPickerSizeConfig } from '../types/ColorPicker.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container style (vertical flex column)
@@ -125,7 +126,7 @@ export function buildColorPickerSwatchGridStyle(
   return {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: 6,
+    gap: defaultSpacing.sm,
   };
 }
 
@@ -162,7 +163,7 @@ export function buildColorPickerSwatchStyle(
   return {
     width: sizeConfig.swatchSize,
     height: sizeConfig.swatchSize,
-    borderRadius: 4,
+    borderRadius: defaultRadii.sm,
     backgroundColor: color,
     cursor: 'pointer',
     border,
@@ -193,7 +194,7 @@ export function buildColorPickerLabelStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     color: themeColors.text.secondary,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1.4,
     cursor: 'default',
     userSelect: 'none',

@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { ChatBubbleAlignment } from '../types/ChatBubble.types';
+import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Group container
@@ -17,7 +18,7 @@ export function buildMessageGroupStyle(align: ChatBubbleAlignment): CSSStyleObje
     display: 'flex',
     flexDirection: 'column',
     alignItems: align === 'outgoing' ? 'flex-end' : 'flex-start',
-    gap: 2,
+    gap: defaultSpacing['2xs'],
   };
 }
 
@@ -34,7 +35,7 @@ export function buildSenderNameStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
     fontSize: 13,
     lineHeight: '18px',
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     fontFamily: fontFamilyStacks.sans,
     color: themeColors.text.secondary,
   };
@@ -55,7 +56,7 @@ export function buildContentRowStyle(align: ChatBubbleAlignment): CSSStyleObject
     display: 'flex',
     flexDirection: align === 'outgoing' ? 'row-reverse' : 'row',
     alignItems: 'flex-end',
-    gap: 8,
+    gap: defaultSpacing.sm,
   };
 }
 
@@ -73,7 +74,7 @@ export function buildBubblesContainerStyle(align: ChatBubbleAlignment): CSSStyle
     display: 'flex',
     flexDirection: 'column',
     alignItems: align === 'outgoing' ? 'flex-end' : 'flex-start',
-    gap: 4,
+    gap: defaultSpacing.xs,
   };
 }
 
@@ -90,8 +91,8 @@ export function buildGroupFooterStyle(align: ChatBubbleAlignment): CSSStyleObjec
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: 4,
-    marginTop: 4,
+    gap: defaultSpacing.xs,
+    marginTop: defaultSpacing.xs,
     justifyContent: align === 'outgoing' ? 'flex-end' : 'flex-start',
   };
 }

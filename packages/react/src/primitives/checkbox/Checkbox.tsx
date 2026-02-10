@@ -8,6 +8,7 @@ import {
   getCheckboxSkeletonStyle,
 } from '@wisp-ui/core/styles/Checkbox.styles';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 /**
  * Checkbox — Selection primitive for the Wisp design system.
@@ -289,7 +290,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(function Che
   const hasText = Boolean(label || description);
 
   const textContainer = hasText ? (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 2, minWidth: 0 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: defaultSpacing['2xs'], minWidth: 0 }}>
       {label && (
         <span
           style={{

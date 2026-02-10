@@ -7,6 +7,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { QuestTrackerSizeConfig } from '../types/QuestTracker.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -21,7 +22,7 @@ export function buildQuestTrackerContainerStyle(
     flexDirection: 'column',
     backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
-    borderRadius: 10,
+    borderRadius: defaultRadii.lg,
     fontFamily: fontFamilyStacks.sans,
     overflow: 'hidden',
   };
@@ -55,7 +56,7 @@ export function buildQuestTrackerTitleStyle(
 ): CSSStyleObject {
   return {
     fontSize: sizeConfig.titleFontSize,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     lineHeight: 1.4,
     color: themeColors.text.primary,
     margin: 0,
@@ -105,7 +106,7 @@ export function buildQuestTrackerObjectiveStyle(
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: 8,
+    gap: defaultSpacing.sm,
     cursor: clickable ? 'pointer' : 'default',
   };
 }
@@ -165,7 +166,7 @@ export function buildQuestTrackerLabelStyle(
 ): CSSStyleObject {
   return {
     fontSize: sizeConfig.labelFontSize,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: 1.43,
     color: status === 'complete' ? themeColors.text.muted : themeColors.text.primary,
     textDecoration: status === 'complete' ? 'line-through' : 'none',
@@ -185,7 +186,7 @@ export function buildQuestTrackerCounterStyle(
 ): CSSStyleObject {
   return {
     fontSize: sizeConfig.labelFontSize - 1,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: themeColors.text.muted,
     whiteSpace: 'nowrap',
   };

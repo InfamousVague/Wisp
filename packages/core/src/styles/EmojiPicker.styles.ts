@@ -6,6 +6,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { EmojiPickerSizeConfig } from '../types/EmojiPicker.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -87,7 +88,7 @@ export function buildEmojiPickerSearchRowStyle(
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: defaultSpacing.sm,
     height: sizeConfig.searchHeight,
   };
 }
@@ -103,7 +104,7 @@ export function buildEmojiPickerSliderClipStyle(
     flex: 1,
     overflow: 'hidden',
     height: sizeConfig.searchHeight + 4,
-    padding: 2,
+    padding: defaultSpacing['2xs'],
     margin: -2,
     position: 'relative',
   };
@@ -176,7 +177,7 @@ export function buildEmojiPickerSkinToneOptionStyle(
     justifyContent: 'center',
     width: optionSize,
     height: optionSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     border: active ? `2px solid ${colors.skinToneActiveBorder}` : '2px solid transparent',
     backgroundColor: active ? colors.bg : 'transparent',
     cursor: 'pointer',
@@ -276,7 +277,7 @@ export function buildEmojiPickerCategoryLabelStyle(
 ): CSSStyleObject {
   return {
     fontSize: sizeConfig.fontSize,
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     color: colors.categoryLabel,
     textTransform: 'capitalize',
     padding: `${sizeConfig.gap + 2}px 0 ${sizeConfig.gap}px`,
@@ -297,7 +298,7 @@ export function buildEmojiPickerCellStyle(
     justifyContent: 'center',
     width: sizeConfig.cellSize,
     height: sizeConfig.cellSize,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     border: 'none',
     backgroundColor: 'transparent',
     cursor: 'pointer',
@@ -344,7 +345,7 @@ export function buildEmojiPickerNoResultsStyle(
     flex: 1,
     color: colors.categoryLabel,
     fontSize: 13,
-    padding: 20,
+    padding: defaultSpacing.xl,
     textAlign: 'center',
   };
 }

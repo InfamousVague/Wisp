@@ -1,5 +1,6 @@
 import type React from 'react';
 import type { ComponentSize } from '../tokens/shared';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 /**
  * Re-exported tuple of valid checkbox size literals.
@@ -53,11 +54,11 @@ export interface CheckboxSizeConfig {
  * dimensions, font sizes, and border radii for each size variant.
  */
 export const checkboxSizeMap: Record<ComponentSize, CheckboxSizeConfig> = {
-  xs: { boxSize: 14, borderRadius: 3, iconSize: 10, iconStrokeWidth: 2.5, labelFontSize: 12, labelLineHeight: 1.33, gap: 6 },
-  sm: { boxSize: 16, borderRadius: 4, iconSize: 12, iconStrokeWidth: 2.5, labelFontSize: 13, labelLineHeight: 1.38, gap: 8 },
-  md: { boxSize: 18, borderRadius: 4, iconSize: 14, iconStrokeWidth: 2, labelFontSize: 14, labelLineHeight: 1.43, gap: 8 },
-  lg: { boxSize: 20, borderRadius: 5, iconSize: 16, iconStrokeWidth: 2, labelFontSize: 15, labelLineHeight: 1.47, gap: 10 },
-  xl: { boxSize: 24, borderRadius: 6, iconSize: 18, iconStrokeWidth: 2, labelFontSize: 16, labelLineHeight: 1.5, gap: 12 },
+  xs: { boxSize: 14, borderRadius: defaultRadii.sm, iconSize: 10, iconStrokeWidth: 2.5, labelFontSize: 12, labelLineHeight: 1.33, gap: defaultSpacing.sm },
+  sm: { boxSize: 16, borderRadius: defaultRadii.sm, iconSize: 12, iconStrokeWidth: 2.5, labelFontSize: 13, labelLineHeight: 1.38, gap: defaultSpacing.sm },
+  md: { boxSize: 18, borderRadius: defaultRadii.sm, iconSize: 14, iconStrokeWidth: 2, labelFontSize: 14, labelLineHeight: 1.43, gap: defaultSpacing.sm },
+  lg: { boxSize: 20, borderRadius: defaultRadii.sm, iconSize: 16, iconStrokeWidth: 2, labelFontSize: 15, labelLineHeight: 1.47, gap: defaultSpacing.md },
+  xl: { boxSize: 24, borderRadius: defaultRadii.md, iconSize: 18, iconStrokeWidth: 2, labelFontSize: 16, labelLineHeight: 1.5, gap: defaultSpacing.md },
 };
 
 // ---------------------------------------------------------------------------

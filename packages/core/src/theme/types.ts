@@ -442,10 +442,10 @@ export interface ThemeTypography {
   };
   /** Font weight values. */
   weights: {
-    regular: number;
-    medium: number;
-    semibold: number;
-    bold: number;
+    regular: 400;
+    medium: 500;
+    semibold: 600;
+    bold: 700;
   };
 }
 

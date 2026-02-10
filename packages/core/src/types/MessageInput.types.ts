@@ -5,6 +5,7 @@
  */
 
 import type React from 'react';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size
@@ -33,9 +34,9 @@ export interface MessageInputSizeConfig {
 }
 
 export const messageInputSizeMap: Record<MessageInputSize, MessageInputSizeConfig> = {
-  sm: { minHeight: 36, maxHeight: 120, fontSize: 13, padding: 8, iconButtonSize: 28, iconSize: 16, borderRadius: 18, gap: 4 },
-  md: { minHeight: 44, maxHeight: 160, fontSize: 14, padding: 12, iconButtonSize: 34, iconSize: 18, borderRadius: 22, gap: 6 },
-  lg: { minHeight: 52, maxHeight: 200, fontSize: 15, padding: 16, iconButtonSize: 40, iconSize: 20, borderRadius: 26, gap: 8 },
+  sm: { minHeight: 36, maxHeight: 120, fontSize: 13, padding: defaultSpacing.sm, iconButtonSize: 28, iconSize: 16, borderRadius: defaultRadii.xl, gap: defaultSpacing.xs },
+  md: { minHeight: 44, maxHeight: 160, fontSize: 14, padding: defaultSpacing.md, iconButtonSize: 34, iconSize: 18, borderRadius: defaultRadii.xl, gap: defaultSpacing.sm },
+  lg: { minHeight: 52, maxHeight: 200, fontSize: 15, padding: defaultSpacing.lg, iconButtonSize: 40, iconSize: 20, borderRadius: defaultRadii.xl, gap: defaultSpacing.sm },
 };
 
 // ---------------------------------------------------------------------------

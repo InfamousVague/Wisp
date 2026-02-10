@@ -3,6 +3,7 @@ import { View, Pressable, FlatList, ScrollView, Text as RNText } from 'react-nat
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 type DataTableSize = 'sm' | 'md' | 'lg';
 
@@ -95,10 +96,10 @@ function DataTableInner<T>(
               const allSelected = selectedRows?.size === data.length;
               onSelectionChange(allSelected ? new Set() : new Set(data.map((_, i) => i)));
             }}
-            style={{ width: 20, height: 20, borderWidth: 1.5, borderColor: themeColors.border.strong, borderRadius: 4, alignItems: 'center', justifyContent: 'center' }}
+            style={{ width: 20, height: 20, borderWidth: 1.5, borderColor: themeColors.border.strong, borderRadius: defaultRadii.sm, alignItems: 'center', justifyContent: 'center' }}
           >
             {selectedRows && selectedRows.size > 0 && (
-              <View style={{ width: 10, height: 10, borderRadius: 2, backgroundColor: themeColors.accent.primary }} />
+              <View style={{ width: 10, height: 10, borderRadius: defaultRadii.sm, backgroundColor: themeColors.accent.primary }} />
             )}
           </Pressable>
         </View>
@@ -119,10 +120,10 @@ function DataTableInner<T>(
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: rnAlign,
-              gap: 4,
+              gap: defaultSpacing.xs,
             }}
           >
-            <RNText style={{ fontSize: cfg.headerFontSize, fontWeight: '600', color: themeColors.text.secondary } as TextStyle}>
+            <RNText style={{ fontSize: cfg.headerFontSize, fontWeight: defaultTypography.weights.semibold, color: themeColors.text.secondary } as TextStyle}>
               {col.header}
             </RNText>
             {col.sortable && isSorted && (
@@ -167,7 +168,7 @@ function DataTableInner<T>(
               <View style={{
                 width: 18, height: 18, borderWidth: 1.5,
                 borderColor: isSelected ? themeColors.accent.primary : themeColors.border.strong,
-                borderRadius: 4,
+                borderRadius: defaultRadii.sm,
                 backgroundColor: isSelected ? themeColors.accent.primary : 'transparent',
                 alignItems: 'center', justifyContent: 'center',
               }}>
@@ -213,10 +214,10 @@ function DataTableInner<T>(
 
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      <View ref={ref} style={[{ borderWidth: 1, borderColor: themeColors.border.subtle, borderRadius: 8, overflow: 'hidden' }, userStyle]}>
+      <View ref={ref} style={[{ borderWidth: 1, borderColor: themeColors.border.subtle, borderRadius: defaultRadii.md, overflow: 'hidden' }, userStyle]}>
         {headerRow}
         {data.length === 0 ? (
-          <View style={{ padding: 24, alignItems: 'center' }}>
+          <View style={{ padding: defaultSpacing.xl, alignItems: 'center' }}>
             <RNText style={{ fontSize: cfg.fontSize, color: themeColors.text.muted } as TextStyle}>{emptyMessage}</RNText>
           </View>
         ) : (

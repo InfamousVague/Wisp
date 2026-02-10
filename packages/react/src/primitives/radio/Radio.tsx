@@ -18,6 +18,7 @@ import {
   getRadioSkeletonStyle,
 } from '@wisp-ui/core/styles/Radio.styles';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Context
@@ -143,7 +144,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(function R
               style={{
                 width: 60 + Math.random() * 40,
                 height: sizeConfig.labelFontSize,
-                borderRadius: 4,
+                borderRadius: defaultRadii.sm,
                 backgroundColor: themeColors.border.subtle,
                 animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
               }}
@@ -380,7 +381,7 @@ export const Radio = forwardRef<HTMLLabelElement, RadioProps>(function Radio(
   const hasText = Boolean(label || description);
 
   const textContainer = hasText ? (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 2, minWidth: 0 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: defaultSpacing['2xs'], minWidth: 0 }}>
       {label && (
         <span
           style={{

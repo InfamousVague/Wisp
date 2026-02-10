@@ -2,6 +2,7 @@
  * @module ProgressSteps
  */
 import type React from 'react';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Sizes
@@ -31,9 +32,9 @@ export interface ProgressStepsSizeConfig {
 
 /** Size → config lookup. */
 export const progressStepsSizeMap: Record<ProgressStepsSize, ProgressStepsSizeConfig> = {
-  sm: { dotSize: 24, lineThickness: 2, labelFontSize: 12, descriptionFontSize: 11, iconSize: 14, gap: 8 },
-  md: { dotSize: 32, lineThickness: 2, labelFontSize: 14, descriptionFontSize: 12, iconSize: 16, gap: 10 },
-  lg: { dotSize: 40, lineThickness: 2, labelFontSize: 15, descriptionFontSize: 13, iconSize: 20, gap: 12 },
+  sm: { dotSize: 24, lineThickness: 2, labelFontSize: 12, descriptionFontSize: 11, iconSize: 14, gap: defaultSpacing.sm },
+  md: { dotSize: 32, lineThickness: 2, labelFontSize: 14, descriptionFontSize: 12, iconSize: 16, gap: defaultSpacing.md },
+  lg: { dotSize: 40, lineThickness: 2, labelFontSize: 15, descriptionFontSize: 13, iconSize: 20, gap: defaultSpacing.md },
 };
 
 // ---------------------------------------------------------------------------

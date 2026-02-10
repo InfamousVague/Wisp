@@ -19,6 +19,7 @@ import type { StepperSize, StepperSizeConfig } from '@wisp-ui/core/types/Stepper
 import { stepperSizeMap } from '@wisp-ui/core/types/Stepper.types';
 import { useThemeColors } from '../../providers';
 import { Text } from '../text';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -200,13 +201,13 @@ export const Stepper = forwardRef<View, StepperProps>(function Stepper(
     borderLeftWidth: 1,
     borderRightWidth: 1,
     borderColor: themeColors.border.strong,
-    paddingHorizontal: 8,
+    paddingHorizontal: defaultSpacing.sm,
   }), [sizeConfig, themeColors]);
 
   const buttonTextStyle = useMemo<TextStyle>(() => ({
     fontSize: sizeConfig.iconSize,
     lineHeight: sizeConfig.iconSize + 2,
-    fontWeight: '500',
+    fontWeight: defaultTypography.weights.medium,
   }), [sizeConfig]);
 
   // -----------------------------------------------------------------------

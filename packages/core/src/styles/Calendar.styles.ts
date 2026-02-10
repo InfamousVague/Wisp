@@ -7,6 +7,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { CalendarSizeConfig } from '../types/Calendar.types';
+import { defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -26,7 +27,7 @@ export function buildCalendarContainerStyle(
   return {
     padding: sizeConfig.padding,
     backgroundColor: themeColors.background.raised,
-    borderRadius: 12,
+    borderRadius: defaultRadii.lg,
     border: `1px solid ${themeColors.border.subtle}`,
     fontFamily: fontFamilyStacks.sans,
     display: 'inline-block',
@@ -95,7 +96,7 @@ export function buildCalendarNavButtonStyle(
     height: btnSize,
 
     // Shape
-    borderRadius: 6,
+    borderRadius: defaultRadii.md,
 
     // Color
     backgroundColor: isHovered ? themeColors.accent.highlight : 'transparent',
@@ -148,7 +149,7 @@ export function buildCalendarDayHeaderStyle(
     textAlign: 'center',
     fontSize: sizeConfig.dayHeaderFontSize,
     color: themeColors.text.onRaisedSecondary,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
     height: sizeConfig.cellSize,
     display: 'flex',
@@ -209,11 +210,11 @@ export function buildCalendarDayCellStyle(
     // Typography
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     lineHeight: 1,
 
     // Shape
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
 
     // Color defaults
     backgroundColor: 'transparent',
@@ -281,7 +282,7 @@ export function buildCalendarMonthYearStyle(
   themeColors: ThemeColors,
 ): CSSStyleObject {
   return {
-    fontWeight: 600,
+    fontWeight: defaultTypography.weights.semibold,
     fontSize: sizeConfig.headerFontSize,
     color: themeColors.text.onRaised,
     lineHeight: 1,
@@ -307,7 +308,7 @@ export function buildCalendarSkeletonCellStyle(
   return {
     width: sizeConfig.cellSize,
     height: sizeConfig.cellSize,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

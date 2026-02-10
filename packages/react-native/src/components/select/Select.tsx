@@ -3,6 +3,7 @@ import { View, Pressable, Modal, FlatList, StyleSheet, Text as RNText, SafeAreaV
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline, Path } from 'react-native-svg';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface SelectOption {
   value: string;
@@ -75,11 +76,11 @@ export const Select = forwardRef<View, SelectProps>(function Select(
       alignItems: 'center',
       height: cfg.height,
       paddingHorizontal: cfg.paddingX,
-      borderRadius: 8,
+      borderRadius: defaultRadii.md,
       borderWidth: 1,
       borderColor: hasError ? themeColors.status.danger : themeColors.border.subtle,
       backgroundColor: themeColors.background.surface,
-      gap: 8,
+      gap: defaultSpacing.sm,
       alignSelf: fullWidth ? 'stretch' : 'flex-start',
       opacity: disabled ? 0.4 : 1,
     }),
@@ -98,9 +99,9 @@ export const Select = forwardRef<View, SelectProps>(function Select(
   const errorMsg = typeof error === 'string' ? error : undefined;
 
   return (
-    <View ref={ref} style={[{ gap: 6 }, userStyle]}>
+    <View ref={ref} style={[{ gap: defaultSpacing.sm }, userStyle]}>
       {label && (
-        <RNText style={{ fontSize: 14, fontWeight: '500', color: themeColors.text.primary } as TextStyle}>
+        <RNText style={{ fontSize: 14, fontWeight: defaultTypography.weights.medium, color: themeColors.text.primary } as TextStyle}>
           {label}
         </RNText>
       )}
@@ -126,11 +127,11 @@ export const Select = forwardRef<View, SelectProps>(function Select(
 
       <Modal visible={isOpen} transparent animationType="fade" onRequestClose={() => setIsOpen(false)} statusBarTranslucent>
         <Pressable style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.5)' }]} onPress={() => setIsOpen(false)}>
-          <SafeAreaView style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24 }}>
+          <SafeAreaView style={{ flex: 1, justifyContent: 'center', paddingHorizontal: defaultSpacing.xl }}>
             <Pressable onPress={(e) => e.stopPropagation()}>
               <View style={{
                 backgroundColor: themeColors.background.raised,
-                borderRadius: 16,
+                borderRadius: defaultRadii.xl,
                 maxHeight: '70%',
                 overflow: 'hidden',
                 shadowColor: '#000',
@@ -140,8 +141,8 @@ export const Select = forwardRef<View, SelectProps>(function Select(
                 elevation: 8,
               }}>
                 {label && (
-                  <View style={{ paddingHorizontal: 16, paddingTop: 16, paddingBottom: 8 }}>
-                    <RNText style={{ fontSize: 16, fontWeight: '600', color: themeColors.text.onRaised } as TextStyle}>
+                  <View style={{ paddingHorizontal: defaultSpacing.lg, paddingTop: defaultSpacing.lg, paddingBottom: defaultSpacing.sm }}>
+                    <RNText style={{ fontSize: 16, fontWeight: defaultTypography.weights.semibold, color: themeColors.text.onRaised } as TextStyle}>
                       {label}
                     </RNText>
                   </View>
@@ -159,9 +160,9 @@ export const Select = forwardRef<View, SelectProps>(function Select(
                         style={({ pressed }) => ({
                           flexDirection: 'row',
                           alignItems: 'center',
-                          gap: 12,
-                          paddingVertical: 12,
-                          paddingHorizontal: 16,
+                          gap: defaultSpacing.md,
+                          paddingVertical: defaultSpacing.md,
+                          paddingHorizontal: defaultSpacing.lg,
                           backgroundColor: pressed ? themeColors.accent.highlight : 'transparent',
                           opacity: isDisabled ? 0.4 : 1,
                         })}
@@ -172,7 +173,7 @@ export const Select = forwardRef<View, SelectProps>(function Select(
                             {item.label}
                           </RNText>
                           {item.description && (
-                            <RNText style={{ fontSize: 12, color: themeColors.text.onRaisedSecondary, marginTop: 2 } as TextStyle}>
+                            <RNText style={{ fontSize: 12, color: themeColors.text.onRaisedSecondary, marginTop: defaultSpacing['2xs'] } as TextStyle}>
                               {item.description}
                             </RNText>
                           )}

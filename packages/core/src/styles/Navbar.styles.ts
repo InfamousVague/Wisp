@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { NavbarVariant } from '../types/Navbar.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Navbar container
@@ -20,8 +21,8 @@ export function buildNavbarStyle(
     display: 'flex',
     alignItems: 'center',
     height,
-    paddingLeft: 24,
-    paddingRight: 24,
+    paddingLeft: defaultSpacing.xl,
+    paddingRight: defaultSpacing.xl,
     boxSizing: 'border-box',
     borderBottom: `1px solid ${themeColors.border.subtle}`,
     fontFamily: fontFamilyStacks.sans,
@@ -62,9 +63,9 @@ export function buildNavbarBrandStyle(): CSSStyleObject {
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: 8,
+    gap: defaultSpacing.sm,
     flexShrink: 0,
-    fontWeight: 700,
+    fontWeight: defaultTypography.weights.bold,
     fontSize: 16,
     cursor: 'pointer',
     userSelect: 'none',
@@ -82,7 +83,7 @@ export function buildNavbarContentStyle(
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: 4,
+    gap: defaultSpacing.xs,
     flex: 1,
     justifyContent: justifyMap[align],
   };
@@ -103,8 +104,8 @@ export function buildNavbarItemStyle(
   return {
     display: 'flex',
     alignItems: 'center',
-    padding: '6px 12px',
-    borderRadius: 6,
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
+    borderRadius: defaultRadii.md,
     fontSize: 14,
     fontWeight: active ? 600 : 400,
     color: active ? textColor : mutedColor,

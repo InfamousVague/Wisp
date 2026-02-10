@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { SegmentedControlSize, SegmentedControlSizeConfig } from '../types/SegmentedControl.types';
 import { segmentedControlSizeMap } from '../types/SegmentedControl.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 /**
  * Builds the inline style for the {@link SegmentedControl} root container.
@@ -24,8 +25,8 @@ export function buildContainerStyle(opts: {
     alignItems: 'center',
     position: 'relative',
     backgroundColor: opts.themeColors.border.subtle,
-    borderRadius: 10,
-    padding: 3,
+    borderRadius: defaultRadii.lg,
+    padding: defaultSpacing.xs,
     boxSizing: 'border-box' as const,
     width: opts.fullWidth ? '100%' : undefined,
     gap: 0,
@@ -57,7 +58,7 @@ export function buildIndicatorStyle(opts: {
     left: 0,
     height: opts.height,
     width: opts.width,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     backgroundColor: opts.themeColors.accent.primary,
     transform: `translateX(${opts.offsetX}px)`,
     transition: opts.animate
@@ -99,13 +100,13 @@ export function buildSegmentStyle(opts: {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 6,
+    gap: defaultSpacing.sm,
     height: sizeConfig.height,
     paddingLeft: sizeConfig.paddingX,
     paddingRight: sizeConfig.paddingX,
     flex: opts.fullWidth ? 1 : undefined,
     boxSizing: 'border-box' as const,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
     backgroundColor: 'transparent',
     color: opts.isActive
       ? opts.themeColors.text.inverse
@@ -114,7 +115,7 @@ export function buildSegmentStyle(opts: {
         : opts.themeColors.text.secondary,
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
     whiteSpace: 'nowrap' as const,
     cursor: opts.isDisabled ? 'not-allowed' : 'pointer',

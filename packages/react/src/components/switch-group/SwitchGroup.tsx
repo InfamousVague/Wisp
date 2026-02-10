@@ -14,6 +14,7 @@ import {
 import { useThemeColors } from '../../providers';
 import { Toggle } from '../../primitives/toggle';
 import { Checkbox } from '../../primitives/checkbox';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // SwitchGroup
@@ -155,7 +156,7 @@ export const SwitchGroup = forwardRef<HTMLDivElement, SwitchGroupProps>(function
                 label={option.label}
               />
               <div
-                style={{ display: 'flex', flexDirection: 'column', gap: 2, minWidth: 0, cursor: isOptionDisabled ? 'not-allowed' : 'pointer' }}
+                style={{ display: 'flex', flexDirection: 'column', gap: defaultSpacing['2xs'], minWidth: 0, cursor: isOptionDisabled ? 'not-allowed' : 'pointer' }}
                 onClick={() => {
                   if (!isOptionDisabled) {
                     handleToggle(option.value, !isChecked);

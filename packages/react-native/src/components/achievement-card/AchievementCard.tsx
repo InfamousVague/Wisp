@@ -11,6 +11,7 @@ import type { ViewStyle, TextStyle } from 'react-native';
 import type { AchievementStatus, AchievementRarity } from '@wisp-ui/core/types/AchievementCard.types';
 import { achievementRarityMap } from '@wisp-ui/core/types/AchievementCard.types';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -53,8 +54,8 @@ export const AchievementCard = forwardRef<View, AchievementCardProps>(
     const isUnlocked = status === 'unlocked';
 
     const containerStyle = useMemo<ViewStyle>(() => ({
-      padding: 16,
-      borderRadius: 12,
+      padding: defaultSpacing.lg,
+      borderRadius: defaultRadii.lg,
       borderWidth: 1,
       borderColor: isUnlocked ? rarityConfig.color + '40' : themeColors.border.subtle,
       backgroundColor: themeColors.background.surface,
@@ -65,13 +66,13 @@ export const AchievementCard = forwardRef<View, AchievementCardProps>(
     const headerStyle = useMemo<ViewStyle>(() => ({
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 12,
+      gap: defaultSpacing.md,
     }), []);
 
     const iconContainerStyle = useMemo<ViewStyle>(() => ({
       width: 44,
       height: 44,
-      borderRadius: 22,
+      borderRadius: defaultRadii.xl,
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: isUnlocked ? rarityConfig.color + '20' : themeColors.border.subtle,
@@ -79,34 +80,34 @@ export const AchievementCard = forwardRef<View, AchievementCardProps>(
 
     const titleStyle = useMemo<TextStyle>(() => ({
       fontSize: 15,
-      fontWeight: '600',
+      fontWeight: defaultTypography.weights.semibold,
       color: themeColors.text.primary,
     }), [themeColors]);
 
     const descStyle = useMemo<TextStyle>(() => ({
       fontSize: 13,
       color: themeColors.text.muted,
-      marginTop: 2,
+      marginTop: defaultSpacing['2xs'],
     }), [themeColors]);
 
     const rarityStyle = useMemo<TextStyle>(() => ({
       fontSize: 11,
-      fontWeight: '600',
+      fontWeight: defaultTypography.weights.semibold,
       color: rarityConfig.color,
-      marginTop: 4,
+      marginTop: defaultSpacing.xs,
     }), [rarityConfig]);
 
     const progressBarBg = useMemo<ViewStyle>(() => ({
       height: 4,
-      borderRadius: 2,
+      borderRadius: defaultRadii.sm,
       backgroundColor: themeColors.border.subtle,
-      marginTop: 12,
+      marginTop: defaultSpacing.md,
       overflow: 'hidden',
     }), [themeColors]);
 
     const progressBarFill = useMemo<ViewStyle>(() => ({
       height: 4,
-      borderRadius: 2,
+      borderRadius: defaultRadii.sm,
       backgroundColor: rarityConfig.color,
       width: `${Math.min(100, Math.max(0, progress))}%`,
     }), [progress, rarityConfig]);
@@ -114,7 +115,7 @@ export const AchievementCard = forwardRef<View, AchievementCardProps>(
     const unlockedAtStyle = useMemo<TextStyle>(() => ({
       fontSize: 11,
       color: themeColors.text.muted,
-      marginTop: 8,
+      marginTop: defaultSpacing.sm,
     }), [themeColors]);
 
     const iconColor = isUnlocked ? rarityConfig.color : themeColors.text.muted;

@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { TagSizeConfig } from '../types/Tag.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { relativeLuminance } from '../utils/contrast';
+import { defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Helper: detect hex color strings
@@ -143,7 +144,7 @@ export function buildTagStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: sizeConfig.lineHeight,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     whiteSpace: 'nowrap',
     userSelect: 'none',
     cursor: disabled ? 'default' : 'pointer',

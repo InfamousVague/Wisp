@@ -27,6 +27,7 @@ import { inputSizeMap } from '@wisp-ui/core/types/Input.types';
 import { resolveInputColors } from '@wisp-ui/core/styles/Input.styles';
 import { useThemeColors } from '../../providers';
 import { Text } from '../text';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -313,7 +314,7 @@ export const NumberInput = forwardRef<View, NumberInputProps>(
     // Styles
     // -------------------------------------------------------------------
     const wrapperStyle = useMemo<ViewStyle>(() => ({
-      gap: 6,
+      gap: defaultSpacing.sm,
       ...(fullWidth ? { width: '100%' } : { alignSelf: 'flex-start' }),
     }), [fullWidth]);
 
@@ -321,7 +322,7 @@ export const NumberInput = forwardRef<View, NumberInputProps>(
       flexDirection: 'row',
       alignItems: 'center',
       height: sizeConfig.height + 16,
-      paddingHorizontal: 8,
+      paddingHorizontal: defaultSpacing.sm,
       borderRadius: sizeConfig.borderRadius + 4,
       borderWidth: 1,
       borderColor: colors.border,
@@ -332,7 +333,7 @@ export const NumberInput = forwardRef<View, NumberInputProps>(
     const inputStyle = useMemo<TextStyle>(() => ({
       flex: 1,
       fontSize: sizeConfig.fontSize + 1,
-      fontWeight: '500',
+      fontWeight: defaultTypography.weights.medium,
       textAlign: 'center',
       color: colors.text,
       padding: 0,
@@ -354,9 +355,9 @@ export const NumberInput = forwardRef<View, NumberInputProps>(
       if (!label) return undefined;
       return {
         fontSize: sizeConfig.labelFontSize,
-        fontWeight: '600',
+        fontWeight: defaultTypography.weights.semibold,
         color: disabled ? themeColors.text.muted : themeColors.text.primary,
-        marginBottom: 2,
+        marginBottom: defaultSpacing['2xs'],
       };
     }, [label, sizeConfig, disabled, themeColors]);
 
@@ -365,14 +366,14 @@ export const NumberInput = forwardRef<View, NumberInputProps>(
       return {
         fontSize: sizeConfig.hintFontSize,
         color: hasError ? themeColors.status.danger : themeColors.text.muted,
-        marginTop: 2,
+        marginTop: defaultSpacing['2xs'],
       };
     }, [bottomText, sizeConfig, hasError, themeColors]);
 
     const buttonTextStyle = useCallback(
       (isDisabled: boolean): TextStyle => ({
         fontSize: btnConfig.fontSize,
-        fontWeight: '600',
+        fontWeight: defaultTypography.weights.semibold,
         color: isDisabled ? themeColors.text.muted : themeColors.text.inverse,
         lineHeight: btnConfig.fontSize + 2,
       }),

@@ -34,6 +34,7 @@ import {
   buildCalendarSkeletonCellStyle,
 } from '@wisp-ui/core/styles/Calendar.styles';
 import { useThemeColors } from '../../providers';
+import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -267,7 +268,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calen
             style={{
               width: 100,
               height: sizeConfig.headerFontSize + 4,
-              borderRadius: 6,
+              borderRadius: defaultRadii.md,
               backgroundColor: themeColors.border.subtle,
               animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
             }}

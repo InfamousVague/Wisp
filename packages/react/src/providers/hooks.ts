@@ -9,6 +9,7 @@
 
 import { useContext } from 'react';
 import type { ThemeColors, ThemeMode, WispTheme } from '@wisp-ui/core/theme/types';
+import type { ThemeOverrides } from '@wisp-ui/core/theme/create-theme';
 import { WispThemeContext, type WispThemeContextValue } from './WispProvider';
 
 // ---------------------------------------------------------------------------
@@ -35,6 +36,12 @@ export interface UseThemeReturn {
   toggleMode: () => void;
   /** Explicitly set the theme mode to a specific {@link ThemeMode}. */
   setMode: (mode: ThemeMode) => void;
+  /** The current theme overrides (excluding mode). */
+  overrides: Omit<ThemeOverrides, 'mode'>;
+  /** Replace the current theme overrides (triggers live re-theme). */
+  setOverrides: (overrides: Omit<ThemeOverrides, 'mode'>) => void;
+  /** Reset overrides back to the initial prop value (or empty). */
+  resetOverrides: () => void;
 }
 
 /**
@@ -87,6 +94,9 @@ export function useTheme(): UseThemeReturn {
     colors: ctx.colors,
     toggleMode: ctx.toggleMode,
     setMode: ctx.setMode,
+    overrides: ctx.overrides,
+    setOverrides: ctx.setOverrides,
+    resetOverrides: ctx.resetOverrides,
   };
 }
 

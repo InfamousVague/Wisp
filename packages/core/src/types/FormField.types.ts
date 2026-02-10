@@ -10,6 +10,7 @@
  */
 
 import type React from 'react';
+import { defaultSpacing } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Size variants
@@ -99,7 +100,7 @@ export interface FormFieldSizeConfig {
 
 /** Map from {@link FormFieldSize} token to its resolved {@link FormFieldSizeConfig}. */
 export const formFieldSizeMap: Record<FormFieldSize, FormFieldSizeConfig> = {
-  sm: { labelFontSize: 12, hintFontSize: 11, gap: 4 },
-  md: { labelFontSize: 14, hintFontSize: 12, gap: 6 },
-  lg: { labelFontSize: 16, hintFontSize: 14, gap: 8 },
+  sm: { labelFontSize: 12, hintFontSize: 11, gap: defaultSpacing.xs },
+  md: { labelFontSize: 14, hintFontSize: 12, gap: defaultSpacing.sm },
+  lg: { labelFontSize: 16, hintFontSize: 14, gap: defaultSpacing.sm },
 };

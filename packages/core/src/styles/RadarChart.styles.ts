@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { RadarChartSizeConfig } from '../types/RadarChart.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -114,7 +115,7 @@ export function buildRadarChartLegendStyle(): CSSStyleObject {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    gap: 16,
+    gap: defaultSpacing.lg,
   };
 }
 
@@ -128,7 +129,7 @@ export function buildRadarChartLegendItemStyle(): CSSStyleObject {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: defaultSpacing.sm,
   };
 }
 
@@ -142,7 +143,7 @@ export function buildRadarChartLegendDotStyle(color: string): CSSStyleObject {
   return {
     width: 8,
     height: 8,
-    borderRadius: '50%',
+    borderRadius: defaultRadii.full,
     backgroundColor: color,
     flexShrink: 0,
   };
@@ -162,7 +163,7 @@ export function buildRadarChartLegendTextStyle(
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.legendFontSize,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1.4,
     color: colors.legendText,
     margin: 0,

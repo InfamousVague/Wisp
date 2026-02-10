@@ -2,6 +2,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { TimePickerSizeConfig } from '../types/TimePicker.types';
 import { fontFamilyStacks } from '../tokens/shared';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Container style
@@ -19,7 +20,7 @@ export function buildTimePickerContainerStyle(
   return {
     display: 'inline-flex',
     flexDirection: 'column',
-    gap: 4,
+    gap: defaultSpacing.xs,
     position: 'relative',
   };
 }
@@ -109,13 +110,13 @@ export function buildTimePickerDropdownStyle(
     left: 0,
     zIndex: 50,
     backgroundColor: themeColors.background.raised,
-    borderRadius: 12,
+    borderRadius: defaultRadii.lg,
     border: '1px solid ' + themeColors.border.subtle,
     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
-    padding: 8,
+    padding: defaultSpacing.sm,
     display: 'flex',
     flexDirection: 'row',
-    gap: 4,
+    gap: defaultSpacing.xs,
     boxSizing: 'border-box',
   };
 }
@@ -141,7 +142,7 @@ export function buildTimePickerColumnStyle(
     overflowY: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    gap: 2,
+    gap: defaultSpacing['2xs'],
   };
 }
 
@@ -179,7 +180,7 @@ export function buildTimePickerOptionStyle(
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 6,
+    borderRadius: defaultRadii.md,
     cursor: 'pointer',
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
@@ -213,7 +214,7 @@ export function buildTimePickerLabelStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize,
     lineHeight: 1.4,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     color: isDisabled ? themeColors.text.muted : themeColors.text.primary,
     cursor: 'default',
     userSelect: 'none',
@@ -239,7 +240,7 @@ export function buildTimePickerErrorStyle(
     fontFamily: fontFamilyStacks.sans,
     fontSize: sizeConfig.fontSize - 1,
     lineHeight: 1.4,
-    fontWeight: 400,
+    fontWeight: defaultTypography.weights.regular,
     color: themeColors.status.danger,
     margin: 0,
   };

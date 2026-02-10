@@ -8,6 +8,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { PaginationSize } from '../types/Pagination.types';
 import { paginationSizeMap } from '../types/Pagination.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Root nav container
@@ -23,7 +24,7 @@ export function buildNavStyle(disabled: boolean): CSSStyleObject {
   return {
     display: 'flex',
     alignItems: 'center',
-    gap: 2,
+    gap: defaultSpacing['2xs'],
     opacity: disabled ? 0.5 : 1,
   };
 }
@@ -67,11 +68,11 @@ function buildBaseButtonStyle(
     // Typography
     fontFamily: fontFamilyStacks.sans,
     fontSize: cfg.fontSize,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
 
     // Shape
-    borderRadius: 6,
+    borderRadius: defaultRadii.md,
 
     // Interaction
     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -222,7 +223,7 @@ export function buildEllipsisStyle(
     minWidth: cfg.minWidth,
     fontFamily: fontFamilyStacks.sans,
     fontSize: cfg.fontSize,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     lineHeight: 1,
     color: themeColors.text.muted,
     userSelect: 'none',

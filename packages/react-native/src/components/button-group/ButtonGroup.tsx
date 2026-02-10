@@ -4,6 +4,7 @@ import type { ViewStyle, TextStyle } from 'react-native';
 import type { ButtonGroupItem, ButtonGroupVariant, ButtonGroupSize } from '@wisp-ui/core/types/ButtonGroup.types';
 import { buttonGroupSizeMap } from '@wisp-ui/core/types/ButtonGroup.types';
 import { useThemeColors } from '../../providers';
+import { defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 export interface ButtonGroupProps {
   items: ButtonGroupItem[];
@@ -51,7 +52,7 @@ export const ButtonGroup = forwardRef<View, ButtonGroupProps>(function ButtonGro
     () => ({
       flexDirection: 'row',
       alignSelf: fullWidth ? 'stretch' : 'flex-start',
-      borderRadius: 8,
+      borderRadius: defaultRadii.md,
       overflow: 'hidden',
       ...(variant === 'outline'
         ? { borderWidth: 1, borderColor: themeColors.border.subtle }
@@ -99,7 +100,7 @@ export const ButtonGroup = forwardRef<View, ButtonGroupProps>(function ButtonGro
 
         const labelStyle: TextStyle = {
           fontSize: textSizeMap[size],
-          fontWeight: '500',
+          fontWeight: defaultTypography.weights.medium,
           color: isActive
             ? themeColors.text.primary
             : themeColors.text.secondary,

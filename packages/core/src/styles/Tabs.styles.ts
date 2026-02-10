@@ -1,6 +1,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import type { TabsOrientation } from '../types/Tabs.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // TabList styles
@@ -81,7 +82,7 @@ export function buildTabIndicatorStyle(opts: {
         ? 'transform 250ms cubic-bezier(0.4, 0, 0.2, 1)'
         : 'none',
       pointerEvents: 'none',
-      borderRadius: 1,
+      borderRadius: defaultRadii.sm,
       zIndex: 1,
     };
   }
@@ -99,7 +100,7 @@ export function buildTabIndicatorStyle(opts: {
       ? 'transform 250ms cubic-bezier(0.4, 0, 0.2, 1)'
       : 'none',
     pointerEvents: 'none',
-    borderRadius: 1,
+    borderRadius: defaultRadii.sm,
     zIndex: 1,
   };
 }
@@ -138,12 +139,12 @@ export function buildTabStyle(
   const base: CSSStyleObject = {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: 8,
-    padding: '8px 16px',
+    gap: defaultSpacing.sm,
+    padding: `${defaultSpacing.sm}px ${defaultSpacing.lg}px`,
     border: 'none',
     background: 'none',
     color,
-    fontWeight: 500,
+    fontWeight: defaultTypography.weights.medium,
     fontSize: 14,
     lineHeight: 1.43,
     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -191,7 +192,7 @@ export function buildTabPanelStyle(
   userStyle?: CSSStyleObject,
 ): CSSStyleObject {
   return {
-    paddingTop: 16,
+    paddingTop: defaultSpacing.lg,
     outline: 'none',
     ...userStyle,
   };

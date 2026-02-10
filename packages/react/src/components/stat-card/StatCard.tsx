@@ -9,6 +9,7 @@ import { useThemeColors } from '../../providers';
 import { Sparkline } from '../../primitives/sparkline';
 import type { StatCardProps } from '@wisp-ui/core/types/StatCard.types';
 import { statCardSizeMap } from '@wisp-ui/core/types/StatCard.types';
+import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 import {
   resolveStatCardColors,
   buildStatCardContainerStyle,
@@ -187,7 +188,7 @@ export const StatCard = forwardRef<HTMLDivElement, StatCardProps>(function StatC
               <TrendArrow direction={trend >= 0 ? 'up' : 'down'} />
               <span>{Math.abs(trend).toFixed(1)}%</span>
               {trendLabel && (
-                <span style={{ fontWeight: 400, color: colors.description, marginLeft: 2 }}>
+                <span style={{ fontWeight: defaultTypography.weights.regular, color: colors.description, marginLeft: defaultSpacing['2xs'] }}>
                   {trendLabel}
                 </span>
               )}

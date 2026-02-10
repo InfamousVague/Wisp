@@ -10,6 +10,7 @@ import React, { createContext, useContext, useCallback, useState, useRef, useEff
 import { View, Text, Pressable, Animated } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { useThemeColors } from '../../providers';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -75,10 +76,10 @@ function ToastItemView({ item, onDismiss }: { item: ToastItem; onDismiss: (id: s
   const containerStyle: ViewStyle = {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
-    padding: 14,
-    marginBottom: 8,
-    borderRadius: 10,
+    gap: defaultSpacing.md,
+    padding: defaultSpacing.lg,
+    marginBottom: defaultSpacing.sm,
+    borderRadius: defaultRadii.lg,
     borderLeftWidth: 3,
     borderLeftColor: accentColor,
     backgroundColor: themeColors.background.surface,
@@ -91,14 +92,14 @@ function ToastItemView({ item, onDismiss }: { item: ToastItem; onDismiss: (id: s
 
   const titleStyle: TextStyle = {
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: defaultTypography.weights.semibold,
     color: themeColors.text.primary,
   };
 
   const descStyle: TextStyle = {
     fontSize: 12,
     color: themeColors.text.muted,
-    marginTop: 2,
+    marginTop: defaultSpacing['2xs'],
   };
 
   return (

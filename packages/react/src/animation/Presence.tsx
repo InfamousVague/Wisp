@@ -15,7 +15,7 @@
  *     <>
  *       <button onClick={() => setShow((s) => !s)}>Toggle</button>
  *       <Presence visible={show} animation="scaleIn" duration={200}>
- *         <div style={{ padding: 16, background: '#1E293B', color: '#F8FAFC' }}>
+ *         <div style={{ padding: defaultSpacing.lg, background: '#1E293B', color: '#F8FAFC' }}>
  *           Hello from Presence!
  *         </div>
  *       </Presence>
@@ -29,6 +29,7 @@ import React, { useMemo } from 'react';
 import { useTransition } from './use-transition';
 import type { TransitionPhase } from './use-transition';
 import { DEFAULT_DURATION } from '@wisp-ui/core/animation/constants';
+import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Types

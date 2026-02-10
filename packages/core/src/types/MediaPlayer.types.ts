@@ -5,6 +5,7 @@
  */
 
 import type React from 'react';
+import { defaultSpacing, defaultRadii } from '../theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Variant
@@ -48,10 +49,10 @@ export const mediaPlayerSizeMap: Record<MediaPlayerSize, MediaPlayerSizeConfig> 
     fontSize: 11,
     trackHeight: 3,
     thumbSize: 10,
-    padding: 8,
-    gap: 6,
+    padding: defaultSpacing.sm,
+    gap: defaultSpacing.sm,
     volumeWidth: 60,
-    borderRadius: 8,
+    borderRadius: defaultRadii.md,
   },
   md: {
     controlBarHeight: 44,
@@ -59,10 +60,10 @@ export const mediaPlayerSizeMap: Record<MediaPlayerSize, MediaPlayerSizeConfig> 
     fontSize: 12,
     trackHeight: 4,
     thumbSize: 12,
-    padding: 12,
-    gap: 8,
+    padding: defaultSpacing.md,
+    gap: defaultSpacing.sm,
     volumeWidth: 80,
-    borderRadius: 12,
+    borderRadius: defaultRadii.lg,
   },
   lg: {
     controlBarHeight: 52,
@@ -70,10 +71,10 @@ export const mediaPlayerSizeMap: Record<MediaPlayerSize, MediaPlayerSizeConfig> 
     fontSize: 13,
     trackHeight: 5,
     thumbSize: 14,
-    padding: 16,
-    gap: 10,
+    padding: defaultSpacing.lg,
+    gap: defaultSpacing.md,
     volumeWidth: 100,
-    borderRadius: 16,
+    borderRadius: defaultRadii.xl,
   },
 };
 
