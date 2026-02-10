@@ -134,7 +134,7 @@ export const codeBlockEntry: ComponentEntry = {
     {
       title: 'Default',
       render: (
-        <CodeBlock code={sampleCode} language="TypeScript" />
+        <CodeBlock code={sampleCode} language="TypeScript" highlighter={demoHighlighter} />
       ),
       code: `import { CodeBlock } from '@wisp-ui/react';
 
