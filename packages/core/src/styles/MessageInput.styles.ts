@@ -125,7 +125,7 @@ export function buildMessageInputSendButtonStyle(
     padding: 0,
     flexShrink: 0,
     transition: `all ${durations.fast}ms ${easings.easeOut.css}`,
-    opacity: hasContent ? 1 : 0.5,
+    opacity: 1,
   };
 }
 
