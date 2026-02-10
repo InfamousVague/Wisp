@@ -28,8 +28,8 @@ function DialogPreview() {
   return (
     <div style={{ width: '100%', maxWidth: 200, borderRadius: 8, border: `1px solid ${colors.accent.dividerRaised}`, backgroundColor: colors.background.raised, padding: 12, overflow: 'hidden' }}>
       <VStack gap="xs">
-        <Text size="sm" weight="medium">Dialog Title</Text>
-        <Text size="xs" color="secondary">Are you sure?</Text>
+        <span style={{ fontSize: 13, fontWeight: 500, color: colors.text.onRaised }}>Dialog Title</span>
+        <span style={{ fontSize: 12, color: colors.text.onRaisedSecondary }}>Are you sure?</span>
         <HStack gap="xs" justify="end" style={{ marginTop: 8 }}>
           <div style={{ padding: '3px 8px', borderRadius: 4, border: `1px solid ${colors.accent.dividerRaised}`, fontSize: 11, color: colors.text.onRaisedSecondary }}>Cancel</div>
           <div style={{ padding: '3px 8px', borderRadius: 4, backgroundColor: colors.accent.highlightRaised, fontSize: 11, color: colors.text.onRaised }}>Confirm</div>
