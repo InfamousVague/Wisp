@@ -29,14 +29,14 @@ export interface EmojiPickerColors {
 export function resolveEmojiPickerColors(theme: WispTheme): EmojiPickerColors {
   const { colors: themeColors } = theme;
   return {
-    bg: themeColors.background.surface,
+    bg: themeColors.background.canvas,
     border: themeColors.border.subtle,
-    tabText: themeColors.text.muted,
+    tabText: themeColors.text.secondary,
     tabTextActive: themeColors.accent.primary,
     tabIndicator: themeColors.accent.primary,
     tabHoverBg: themeColors.background.sunken,
     cellHover: themeColors.background.sunken,
-    categoryLabel: themeColors.text.muted,
+    categoryLabel: themeColors.text.secondary,
     scrollbar: themeColors.border.subtle,
     skinToneBorder: themeColors.border.subtle,
     skinToneActiveBorder: themeColors.accent.primary,
