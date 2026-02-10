@@ -371,7 +371,7 @@ export function buildRangeDayCellStyle(
   }
 
   if (isInRange) {
-    style.backgroundColor = themeColors.accent.highlight;
+    style.backgroundColor = themeColors.border.subtle;
     style.color = themeColors.text.primary;
     style.borderRadius = '50%';
   }
