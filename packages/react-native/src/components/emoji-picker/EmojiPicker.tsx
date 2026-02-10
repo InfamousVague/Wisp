@@ -403,7 +403,7 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
               accessibilityRole="button"
             >
               <Text style={{ fontSize: triggerHandFontSize }}>
-                {SKIN_TONE_HAND}{SKIN_TONE_MODIFIERS[currentSkinTone]}
+                {SKIN_TONE_HAND + SKIN_TONE_MODIFIERS[currentSkinTone]}
               </Text>
             </Pressable>
           )}
@@ -446,7 +446,7 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
                   style={optStyle}
                 >
                   <Text style={{ fontSize: optionFontSize }}>
-                    {SKIN_TONE_HAND}{SKIN_TONE_MODIFIERS[tone]}
+                    {SKIN_TONE_HAND + SKIN_TONE_MODIFIERS[tone]}
                   </Text>
                 </Pressable>
               );

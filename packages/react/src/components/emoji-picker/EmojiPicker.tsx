@@ -351,7 +351,7 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
               aria-label="Select skin tone"
               title="Select skin tone"
             >
-              {SKIN_TONE_PREVIEW}{SKIN_TONE_MODIFIERS[currentSkinTone]}
+              {SKIN_TONE_PREVIEW + SKIN_TONE_MODIFIERS[currentSkinTone]}
             </button>
           )}
         </div>
@@ -368,7 +368,7 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
                 aria-label={`Skin tone: ${tone}`}
                 title={tone}
               >
-                {SKIN_TONE_PREVIEW}{SKIN_TONE_MODIFIERS[tone]}
+                {SKIN_TONE_PREVIEW + SKIN_TONE_MODIFIERS[tone]}
               </button>
             ))}
           </div>
