@@ -123,14 +123,15 @@ export function buildTypingBubbleStyle(
   themeColors: ThemeColors,
 ): CSSStyleObject {
   const isOutgoing = align === 'outgoing';
+
   return {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     padding: '12px 16px',
     borderRadius: isOutgoing ? '12px 12px 2px 12px' : '12px 12px 12px 2px',
-    backgroundColor: isOutgoing ? '#FFFFFF' : themeColors.background.surface,
-    border: `1px solid ${isOutgoing ? '#E4E4E7' : themeColors.border.subtle}`,
+    backgroundColor: isOutgoing ? '#FFFFFF' : '#0C0C0E',
+    border: `1px solid ${isOutgoing ? '#E4E4E7' : '#2A2A2A'}`,
     boxSizing: 'border-box',
   };
 }

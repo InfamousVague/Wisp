@@ -29,7 +29,7 @@ export const qrCodeEntry: ComponentEntry = {
   cardPreview: (
     <div style={{ pointerEvents: 'none' }}>
       <QRCode
-        value="https://wisp.dev"
+        value="https://github.com/InfamousVague/Wisp"
         size="sm"
         dotStyle="circle"
         eyeFrameStyle="rounded"
@@ -43,31 +43,31 @@ export const qrCodeEntry: ComponentEntry = {
     {
       title: 'Default',
       render: (
-        <QRCode value="https://wisp.dev" size="lg" />
+        <QRCode value="https://github.com/InfamousVague/Wisp" size="lg" />
       ),
       code: `import { QRCode } from '@wisp-ui/react';
 
-<QRCode value="https://wisp.dev" size="lg" />`,
+<QRCode value="https://github.com/InfamousVague/Wisp" size="lg" />`,
       rnCode: `import { QRCode } from '@wisp-ui/react-native';
 
-<QRCode value="https://wisp.dev" size="lg" />`,
+<QRCode value="https://github.com/InfamousVague/Wisp" size="lg" />`,
     },
     {
       title: 'Circle Dots',
       render: (
-        <QRCode value="https://wisp.dev" size="lg" dotStyle="circle" />
+        <QRCode value="https://github.com/InfamousVague/Wisp" size="lg" dotStyle="circle" />
       ),
       code: `import { QRCode } from '@wisp-ui/react';
 
 <QRCode
-  value="https://wisp.dev"
+  value="https://github.com/InfamousVague/Wisp"
   size="lg"
   dotStyle="circle"
 />`,
       rnCode: `import { QRCode } from '@wisp-ui/react-native';
 
 <QRCode
-  value="https://wisp.dev"
+  value="https://github.com/InfamousVague/Wisp"
   size="lg"
   dotStyle="circle"
 />`,
@@ -76,7 +76,7 @@ export const qrCodeEntry: ComponentEntry = {
       title: 'Gradient Fill',
       render: (
         <QRCode
-          value="https://wisp.dev"
+          value="https://github.com/InfamousVague/Wisp"
           size="lg"
           dotStyle="rounded"
           gradient={{
@@ -92,7 +92,7 @@ export const qrCodeEntry: ComponentEntry = {
       code: `import { QRCode } from '@wisp-ui/react';
 
 <QRCode
-  value="https://wisp.dev"
+  value="https://github.com/InfamousVague/Wisp"
   size="lg"
   dotStyle="rounded"
   gradient={{
@@ -107,7 +107,7 @@ export const qrCodeEntry: ComponentEntry = {
       rnCode: `import { QRCode } from '@wisp-ui/react-native';
 
 <QRCode
-  value="https://wisp.dev"
+  value="https://github.com/InfamousVague/Wisp"
   size="lg"
   dotStyle="rounded"
   gradient={{
@@ -124,45 +124,45 @@ export const qrCodeEntry: ComponentEntry = {
       title: 'Custom Eyes',
       render: (
         <QRCode
-          value="https://wisp.dev"
+          value="https://github.com/InfamousVague/Wisp"
           size="lg"
-          dotStyle="classy-rounded"
+          dotStyle="circle"
           eyeFrameStyle="rounded"
           eyePupilStyle="circle"
-          eyeColor="#6366F1"
+          eyeColor="#9CA3AF"
         />
       ),
       code: `import { QRCode } from '@wisp-ui/react';
 
 <QRCode
-  value="https://wisp.dev"
+  value="https://github.com/InfamousVague/Wisp"
   size="lg"
-  dotStyle="classy-rounded"
+  dotStyle="circle"
   eyeFrameStyle="rounded"
   eyePupilStyle="circle"
-  eyeColor="#6366F1"
+  eyeColor="#9CA3AF"
 />`,
       rnCode: `import { QRCode } from '@wisp-ui/react-native';
 
 <QRCode
-  value="https://wisp.dev"
+  value="https://github.com/InfamousVague/Wisp"
   size="lg"
-  dotStyle="classy-rounded"
+  dotStyle="circle"
   eyeFrameStyle="rounded"
   eyePupilStyle="circle"
-  eyeColor="#6366F1"
+  eyeColor="#9CA3AF"
 />`,
     },
     {
       title: 'Styled with Logo',
       render: (
         <QRCode
-          value="https://wisp.dev"
+          value="https://github.com/InfamousVague/Wisp"
           size="lg"
-          dotStyle="classy-rounded"
+          dotStyle="circle"
           eyeFrameStyle="rounded"
           eyePupilStyle="circle"
-          eyeColor="#6366F1"
+          eyeColor="#9CA3AF"
           gradient={{
             type: 'linear',
             rotation: 135,
@@ -195,12 +195,12 @@ export const qrCodeEntry: ComponentEntry = {
       code: `import { QRCode } from '@wisp-ui/react';
 
 <QRCode
-  value="https://wisp.dev"
+  value="https://github.com/InfamousVague/Wisp"
   size="lg"
-  dotStyle="classy-rounded"
+  dotStyle="circle"
   eyeFrameStyle="rounded"
   eyePupilStyle="circle"
-  eyeColor="#6366F1"
+  eyeColor="#9CA3AF"
   gradient={{
     type: 'linear',
     rotation: 135,
@@ -217,12 +217,12 @@ export const qrCodeEntry: ComponentEntry = {
       rnCode: `import { QRCode } from '@wisp-ui/react-native';
 
 <QRCode
-  value="https://wisp.dev"
+  value="https://github.com/InfamousVague/Wisp"
   size="lg"
-  dotStyle="classy-rounded"
+  dotStyle="circle"
   eyeFrameStyle="rounded"
   eyePupilStyle="circle"
-  eyeColor="#6366F1"
+  eyeColor="#9CA3AF"
   gradient={{
     type: 'linear',
     rotation: 135,
@@ -241,7 +241,7 @@ export const qrCodeEntry: ComponentEntry = {
       title: 'Rounded with Custom Colours',
       render: (
         <QRCode
-          value="https://wisp.dev"
+          value="https://github.com/InfamousVague/Wisp"
           size="lg"
           dotStyle="rounded"
           darkColor="#6366F1"
@@ -251,7 +251,7 @@ export const qrCodeEntry: ComponentEntry = {
       code: `import { QRCode } from '@wisp-ui/react';
 
 <QRCode
-  value="https://wisp.dev"
+  value="https://github.com/InfamousVague/Wisp"
   size="lg"
   dotStyle="rounded"
   darkColor="#6366F1"
@@ -260,7 +260,7 @@ export const qrCodeEntry: ComponentEntry = {
       rnCode: `import { QRCode } from '@wisp-ui/react-native';
 
 <QRCode
-  value="https://wisp.dev"
+  value="https://github.com/InfamousVague/Wisp"
   size="lg"
   dotStyle="rounded"
   darkColor="#6366F1"

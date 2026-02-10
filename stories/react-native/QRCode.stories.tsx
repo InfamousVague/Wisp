@@ -30,7 +30,7 @@ type Story = StoryObj<typeof QRCode>;
 
 export const Default: Story = {
   args: {
-    value: 'https://wisp.dev',
+    value: 'https://github.com/InfamousVague/Wisp',
     size: 'md',
   },
 };
@@ -41,7 +41,7 @@ export const Default: Story = {
 
 export const CircleStyle: Story = {
   args: {
-    value: 'https://wisp.dev',
+    value: 'https://github.com/InfamousVague/Wisp',
     size: 'lg',
     dotStyle: 'circle',
   },
@@ -53,7 +53,7 @@ export const CircleStyle: Story = {
 
 export const RoundedStyle: Story = {
   args: {
-    value: 'https://wisp.dev',
+    value: 'https://github.com/InfamousVague/Wisp',
     size: 'lg',
     dotStyle: 'rounded',
   },
@@ -65,7 +65,7 @@ export const RoundedStyle: Story = {
 
 export const ClassyRounded: Story = {
   args: {
-    value: 'https://wisp.dev',
+    value: 'https://github.com/InfamousVague/Wisp',
     size: 'lg',
     dotStyle: 'classy-rounded',
     eyeFrameStyle: 'rounded',
@@ -80,7 +80,7 @@ export const ClassyRounded: Story = {
 
 export const LinearGradient: Story = {
   args: {
-    value: 'https://wisp.dev',
+    value: 'https://github.com/InfamousVague/Wisp',
     size: 'lg',
     dotStyle: 'rounded',
     gradient: {
@@ -100,7 +100,7 @@ export const LinearGradient: Story = {
 
 export const CustomColours: Story = {
   args: {
-    value: 'https://wisp.dev',
+    value: 'https://github.com/InfamousVague/Wisp',
     size: 'lg',
     darkColor: '#6366F1',
     lightColor: '#F5F3FF',

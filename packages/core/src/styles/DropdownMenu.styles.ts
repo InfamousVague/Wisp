@@ -25,14 +25,14 @@ export function buildContentStyle(
     zIndex: 9999,
     minWidth: 180,
     padding: 4,
-    backgroundColor: themeColors.background.raised,
+    backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
     borderRadius: 8,
     boxShadow: `0 4px 12px ${themeColors.background.overlay}`,
     outline: "none",
     fontFamily: fontFamilyStacks.sans,
     boxSizing: "border-box",
-    color: themeColors.text.onRaised,
+    color: themeColors.text.primary,
     ...(variant === 'glass' ? glassStyle : undefined),
   };
 }
@@ -57,7 +57,7 @@ export function buildItemStyle(opts: {
   const { themeColors, disabled, danger, isActive } = opts;
 
   let backgroundColor = "transparent";
-  let color = themeColors.text.onRaised;
+  let color = themeColors.text.primary;
 
   if (danger) {
     color = themeColors.status.danger;
@@ -65,7 +65,7 @@ export function buildItemStyle(opts: {
       backgroundColor = themeColors.status.dangerSurface;
     }
   } else if (isActive && !disabled) {
-    backgroundColor = themeColors.accent.highlightRaised;
+    backgroundColor = themeColors.accent.highlight;
   }
 
   if (disabled) {
@@ -128,7 +128,7 @@ export function buildShortcutStyle(
     paddingLeft: 16,
     fontSize: 12,
     lineHeight: "16px",
-    color: themeColors.accent.mutedRaised,
+    color: themeColors.text.muted,
     fontFamily: fontFamilyStacks.sans,
     flexShrink: 0,
   };
@@ -146,7 +146,7 @@ export function buildSeparatorStyle(
   return {
     height: 1,
     margin: "4px 0",
-    backgroundColor: themeColors.accent.dividerRaised,
+    backgroundColor: themeColors.border.subtle,
     border: "none",
   };
 }

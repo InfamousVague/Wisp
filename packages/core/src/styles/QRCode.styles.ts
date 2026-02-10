@@ -25,7 +25,7 @@ export interface QRCodeColors {
 export function resolveQRCodeColors(themeColors: ThemeColors): QRCodeColors {
   return {
     dark: themeColors.text.primary,
-    light: themeColors.background.surface,
+    light: themeColors.background.canvas,
   };
 }
 

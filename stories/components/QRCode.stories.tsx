@@ -29,7 +29,7 @@ type Story = StoryObj<typeof QRCode>;
 
 export const Default: Story = {
   args: {
-    value: 'https://wisp.dev',
+    value: 'https://github.com/InfamousVague/Wisp',
     size: 'md',
   },
 };
@@ -42,7 +42,7 @@ export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap' }}>
       {qrCodeSizes.map((size) => (
-        <QRCode key={size} value="https://wisp.dev" size={size} />
+        <QRCode key={size} value="https://github.com/InfamousVague/Wisp" size={size} />
       ))}
     </div>
   ),
@@ -57,7 +57,7 @@ export const DotStyles: Story = {
     <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap' }}>
       {qrCodeDotStyles.map((style) => (
         <div key={style} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-          <QRCode value="https://wisp.dev" size="md" dotStyle={style} />
+          <QRCode value="https://github.com/InfamousVague/Wisp" size="md" dotStyle={style} />
           <span style={{ fontSize: 12, opacity: 0.6 }}>{style}</span>
         </div>
       ))}
@@ -71,7 +71,7 @@ export const DotStyles: Story = {
 
 export const LinearGradient: Story = {
   args: {
-    value: 'https://wisp.dev',
+    value: 'https://github.com/InfamousVague/Wisp',
     size: 'lg',
     dotStyle: 'rounded',
     gradient: {
@@ -91,7 +91,7 @@ export const LinearGradient: Story = {
 
 export const RadialGradient: Story = {
   args: {
-    value: 'https://wisp.dev',
+    value: 'https://github.com/InfamousVague/Wisp',
     size: 'lg',
     dotStyle: 'circle',
     gradient: {
@@ -113,7 +113,7 @@ export const CustomEyes: Story = {
     <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
         <QRCode
-          value="https://wisp.dev"
+          value="https://github.com/InfamousVague/Wisp"
           size="md"
           dotStyle="circle"
           eyeFrameStyle="circle"
@@ -124,7 +124,7 @@ export const CustomEyes: Story = {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
         <QRCode
-          value="https://wisp.dev"
+          value="https://github.com/InfamousVague/Wisp"
           size="md"
           dotStyle="rounded"
           eyeFrameStyle="rounded"
@@ -135,7 +135,7 @@ export const CustomEyes: Story = {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
         <QRCode
-          value="https://wisp.dev"
+          value="https://github.com/InfamousVague/Wisp"
           size="md"
           dotStyle="classy-rounded"
           eyeFrameStyle="rounded"
@@ -154,7 +154,7 @@ export const CustomEyes: Story = {
 
 export const StyledWithLogo: Story = {
   args: {
-    value: 'https://wisp.dev',
+    value: 'https://github.com/InfamousVague/Wisp',
     size: 'lg',
     dotStyle: 'classy-rounded',
     eyeFrameStyle: 'rounded',
@@ -197,7 +197,7 @@ export const StyledWithLogo: Story = {
 
 export const WithLogo: Story = {
   args: {
-    value: 'https://wisp.dev',
+    value: 'https://github.com/InfamousVague/Wisp',
     size: 'lg',
     errorLevel: 'H',
     children: (
@@ -227,7 +227,7 @@ export const WithLogo: Story = {
 
 export const CustomColours: Story = {
   args: {
-    value: 'https://wisp.dev',
+    value: 'https://github.com/InfamousVague/Wisp',
     size: 'lg',
     darkColor: '#6366F1',
     lightColor: '#F5F3FF',
@@ -241,7 +241,7 @@ export const CustomColours: Story = {
 
 export const NoQuietZone: Story = {
   args: {
-    value: 'https://wisp.dev',
+    value: 'https://github.com/InfamousVague/Wisp',
     size: 'lg',
     showQuietZone: false,
   },

@@ -10,6 +10,7 @@ import {
   Button,
   Text,
   HStack,
+  useThemeColors,
 } from '@wisp-ui/react';
 import { Search, Settings, User, FileText, Home, Plus } from 'lucide-react';
 import type { ComponentEntry } from '../types';
@@ -57,23 +58,16 @@ function CommandSizesDemo() {
   );
 }
 
-export const commandEntry: ComponentEntry = {
-  slug: 'command',
-  name: 'Command',
-  category: 'components',
-  description:
-    'A command palette / quick-search component with fuzzy filtering, keyboard navigation, groups, separators, icons, shortcuts, and loading state.',
-  variantCount: 3,
-  keywords: ['command', 'palette', 'search', 'quick', 'spotlight', 'cmd-k'],
-
-  cardPreview: (
+function CommandCardPreview() {
+  const colors = useThemeColors();
+  return (
     <div
       style={{
         width: '100%',
         maxWidth: 240,
         borderRadius: 8,
-        border: '1px solid rgba(255,255,255,0.1)',
-        backgroundColor: 'rgba(255,255,255,0.04)',
+        border: `1px solid ${colors.border.subtle}`,
+        backgroundColor: colors.background.canvas,
         overflow: 'hidden',
         fontSize: 12,
       }}
@@ -82,8 +76,8 @@ export const commandEntry: ComponentEntry = {
       <div
         style={{
           padding: '6px 10px',
-          borderBottom: '1px solid rgba(255,255,255,0.08)',
-          color: 'rgba(255,255,255,0.35)',
+          borderBottom: `1px solid ${colors.border.subtle}`,
+          color: colors.text.muted,
           fontFamily: 'var(--font-sans, system-ui, sans-serif)',
         }}
       >
@@ -96,7 +90,7 @@ export const commandEntry: ComponentEntry = {
             key={item}
             style={{
               padding: '4px 10px',
-              color: 'rgba(255,255,255,0.6)',
+              color: colors.text.secondary,
               fontFamily: 'var(--font-sans, system-ui, sans-serif)',
             }}
           >
@@ -105,7 +99,19 @@ export const commandEntry: ComponentEntry = {
         ))}
       </div>
     </div>
-  ),
+  );
+}
+
+export const commandEntry: ComponentEntry = {
+  slug: 'command',
+  name: 'Command',
+  category: 'components',
+  description:
+    'A command palette / quick-search component with fuzzy filtering, keyboard navigation, groups, separators, icons, shortcuts, and loading state.',
+  variantCount: 3,
+  keywords: ['command', 'palette', 'search', 'quick', 'spotlight', 'cmd-k'],
+
+  cardPreview: <CommandCardPreview />,
 
   examples: [
     {

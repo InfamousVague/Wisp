@@ -47,7 +47,7 @@ export function buildPanelStyle(
     width: '100%',
     maxWidth: commandSizeMap[size],
     maxHeight: 420,
-    backgroundColor: themeColors.background.raised,
+    backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
     borderRadius: 12,
     boxShadow: '0 16px 48px rgba(0, 0, 0, 0.4)',
@@ -89,7 +89,7 @@ export function buildInputStyle(themeColors: ThemeColors): CSSStyleObject {
     border: 'none',
     outline: 'none',
     backgroundColor: 'transparent',
-    color: themeColors.text.onRaised,
+    color: themeColors.text.primary,
     fontSize: 16,
     lineHeight: '24px',
     fontFamily: fontFamilyStacks.sans,
@@ -107,7 +107,7 @@ export function buildInputIconStyle(themeColors: ThemeColors): CSSStyleObject {
     display: 'flex',
     alignItems: 'center',
     flexShrink: 0,
-    color: themeColors.text.onRaisedSecondary,
+    color: themeColors.text.muted,
   };
 }
 
@@ -134,7 +134,7 @@ export function buildGroupHeadingStyle(themeColors: ThemeColors): CSSStyleObject
     fontSize: 11,
     fontWeight: 500,
     lineHeight: '16px',
-    color: themeColors.text.onRaisedSecondary,
+    color: themeColors.text.muted,
     textTransform: 'uppercase',
     letterSpacing: 1,
     fontFamily: fontFamilyStacks.sans,
@@ -158,8 +158,8 @@ export function buildItemStyle(
     gap: 12,
     padding: '10px 16px',
     cursor: isDisabled ? 'default' : 'pointer',
-    backgroundColor: isActive ? themeColors.accent.highlightRaised : 'transparent',
-    color: isDisabled ? themeColors.text.onRaisedSecondary : themeColors.text.onRaised,
+    backgroundColor: isActive ? themeColors.accent.highlight : 'transparent',
+    color: isDisabled ? themeColors.text.muted : themeColors.text.primary,
     opacity: isDisabled ? 0.5 : 1,
     transition: 'background-color 100ms ease',
     fontFamily: fontFamilyStacks.sans,
@@ -181,7 +181,7 @@ export function buildItemIconStyle(
     flexShrink: 0,
     width: 20,
     height: 20,
-    color: isDisabled ? themeColors.text.onRaisedSecondary : themeColors.text.onRaisedSecondary,
+    color: themeColors.text.secondary,
   };
 }
 
@@ -207,7 +207,7 @@ export function buildItemDescriptionStyle(themeColors: ThemeColors): CSSStyleObj
   return {
     fontSize: 12,
     lineHeight: '16px',
-    color: themeColors.text.onRaisedSecondary,
+    color: themeColors.text.secondary,
   };
 }
 
@@ -220,7 +220,7 @@ export function buildItemShortcutStyle(themeColors: ThemeColors): CSSStyleObject
     marginLeft: 'auto',
     fontSize: 12,
     lineHeight: '16px',
-    color: themeColors.text.onRaisedSecondary,
+    color: themeColors.text.secondary,
     fontFamily: fontFamilyStacks.sans,
     display: 'flex',
     gap: 4,
@@ -244,8 +244,8 @@ export function buildShortcutKeyStyle(themeColors: ThemeColors): CSSStyleObject 
     fontWeight: 500,
     lineHeight: '20px',
     borderRadius: 4,
-    backgroundColor: themeColors.accent.dividerRaised,
-    color: themeColors.text.onRaisedSecondary,
+    backgroundColor: themeColors.accent.highlight,
+    color: themeColors.text.secondary,
   };
 }
 
@@ -257,7 +257,7 @@ export function buildSeparatorStyle(themeColors: ThemeColors): CSSStyleObject {
   return {
     height: 1,
     margin: '4px 0',
-    backgroundColor: themeColors.accent.dividerRaised,
+    backgroundColor: themeColors.border.subtle,
   };
 }
 
@@ -271,7 +271,7 @@ export function buildEmptyStyle(themeColors: ThemeColors): CSSStyleObject {
     textAlign: 'center',
     fontSize: 14,
     lineHeight: '20px',
-    color: themeColors.text.onRaisedSecondary,
+    color: themeColors.text.muted,
     fontFamily: fontFamilyStacks.sans,
   };
 }
