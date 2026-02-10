@@ -334,3 +334,19 @@ export { activityCirclesSizes, activityCirclesSizeMap } from './activity-circles
 export { RadarChart } from './radar-chart';
 export type { RadarChartProps, RadarChartSeries, RadarChartSize, RadarChartSizeConfig } from './radar-chart';
 export { radarChartSizes, radarChartSizeMap } from './radar-chart';
+
+// ---------------------------------------------------------------------------
+// QRCode
+// ---------------------------------------------------------------------------
+
+export { QRCode } from './qr-code';
+export type { QRCodeProps, QRCodeSize, QRCodeSizeConfig, QRCodeDotStyle, QRCodeErrorLevel } from './qr-code';
+export { qrCodeSizes, qrCodeSizeMap, qrCodeDotStyles, qrCodeErrorLevels } from './qr-code';
+
+// ---------------------------------------------------------------------------
+// QRScanner
+// ---------------------------------------------------------------------------
+
+export { QRScanner } from './qr-scanner';
+export type { QRScannerProps, QRScannerSize, QRScannerSizeConfig, QRScannerOverlay, QRScanResult } from './qr-scanner';
+export { qrScannerSizes, qrScannerSizeMap, qrScannerOverlays } from './qr-scanner';

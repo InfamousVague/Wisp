@@ -120,6 +120,8 @@ export {
   ChatBubble, StatusIcon, MessageGroup, NewMessageDivider, TypingIndicator,
   // Wave 9: Charts
   ActivityCircles, RadarChart,
+  // Wave 10: QR
+  QRCode, QRScanner,
 } from './components';
 export type {
   // Wave 1
@@ -159,6 +161,8 @@ export type {
   ChatBubbleProps, MessageGroupProps, NewMessageDividerProps, TypingIndicatorProps,
   // Wave 9: Charts
   ActivityCirclesProps, RadarChartProps,
+  // Wave 10: QR
+  QRCodeProps, QRScannerProps,
 } from './components';
 
 // ---------------------------------------------------------------------------

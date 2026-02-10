@@ -43,6 +43,8 @@ import { newMessageDividerEntry } from './new-message-divider';
 import { typingIndicatorEntry } from './typing-indicator';
 import { activityCirclesEntry } from './activity-circles';
 import { radarChartEntry } from './radar-chart';
+import { qrCodeEntry } from './qr-code';
+import { qrScannerEntry } from './qr-scanner';
 
 export const componentEntries: ComponentEntry[] = [
   commandEntry,
@@ -89,4 +91,6 @@ export const componentEntries: ComponentEntry[] = [
   typingIndicatorEntry,
   activityCirclesEntry,
   radarChartEntry,
+  qrCodeEntry,
+  qrScannerEntry,
 ];

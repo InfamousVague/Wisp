@@ -93,3 +93,9 @@ export { ActivityCircles } from './activity-circles';
 export type { ActivityCirclesProps } from './activity-circles';
 export { RadarChart } from './radar-chart';
 export type { RadarChartProps } from './radar-chart';
+
+// Wave 10: QR
+export { QRCode } from './qr-code';
+export type { QRCodeProps } from './qr-code';
+export { QRScanner } from './qr-scanner';
+export type { QRScannerProps } from './qr-scanner';

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Command,
@@ -6,7 +6,6 @@ import {
   CommandList,
   CommandGroup,
   CommandItem,
-  CommandSeparator,
   CommandEmpty,
 } from '@wisp-ui/react';
 import { Search, Palette, Layers, LayoutGrid, Component } from 'lucide-react';
@@ -61,27 +60,24 @@ export function SearchPalette({ open, onOpenChange }: SearchPaletteProps) {
       <CommandInput placeholder="Search components…" icon={Search as any} />
       <CommandList>
         <CommandEmpty>No components found.</CommandEmpty>
-        {CATEGORY_ORDER.map((category, idx) => {
+        {CATEGORY_ORDER.map((category) => {
           const entries = grouped.get(category);
           if (!entries || entries.length === 0) return null;
           const meta = CATEGORY_META[category];
 
           return (
-            <React.Fragment key={category}>
-              {idx > 0 && <CommandSeparator />}
-              <CommandGroup heading={meta.label}>
-                {entries.map((entry) => (
-                  <CommandItem
-                    key={entry.slug}
-                    value={`${entry.category}/${entry.slug}`}
-                    keywords={entry.keywords}
-                    icon={meta.icon as any}
-                  >
-                    {entry.name}
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </React.Fragment>
+            <CommandGroup key={category} heading={meta.label}>
+              {entries.map((entry) => (
+                <CommandItem
+                  key={entry.slug}
+                  value={`${entry.category}/${entry.slug}`}
+                  keywords={entry.keywords}
+                  icon={meta.icon as any}
+                >
+                  {entry.name}
+                </CommandItem>
+              ))}
+            </CommandGroup>
           );
         })}
       </CommandList>
