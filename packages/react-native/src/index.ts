@@ -25,6 +25,7 @@ export {
   Avatar, Chip, Tag, Indicator,
   Alert, Skeleton, Rating, CircularProgress,
   TagInput, ColorPicker,
+  NotificationBadge, ReadReceipt, WispImage, Beacon,
 } from './primitives';
 export type {
   TextProps, BadgeProps, ButtonProps, InputProps, ToggleProps,
@@ -34,6 +35,7 @@ export type {
   AvatarProps, ChipProps, TagProps, IndicatorProps,
   AlertProps, SkeletonProps, RatingProps, CircularProgressProps,
   TagInputProps, ColorPickerProps,
+  NotificationBadgeProps, ReadReceiptProps, WispImageProps, BeaconProps,
 } from './primitives';
 
 // ---------------------------------------------------------------------------
@@ -46,6 +48,7 @@ export {
   ListItem, EmptyState,
   Sidebar, SidebarSection, SidebarItem,
   Collapse, Overlay, Sticky,
+  Floating,
 } from './layouts';
 export type {
   StackProps,
@@ -87,6 +90,7 @@ export type {
   CollapseProps,
   OverlayProps,
   StickyProps,
+  FloatingProps,
 } from './layouts';
 
 // ---------------------------------------------------------------------------
@@ -122,6 +126,13 @@ export {
   ActivityCircles, RadarChart,
   // Wave 10: QR
   QRCode,
+  // Wave 11: Parity catch-up
+  AvatarGroup,
+  Navbar, NavbarBrand, NavbarContent, NavbarItem,
+  SearchInput, MessageInput, VoiceRecorder, StatCard, EmojiPicker,
+  Sparkline, AudioWaveform, CodeBlock,
+  AchievementCard, QuestTracker, AchievementUnlock,
+  ToastProvider, useToast,
 } from './components';
 export type {
   // Wave 1
@@ -163,6 +174,13 @@ export type {
   ActivityCirclesProps, RadarChartProps,
   // Wave 10: QR
   QRCodeProps,
+  // Wave 11: Parity catch-up
+  AvatarGroupProps,
+  NavbarProps, NavbarBrandProps, NavbarContentProps, NavbarItemProps,
+  SearchInputProps, MessageInputProps, VoiceRecorderProps, StatCardProps, EmojiPickerProps,
+  SparklineProps, AudioWaveformProps, CodeBlockProps,
+  AchievementCardProps, QuestTrackerProps, AchievementUnlockProps,
+  ToastProviderProps,
 } from './components';
 
 // ---------------------------------------------------------------------------

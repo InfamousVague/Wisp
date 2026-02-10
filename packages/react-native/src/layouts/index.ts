@@ -128,3 +128,10 @@ export type { OverlayProps } from './overlay';
 
 export { Sticky } from './sticky';
 export type { StickyProps } from './sticky';
+
+// ---------------------------------------------------------------------------
+// Floating
+// ---------------------------------------------------------------------------
+
+export { Floating } from './floating';
+export type { FloatingProps } from './floating';

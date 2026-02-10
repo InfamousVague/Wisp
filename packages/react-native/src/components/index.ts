@@ -97,3 +97,33 @@ export type { RadarChartProps } from './radar-chart';
 // Wave 10: QR
 export { QRCode } from './qr-code';
 export type { QRCodeProps } from './qr-code';
+
+// Wave 11: Parity catch-up
+export { AvatarGroup } from './avatar-group';
+export type { AvatarGroupProps } from './avatar-group';
+export { Navbar, NavbarBrand, NavbarContent, NavbarItem } from './navbar';
+export type { NavbarProps, NavbarBrandProps, NavbarContentProps, NavbarItemProps } from './navbar';
+export { SearchInput } from './search-input';
+export type { SearchInputProps } from './search-input';
+export { MessageInput } from './message-input';
+export type { MessageInputProps } from './message-input';
+export { VoiceRecorder } from './voice-recorder';
+export type { VoiceRecorderProps } from './voice-recorder';
+export { StatCard } from './stat-card';
+export type { StatCardProps } from './stat-card';
+export { EmojiPicker } from './emoji-picker';
+export type { EmojiPickerProps } from './emoji-picker';
+export { Sparkline } from './sparkline';
+export type { SparklineProps } from './sparkline';
+export { AudioWaveform } from './audio-waveform';
+export type { AudioWaveformProps } from './audio-waveform';
+export { CodeBlock } from './code-block';
+export type { CodeBlockProps } from './code-block';
+export { AchievementCard } from './achievement-card';
+export type { AchievementCardProps } from './achievement-card';
+export { QuestTracker } from './quest-tracker';
+export type { QuestTrackerProps } from './quest-tracker';
+export { AchievementUnlock } from './achievement-unlock';
+export type { AchievementUnlockProps } from './achievement-unlock';
+export { ToastProvider, useToast } from './toast-provider';
+export type { ToastProviderProps } from './toast-provider';

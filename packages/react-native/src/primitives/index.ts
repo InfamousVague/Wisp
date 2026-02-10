@@ -171,3 +171,27 @@ export type { TagInputProps } from './tag-input';
 // ---------------------------------------------------------------------------
 export { ColorPicker } from './color-picker';
 export type { ColorPickerProps } from './color-picker';
+
+// ---------------------------------------------------------------------------
+// NotificationBadge
+// ---------------------------------------------------------------------------
+export { NotificationBadge } from './notification-badge';
+export type { NotificationBadgeProps } from './notification-badge';
+
+// ---------------------------------------------------------------------------
+// ReadReceipt
+// ---------------------------------------------------------------------------
+export { ReadReceipt } from './read-receipt';
+export type { ReadReceiptProps } from './read-receipt';
+
+// ---------------------------------------------------------------------------
+// Image (WispImage)
+// ---------------------------------------------------------------------------
+export { WispImage } from './image';
+export type { WispImageProps } from './image';
+
+// ---------------------------------------------------------------------------
+// Beacon
+// ---------------------------------------------------------------------------
+export { Beacon } from './beacon';
+export type { BeaconProps } from './beacon';
