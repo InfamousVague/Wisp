@@ -418,5 +418,8 @@ export type { VoiceRecorderProps, VoiceRecorderState, VoiceRecorderSize, VoiceRe
 export { EmojiPicker, EmojiPickerTrigger, emojiPickerSizes, emojiPickerSizeMap, emojiCategories, skinTones, SKIN_TONE_MODIFIERS } from './components';
 export type { EmojiPickerProps, EmojiPickerTriggerProps, EmojiPickerSize, EmojiPickerSizeConfig, EmojiItem, EmojiCategory, SkinTone, CategoryIconMap } from './components';
 
+export { ThemeEditor, ThemeEditorField } from './components';
+export type { ThemeEditorProps, ThemeEditorTab, ThemeEditorFieldDescriptor, ThemeEditorControlType, ThemeEditorFieldMeta, ThemeEditorFieldGroup, ThemeEditorTabDef } from './components';
+
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';

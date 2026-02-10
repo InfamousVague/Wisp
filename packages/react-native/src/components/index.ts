@@ -127,3 +127,7 @@ export { AchievementUnlock } from './achievement-unlock';
 export type { AchievementUnlockProps } from './achievement-unlock';
 export { ToastProvider, useToast } from './toast-provider';
 export type { ToastProviderProps } from './toast-provider';
+
+// ThemeEditor
+export { ThemeEditor, ThemeEditorField } from './theme-editor';
+export type { ThemeEditorProps } from './theme-editor';

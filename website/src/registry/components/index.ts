@@ -56,6 +56,7 @@ import { reactionBarEntry } from './reaction-bar';
 import { messageInputEntry } from './message-input';
 import { voiceRecorderEntry } from './voice-recorder';
 import { emojiPickerEntry } from './emoji-picker';
+import { themeEditorEntry } from './theme-editor';
 
 
 export const componentEntries: ComponentEntry[] = [
@@ -116,4 +117,5 @@ export const componentEntries: ComponentEntry[] = [
   messageInputEntry,
   voiceRecorderEntry,
   emojiPickerEntry,
+  themeEditorEntry,
 ];

@@ -120,3 +120,4 @@ export * from './SpotlightTour.types';
 export * from './AchievementCard.types';
 export * from './QuestTracker.types';
 export * from './AchievementUnlock.types';
+export * from './ThemeEditor.types';

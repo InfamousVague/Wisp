@@ -133,6 +133,7 @@ export {
   Sparkline, AudioWaveform, CodeBlock,
   AchievementCard, QuestTracker, AchievementUnlock,
   ToastProvider, useToast,
+  ThemeEditor, ThemeEditorField,
 } from './components';
 export type {
   // Wave 1

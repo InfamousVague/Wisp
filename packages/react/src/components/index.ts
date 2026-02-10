@@ -438,3 +438,10 @@ export { EmojiPicker, EmojiPickerTrigger } from './emoji-picker';
 export type { EmojiPickerProps, EmojiPickerTriggerProps, EmojiPickerSize, EmojiPickerSizeConfig, EmojiItem, EmojiCategory, SkinTone, CategoryIconMap } from './emoji-picker';
 export { emojiPickerSizes, emojiPickerSizeMap, emojiCategories, skinTones, SKIN_TONE_MODIFIERS } from './emoji-picker';
 
+// ---------------------------------------------------------------------------
+// ThemeEditor
+// ---------------------------------------------------------------------------
+
+export { ThemeEditor, ThemeEditorField } from './theme-editor';
+export type { ThemeEditorProps, ThemeEditorTab, ThemeEditorFieldDescriptor, ThemeEditorControlType, ThemeEditorFieldMeta, ThemeEditorFieldGroup, ThemeEditorTabDef } from './theme-editor';
+

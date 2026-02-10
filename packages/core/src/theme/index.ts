@@ -23,3 +23,4 @@ export * from './create-theme';
 export * from './dark';
 export * from './light';
 export * from './css-vars';
+export * from './editor-fields';
