@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTheme, useThemeColors, Button, Text, Kbd, Toggle, Icon, Dialog, ThemeEditor } from '@wisp-ui/react';
-import { Search, Settings, Sun, Moon } from 'lucide-react';
+import { useTheme, useThemeColors, Button, Text, Kbd, Dialog, ThemeEditor } from '@wisp-ui/react';
+import { Search, Settings } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 interface TopBarProps {
   onSearchOpen?: () => void;
@@ -50,13 +51,7 @@ export function TopBar({ onSearchOpen }: TopBarProps) {
       </div>
 
       {/* Dark/light mode toggle switch */}
-      <Toggle
-        checked={mode === 'dark'}
-        onChange={toggleMode}
-        size="md"
-        checkedContent={<Icon icon={Moon} size="xs" color="inherit" />}
-        uncheckedContent={<Icon icon={Sun} size="xs" color="inherit" />}
-      />
+      <ThemeToggle mode={mode} onToggle={toggleMode} />
 
       {/* Theme editor icon */}
       <Button
