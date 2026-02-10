@@ -1,7 +1,43 @@
 import React from 'react';
-import { Sidebar, SidebarSection, SidebarItem, Text, VStack, Box } from '@wisp-ui/react';
+import { Sidebar, SidebarSection, SidebarItem, Text, VStack, Box, useThemeColors } from '@wisp-ui/react';
 import { Home, Settings, Users, FileText } from 'lucide-react';
 import type { ComponentEntry } from '../types';
+
+function SidebarBasicExample() {
+  const colors = useThemeColors();
+  return (
+    <Box style={{ width: 240, border: `1px solid ${colors.border.subtle}`, borderRadius: 8, overflow: 'hidden' }}>
+      <Sidebar>
+        <SidebarSection title="Main">
+          <SidebarItem icon={<Home size={16} />} label="Dashboard" active />
+          <SidebarItem icon={<Users size={16} />} label="Users" />
+          <SidebarItem icon={<FileText size={16} />} label="Documents" badge={<Text size="xs" color="secondary">12</Text>} />
+        </SidebarSection>
+        <SidebarSection title="System">
+          <SidebarItem icon={<Settings size={16} />} label="Settings" />
+        </SidebarSection>
+      </Sidebar>
+    </Box>
+  );
+}
+
+function SidebarWidthExample() {
+  const colors = useThemeColors();
+  return (
+    <div style={{ display: 'flex', gap: 16 }}>
+      {(['compact', 'default'] as const).map((w) => (
+        <Box key={w} style={{ border: `1px solid ${colors.border.subtle}`, borderRadius: 8, overflow: 'hidden' }}>
+          <Sidebar width={w}>
+            <SidebarSection>
+              <SidebarItem icon={<Home size={16} />} label="Home" active />
+              <SidebarItem icon={<Settings size={16} />} label="Settings" />
+            </SidebarSection>
+          </Sidebar>
+        </Box>
+      ))}
+    </div>
+  );
+}
 
 export const sidebarEntry: ComponentEntry = {
   slug: 'sidebar',
@@ -27,20 +63,7 @@ export const sidebarEntry: ComponentEntry = {
   examples: [
     {
       title: 'Basic',
-      render: (
-        <Box style={{ width: 240, border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, overflow: 'hidden' }}>
-          <Sidebar>
-            <SidebarSection title="Main">
-              <SidebarItem icon={<Home size={16} />} label="Dashboard" active />
-              <SidebarItem icon={<Users size={16} />} label="Users" />
-              <SidebarItem icon={<FileText size={16} />} label="Documents" badge={<Text size="xs" color="secondary">12</Text>} />
-            </SidebarSection>
-            <SidebarSection title="System">
-              <SidebarItem icon={<Settings size={16} />} label="Settings" />
-            </SidebarSection>
-          </Sidebar>
-        </Box>
-      ),
+      render: <SidebarBasicExample />,
       code: `import { Sidebar, SidebarSection, SidebarItem } from '@wisp-ui/react';
 
 <Sidebar>
@@ -62,20 +85,7 @@ export const sidebarEntry: ComponentEntry = {
     },
     {
       title: 'Width Presets',
-      render: (
-        <div style={{ display: 'flex', gap: 16 }}>
-          {(['compact', 'default'] as const).map((w) => (
-            <Box key={w} style={{ border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, overflow: 'hidden' }}>
-              <Sidebar width={w}>
-                <SidebarSection>
-                  <SidebarItem icon={<Home size={16} />} label="Home" active />
-                  <SidebarItem icon={<Settings size={16} />} label="Settings" />
-                </SidebarSection>
-              </Sidebar>
-            </Box>
-          ))}
-        </div>
-      ),
+      render: <SidebarWidthExample />,
       code: `<Sidebar width="compact">…</Sidebar>
 <Sidebar width="default">…</Sidebar>`,
       rnCode: `<Sidebar width="compact">…</Sidebar>

@@ -1,6 +1,23 @@
 import React from 'react';
-import { Text, VStack, Box } from '@wisp-ui/react';
+import { Text, VStack, Box, useThemeColors } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+import { DemoBox } from '../../shared/DemoBox';
+
+function OverlayBackdropExample() {
+  const colors = useThemeColors();
+  return (
+    <div style={{ display: 'flex', gap: 16 }}>
+      {(['dim', 'blur', 'transparent'] as const).map((v) => (
+        <Box key={v} style={{ width: 120, height: 80, position: 'relative', borderRadius: 8, overflow: 'hidden', backgroundColor: colors.border.subtle }}>
+          <Text size="xs" style={{ padding: 8 }}>Content</Text>
+          <Box style={{ position: 'absolute', inset: 0, backgroundColor: v === 'dim' ? 'rgba(0,0,0,0.5)' : v === 'blur' ? 'rgba(0,0,0,0.3)' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: v === 'blur' ? 'blur(4px)' : 'none' }}>
+            <Text size="xs" weight="medium">{v}</Text>
+          </Box>
+        </Box>
+      ))}
+    </div>
+  );
+}
 
 export const overlayEntry: ComponentEntry = {
   slug: 'overlay',
@@ -22,18 +39,7 @@ export const overlayEntry: ComponentEntry = {
   examples: [
     {
       title: 'Backdrop Variants',
-      render: (
-        <div style={{ display: 'flex', gap: 16 }}>
-          {(['dim', 'blur', 'transparent'] as const).map((v) => (
-            <Box key={v} style={{ width: 120, height: 80, position: 'relative', borderRadius: 8, overflow: 'hidden', backgroundColor: 'rgba(255,255,255,0.04)' }}>
-              <Text size="xs" style={{ padding: 8 }}>Content</Text>
-              <Box style={{ position: 'absolute', inset: 0, backgroundColor: v === 'dim' ? 'rgba(0,0,0,0.5)' : v === 'blur' ? 'rgba(0,0,0,0.3)' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: v === 'blur' ? 'blur(4px)' : 'none' }}>
-                <Text size="xs" weight="medium">{v}</Text>
-              </Box>
-            </Box>
-          ))}
-        </div>
-      ),
+      render: <OverlayBackdropExample />,
       code: `import { Overlay } from '@wisp-ui/react';
 
 <Overlay open backdrop="dim">Content</Overlay>

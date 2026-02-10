@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Text } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+import { DemoBox } from '../../shared/DemoBox';
 
 export const boxEntry: ComponentEntry = {
   slug: 'box',
@@ -12,9 +13,9 @@ export const boxEntry: ComponentEntry = {
   keywords: ['box', 'div', 'container', 'layout', 'primitive'],
 
   cardPreview: (
-    <Box p="md" radius="md" style={{ backgroundColor: 'rgba(255,255,255,0.06)', width: '100%', maxWidth: 200 }}>
+    <DemoBox p="md" radius="md" style={{ width: '100%', maxWidth: 200 }}>
       <Text size="sm" color="secondary">Box with padding</Text>
-    </Box>
+    </DemoBox>
   ),
 
   examples: [
@@ -23,9 +24,9 @@ export const boxEntry: ComponentEntry = {
       render: (
         <Box display="flex" style={{ gap: 12, flexWrap: 'wrap' }}>
           {(['sm', 'md', 'lg'] as const).map((p) => (
-            <Box key={p} p={p} radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+            <DemoBox key={p} p={p} radius="sm">
               <Text size="xs">p="{p}"</Text>
-            </Box>
+            </DemoBox>
           ))}
         </Box>
       ),
@@ -43,9 +44,9 @@ export const boxEntry: ComponentEntry = {
     {
       title: 'Directional Padding',
       render: (
-        <Box px="lg" py="sm" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+        <DemoBox style={{ paddingLeft: 16, paddingRight: 16, paddingTop: 8, paddingBottom: 8 }} radius="sm">
           <Text size="sm">px="lg" py="sm"</Text>
-        </Box>
+        </DemoBox>
       ),
       code: `<Box px="lg" py="sm">Content</Box>`,
       rnCode: `<Box px="lg" py="sm">Content</Box>`,
@@ -54,12 +55,12 @@ export const boxEntry: ComponentEntry = {
       title: 'Display & Position',
       render: (
         <Box display="flex" style={{ gap: 8 }}>
-          <Box p="md" radius="sm" display="flex" style={{ backgroundColor: 'rgba(255,255,255,0.06)', flex: 1, justifyContent: 'center' }}>
+          <DemoBox p="md" radius="sm" display="flex" style={{ flex: 1, justifyContent: 'center' }}>
             <Text size="xs">display="flex"</Text>
-          </Box>
-          <Box p="md" radius="sm" position="relative" style={{ backgroundColor: 'rgba(255,255,255,0.06)', flex: 1 }}>
+          </DemoBox>
+          <DemoBox p="md" radius="sm" position="relative" style={{ flex: 1 }}>
             <Text size="xs">position="relative"</Text>
-          </Box>
+          </DemoBox>
         </Box>
       ),
       code: `<Box display="flex">Flex container</Box>

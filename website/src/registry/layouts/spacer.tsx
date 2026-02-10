@@ -1,6 +1,7 @@
 import React from 'react';
 import { Spacer, HStack, VStack, Text, Box } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+import { DemoBox } from '../../shared/DemoBox';
 
 export const spacerEntry: ComponentEntry = {
   slug: 'spacer',
@@ -48,13 +49,13 @@ export const spacerEntry: ComponentEntry = {
       title: 'Fixed Size',
       render: (
         <VStack style={{ width: '100%', maxWidth: 300 }}>
-          <Box p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+          <DemoBox p="md" radius="sm">
             <Text size="sm">Above</Text>
-          </Box>
+          </DemoBox>
           <Spacer size="xl" />
-          <Box p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+          <DemoBox p="md" radius="sm">
             <Text size="sm">Below (xl space)</Text>
-          </Box>
+          </DemoBox>
         </VStack>
       ),
       code: `<Box>Above</Box>

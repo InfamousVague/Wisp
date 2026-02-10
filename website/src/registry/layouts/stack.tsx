@@ -1,6 +1,7 @@
 import React from 'react';
 import { Stack, HStack, VStack, Text, Box } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+import { DemoBox } from '../../shared/DemoBox';
 
 export const stackEntry: ComponentEntry = {
   slug: 'stack',
@@ -14,10 +15,10 @@ export const stackEntry: ComponentEntry = {
   cardPreview: (
     <VStack gap="sm" style={{ width: '100%', maxWidth: 200 }}>
       <HStack gap="sm">
-        <Box p="sm" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.08)', flex: 1, height: 32 }} />
-        <Box p="sm" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.08)', flex: 1, height: 32 }} />
+        <DemoBox p="sm" radius="sm" style={{ flex: 1, height: 32 }} />
+        <DemoBox p="sm" radius="sm" style={{ flex: 1, height: 32 }} />
       </HStack>
-      <Box p="sm" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.08)', height: 32 }} />
+      <DemoBox p="sm" radius="sm" style={{ height: 32 }} />
     </VStack>
   ),
 
@@ -26,15 +27,15 @@ export const stackEntry: ComponentEntry = {
       title: 'VStack',
       render: (
         <VStack gap="md" style={{ width: '100%', maxWidth: 300 }}>
-          <Box p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+          <DemoBox p="md" radius="sm">
             <Text size="sm">Item 1</Text>
-          </Box>
-          <Box p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+          </DemoBox>
+          <DemoBox p="md" radius="sm">
             <Text size="sm">Item 2</Text>
-          </Box>
-          <Box p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+          </DemoBox>
+          <DemoBox p="md" radius="sm">
             <Text size="sm">Item 3</Text>
-          </Box>
+          </DemoBox>
         </VStack>
       ),
       code: `import { VStack, Box } from '@wisp-ui/react';
@@ -56,15 +57,15 @@ export const stackEntry: ComponentEntry = {
       title: 'HStack',
       render: (
         <HStack gap="md" align="center">
-          <Box p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+          <DemoBox p="md" radius="sm">
             <Text size="sm">Left</Text>
-          </Box>
-          <Box p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+          </DemoBox>
+          <DemoBox p="md" radius="sm">
             <Text size="sm">Center</Text>
-          </Box>
-          <Box p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+          </DemoBox>
+          <DemoBox p="md" radius="sm">
             <Text size="sm">Right</Text>
-          </Box>
+          </DemoBox>
         </HStack>
       ),
       code: `<HStack gap="md" align="center">

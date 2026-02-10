@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Text, VStack, Box } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+import { DemoBox } from '../../shared/DemoBox';
 
 export const containerEntry: ComponentEntry = {
   slug: 'container',
@@ -14,9 +15,9 @@ export const containerEntry: ComponentEntry = {
   cardPreview: (
     <VStack gap="xs" style={{ width: '100%', maxWidth: 200 }}>
       {(['sm', 'md', 'lg'] as const).map((s) => (
-        <Box key={s} p="xs" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)', textAlign: 'center' }}>
+        <DemoBox key={s} p="xs" radius="sm" style={{ textAlign: 'center' }}>
           <Text size="xs">{s}</Text>
-        </Box>
+        </DemoBox>
       ))}
     </VStack>
   ),
@@ -28,9 +29,9 @@ export const containerEntry: ComponentEntry = {
         <VStack gap="sm" style={{ width: '100%' }}>
           {(['sm', 'md', 'lg', 'xl'] as const).map((size) => (
             <Container key={size} size={size}>
-              <Box p="sm" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+              <DemoBox p="sm" radius="sm">
                 <Text size="xs" color="secondary">{size} — {size === 'sm' ? '640px' : size === 'md' ? '768px' : size === 'lg' ? '1024px' : '1280px'}</Text>
-              </Box>
+              </DemoBox>
             </Container>
           ))}
         </VStack>

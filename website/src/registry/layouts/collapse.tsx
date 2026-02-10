@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Collapse, Text, VStack, Box, Button } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+import { DemoBox } from '../../shared/DemoBox';
 
 function CollapseDemo() {
   const [open, setOpen] = useState(false);
@@ -10,9 +11,9 @@ function CollapseDemo() {
         {open ? 'Collapse' : 'Expand'}
       </Button>
       <Collapse open={open}>
-        <Box p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.04)' }}>
+        <DemoBox p="md" radius="sm" intensity="subtle">
           <Text size="sm" color="secondary">This content collapses and expands with animation.</Text>
-        </Box>
+        </DemoBox>
       </Collapse>
     </VStack>
   );
@@ -29,12 +30,12 @@ export const collapseEntry: ComponentEntry = {
 
   cardPreview: (
     <VStack gap="xs" style={{ width: '100%', maxWidth: 200 }}>
-      <Box p="sm" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}>
+      <DemoBox p="sm" radius="sm">
         <Text size="xs" weight="medium">Header</Text>
-      </Box>
-      <Box p="sm" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.04)' }}>
+      </DemoBox>
+      <DemoBox p="sm" radius="sm" intensity="subtle">
         <Text size="xs" color="secondary">Collapsed content…</Text>
-      </Box>
+      </DemoBox>
     </VStack>
   ),
 

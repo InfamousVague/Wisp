@@ -1,6 +1,7 @@
 import React from 'react';
 import { AspectRatio, Text, Box } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+import { DemoBox } from '../../shared/DemoBox';
 
 export const aspectRatioEntry: ComponentEntry = {
   slug: 'aspect-ratio',
@@ -15,16 +16,16 @@ export const aspectRatioEntry: ComponentEntry = {
     <div style={{ display: 'flex', gap: 8, width: '100%', maxWidth: 200, alignItems: 'flex-start' }}>
       <div style={{ width: 80 }}>
         <AspectRatio ratio={1}>
-          <Box radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <DemoBox radius="sm" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Text size="xs">1:1</Text>
-          </Box>
+          </DemoBox>
         </AspectRatio>
       </div>
       <div style={{ width: 80 }}>
         <AspectRatio ratio={16 / 9}>
-          <Box radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <DemoBox radius="sm" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Text size="xs">16:9</Text>
-          </Box>
+          </DemoBox>
         </AspectRatio>
       </div>
     </div>
@@ -43,9 +44,9 @@ export const aspectRatioEntry: ComponentEntry = {
           ].map(({ ratio, label }) => (
             <div key={label} style={{ width: 120 }}>
               <AspectRatio ratio={ratio}>
-                <Box radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <DemoBox radius="sm" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Text size="sm">{label}</Text>
-                </Box>
+                </DemoBox>
               </AspectRatio>
             </div>
           ))}

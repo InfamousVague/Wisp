@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollArea, Text, VStack, Box } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+import { DemoBox } from '../../shared/DemoBox';
 
 export const scrollAreaEntry: ComponentEntry = {
   slug: 'scroll-area',
@@ -28,9 +29,9 @@ export const scrollAreaEntry: ComponentEntry = {
         <ScrollArea maxHeight={180} style={{ width: '100%', maxWidth: 300 }}>
           <VStack gap="sm">
             {Array.from({ length: 15 }, (_, i) => (
-              <Box key={i} p="sm" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.04)' }}>
+              <DemoBox key={i} p="sm" radius="sm" intensity="subtle">
                 <Text size="sm">Item {i + 1}</Text>
-              </Box>
+              </DemoBox>
             ))}
           </VStack>
         </ScrollArea>
@@ -56,9 +57,9 @@ export const scrollAreaEntry: ComponentEntry = {
         <ScrollArea direction="horizontal" maxWidth={300}>
           <div style={{ display: 'flex', gap: 8, width: 'max-content' }}>
             {Array.from({ length: 10 }, (_, i) => (
-              <Box key={i} p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)', minWidth: 100, textAlign: 'center' }}>
+              <DemoBox key={i} p="md" radius="sm" style={{ minWidth: 100, textAlign: 'center' }}>
                 <Text size="xs">{i + 1}</Text>
-              </Box>
+              </DemoBox>
             ))}
           </div>
         </ScrollArea>

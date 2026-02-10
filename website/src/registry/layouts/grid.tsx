@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, GridItem, Text, Box } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+import { DemoBox } from '../../shared/DemoBox';
 
 export const gridEntry: ComponentEntry = {
   slug: 'grid',
@@ -14,9 +15,9 @@ export const gridEntry: ComponentEntry = {
   cardPreview: (
     <Grid columns={3} gap="xs" style={{ width: '100%', maxWidth: 200 }}>
       {[1, 2, 3, 4, 5, 6].map((n) => (
-        <Box key={n} p="sm" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.08)', textAlign: 'center' }}>
+        <DemoBox key={n} p="sm" radius="sm" style={{ textAlign: 'center' }}>
           <Text size="xs">{n}</Text>
-        </Box>
+        </DemoBox>
       ))}
     </Grid>
   ),
@@ -27,9 +28,9 @@ export const gridEntry: ComponentEntry = {
       render: (
         <Grid columns={3} gap="md" style={{ width: '100%', maxWidth: 400 }}>
           {[1, 2, 3, 4, 5, 6].map((n) => (
-            <Box key={n} p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)', textAlign: 'center' }}>
+            <DemoBox key={n} p="md" radius="sm" style={{ textAlign: 'center' }}>
               <Text size="sm">{n}</Text>
-            </Box>
+            </DemoBox>
           ))}
         </Grid>
       ),
@@ -59,20 +60,20 @@ export const gridEntry: ComponentEntry = {
       render: (
         <Grid columns={4} gap="md" style={{ width: '100%', maxWidth: 500 }}>
           <GridItem colSpan={2}>
-            <Box p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)', textAlign: 'center' }}>
+            <DemoBox p="md" radius="sm" style={{ textAlign: 'center' }}>
               <Text size="sm">Span 2</Text>
-            </Box>
+            </DemoBox>
           </GridItem>
-          <Box p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)', textAlign: 'center' }}>
+          <DemoBox p="md" radius="sm" style={{ textAlign: 'center' }}>
             <Text size="sm">1</Text>
-          </Box>
-          <Box p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)', textAlign: 'center' }}>
+          </DemoBox>
+          <DemoBox p="md" radius="sm" style={{ textAlign: 'center' }}>
             <Text size="sm">1</Text>
-          </Box>
+          </DemoBox>
           <GridItem colSpan={4}>
-            <Box p="md" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)', textAlign: 'center' }}>
+            <DemoBox p="md" radius="sm" style={{ textAlign: 'center' }}>
               <Text size="sm">Full width (span 4)</Text>
-            </Box>
+            </DemoBox>
           </GridItem>
         </Grid>
       ),

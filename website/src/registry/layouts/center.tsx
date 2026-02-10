@@ -1,6 +1,39 @@
 import React from 'react';
-import { Center, Text, Box } from '@wisp-ui/react';
+import { Center, Text, Box, useThemeColors } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+import { DemoBox } from '../../shared/DemoBox';
+
+function CenterCardPreview() {
+  const colors = useThemeColors();
+  return (
+    <Center style={{ width: '100%', height: 80, backgroundColor: colors.border.subtle, borderRadius: 8 }}>
+      <Text size="xs" color="secondary">Centered</Text>
+    </Center>
+  );
+}
+
+function CenterBasicExample() {
+  const colors = useThemeColors();
+  return (
+    <Center style={{ width: '100%', height: 160, backgroundColor: colors.border.subtle, borderRadius: 8 }}>
+      <Text size="md">Centered Content</Text>
+    </Center>
+  );
+}
+
+function CenterInlineExample() {
+  const colors = useThemeColors();
+  return (
+    <Box display="flex" style={{ gap: 12 }}>
+      <Center inline style={{ width: 48, height: 48, backgroundColor: colors.border.subtle, borderRadius: 8 }}>
+        <Text size="sm">A</Text>
+      </Center>
+      <Center inline style={{ width: 48, height: 48, backgroundColor: colors.border.subtle, borderRadius: 8 }}>
+        <Text size="sm">B</Text>
+      </Center>
+    </Box>
+  );
+}
 
 export const centerEntry: ComponentEntry = {
   slug: 'center',
@@ -11,20 +44,12 @@ export const centerEntry: ComponentEntry = {
   variantCount: 1,
   keywords: ['center', 'align', 'middle', 'flex', 'justify'],
 
-  cardPreview: (
-    <Center style={{ width: '100%', height: 80, backgroundColor: 'rgba(255,255,255,0.04)', borderRadius: 8 }}>
-      <Text size="xs" color="secondary">Centered</Text>
-    </Center>
-  ),
+  cardPreview: <CenterCardPreview />,
 
   examples: [
     {
       title: 'Basic Center',
-      render: (
-        <Center style={{ width: '100%', height: 160, backgroundColor: 'rgba(255,255,255,0.04)', borderRadius: 8 }}>
-          <Text size="md">Centered Content</Text>
-        </Center>
-      ),
+      render: <CenterBasicExample />,
       code: `import { Center } from '@wisp-ui/react';
 
 <Center style={{ height: 160 }}>
@@ -38,16 +63,7 @@ export const centerEntry: ComponentEntry = {
     },
     {
       title: 'Inline Center',
-      render: (
-        <Box display="flex" style={{ gap: 12 }}>
-          <Center inline style={{ width: 48, height: 48, backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: 8 }}>
-            <Text size="sm">A</Text>
-          </Center>
-          <Center inline style={{ width: 48, height: 48, backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: 8 }}>
-            <Text size="sm">B</Text>
-          </Center>
-        </Box>
-      ),
+      render: <CenterInlineExample />,
       code: `<Center inline style={{ width: 48, height: 48 }}>A</Center>
 <Center inline style={{ width: 48, height: 48 }}>B</Center>`,
       rnCode: `<Center style={{ width: 48, height: 48 }}>A</Center>

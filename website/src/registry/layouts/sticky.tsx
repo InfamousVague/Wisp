@@ -1,6 +1,25 @@
 import React from 'react';
-import { Sticky, Text, Box, VStack } from '@wisp-ui/react';
+import { Sticky, Text, Box, VStack, useThemeColors } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+import { DemoBox } from '../../shared/DemoBox';
+
+function StickyExample() {
+  const colors = useThemeColors();
+  return (
+    <Box style={{ position: 'relative', height: 120, overflow: 'auto', backgroundColor: colors.accent.highlight, borderRadius: 8 }}>
+      <Sticky edge="top">
+        <DemoBox p="sm">
+          <Text size="sm" weight="medium">Sticky at top</Text>
+        </DemoBox>
+      </Sticky>
+      <VStack gap="sm" style={{ padding: 12 }}>
+        {Array.from({ length: 8 }, (_, i) => (
+          <Text key={i} size="sm" color="secondary">Scroll content {i + 1}</Text>
+        ))}
+      </VStack>
+    </Box>
+  );
+}
 
 export const stickyEntry: ComponentEntry = {
   slug: 'sticky',
@@ -13,9 +32,9 @@ export const stickyEntry: ComponentEntry = {
 
   cardPreview: (
     <VStack gap="xs" style={{ width: '100%', maxWidth: 200 }}>
-      <Box p="sm" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.1)', textAlign: 'center' }}>
+      <DemoBox p="sm" radius="sm" style={{ textAlign: 'center' }}>
         <Text size="xs" weight="medium">Sticky Header</Text>
-      </Box>
+      </DemoBox>
       <Text size="xs" color="tertiary">Content below…</Text>
     </VStack>
   ),
@@ -23,20 +42,7 @@ export const stickyEntry: ComponentEntry = {
   examples: [
     {
       title: 'Top Sticky',
-      render: (
-        <Box style={{ position: 'relative', height: 120, overflow: 'auto', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: 8 }}>
-          <Sticky edge="top">
-            <Box p="sm" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}>
-              <Text size="sm" weight="medium">Sticky at top</Text>
-            </Box>
-          </Sticky>
-          <VStack gap="sm" style={{ padding: 12 }}>
-            {Array.from({ length: 8 }, (_, i) => (
-              <Text key={i} size="sm" color="secondary">Scroll content {i + 1}</Text>
-            ))}
-          </VStack>
-        </Box>
-      ),
+      render: <StickyExample />,
       code: `import { Sticky } from '@wisp-ui/react';
 
 <Sticky edge="top">

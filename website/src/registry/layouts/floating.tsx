@@ -1,6 +1,46 @@
 import React from 'react';
-import { Text, Box, HStack } from '@wisp-ui/react';
+import { Text, Box, HStack, useThemeColors } from '@wisp-ui/react';
 import type { ComponentEntry } from '../types';
+import { DemoBox } from '../../shared/DemoBox';
+
+function FloatingCardPreview() {
+  const colors = useThemeColors();
+  return (
+    <Box style={{ width: '100%', maxWidth: 200, position: 'relative', padding: '24px 0' }}>
+      <DemoBox p="sm" radius="sm" style={{ textAlign: 'center', width: 80, margin: '0 auto' }}>
+        <Text size="xs">Anchor</Text>
+      </DemoBox>
+      <DemoBox intensity="strong" style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', borderRadius: 6, padding: '4px 8px' }}>
+        <Text size="xs">Float</Text>
+      </DemoBox>
+    </Box>
+  );
+}
+
+function FloatingPlacementsExample() {
+  const colors = useThemeColors();
+  return (
+    <HStack gap="xl" align="center" style={{ flexWrap: 'wrap' }}>
+      {(['top', 'bottom', 'left', 'right'] as const).map((p) => (
+        <Box key={p} style={{ position: 'relative', padding: 32 }}>
+          <DemoBox p="sm" radius="sm" style={{ textAlign: 'center', width: 60 }}>
+            <Text size="xs">Anchor</Text>
+          </DemoBox>
+          <DemoBox intensity="strong" style={{
+            position: 'absolute',
+            ...(p === 'top' ? { bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginBottom: -24 } :
+              p === 'bottom' ? { top: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: -24 } :
+              p === 'left' ? { right: '100%', top: '50%', transform: 'translateY(-50%)', marginRight: -24 } :
+              { left: '100%', top: '50%', transform: 'translateY(-50%)', marginLeft: -24 }),
+            borderRadius: 6, padding: '2px 8px', whiteSpace: 'nowrap' as const
+          }}>
+            <Text size="xs">{p}</Text>
+          </DemoBox>
+        </Box>
+      ))}
+    </HStack>
+  );
+}
 
 export const floatingEntry: ComponentEntry = {
   slug: 'floating',
@@ -11,41 +51,12 @@ export const floatingEntry: ComponentEntry = {
   variantCount: 4,
   keywords: ['floating', 'popover', 'anchor', 'position', 'tooltip'],
 
-  cardPreview: (
-    <Box style={{ width: '100%', maxWidth: 200, position: 'relative', padding: '24px 0' }}>
-      <Box p="sm" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.08)', textAlign: 'center', width: 80, margin: '0 auto' }}>
-        <Text size="xs">Anchor</Text>
-      </Box>
-      <Box style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', backgroundColor: 'rgba(255,255,255,0.12)', borderRadius: 6, padding: '4px 8px' }}>
-        <Text size="xs">Float</Text>
-      </Box>
-    </Box>
-  ),
+  cardPreview: <FloatingCardPreview />,
 
   examples: [
     {
       title: 'Placements',
-      render: (
-        <HStack gap="xl" align="center" style={{ flexWrap: 'wrap' }}>
-          {(['top', 'bottom', 'left', 'right'] as const).map((p) => (
-            <Box key={p} style={{ position: 'relative', padding: 32 }}>
-              <Box p="sm" radius="sm" style={{ backgroundColor: 'rgba(255,255,255,0.06)', textAlign: 'center', width: 60 }}>
-                <Text size="xs">Anchor</Text>
-              </Box>
-              <Box style={{
-                position: 'absolute',
-                ...(p === 'top' ? { bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginBottom: -24 } :
-                  p === 'bottom' ? { top: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: -24 } :
-                  p === 'left' ? { right: '100%', top: '50%', transform: 'translateY(-50%)', marginRight: -24 } :
-                  { left: '100%', top: '50%', transform: 'translateY(-50%)', marginLeft: -24 }),
-                backgroundColor: 'rgba(255,255,255,0.12)', borderRadius: 6, padding: '2px 8px', whiteSpace: 'nowrap'
-              }}>
-                <Text size="xs">{p}</Text>
-              </Box>
-            </Box>
-          ))}
-        </HStack>
-      ),
+      render: <FloatingPlacementsExample />,
       code: `import { Floating } from '@wisp-ui/react';
 
 <Floating open placement="top" content={<div>Tooltip</div>}>
