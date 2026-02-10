@@ -280,3 +280,11 @@ export { beaconVariants, beaconSizes, beaconSizeMap } from './beacon';
 export { Sparkline } from './sparkline';
 export type { SparklineProps, SparklineVariant, SparklineSize, SparklineSizeConfig, SparklineColor } from './sparkline';
 export { sparklineVariants, sparklineSizes, sparklineSizeMap, sparklineColors } from './sparkline';
+
+// ---------------------------------------------------------------------------
+// ReadReceipt
+// ---------------------------------------------------------------------------
+
+export { ReadReceipt } from './read-receipt';
+export type { ReadReceiptProps, ReadReceiptStatus, ReadReceiptSize, ReadReceiptSizeConfig } from './read-receipt';
+export { readReceiptStatuses, readReceiptSizes, readReceiptSizeMap } from './read-receipt';

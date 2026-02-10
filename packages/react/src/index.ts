@@ -188,6 +188,9 @@ export type { BeaconProps, BeaconVariant, BeaconSize, BeaconSizeConfig } from '.
 export { Sparkline, sparklineVariants, sparklineSizes, sparklineSizeMap, sparklineColors } from './primitives';
 export type { SparklineProps, SparklineVariant, SparklineSize, SparklineSizeConfig, SparklineColor } from './primitives';
 
+export { ReadReceipt, readReceiptStatuses, readReceiptSizes, readReceiptSizeMap } from './primitives';
+export type { ReadReceiptProps, ReadReceiptStatus, ReadReceiptSize, ReadReceiptSizeConfig } from './primitives';
+
 // ─── Layouts ────────────────────────────────────────────────────
 export { Stack, HStack, VStack, stackDirections, stackAligns, stackJustifys } from './layouts';
 export type { StackProps, StackDirection, StackGap, StackAlign, StackJustify } from './layouts';
@@ -396,6 +399,24 @@ export type { AchievementUnlockProps } from './components';
 
 export { StatCard, statCardVariants, statCardSizes, statCardSizeMap } from './components';
 export type { StatCardProps, StatCardVariant, StatCardSize, StatCardSizeConfig } from './components';
+
+export { MediaPlayer, mediaPlayerSizes, mediaPlayerSizeMap, mediaPlayerVariants, playbackSpeeds } from './components';
+export type { MediaPlayerProps, MediaPlayerVariant, MediaPlayerSize, MediaPlayerSizeConfig, PlaybackSpeed } from './components';
+
+export { AudioWaveform, audioWaveformVariants, audioWaveformSizes, audioWaveformSizeMap, audioWaveformColors } from './components';
+export type { AudioWaveformProps, AudioWaveformVariant, AudioWaveformSize, AudioWaveformSizeConfig, AudioWaveformColor } from './components';
+
+export { ReactionBar, reactionBarSizes, reactionBarSizeMap } from './components';
+export type { ReactionBarProps, Reaction, ReactionBarSize, ReactionBarSizeConfig } from './components';
+
+export { MessageInput, messageInputSizes, messageInputSizeMap } from './components';
+export type { MessageInputProps, MessageInputSize, MessageInputSizeConfig } from './components';
+
+export { VoiceRecorder, voiceRecorderStates, voiceRecorderSizes, voiceRecorderSizeMap } from './components';
+export type { VoiceRecorderProps, VoiceRecorderState, VoiceRecorderSize, VoiceRecorderSizeConfig } from './components';
+
+export { EmojiPicker, emojiPickerSizes, emojiPickerSizeMap, emojiCategories } from './components';
+export type { EmojiPickerProps, EmojiPickerSize, EmojiPickerSizeConfig, EmojiItem, EmojiCategory } from './components';
 
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';

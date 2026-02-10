@@ -383,10 +383,58 @@ export { AchievementUnlock } from './achievement-unlock';
 export type { AchievementUnlockProps } from './achievement-unlock';
 
 // ---------------------------------------------------------------------------
+// AudioWaveform
+// ---------------------------------------------------------------------------
+
+export { AudioWaveform } from './audio-waveform';
+export type { AudioWaveformProps, AudioWaveformVariant, AudioWaveformSize, AudioWaveformSizeConfig, AudioWaveformColor } from './audio-waveform';
+export { audioWaveformVariants, audioWaveformSizes, audioWaveformSizeMap, audioWaveformColors } from './audio-waveform';
+
+// ---------------------------------------------------------------------------
+// MediaPlayer
+// ---------------------------------------------------------------------------
+
+export { MediaPlayer } from './media-player';
+export type { MediaPlayerProps, MediaPlayerVariant, MediaPlayerSize, MediaPlayerSizeConfig, PlaybackSpeed } from './media-player';
+export { mediaPlayerSizes, mediaPlayerSizeMap, mediaPlayerVariants, playbackSpeeds } from './media-player';
+
+// ---------------------------------------------------------------------------
 // StatCard
 // ---------------------------------------------------------------------------
 
 export { StatCard } from './stat-card';
 export type { StatCardProps, StatCardVariant, StatCardSize, StatCardSizeConfig } from './stat-card';
 export { statCardVariants, statCardSizes, statCardSizeMap } from './stat-card';
+
+// ---------------------------------------------------------------------------
+// ReactionBar
+// ---------------------------------------------------------------------------
+
+export { ReactionBar } from './reaction-bar';
+export type { ReactionBarProps, Reaction, ReactionBarSize, ReactionBarSizeConfig } from './reaction-bar';
+export { reactionBarSizes, reactionBarSizeMap } from './reaction-bar';
+
+// ---------------------------------------------------------------------------
+// MessageInput
+// ---------------------------------------------------------------------------
+
+export { MessageInput } from './message-input';
+export type { MessageInputProps, MessageInputSize, MessageInputSizeConfig } from './message-input';
+export { messageInputSizes, messageInputSizeMap } from './message-input';
+
+// ---------------------------------------------------------------------------
+// VoiceRecorder
+// ---------------------------------------------------------------------------
+
+export { VoiceRecorder } from './voice-recorder';
+export type { VoiceRecorderProps, VoiceRecorderState, VoiceRecorderSize, VoiceRecorderSizeConfig } from './voice-recorder';
+export { voiceRecorderStates, voiceRecorderSizes, voiceRecorderSizeMap } from './voice-recorder';
+
+// ---------------------------------------------------------------------------
+// EmojiPicker
+// ---------------------------------------------------------------------------
+
+export { EmojiPicker } from './emoji-picker';
+export type { EmojiPickerProps, EmojiPickerSize, EmojiPickerSizeConfig, EmojiItem, EmojiCategory } from './emoji-picker';
+export { emojiPickerSizes, emojiPickerSizeMap, emojiCategories } from './emoji-picker';
 

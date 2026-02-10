@@ -33,6 +33,7 @@ import { notificationBadgeEntry } from './notification-badge';
 import { codeBlockEntry } from './code-block';
 import { beaconEntry } from './beacon';
 import { sparklineEntry } from './sparkline';
+import { readReceiptEntry } from './read-receipt';
 
 export const primitiveEntries: ComponentEntry[] = [
   textEntry,
@@ -69,4 +70,5 @@ export const primitiveEntries: ComponentEntry[] = [
   codeBlockEntry,
   beaconEntry,
   sparklineEntry,
+  readReceiptEntry,
 ];

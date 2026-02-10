@@ -50,6 +50,12 @@ import { achievementCardEntry } from './achievement-card';
 import { questTrackerEntry } from './quest-tracker';
 import { achievementUnlockEntry } from './achievement-unlock';
 import { statCardEntry } from './stat-card';
+import { mediaPlayerEntry } from './media-player';
+import { audioWaveformEntry } from './audio-waveform';
+import { reactionBarEntry } from './reaction-bar';
+import { messageInputEntry } from './message-input';
+import { voiceRecorderEntry } from './voice-recorder';
+import { emojiPickerEntry } from './emoji-picker';
 
 
 export const componentEntries: ComponentEntry[] = [
@@ -104,4 +110,10 @@ export const componentEntries: ComponentEntry[] = [
   questTrackerEntry,
   achievementUnlockEntry,
   statCardEntry,
+  mediaPlayerEntry,
+  audioWaveformEntry,
+  reactionBarEntry,
+  messageInputEntry,
+  voiceRecorderEntry,
+  emojiPickerEntry,
 ];
