@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { TimePickerSizeConfig } from '../types/TimePicker.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Container style
@@ -108,7 +109,7 @@ export function buildTimePickerDropdownStyle(
     position: 'absolute',
     top: sizeConfig.inputHeight + 4,
     left: 0,
-    zIndex: 50,
+    zIndex: zIndex.dropdown,
     backgroundColor: themeColors.background.raised,
     borderRadius: defaultRadii.lg,
     border: '1px solid ' + themeColors.border.subtle,

@@ -4,6 +4,7 @@
 import type { CSSStyleObject } from '../types';
 import type { ToastPosition } from '../types/ToastProvider.types';
 import { defaultSpacing } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Container positioning
@@ -14,7 +15,7 @@ export function buildToastContainerStyle(
 ): CSSStyleObject {
   const base: CSSStyleObject = {
     position: 'fixed',
-    zIndex: 9999,
+    zIndex: zIndex.toast,
     display: 'flex',
     flexDirection: 'column',
     gap: defaultSpacing.sm,

@@ -11,6 +11,7 @@ import { View, Text, Pressable, Animated } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { zIndex } from '@wisp-ui/core/tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -153,7 +154,7 @@ export function ToastProvider({ children, maxToasts = 5 }: ToastProviderProps) {
     top: 60,
     left: 16,
     right: 16,
-    zIndex: 9998,
+    zIndex: zIndex.toast,
     pointerEvents: 'box-none',
   };
 

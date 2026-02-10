@@ -9,6 +9,7 @@ import type { ThemeColors } from "../theme/types";
 import { fontFamilyStacks, glassStyle } from "../tokens/shared";
 import type { SurfaceVariant } from "../tokens/shared";
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 /**
  * Builds the style for the dropdown content panel (the floating menu container).
@@ -23,7 +24,7 @@ export function buildContentStyle(
 ): CSSStyleObject {
   return {
     position: "absolute",
-    zIndex: 9999,
+    zIndex: zIndex.dropdown,
     minWidth: 180,
     padding: defaultSpacing.xs,
     backgroundColor: themeColors.background.canvas,

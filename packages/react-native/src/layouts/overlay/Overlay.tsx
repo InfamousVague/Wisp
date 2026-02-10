@@ -1,5 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Pressable, Modal, StyleSheet } from 'react-native';
+import { zIndex } from '@wisp-ui/core/tokens/z-index';
 
 type OverlayBackdrop = 'dim' | 'blur' | 'transparent';
 
@@ -90,6 +91,6 @@ Overlay.displayName = 'Overlay';
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    zIndex: 1200,
+    zIndex: zIndex.overlay,
   },
 });

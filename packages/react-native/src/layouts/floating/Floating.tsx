@@ -9,6 +9,7 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View } from 'react-native';
 import type { ViewProps, ViewStyle } from 'react-native';
+import { zIndex } from '@wisp-ui/core/tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -34,7 +35,7 @@ export const Floating = forwardRef<View, FloatingProps>(
     const containerStyle = useMemo<ViewStyle>(() => {
       const base: ViewStyle = {
         position: 'absolute',
-        zIndex: 1000,
+        zIndex: zIndex.dropdown,
       };
 
       switch (position) {

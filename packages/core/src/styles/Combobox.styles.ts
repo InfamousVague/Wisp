@@ -4,6 +4,7 @@ import type { InputSizeConfig } from '../types/Input.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Resolved combobox colors
@@ -274,7 +275,7 @@ export function buildDropdownStyle(
 ): CSSStyleObject {
   return {
     position: 'absolute',
-    zIndex: 9999,
+    zIndex: zIndex.dropdown,
     backgroundColor: themeColors.background.raised,
     border: '1px solid ' + themeColors.border.subtle,
     borderRadius: defaultRadii.md,

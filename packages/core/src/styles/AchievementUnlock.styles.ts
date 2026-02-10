@@ -9,6 +9,7 @@ import type { AchievementRarity } from '../types/AchievementCard.types';
 import { achievementRarityMap } from '../types/AchievementCard.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Overlay
@@ -24,7 +25,7 @@ export function buildAchievementUnlockOverlayStyle(): CSSStyleObject {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 9999,
+    zIndex: zIndex.toast,
     backgroundColor: 'rgba(0,0,0,0.4)',
     animation: 'wisp-achievement-panel-in 300ms ease-out',
   };

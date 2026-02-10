@@ -13,6 +13,7 @@ import type { AchievementRarity } from '@wisp-ui/core/types/AchievementCard.type
 import { achievementRarityMap } from '@wisp-ui/core/types/AchievementCard.types';
 import { useThemeColors } from '../../providers';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { zIndex } from '@wisp-ui/core/tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -103,7 +104,7 @@ export const AchievementUnlock = forwardRef<View, AchievementUnlockProps>(
       flexDirection: 'row',
       alignItems: 'center',
       gap: defaultSpacing.md,
-      zIndex: 9999,
+      zIndex: zIndex.toast,
       elevation: 10,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 4 },

@@ -8,6 +8,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { DatePickerSizeConfig } from '../types/DatePicker.types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Container
@@ -113,7 +114,7 @@ export function buildDatePickerDropdownStyle(
     position: 'absolute',
     top: sizeConfig.inputHeight + 4,
     left: 0,
-    zIndex: 50,
+    zIndex: zIndex.dropdown,
     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
     borderRadius: defaultRadii.lg,
     border: `1px solid ${themeColors.border.subtle}`,

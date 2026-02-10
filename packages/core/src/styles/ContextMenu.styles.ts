@@ -5,6 +5,7 @@ import type { CSSStyleObject } from '../types';
 import type { ThemeColors } from '../theme/types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Content (dropdown panel)
@@ -15,7 +16,7 @@ export function buildContextMenuContentStyle(
 ): CSSStyleObject {
   return {
     position: 'fixed',
-    zIndex: 9999,
+    zIndex: zIndex.popover,
     minWidth: 180,
     padding: `${defaultSpacing.xs}px 0`,
     backgroundColor: themeColors.background.raised,

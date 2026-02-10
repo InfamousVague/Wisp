@@ -6,6 +6,7 @@ import type { ThemeColors } from '../theme/types';
 import type { NavbarVariant } from '../types/Navbar.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Navbar container
@@ -27,7 +28,7 @@ export function buildNavbarStyle(
     borderBottom: `1px solid ${themeColors.border.subtle}`,
     fontFamily: fontFamilyStacks.sans,
     ...(sticky
-      ? { position: 'sticky', top: 0, zIndex: 1100 }
+      ? { position: 'sticky', top: 0, zIndex: zIndex.sticky }
       : {}),
   };
 

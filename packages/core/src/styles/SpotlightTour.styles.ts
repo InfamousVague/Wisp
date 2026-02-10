@@ -8,6 +8,7 @@ import type { ThemeColors } from '../theme/types';
 import type { SpotlightTourVariant } from '../types/SpotlightTour.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Overlay
@@ -23,7 +24,7 @@ export function buildSpotlightOverlayStyle(): CSSStyleObject {
     left: 0,
     width: '100%',
     height: '100%',
-    zIndex: 9997,
+    zIndex: zIndex.overlay,
     pointerEvents: 'auto',
   };
 }
@@ -51,7 +52,7 @@ export function buildSpotlightPopoverStyle(
     maxWidth: 360,
     boxShadow: '0 8px 24px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.1)',
     animation: 'wisp-spotlight-in 200ms ease-out',
-    zIndex: 9999,
+    zIndex: zIndex.tooltip,
   };
 }
 

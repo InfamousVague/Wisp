@@ -11,6 +11,7 @@ import { sheetSizeMap } from '../types/Sheet.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
 import { defaultRadii } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Overlay
@@ -29,7 +30,7 @@ export function buildOverlayStyle(themeColors: ThemeColors): CSSStyleObject {
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: 9998,
+    zIndex: zIndex.overlay,
     backgroundColor: themeColors.background.overlay,
     transition: 'opacity 250ms ease',
   };
@@ -67,7 +68,7 @@ export function buildSheetStyle(
     bottom: 0,
     left: 0,
     right: 0,
-    zIndex: 9999,
+    zIndex: zIndex.modal,
     maxHeight,
     backgroundColor: themeColors.background.raised,
     fontFamily: fontFamilyStacks.sans,

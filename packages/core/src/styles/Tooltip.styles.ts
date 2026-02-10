@@ -9,6 +9,7 @@ import type { SurfaceVariant } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { TooltipPlacement } from '../types/Tooltip.types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Arrow size constant
@@ -76,7 +77,7 @@ export function buildTooltipStyle(
 
   return {
     position: 'absolute',
-    zIndex: 9999,
+    zIndex: zIndex.tooltip,
     maxWidth,
     padding: `${defaultSpacing.sm}px ${defaultSpacing.md}px`,
     borderRadius: defaultRadii.md,
@@ -233,7 +234,7 @@ export function buildPortalPositionStyle(
     position: 'absolute',
     top: pos.top,
     left: pos.left,
-    zIndex: 9999,
+    zIndex: zIndex.tooltip,
   };
 
   switch (placement) {

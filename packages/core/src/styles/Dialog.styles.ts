@@ -11,6 +11,7 @@ import { dialogSizeMap } from '../types/Dialog.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Overlay
@@ -29,7 +30,7 @@ export function buildOverlayStyle(themeColors: ThemeColors): CSSStyleObject {
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: 1300,
+    zIndex: zIndex.modal,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

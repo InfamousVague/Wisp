@@ -3,6 +3,7 @@ import type { ThemeColors } from '../theme/types';
 import type { LocalePickerSizeConfig } from '../types/LocalePicker.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Resolved locale-picker colors
@@ -219,7 +220,7 @@ export function buildDropdownStyle(
     top: '100%',
     left: 0,
     right: 0,
-    zIndex: 9999,
+    zIndex: zIndex.dropdown,
     boxSizing: 'border-box',
     backgroundColor: themeColors.background.raised,
     border: '1px solid ' + themeColors.border.subtle,

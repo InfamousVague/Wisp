@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import { View } from 'react-native';
+import { zIndex as zIndexScale } from '@wisp-ui/core/tokens/z-index';
 
 type StickyEdge = 'top' | 'bottom';
 
@@ -30,7 +31,7 @@ export const Sticky = forwardRef<View, StickyProps>(function Sticky(
     children,
     edge = 'top',
     offset = 0,
-    zIndex = 1100,
+    zIndex = zIndexScale.sticky,
     style: userStyle,
   },
   ref,

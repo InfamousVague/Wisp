@@ -8,6 +8,7 @@ import { fontFamilyStacks } from '../tokens/shared';
 import type { ThemeColors } from '../theme/types';
 import type { DateRangePickerSizeConfig } from '../types/DateRangePicker.types';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Wrapper
@@ -117,7 +118,7 @@ export function buildDropdownStyle(
     position: 'absolute',
     top: '100%',
     left: 0,
-    zIndex: 9999,
+    zIndex: zIndex.dropdown,
     display: 'flex',
     flexDirection: 'row',
     gap: defaultSpacing.lg,

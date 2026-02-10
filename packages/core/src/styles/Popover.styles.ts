@@ -9,6 +9,7 @@ import type { ThemeColors } from '../theme/types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
 import { defaultSpacing, defaultRadii } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Content panel style
@@ -29,7 +30,7 @@ export function buildContentStyle(
 ): CSSStyleObject {
   return {
     position: 'absolute',
-    zIndex: 9999,
+    zIndex: zIndex.popover,
     backgroundColor: themeColors.background.canvas,
     border: `1px solid ${themeColors.border.subtle}`,
     borderRadius: defaultRadii.md,
@@ -57,7 +58,7 @@ export function buildOverlayStyle(): CSSStyleObject {
   return {
     position: 'fixed',
     inset: 0,
-    zIndex: 9998,
+    zIndex: zIndex.overlay,
     background: 'transparent',
   };
 }

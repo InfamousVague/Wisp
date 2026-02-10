@@ -4,6 +4,7 @@ import type { SelectSizeConfig } from '../types/Select.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
 import type { SurfaceVariant } from '../tokens/shared';
 import { defaultSpacing, defaultRadii, defaultTypography } from '../theme/create-theme';
+import { zIndex } from '../tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Resolved select colors
@@ -216,7 +217,7 @@ export function buildDropdownStyle(
 ): CSSStyleObject {
   return {
     position: 'absolute',
-    zIndex: 9999,
+    zIndex: zIndex.dropdown,
     boxSizing: 'border-box',
     backgroundColor: themeColors.background.raised,
     border: '1px solid ' + themeColors.border.subtle,
