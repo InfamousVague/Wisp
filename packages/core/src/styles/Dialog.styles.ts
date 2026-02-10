@@ -5,7 +5,7 @@
  */
 
 import type { CSSStyleObject } from '../types';
-import type { ThemeColors, WispTheme } from '../theme/types';
+import type { WispTheme } from '../theme/types';
 import type { DialogSize } from '../types/Dialog.types';
 import { dialogSizeMap } from '../types/Dialog.types';
 import { fontFamilyStacks, glassStyle } from '../tokens/shared';
@@ -66,13 +66,8 @@ export function buildPanelStyle(
     width: '100%',
     maxWidth: dialogSizeMap[size],
     maxHeight: 'calc(100vh - 48px)',
-    // When forceMode is active the dialog creates its own theme context;
-    // use the deepest `canvas` background instead of `raised` so the
-    // panel appears as a true root surface of that context.
-    backgroundColor: forceMode
-      ? themeColors.background.canvas
-      : themeColors.background.raised,
-    border: '1px solid ' + themeColors.accent.dividerRaised,
+    backgroundColor: themeColors.background.canvas,
+    border: '1px solid ' + themeColors.border.subtle,
     borderRadius: radii.xl,
     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
     outline: 'none',
@@ -116,7 +111,7 @@ export function buildTitleStyle(theme: WispTheme): CSSStyleObject {
     fontSize: typography.sizes.lg.fontSize,
     fontWeight: typography.weights.semibold,
     lineHeight: `${typography.sizes.lg.lineHeight}px`,
-    color: themeColors.text.onRaised,
+    color: themeColors.text.primary,
   };
 }
 
@@ -134,7 +129,7 @@ export function buildDescriptionStyle(theme: WispTheme): CSSStyleObject {
     fontSize: typography.sizes.sm.fontSize,
     fontWeight: typography.weights.regular,
     lineHeight: `${typography.sizes.sm.lineHeight}px`,
-    color: themeColors.text.onRaisedSecondary,
+    color: themeColors.text.secondary,
   };
 }
 
@@ -161,7 +156,7 @@ export function buildCloseButtonStyle(theme: WispTheme): CSSStyleObject {
     border: 'none',
     borderRadius: radii.md,
     backgroundColor: 'transparent',
-    color: themeColors.text.onRaisedSecondary,
+    color: themeColors.text.secondary,
     cursor: 'pointer',
     flexShrink: 0,
     marginLeft: spacing.sm,
@@ -179,7 +174,7 @@ export function buildCloseButtonHoverStyle(theme: WispTheme): CSSStyleObject {
   const { colors: themeColors } = theme;
   return {
     backgroundColor: themeColors.accent.highlight,
-    color: themeColors.text.onRaised,
+    color: themeColors.text.primary,
   };
 }
 
@@ -221,7 +216,7 @@ export function buildFooterStyle(theme: WispTheme): CSSStyleObject {
     alignItems: 'center',
     gap: spacing.sm,
     padding: `${spacing.lg}px ${spacing.xl}px`,
-    borderTop: '1px solid ' + themeColors.accent.dividerRaised,
+    borderTop: '1px solid ' + themeColors.border.subtle,
     flexShrink: 0,
   };
 }

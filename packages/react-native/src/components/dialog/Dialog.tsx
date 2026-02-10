@@ -68,7 +68,7 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
     () => ({
       width: maxWidth,
       maxWidth,
-      backgroundColor: themeColors.background.raised,
+      backgroundColor: themeColors.background.canvas,
       borderRadius: defaultRadii.xl,
       overflow: 'hidden',
       shadowColor: '#000',
@@ -95,7 +95,7 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
     () => ({
       fontSize: defaultTypography.sizes.base.fontSize,
       fontWeight: defaultTypography.weights.semibold,
-      color: themeColors.text.onRaised,
+      color: themeColors.text.primary,
     }),
     [themeColors],
   );
@@ -103,7 +103,7 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
   const descStyle = useMemo<TextStyle>(
     () => ({
       fontSize: defaultTypography.sizes.sm.fontSize,
-      color: themeColors.text.onRaisedSecondary,
+      color: themeColors.text.secondary,
       marginTop: defaultSpacing.xs,
     }),
     [themeColors],
@@ -144,7 +144,7 @@ export const Dialog = forwardRef<View, DialogProps>(function Dialog(
                 }}
               >
                 <Svg width={16} height={16} viewBox="0 0 16 16" fill="none">
-                  <Path d="M4 4l8 8M12 4l-8 8" stroke={themeColors.text.onRaisedSecondary} strokeWidth={2} strokeLinecap="round" />
+                  <Path d="M4 4l8 8M12 4l-8 8" stroke={themeColors.text.secondary} strokeWidth={2} strokeLinecap="round" />
                 </Svg>
               </Pressable>
             )}
