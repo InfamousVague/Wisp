@@ -37,7 +37,7 @@ export function resolveMessageInputColors(theme: WispTheme): MessageInputColors 
     iconHover: themeColors.text.secondary,
     sendBg: themeColors.accent.primary,
     sendIcon: themeColors.text.inverse,
-    sendBgDisabled: themeColors.border.subtle,
+    sendBgDisabled: themeColors.accent.primary,
   };
 }
 
