@@ -76,19 +76,36 @@ export function buildEmojiPickerHeaderStyle(
 }
 
 /**
- * Outer wrapper for the search/skin-tone slider. Clips overflow so that
- * the two panels slide in and out horizontally. Padding prevents the
- * input border/focus ring from being clipped.
+ * Top-level row: `[slider area (flex:1)] [gap] [hand button (fixed)]`.
+ * The hand button stays anchored on the right; only the content to its
+ * left slides between search bar and skin-tone options.
  */
 export function buildEmojiPickerSearchRowStyle(
   sizeConfig: EmojiPickerSizeConfig,
 ): CSSStyleObject {
   return {
-    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    height: sizeConfig.searchHeight,
+  };
+}
+
+/**
+ * Clip container for the sliding panels. Takes all remaining space
+ * to the left of the hand button. Padding prevents border clipping.
+ */
+export function buildEmojiPickerSliderClipStyle(
+  sizeConfig: EmojiPickerSizeConfig,
+): CSSStyleObject {
+  return {
+    flex: 1,
     overflow: 'hidden',
     height: sizeConfig.searchHeight + 4,
     padding: 2,
     margin: -2,
+    position: 'relative',
   };
 }
 
@@ -109,7 +126,7 @@ export function buildEmojiPickerSliderTrackStyle(
   };
 }
 
-/** Each panel inside the slider track occupies exactly half the track (= 100% of container). */
+/** Each panel inside the slider track occupies exactly half the track. */
 export function buildEmojiPickerSliderPanelStyle(): CSSStyleObject {
   return {
     display: 'flex',
@@ -117,7 +134,6 @@ export function buildEmojiPickerSliderPanelStyle(): CSSStyleObject {
     alignItems: 'center',
     width: '50%',
     height: '100%',
-    gap: 8,
     flexShrink: 0,
   };
 }

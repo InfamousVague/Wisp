@@ -39,6 +39,7 @@ import {
   buildEmojiPickerContainerStyle,
   buildEmojiPickerHeaderStyle,
   buildEmojiPickerSearchRowStyle,
+  buildEmojiPickerSliderClipStyle,
   buildEmojiPickerSliderTrackStyle,
   buildEmojiPickerSliderPanelStyle,
   buildEmojiPickerSkinToneTriggerStyle,
@@ -283,6 +284,10 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
     () => buildEmojiPickerSearchRowStyle(sizeConfig),
     [sizeConfig],
   );
+  const sliderClipStyle = useMemo(
+    () => buildEmojiPickerSliderClipStyle(sizeConfig),
+    [sizeConfig],
+  );
   const sliderTrackStyle = useMemo(
     () => buildEmojiPickerSliderTrackStyle(skinToneOpen),
     [skinToneOpen],
@@ -332,42 +337,31 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
       aria-label="Emoji picker"
       {...rest}
     >
-      {/* Header: sliding search ↔ skin tone panels */}
+      {/* Header: [sliding content] [hand button] */}
       <div style={headerStyle}>
         <div style={searchRowStyle}>
-          <div style={sliderTrackStyle}>
-            {/* Panel 1: Search bar + skin tone trigger button */}
-            <div style={sliderPanelStyle}>
-              {showSearch && (
-                <SearchInput
-                  size={size}
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  onClear={() => setSearch('')}
-                  placeholder={searchPlaceholder}
-                  aria-label="Search emoji"
-                  autoFocus={autoFocusSearch}
-                  fullWidth
-                  style={{ flex: 1 }}
-                />
-              )}
-              {showSkinTones && (
-                <button
-                  type="button"
-                  style={skinToneTriggerStyle}
-                  onClick={toggleSkinTonePicker}
-                  aria-label="Select skin tone"
-                  title="Select skin tone"
-                >
-                  {SKIN_TONE_PREVIEW + SKIN_TONE_MODIFIERS[currentSkinTone]}
-                </button>
-              )}
-            </div>
-
-            {/* Panel 2: Skin tone options + back button */}
-            {showSkinTones && (
+          {/* Sliding area — search bar ↔ skin tone options */}
+          <div style={sliderClipStyle}>
+            <div style={sliderTrackStyle}>
+              {/* Panel 1: Search bar */}
               <div style={sliderPanelStyle}>
-                <div style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'space-evenly', height: '100%' }}>
+                {showSearch && (
+                  <SearchInput
+                    size={size}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    onClear={() => setSearch('')}
+                    placeholder={searchPlaceholder}
+                    aria-label="Search emoji"
+                    autoFocus={autoFocusSearch}
+                    fullWidth
+                  />
+                )}
+              </div>
+
+              {/* Panel 2: Skin tone options */}
+              {showSkinTones && (
+                <div style={{ ...sliderPanelStyle, justifyContent: 'space-evenly' }}>
                   {skinTones.map((tone) => (
                     <button
                       key={tone}
@@ -381,18 +375,22 @@ export const EmojiPicker = forwardRef<HTMLDivElement, EmojiPickerProps>(function
                     </button>
                   ))}
                 </div>
-                <button
-                  type="button"
-                  style={skinToneTriggerStyle}
-                  onClick={toggleSkinTonePicker}
-                  aria-label="Back to search"
-                  title="Back to search"
-                >
-                  {SKIN_TONE_PREVIEW + SKIN_TONE_MODIFIERS[currentSkinTone]}
-                </button>
-              </div>
-            )}
+              )}
+            </div>
           </div>
+
+          {/* Hand button — always anchored on the right */}
+          {showSkinTones && (
+            <button
+              type="button"
+              style={skinToneTriggerStyle}
+              onClick={toggleSkinTonePicker}
+              aria-label={skinToneOpen ? 'Back to search' : 'Select skin tone'}
+              title={skinToneOpen ? 'Back to search' : 'Select skin tone'}
+            >
+              {SKIN_TONE_PREVIEW + SKIN_TONE_MODIFIERS[currentSkinTone]}
+            </button>
+          )}
         </div>
       </div>
 

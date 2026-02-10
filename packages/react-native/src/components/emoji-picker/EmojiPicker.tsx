@@ -126,9 +126,9 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
 
   const currentSkinTone = controlledSkinTone ?? internalSkinTone;
 
-  // --- Header width measurement for sliding animation ---
+  // --- Slider clip width measurement for sliding animation ---
 
-  const handleHeaderLayout = useCallback((e: LayoutChangeEvent) => {
+  const handleSliderClipLayout = useCallback((e: LayoutChangeEvent) => {
     setHeaderWidth(e.nativeEvent.layout.width);
   }, []);
 
@@ -305,7 +305,15 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     zIndex: 2,
   }), [sizeConfig, colors]);
 
+  const searchRowStyle = useMemo<ViewStyle>(() => ({
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    height: sizeConfig.searchHeight,
+  }), [sizeConfig]);
+
   const sliderClipStyle = useMemo<ViewStyle>(() => ({
+    flex: 1,
     height: sizeConfig.searchHeight + 4,
     padding: 2,
     margin: -2,
@@ -321,9 +329,9 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
   const sliderPanelStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-evenly',
     width: headerWidth || '50%' as any,
     height: '100%' as any,
-    gap: 8,
   }), [headerWidth]);
 
   const searchStyle = useMemo<TextStyle>(() => ({
@@ -349,14 +357,6 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     borderWidth: 1,
     borderColor: skinToneOpen ? colors.skinToneActiveBorder : colors.border,
   }), [triggerSize, sizeConfig, colors, themeColors, skinToneOpen]);
-
-  const skinToneOptionsStyle = useMemo<ViewStyle>(() => ({
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    flex: 1,
-    height: '100%' as any,
-  }), []);
 
   const tabBarStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
@@ -403,45 +403,34 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
 
   return (
     <View ref={ref} style={[containerStyle, userStyle as ViewStyle]} {...rest}>
-      {/* ── Header: sliding search ↔ skin tone panels ── */}
-      <View style={headerStyle} onLayout={handleHeaderLayout}>
-        <View style={sliderClipStyle}>
-          <Animated.View
-            style={[
-              sliderTrackStyle,
-              { transform: [{ translateX: sliderTranslateX }] },
-            ]}
-          >
-            {/* Panel 1: Search bar + skin tone trigger */}
-            <View style={sliderPanelStyle}>
-              {showSearch && (
-                <TextInput
-                  value={search}
-                  onChangeText={setSearch}
-                  placeholder={searchPlaceholder}
-                  placeholderTextColor={themeColors.text.muted}
-                  style={searchStyle}
-                  accessibilityLabel="Search emoji"
-                />
-              )}
-              {showSkinTones && (
-                <Pressable
-                  onPress={toggleSkinTonePicker}
-                  style={skinTriggerStyle}
-                  accessibilityLabel="Select skin tone"
-                  accessibilityRole="button"
-                >
-                  <Text style={{ fontSize: triggerHandFontSize }}>
-                    {SKIN_TONE_HAND + SKIN_TONE_MODIFIERS[currentSkinTone]}
-                  </Text>
-                </Pressable>
-              )}
-            </View>
+      {/* ── Header: [sliding content] [hand button] ── */}
+      <View style={headerStyle}>
+        <View style={searchRowStyle}>
+          {/* Sliding area — search bar ↔ skin tone options */}
+          <View style={sliderClipStyle} onLayout={handleSliderClipLayout}>
+            <Animated.View
+              style={[
+                sliderTrackStyle,
+                { transform: [{ translateX: sliderTranslateX }] },
+              ]}
+            >
+              {/* Panel 1: Search bar */}
+              <View style={{ ...sliderPanelStyle, justifyContent: 'flex-start' }}>
+                {showSearch && (
+                  <TextInput
+                    value={search}
+                    onChangeText={setSearch}
+                    placeholder={searchPlaceholder}
+                    placeholderTextColor={themeColors.text.muted}
+                    style={searchStyle}
+                    accessibilityLabel="Search emoji"
+                  />
+                )}
+              </View>
 
-            {/* Panel 2: Skin tone options + back button */}
-            {showSkinTones && (
-              <View style={sliderPanelStyle}>
-                <View style={skinToneOptionsStyle}>
+              {/* Panel 2: Skin tone options */}
+              {showSkinTones && (
+                <View style={sliderPanelStyle}>
                   {skinTones.map((tone: SkinTone) => {
                     const isActive = currentSkinTone === tone;
                     const optStyle: ViewStyle = {
@@ -469,19 +458,23 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
                     );
                   })}
                 </View>
-                <Pressable
-                  onPress={toggleSkinTonePicker}
-                  style={skinTriggerStyle}
-                  accessibilityLabel="Back to search"
-                  accessibilityRole="button"
-                >
-                  <Text style={{ fontSize: triggerHandFontSize }}>
-                    {SKIN_TONE_HAND + SKIN_TONE_MODIFIERS[currentSkinTone]}
-                  </Text>
-                </Pressable>
-              </View>
-            )}
-          </Animated.View>
+              )}
+            </Animated.View>
+          </View>
+
+          {/* Hand button — always anchored on the right */}
+          {showSkinTones && (
+            <Pressable
+              onPress={toggleSkinTonePicker}
+              style={skinTriggerStyle}
+              accessibilityLabel={skinToneOpen ? 'Back to search' : 'Select skin tone'}
+              accessibilityRole="button"
+            >
+              <Text style={{ fontSize: triggerHandFontSize }}>
+                {SKIN_TONE_HAND + SKIN_TONE_MODIFIERS[currentSkinTone]}
+              </Text>
+            </Pressable>
+          )}
         </View>
       </View>
 
