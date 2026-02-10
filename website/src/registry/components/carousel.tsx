@@ -7,12 +7,42 @@ function CarouselPreview() {
   return (
     <div style={{ width: '100%', maxWidth: 200, pointerEvents: 'none' }}>
       <Carousel showArrows={false}>
-        <Box style={{ height: 60, backgroundColor: colors.accent.highlight, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Text size="xs">Slide 1</Text>
+        <Box style={{ height: 60, backgroundColor: colors.background.surface, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Text size="xs" style={{ color: colors.text.onRaised }}>Slide 1</Text>
         </Box>
-        <Box style={{ height: 60, backgroundColor: colors.accent.highlight, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Text size="xs">Slide 2</Text>
+        <Box style={{ height: 60, backgroundColor: colors.background.surface, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Text size="xs" style={{ color: colors.text.onRaised }}>Slide 2</Text>
         </Box>
+      </Carousel>
+    </div>
+  );
+}
+
+function BasicCarouselDemo() {
+  const colors = useThemeColors();
+  return (
+    <div style={{ width: '100%', maxWidth: 400 }}>
+      <Carousel>
+        {[1, 2, 3, 4].map((n) => (
+          <Box key={n} style={{ height: 180, backgroundColor: colors.background.surface, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Text size="lg" weight="bold" style={{ color: colors.text.onRaised }}>Slide {n}</Text>
+          </Box>
+        ))}
+      </Carousel>
+    </div>
+  );
+}
+
+function AutoPlayCarouselDemo() {
+  const colors = useThemeColors();
+  return (
+    <div style={{ width: '100%', maxWidth: 400 }}>
+      <Carousel autoPlay autoPlayInterval={3000} loop>
+        {[1, 2, 3].map((n) => (
+          <Box key={n} style={{ height: 140, backgroundColor: colors.background.surface, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Text size="md" style={{ color: colors.text.onRaised }}>Auto Slide {n}</Text>
+          </Box>
+        ))}
       </Carousel>
     </div>
   );
@@ -32,17 +62,7 @@ export const carouselEntry: ComponentEntry = {
   examples: [
     {
       title: 'Basic',
-      render: (
-        <div style={{ width: '100%', maxWidth: 400 }}>
-          <Carousel>
-            {[1, 2, 3, 4].map((n) => (
-              <Box key={n} style={{ height: 180, backgroundColor: 'rgba(255,255,255,0.04)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Text size="lg" weight="bold">Slide {n}</Text>
-              </Box>
-            ))}
-          </Carousel>
-        </div>
-      ),
+      render: <BasicCarouselDemo />,
       code: `import { Carousel } from '@wisp-ui/react';\n\n<Carousel>
   <Box>Slide 1</Box>
   <Box>Slide 2</Box>
@@ -58,17 +78,7 @@ export const carouselEntry: ComponentEntry = {
     },
     {
       title: 'Auto-Play',
-      render: (
-        <div style={{ width: '100%', maxWidth: 400 }}>
-          <Carousel autoPlay autoPlayInterval={3000} loop>
-            {[1, 2, 3].map((n) => (
-              <Box key={n} style={{ height: 140, backgroundColor: 'rgba(255,255,255,0.04)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Text size="md">Auto Slide {n}</Text>
-              </Box>
-            ))}
-          </Carousel>
-        </div>
-      ),
+      render: <AutoPlayCarouselDemo />,
       code: `<Carousel autoPlay autoPlayInterval={3000} loop>
   <Box>Slide 1</Box>
   <Box>Slide 2</Box>
