@@ -78,6 +78,52 @@ export function isFinderPattern(
 }
 
 // ---------------------------------------------------------------------------
+// Finder-pattern zone helpers (for custom eye rendering)
+// ---------------------------------------------------------------------------
+
+/**
+ * Describes a finder-pattern eye position.
+ */
+export interface FinderEye {
+  /** Top-left row of the 7×7 finder pattern. */
+  row: number;
+  /** Top-left col of the 7×7 finder pattern. */
+  col: number;
+}
+
+/**
+ * Returns the three finder-pattern eye positions.
+ */
+export function getFinderEyes(moduleCount: number): FinderEye[] {
+  return [
+    { row: 0, col: 0 },                             // top-left
+    { row: 0, col: moduleCount - 7 },               // top-right
+    { row: moduleCount - 7, col: 0 },               // bottom-left
+  ];
+}
+
+/**
+ * Returns `true` if the module at `(row, col)` is strictly within one
+ * of the three 7×7 finder patterns (NOT including separators).
+ */
+export function isInFinderCore(
+  row: number,
+  col: number,
+  moduleCount: number,
+): boolean {
+  const eyes = getFinderEyes(moduleCount);
+  for (const eye of eyes) {
+    if (
+      row >= eye.row && row < eye.row + 7 &&
+      col >= eye.col && col < eye.col + 7
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// ---------------------------------------------------------------------------
 // Module positioning helpers
 // ---------------------------------------------------------------------------
 
@@ -127,4 +173,53 @@ export function isInLogoArea(
   const start = Math.floor((moduleCount - clearModules) / 2);
   const end = start + clearModules;
   return row >= start && row < end && col >= start && col < end;
+}
+
+// ---------------------------------------------------------------------------
+// SVG path builders for dot shapes
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds an SVG `d` attribute path for a diamond shape centred at (cx, cy).
+ */
+export function diamondPath(cx: number, cy: number, size: number): string {
+  const h = size / 2;
+  return `M ${cx} ${cy - h} L ${cx + h} ${cy} L ${cx} ${cy + h} L ${cx - h} ${cy} Z`;
+}
+
+/**
+ * Builds an SVG `d` attribute path for a 4-pointed star centred at (cx, cy).
+ */
+export function starPath(cx: number, cy: number, size: number): string {
+  const outer = size / 2;
+  const inner = outer * 0.4;
+  let d = '';
+  for (let i = 0; i < 8; i++) {
+    const r = i % 2 === 0 ? outer : inner;
+    const angle = (Math.PI / 4) * i - Math.PI / 2;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    d += (i === 0 ? 'M ' : 'L ') + `${x} ${y} `;
+  }
+  d += 'Z';
+  return d;
+}
+
+/**
+ * Builds an SVG `d` attribute path for a "classy" dot —
+ * a square with two opposing corners rounded.
+ */
+export function classyPath(x: number, y: number, size: number, rounded: boolean): string {
+  const r = rounded ? size * 0.4 : size * 0.25;
+  // Top-left and bottom-right corners are rounded
+  return [
+    `M ${x + r} ${y}`,
+    `L ${x + size} ${y}`,
+    `L ${x + size} ${y + size - r}`,
+    `Q ${x + size} ${y + size} ${x + size - r} ${y + size}`,
+    `L ${x} ${y + size}`,
+    `L ${x} ${y + r}`,
+    `Q ${x} ${y} ${x + r} ${y}`,
+    'Z',
+  ].join(' ');
 }

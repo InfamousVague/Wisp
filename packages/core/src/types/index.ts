@@ -71,7 +71,6 @@ export * from './Popover.types';
 export * from './Progress.types';
 export * from './ProgressSteps.types';
 export * from './QRCode.types';
-export * from './QRScanner.types';
 export * from './RadarChart.types';
 export * from './Radio.types';
 export * from './Rating.types';

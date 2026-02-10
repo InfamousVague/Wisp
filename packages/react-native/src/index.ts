@@ -121,7 +121,7 @@ export {
   // Wave 9: Charts
   ActivityCircles, RadarChart,
   // Wave 10: QR
-  QRCode, QRScanner,
+  QRCode,
 } from './components';
 export type {
   // Wave 1
@@ -162,7 +162,7 @@ export type {
   // Wave 9: Charts
   ActivityCirclesProps, RadarChartProps,
   // Wave 10: QR
-  QRCodeProps, QRScannerProps,
+  QRCodeProps,
 } from './components';
 
 // ---------------------------------------------------------------------------

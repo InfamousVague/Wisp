@@ -370,11 +370,8 @@ export type { ActivityCirclesProps, ActivityCirclesRing, ActivityCirclesSize, Ac
 export { RadarChart, radarChartSizes, radarChartSizeMap } from './components';
 export type { RadarChartProps, RadarChartSeries, RadarChartSize, RadarChartSizeConfig } from './components';
 
-export { QRCode, qrCodeSizes, qrCodeSizeMap, qrCodeDotStyles, qrCodeErrorLevels } from './components';
-export type { QRCodeProps, QRCodeSize, QRCodeSizeConfig, QRCodeDotStyle, QRCodeErrorLevel } from './components';
-
-export { QRScanner, qrScannerSizes, qrScannerSizeMap, qrScannerOverlays } from './components';
-export type { QRScannerProps, QRScannerSize, QRScannerSizeConfig, QRScannerOverlay, QRScanResult } from './components';
+export { QRCode, qrCodeSizes, qrCodeSizeMap, qrCodeDotStyles, qrCodeErrorLevels, qrCodeEyeFrameStyles, qrCodeEyePupilStyles } from './components';
+export type { QRCodeProps, QRCodeSize, QRCodeSizeConfig, QRCodeDotStyle, QRCodeErrorLevel, QRCodeEyeFrameStyle, QRCodeEyePupilStyle, QRCodeGradient, QRCodeGradientStop } from './components';
 
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';

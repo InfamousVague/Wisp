@@ -117,6 +117,155 @@ describe('QRCode — sizes', () => {
 });
 
 // ---------------------------------------------------------------------------
+// Dot styles
+// ---------------------------------------------------------------------------
+
+describe('QRCode — dot styles', () => {
+  it('renders path elements for diamond dots', () => {
+    const { container } = render(
+      <Dark>
+        <QRCode value="test" dotStyle="diamond" />
+      </Dark>,
+    );
+    const svg = container.querySelector('svg')!;
+    const paths = svg.querySelectorAll('path');
+    expect(paths.length).toBeGreaterThan(0);
+  });
+
+  it('renders path elements for star dots', () => {
+    const { container } = render(
+      <Dark>
+        <QRCode value="test" dotStyle="star" />
+      </Dark>,
+    );
+    const svg = container.querySelector('svg')!;
+    const paths = svg.querySelectorAll('path');
+    expect(paths.length).toBeGreaterThan(0);
+  });
+
+  it('renders path elements for classy dots', () => {
+    const { container } = render(
+      <Dark>
+        <QRCode value="test" dotStyle="classy" />
+      </Dark>,
+    );
+    const svg = container.querySelector('svg')!;
+    const paths = svg.querySelectorAll('path');
+    expect(paths.length).toBeGreaterThan(0);
+  });
+
+  it('renders path elements for classy-rounded dots', () => {
+    const { container } = render(
+      <Dark>
+        <QRCode value="test" dotStyle="classy-rounded" />
+      </Dark>,
+    );
+    const svg = container.querySelector('svg')!;
+    const paths = svg.querySelectorAll('path');
+    expect(paths.length).toBeGreaterThan(0);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Gradient
+// ---------------------------------------------------------------------------
+
+describe('QRCode — gradient', () => {
+  it('renders linearGradient defs for linear gradient', () => {
+    const { container } = render(
+      <Dark>
+        <QRCode
+          value="test"
+          gradient={{
+            type: 'linear',
+            rotation: 45,
+            stops: [
+              { offset: 0, color: '#6366F1' },
+              { offset: 1, color: '#EC4899' },
+            ],
+          }}
+        />
+      </Dark>,
+    );
+    const svg = container.querySelector('svg')!;
+    expect(svg.querySelector('linearGradient')).toBeInTheDocument();
+  });
+
+  it('renders radialGradient defs for radial gradient', () => {
+    const { container } = render(
+      <Dark>
+        <QRCode
+          value="test"
+          gradient={{
+            type: 'radial',
+            stops: [
+              { offset: 0, color: '#0EA5E9' },
+              { offset: 1, color: '#6366F1' },
+            ],
+          }}
+        />
+      </Dark>,
+    );
+    const svg = container.querySelector('svg')!;
+    expect(svg.querySelector('radialGradient')).toBeInTheDocument();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Eye styles
+// ---------------------------------------------------------------------------
+
+describe('QRCode — eye styles', () => {
+  it('renders custom circle eyes', () => {
+    const { container } = render(
+      <Dark>
+        <QRCode
+          value="test"
+          eyeFrameStyle="circle"
+          eyePupilStyle="circle"
+          eyeColor="#FF0000"
+        />
+      </Dark>,
+    );
+    const svg = container.querySelector('svg')!;
+    // 3 eyes × (outer circle + inner circle + pupil circle) = at least 9 circles
+    const circles = svg.querySelectorAll('circle');
+    expect(circles.length).toBeGreaterThan(5);
+  });
+
+  it('renders rounded eye frames', () => {
+    const { container } = render(
+      <Dark>
+        <QRCode
+          value="test"
+          eyeFrameStyle="rounded"
+          eyeColor="#0EA5E9"
+        />
+      </Dark>,
+    );
+    const svg = container.querySelector('svg')!;
+    // Rounded frames use rect with rx
+    const rects = svg.querySelectorAll('rect[rx]');
+    expect(rects.length).toBeGreaterThan(0);
+  });
+
+  it('renders diamond eye pupils', () => {
+    const { container } = render(
+      <Dark>
+        <QRCode
+          value="test"
+          eyePupilStyle="diamond"
+          eyeColor="#F59E0B"
+        />
+      </Dark>,
+    );
+    const svg = container.querySelector('svg')!;
+    const paths = svg.querySelectorAll('path');
+    expect(paths.length).toBeGreaterThan(0);
+  });
+});
+
+// ---------------------------------------------------------------------------
 // Features
 // ---------------------------------------------------------------------------
 

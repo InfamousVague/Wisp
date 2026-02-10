@@ -20,12 +20,69 @@ export type QRCodeSize = (typeof qrCodeSizes)[number];
 // ---------------------------------------------------------------------------
 
 /**
- * Tuple of valid dot-style variants for QR code modules.
+ * Tuple of valid dot-style variants for QR code data modules.
  */
-export const qrCodeDotStyles = ['square', 'circle', 'rounded'] as const;
+export const qrCodeDotStyles = [
+  'square',
+  'circle',
+  'rounded',
+  'diamond',
+  'star',
+  'classy',
+  'classy-rounded',
+] as const;
 
 /** Union type derived from {@link qrCodeDotStyles}. */
 export type QRCodeDotStyle = (typeof qrCodeDotStyles)[number];
+
+// ---------------------------------------------------------------------------
+// Eye style (finder pattern)
+// ---------------------------------------------------------------------------
+
+/**
+ * Tuple of valid eye (finder pattern) outer frame styles.
+ */
+export const qrCodeEyeFrameStyles = ['square', 'circle', 'rounded'] as const;
+
+/** Union type derived from {@link qrCodeEyeFrameStyles}. */
+export type QRCodeEyeFrameStyle = (typeof qrCodeEyeFrameStyles)[number];
+
+/**
+ * Tuple of valid eye (finder pattern) inner pupil styles.
+ */
+export const qrCodeEyePupilStyles = ['square', 'circle', 'rounded', 'diamond'] as const;
+
+/** Union type derived from {@link qrCodeEyePupilStyles}. */
+export type QRCodeEyePupilStyle = (typeof qrCodeEyePupilStyles)[number];
+
+// ---------------------------------------------------------------------------
+// Gradient
+// ---------------------------------------------------------------------------
+
+/**
+ * A colour stop within a QR code gradient.
+ */
+export interface QRCodeGradientStop {
+  /** Offset from 0 to 1. */
+  offset: number;
+  /** CSS colour value. */
+  color: string;
+}
+
+/**
+ * Configuration for a linear or radial gradient applied to QR modules.
+ */
+export interface QRCodeGradient {
+  /** Type of gradient. */
+  type: 'linear' | 'radial';
+  /** Colour stops. Must include at least 2. */
+  stops: QRCodeGradientStop[];
+  /**
+   * Rotation angle in degrees (linear only).
+   * @default 0
+   */
+  rotation?: number;
+}
 
 // ---------------------------------------------------------------------------
 // Error correction level
@@ -79,11 +136,27 @@ export const qrCodeSizeMap: Record<QRCodeSize, QRCodeSizeConfig> = {
  *
  * @remarks
  * Renders a stylised QR code using raw SVG. Supports custom dot shapes,
- * theme-aware colours, and an optional centre logo or content overlay.
+ * finder-pattern (eye) customisation, gradient fills, theme-aware colours,
+ * and an optional centre logo or content overlay.
  *
  * - Uses `qrcode-generator` internally to compute the module matrix.
- * - Finder patterns always render as standard squares for scannability.
+ * - Eye styling can be customised independently from data dots.
  * - When a logo is used, prefer error-correction level `'Q'` or `'H'`.
+ *
+ * @example
+ * ```tsx
+ * <QRCode
+ *   value="https://example.com"
+ *   size="lg"
+ *   dotStyle="classy-rounded"
+ *   eyeFrameStyle="rounded"
+ *   eyeColor="#6366F1"
+ *   gradient={{ type: 'linear', rotation: 45, stops: [
+ *     { offset: 0, color: '#6366F1' },
+ *     { offset: 1, color: '#EC4899' },
+ *   ]}}
+ * />
+ * ```
  */
 export interface QRCodeProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /**
@@ -115,6 +188,7 @@ export interface QRCodeProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
   /**
    * Override colour for dark (active) modules.
    * When omitted, defaults to the current theme's `text.primary`.
+   * Ignored when `gradient` is provided.
    */
   darkColor?: string;
 
@@ -123,6 +197,34 @@ export interface QRCodeProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    * When omitted, defaults to the current theme's `background.surface`.
    */
   lightColor?: string;
+
+  /**
+   * Gradient fill applied to data modules.
+   * When provided, `darkColor` is used only as a fallback.
+   */
+  gradient?: QRCodeGradient;
+
+  /**
+   * Style for the outer frame of the finder-pattern eyes.
+   * When omitted, eyes render as standard squares.
+   *
+   * @default 'square'
+   */
+  eyeFrameStyle?: QRCodeEyeFrameStyle;
+
+  /**
+   * Style for the inner pupil of the finder-pattern eyes.
+   * When omitted, pupils render as standard squares.
+   *
+   * @default 'square'
+   */
+  eyePupilStyle?: QRCodeEyePupilStyle;
+
+  /**
+   * Override colour for the finder-pattern eyes.
+   * When omitted, falls back to `darkColor` or the gradient.
+   */
+  eyeColor?: string;
 
   /**
    * Custom content rendered in the centre of the QR code (e.g. a logo).

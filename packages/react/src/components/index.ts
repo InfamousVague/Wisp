@@ -340,13 +340,6 @@ export { radarChartSizes, radarChartSizeMap } from './radar-chart';
 // ---------------------------------------------------------------------------
 
 export { QRCode } from './qr-code';
-export type { QRCodeProps, QRCodeSize, QRCodeSizeConfig, QRCodeDotStyle, QRCodeErrorLevel } from './qr-code';
-export { qrCodeSizes, qrCodeSizeMap, qrCodeDotStyles, qrCodeErrorLevels } from './qr-code';
+export type { QRCodeProps, QRCodeSize, QRCodeSizeConfig, QRCodeDotStyle, QRCodeErrorLevel, QRCodeEyeFrameStyle, QRCodeEyePupilStyle, QRCodeGradient, QRCodeGradientStop } from './qr-code';
+export { qrCodeSizes, qrCodeSizeMap, qrCodeDotStyles, qrCodeErrorLevels, qrCodeEyeFrameStyles, qrCodeEyePupilStyles } from './qr-code';
 
-// ---------------------------------------------------------------------------
-// QRScanner
-// ---------------------------------------------------------------------------
-
-export { QRScanner } from './qr-scanner';
-export type { QRScannerProps, QRScannerSize, QRScannerSizeConfig, QRScannerOverlay, QRScanResult } from './qr-scanner';
-export { qrScannerSizes, qrScannerSizeMap, qrScannerOverlays } from './qr-scanner';
