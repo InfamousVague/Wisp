@@ -13,6 +13,10 @@ interface PreviewFrameProps {
 /**
  * Isolated preview frame with its own WispProvider + theme toggle.
  * Each frame renders children in a nested theme context with injectCssVars={false}.
+ *
+ * The Card wrapper lives INSIDE the nested provider so that theme overrides
+ * (e.g. radii changes from a ThemeEditor) are reflected on the border radius
+ * of the frame itself.
  */
 export function PreviewFrame({
   label,
@@ -20,14 +24,43 @@ export function PreviewFrame({
   defaultMode = 'dark',
   hideToggle = false,
 }: PreviewFrameProps) {
-  const { mode: globalMode } = useTheme();
+  const { mode: globalMode, overrides } = useTheme();
   const [frameMode, setFrameMode] = useState<'light' | 'dark'>(defaultMode ?? globalMode);
-  const colors = useThemeColors();
 
   // Sync with global theme when it changes (unless user manually toggled this frame)
   useEffect(() => {
     setFrameMode(globalMode);
   }, [globalMode]);
+
+  return (
+    <WispProvider mode={frameMode} overrides={overrides} injectCssVars={false}>
+      <PreviewFrameInner
+        label={label}
+        hideToggle={hideToggle}
+        frameMode={frameMode}
+        onToggleMode={() => setFrameMode((m) => (m === 'dark' ? 'light' : 'dark'))}
+      >
+        {children}
+      </PreviewFrameInner>
+    </WispProvider>
+  );
+}
+
+/** Inner shell rendered inside the nested WispProvider. */
+function PreviewFrameInner({
+  label,
+  hideToggle,
+  frameMode,
+  onToggleMode,
+  children,
+}: {
+  label?: string;
+  hideToggle?: boolean;
+  frameMode: 'light' | 'dark';
+  onToggleMode: () => void;
+  children: React.ReactNode;
+}) {
+  const colors = useThemeColors();
 
   return (
     <Card variant="outlined" padding="none" radius="lg" style={{ overflow: 'hidden' }}>
@@ -47,7 +80,7 @@ export function PreviewFrame({
           </Text>
           {!hideToggle && (
             <div
-              onClick={() => setFrameMode((m) => (m === 'dark' ? 'light' : 'dark'))}
+              onClick={onToggleMode}
               style={{
                 cursor: 'pointer',
                 display: 'flex',
@@ -68,30 +101,19 @@ export function PreviewFrame({
         </div>
       )}
 
-      {/* Isolated preview area */}
-      <WispProvider mode={frameMode} injectCssVars={false}>
-        <PreviewContent>{children}</PreviewContent>
-      </WispProvider>
+      {/* Preview content area */}
+      <div
+        style={{
+          padding: 24,
+          backgroundColor: colors.background.canvas,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: 120,
+        }}
+      >
+        {children}
+      </div>
     </Card>
-  );
-}
-
-/** Inner component that reads from the nested provider's context. */
-function PreviewContent({ children }: { children: React.ReactNode }) {
-  const colors = useThemeColors();
-
-  return (
-    <div
-      style={{
-        padding: 24,
-        backgroundColor: colors.background.canvas,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: 120,
-      }}
-    >
-      {children}
-    </div>
   );
 }

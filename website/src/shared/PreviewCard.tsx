@@ -14,7 +14,7 @@ interface PreviewCardProps {
  */
 export function PreviewCard({ entry }: PreviewCardProps) {
   const navigate = useNavigate();
-  const { mode } = useTheme();
+  const { mode, overrides } = useTheme();
   const colors = useThemeColors();
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
@@ -41,7 +41,7 @@ export function PreviewCard({ entry }: PreviewCardProps) {
         }}
       >
         {/* Preview area */}
-        <WispProvider mode={mode} injectCssVars={false}>
+        <WispProvider mode={mode} overrides={overrides} injectCssVars={false}>
           <PreviewArea>{entry.cardPreview}</PreviewArea>
         </WispProvider>
 
