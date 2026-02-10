@@ -86,7 +86,7 @@ export function buildTableHeaderStyle(
     base.position = 'sticky';
     base.top = 0;
     base.zIndex = 2;
-    base.backgroundColor = themeColors.background.surface;
+    base.backgroundColor = themeColors.background.sunken;
   }
 
   return { ...base, ...userStyle };
@@ -127,7 +127,7 @@ export function buildTableFooterStyle(
   const { colors: themeColors, typography } = theme;
   return {
     borderTop: '1px solid ' + themeColors.border.subtle,
-    backgroundColor: themeColors.background.surface,
+    backgroundColor: themeColors.background.sunken,
     fontWeight: typography.weights.medium,
     ...userStyle,
   };
@@ -219,7 +219,7 @@ export function buildTableHeadStyle(opts: {
     lineHeight: font.lineHeight,
     fontWeight: typography.weights.semibold,
     color: themeColors.text.secondary,
-    backgroundColor: themeColors.background.surface,
+    backgroundColor: themeColors.background.sunken,
     whiteSpace: 'nowrap',
     ...opts.userStyle,
   };

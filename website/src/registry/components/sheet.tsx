@@ -22,8 +22,8 @@ function SheetPreview() {
   const colors = useThemeColors();
   return (
     <div style={{ width: '100%', maxWidth: 200, height: 80, position: 'relative', borderRadius: 8, overflow: 'hidden', backgroundColor: colors.accent.highlight }}>
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 48, backgroundColor: colors.background.raised, borderTop: `1px solid ${colors.accent.dividerRaised}`, borderRadius: '8px 8px 0 0', padding: '8px 12px' }}>
-        <div style={{ width: 32, height: 3, backgroundColor: colors.text.onRaisedSecondary, borderRadius: 2, margin: '0 auto 6px', opacity: 0.4 }} />
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 48, backgroundColor: colors.background.canvas, borderTop: `1px solid ${colors.border.subtle}`, borderRadius: '8px 8px 0 0', padding: '8px 12px' }}>
+        <div style={{ width: 32, height: 3, backgroundColor: colors.border.subtle, borderRadius: 2, margin: '0 auto 6px' }} />
         <Text size="xs" color="secondary">Sheet content</Text>
       </div>
     </div>

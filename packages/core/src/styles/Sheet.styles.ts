@@ -72,9 +72,9 @@ export function buildSheetStyle(
     right: 0,
     zIndex: zIndex.modal,
     maxHeight,
-    backgroundColor: themeColors.background.raised,
+    backgroundColor: themeColors.background.canvas,
     fontFamily: fontFamilyStacks.sans,
-    color: themeColors.text.onRaised,
+    color: themeColors.text.primary,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     boxShadow: `0 -4px 24px ${themeColors.background.overlay}`,
@@ -123,6 +123,6 @@ export function buildHandlePillStyle(theme: WispTheme): CSSStyleObject {
     width: 36,
     height: 4,
     borderRadius: radii.sm,
-    backgroundColor: themeColors.accent.mutedRaised,
+    backgroundColor: themeColors.border.subtle,
   };
 }
