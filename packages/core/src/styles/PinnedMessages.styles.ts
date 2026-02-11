@@ -41,12 +41,13 @@ export function resolvePinnedMessagesColors(
     headerTextMuted: colors.text.muted,
     cardBg: colors.background.surface,
     cardBgHover: colors.background.surface,
-    cardBorder: colors.border.subtle,
-    cardText: colors.text.primary,
-    cardTextSecondary: colors.text.secondary,
-    cardTextMuted: colors.text.muted,
+    cardBorder: colors.accent.dividerRaised,
+    // Cards sit on background.surface which is always dark — use onRaised text
+    cardText: colors.text.onRaised,
+    cardTextSecondary: colors.text.onRaisedSecondary,
+    cardTextMuted: withAlpha(colors.text.onRaisedSecondary, 0.7),
     emptyText: colors.text.muted,
-    unpinText: colors.text.muted,
+    unpinText: withAlpha(colors.text.onRaisedSecondary, 0.7),
     unpinTextHover: colors.status.danger,
     closeHoverBg: withAlpha(colors.text.primary, 0.08),
   };

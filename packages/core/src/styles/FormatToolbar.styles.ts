@@ -29,15 +29,16 @@ export function resolveFormatToolbarColors(
 ): FormatToolbarColors {
   const { colors } = theme;
   return {
+    // Toolbar sits on background.surface which is always dark — use onRaised text
     bg: colors.background.surface,
-    border: colors.border.subtle,
+    border: colors.accent.dividerRaised,
     buttonBg: 'transparent',
-    buttonBgHover: withAlpha(colors.text.primary, 0.08),
-    buttonBgActive: withAlpha(colors.text.primary, 0.14),
-    buttonText: colors.text.secondary,
-    buttonTextActive: colors.text.primary,
-    buttonTextDisabled: colors.text.muted,
-    separatorColor: colors.border.subtle,
+    buttonBgHover: withAlpha(colors.text.onRaised, 0.08),
+    buttonBgActive: withAlpha(colors.text.onRaised, 0.14),
+    buttonText: colors.text.onRaisedSecondary,
+    buttonTextActive: colors.text.onRaised,
+    buttonTextDisabled: withAlpha(colors.text.onRaisedSecondary, 0.4),
+    separatorColor: colors.accent.dividerRaised,
   };
 }
 
