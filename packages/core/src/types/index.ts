@@ -125,3 +125,6 @@ export * from './ConversationListItem.types';
 export * from './LinkPreviewCard.types';
 export * from './MessageActionBar.types';
 export * from './MentionAutocomplete.types';
+export * from './ThreadPanel.types';
+export * from './PinnedMessages.types';
+export { formatActions, type FormatAction, type FormatToolbarProps } from './FormatToolbar.types';

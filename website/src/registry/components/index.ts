@@ -61,6 +61,9 @@ import { conversationListItemEntry } from './conversation-list-item';
 import { linkPreviewCardEntry } from './link-preview-card';
 import { messageActionBarEntry } from './message-action-bar';
 import { mentionAutocompleteEntry } from './mention-autocomplete';
+import { threadPanelEntry } from './thread-panel';
+import { pinnedMessagesEntry } from './pinned-messages';
+import { formatToolbarEntry } from './format-toolbar';
 
 
 export const componentEntries: ComponentEntry[] = [
@@ -126,4 +129,7 @@ export const componentEntries: ComponentEntry[] = [
   linkPreviewCardEntry,
   messageActionBarEntry,
   mentionAutocompleteEntry,
+  threadPanelEntry,
+  pinnedMessagesEntry,
+  formatToolbarEntry,
 ];

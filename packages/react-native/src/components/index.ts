@@ -147,3 +147,15 @@ export type { MessageActionBarProps, MessageAction } from './message-action-bar'
 // MentionAutocomplete
 export { MentionAutocomplete } from './mention-autocomplete';
 export type { MentionAutocompleteProps, MentionUser } from './mention-autocomplete';
+
+// ThreadPanel
+export { ThreadPanel } from './thread-panel';
+export type { ThreadPanelProps, ThreadMessage } from './thread-panel';
+
+// PinnedMessages
+export { PinnedMessages } from './pinned-messages';
+export type { PinnedMessagesProps, PinnedMessage } from './pinned-messages';
+
+// FormatToolbar
+export { FormatToolbar } from './format-toolbar';
+export type { FormatToolbarProps } from './format-toolbar';

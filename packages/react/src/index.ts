@@ -79,6 +79,8 @@ export { useFocusVisible } from './hooks/use-focus-visible';
 export { useBreakpoint } from './hooks/use-breakpoint';
 export { usePlatform } from './hooks/use-platform';
 export { useId } from './hooks/use-id';
+export { useLinkPreview } from './hooks/use-link-preview';
+export type { UseLinkPreviewOptions, UseLinkPreviewResult } from './hooks/use-link-preview';
 
 // ─── Utils (React-specific) ────────────────────────────────────
 export { mergeRefs } from './utils/merge-refs';
@@ -432,6 +434,15 @@ export type { MessageActionBarProps, MessageAction } from './components';
 
 export { MentionAutocomplete } from './components';
 export type { MentionAutocompleteProps, MentionUser } from './components';
+
+export { ThreadPanel } from './components';
+export type { ThreadPanelProps, ThreadMessage } from './components';
+
+export { PinnedMessages } from './components';
+export type { PinnedMessagesProps, PinnedMessage } from './components';
+
+export { FormatToolbar, formatActions } from './components';
+export type { FormatToolbarProps, FormatAction } from './components';
 
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';
