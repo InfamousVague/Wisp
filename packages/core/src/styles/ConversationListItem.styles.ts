@@ -7,6 +7,7 @@ import type { CSSStyleObject } from '../types';
 import type { WispTheme } from '../theme/types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { durations, easings } from '../tokens/motion';
+import { withAlpha } from '../tokens/color-utils';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -36,9 +37,9 @@ export function resolveConversationListItemColors(
       bg: themeColors.background.surface,
       bgHover: themeColors.background.surface,
       bgActive: themeColors.background.surface,
-      text: themeColors.text.primary,
-      textSecondary: themeColors.text.secondary,
-      textMuted: themeColors.text.muted,
+      text: themeColors.text.inverse,
+      textSecondary: withAlpha(themeColors.text.inverse, 0.7),
+      textMuted: withAlpha(themeColors.text.inverse, 0.5),
       unreadBg: themeColors.accent.primary,
       unreadText: themeColors.text.inverse,
       onlineDot: themeColors.status.success,
