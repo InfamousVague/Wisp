@@ -47,6 +47,23 @@ export interface ChatBubbleReaction {
 }
 
 // ---------------------------------------------------------------------------
+// Reply-to metadata
+// ---------------------------------------------------------------------------
+
+/**
+ * Metadata for the quoted message being replied to, shown as a preview
+ * strip above the bubble content.
+ */
+export interface ChatBubbleReplyTo {
+  /** Display name of the original message sender. */
+  sender: string;
+  /** Truncated text preview of the original message. */
+  text: string;
+  /** Optional callback when the reply preview is clicked (e.g. to scroll to the original message). */
+  onClick?: () => void;
+}
+
+// ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
 
@@ -95,6 +112,44 @@ export interface ChatBubbleProps extends React.HTMLAttributes<HTMLDivElement> {
 
   /** Callback fired when a reaction chip is clicked. Receives the emoji string. */
   onReactionClick?: (emoji: string) => void;
+
+  /**
+   * Quoted reply metadata. When provided, a compact reply preview strip
+   * is rendered above the message content with the original sender name
+   * and a truncated text preview.
+   */
+  replyTo?: ChatBubbleReplyTo;
+
+  /**
+   * Marks the message as forwarded. When `true`, a "Forwarded" label is
+   * displayed above the content. When an object with `from`, the
+   * originator's name is shown (e.g. "Forwarded from Alice").
+   */
+  forwarded?: boolean | { from: string };
+
+  /**
+   * When `true`, an "(edited)" indicator is appended to the timestamp
+   * in the footer row.
+   */
+  edited?: boolean;
+
+  /**
+   * When `true`, the bubble receives a brief highlight animation,
+   * typically used when scrolling/jumping to a specific message.
+   */
+  highlighted?: boolean;
+
+  /**
+   * Slot for media content (images, video, file cards) rendered above
+   * the text content inside the bubble.
+   */
+  media?: React.ReactNode;
+
+  /**
+   * Custom sender name color for group chats where each participant
+   * has a distinct color. Applied to the reply-to sender name.
+   */
+  senderColor?: string;
 
   /**
    * @internal

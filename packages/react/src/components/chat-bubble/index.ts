@@ -5,6 +5,7 @@ export type {
   ChatBubbleVariant,
   ChatBubbleStatus,
   ChatBubbleReaction,
+  ChatBubbleReplyTo,
 } from '@wisp-ui/core/types/ChatBubble.types';
 export {
   chatBubbleAlignments,

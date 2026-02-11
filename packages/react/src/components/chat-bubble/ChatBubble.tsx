@@ -15,6 +15,10 @@ import {
   buildStatusStyle,
   buildReactionsContainerStyle,
   buildReactionChipStyle,
+  buildReplyToStyle,
+  buildForwardedStyle,
+  buildMediaSlotStyle,
+  buildHighlightStyle,
 } from '@wisp-ui/core/styles/ChatBubble.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives';
@@ -93,6 +97,12 @@ export const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(
       status,
       reactions,
       onReactionClick,
+      replyTo,
+      forwarded,
+      edited = false,
+      highlighted = false,
+      media,
+      senderColor,
       _inGroup = false,
       children,
       style: userStyle,
@@ -102,7 +112,6 @@ export const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(
     ref,
   ) {
     const { theme } = useTheme();
-  const themeColors = theme.colors;
 
     const colors = useMemo(
       () => resolveChatBubbleColors(align, variant, theme),
@@ -134,6 +143,26 @@ export const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(
       [theme],
     );
 
+    const replyToStyles = useMemo(
+      () => (replyTo ? buildReplyToStyle(colors, theme, senderColor) : undefined),
+      [replyTo, colors, theme, senderColor],
+    );
+
+    const forwardedLabelStyle = useMemo(
+      () => (forwarded ? buildForwardedStyle(colors, theme) : undefined),
+      [forwarded, colors, theme],
+    );
+
+    const mediaSlotStyle = useMemo(
+      () => (media ? buildMediaSlotStyle(theme) : undefined),
+      [media, theme],
+    );
+
+    const highlightStyle = useMemo(
+      () => (highlighted ? buildHighlightStyle(theme) : undefined),
+      [highlighted, theme],
+    );
+
     const handleReactionClick = useCallback(
       (emoji: string) => {
         onReactionClick?.(emoji);
@@ -142,13 +171,48 @@ export const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(
     );
 
     // When in a group, the parent MessageGroup renders the footer instead.
-    const showFooter = !_inGroup && (timestamp || status);
+    const showFooter = !_inGroup && (timestamp || status || edited);
     const hasReactions = reactions && reactions.length > 0;
 
+    // Build the forwarded label text
+    const forwardedLabel = forwarded
+      ? typeof forwarded === 'object' && forwarded.from
+        ? `Forwarded from ${forwarded.from}`
+        : 'Forwarded'
+      : null;
+
+    const wrapperStyle: React.CSSProperties = {
+      display: 'inline-flex',
+      flexDirection: 'column',
+      ...(highlighted ? highlightStyle : undefined),
+    };
+
     return (
-      <div ref={ref} className={className} style={{ display: 'inline-flex', flexDirection: 'column' }} {...rest}>
+      <div ref={ref} className={className} style={wrapperStyle} {...rest}>
         {/* Bubble */}
         <div style={{ ...bubbleStyle, ...userStyle }}>
+          {/* Forwarded label */}
+          {forwardedLabel && (
+            <div style={forwardedLabelStyle}>{forwardedLabel}</div>
+          )}
+
+          {/* Reply-to preview */}
+          {replyTo && replyToStyles && (
+            <div
+              style={replyToStyles.container}
+              onClick={replyTo.onClick}
+              role={replyTo.onClick ? 'button' : undefined}
+              tabIndex={replyTo.onClick ? 0 : undefined}
+            >
+              <span style={replyToStyles.sender}>{replyTo.sender}</span>
+              <span style={replyToStyles.text}>{replyTo.text}</span>
+            </div>
+          )}
+
+          {/* Media slot */}
+          {media && <div style={mediaSlotStyle}>{media}</div>}
+
+          {/* Text content */}
           <div style={{ color: colors.text }}>{children}</div>
 
           {/* Reactions live inside the bubble */}
@@ -168,7 +232,14 @@ export const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(
         {/* Timestamp + Status footer rendered BELOW the bubble */}
         {showFooter && (
           <div style={footerStyle}>
-            {timestamp && <Text style={timestampStyle}>{timestamp}</Text>}
+            {timestamp && (
+              <Text style={timestampStyle}>
+                {timestamp}{edited ? ' (edited)' : ''}
+              </Text>
+            )}
+            {!timestamp && edited && (
+              <Text style={timestampStyle}>(edited)</Text>
+            )}
             {status && (
               <span style={statusIconStyle}>
                 <StatusIcon

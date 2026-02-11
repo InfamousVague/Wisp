@@ -13,6 +13,7 @@ import type {
   ChatBubbleVariant,
   ChatBubbleStatus,
   ChatBubbleReaction,
+  ChatBubbleReplyTo,
 } from '@wisp-ui/core/types/ChatBubble.types';
 import { resolveChatBubbleColors } from '@wisp-ui/core/styles/ChatBubble.styles';
 import Svg, { Path } from 'react-native-svg';
@@ -31,6 +32,18 @@ export interface ChatBubbleProps extends ViewProps {
   status?: ChatBubbleStatus;
   reactions?: ChatBubbleReaction[];
   onReactionClick?: (emoji: string) => void;
+  /** Quoted reply metadata rendered as a preview strip above the message. */
+  replyTo?: ChatBubbleReplyTo;
+  /** Marks the message as forwarded. */
+  forwarded?: boolean | { from: string };
+  /** When true, appends "(edited)" to the timestamp. */
+  edited?: boolean;
+  /** When true, applies a brief highlight background. */
+  highlighted?: boolean;
+  /** Slot for media content (images, video) above text. */
+  media?: React.ReactNode;
+  /** Custom sender name color for group chats. */
+  senderColor?: string;
   /** @internal Injected by MessageGroup to suppress footer. */
   _inGroup?: boolean;
 }
@@ -82,6 +95,12 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
     status,
     reactions,
     onReactionClick,
+    replyTo,
+    forwarded,
+    edited = false,
+    highlighted = false,
+    media,
+    senderColor,
     _inGroup = false,
     style: userStyle,
     ...rest
@@ -137,18 +156,82 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
     marginTop: defaultSpacing.sm,
   }), []);
 
+  const replyToContainerStyle = useMemo<ViewStyle>(() => ({
+    borderLeftWidth: 2,
+    borderLeftColor: senderColor || colors.timestamp,
+    paddingHorizontal: defaultSpacing.sm,
+    paddingVertical: defaultSpacing.xs,
+    marginBottom: defaultSpacing.xs,
+    opacity: 0.85,
+  }), [senderColor, colors]);
+
+  const replyToSenderStyle = useMemo<TextStyle>(() => ({
+    fontSize: defaultTypography.sizes.xs.fontSize,
+    lineHeight: 16,
+    fontWeight: '600',
+    color: senderColor || colors.timestamp,
+  }), [senderColor, colors]);
+
+  const replyToTextStyle = useMemo<TextStyle>(() => ({
+    fontSize: defaultTypography.sizes.xs.fontSize,
+    lineHeight: 16,
+    color: colors.timestamp,
+    numberOfLines: 1,
+  } as TextStyle), [colors]);
+
+  const forwardedStyle = useMemo<TextStyle>(() => ({
+    fontSize: defaultTypography.sizes.xs.fontSize,
+    lineHeight: 16,
+    fontStyle: 'italic',
+    color: colors.timestamp,
+    marginBottom: defaultSpacing.xs,
+  }), [colors]);
+
+  const mediaSlotStyle = useMemo<ViewStyle>(() => ({
+    marginBottom: defaultSpacing.xs,
+    borderRadius: defaultRadii.md,
+    overflow: 'hidden',
+  }), []);
+
   const handleReactionClick = useCallback(
     (emoji: string) => { onReactionClick?.(emoji); },
     [onReactionClick],
   );
 
-  const showFooter = !_inGroup && (timestamp || status);
+  const showFooter = !_inGroup && (timestamp || status || edited);
   const hasReactions = reactions && reactions.length > 0;
 
+  const forwardedLabel = forwarded
+    ? typeof forwarded === 'object' && forwarded.from
+      ? `Forwarded from ${forwarded.from}`
+      : 'Forwarded'
+    : null;
+
+  const wrapperStyle: ViewStyle = highlighted
+    ? { backgroundColor: `${themeColors.accent.primary}15` }
+    : {};
+
   return (
-    <View ref={ref} style={userStyle} {...rest}>
+    <View ref={ref} style={[wrapperStyle, userStyle]} {...rest}>
       {/* Bubble */}
       <View style={bubbleStyle}>
+        {/* Forwarded label */}
+        {forwardedLabel && (
+          <Text style={forwardedStyle}>{forwardedLabel}</Text>
+        )}
+
+        {/* Reply-to preview */}
+        {replyTo && (
+          <Pressable style={replyToContainerStyle} onPress={replyTo.onClick}>
+            <Text style={replyToSenderStyle}>{replyTo.sender}</Text>
+            <Text style={replyToTextStyle} numberOfLines={1}>{replyTo.text}</Text>
+          </Pressable>
+        )}
+
+        {/* Media slot */}
+        {media && <View style={mediaSlotStyle}>{media}</View>}
+
+        {/* Text content */}
         <Text style={textStyle}>{children}</Text>
 
         {/* Reactions inside bubble */}
@@ -188,7 +271,14 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
       {/* Footer below bubble */}
       {showFooter && (
         <View style={footerStyle}>
-          {timestamp && <Text style={timestampStyle}>{timestamp}</Text>}
+          {timestamp && (
+            <Text style={timestampStyle}>
+              {timestamp}{edited ? ' (edited)' : ''}
+            </Text>
+          )}
+          {!timestamp && edited && (
+            <Text style={timestampStyle}>(edited)</Text>
+          )}
           {status && (
             <StatusIcon
               status={status}

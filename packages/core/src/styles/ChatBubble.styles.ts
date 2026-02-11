@@ -194,3 +194,111 @@ export function buildReactionChipStyle(
     transition: `background-color ${durations.fast}ms ${easings.easeOut.css}, border-color ${durations.fast}ms ${easings.easeOut.css}`,
   };
 }
+
+// ---------------------------------------------------------------------------
+// Reply-to preview strip
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds the style for the quoted reply preview strip above the bubble content.
+ *
+ * @param senderColor - Optional custom color for the sender name.
+ * @param colors      - Resolved bubble colors.
+ * @param theme       - Current theme.
+ */
+export function buildReplyToStyle(
+  colors: ChatBubbleColors,
+  theme: WispTheme,
+  senderColor?: string,
+): {
+  container: CSSStyleObject;
+  sender: CSSStyleObject;
+  text: CSSStyleObject;
+} {
+  const { spacing, typography } = theme;
+  return {
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 1,
+      padding: `${spacing.xs}px ${spacing.sm}px`,
+      marginBottom: spacing.xs,
+      borderLeft: `2px solid ${senderColor || colors.timestamp}`,
+      borderRadius: 2,
+      cursor: 'pointer',
+      opacity: 0.85,
+    },
+    sender: {
+      fontFamily: fontFamilyStacks.sans,
+      fontSize: typography.sizes.xs.fontSize,
+      lineHeight: `${typography.sizes.xs.lineHeight}px`,
+      fontWeight: typography.weights.semibold,
+      color: senderColor || colors.timestamp,
+    },
+    text: {
+      fontFamily: fontFamilyStacks.sans,
+      fontSize: typography.sizes.xs.fontSize,
+      lineHeight: `${typography.sizes.xs.lineHeight}px`,
+      color: colors.timestamp,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      maxWidth: 220,
+    },
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Forwarded label
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds the style for the "Forwarded" label shown above forwarded messages.
+ */
+export function buildForwardedStyle(
+  colors: ChatBubbleColors,
+  theme: WispTheme,
+): CSSStyleObject {
+  const { spacing, typography } = theme;
+  return {
+    fontFamily: fontFamilyStacks.sans,
+    fontSize: typography.sizes.xs.fontSize,
+    lineHeight: `${typography.sizes.xs.lineHeight}px`,
+    fontStyle: 'italic',
+    color: colors.timestamp,
+    marginBottom: spacing.xs,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Media slot
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds the style for the media slot container inside the bubble.
+ */
+export function buildMediaSlotStyle(theme: WispTheme): CSSStyleObject {
+  const { spacing, radii } = theme;
+  return {
+    marginBottom: spacing.xs,
+    borderRadius: radii.md,
+    overflow: 'hidden',
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Highlighted bubble overlay
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds the style for the highlight overlay when `highlighted` is true.
+ * Uses a brief background flash animation.
+ */
+export function buildHighlightStyle(theme: WispTheme): CSSStyleObject {
+  const { colors: themeColors } = theme;
+  return {
+    backgroundColor: `${themeColors.accent.primary}15`,
+    animation: `wisp-bubble-highlight ${durations.slow}ms ${easings.easeOut.css}`,
+    borderRadius: 'inherit',
+  };
+}
