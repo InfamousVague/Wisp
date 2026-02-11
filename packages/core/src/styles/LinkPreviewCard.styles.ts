@@ -8,6 +8,7 @@ import type { WispTheme } from '../theme/types';
 import type { LinkPreviewCardSize, LinkPreviewCardLayout } from '../types/LinkPreviewCard.types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { durations, easings } from '../tokens/motion';
+import { withAlpha } from '../tokens/color-utils';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -29,9 +30,9 @@ export function resolveLinkPreviewCardColors(
   return {
     bg: colors.background.surface,
     border: colors.border.subtle,
-    title: colors.text.primary,
-    description: colors.text.secondary,
-    domain: colors.text.muted,
+    title: colors.text.inverse,
+    description: withAlpha(colors.text.inverse, 0.7),
+    domain: withAlpha(colors.text.inverse, 0.5),
     accentBar: colors.accent.primary,
   };
 }
