@@ -34,14 +34,14 @@ export function resolveConversationListItemColors(
 
   if (active) {
     return {
-      bg: themeColors.background.surface,
-      bgHover: themeColors.background.surface,
-      bgActive: themeColors.background.surface,
-      text: themeColors.text.inverse,
-      textSecondary: withAlpha(themeColors.text.inverse, 0.7),
-      textMuted: withAlpha(themeColors.text.inverse, 0.5),
+      bg: themeColors.background.raised,
+      bgHover: themeColors.background.raised,
+      bgActive: themeColors.background.raised,
+      text: themeColors.text.onRaised,
+      textSecondary: themeColors.text.onRaisedSecondary,
+      textMuted: withAlpha(themeColors.text.onRaisedSecondary, 0.7),
       unreadBg: themeColors.accent.primary,
-      unreadText: themeColors.text.inverse,
+      unreadText: themeColors.text.onRaised,
       onlineDot: themeColors.status.success,
       border: themeColors.border.subtle,
     };
@@ -49,8 +49,8 @@ export function resolveConversationListItemColors(
 
   return {
     bg: 'transparent',
-    bgHover: themeColors.background.surface,
-    bgActive: themeColors.background.surface,
+    bgHover: themeColors.background.raised,
+    bgActive: themeColors.background.raised,
     text: themeColors.text.primary,
     textSecondary: themeColors.text.secondary,
     textMuted: themeColors.text.muted,

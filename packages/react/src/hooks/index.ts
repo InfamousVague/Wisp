@@ -25,3 +25,5 @@ export type { Breakpoint } from './use-breakpoint';
 export { usePlatform } from './use-platform';
 export type { Platform, UsePlatformReturn } from './use-platform';
 export { useId } from './use-id';
+export { useLinkPreview } from './use-link-preview';
+export type { UseLinkPreviewOptions, UseLinkPreviewResult } from './use-link-preview';

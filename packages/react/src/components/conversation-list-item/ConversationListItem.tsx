@@ -42,8 +42,9 @@ function PinIcon({ size = 12, color }: { size?: number; color?: string }) {
 function MuteIcon({ size = 12, color }: { size?: number; color?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18.5 12c0-1.77-.77-3.37-2-4.46M22 12c0-3.09-1.67-5.79-4.15-7.26" />
-      <path d="M9.65 9.65 3 16h4l5 5V4.36" />
+      <path d="M8.7 3A6 6 0 0 1 18 8a21.3 21.3 0 0 0 .6 5" />
+      <path d="M17 17H3s3-2 3-9a4.67 4.67 0 0 1 .3-1.7" />
+      <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
       <line x1="2" y1="2" x2="22" y2="22" />
     </svg>
   );

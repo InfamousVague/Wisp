@@ -129,6 +129,43 @@ export const linkPreviewCardEntry: ComponentEntry = {
 />`,
     },
     {
+      title: 'Auto-Fetch (Live Data)',
+      render: (
+        <VStack gap="md" style={{ width: '100%', maxWidth: 400 }}>
+          <Text size="xs" color="secondary">
+            Fetches Open Graph metadata automatically from the URL
+          </Text>
+          <LinkPreviewCard
+            url="https://github.com"
+            autoFetch
+          />
+          <LinkPreviewCard
+            url="https://react.dev"
+            autoFetch
+            layout="horizontal"
+          />
+        </VStack>
+      ),
+      code: `import { LinkPreviewCard } from '@wisp-ui/react';
+
+// Just pass the URL — metadata is fetched automatically
+<LinkPreviewCard url="https://github.com" autoFetch />
+
+// Works with any layout
+<LinkPreviewCard
+  url="https://react.dev"
+  autoFetch
+  layout="horizontal"
+/>
+
+// Explicit props override fetched data
+<LinkPreviewCard
+  url="https://github.com"
+  autoFetch
+  title="Custom Title"  // overrides fetched title
+/>`,
+    },
+    {
       title: 'Skeleton',
       render: (
         <VStack gap="md" style={{ width: '100%', maxWidth: 400 }}>
@@ -152,5 +189,7 @@ export const linkPreviewCardEntry: ComponentEntry = {
     { name: 'onPress', type: '() => void', description: 'Called when the card is clicked.' },
     { name: 'loading', type: 'boolean', default: 'false', description: 'Whether the card is loading.' },
     { name: 'skeleton', type: 'boolean', default: 'false', description: 'Show loading skeleton.' },
+    { name: 'autoFetch', type: 'boolean', default: 'false', description: 'Automatically fetch Open Graph metadata from the URL using Microlink API.' },
+    { name: 'fetcher', type: '(url: string) => Promise<LinkPreviewData>', description: 'Custom fetcher function. Falls back to Microlink API when autoFetch is enabled.' },
   ],
 };

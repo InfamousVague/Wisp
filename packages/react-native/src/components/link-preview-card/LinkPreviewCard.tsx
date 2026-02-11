@@ -98,7 +98,7 @@ export const LinkPreviewCard = forwardRef<View, LinkPreviewCardProps>(
         borderRadius: defaultRadii.lg,
         borderWidth: 1,
         borderColor: theme.colors.border.subtle,
-        backgroundColor: theme.colors.background.surface,
+        backgroundColor: theme.colors.background.raised,
       };
 
       const skelImage: ViewStyle = layout === 'horizontal'
@@ -132,8 +132,6 @@ export const LinkPreviewCard = forwardRef<View, LinkPreviewCardProps>(
       borderWidth: 1,
       borderColor: colors.border,
       backgroundColor: colors.bg,
-      borderLeftWidth: 3,
-      borderLeftColor: colors.accentBar,
     };
 
     const imageStyle: ImageStyle = layout === 'horizontal'

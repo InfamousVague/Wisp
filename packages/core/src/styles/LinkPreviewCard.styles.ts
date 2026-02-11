@@ -20,7 +20,6 @@ export interface LinkPreviewCardColors {
   title: string;
   description: string;
   domain: string;
-  accentBar: string;
 }
 
 export function resolveLinkPreviewCardColors(
@@ -28,12 +27,11 @@ export function resolveLinkPreviewCardColors(
 ): LinkPreviewCardColors {
   const { colors } = theme;
   return {
-    bg: colors.background.surface,
+    bg: colors.background.raised,
     border: colors.border.subtle,
-    title: colors.text.inverse,
-    description: withAlpha(colors.text.inverse, 0.7),
-    domain: withAlpha(colors.text.inverse, 0.5),
-    accentBar: colors.accent.primary,
+    title: colors.text.onRaised,
+    description: colors.text.onRaisedSecondary,
+    domain: withAlpha(colors.text.onRaisedSecondary, 0.7),
   };
 }
 
@@ -108,7 +106,6 @@ export function buildLinkPreviewCardContainerStyle(
     transition: `border-color ${durations.fast}ms ${easings.easeOut.css}`,
     maxWidth: '100%',
     boxSizing: 'border-box',
-    borderLeft: `3px solid ${colors.accentBar}`,
   };
 }
 
@@ -262,7 +259,7 @@ export function buildLinkPreviewSkeletonStyle(
     overflow: 'hidden',
     borderRadius: radii.lg,
     border: `1px solid ${colors.border.subtle}`,
-    backgroundColor: colors.background.surface,
+    backgroundColor: colors.background.raised,
     maxWidth: '100%',
     boxSizing: 'border-box',
   };
@@ -275,11 +272,13 @@ export function buildLinkPreviewSkeletonImageStyle(
 ): CSSStyleObject {
   const { colors } = theme;
   const cfg = sizeConfigs[size];
+  // Use a subtle shimmer color that works on the raised background
+  const shimmerBg = withAlpha(colors.text.onRaisedSecondary, 0.15);
   if (layout === 'horizontal') {
     return {
       width: cfg.imageWidthHorizontal,
       minHeight: 80,
-      backgroundColor: colors.border.subtle,
+      backgroundColor: shimmerBg,
       flexShrink: 0,
       animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
     };
@@ -287,7 +286,7 @@ export function buildLinkPreviewSkeletonImageStyle(
   return {
     width: '100%',
     height: cfg.imageHeight,
-    backgroundColor: colors.border.subtle,
+    backgroundColor: shimmerBg,
     flexShrink: 0,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };
@@ -299,11 +298,13 @@ export function buildLinkPreviewSkeletonLineStyle(
   theme: WispTheme,
 ): CSSStyleObject {
   const { colors, radii } = theme;
+  // Use a subtle shimmer color that works on the raised background
+  const shimmerBg = withAlpha(colors.text.onRaisedSecondary, 0.2);
   return {
     width,
     height,
     borderRadius: radii.sm,
-    backgroundColor: colors.border.subtle,
+    backgroundColor: shimmerBg,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };
 }

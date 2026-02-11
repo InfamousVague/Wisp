@@ -7,6 +7,7 @@ import type { CSSStyleObject } from '../types';
 import type { WispTheme } from '../theme/types';
 import { fontFamilyStacks } from '../tokens/shared';
 import { durations, easings } from '../tokens/motion';
+import { withAlpha } from '../tokens/color-utils';
 
 // ---------------------------------------------------------------------------
 // Color resolution
@@ -20,6 +21,10 @@ export interface MentionAutocompleteColors {
   text: string;
   textSecondary: string;
   textMuted: string;
+  /** Text color when item is active (on dark surface). */
+  textActive: string;
+  /** Muted text color when item is active (on dark surface). */
+  textMutedActive: string;
   onlineDot: string;
   shadow: string;
 }
@@ -32,10 +37,12 @@ export function resolveMentionAutocompleteColors(
     bg: colors.background.canvas,
     border: colors.border.subtle,
     itemBg: 'transparent',
-    itemBgActive: colors.background.surface,
+    itemBgActive: colors.background.raised,
     text: colors.text.primary,
     textSecondary: colors.text.secondary,
     textMuted: colors.text.muted,
+    textActive: colors.text.onRaised,
+    textMutedActive: withAlpha(colors.text.onRaisedSecondary, 0.7),
     onlineDot: colors.status.success,
     shadow: theme.mode === 'light'
       ? 'rgba(0, 0, 0, 0.1)'
@@ -127,6 +134,7 @@ export function buildMentionOnlineDotStyle(
 
 export function buildMentionNameStyle(
   colors: MentionAutocompleteColors,
+  active: boolean,
   theme: WispTheme,
 ): CSSStyleObject {
   const { typography } = theme;
@@ -135,7 +143,7 @@ export function buildMentionNameStyle(
     fontSize: typography.sizes.sm.fontSize,
     lineHeight: `${typography.sizes.sm.lineHeight}px`,
     fontWeight: typography.weights.medium,
-    color: colors.text,
+    color: active ? colors.textActive : colors.text,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
@@ -144,6 +152,7 @@ export function buildMentionNameStyle(
 
 export function buildMentionUsernameStyle(
   colors: MentionAutocompleteColors,
+  active: boolean,
   theme: WispTheme,
 ): CSSStyleObject {
   const { typography } = theme;
@@ -152,7 +161,7 @@ export function buildMentionUsernameStyle(
     fontSize: typography.sizes.xs.fontSize,
     lineHeight: `${typography.sizes.xs.lineHeight}px`,
     fontWeight: typography.weights.regular,
-    color: colors.textMuted,
+    color: active ? colors.textMutedActive : colors.textMuted,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',

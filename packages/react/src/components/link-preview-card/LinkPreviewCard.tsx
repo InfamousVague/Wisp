@@ -19,6 +19,7 @@ import {
   buildLinkPreviewSkeletonLineStyle,
 } from '@wisp-ui/core/styles/LinkPreviewCard.styles';
 import { useTheme } from '../../providers';
+import { useLinkPreview } from '../../hooks/use-link-preview';
 
 // ---------------------------------------------------------------------------
 // Helper: extract domain from URL
@@ -44,31 +45,39 @@ function extractDomain(url: string): string {
  * and Discord. Supports vertical (image on top) and horizontal (image on side)
  * layouts with three size presets.
  *
+ * When `autoFetch` is enabled, automatically fetches Open Graph metadata from
+ * the URL. Explicit props (title, description, image) override fetched data.
+ *
  * @example
  * ```tsx
+ * // Manual data
  * <LinkPreviewCard
  *   url="https://github.com/wisp-ui/wisp"
  *   title="Wisp UI Kit"
- *   description="A monochrome, cross-platform UI kit for React and React Native."
+ *   description="A monochrome, cross-platform UI kit."
  *   siteName="GitHub"
- *   image="https://opengraph.githubassets.com/..."
  * />
+ *
+ * // Auto-fetch metadata
+ * <LinkPreviewCard url="https://github.com" autoFetch />
  * ```
  */
 export const LinkPreviewCard = forwardRef<HTMLDivElement, LinkPreviewCardProps>(
   function LinkPreviewCard(
     {
       url,
-      title,
-      description,
-      image,
-      siteName,
-      favicon,
+      title: titleProp,
+      description: descProp,
+      image: imageProp,
+      siteName: siteNameProp,
+      favicon: faviconProp,
       size = 'md',
       layout = 'vertical',
       onPress,
-      loading = false,
+      loading: loadingProp = false,
       skeleton = false,
+      autoFetch = false,
+      fetcher,
       style: userStyle,
       className,
       ...rest
@@ -77,37 +86,34 @@ export const LinkPreviewCard = forwardRef<HTMLDivElement, LinkPreviewCardProps>(
   ) {
     const { theme } = useTheme();
 
+    // Auto-fetch OG metadata when enabled
+    const { data: fetchedData, loading: fetchLoading } = useLinkPreview({
+      url,
+      enabled: autoFetch,
+      fetcher,
+    });
+
+    // Merge: explicit props override fetched data
+    const title = titleProp ?? fetchedData?.title;
+    const description = descProp ?? fetchedData?.description;
+    const image = imageProp ?? fetchedData?.image;
+    const siteName = siteNameProp ?? fetchedData?.siteName;
+    const favicon = faviconProp ?? fetchedData?.favicon;
+    const isLoading = loadingProp || (autoFetch && fetchLoading);
+
     const colors = useMemo(
       () => resolveLinkPreviewCardColors(theme),
       [theme],
     );
 
-    // ------ Skeleton ------
-    if (skeleton) {
-      const skelContainer = useMemo(
-        () => buildLinkPreviewSkeletonStyle(layout, size, theme),
-        [layout, size, theme],
-      );
-      const skelImage = useMemo(
-        () => buildLinkPreviewSkeletonImageStyle(layout, size, theme),
-        [layout, size, theme],
-      );
-      const skelLine1 = useMemo(
-        () => buildLinkPreviewSkeletonLineStyle('70%', 14, theme),
-        [theme],
-      );
-      const skelLine2 = useMemo(
-        () => buildLinkPreviewSkeletonLineStyle('90%', 12, theme),
-        [theme],
-      );
-      const skelLine3 = useMemo(
-        () => buildLinkPreviewSkeletonLineStyle('40%', 11, theme),
-        [theme],
-      );
-      const contentStyle = useMemo(
-        () => buildLinkPreviewContentStyle(size),
-        [size],
-      );
+    // ------ Skeleton / Loading ------
+    if (skeleton || isLoading) {
+      const skelContainer = buildLinkPreviewSkeletonStyle(layout, size, theme);
+      const skelImage = buildLinkPreviewSkeletonImageStyle(layout, size, theme);
+      const skelLine1 = buildLinkPreviewSkeletonLineStyle('70%', 14, theme);
+      const skelLine2 = buildLinkPreviewSkeletonLineStyle('90%', 12, theme);
+      const skelLine3 = buildLinkPreviewSkeletonLineStyle('40%', 11, theme);
+      const contentSkelStyle = buildLinkPreviewContentStyle(size);
 
       return (
         <div
@@ -118,7 +124,7 @@ export const LinkPreviewCard = forwardRef<HTMLDivElement, LinkPreviewCardProps>(
           {...rest}
         >
           <div style={skelImage} />
-          <div style={contentStyle}>
+          <div style={contentSkelStyle}>
             <div style={skelLine1} />
             <div style={skelLine2} />
             <div style={skelLine3} />

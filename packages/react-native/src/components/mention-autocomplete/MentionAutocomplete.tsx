@@ -140,12 +140,12 @@ function MentionItem({
   const nameStyle: TextStyle = {
     fontSize: defaultTypography.sizes.sm.fontSize,
     fontWeight: String(defaultTypography.weights.medium) as TextStyle['fontWeight'],
-    color: colors.text,
+    color: active ? colors.textActive : colors.text,
   };
 
   const usernameStyle: TextStyle = {
     fontSize: defaultTypography.sizes.xs.fontSize,
-    color: colors.textMuted,
+    color: active ? colors.textMutedActive : colors.textMuted,
   };
 
   const onlineDotStyle: ViewStyle = {

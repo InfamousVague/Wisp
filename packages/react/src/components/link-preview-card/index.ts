@@ -3,6 +3,8 @@ export type {
   LinkPreviewCardProps,
   LinkPreviewCardSize,
   LinkPreviewCardLayout,
+  LinkPreviewData,
+  LinkPreviewFetcher,
 } from '@wisp-ui/core/types/LinkPreviewCard.types';
 export {
   linkPreviewCardSizes,

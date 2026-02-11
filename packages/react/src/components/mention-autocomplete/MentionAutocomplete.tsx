@@ -80,16 +80,6 @@ export const MentionAutocomplete = forwardRef<HTMLDivElement, MentionAutocomplet
       [colors, theme],
     );
 
-    const nameStyle = useMemo(
-      () => buildMentionNameStyle(colors, theme),
-      [colors, theme],
-    );
-
-    const usernameStyle = useMemo(
-      () => buildMentionUsernameStyle(colors, theme),
-      [colors, theme],
-    );
-
     const emptyStyle = useMemo(
       () => buildMentionEmptyStyle(colors, theme),
       [colors, theme],
@@ -141,8 +131,6 @@ export const MentionAutocomplete = forwardRef<HTMLDivElement, MentionAutocomplet
             theme={theme}
             avatarWrapperStyle={avatarWrapperStyle}
             onlineDotStyle={onlineDotStyle}
-            nameStyle={nameStyle}
-            usernameStyle={usernameStyle}
             onSelect={onSelect}
             onHover={() => onActiveIndexChange?.(index)}
           />
@@ -165,8 +153,6 @@ function MentionItem({
   theme,
   avatarWrapperStyle,
   onlineDotStyle,
-  nameStyle,
-  usernameStyle,
   onSelect,
   onHover,
 }: {
@@ -176,13 +162,21 @@ function MentionItem({
   theme: ReturnType<typeof useTheme>['theme'];
   avatarWrapperStyle: React.CSSProperties;
   onlineDotStyle: React.CSSProperties;
-  nameStyle: React.CSSProperties;
-  usernameStyle: React.CSSProperties;
   onSelect: (user: MentionUser) => void;
   onHover: () => void;
 }) {
   const itemStyle = useMemo(
     () => buildMentionItemStyle(colors, active, theme),
+    [colors, active, theme],
+  );
+
+  const nameStyle = useMemo(
+    () => buildMentionNameStyle(colors, active, theme),
+    [colors, active, theme],
+  );
+
+  const usernameStyle = useMemo(
+    () => buildMentionUsernameStyle(colors, active, theme),
     [colors, active, theme],
   );
 
