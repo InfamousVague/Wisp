@@ -424,5 +424,8 @@ export type { ThemeEditorProps, ThemeEditorTab, ThemeEditorFieldDescriptor, Them
 export { ConversationListItem } from './components';
 export type { ConversationListItemProps } from './components';
 
+export { LinkPreviewCard, linkPreviewCardSizes, linkPreviewCardLayouts } from './components';
+export type { LinkPreviewCardProps, LinkPreviewCardSize, LinkPreviewCardLayout } from './components';
+
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';

@@ -452,3 +452,11 @@ export type { ThemeEditorProps, ThemeEditorTab, ThemeEditorFieldDescriptor, Them
 export { ConversationListItem } from './conversation-list-item';
 export type { ConversationListItemProps } from './conversation-list-item';
 
+// ---------------------------------------------------------------------------
+// LinkPreviewCard
+// ---------------------------------------------------------------------------
+
+export { LinkPreviewCard } from './link-preview-card';
+export type { LinkPreviewCardProps, LinkPreviewCardSize, LinkPreviewCardLayout } from './link-preview-card';
+export { linkPreviewCardSizes, linkPreviewCardLayouts } from './link-preview-card';
+

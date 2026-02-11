@@ -58,6 +58,7 @@ import { voiceRecorderEntry } from './voice-recorder';
 import { emojiPickerEntry } from './emoji-picker';
 import { themeEditorEntry } from './theme-editor';
 import { conversationListItemEntry } from './conversation-list-item';
+import { linkPreviewCardEntry } from './link-preview-card';
 
 
 export const componentEntries: ComponentEntry[] = [
@@ -120,4 +121,5 @@ export const componentEntries: ComponentEntry[] = [
   emojiPickerEntry,
   themeEditorEntry,
   conversationListItemEntry,
+  linkPreviewCardEntry,
 ];
