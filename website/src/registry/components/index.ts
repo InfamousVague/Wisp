@@ -57,6 +57,7 @@ import { messageInputEntry } from './message-input';
 import { voiceRecorderEntry } from './voice-recorder';
 import { emojiPickerEntry } from './emoji-picker';
 import { themeEditorEntry } from './theme-editor';
+import { conversationListItemEntry } from './conversation-list-item';
 
 
 export const componentEntries: ComponentEntry[] = [
@@ -118,4 +119,5 @@ export const componentEntries: ComponentEntry[] = [
   voiceRecorderEntry,
   emojiPickerEntry,
   themeEditorEntry,
+  conversationListItemEntry,
 ];

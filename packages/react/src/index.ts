@@ -421,5 +421,8 @@ export type { EmojiPickerProps, EmojiPickerTriggerProps, EmojiPickerSize, EmojiP
 export { ThemeEditor, ThemeEditorField } from './components';
 export type { ThemeEditorProps, ThemeEditorTab, ThemeEditorFieldDescriptor, ThemeEditorControlType, ThemeEditorFieldMeta, ThemeEditorFieldGroup, ThemeEditorTabDef } from './components';
 
+export { ConversationListItem } from './components';
+export type { ConversationListItemProps } from './components';
+
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';

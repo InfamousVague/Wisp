@@ -131,3 +131,7 @@ export type { ToastProviderProps } from './toast-provider';
 // ThemeEditor
 export { ThemeEditor, ThemeEditorField } from './theme-editor';
 export type { ThemeEditorProps } from './theme-editor';
+
+// ConversationListItem
+export { ConversationListItem } from './conversation-list-item';
+export type { ConversationListItemProps } from './conversation-list-item';

@@ -445,3 +445,10 @@ export { emojiPickerSizes, emojiPickerSizeMap, emojiCategories, skinTones, SKIN_
 export { ThemeEditor, ThemeEditorField } from './theme-editor';
 export type { ThemeEditorProps, ThemeEditorTab, ThemeEditorFieldDescriptor, ThemeEditorControlType, ThemeEditorFieldMeta, ThemeEditorFieldGroup, ThemeEditorTabDef } from './theme-editor';
 
+// ---------------------------------------------------------------------------
+// ConversationListItem
+// ---------------------------------------------------------------------------
+
+export { ConversationListItem } from './conversation-list-item';
+export type { ConversationListItemProps } from './conversation-list-item';
+
