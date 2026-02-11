@@ -165,6 +165,7 @@ export function buildAvatarWrapperStyle(
     position: 'relative',
     flexShrink: 0,
     borderRadius: '50%',
+    backgroundColor: colors.avatarRing,
     border: `4px solid ${colors.avatarRing}`,
     boxSizing: 'content-box',
   };

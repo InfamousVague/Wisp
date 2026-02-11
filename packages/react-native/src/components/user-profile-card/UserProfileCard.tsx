@@ -260,6 +260,7 @@ export const UserProfileCard = forwardRef<View, UserProfileCardProps>(
       position: 'relative',
       flexShrink: 0,
       borderRadius: 28,
+      backgroundColor: colors.avatarRing,
       borderWidth: 4,
       borderColor: colors.avatarRing,
     }), [colors]);
