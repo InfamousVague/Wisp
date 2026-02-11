@@ -427,5 +427,8 @@ export type { ConversationListItemProps } from './components';
 export { LinkPreviewCard, linkPreviewCardSizes, linkPreviewCardLayouts } from './components';
 export type { LinkPreviewCardProps, LinkPreviewCardSize, LinkPreviewCardLayout } from './components';
 
+export { MessageActionBar } from './components';
+export type { MessageActionBarProps, MessageAction } from './components';
+
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';

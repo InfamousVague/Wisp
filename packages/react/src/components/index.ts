@@ -460,3 +460,10 @@ export { LinkPreviewCard } from './link-preview-card';
 export type { LinkPreviewCardProps, LinkPreviewCardSize, LinkPreviewCardLayout } from './link-preview-card';
 export { linkPreviewCardSizes, linkPreviewCardLayouts } from './link-preview-card';
 
+// ---------------------------------------------------------------------------
+// MessageActionBar
+// ---------------------------------------------------------------------------
+
+export { MessageActionBar } from './message-action-bar';
+export type { MessageActionBarProps, MessageAction } from './message-action-bar';
+

@@ -123,3 +123,4 @@ export * from './AchievementUnlock.types';
 export * from './ThemeEditor.types';
 export * from './ConversationListItem.types';
 export * from './LinkPreviewCard.types';
+export * from './MessageActionBar.types';

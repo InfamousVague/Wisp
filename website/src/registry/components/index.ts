@@ -59,6 +59,7 @@ import { emojiPickerEntry } from './emoji-picker';
 import { themeEditorEntry } from './theme-editor';
 import { conversationListItemEntry } from './conversation-list-item';
 import { linkPreviewCardEntry } from './link-preview-card';
+import { messageActionBarEntry } from './message-action-bar';
 
 
 export const componentEntries: ComponentEntry[] = [
@@ -122,4 +123,5 @@ export const componentEntries: ComponentEntry[] = [
   themeEditorEntry,
   conversationListItemEntry,
   linkPreviewCardEntry,
+  messageActionBarEntry,
 ];
