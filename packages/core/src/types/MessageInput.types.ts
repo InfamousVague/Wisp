@@ -40,6 +40,58 @@ export const messageInputSizeMap: Record<MessageInputSize, MessageInputSizeConfi
   lg: { minHeight: 52, maxHeight: 200, fontSize: defaultTypography.sizes.base.fontSize, padding: defaultSpacing.lg, iconButtonSize: 40, iconSize: 20, borderRadius: 'xl', gap: defaultSpacing.sm } };
 
 // ---------------------------------------------------------------------------
+// Reply context
+// ---------------------------------------------------------------------------
+
+/**
+ * Metadata for the message being replied to, shown as a preview bar
+ * above the input area.
+ */
+export interface MessageInputReplyContext {
+  /** Display name of the original message sender. */
+  sender: string;
+  /** Truncated text preview of the original message. */
+  text: string;
+  /** Callback to clear/cancel the reply. */
+  onClear: () => void;
+}
+
+// ---------------------------------------------------------------------------
+// Edit context
+// ---------------------------------------------------------------------------
+
+/**
+ * Metadata for the message being edited, shown as a preview bar
+ * above the input area.
+ */
+export interface MessageInputEditContext {
+  /** Text of the message being edited. */
+  text: string;
+  /** Callback to cancel editing. */
+  onCancel: () => void;
+}
+
+// ---------------------------------------------------------------------------
+// Attachment preview
+// ---------------------------------------------------------------------------
+
+/**
+ * Represents a queued attachment shown as a preview card before sending.
+ */
+export interface MessageInputAttachment {
+  /** Unique ID for the attachment. */
+  id: string;
+  /** Display name of the file. */
+  name: string;
+  /** File size in bytes. */
+  size?: number;
+  /** MIME type. */
+  type?: string;
+  /** Optional thumbnail URL for images/videos. */
+  thumbnail?: string;
+}
+
+// ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
 
@@ -88,4 +140,42 @@ export interface MessageInputProps extends Omit<React.HTMLAttributes<HTMLDivElem
 
   /** Show loading skeleton. @default false */
   skeleton?: boolean;
+
+  /**
+   * Reply context. When provided, a reply preview bar is shown above
+   * the input with the original sender name, text, and a close button.
+   */
+  replyingTo?: MessageInputReplyContext;
+
+  /**
+   * Edit context. When provided, an edit preview bar is shown above
+   * the input with the original text and a cancel button.
+   */
+  editing?: MessageInputEditContext;
+
+  /**
+   * Show voice record button. @default false
+   */
+  showVoice?: boolean;
+
+  /**
+   * Called when the voice record button is clicked.
+   */
+  onVoiceClick?: () => void;
+
+  /**
+   * Maximum character count. When set, a counter is displayed and input
+   * is visually warned when approaching the limit.
+   */
+  maxLength?: number;
+
+  /**
+   * Queued attachments shown as preview cards above the input area.
+   */
+  attachments?: MessageInputAttachment[];
+
+  /**
+   * Called when an attachment preview is removed.
+   */
+  onAttachmentRemove?: (id: string) => void;
 }

@@ -1,7 +1,8 @@
 /**
  * @module MessageInput
  * @description Rich chat input with auto-expanding textarea, send button,
- * attachment trigger, and emoji trigger.
+ * attachment trigger, emoji trigger, reply/edit context bars, voice button,
+ * attachment previews, and character counter.
  */
 
 import React, {
@@ -22,6 +23,10 @@ import {
   buildMessageInputIconButtonStyle,
   buildMessageInputSendButtonStyle,
   buildMessageInputSkeletonStyle,
+  buildMessageInputWrapperStyle,
+  buildMessageInputContextBarStyle,
+  buildMessageInputAttachmentsStyle,
+  buildMessageInputCounterStyle,
 } from '@wisp-ui/core/styles/MessageInput.styles';
 import { Popover, PopoverTrigger, PopoverContent } from '../popover';
 import { EmojiPicker } from '../emoji-picker';
@@ -57,6 +62,44 @@ function SendIcon({ size }: { size: number }) {
   );
 }
 
+function MicIcon({ size }: { size: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+      <line x1="12" x2="12" y1="19" y2="22" />
+    </svg>
+  );
+}
+
+function XIcon({ size }: { size: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  );
+}
+
+function FileIcon({ size }: { size: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+    </svg>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
@@ -78,6 +121,13 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
     sending = false,
     autoExpand = true,
     skeleton = false,
+    replyingTo,
+    editing,
+    showVoice = false,
+    onVoiceClick,
+    maxLength,
+    attachments,
+    onAttachmentRemove,
     style: userStyle,
     className,
     ...rest
@@ -85,7 +135,6 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
   ref,
 ) {
   const { theme } = useTheme();
-  const themeColors = theme.colors;
   const sizeConfig = messageInputSizeMap[size];
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -102,6 +151,11 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
     const skeletonStyle = buildMessageInputSkeletonStyle(sizeConfig, theme);
     return <div aria-hidden className={className} style={{ ...skeletonStyle, ...userStyle }} />;
   }
+
+  const wrapperStyle = useMemo(
+    () => buildMessageInputWrapperStyle(sizeConfig, theme),
+    [sizeConfig, theme],
+  );
 
   const containerStyle = useMemo(
     () => buildMessageInputContainerStyle(sizeConfig, colors, theme),
@@ -123,6 +177,26 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
   const sendBtnStyle = useMemo(
     () => buildMessageInputSendButtonStyle(sizeConfig, colors, hasContent && !sending),
     [sizeConfig, colors, hasContent, sending],
+  );
+
+  // Context bar styles (reply/edit)
+  const contextBarStyles = useMemo(() => {
+    if (replyingTo) return buildMessageInputContextBarStyle(sizeConfig, colors, 'reply', theme);
+    if (editing) return buildMessageInputContextBarStyle(sizeConfig, colors, 'edit', theme);
+    return undefined;
+  }, [replyingTo, editing, sizeConfig, colors, theme]);
+
+  // Attachments row styles
+  const attachmentsStyles = useMemo(
+    () => (attachments && attachments.length > 0 ? buildMessageInputAttachmentsStyle(sizeConfig, theme) : undefined),
+    [attachments, sizeConfig, theme],
+  );
+
+  // Character counter
+  const overLimit = maxLength !== undefined && value.length > maxLength;
+  const counterStyle = useMemo(
+    () => (maxLength !== undefined ? buildMessageInputCounterStyle(theme, overLimit) : undefined),
+    [maxLength, theme, overLimit],
   );
 
   // Auto-resize textarea
@@ -187,88 +261,170 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
   // Whether the built-in emoji picker popover should be used
   const useBuiltInPicker = showEmoji && !onEmojiClick;
 
+  // Determine if we have context above the main input row
+  const hasContextBar = Boolean(replyingTo || editing);
+  const hasAttachments = attachments && attachments.length > 0;
+  const hasAboveContent = hasContextBar || hasAttachments;
+
   return (
     <div
       ref={ref}
       className={className}
-      style={{ ...containerStyle, ...userStyle }}
+      style={{ ...wrapperStyle, ...userStyle }}
       {...rest}
     >
-      {showAttachment && (
-        <button
-          type="button"
-          style={iconBtnStyle}
-          onClick={onAttachmentClick}
-          aria-label="Attach file"
-          disabled={disabled}
-        >
-          <PaperclipIcon size={sizeConfig.iconSize} />
-        </button>
-      )}
-
-      <textarea
-        ref={textareaRef}
-        value={value}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        placeholder={placeholder}
-        disabled={disabled || sending}
-        rows={1}
-        style={textareaStyle}
-        aria-label="Message"
-      />
-
-      {showEmoji && useBuiltInPicker && (
-        <Popover open={emojiOpen} onOpenChange={setEmojiOpen} placement="top" align="end">
-          <PopoverTrigger>
-            <button
-              type="button"
-              style={iconBtnStyle}
-              aria-label="Add emoji"
-              disabled={disabled}
-            >
-              <SmileIcon size={sizeConfig.iconSize} />
-            </button>
-          </PopoverTrigger>
-          <PopoverContent
-            style={{
-              padding: 0,
-              border: 'none',
-              background: 'transparent',
-              boxShadow: 'none',
-              borderRadius: 0,
-              overflow: 'visible',
-            }}
+      {/* Reply / Edit context bar */}
+      {hasContextBar && contextBarStyles && (
+        <div style={contextBarStyles.container}>
+          <div style={contextBarStyles.label}>
+            <span style={{ ...contextBarStyles.text, fontWeight: 600, color: replyingTo ? theme.colors.accent.primary : theme.colors.status.warning }}>
+              {replyingTo ? `Replying to ${replyingTo.sender}` : 'Editing message'}
+            </span>
+            <span style={contextBarStyles.text}>
+              {replyingTo ? replyingTo.text : editing?.text}
+            </span>
+          </div>
+          <button
+            type="button"
+            style={contextBarStyles.closeBtn}
+            onClick={replyingTo ? replyingTo.onClear : editing?.onCancel}
+            aria-label={replyingTo ? 'Cancel reply' : 'Cancel edit'}
           >
-            <EmojiPicker
-              size="sm"
-              onSelect={(emoji) => handleEmojiSelect(emoji)}
-            />
-          </PopoverContent>
-        </Popover>
+            <XIcon size={12} />
+          </button>
+        </div>
       )}
 
-      {showEmoji && !useBuiltInPicker && (
+      {/* Attachment previews */}
+      {hasAttachments && attachmentsStyles && (
+        <div style={attachmentsStyles.container}>
+          {attachments!.map((att) => (
+            <div key={att.id} style={attachmentsStyles.card}>
+              {att.thumbnail ? (
+                <img src={att.thumbnail} alt="" style={attachmentsStyles.thumbnail as React.CSSProperties} />
+              ) : (
+                <FileIcon size={16} />
+              )}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={attachmentsStyles.name}>{att.name}</div>
+                {att.size !== undefined && (
+                  <div style={attachmentsStyles.size}>{formatFileSize(att.size)}</div>
+                )}
+              </div>
+              {onAttachmentRemove && (
+                <button
+                  type="button"
+                  style={attachmentsStyles.removeBtn}
+                  onClick={() => onAttachmentRemove(att.id)}
+                  aria-label={`Remove ${att.name}`}
+                >
+                  <XIcon size={10} />
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Main input row */}
+      <div style={containerStyle}>
+        {showAttachment && (
+          <button
+            type="button"
+            style={iconBtnStyle}
+            onClick={onAttachmentClick}
+            aria-label="Attach file"
+            disabled={disabled}
+          >
+            <PaperclipIcon size={sizeConfig.iconSize} />
+          </button>
+        )}
+
+        <textarea
+          ref={textareaRef}
+          value={value}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          placeholder={placeholder}
+          disabled={disabled || sending}
+          rows={1}
+          style={textareaStyle}
+          aria-label="Message"
+          maxLength={maxLength}
+        />
+
+        {/* Character counter */}
+        {maxLength !== undefined && counterStyle && (
+          <span style={counterStyle}>
+            {value.length}/{maxLength}
+          </span>
+        )}
+
+        {showEmoji && useBuiltInPicker && (
+          <Popover open={emojiOpen} onOpenChange={setEmojiOpen} placement="top" align="end">
+            <PopoverTrigger>
+              <button
+                type="button"
+                style={iconBtnStyle}
+                aria-label="Add emoji"
+                disabled={disabled}
+              >
+                <SmileIcon size={sizeConfig.iconSize} />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent
+              style={{
+                padding: 0,
+                border: 'none',
+                background: 'transparent',
+                boxShadow: 'none',
+                borderRadius: 0,
+                overflow: 'visible',
+              }}
+            >
+              <EmojiPicker
+                size="sm"
+                onSelect={(emoji) => handleEmojiSelect(emoji)}
+              />
+            </PopoverContent>
+          </Popover>
+        )}
+
+        {showEmoji && !useBuiltInPicker && (
+          <button
+            type="button"
+            style={iconBtnStyle}
+            onClick={onEmojiClick}
+            aria-label="Add emoji"
+            disabled={disabled}
+          >
+            <SmileIcon size={sizeConfig.iconSize} />
+          </button>
+        )}
+
+        {/* Voice button */}
+        {showVoice && (
+          <button
+            type="button"
+            style={iconBtnStyle}
+            onClick={onVoiceClick}
+            aria-label="Voice message"
+            disabled={disabled}
+          >
+            <MicIcon size={sizeConfig.iconSize} />
+          </button>
+        )}
+
         <button
           type="button"
-          style={iconBtnStyle}
-          onClick={onEmojiClick}
-          aria-label="Add emoji"
-          disabled={disabled}
+          style={sendBtnStyle}
+          onClick={handleSubmit}
+          aria-label="Send message"
+          disabled={!hasContent || sending || disabled}
         >
-          <SmileIcon size={sizeConfig.iconSize} />
+          <SendIcon size={sizeConfig.iconSize * 0.8} />
         </button>
-      )}
-
-      <button
-        type="button"
-        style={sendBtnStyle}
-        onClick={handleSubmit}
-        aria-label="Send message"
-        disabled={!hasContent || sending || disabled}
-      >
-        <SendIcon size={sizeConfig.iconSize * 0.8} />
-      </button>
+      </div>
     </div>
   );
 });
