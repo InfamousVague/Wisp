@@ -276,13 +276,27 @@ export function buildForwardedStyle(
 
 /**
  * Builds the style for the media slot container inside the bubble.
+ *
+ * Uses negative margins to bleed the media edge-to-edge within the bubble,
+ * counteracting the bubble's padding. When `isFirst` is true (no forwarded
+ * label or reply-to above), the media also bleeds to the top edge.
+ *
+ * @param theme   - Current theme.
+ * @param isFirst - Whether the media is the first element inside the bubble.
  */
-export function buildMediaSlotStyle(theme: WispTheme): CSSStyleObject {
+export function buildMediaSlotStyle(theme: WispTheme, isFirst: boolean): CSSStyleObject {
   const { spacing, radii } = theme;
   return {
+    marginLeft: -spacing.md,
+    marginRight: -spacing.md,
+    marginTop: isFirst ? -spacing.sm : 0,
     marginBottom: spacing.xs,
-    borderRadius: radii.md,
     overflow: 'hidden',
+    // Only round corners that bleed to the bubble edge
+    ...(isFirst ? {
+      borderTopLeftRadius: radii.lg - 1,
+      borderTopRightRadius: radii.lg - 1,
+    } : {}),
   };
 }
 

@@ -153,9 +153,12 @@ export const ChatBubble = forwardRef<HTMLDivElement, ChatBubbleProps>(
       [forwarded, colors, theme],
     );
 
+    // Media is "first" when there's nothing above it (no forwarded label, no reply preview)
+    const mediaIsFirst = !forwarded && !replyTo;
+
     const mediaSlotStyle = useMemo(
-      () => (media ? buildMediaSlotStyle(theme) : undefined),
-      [media, theme],
+      () => (media ? buildMediaSlotStyle(theme, mediaIsFirst) : undefined),
+      [media, theme, mediaIsFirst],
     );
 
     const highlightStyle = useMemo(

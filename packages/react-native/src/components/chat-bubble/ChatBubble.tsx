@@ -187,11 +187,20 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
     marginBottom: defaultSpacing.xs,
   }), [colors]);
 
+  // Media is "first" when there's nothing above it (no forwarded label, no reply preview)
+  const mediaIsFirst = !forwarded && !replyTo;
+
   const mediaSlotStyle = useMemo<ViewStyle>(() => ({
+    marginLeft: -defaultSpacing.md,
+    marginRight: -defaultSpacing.md,
+    marginTop: mediaIsFirst ? -defaultSpacing.sm : 0,
     marginBottom: defaultSpacing.xs,
-    borderRadius: defaultRadii.md,
     overflow: 'hidden',
-  }), []);
+    ...(mediaIsFirst ? {
+      borderTopLeftRadius: defaultRadii.lg - 1,
+      borderTopRightRadius: defaultRadii.lg - 1,
+    } : {}),
+  }), [mediaIsFirst]);
 
   const handleReactionClick = useCallback(
     (emoji: string) => { onReactionClick?.(emoji); },
