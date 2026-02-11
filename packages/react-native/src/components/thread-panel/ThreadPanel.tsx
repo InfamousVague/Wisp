@@ -5,16 +5,16 @@
  * Reuses color resolution from `@wisp-ui/core`. Renders via `<View>` + `<Text>`.
  */
 
-import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import { View, Text, Pressable, TextInput, ScrollView } from 'react-native';
+import React, { forwardRef, useMemo, useCallback } from 'react';
+import { View, Text, Pressable, ScrollView } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import {
   resolveThreadPanelColors,
 } from '@wisp-ui/core/styles/ThreadPanel.styles';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
-import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
 import { useTheme } from '../../providers';
-import Svg, { Line, Path } from 'react-native-svg';
+import { MessageInput } from '../message-input';
+import Svg, { Line } from 'react-native-svg';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -51,15 +51,6 @@ function CloseIcon({ size = 16, color }: { size?: number; color?: string }) {
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
       <Line x1={18} y1={6} x2={6} y2={18} />
       <Line x1={6} y1={6} x2={18} y2={18} />
-    </Svg>
-  );
-}
-
-function SendIcon({ size = 16, color }: { size?: number; color?: string }) {
-  return (
-    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <Path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
-      <Path d="m21.854 2.147-10.94 10.939" />
     </Svg>
   );
 }
@@ -107,7 +98,6 @@ export const ThreadPanel = forwardRef<View, ThreadPanelProps>(
     ref,
   ) {
     const { theme } = useTheme();
-    const [replyText, setReplyText] = useState('');
 
     const colors = useMemo(
       () => resolveThreadPanelColors(theme),
@@ -115,14 +105,6 @@ export const ThreadPanel = forwardRef<View, ThreadPanelProps>(
     );
 
     const displayCount = replyCount ?? replies.length;
-
-    const handleSubmit = useCallback(() => {
-      const trimmed = replyText.trim();
-      if (trimmed && onReply) {
-        onReply(trimmed);
-        setReplyText('');
-      }
-    }, [replyText, onReply]);
 
     // ------ Styles ------
     const containerStyle: ViewStyle = {
@@ -218,18 +200,6 @@ export const ThreadPanel = forwardRef<View, ThreadPanelProps>(
       borderTopColor: colors.border,
     };
 
-    const inputRowStyle: ViewStyle = {
-      flexDirection: 'row',
-      alignItems: 'flex-end',
-      gap: 8,
-      borderWidth: 1,
-      borderColor: colors.border,
-      borderRadius: defaultRadii.md,
-      paddingVertical: 8,
-      paddingHorizontal: 12,
-      backgroundColor: colors.bg,
-    };
-
     const loadingViewStyle: ViewStyle = {
       flex: 1,
       alignItems: 'center',
@@ -309,41 +279,14 @@ export const ThreadPanel = forwardRef<View, ThreadPanelProps>(
         {/* Input */}
         {onReply && (
           <View style={inputAreaStyle}>
-            <View style={inputRowStyle}>
-              <TextInput
-                value={replyText}
-                onChangeText={setReplyText}
-                placeholder={placeholder}
-                placeholderTextColor={colors.messageTextMuted}
-                editable={!sending}
-                multiline
-                style={{
-                  flex: 1,
-                  color: colors.messageText,
-                  fontSize: defaultTypography.sizes.sm.fontSize,
-                  lineHeight: defaultTypography.sizes.sm.lineHeight,
-                  padding: 0,
-                  margin: 0,
-                }}
-                onSubmitEditing={handleSubmit}
-              />
-              <Pressable
-                accessibilityRole="button"
-                accessibilityLabel="Send reply"
-                disabled={sending || !replyText.trim()}
-                onPress={handleSubmit}
-                style={{
-                  width: 28,
-                  height: 28,
-                  borderRadius: defaultRadii.md,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  opacity: replyText.trim() ? 1 : 0.4,
-                }}
-              >
-                <SendIcon size={16} color={replyText.trim() ? colors.headerText : colors.messageTextMuted} />
-              </Pressable>
-            </View>
+            <MessageInput
+              size="sm"
+              placeholder={placeholder}
+              sending={sending}
+              showAttachment={false}
+              showEmoji={false}
+              onSubmit={(value: string) => onReply(value)}
+            />
           </View>
         )}
       </View>
