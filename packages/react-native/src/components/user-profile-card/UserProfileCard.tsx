@@ -256,6 +256,14 @@ export const UserProfileCard = forwardRef<View, UserProfileCardProps>(
       zIndex: 1,
     }), []);
 
+    const avatarWrapperStyle: ViewStyle = useMemo(() => ({
+      position: 'relative',
+      flexShrink: 0,
+      borderRadius: 28,
+      borderWidth: 4,
+      borderColor: colors.avatarRing,
+    }), [colors]);
+
     const statusDotStyle: ViewStyle = useMemo(() => {
       const statusColorMap: Record<UserStatus, string> = {
         online: colors.statusOnline,
@@ -279,7 +287,8 @@ export const UserProfileCard = forwardRef<View, UserProfileCardProps>(
     const profileInfoStyle: ViewStyle = useMemo(() => ({
       flexDirection: 'column',
       gap: defaultSpacing.xs,
-      paddingVertical: defaultSpacing.sm,
+      paddingTop: defaultSpacing.sm,
+      paddingBottom: defaultSpacing.md,
       paddingHorizontal: defaultSpacing.md,
     }), []);
 
@@ -309,12 +318,14 @@ export const UserProfileCard = forwardRef<View, UserProfileCardProps>(
       lineHeight: defaultTypography.sizes.sm.lineHeight,
       fontWeight: String(defaultTypography.weights.regular) as TextStyle['fontWeight'],
       color: colors.textSecondary,
+      paddingVertical: defaultSpacing.sm,
     }), [colors]);
 
     const rolesContainerStyle: ViewStyle = useMemo(() => ({
       flexDirection: 'row',
       flexWrap: 'wrap',
       gap: defaultSpacing.xs,
+      paddingVertical: defaultSpacing.sm,
       paddingHorizontal: defaultSpacing.md,
     }), []);
 
@@ -410,8 +421,8 @@ export const UserProfileCard = forwardRef<View, UserProfileCardProps>(
 
         {/* Avatar area */}
         <View style={avatarAreaStyle}>
-          <View style={{ position: 'relative', flexShrink: 0 }}>
-            {avatar || <DefaultAvatar name={name} bg={colors.bannerDefault} />}
+          <View style={avatarWrapperStyle}>
+            {avatar || <DefaultAvatar name={name} bg={colors.avatarBg} />}
             <View
               style={statusDotStyle}
               accessibilityRole="image"

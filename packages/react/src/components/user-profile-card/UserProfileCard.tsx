@@ -9,6 +9,7 @@ import {
   buildUserProfileCardContainerStyle,
   buildBannerStyle,
   buildAvatarAreaStyle,
+  buildAvatarWrapperStyle,
   buildStatusDotStyle,
   buildProfileInfoStyle,
   buildNameStyle,
@@ -213,6 +214,11 @@ export const UserProfileCard = forwardRef<HTMLDivElement, UserProfileCardProps>(
       [theme],
     );
 
+    const avatarWrapperStyle = useMemo(
+      () => buildAvatarWrapperStyle(colors, theme),
+      [colors, theme],
+    );
+
     const statusDotStyle = useMemo(
       () => buildStatusDotStyle(status, colors, theme),
       [status, colors, theme],
@@ -301,8 +307,8 @@ export const UserProfileCard = forwardRef<HTMLDivElement, UserProfileCardProps>(
 
         {/* Avatar area */}
         <div style={avatarAreaStyle}>
-          <div style={{ position: 'relative', flexShrink: 0 }}>
-            {avatar || <DefaultAvatar name={name} bg={colors.bannerDefault} />}
+          <div style={avatarWrapperStyle}>
+            {avatar || <DefaultAvatar name={name} bg={colors.avatarBg} />}
             <div
               style={statusDotStyle}
               role="img"

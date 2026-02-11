@@ -53,6 +53,10 @@ export interface UserProfileCardColors {
   statusOffline: string;
   /** Default banner color when no image or explicit color is provided. */
   bannerDefault: string;
+  /** Default avatar background (visible against both banner and card bg). */
+  avatarBg: string;
+  /** Avatar ring/border color — creates a cut-out effect against the banner. */
+  avatarRing: string;
 }
 
 export function resolveUserProfileCardColors(
@@ -78,7 +82,9 @@ export function resolveUserProfileCardColors(
     statusIdle: colors.status.warning,
     statusDnd: colors.status.danger,
     statusOffline: colors.text.muted,
-    bannerDefault: colors.accent.primary,
+    bannerDefault: colors.background.raised,
+    avatarBg: withAlpha(colors.text.onRaised, 0.18),
+    avatarRing: colors.background.surface,
   };
 }
 
@@ -148,6 +154,23 @@ export function buildAvatarAreaStyle(
 }
 
 // ---------------------------------------------------------------------------
+// Avatar wrapper — ring around the avatar for visual separation from banner
+// ---------------------------------------------------------------------------
+
+export function buildAvatarWrapperStyle(
+  colors: UserProfileCardColors,
+  _theme: WispTheme,
+): CSSStyleObject {
+  return {
+    position: 'relative',
+    flexShrink: 0,
+    borderRadius: '50%',
+    border: `4px solid ${colors.avatarRing}`,
+    boxSizing: 'content-box',
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Status dot
 // ---------------------------------------------------------------------------
 
@@ -188,7 +211,7 @@ export function buildProfileInfoStyle(
     display: 'flex',
     flexDirection: 'column',
     gap: spacing.xs,
-    padding: `${spacing.sm}px ${spacing.md}px`,
+    padding: `${spacing.sm}px ${spacing.md}px ${spacing.md}px`,
     boxSizing: 'border-box',
   };
 }
@@ -267,7 +290,7 @@ export function buildBioStyle(
   colors: UserProfileCardColors,
   theme: WispTheme,
 ): CSSStyleObject {
-  const { typography } = theme;
+  const { typography, spacing } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
     fontSize: typography.sizes.sm.fontSize,
@@ -275,6 +298,7 @@ export function buildBioStyle(
     fontWeight: typography.weights.regular,
     color: colors.textSecondary,
     margin: 0,
+    padding: `${spacing.sm}px 0`,
     wordBreak: 'break-word',
     display: '-webkit-box',
     WebkitBoxOrient: 'vertical',
@@ -295,7 +319,7 @@ export function buildRolesContainerStyle(
     display: 'flex',
     flexWrap: 'wrap',
     gap: spacing.xs,
-    padding: `0 ${spacing.md}px`,
+    padding: `${spacing.sm}px ${spacing.md}px`,
     boxSizing: 'border-box',
   };
 }
