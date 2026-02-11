@@ -143,3 +143,7 @@ export type { LinkPreviewCardProps } from './link-preview-card';
 // MessageActionBar
 export { MessageActionBar } from './message-action-bar';
 export type { MessageActionBarProps, MessageAction } from './message-action-bar';
+
+// MentionAutocomplete
+export { MentionAutocomplete } from './mention-autocomplete';
+export type { MentionAutocompleteProps, MentionUser } from './mention-autocomplete';

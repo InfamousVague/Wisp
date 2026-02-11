@@ -60,6 +60,7 @@ import { themeEditorEntry } from './theme-editor';
 import { conversationListItemEntry } from './conversation-list-item';
 import { linkPreviewCardEntry } from './link-preview-card';
 import { messageActionBarEntry } from './message-action-bar';
+import { mentionAutocompleteEntry } from './mention-autocomplete';
 
 
 export const componentEntries: ComponentEntry[] = [
@@ -124,4 +125,5 @@ export const componentEntries: ComponentEntry[] = [
   conversationListItemEntry,
   linkPreviewCardEntry,
   messageActionBarEntry,
+  mentionAutocompleteEntry,
 ];

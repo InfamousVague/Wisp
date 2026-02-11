@@ -124,3 +124,4 @@ export * from './ThemeEditor.types';
 export * from './ConversationListItem.types';
 export * from './LinkPreviewCard.types';
 export * from './MessageActionBar.types';
+export * from './MentionAutocomplete.types';

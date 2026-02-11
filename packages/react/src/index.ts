@@ -430,5 +430,8 @@ export type { LinkPreviewCardProps, LinkPreviewCardSize, LinkPreviewCardLayout }
 export { MessageActionBar } from './components';
 export type { MessageActionBarProps, MessageAction } from './components';
 
+export { MentionAutocomplete } from './components';
+export type { MentionAutocompleteProps, MentionUser } from './components';
+
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';
