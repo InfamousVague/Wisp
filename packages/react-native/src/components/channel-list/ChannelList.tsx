@@ -261,12 +261,13 @@ export const ChannelList = forwardRef<View, ChannelListProps>(
     }), []);
 
     const categoryLabelStyle: TextStyle = useMemo(() => ({
-      fontSize: defaultTypography.sizes['2xs'].fontSize,
-      lineHeight: defaultTypography.sizes['2xs'].lineHeight,
+      fontSize: defaultTypography.sizes.xs.fontSize,
+      lineHeight: defaultTypography.sizes.xs.lineHeight,
       fontWeight: String(defaultTypography.weights.semibold) as TextStyle['fontWeight'],
       color: colors.categoryText,
       textTransform: 'uppercase',
       letterSpacing: 0.5,
+      textAlign: 'left',
       flex: 1,
     }), [colors.categoryText]);
 

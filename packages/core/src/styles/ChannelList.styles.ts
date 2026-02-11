@@ -143,6 +143,7 @@ export function buildCategoryHeaderStyle(
     border: 'none',
     cursor: 'pointer',
     userSelect: 'none',
+    textAlign: 'left',
     width: `calc(100% - ${spacing.sm * 2}px)`,
     boxSizing: 'border-box',
     transition: `background-color ${durations.fast}ms ${easings.easeOut.css}`,
@@ -160,8 +161,8 @@ export function buildCategoryLabelStyle(
   const { typography } = theme;
   return {
     fontFamily: fontFamilyStacks.sans,
-    fontSize: typography.sizes['2xs'].fontSize,
-    lineHeight: `${typography.sizes['2xs'].lineHeight}px`,
+    fontSize: typography.sizes.xs.fontSize,
+    lineHeight: `${typography.sizes.xs.lineHeight}px`,
     fontWeight: typography.weights.semibold,
     color: colors.categoryText,
     textTransform: 'uppercase',
