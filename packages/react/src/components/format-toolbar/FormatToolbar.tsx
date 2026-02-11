@@ -1,18 +1,19 @@
 /**
  * @module FormatToolbar
  * @description Inline formatting toolbar for rich text editing.
+ *
+ * Composes the Toolbar layout primitive with format-specific action buttons.
  */
 import React, { forwardRef, useMemo, useCallback } from 'react';
 import type { FormatToolbarProps, FormatAction } from '@wisp-ui/core/types/FormatToolbar.types';
 import { formatActions } from '@wisp-ui/core/types/FormatToolbar.types';
 import {
   resolveFormatToolbarColors,
-  buildFormatToolbarContainerStyle,
   buildFormatButtonStyle,
-  buildFormatSeparatorStyle,
   getFormatButtonIconSize,
 } from '@wisp-ui/core/styles/FormatToolbar.styles';
 import { useTheme } from '../../providers';
+import { Toolbar, ToolbarGroup, ToolbarSeparator } from '../toolbar';
 
 // ---------------------------------------------------------------------------
 // SVG Icons for each format action
@@ -139,8 +140,29 @@ const labelMap: Record<FormatAction, string> = {
   link: 'Link',
 };
 
-// Actions that appear before a separator
+// ---------------------------------------------------------------------------
+// Action grouping — split actions by separator boundaries
+// ---------------------------------------------------------------------------
+
+/** Actions grouped by separator: [bold,italic,strikethrough] | [code,codeBlock] | [quote] | [orderedList,unorderedList,link] */
 const separatorAfter = new Set<FormatAction>(['strikethrough', 'codeBlock', 'quote']);
+
+function groupActions(actions: FormatAction[]): FormatAction[][] {
+  const groups: FormatAction[][] = [];
+  let current: FormatAction[] = [];
+
+  for (const action of actions) {
+    current.push(action);
+    if (separatorAfter.has(action)) {
+      groups.push(current);
+      current = [];
+    }
+  }
+  if (current.length > 0) {
+    groups.push(current);
+  }
+  return groups;
+}
 
 // ---------------------------------------------------------------------------
 // FormatToolbar
@@ -150,8 +172,9 @@ const separatorAfter = new Set<FormatAction>(['strikethrough', 'codeBlock', 'quo
  * FormatToolbar — Inline formatting bar for message inputs.
  *
  * @remarks
- * Renders a horizontal row of formatting action buttons (bold, italic,
- * strikethrough, code, etc.) similar to Slack and Discord formatting bars.
+ * Composes the {@link Toolbar} layout primitive (pill variant) with
+ * format-specific action buttons. Renders bold, italic, strikethrough,
+ * code, and more — similar to Slack and Discord formatting bars.
  *
  * @example
  * ```tsx
@@ -183,14 +206,21 @@ export const FormatToolbar = forwardRef<HTMLDivElement, FormatToolbarProps>(
       [theme],
     );
 
-    const containerStyle = useMemo(
-      () => buildFormatToolbarContainerStyle(colors, theme),
-      [colors, theme],
+    // Override Toolbar's default pill colors with FormatToolbar's dark-surface colors
+    const toolbarOverrideStyle = useMemo(
+      () => ({
+        backgroundColor: colors.bg,
+        borderColor: colors.border,
+      }),
+      [colors],
     );
 
-    const separatorStyle = useMemo(
-      () => buildFormatSeparatorStyle(colors, size),
-      [colors, size],
+    // Override separator color to match FormatToolbar's theme
+    const separatorOverrideStyle = useMemo(
+      () => ({
+        backgroundColor: colors.separatorColor,
+      }),
+      [colors],
     );
 
     const iconSize = useMemo(
@@ -199,6 +229,7 @@ export const FormatToolbar = forwardRef<HTMLDivElement, FormatToolbarProps>(
     );
 
     const actions = visibleActions ?? [...formatActions];
+    const groups = useMemo(() => groupActions(actions), [actions]);
 
     const handleAction = useCallback(
       (action: FormatAction) => {
@@ -210,42 +241,45 @@ export const FormatToolbar = forwardRef<HTMLDivElement, FormatToolbarProps>(
     );
 
     return (
-      <div
+      <Toolbar
         ref={ref}
-        role="toolbar"
+        size="sm"
+        variant="pill"
         aria-label="Formatting options"
         className={className}
-        style={{ ...containerStyle, ...userStyle }}
+        style={{ ...toolbarOverrideStyle, ...userStyle }}
         {...rest}
       >
-        {actions.map((action, i) => {
-          const isActive = activeFormats.has(action);
-          const isDisabled = disabled || disabledActions.has(action);
-          const Icon = iconMap[action];
-          const label = labelMap[action];
+        {groups.map((group, gi) => (
+          <React.Fragment key={gi}>
+            {gi > 0 && <ToolbarSeparator style={separatorOverrideStyle} />}
+            <ToolbarGroup gap="xs">
+              {group.map((action) => {
+                const isActive = activeFormats.has(action);
+                const isDisabled = disabled || disabledActions.has(action);
+                const Icon = iconMap[action];
+                const label = labelMap[action];
+                const btnStyle = buildFormatButtonStyle(colors, isActive, isDisabled, size, theme);
 
-          const btnStyle = buildFormatButtonStyle(colors, isActive, isDisabled, size, theme);
-
-          return (
-            <React.Fragment key={action}>
-              <button
-                type="button"
-                aria-label={label}
-                aria-pressed={isActive}
-                disabled={isDisabled}
-                title={label}
-                style={btnStyle}
-                onClick={() => handleAction(action)}
-              >
-                <Icon size={iconSize} />
-              </button>
-              {separatorAfter.has(action) && i < actions.length - 1 && (
-                <div style={separatorStyle} aria-hidden />
-              )}
-            </React.Fragment>
-          );
-        })}
-      </div>
+                return (
+                  <button
+                    key={action}
+                    type="button"
+                    aria-label={label}
+                    aria-pressed={isActive}
+                    disabled={isDisabled}
+                    title={label}
+                    style={btnStyle}
+                    onClick={() => handleAction(action)}
+                  >
+                    <Icon size={iconSize} />
+                  </button>
+                );
+              })}
+            </ToolbarGroup>
+          </React.Fragment>
+        ))}
+      </Toolbar>
     );
   },
 );

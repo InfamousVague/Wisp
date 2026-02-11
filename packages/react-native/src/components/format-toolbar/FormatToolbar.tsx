@@ -2,6 +2,7 @@
  * @module components/format-toolbar
  * @description React Native FormatToolbar for the Wisp design system.
  *
+ * Composes the Toolbar layout primitive with format-specific action buttons.
  * Reuses color resolution from `@wisp-ui/core`. Renders via `<View>` + `<Pressable>`.
  */
 
@@ -14,8 +15,9 @@ import {
 } from '@wisp-ui/core/styles/FormatToolbar.styles';
 import type { FormatAction } from '@wisp-ui/core/types/FormatToolbar.types';
 import { formatActions } from '@wisp-ui/core/types/FormatToolbar.types';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
 import { useTheme } from '../../providers';
+import { Toolbar, ToolbarGroup, ToolbarSeparator } from '../toolbar';
 import Svg, { Line, Path, Polyline, Rect } from 'react-native-svg';
 
 // ---------------------------------------------------------------------------
@@ -156,7 +158,28 @@ const labelMap: Record<FormatAction, string> = {
   link: 'Link',
 };
 
+// ---------------------------------------------------------------------------
+// Action grouping
+// ---------------------------------------------------------------------------
+
 const separatorAfter = new Set<FormatAction>(['strikethrough', 'codeBlock', 'quote']);
+
+function groupActions(actions: FormatAction[]): FormatAction[][] {
+  const groups: FormatAction[][] = [];
+  let current: FormatAction[] = [];
+
+  for (const action of actions) {
+    current.push(action);
+    if (separatorAfter.has(action)) {
+      groups.push(current);
+      current = [];
+    }
+  }
+  if (current.length > 0) {
+    groups.push(current);
+  }
+  return groups;
+}
 
 // ---------------------------------------------------------------------------
 // Size configs
@@ -194,6 +217,7 @@ export const FormatToolbar = forwardRef<View, FormatToolbarProps>(
 
     const actions = visibleActions ?? [...formatActions];
     const cfg = buttonSizeConfigs[size];
+    const groups = useMemo(() => groupActions(actions), [actions]);
 
     const handleAction = useCallback(
       (action: FormatAction) => {
@@ -204,73 +228,71 @@ export const FormatToolbar = forwardRef<View, FormatToolbarProps>(
       [onAction, disabled, disabledActions],
     );
 
-    const containerStyle: ViewStyle = {
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 2,
-      padding: defaultSpacing.xs,
-      borderRadius: defaultRadii.md,
-      borderWidth: 1,
-      borderColor: colors.border,
+    // Override Toolbar's default pill colors with FormatToolbar's dark-surface colors
+    const toolbarOverrideStyle: ViewStyle = {
       backgroundColor: colors.bg,
+      borderColor: colors.border,
+      borderWidth: 1,
+      ...(userStyle as ViewStyle),
     };
 
-    const separatorStyle: ViewStyle = {
-      width: 1,
-      height: cfg.size - 8,
+    // Override separator color to match FormatToolbar's theme
+    const separatorOverrideStyle: ViewStyle = {
       backgroundColor: colors.separatorColor,
-      marginHorizontal: 2,
     };
 
     return (
-      <View
+      <Toolbar
         ref={ref}
-        accessibilityRole="toolbar"
-        accessibilityLabel="Formatting options"
-        style={[containerStyle, userStyle as ViewStyle]}
+        size="sm"
+        variant="pill"
+        style={toolbarOverrideStyle}
         {...rest}
       >
-        {actions.map((action, i) => {
-          const isActive = activeFormats.has(action);
-          const isDisabled = disabled || disabledActions.has(action);
-          const Icon = iconMap[action];
-          const label = labelMap[action];
+        {groups.map((group, gi) => (
+          <React.Fragment key={gi}>
+            {gi > 0 && <ToolbarSeparator style={separatorOverrideStyle} />}
+            <ToolbarGroup gap="xs">
+              {group.map((action) => {
+                const isActive = activeFormats.has(action);
+                const isDisabled = disabled || disabledActions.has(action);
+                const Icon = iconMap[action];
+                const label = labelMap[action];
 
-          const buttonStyle: ViewStyle = {
-            width: cfg.size,
-            height: cfg.size,
-            borderRadius: defaultRadii.sm,
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: isActive ? colors.buttonBgActive : colors.buttonBg,
-            opacity: isDisabled ? 0.5 : 1,
-          };
+                const buttonStyle: ViewStyle = {
+                  width: cfg.size,
+                  height: cfg.size,
+                  borderRadius: defaultRadii.sm,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: isActive ? colors.buttonBgActive : colors.buttonBg,
+                  opacity: isDisabled ? 0.5 : 1,
+                };
 
-          const iconColor = isDisabled
-            ? colors.buttonTextDisabled
-            : isActive
-              ? colors.buttonTextActive
-              : colors.buttonText;
+                const iconColor = isDisabled
+                  ? colors.buttonTextDisabled
+                  : isActive
+                    ? colors.buttonTextActive
+                    : colors.buttonText;
 
-          return (
-            <React.Fragment key={action}>
-              <Pressable
-                accessibilityRole="button"
-                accessibilityLabel={label}
-                accessibilityState={{ selected: isActive, disabled: isDisabled }}
-                disabled={isDisabled}
-                onPress={() => handleAction(action)}
-                style={buttonStyle}
-              >
-                <Icon size={cfg.iconSize} color={iconColor} />
-              </Pressable>
-              {separatorAfter.has(action) && i < actions.length - 1 && (
-                <View style={separatorStyle} />
-              )}
-            </React.Fragment>
-          );
-        })}
-      </View>
+                return (
+                  <Pressable
+                    key={action}
+                    accessibilityRole="button"
+                    accessibilityLabel={label}
+                    accessibilityState={{ selected: isActive, disabled: isDisabled }}
+                    disabled={isDisabled}
+                    onPress={() => handleAction(action)}
+                    style={buttonStyle}
+                  >
+                    <Icon size={cfg.iconSize} color={iconColor} />
+                  </Pressable>
+                );
+              })}
+            </ToolbarGroup>
+          </React.Fragment>
+        ))}
+      </Toolbar>
     );
   },
 );

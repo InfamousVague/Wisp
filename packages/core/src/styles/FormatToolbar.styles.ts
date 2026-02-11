@@ -1,6 +1,9 @@
 /**
  * @module styles/FormatToolbar
  * @description Pure style-builder functions for the FormatToolbar component.
+ *
+ * Container and separator styles are provided by the Toolbar layout primitive.
+ * This module only provides color resolution and button styles specific to FormatToolbar.
  */
 
 import type { CSSStyleObject } from '../types';
@@ -39,27 +42,6 @@ export function resolveFormatToolbarColors(
     buttonTextActive: colors.text.onRaised,
     buttonTextDisabled: withAlpha(colors.text.onRaisedSecondary, 0.4),
     separatorColor: colors.accent.dividerRaised,
-  };
-}
-
-// ---------------------------------------------------------------------------
-// Container
-// ---------------------------------------------------------------------------
-
-export function buildFormatToolbarContainerStyle(
-  colors: FormatToolbarColors,
-  theme: WispTheme,
-): CSSStyleObject {
-  const { radii, spacing } = theme;
-  return {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: 2,
-    padding: `${spacing.xs}px`,
-    borderRadius: radii.md,
-    border: `1px solid ${colors.border}`,
-    backgroundColor: colors.bg,
-    boxSizing: 'border-box',
   };
 }
 
@@ -110,22 +92,4 @@ export function buildFormatButtonStyle(
 
 export function getFormatButtonIconSize(size: 'sm' | 'md'): number {
   return buttonSizeConfigs[size].iconSize;
-}
-
-// ---------------------------------------------------------------------------
-// Separator
-// ---------------------------------------------------------------------------
-
-export function buildFormatSeparatorStyle(
-  colors: FormatToolbarColors,
-  size: 'sm' | 'md',
-): CSSStyleObject {
-  const cfg = buttonSizeConfigs[size];
-  return {
-    width: 1,
-    height: cfg.size - 8,
-    backgroundColor: colors.separatorColor,
-    flexShrink: 0,
-    margin: '0 2px',
-  };
 }
