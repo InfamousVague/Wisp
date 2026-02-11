@@ -159,3 +159,24 @@ export type { PinnedMessagesProps, PinnedMessage } from './pinned-messages';
 // FormatToolbar
 export { FormatToolbar } from './format-toolbar';
 export type { FormatToolbarProps } from './format-toolbar';
+
+// UserProfileCard
+export { UserProfileCard } from './user-profile-card';
+export type { UserProfileCardProps, ProfileRole, ProfileAction, UserStatus } from './user-profile-card';
+
+// MemberList
+export { MemberList } from './member-list';
+export type { MemberListProps, MemberListSection, MemberListMember } from './member-list';
+
+// ChannelList
+export { ChannelList } from './channel-list';
+export type { ChannelListProps, ChannelCategory, ChannelItem, ChannelType } from './channel-list';
+
+// MessageSearch
+export { MessageSearch } from './message-search';
+export type { SearchResult, SearchFilter, SearchFilterType } from './message-search';
+
+// AttachmentPreview
+export { AttachmentPreview } from './attachment-preview';
+export type { AttachmentPreviewProps } from './attachment-preview/AttachmentPreview';
+export type { Attachment, AttachmentFileType } from './attachment-preview';

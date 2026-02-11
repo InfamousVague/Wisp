@@ -128,3 +128,8 @@ export * from './MentionAutocomplete.types';
 export * from './ThreadPanel.types';
 export * from './PinnedMessages.types';
 export { formatActions, type FormatAction, type FormatToolbarProps } from './FormatToolbar.types';
+export * from './UserProfileCard.types';
+export * from './MemberList.types';
+export * from './ChannelList.types';
+export * from './MessageSearch.types';
+export * from './AttachmentPreview.types';

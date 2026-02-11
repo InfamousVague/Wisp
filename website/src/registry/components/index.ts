@@ -64,6 +64,11 @@ import { mentionAutocompleteEntry } from './mention-autocomplete';
 import { threadPanelEntry } from './thread-panel';
 import { pinnedMessagesEntry } from './pinned-messages';
 import { formatToolbarEntry } from './format-toolbar';
+import { userProfileCardEntry } from './user-profile-card';
+import { memberListEntry } from './member-list';
+import { channelListEntry } from './channel-list';
+import { messageSearchEntry } from './message-search';
+import { attachmentPreviewEntry } from './attachment-preview';
 
 
 export const componentEntries: ComponentEntry[] = [
@@ -132,4 +137,9 @@ export const componentEntries: ComponentEntry[] = [
   threadPanelEntry,
   pinnedMessagesEntry,
   formatToolbarEntry,
+  userProfileCardEntry,
+  memberListEntry,
+  channelListEntry,
+  messageSearchEntry,
+  attachmentPreviewEntry,
 ];

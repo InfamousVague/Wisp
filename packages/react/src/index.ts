@@ -444,5 +444,20 @@ export type { PinnedMessagesProps, PinnedMessage } from './components';
 export { FormatToolbar, formatActions } from './components';
 export type { FormatToolbarProps, FormatAction } from './components';
 
+export { UserProfileCard } from './components';
+export type { UserProfileCardProps, ProfileRole, ProfileAction, UserStatus } from './components';
+
+export { MemberList } from './components';
+export type { MemberListProps, MemberListSection, MemberListMember } from './components';
+
+export { ChannelList } from './components';
+export type { ChannelListProps, ChannelCategory, ChannelItem, ChannelType } from './components';
+
+export { MessageSearch } from './components';
+export type { MessageSearchProps, SearchResult, SearchFilter, SearchFilterType } from './components';
+
+export { AttachmentPreview } from './components';
+export type { AttachmentPreviewProps, Attachment, AttachmentFileType } from './components';
+
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';
