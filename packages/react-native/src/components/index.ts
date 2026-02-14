@@ -210,6 +210,12 @@ export type { ActiveCallPanelProps } from './active-call-panel';
 export { CallStatsOverlay } from './call-stats-overlay';
 export type { CallStatsOverlayProps } from './call-stats-overlay';
 
+// Wave 19: Group Calling
+export { VideoGrid } from './video-grid';
+export type { VideoGridProps } from './video-grid';
+export { GroupCallPanel } from './group-call-panel';
+export type { GroupCallPanelProps } from './group-call-panel';
+
 // Wave 16: Roles & Permissions
 export { RoleBadge } from './role-badge';
 export type { RoleBadgeProps } from './role-badge';

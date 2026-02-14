@@ -155,6 +155,8 @@ export {
   CallNotification,
   // Wave 18: Video Calling
   VideoTile, QualitySelector, DevicePicker, ActiveCallPanel, CallStatsOverlay,
+  // Wave 19: Group Calling
+  VideoGrid, GroupCallPanel,
   // Wave 16: Roles & Permissions
   RoleBadge, PermissionManager,
   // Wave 17: Social / Friends
@@ -234,6 +236,8 @@ export type {
   // Wave 18: Video Calling
   VideoTileProps, QualitySelectorProps, DevicePickerProps,
   ActiveCallPanelProps, CallStatsOverlayProps,
+  // Wave 19: Group Calling
+  VideoGridProps, GroupCallPanelProps,
   // Wave 16: Roles & Permissions
   RoleBadgeProps,
   PermissionManagerProps, Permission, PermissionState,

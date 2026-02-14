@@ -141,8 +141,10 @@ export * from './CallStatsOverlay.types';
 export * from './CallTimer.types';
 export * from './DevicePicker.types';
 export * from './QualitySelector.types';
+export * from './VideoGrid.types';
 export * from './VideoTile.types';
 export * from './VoiceChannelPanel.types';
+export * from './GroupCallPanel.types';
 export * from './RoleBadge.types';
 export * from './PermissionManager.types';
 
