@@ -195,3 +195,9 @@ export type { WispImageProps } from './image';
 // ---------------------------------------------------------------------------
 export { Beacon } from './beacon';
 export type { BeaconProps } from './beacon';
+
+// ---------------------------------------------------------------------------
+// CallTimer
+// ---------------------------------------------------------------------------
+export { CallTimer } from './call-timer';
+export type { CallTimerProps } from './call-timer';

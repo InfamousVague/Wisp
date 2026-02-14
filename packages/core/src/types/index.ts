@@ -133,3 +133,18 @@ export * from './MemberList.types';
 export * from './ChannelList.types';
 export * from './MessageSearch.types';
 export * from './AttachmentPreview.types';
+export * from './CallControls.types';
+export * from './CallMiniWindow.types';
+export * from './CallNotification.types';
+export * from './CallTimer.types';
+export * from './VoiceChannelPanel.types';
+export * from './RoleBadge.types';
+export * from './PermissionManager.types';
+
+// Social / Friends
+export * from './FriendListItem.types';
+export * from './FriendRequestItem.types';
+export * from './FriendSection.types';
+export * from './UserSearchResult.types';
+export * from './UserMiniCard.types';
+export * from './AddFriendInput.types';

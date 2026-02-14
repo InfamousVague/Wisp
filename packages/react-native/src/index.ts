@@ -26,6 +26,7 @@ export {
   Alert, Skeleton, Rating, CircularProgress,
   TagInput, ColorPicker,
   NotificationBadge, ReadReceipt, WispImage, Beacon,
+  CallTimer,
 } from './primitives';
 export type {
   TextProps, BadgeProps, ButtonProps, InputProps, ToggleProps,
@@ -36,6 +37,7 @@ export type {
   AlertProps, SkeletonProps, RatingProps, CircularProgressProps,
   TagInputProps, ColorPickerProps,
   NotificationBadgeProps, ReadReceiptProps, WispImageProps, BeaconProps,
+  CallTimerProps,
 } from './primitives';
 
 // ---------------------------------------------------------------------------
@@ -48,7 +50,7 @@ export {
   ListItem, EmptyState,
   Sidebar, SidebarSection, SidebarItem,
   Collapse, Overlay, Sticky,
-  Floating,
+  Floating, AnchoredPopover,
 } from './layouts';
 export type {
   StackProps,
@@ -91,6 +93,7 @@ export type {
   OverlayProps,
   StickyProps,
   FloatingProps,
+  AnchoredPopoverProps,
 } from './layouts';
 
 // ---------------------------------------------------------------------------
@@ -134,6 +137,27 @@ export {
   AchievementCard, QuestTracker, AchievementUnlock,
   ToastProvider, useToast,
   ThemeEditor, ThemeEditorField,
+  // AttachmentPreview
+  AttachmentPreview,
+  // LinkPreviewCard
+  LinkPreviewCard,
+  // Wave 12: Chat extended
+  ConversationList, ConversationListItem, MemberList, PinnedMessages, UserProfileCard,
+  ChannelList,
+  // Wave 13: Thread & Actions
+  ThreadPanel, MessageActionBar,
+  // Wave 14: MessageSearch
+  MessageSearch,
+  // MentionAutocomplete
+  MentionAutocomplete,
+  // Wave 15: Audio & Video
+  CallControls, CallMiniWindow, VoiceChannelPanel,
+  CallNotification,
+  // Wave 16: Roles & Permissions
+  RoleBadge, PermissionManager,
+  // Wave 17: Social / Friends
+  FriendListItem, FriendRequestItem, FriendSection,
+  UserSearchResult, UserMiniCard, AddFriendInput,
 } from './components';
 export type {
   // Wave 1
@@ -182,6 +206,39 @@ export type {
   SparklineProps, AudioWaveformProps, CodeBlockProps,
   AchievementCardProps, QuestTrackerProps, AchievementUnlockProps,
   ToastProviderProps,
+  // AttachmentPreview
+  AttachmentPreviewProps,
+  Attachment, AttachmentFileType,
+  // LinkPreviewCard
+  LinkPreviewCardProps,
+  // Wave 12: Chat extended
+  ConversationListProps, ConversationListItemProps,
+  MemberListProps, MemberListSection, MemberListMember,
+  PinnedMessagesProps, PinnedMessage,
+  UserProfileCardProps, ProfileRole, ProfileAction,
+  ChannelListProps, ChannelCategory, ChannelItem, ChannelType,
+  // Wave 13: Thread & Actions
+  ThreadPanelProps, ThreadMessage,
+  MessageActionBarProps, MessageAction,
+  // Wave 14: MessageSearch
+  MessageSearchProps,
+  // MentionAutocomplete
+  MentionAutocompleteProps, MentionUser,
+  // Wave 15: Audio & Video
+  CallControlsProps,
+  CallMiniWindowProps, SnapPosition,
+  VoiceChannelPanelProps,
+  CallNotificationProps,
+  // Wave 16: Roles & Permissions
+  RoleBadgeProps,
+  PermissionManagerProps, Permission, PermissionState,
+  // Wave 17: Social / Friends
+  FriendListItemProps, FriendAction, FriendStatus,
+  FriendRequestItemProps, FriendRequestType,
+  FriendSectionProps,
+  UserSearchResultProps, UserSearchRequestState,
+  UserMiniCardProps, UserMiniCardAction, UserMiniCardStatus,
+  AddFriendInputProps, AddFriendFeedbackState,
 } from './components';
 
 // ---------------------------------------------------------------------------
