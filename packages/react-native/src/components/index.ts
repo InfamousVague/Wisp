@@ -216,6 +216,16 @@ export type { VideoGridProps } from './video-grid';
 export { GroupCallPanel } from './group-call-panel';
 export type { GroupCallPanelProps } from './group-call-panel';
 
+// Wave 20: Advanced Call Features
+export { VideoEffectsPanel } from './video-effects-panel';
+export type { VideoEffectsPanelProps } from './video-effects-panel';
+export { EmojiReactionsOverlay } from './emoji-reactions-overlay';
+export type { EmojiReactionsOverlayProps } from './emoji-reactions-overlay';
+export { CallPipWidget } from './call-pip-widget';
+export type { CallPipWidgetProps } from './call-pip-widget';
+export { CallHistoryItem } from './call-history-item';
+export type { CallHistoryItemProps } from './call-history-item';
+
 // Wave 16: Roles & Permissions
 export { RoleBadge } from './role-badge';
 export type { RoleBadgeProps } from './role-badge';

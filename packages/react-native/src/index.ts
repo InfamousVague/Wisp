@@ -157,6 +157,8 @@ export {
   VideoTile, QualitySelector, DevicePicker, ActiveCallPanel, CallStatsOverlay,
   // Wave 19: Group Calling
   VideoGrid, GroupCallPanel,
+  // Wave 20: Advanced Call Features
+  VideoEffectsPanel, EmojiReactionsOverlay, CallPipWidget, CallHistoryItem,
   // Wave 16: Roles & Permissions
   RoleBadge, PermissionManager,
   // Wave 17: Social / Friends
@@ -238,6 +240,8 @@ export type {
   ActiveCallPanelProps, CallStatsOverlayProps,
   // Wave 19: Group Calling
   VideoGridProps, GroupCallPanelProps,
+  // Wave 20: Advanced Call Features
+  VideoEffectsPanelProps, EmojiReactionsOverlayProps, CallPipWidgetProps, CallHistoryItemProps,
   // Wave 16: Roles & Permissions
   RoleBadgeProps,
   PermissionManagerProps, Permission, PermissionState,

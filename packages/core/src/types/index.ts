@@ -145,6 +145,10 @@ export * from './VideoGrid.types';
 export * from './VideoTile.types';
 export * from './VoiceChannelPanel.types';
 export * from './GroupCallPanel.types';
+export * from './VideoEffectsPanel.types';
+export * from './EmojiReactionsOverlay.types';
+export * from './CallPipWidget.types';
+export * from './CallHistoryItem.types';
 export * from './RoleBadge.types';
 export * from './PermissionManager.types';
 
