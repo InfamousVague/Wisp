@@ -153,6 +153,8 @@ export {
   // Wave 15: Audio & Video
   CallControls, CallMiniWindow, VoiceChannelPanel,
   CallNotification,
+  // Wave 18: Video Calling
+  VideoTile, QualitySelector, DevicePicker, ActiveCallPanel, CallStatsOverlay,
   // Wave 16: Roles & Permissions
   RoleBadge, PermissionManager,
   // Wave 17: Social / Friends
@@ -229,6 +231,9 @@ export type {
   CallMiniWindowProps, SnapPosition,
   VoiceChannelPanelProps,
   CallNotificationProps,
+  // Wave 18: Video Calling
+  VideoTileProps, QualitySelectorProps, DevicePickerProps,
+  ActiveCallPanelProps, CallStatsOverlayProps,
   // Wave 16: Roles & Permissions
   RoleBadgeProps,
   PermissionManagerProps, Permission, PermissionState,

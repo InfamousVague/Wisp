@@ -198,6 +198,18 @@ export type { VoiceChannelPanelProps } from './voice-channel-panel';
 export { CallNotification } from './call-notification';
 export type { CallNotificationProps } from './call-notification';
 
+// Wave 18: Video Calling
+export { VideoTile } from './video-tile';
+export type { VideoTileProps } from './video-tile';
+export { QualitySelector } from './quality-selector';
+export type { QualitySelectorProps } from './quality-selector';
+export { DevicePicker } from './device-picker';
+export type { DevicePickerProps } from './device-picker';
+export { ActiveCallPanel } from './active-call-panel';
+export type { ActiveCallPanelProps } from './active-call-panel';
+export { CallStatsOverlay } from './call-stats-overlay';
+export type { CallStatsOverlayProps } from './call-stats-overlay';
+
 // Wave 16: Roles & Permissions
 export { RoleBadge } from './role-badge';
 export type { RoleBadgeProps } from './role-badge';
