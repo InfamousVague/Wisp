@@ -1,8 +1,12 @@
 /**
  * GroupCallPanel — Full-screen group call UI with video grid, top bar, and controls.
+ *
+ * The VideoGrid inside supports click-to-focus: clicking a participant's tile
+ * pins them to a large main view with the rest shown as thumbnails below.
+ * Clicking the focused participant again returns to the even grid.
  */
 
-import React, { forwardRef, useMemo } from 'react';
+import React, { forwardRef, useMemo, useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { useTheme } from '../../providers';
@@ -47,6 +51,9 @@ export const GroupCallPanel = forwardRef<View, GroupCallPanelProps>(
     const bgColor = resolveGroupCallBackground(isDark);
     const borderColor = resolveGroupCallBorder(isDark);
     const controlBarBg = resolveControlBarBackground(isDark);
+
+    // Focused participant state (managed here, passed to VideoGrid)
+    const [focusedDid, setFocusedDid] = useState<string | null>(null);
 
     // -- Styles -------------------------------------------------------------
 
@@ -140,7 +147,7 @@ export const GroupCallPanel = forwardRef<View, GroupCallPanelProps>(
           )}
         </View>
 
-        {/* Video grid */}
+        {/* Video grid with click-to-focus */}
         <VideoGrid
           participants={participants}
           localStream={localStream}
@@ -148,6 +155,8 @@ export const GroupCallPanel = forwardRef<View, GroupCallPanelProps>(
           screenShareDid={screenShareDid}
           localDid={localDid}
           activeSpeakerDid={activeSpeakerDid}
+          focusedDid={focusedDid}
+          onFocusParticipant={setFocusedDid}
         />
 
         {/* Bottom control bar */}

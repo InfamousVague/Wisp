@@ -101,8 +101,8 @@ export const ActiveCallPanel = forwardRef<View, ActiveCallPanelProps>(function A
     height: isVideo ? undefined : 120,
     backgroundColor: '#000',
     ...(isVideo ? {
-      margin: 12,
-      borderRadius: 12,
+      margin: 16,
+      borderRadius: 14,
       overflow: 'hidden' as const,
     } : {}),
   }), [isVideo]);
