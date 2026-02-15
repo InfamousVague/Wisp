@@ -6,6 +6,7 @@ export const localePickerEntry: ComponentEntry = {
   slug: 'locale-picker',
   name: 'LocalePicker',
   category: 'components',
+  subcategory: 'Date & Time',
   description:
     'Language/locale selector with searchable dropdown, region grouping, native labels, and skeleton loading.',
   variantCount: 3,

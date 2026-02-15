@@ -6,6 +6,7 @@ export const qrCodeEntry: ComponentEntry = {
   slug: 'qr-code',
   name: 'QRCode',
   category: 'components',
+  subcategory: 'Social',
   description:
     'Stylised QR code generator with custom SVG rendering. Supports 7 dot shapes (square, circle, rounded, diamond, star, classy, classy-rounded), gradient fills, independent finder-pattern eye styling, theme-aware colours, and optional centre logo.',
   variantCount: 7,

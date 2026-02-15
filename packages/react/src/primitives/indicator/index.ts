@@ -5,5 +5,5 @@
  */
 
 export { Indicator } from './Indicator';
-export type { IndicatorProps, IndicatorVariant, IndicatorState, IndicatorSize, IndicatorSizeConfig } from '@wisp-ui/core/types/Indicator.types';
-export { indicatorVariants, indicatorStates, indicatorSizes, indicatorSizeMap } from '@wisp-ui/core/types/Indicator.types';
+export type { IndicatorProps, IndicatorVariant, IndicatorState, IndicatorSize, IndicatorSizeConfig } from '@coexist/wisp-core/types/Indicator.types';
+export { indicatorVariants, indicatorStates, indicatorSizes, indicatorSizeMap } from '@coexist/wisp-core/types/Indicator.types';

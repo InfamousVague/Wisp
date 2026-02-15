@@ -6,6 +6,7 @@ export const pingMeterEntry: ComponentEntry = {
   slug: 'ping-meter',
   name: 'PingMeter',
   category: 'components',
+  subcategory: 'Data Viz',
   description:
     'Network latency indicator with animated dot, signal bars, latency value display, and dot/bars/full variants.',
   variantCount: 3,

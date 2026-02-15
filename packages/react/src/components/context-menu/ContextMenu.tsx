@@ -9,13 +9,13 @@ import type {
   ContextMenuContentProps,
   ContextMenuItemProps,
   ContextMenuSeparatorProps,
-} from '@wisp-ui/core/types/ContextMenu.types';
+} from '@coexist/wisp-core/types/ContextMenu.types';
 import {
   buildContextMenuContentStyle,
   buildContextMenuItemStyle,
   buildContextMenuShortcutStyle,
   buildContextMenuSeparatorStyle,
-} from '@wisp-ui/core/styles/ContextMenu.styles';
+} from '@coexist/wisp-core/styles/ContextMenu.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
 

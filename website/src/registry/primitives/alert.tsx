@@ -7,6 +7,7 @@ export const alertEntry: ComponentEntry = {
   slug: 'alert',
   name: 'Alert',
   category: 'primitives',
+  subcategory: 'Status & Feedback',
   description:
     'Contextual alert banner with 5 semantic variants, title, description, icon, and optional action element.',
   variantCount: 5,

@@ -1,9 +1,9 @@
 import React, { forwardRef, useMemo, createContext, useContext } from 'react';
 import { View } from 'react-native';
 import type { ViewStyle } from 'react-native';
-import type { ToolbarSizeConfig, ToolbarSize, ToolbarVariant } from '@wisp-ui/core/types/Toolbar.types';
-import { toolbarSizeMap } from '@wisp-ui/core/types/Toolbar.types';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import type { ToolbarSizeConfig, ToolbarSize, ToolbarVariant } from '@coexist/wisp-core/types/Toolbar.types';
+import { toolbarSizeMap } from '@coexist/wisp-core/types/Toolbar.types';
+import { defaultSpacing, defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

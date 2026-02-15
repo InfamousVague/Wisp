@@ -9,7 +9,7 @@ import {
   TableHead,
   TableCell,
 } from './Table';
-import { tableSizes, tableVariants } from '@wisp-ui/core/types/Table.types';
+import { tableSizes, tableVariants } from '@coexist/wisp-core/types/Table.types';
 import { Text } from '../../primitives/text';
 
 const meta: Meta<typeof Table> = {

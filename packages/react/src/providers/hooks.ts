@@ -8,8 +8,8 @@
  */
 
 import { useContext } from 'react';
-import type { ThemeColors, ThemeMode, WispTheme } from '@wisp-ui/core/theme/types';
-import type { ThemeOverrides } from '@wisp-ui/core/theme/create-theme';
+import type { ThemeColors, ThemeMode, WispTheme } from '@coexist/wisp-core/theme/types';
+import type { ThemeOverrides } from '@coexist/wisp-core/theme/create-theme';
 import { WispThemeContext, type WispThemeContextValue } from './WispProvider';
 
 // ---------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PinInput } from './PinInput';
-import { pinInputSizes } from '@wisp-ui/core/types/PinInput.types';
+import { pinInputSizes } from '@coexist/wisp-core/types/PinInput.types';
 import { Text } from '../text';
 import { Button } from '../button';
 import { VStack, HStack } from '../../layouts/stack';

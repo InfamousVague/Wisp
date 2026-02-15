@@ -1,8 +1,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from './Container';
-import { containerSizes, containerSizeMap } from '@wisp-ui/core/types/Container.types';
-import type { ContainerSize } from '@wisp-ui/core/types/Container.types';
+import { containerSizes, containerSizeMap } from '@coexist/wisp-core/types/Container.types';
+import type { ContainerSize } from '@coexist/wisp-core/types/Container.types';
 import { Text } from '../../primitives/text';
 import { useThemeColors } from '../../providers';
 

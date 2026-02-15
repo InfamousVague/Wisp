@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText } from 'react-native';
-import type { EmptyStateSize } from '@wisp-ui/core/types/EmptyState.types';
-import { emptyStateSizeMap } from '@wisp-ui/core/types/EmptyState.types';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { EmptyStateSize } from '@coexist/wisp-core/types/EmptyState.types';
+import { emptyStateSizeMap } from '@coexist/wisp-core/types/EmptyState.types';
+import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface EmptyStateProps {

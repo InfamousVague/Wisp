@@ -15,8 +15,8 @@
  */
 
 import React, { useMemo } from 'react';
-import type { AchievementCardProps } from '@wisp-ui/core/types/AchievementCard.types';
-import { achievementRarityMap } from '@wisp-ui/core/types/AchievementCard.types';
+import type { AchievementCardProps } from '@coexist/wisp-core/types/AchievementCard.types';
+import { achievementRarityMap } from '@coexist/wisp-core/types/AchievementCard.types';
 import {
   resolveAchievementColors,
   buildAchievementCardStyle,
@@ -28,13 +28,13 @@ import {
   buildAchievementProgressBarStyle,
   buildAchievementRarityStyle,
   buildAchievementDateStyle,
-} from '@wisp-ui/core/styles/AchievementCard.styles';
+} from '@coexist/wisp-core/styles/AchievementCard.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
 import { Icon } from '../../primitives/icon';
 import { Progress } from '../../primitives/progress';
 import { Trophy, Lock, CheckCircle } from 'lucide-react';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 
 export function AchievementCard({
   title,

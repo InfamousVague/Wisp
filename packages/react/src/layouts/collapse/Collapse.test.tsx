@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Collapse } from './Collapse';
-import { collapseDurations, collapseDurationMap } from '@wisp-ui/core/types/Collapse.types';
+import { collapseDurations, collapseDurationMap } from '@coexist/wisp-core/types/Collapse.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

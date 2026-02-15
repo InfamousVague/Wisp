@@ -6,6 +6,7 @@ export const circularProgressEntry: ComponentEntry = {
   slug: 'circular-progress',
   name: 'CircularProgress',
   category: 'primitives',
+  subcategory: 'Status & Feedback',
   description:
     'Circular progress ring with full/half arc variants, 4 sizes, semantic colors, indeterminate mode, and center content.',
   variantCount: 4,

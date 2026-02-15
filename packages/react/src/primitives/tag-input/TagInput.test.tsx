@@ -5,7 +5,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { TagInput } from './TagInput';
 import { WispProvider } from '../../providers';
-import { tagInputSizeMap } from '@wisp-ui/core/types/TagInput.types';
+import { tagInputSizeMap } from '@coexist/wisp-core/types/TagInput.types';
 
 // ---------------------------------------------------------------------------
 // Wrappers

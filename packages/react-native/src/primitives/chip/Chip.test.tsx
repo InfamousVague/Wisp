@@ -9,7 +9,7 @@ import {
   chipSizes,
   chipColors,
   chipVariants,
-} from '@wisp-ui/core/types/Chip.types';
+} from '@coexist/wisp-core/types/Chip.types';
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => (
   <WispProvider mode="dark">{children}</WispProvider>

@@ -2,20 +2,20 @@
  * @module components/member-list
  * @description React Native MemberList for the Wisp design system.
  *
- * Reuses color resolution from `@wisp-ui/core`. Renders via `<View>` + `<Text>`.
+ * Reuses color resolution from `@coexist/wisp-core`. Renders via `<View>` + `<Text>`.
  */
 
 import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import { View, Text, Pressable, ScrollView } from 'react-native';
-import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
+import type { GestureResponderEvent, ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type {
   MemberListMember,
   MemberListSection,
-} from '@wisp-ui/core/types/MemberList.types';
+} from '@coexist/wisp-core/types/MemberList.types';
 import {
   resolveMemberListColors,
-} from '@wisp-ui/core/styles/MemberList.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+} from '@coexist/wisp-core/styles/MemberList.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 import Svg, { Line, Path } from 'react-native-svg';
 
@@ -27,7 +27,7 @@ export interface MemberListProps extends ViewProps {
   /** Grouped sections of members. */
   sections: MemberListSection[];
   /** Called when a member item is pressed. */
-  onMemberClick?: (member: MemberListMember) => void;
+  onMemberClick?: (member: MemberListMember, event: GestureResponderEvent) => void;
   /** Panel title. @default 'Members' */
   title?: string;
   /** Called when the close button is pressed. If omitted, no close button. */
@@ -100,6 +100,7 @@ function DefaultAvatar({ name }: { name: string }) {
         backgroundColor: '#333',
         alignItems: 'center',
         justifyContent: 'center',
+        flexShrink: 0,
       }}
     >
       <Text style={{ color: '#fff', fontSize: 12, fontWeight: '600' }}>
@@ -123,8 +124,6 @@ function MemberListSkeleton({
   const containerStyle: ViewStyle = {
     flex: 1,
     backgroundColor: colors.bg,
-    borderLeftWidth: 1,
-    borderLeftColor: colors.border,
   };
 
   const headerStyle: ViewStyle = {
@@ -135,7 +134,7 @@ function MemberListSkeleton({
     paddingHorizontal: defaultSpacing.md,
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
-    minHeight: 48,
+    minHeight: 56,
   };
 
   const barBase: ViewStyle = {
@@ -266,8 +265,8 @@ export const MemberList = forwardRef<View, MemberListProps>(
     }, []);
 
     const handleMemberClick = useCallback(
-      (member: MemberListMember) => {
-        onMemberClick?.(member);
+      (member: MemberListMember, event: GestureResponderEvent) => {
+        onMemberClick?.(member, event);
       },
       [onMemberClick],
     );
@@ -288,8 +287,6 @@ export const MemberList = forwardRef<View, MemberListProps>(
     const containerStyle: ViewStyle = {
       flex: 1,
       backgroundColor: colors.bg,
-      borderLeftWidth: 1,
-      borderLeftColor: colors.border,
     };
 
     const headerStyle: ViewStyle = {
@@ -300,7 +297,8 @@ export const MemberList = forwardRef<View, MemberListProps>(
       paddingHorizontal: defaultSpacing.md,
       borderBottomWidth: 1,
       borderBottomColor: colors.border,
-      minHeight: 48,
+      flexShrink: 0,
+      minHeight: 56,
     };
 
     const titleTextStyle: TextStyle = {
@@ -316,6 +314,7 @@ export const MemberList = forwardRef<View, MemberListProps>(
       borderRadius: defaultRadii.md,
       alignItems: 'center',
       justifyContent: 'center',
+      flexShrink: 0,
     };
 
     const sectionHeaderStyle: ViewStyle = {
@@ -395,7 +394,7 @@ export const MemberList = forwardRef<View, MemberListProps>(
         </View>
 
         {/* Body */}
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingVertical: defaultSpacing.xs }}>
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingVertical: defaultSpacing.xs, flexDirection: 'column' }}>
           {/* Loading */}
           {loading && (
             <View style={loadingViewStyle}>
@@ -442,11 +441,11 @@ export const MemberList = forwardRef<View, MemberListProps>(
                           key={member.id}
                           accessibilityRole="button"
                           accessibilityLabel={`${member.name}${member.status ? `, ${member.status}` : ''}`}
-                          onPress={() => handleMemberClick(member)}
+                          onPress={(e) => handleMemberClick(member, e)}
                           style={memberItemStyle}
                         >
                           {/* Avatar + status dot */}
-                          <View style={{ position: 'relative' }}>
+                          <View style={{ position: 'relative', flexShrink: 0 }}>
                             {member.avatar || <DefaultAvatar name={member.name} />}
                             {member.status && (
                               <View
@@ -466,7 +465,7 @@ export const MemberList = forwardRef<View, MemberListProps>(
                           </View>
 
                           {/* Text */}
-                          <View style={{ flex: 1 }}>
+                          <View style={{ flex: 1, flexDirection: 'column', minWidth: 0 }}>
                             <Text style={memberNameStyle} numberOfLines={1}>
                               {member.name}
                             </Text>

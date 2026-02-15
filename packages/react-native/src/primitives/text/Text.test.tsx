@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Text } from './Text';
-import { textSizes } from '@wisp-ui/core/tokens/shared';
+import { textSizes } from '@coexist/wisp-core/tokens/shared';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

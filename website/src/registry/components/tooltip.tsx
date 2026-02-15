@@ -20,6 +20,7 @@ export const tooltipEntry: ComponentEntry = {
   slug: 'tooltip',
   name: 'Tooltip',
   category: 'components',
+  subcategory: 'Overlays & Modals',
   description:
     'Hover-triggered tooltip with placement options, configurable delay, max width, and disabled state.',
   variantCount: 4,

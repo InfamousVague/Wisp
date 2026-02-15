@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Box } from './Box';
-import { spacingKeys, radiiKeys } from '@wisp-ui/core/types/Box.types';
+import { spacingKeys, radiiKeys } from '@coexist/wisp-core/types/Box.types';
 import { Text } from '../../primitives/text';
 import { useThemeColors } from '../../providers';
 

@@ -2,7 +2,7 @@
  * @module primitives/toggle
  * @description React Native Toggle (switch) primitive for the Wisp design system.
  *
- * Reuses color resolution and size maps from `@wisp-ui/core`.
+ * Reuses color resolution and size maps from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `<Pressable>` instead of `<button>`.
@@ -14,13 +14,13 @@
 import React, { forwardRef, useMemo, useCallback, useState, useRef, useEffect } from 'react';
 import { Pressable, View, Animated } from 'react-native';
 import type { ViewProps, ViewStyle } from 'react-native';
-import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
-import type { ToggleSizeConfig } from '@wisp-ui/core/types/Toggle.types';
+import type { ComponentSize } from '@coexist/wisp-core/tokens/shared';
+import type { ToggleSizeConfig } from '@coexist/wisp-core/types/Toggle.types';
 import {
   resolveToggleColors,
   getDisabledToggleColors,
   resolveSizeConfig,
-} from '@wisp-ui/core/styles/Toggle.styles';
+} from '@coexist/wisp-core/styles/Toggle.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

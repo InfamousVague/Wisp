@@ -9,5 +9,5 @@
  */
 
 export { Badge } from './Badge';
-export type { BadgeProps, BadgeSize, BadgeVariant, BadgeShape, BadgeSizeConfig } from '@wisp-ui/core/types/Badge.types';
-export { badgeSizes, badgeSizeMap, badgeVariants, badgeShapes } from '@wisp-ui/core/types/Badge.types';
+export type { BadgeProps, BadgeSize, BadgeVariant, BadgeShape, BadgeSizeConfig } from '@coexist/wisp-core/types/Badge.types';
+export { badgeSizes, badgeSizeMap, badgeVariants, badgeShapes } from '@coexist/wisp-core/types/Badge.types';

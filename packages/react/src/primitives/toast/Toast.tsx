@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import { X } from 'lucide-react';
-import type { ToastProps } from '@wisp-ui/core/types/Toast.types';
+import type { ToastProps } from '@coexist/wisp-core/types/Toast.types';
 import {
   resolveToastColors,
   buildToastStyle,
@@ -10,7 +10,7 @@ import {
   buildDescriptionStyle,
   buildActionStyle,
   buildDismissStyle,
-} from '@wisp-ui/core/styles/Toast.styles';
+} from '@coexist/wisp-core/styles/Toast.styles';
 import { useTheme } from '../../providers';
 
 /**

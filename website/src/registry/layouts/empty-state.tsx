@@ -7,6 +7,7 @@ export const emptyStateEntry: ComponentEntry = {
   slug: 'empty-state',
   name: 'EmptyState',
   category: 'layouts',
+  subcategory: 'Forms & States',
   description:
     'Placeholder for empty views with icon, title, description, and optional action button. 3 size presets.',
   variantCount: 3,

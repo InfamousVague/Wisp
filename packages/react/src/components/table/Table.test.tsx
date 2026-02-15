@@ -12,7 +12,7 @@ import {
   TableHead,
   TableCell,
 } from './Table';
-import { tableSizes, tableVariants, tableCellAlignments } from '@wisp-ui/core/types/Table.types';
+import { tableSizes, tableVariants, tableCellAlignments } from '@coexist/wisp-core/types/Table.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

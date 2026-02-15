@@ -6,6 +6,7 @@ export const spinnerEntry: ComponentEntry = {
   slug: 'spinner',
   name: 'Spinner',
   category: 'primitives',
+  subcategory: 'Status & Feedback',
   description:
     'Animated loading indicator with 5 sizes. Supports optional label text, custom colors, and track color.',
   variantCount: 5,

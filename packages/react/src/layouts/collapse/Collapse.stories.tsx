@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Collapse } from './Collapse';
-import { collapseDurations } from '@wisp-ui/core/types/Collapse.types';
+import { collapseDurations } from '@coexist/wisp-core/types/Collapse.types';
 import { Text } from '../../primitives/text';
 import { Box } from '../box';
 import { Button } from '../../primitives/button';

@@ -7,6 +7,7 @@ export const notificationBadgeEntry: ComponentEntry = {
   slug: 'notification-badge',
   name: 'NotificationBadge',
   category: 'primitives',
+  subcategory: 'Badges & Tags',
   description:
     'Count or dot badge overlay anchored to an icon, avatar, or button. Supports 5 color variants, max overflow, dot mode, and pulse animation.',
   variantCount: 5,

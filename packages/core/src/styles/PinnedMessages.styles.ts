@@ -33,21 +33,21 @@ export interface PinnedMessagesColors {
 export function resolvePinnedMessagesColors(
   theme: WispTheme,
 ): PinnedMessagesColors {
-  const { colors } = theme;
+  const { colors, mode } = theme;
+  const isLight = mode === 'light';
   return {
     bg: colors.background.canvas,
     border: colors.border.subtle,
     headerText: colors.text.primary,
     headerTextMuted: colors.text.muted,
-    cardBg: colors.background.surface,
-    cardBgHover: colors.background.surface,
-    cardBorder: colors.accent.dividerRaised,
-    // Cards sit on background.surface which is always dark — use onRaised text
-    cardText: colors.text.onRaised,
-    cardTextSecondary: colors.text.onRaisedSecondary,
-    cardTextMuted: withAlpha(colors.text.onRaisedSecondary, 0.7),
+    cardBg: isLight ? colors.background.sunken : colors.background.surface,
+    cardBgHover: isLight ? colors.background.sunken : colors.background.surface,
+    cardBorder: isLight ? colors.border.subtle : colors.accent.dividerRaised,
+    cardText: isLight ? colors.text.primary : colors.text.onRaised,
+    cardTextSecondary: isLight ? colors.text.secondary : colors.text.onRaisedSecondary,
+    cardTextMuted: isLight ? colors.text.muted : withAlpha(colors.text.onRaisedSecondary, 0.7),
     emptyText: colors.text.muted,
-    unpinText: withAlpha(colors.text.onRaisedSecondary, 0.7),
+    unpinText: isLight ? colors.text.muted : withAlpha(colors.text.onRaisedSecondary, 0.7),
     unpinTextHover: colors.status.danger,
     closeHoverBg: withAlpha(colors.text.primary, 0.08),
   };

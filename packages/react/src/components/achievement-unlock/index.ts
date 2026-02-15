@@ -5,4 +5,4 @@
  */
 
 export { AchievementUnlock } from './AchievementUnlock';
-export type { AchievementUnlockProps } from '@wisp-ui/core/types/AchievementUnlock.types';
+export type { AchievementUnlockProps } from '@coexist/wisp-core/types/AchievementUnlock.types';

@@ -1,7 +1,7 @@
 import { useRef, useCallback, useMemo } from 'react';
 import { Animated } from 'react-native';
-import type { SpringConfig } from '@wisp-ui/core/tokens/motion';
-import { DEFAULT_SPRING_CONFIG } from '@wisp-ui/core/animation/constants';
+import type { SpringConfig } from '@coexist/wisp-core/tokens/motion';
+import { DEFAULT_SPRING_CONFIG } from '@coexist/wisp-core/animation/constants';
 
 export type PressAnimationConfig = {
   scale?: number;

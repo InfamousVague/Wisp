@@ -7,8 +7,8 @@
 import React, { forwardRef, useEffect, useMemo } from 'react';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives';
-import type { VoiceRecorderProps } from '@wisp-ui/core/types/VoiceRecorder.types';
-import { voiceRecorderSizeMap } from '@wisp-ui/core/types/VoiceRecorder.types';
+import type { VoiceRecorderProps } from '@coexist/wisp-core/types/VoiceRecorder.types';
+import { voiceRecorderSizeMap } from '@coexist/wisp-core/types/VoiceRecorder.types';
 import {
   resolveVoiceRecorderColors,
   buildVoiceRecorderContainerStyle,
@@ -17,7 +17,7 @@ import {
   buildActionButtonStyle,
   buildVoiceRecorderSkeletonStyle,
   ensureVoiceRecorderKeyframes,
-} from '@wisp-ui/core/styles/VoiceRecorder.styles';
+} from '@coexist/wisp-core/styles/VoiceRecorder.styles';
 
 // ---------------------------------------------------------------------------
 // Inline SVG Icons

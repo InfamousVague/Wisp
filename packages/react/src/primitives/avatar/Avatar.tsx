@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import { User } from 'lucide-react';
-import type { AvatarProps } from '@wisp-ui/core/types/Avatar.types';
-import { avatarSizeMap } from '@wisp-ui/core/types/Avatar.types';
+import type { AvatarProps } from '@coexist/wisp-core/types/Avatar.types';
+import { avatarSizeMap } from '@coexist/wisp-core/types/Avatar.types';
 import {
   buildContainerStyle,
   buildInnerStyle,
@@ -10,7 +10,7 @@ import {
   buildStatusStyle,
   buildSkeletonStyle,
   extractInitials,
-} from '@wisp-ui/core/styles/Avatar.styles';
+} from '@coexist/wisp-core/styles/Avatar.styles';
 import { useTheme } from '../../providers';
 
 /**
@@ -42,6 +42,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
     fallbackIcon: FallbackIcon = User,
     status,
     skeleton = false,
+    onSurface = false,
     className,
     style: userStyle,
     ...rest
@@ -63,15 +64,15 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
   );
 
   const innerStyle = useMemo(
-    () => buildInnerStyle(sizeConfig, shape, theme),
-    [sizeConfig, shape, theme],
+    () => buildInnerStyle(sizeConfig, shape, theme, onSurface),
+    [sizeConfig, shape, theme, onSurface],
   );
 
   const imgStyle = useMemo(() => buildImageStyle(), [theme]);
 
   const initialsStyle = useMemo(
-    () => buildInitialsStyle(sizeConfig, theme),
-    [sizeConfig, theme],
+    () => buildInitialsStyle(sizeConfig, theme, onSurface),
+    [sizeConfig, theme, onSurface],
   );
 
   if (skeleton) {
@@ -108,7 +109,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
     return (
       <FallbackIcon
         size={sizeConfig.iconSize}
-        color={themeColors.text.inverse}
+        color={onSurface ? themeColors.background.surface : themeColors.text.inverse}
         strokeWidth={2}
       />
     );

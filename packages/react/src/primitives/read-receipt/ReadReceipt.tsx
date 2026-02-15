@@ -8,15 +8,15 @@
 import React, { forwardRef, useMemo } from 'react';
 import { useTheme } from '../../providers';
 import { Text } from '../text';
-import type { ReadReceiptProps, ReadReceiptStatus } from '@wisp-ui/core/types/ReadReceipt.types';
-import { readReceiptSizeMap } from '@wisp-ui/core/types/ReadReceipt.types';
+import type { ReadReceiptProps, ReadReceiptStatus } from '@coexist/wisp-core/types/ReadReceipt.types';
+import { readReceiptSizeMap } from '@coexist/wisp-core/types/ReadReceipt.types';
 import {
   resolveReadReceiptColors,
   buildReadReceiptContainerStyle,
   buildReadReceiptIconStyle,
   buildReadReceiptLabelStyle,
   buildReadReceiptSkeletonStyle,
-} from '@wisp-ui/core/styles/ReadReceipt.styles';
+} from '@coexist/wisp-core/styles/ReadReceipt.styles';
 
 // ---------------------------------------------------------------------------
 // Default labels

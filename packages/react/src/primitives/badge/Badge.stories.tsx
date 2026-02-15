@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Badge } from './Badge';
-import { badgeVariants, badgeSizes, badgeShapes } from '@wisp-ui/core/types/Badge.types';
+import { badgeVariants, badgeSizes, badgeShapes } from '@coexist/wisp-core/types/Badge.types';
 import { Text } from '../text';
 import { Star, X, Check, AlertCircle, Info } from 'lucide-react';
 

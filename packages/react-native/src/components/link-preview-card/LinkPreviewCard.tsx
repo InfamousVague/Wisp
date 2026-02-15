@@ -6,11 +6,12 @@
 import React, { forwardRef, useMemo, useCallback } from 'react';
 import { View, Text, Image, Pressable, Linking } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle, ImageStyle } from 'react-native';
-import { resolveLinkPreviewCardColors } from '@wisp-ui/core/styles/LinkPreviewCard.styles';
-import type { LinkPreviewCardSize, LinkPreviewCardLayout } from '@wisp-ui/core/types/LinkPreviewCard.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
-import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
+import { resolveLinkPreviewCardColors } from '@coexist/wisp-core/styles/LinkPreviewCard.styles';
+import type { LinkPreviewCardSize, LinkPreviewCardLayout, LinkPreviewFetcher } from '@coexist/wisp-core/types/LinkPreviewCard.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
+import { fontFamilyStacks } from '@coexist/wisp-core/tokens/shared';
 import { useTheme } from '../../providers';
+import { useLinkPreview } from '../../hooks/use-link-preview';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -28,6 +29,10 @@ export interface LinkPreviewCardProps extends ViewProps {
   onPress?: () => void;
   loading?: boolean;
   skeleton?: boolean;
+  /** Automatically fetch Open Graph metadata from the URL. @default false */
+  autoFetch?: boolean;
+  /** Custom fetcher function. Falls back to Microlink API. */
+  fetcher?: LinkPreviewFetcher;
 }
 
 // ---------------------------------------------------------------------------
@@ -71,27 +76,53 @@ export const LinkPreviewCard = forwardRef<View, LinkPreviewCardProps>(
   function LinkPreviewCard(
     {
       url,
-      title,
-      description,
-      image,
-      siteName,
-      favicon,
+      title: titleProp,
+      description: descProp,
+      image: imageProp,
+      siteName: siteNameProp,
+      favicon: faviconProp,
       size = 'md',
       layout = 'vertical',
       onPress,
-      loading = false,
+      loading: loadingProp = false,
       skeleton = false,
+      autoFetch = false,
+      fetcher,
       style: userStyle,
       ...rest
     },
     ref,
   ) {
     const { theme } = useTheme();
+
+    // Auto-fetch OG metadata when enabled
+    const { data: fetchedData, loading: fetchLoading } = useLinkPreview({
+      url,
+      enabled: autoFetch,
+      fetcher,
+    });
+
+    // Merge: explicit props override fetched data
+    const title = titleProp ?? fetchedData?.title;
+    const description = descProp ?? fetchedData?.description;
+    const image = imageProp ?? fetchedData?.image;
+    const siteName = siteNameProp ?? fetchedData?.siteName;
+    const favicon = faviconProp ?? fetchedData?.favicon;
+    const loading = loadingProp || (autoFetch && fetchLoading);
+
     const colors = useMemo(() => resolveLinkPreviewCardColors(theme), [theme]);
     const cfg = sizeConfigs[size];
 
-    // ------ Skeleton ------
-    if (skeleton) {
+    const handlePress = useCallback(() => {
+      if (onPress) {
+        onPress();
+      } else {
+        Linking.openURL(url);
+      }
+    }, [onPress, url]);
+
+    // ------ Skeleton / Loading ------
+    if (skeleton || loading) {
       const skelContainer: ViewStyle = {
         flexDirection: layout === 'horizontal' ? 'row' : 'column',
         overflow: 'hidden',
@@ -99,6 +130,7 @@ export const LinkPreviewCard = forwardRef<View, LinkPreviewCardProps>(
         borderWidth: 1,
         borderColor: theme.colors.border.subtle,
         backgroundColor: theme.colors.background.raised,
+        maxWidth: 320,
       };
 
       const skelImage: ViewStyle = layout === 'horizontal'
@@ -132,6 +164,7 @@ export const LinkPreviewCard = forwardRef<View, LinkPreviewCardProps>(
       borderWidth: 1,
       borderColor: colors.border,
       backgroundColor: colors.bg,
+      maxWidth: 320,
     };
 
     const imageStyle: ImageStyle = layout === 'horizontal'
@@ -159,14 +192,6 @@ export const LinkPreviewCard = forwardRef<View, LinkPreviewCardProps>(
     };
 
     const displayDomain = siteName || extractDomain(url);
-
-    const handlePress = useCallback(() => {
-      if (onPress) {
-        onPress();
-      } else {
-        Linking.openURL(url);
-      }
-    }, [onPress, url]);
 
     return (
       <Pressable

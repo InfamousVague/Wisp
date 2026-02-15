@@ -14,6 +14,7 @@ export const selectEntry: ComponentEntry = {
   slug: 'select',
   name: 'Select',
   category: 'components',
+  subcategory: 'Selection & Input',
   description:
     'Dropdown select with search filtering, option descriptions, icons, error states, and skeleton loading.',
   variantCount: 2,

@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo, useState, useCallback, useRef, useEffect } from 'react';
 import { View, Pressable, Animated, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle, LayoutChangeEvent } from 'react-native';
-import type { SegmentedControlOption } from '@wisp-ui/core/types/SegmentedControl.types';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { SegmentedControlOption } from '@coexist/wisp-core/types/SegmentedControl.types';
+import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 const sizeMap = {

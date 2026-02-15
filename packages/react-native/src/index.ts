@@ -163,7 +163,7 @@ export {
   RoleBadge, PermissionManager,
   // Wave 17: Social / Friends
   FriendListItem, FriendRequestItem, FriendSection,
-  UserSearchResult, UserMiniCard, AddFriendInput,
+  UserSearchResult, UserMiniCard, AddFriendInput, UserPicker,
 } from './components';
 export type {
   // Wave 1
@@ -252,6 +252,7 @@ export type {
   UserSearchResultProps, UserSearchRequestState,
   UserMiniCardProps, UserMiniCardAction, UserMiniCardStatus,
   AddFriendInputProps, AddFriendFeedbackState,
+  UserPickerProps, UserPickerUser, UserPickerStatus,
 } from './components';
 
 // ---------------------------------------------------------------------------

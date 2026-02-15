@@ -5,13 +5,13 @@
  * Composes the Toolbar layout primitive with format-specific action buttons.
  */
 import React, { forwardRef, useMemo, useCallback } from 'react';
-import type { FormatToolbarProps, FormatAction } from '@wisp-ui/core/types/FormatToolbar.types';
-import { formatActions } from '@wisp-ui/core/types/FormatToolbar.types';
+import type { FormatToolbarProps, FormatAction } from '@coexist/wisp-core/types/FormatToolbar.types';
+import { formatActions } from '@coexist/wisp-core/types/FormatToolbar.types';
 import {
   resolveFormatToolbarColors,
   buildFormatButtonStyle,
   getFormatButtonIconSize,
-} from '@wisp-ui/core/styles/FormatToolbar.styles';
+} from '@coexist/wisp-core/styles/FormatToolbar.styles';
 import { useTheme } from '../../providers';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from '../toolbar';
 

@@ -5,5 +5,5 @@
  */
 
 export { ProgressSteps } from './ProgressSteps';
-export type { ProgressStepsProps, ProgressStep, ProgressStepsSize, ProgressStepsOrientation, ProgressStepsSizeConfig } from '@wisp-ui/core/types/ProgressSteps.types';
-export { progressStepsSizes, progressStepsSizeMap, progressStepsOrientations } from '@wisp-ui/core/types/ProgressSteps.types';
+export type { ProgressStepsProps, ProgressStep, ProgressStepsSize, ProgressStepsOrientation, ProgressStepsSizeConfig } from '@coexist/wisp-core/types/ProgressSteps.types';
+export { progressStepsSizes, progressStepsSizeMap, progressStepsOrientations } from '@coexist/wisp-core/types/ProgressSteps.types';

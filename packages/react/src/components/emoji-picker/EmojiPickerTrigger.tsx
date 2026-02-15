@@ -10,7 +10,7 @@ import { Popover, PopoverTrigger, PopoverContent } from '../popover';
 import { Button } from '../../primitives/button';
 import { Smile } from 'lucide-react';
 import { EmojiPicker } from './EmojiPicker';
-import type { EmojiPickerTriggerProps } from '@wisp-ui/core/types/EmojiPicker.types';
+import type { EmojiPickerTriggerProps } from '@coexist/wisp-core/types/EmojiPicker.types';
 
 // ---------------------------------------------------------------------------
 // Component
@@ -41,7 +41,7 @@ export const EmojiPickerTrigger = forwardRef<HTMLDivElement, EmojiPickerTriggerP
       <div>{children}</div>
     ) : (
       <Button size={buttonSize} variant={buttonVariant} shape="rounded">
-        {React.createElement(TriggerIcon, { size: iconPixelSize })}
+        {React.createElement(TriggerIcon as React.ComponentType<{ size: number }>, { size: iconPixelSize })}
       </Button>
     );
 

@@ -6,6 +6,7 @@ export const userProfileCardEntry: ComponentEntry = {
   slug: 'user-profile-card',
   name: 'UserProfileCard',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'A popover or panel showing user profile details with avatar, status, bio, role badges, and action buttons.',
   variantCount: 4,

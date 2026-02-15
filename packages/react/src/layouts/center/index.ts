@@ -6,4 +6,4 @@
  */
 
 export { Center } from './Center';
-export type { CenterProps } from '@wisp-ui/core/types/Center.types';
+export type { CenterProps } from '@coexist/wisp-core/types/Center.types';

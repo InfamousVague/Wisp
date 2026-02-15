@@ -32,6 +32,7 @@ export const threadPanelEntry: ComponentEntry = {
   slug: 'thread-panel',
   name: 'ThreadPanel',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Side panel for threaded message replies with parent message, reply chain, and input. Inspired by Slack and Discord threads.',
   variantCount: 1,

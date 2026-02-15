@@ -2,7 +2,7 @@
  * @module CodeBlock
  */
 import React, { forwardRef, useMemo, useState, useCallback } from 'react';
-import type { CodeBlockProps } from '@wisp-ui/core/types/CodeBlock.types';
+import type { CodeBlockProps } from '@coexist/wisp-core/types/CodeBlock.types';
 import {
   buildCodeBlockWrapperStyle,
   buildCodeBlockHeaderStyle,
@@ -10,7 +10,7 @@ import {
   buildCodeBlockLineStyle,
   buildCodeBlockLineNumberStyle,
   buildCodeBlockCopyButtonStyle,
-} from '@wisp-ui/core/styles/CodeBlock.styles';
+} from '@coexist/wisp-core/styles/CodeBlock.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../text';
 

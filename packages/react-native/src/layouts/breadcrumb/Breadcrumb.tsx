@@ -1,9 +1,9 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText, Pressable } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import type { BreadcrumbSize } from '@wisp-ui/core/types/Breadcrumb.types';
-import { breadcrumbSizeMap } from '@wisp-ui/core/types/Breadcrumb.types';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import type { BreadcrumbSize } from '@coexist/wisp-core/types/Breadcrumb.types';
+import { breadcrumbSizeMap } from '@coexist/wisp-core/types/Breadcrumb.types';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

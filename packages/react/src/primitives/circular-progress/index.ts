@@ -5,9 +5,9 @@ export type {
   CircularProgressSize,
   CircularProgressVariant,
   CircularProgressSizeConfig,
-} from '@wisp-ui/core/types/CircularProgress.types';
+} from '@coexist/wisp-core/types/CircularProgress.types';
 export {
   circularProgressSizes,
   circularProgressVariants,
   circularProgressSizeMap,
-} from '@wisp-ui/core/types/CircularProgress.types';
+} from '@coexist/wisp-core/types/CircularProgress.types';

@@ -7,6 +7,7 @@ export const badgeEntry: ComponentEntry = {
   slug: 'badge',
   name: 'Badge',
   category: 'primitives',
+  subcategory: 'Badges & Tags',
   description:
     'Status badge with 5 semantic variants, pill/square shapes, dot indicator, icons, and skeleton loading.',
   variantCount: 5,

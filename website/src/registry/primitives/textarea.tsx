@@ -6,6 +6,7 @@ export const textareaEntry: ComponentEntry = {
   slug: 'textarea',
   name: 'TextArea',
   category: 'primitives',
+  subcategory: 'Inputs',
   description:
     'Multi-line text input with label, hint, validation states, resize control, and skeleton loading.',
   variantCount: 5,

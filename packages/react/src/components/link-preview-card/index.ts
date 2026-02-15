@@ -5,8 +5,8 @@ export type {
   LinkPreviewCardLayout,
   LinkPreviewData,
   LinkPreviewFetcher,
-} from '@wisp-ui/core/types/LinkPreviewCard.types';
+} from '@coexist/wisp-core/types/LinkPreviewCard.types';
 export {
   linkPreviewCardSizes,
   linkPreviewCardLayouts,
-} from '@wisp-ui/core/types/LinkPreviewCard.types';
+} from '@coexist/wisp-core/types/LinkPreviewCard.types';

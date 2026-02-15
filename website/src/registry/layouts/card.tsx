@@ -7,6 +7,7 @@ export const cardEntry: ComponentEntry = {
   slug: 'card',
   name: 'Card',
   category: 'layouts',
+  subcategory: 'Content Containers',
   description:
     'Surface container with variants for elevation, outlined borders, filled backgrounds, and glass effects. Supports padding, radius, interactive states, and skeleton loading.',
   variantCount: 4,

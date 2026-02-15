@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from './Toolbar';
-import { toolbarSizes, toolbarVariants } from '@wisp-ui/core/types/Toolbar.types';
+import { toolbarSizes, toolbarVariants } from '@coexist/wisp-core/types/Toolbar.types';
 import { Button } from '../../primitives/button';
 import { Icon } from '../../primitives/icon';
 import { Text } from '../../primitives/text';

@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Avatar } from './Avatar';
 import { WispProvider } from '../../providers';
-import { avatarSizes } from '@wisp-ui/core/types/Avatar.types';
+import { avatarSizes } from '@coexist/wisp-core/types/Avatar.types';
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => (
   <WispProvider mode="dark">{children}</WispProvider>

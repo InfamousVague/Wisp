@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { TypingIndicator } from './TypingIndicator';
-import { typingIndicatorAnimations } from '@wisp-ui/core/types/TypingIndicator.types';
+import { typingIndicatorAnimations } from '@coexist/wisp-core/types/TypingIndicator.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

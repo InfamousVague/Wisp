@@ -7,6 +7,7 @@ export const spacerEntry: ComponentEntry = {
   slug: 'spacer',
   name: 'Spacer',
   category: 'layouts',
+  subcategory: 'Spacing & Alignment',
   description:
     'Flexible whitespace utility that fills available space or applies a fixed theme-based size.',
   variantCount: 2,

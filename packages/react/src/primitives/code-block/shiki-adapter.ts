@@ -8,7 +8,7 @@
  * `shiki` is an **optional peer dependency** — consumers who never import this
  * module pay zero bundle cost.
  */
-import type { SyntaxHighlighter, SyntaxToken } from '@wisp-ui/core/types/CodeBlock.types';
+import type { SyntaxHighlighter, SyntaxToken } from '@coexist/wisp-core/types/CodeBlock.types';
 import type { HighlighterGeneric, ThemedToken } from 'shiki';
 
 // ---------------------------------------------------------------------------

@@ -70,6 +70,19 @@ import { channelListEntry } from './channel-list';
 import { messageSearchEntry } from './message-search';
 import { attachmentPreviewEntry } from './attachment-preview';
 
+import { callControlsEntry } from './call-controls';
+import { callMiniWindowEntry } from './call-mini-window';
+import { voiceChannelPanelEntry } from './voice-channel-panel';
+import { roleBadgeEntry } from './role-badge';
+import { permissionManagerEntry } from './permission-manager';
+
+import { friendListItemEntry } from './friend-list-item';
+import { friendRequestItemEntry } from './friend-request-item';
+import { userSearchResultEntry } from './user-search-result';
+import { friendSectionEntry } from './friend-section';
+import { userMiniCardEntry } from './user-mini-card';
+import { addFriendInputEntry } from './add-friend-input';
+
 
 export const componentEntries: ComponentEntry[] = [
   commandEntry,
@@ -142,4 +155,21 @@ export const componentEntries: ComponentEntry[] = [
   channelListEntry,
   messageSearchEntry,
   attachmentPreviewEntry,
+
+  // Wave 15 — Audio & Video
+  callControlsEntry,
+  callMiniWindowEntry,
+  voiceChannelPanelEntry,
+
+  // Wave 16 — Roles & Permissions
+  roleBadgeEntry,
+  permissionManagerEntry,
+
+  // Wave 17 — Social / Friends
+  friendListItemEntry,
+  friendRequestItemEntry,
+  userSearchResultEntry,
+  friendSectionEntry,
+  userMiniCardEntry,
+  addFriendInputEntry,
 ];

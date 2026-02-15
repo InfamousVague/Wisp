@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { MeterProps } from '@wisp-ui/core/types/Meter.types';
-import { meterSizeMap } from '@wisp-ui/core/types/Meter.types';
+import type { MeterProps } from '@coexist/wisp-core/types/Meter.types';
+import { meterSizeMap } from '@coexist/wisp-core/types/Meter.types';
 import {
   buildMeterContainerStyle,
   buildMeterTrackStyle,
@@ -8,7 +8,7 @@ import {
   buildMeterLabelStyle,
   buildMeterValueStyle,
   getMeterSkeletonStyle,
-} from '@wisp-ui/core/styles/Meter.styles';
+} from '@coexist/wisp-core/styles/Meter.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../text';
 

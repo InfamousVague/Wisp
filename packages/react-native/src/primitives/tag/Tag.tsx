@@ -1,9 +1,9 @@
 import React, { forwardRef, useMemo, useCallback } from 'react';
 import { View, Text as RNText, Pressable } from 'react-native';
-import type { TagSize } from '@wisp-ui/core/types/Tag.types';
-import { tagSizeMap } from '@wisp-ui/core/types/Tag.types';
-import { resolveTagColors } from '@wisp-ui/core/styles/Tag.styles';
-import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { TagSize } from '@coexist/wisp-core/types/Tag.types';
+import { tagSizeMap } from '@coexist/wisp-core/types/Tag.types';
+import { resolveTagColors } from '@coexist/wisp-core/styles/Tag.styles';
+import { defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface TagProps {

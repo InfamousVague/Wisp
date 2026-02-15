@@ -36,9 +36,9 @@
  */
 
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import type { DataTableProps, DataTableColumn, SortState } from '@wisp-ui/core/types/DataTable.types';
-import type { CSSStyleObject } from '@wisp-ui/core/types';
-import { dataTableSizeMap } from '@wisp-ui/core/types/DataTable.types';
+import type { DataTableProps, DataTableColumn, SortState } from '@coexist/wisp-core/types/DataTable.types';
+import type { CSSStyleObject } from '@coexist/wisp-core/types';
+import { dataTableSizeMap } from '@coexist/wisp-core/types/DataTable.types';
 import {
   buildTableContainerStyle,
   buildTableStyle,
@@ -51,10 +51,10 @@ import {
   buildCheckboxCellStyle,
   buildEmptyStateStyle,
   buildSkeletonBarStyle,
-} from '@wisp-ui/core/styles/DataTable.styles';
+} from '@coexist/wisp-core/styles/DataTable.styles';
 import { useTheme } from '../../providers';
-import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
-import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { fontFamilyStacks } from '@coexist/wisp-core/tokens/shared';
+import { defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Sort Icons

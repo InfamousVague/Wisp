@@ -54,6 +54,7 @@ export const memberListEntry: ComponentEntry = {
   slug: 'member-list',
   name: 'MemberList',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Side panel showing grouped user lists with online/offline status, collapsible sections, and avatars.',
   variantCount: 4,

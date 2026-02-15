@@ -3,7 +3,7 @@
  * @description A popover or panel showing user profile details with actions.
  */
 import React, { forwardRef, useMemo } from 'react';
-import type { UserProfileCardProps } from '@wisp-ui/core/types/UserProfileCard.types';
+import type { UserProfileCardProps } from '@coexist/wisp-core/types/UserProfileCard.types';
 import {
   resolveUserProfileCardColors,
   buildUserProfileCardContainerStyle,
@@ -23,7 +23,7 @@ import {
   buildActionButtonStyle,
   buildCloseButtonStyle,
   buildSkeletonContainerStyle,
-} from '@wisp-ui/core/styles/UserProfileCard.styles';
+} from '@coexist/wisp-core/styles/UserProfileCard.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

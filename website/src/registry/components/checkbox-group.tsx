@@ -12,6 +12,7 @@ export const checkboxGroupEntry: ComponentEntry = {
   slug: 'checkbox-group',
   name: 'CheckboxGroup',
   category: 'components',
+  subcategory: 'Selection & Input',
   description:
     'Group of checkboxes for multi-select with label, descriptions, error state, and horizontal/vertical layout.',
   variantCount: 2,

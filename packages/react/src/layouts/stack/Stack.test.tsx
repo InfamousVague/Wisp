@@ -4,7 +4,7 @@ import React, { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Stack, HStack, VStack } from './Stack';
-import { stackDirections, stackAligns, stackJustifys } from '@wisp-ui/core/types/Stack.types';
+import { stackDirections, stackAligns, stackJustifys } from '@coexist/wisp-core/types/Stack.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

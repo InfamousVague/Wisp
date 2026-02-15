@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useState, useEffect, useCallback, useMemo } from 'react';
-import type { CollapseProps } from '@wisp-ui/core/types/Collapse.types';
-import { collapseDurationMap } from '@wisp-ui/core/types/Collapse.types';
+import type { CollapseProps } from '@coexist/wisp-core/types/Collapse.types';
+import { collapseDurationMap } from '@coexist/wisp-core/types/Collapse.types';
 
 /**
  * Collapse -- Animated expand/collapse container for the Wisp design system.

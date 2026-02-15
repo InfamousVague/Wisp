@@ -7,5 +7,5 @@ export type {
   ToolbarSize,
   ToolbarVariant,
   ToolbarSizeConfig,
-} from '@wisp-ui/core/types/Toolbar.types';
-export { toolbarSizes, toolbarVariants, toolbarSizeMap } from '@wisp-ui/core/types/Toolbar.types';
+} from '@coexist/wisp-core/types/Toolbar.types';
+export { toolbarSizes, toolbarVariants, toolbarSizeMap } from '@coexist/wisp-core/types/Toolbar.types';

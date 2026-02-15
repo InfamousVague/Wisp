@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useCallback, useState, useRef, useEffect } from 'react';
-import type { LocalePickerProps, LocaleOption } from '@wisp-ui/core/types/LocalePicker.types';
-import { localePickerSizeMap } from '@wisp-ui/core/types/LocalePicker.types';
+import type { LocalePickerProps, LocaleOption } from '@coexist/wisp-core/types/LocalePicker.types';
+import { localePickerSizeMap } from '@coexist/wisp-core/types/LocalePicker.types';
 import {
   resolveLocalePickerColors,
   buildWrapperStyle,
@@ -13,10 +13,10 @@ import {
   buildOptionStyle,
   buildOptionsListStyle,
   buildSkeletonStyle,
-} from '@wisp-ui/core/styles/LocalePicker.styles';
+} from '@coexist/wisp-core/styles/LocalePicker.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
-import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
+import { fontFamilyStacks } from '@coexist/wisp-core/tokens/shared';
 
 // ---------------------------------------------------------------------------
 // Default locale options

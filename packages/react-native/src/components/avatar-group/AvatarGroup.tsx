@@ -2,16 +2,16 @@
  * @module components/avatar-group
  * @description React Native AvatarGroup for the Wisp design system.
  *
- * Reuses size maps from `@wisp-ui/core`. Renders overlapping Avatar children
+ * Reuses size maps from `@coexist/wisp-core`. Renders overlapping Avatar children
  * via `<View>` with negative margins and an optional "+N" overflow indicator.
  */
 
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { AvatarSize } from '@wisp-ui/core/types/Avatar.types';
-import { avatarSizeMap } from '@wisp-ui/core/types/Avatar.types';
-import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { AvatarSize } from '@coexist/wisp-core/types/Avatar.types';
+import { avatarSizeMap } from '@coexist/wisp-core/types/Avatar.types';
+import { defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
@@ -25,6 +25,11 @@ export interface AvatarGroupProps extends ViewProps {
   size?: AvatarSize;
   /** Overlap spacing in pixels (negative margin between avatars). @default 8 */
   spacing?: number;
+  /**
+   * When `true`, passes `onSurface` to each child Avatar for dark / raised surfaces.
+   * @default false
+   */
+  onSurface?: boolean;
   /** Avatar elements to render in the group. */
   children: React.ReactNode;
 }
@@ -40,6 +45,7 @@ export const AvatarGroup = forwardRef<View, AvatarGroupProps>(
       max,
       size = 'md',
       spacing = 8,
+      onSurface = false,
       style: userStyle,
       ...rest
     },
@@ -105,7 +111,7 @@ export const AvatarGroup = forwardRef<View, AvatarGroupProps>(
           };
 
           const cloned = React.isValidElement(child)
-            ? React.cloneElement(child as React.ReactElement<any>, { size })
+            ? React.cloneElement(child as React.ReactElement<any>, { size, onSurface })
             : child;
 
           return (

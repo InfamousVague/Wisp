@@ -7,6 +7,7 @@ export const boxEntry: ComponentEntry = {
   slug: 'box',
   name: 'Box',
   category: 'layouts',
+  subcategory: 'Spacing & Alignment',
   description:
     'Low-level layout primitive with theme-aware padding, display, position, sizing, and border-radius props.',
   variantCount: 1,

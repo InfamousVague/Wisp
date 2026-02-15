@@ -8,4 +8,4 @@ export type {
   ThemeEditorFieldMeta,
   ThemeEditorFieldGroup,
   ThemeEditorTabDef,
-} from '@wisp-ui/core/types/ThemeEditor.types';
+} from '@coexist/wisp-core/types/ThemeEditor.types';

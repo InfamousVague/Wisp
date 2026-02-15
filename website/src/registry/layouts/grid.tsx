@@ -7,6 +7,7 @@ export const gridEntry: ComponentEntry = {
   slug: 'grid',
   name: 'Grid',
   category: 'layouts',
+  subcategory: 'Spacing & Alignment',
   description:
     'CSS Grid layout with configurable columns, rows, gap, areas, flow, and alignment. Includes GridItem for span/area control.',
   variantCount: 2,

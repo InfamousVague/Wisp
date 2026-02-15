@@ -6,6 +6,7 @@ export const emojiPickerEntry: ComponentEntry = {
   slug: 'emoji-picker',
   name: 'EmojiPicker',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Full-featured emoji selection panel with category tabs, keyword search, skin tone selector, scroll-synced navigation, and Lucide icons for tabs. Includes EmojiPickerTrigger for popover integration.',
   variantCount: 3,

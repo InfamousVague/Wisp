@@ -17,8 +17,8 @@ import type {
   QRCodeGradient,
   QRCodeEyeFrameStyle,
   QRCodeEyePupilStyle,
-} from '@wisp-ui/core/types/QRCode.types';
-import { qrCodeSizeMap } from '@wisp-ui/core/types/QRCode.types';
+} from '@coexist/wisp-core/types/QRCode.types';
+import { qrCodeSizeMap } from '@coexist/wisp-core/types/QRCode.types';
 import {
   computeQRMatrix,
   isFinderPattern,
@@ -29,8 +29,8 @@ import {
   diamondPath,
   starPath,
   classyPath,
-} from '@wisp-ui/core/styles/qr-utils';
-import { resolveQRCodeColors } from '@wisp-ui/core/styles/QRCode.styles';
+} from '@coexist/wisp-core/styles/qr-utils';
+import { resolveQRCodeColors } from '@coexist/wisp-core/styles/QRCode.styles';
 import { useTheme } from '../../providers';
 
 export interface QRCodeProps {
@@ -98,6 +98,10 @@ export const QRCode = forwardRef<View, QRCodeProps>(
 
     const dark = darkColor || defaultColors.dark;
     const light = lightColor || defaultColors.light;
+    // Eye inner ring needs a solid colour to create contrast — if lightColor
+    // is transparent we fall back to the theme canvas so the ring is visible.
+    const eyeGap =
+      lightColor === 'transparent' ? defaultColors.light : light;
     const logoBg = logoBgColor || light;
     const dotFill = gradient ? `url(#${gradientId})` : dark;
     const eyeFill = eyeColor || dark;
@@ -230,7 +234,7 @@ export const QRCode = forwardRef<View, QRCodeProps>(
             frame = (
               <G>
                 <SvgCircle cx={ex + eyeSize / 2} cy={ey + eyeSize / 2} r={eyeSize / 2} fill={eyeFill} />
-                <SvgCircle cx={ex + eyeSize / 2} cy={ey + eyeSize / 2} r={innerSize / 2} fill={light} />
+                <SvgCircle cx={ex + eyeSize / 2} cy={ey + eyeSize / 2} r={innerSize / 2} fill={eyeGap} />
               </G>
             );
             break;
@@ -239,7 +243,7 @@ export const QRCode = forwardRef<View, QRCodeProps>(
             frame = (
               <G>
                 <Rect x={ex} y={ey} width={eyeSize} height={eyeSize} rx={rx} ry={rx} fill={eyeFill} />
-                <Rect x={ex + innerOffset} y={ey + innerOffset} width={innerSize} height={innerSize} rx={rx * 0.7} ry={rx * 0.7} fill={light} />
+                <Rect x={ex + innerOffset} y={ey + innerOffset} width={innerSize} height={innerSize} rx={rx * 0.7} ry={rx * 0.7} fill={eyeGap} />
               </G>
             );
             break;
@@ -248,7 +252,7 @@ export const QRCode = forwardRef<View, QRCodeProps>(
             frame = (
               <G>
                 <Rect x={ex} y={ey} width={eyeSize} height={eyeSize} fill={eyeFill} />
-                <Rect x={ex + innerOffset} y={ey + innerOffset} width={innerSize} height={innerSize} fill={light} />
+                <Rect x={ex + innerOffset} y={ey + innerOffset} width={innerSize} height={innerSize} fill={eyeGap} />
               </G>
             );
         }
@@ -280,7 +284,7 @@ export const QRCode = forwardRef<View, QRCodeProps>(
           </G>
         );
       });
-    }, [hasCustomEyes, moduleCount, quietZoneOffset, moduleSize, eyeFrameStyle, eyePupilStyle, eyeFill, light]);
+    }, [hasCustomEyes, moduleCount, quietZoneOffset, moduleSize, eyeFrameStyle, eyePupilStyle, eyeFill, eyeGap]);
 
     // Logo background rect
     const logoBgRect = useMemo(() => {

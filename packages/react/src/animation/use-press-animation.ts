@@ -26,8 +26,8 @@
 import { useCallback, useMemo, useState } from 'react';
 import type React from 'react';
 import { useSpring } from './use-spring';
-import { DEFAULT_SPRING_CONFIG } from '@wisp-ui/core/animation/constants';
-import type { SpringConfig } from '@wisp-ui/core/tokens/motion';
+import { DEFAULT_SPRING_CONFIG } from '@coexist/wisp-core/animation/constants';
+import type { SpringConfig } from '@coexist/wisp-core/tokens/motion';
 
 // ---------------------------------------------------------------------------
 // Configuration

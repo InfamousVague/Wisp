@@ -11,6 +11,7 @@ export const paginationEntry: ComponentEntry = {
   slug: 'pagination',
   name: 'Pagination',
   category: 'components',
+  subcategory: 'Navigation',
   description:
     'Page navigation with prev/next, first/last, sibling count, size variants, and disabled state.',
   variantCount: 3,

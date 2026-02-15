@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { IconProps } from '@wisp-ui/core/types/Icon.types';
-import { iconSizeMap } from '@wisp-ui/core/types/Icon.types';
-import { buildIconStyle, resolveIconColor, getIconSkeletonStyle } from '@wisp-ui/core/styles/Icon.styles';
+import type { IconProps } from '@coexist/wisp-core/types/Icon.types';
+import { iconSizeMap } from '@coexist/wisp-core/types/Icon.types';
+import { buildIconStyle, resolveIconColor, getIconSkeletonStyle } from '@coexist/wisp-core/styles/Icon.styles';
 import { useTheme } from '../../providers';
 
 /**

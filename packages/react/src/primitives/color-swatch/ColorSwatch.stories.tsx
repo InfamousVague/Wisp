@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ColorSwatch } from './ColorSwatch';
-import { colorSwatchSizes, colorSwatchShapes } from '@wisp-ui/core/types/ColorSwatch.types';
+import { colorSwatchSizes, colorSwatchShapes } from '@coexist/wisp-core/types/ColorSwatch.types';
 import { Text } from '../text';
 
 // ---------------------------------------------------------------------------

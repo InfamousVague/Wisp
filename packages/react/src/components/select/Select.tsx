@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, useCallback, useState, useRef, useEffect } from 'react';
 import { ChevronDown, Check } from 'lucide-react';
-import type { SelectProps } from '@wisp-ui/core/types/Select.types';
-import { selectSizeMap } from '@wisp-ui/core/types/Select.types';
+import type { SelectProps } from '@coexist/wisp-core/types/Select.types';
+import { selectSizeMap } from '@coexist/wisp-core/types/Select.types';
 import {
   resolveSelectColors,
   buildWrapperStyle,
@@ -12,7 +12,7 @@ import {
   buildLabelStyle,
   buildHintStyle,
   getSelectSkeletonStyle,
-} from '@wisp-ui/core/styles/Select.styles';
+} from '@coexist/wisp-core/styles/Select.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
 

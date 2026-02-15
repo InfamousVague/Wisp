@@ -7,9 +7,9 @@
 import React, { forwardRef, useMemo } from 'react';
 import { useTheme } from '../../providers';
 import { Sparkline } from '../../primitives/sparkline';
-import type { StatCardProps } from '@wisp-ui/core/types/StatCard.types';
-import { statCardSizeMap } from '@wisp-ui/core/types/StatCard.types';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { StatCardProps } from '@coexist/wisp-core/types/StatCard.types';
+import { statCardSizeMap } from '@coexist/wisp-core/types/StatCard.types';
+import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import {
   resolveStatCardColors,
   buildStatCardContainerStyle,
@@ -22,7 +22,7 @@ import {
   buildStatCardRightStyle,
   buildStatCardTrendStyle,
   buildStatCardSkeletonStyle,
-} from '@wisp-ui/core/styles/StatCard.styles';
+} from '@coexist/wisp-core/styles/StatCard.styles';
 
 // ---------------------------------------------------------------------------
 // Trend arrow SVG (inline, no external dependency)

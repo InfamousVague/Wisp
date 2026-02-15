@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, createContext, useContext } from 'react';
 import { View, ScrollView, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import { defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

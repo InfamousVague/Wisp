@@ -4,9 +4,9 @@ export type {
   StatCardVariant,
   StatCardSize,
   StatCardSizeConfig,
-} from '@wisp-ui/core/types/StatCard.types';
+} from '@coexist/wisp-core/types/StatCard.types';
 export {
   statCardVariants,
   statCardSizes,
   statCardSizeMap,
-} from '@wisp-ui/core/types/StatCard.types';
+} from '@coexist/wisp-core/types/StatCard.types';

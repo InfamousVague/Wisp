@@ -74,6 +74,12 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   status?: AvatarStatus;
   /** When `true`, renders a pulsing skeleton placeholder instead of content. @default false */
   skeleton?: boolean;
+  /**
+   * When `true`, adapts colors for dark / raised surfaces (e.g. sidebar).
+   * Uses light background with dark initials instead of the default accent background.
+   * @default false
+   */
+  onSurface?: boolean;
   /** Additional CSS class name applied to the outermost element. */
   className?: string;
   /** Inline style overrides merged onto the outermost element. */

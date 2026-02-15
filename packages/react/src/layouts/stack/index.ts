@@ -6,5 +6,5 @@
  */
 
 export { Stack, HStack, VStack } from './Stack';
-export type { StackProps, StackDirection, StackGap, StackAlign, StackJustify } from '@wisp-ui/core/types/Stack.types';
-export { stackDirections, stackAligns, stackJustifys } from '@wisp-ui/core/types/Stack.types';
+export type { StackProps, StackDirection, StackGap, StackAlign, StackJustify } from '@coexist/wisp-core/types/Stack.types';
+export { stackDirections, stackAligns, stackJustifys } from '@coexist/wisp-core/types/Stack.types';

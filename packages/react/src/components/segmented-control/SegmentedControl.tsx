@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo, useCallback, useState, useRef, useEffect, useLayoutEffect } from 'react';
-import type { SegmentedControlProps } from '@wisp-ui/core/types/SegmentedControl.types';
-import type { CSSStyleObject } from '@wisp-ui/core/types';
-import { segmentedControlSizeMap } from '@wisp-ui/core/types/SegmentedControl.types';
-import { buildContainerStyle, buildSegmentStyle, buildIndicatorStyle } from '@wisp-ui/core/styles/SegmentedControl.styles';
+import type { SegmentedControlProps } from '@coexist/wisp-core/types/SegmentedControl.types';
+import type { CSSStyleObject } from '@coexist/wisp-core/types';
+import { segmentedControlSizeMap } from '@coexist/wisp-core/types/SegmentedControl.types';
+import { buildContainerStyle, buildSegmentStyle, buildIndicatorStyle } from '@coexist/wisp-core/styles/SegmentedControl.styles';
 import { useTheme } from '../../providers';
 
 /** Use `useLayoutEffect` on the client and `useEffect` during SSR. */

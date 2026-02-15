@@ -5,4 +5,4 @@
  */
 
 export { AvatarGroup } from './AvatarGroup';
-export type { AvatarGroupProps } from '@wisp-ui/core/types/AvatarGroup.types';
+export type { AvatarGroupProps } from '@coexist/wisp-core/types/AvatarGroup.types';

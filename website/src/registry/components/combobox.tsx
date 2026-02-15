@@ -15,6 +15,7 @@ export const comboboxEntry: ComponentEntry = {
   slug: 'combobox',
   name: 'Combobox',
   category: 'components',
+  subcategory: 'Selection & Input',
   description:
     'Searchable dropdown with type-ahead filtering, custom empty state, icons, and descriptions per option.',
   variantCount: 2,

@@ -11,6 +11,7 @@ export const statCardEntry: ComponentEntry = {
   slug: 'stat-card',
   name: 'StatCard',
   category: 'components',
+  subcategory: 'Data Display',
   description:
     'KPI / metric display card with optional icon, trend indicator, and inline sparkline chart. Ideal for dashboards, analytics, and overview screens.',
   variantCount: 5,

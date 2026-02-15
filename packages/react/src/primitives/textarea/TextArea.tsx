@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useCallback, useState, useId } from 'react';
-import type { TextAreaProps } from '@wisp-ui/core/types/TextArea.types';
-import { textAreaSizeMap } from '@wisp-ui/core/types/TextArea.types';
+import type { TextAreaProps } from '@coexist/wisp-core/types/TextArea.types';
+import { textAreaSizeMap } from '@coexist/wisp-core/types/TextArea.types';
 import {
   resolveTextAreaColors,
   buildWrapperStyle,
@@ -9,7 +9,7 @@ import {
   buildLabelStyle,
   buildHintStyle,
   getTextAreaSkeletonStyle,
-} from '@wisp-ui/core/styles/TextArea.styles';
+} from '@coexist/wisp-core/styles/TextArea.styles';
 import { useTheme } from '../../providers';
 
 /**

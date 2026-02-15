@@ -13,6 +13,7 @@ export const reactionBarEntry: ComponentEntry = {
   slug: 'reaction-bar',
   name: 'ReactionBar',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Floating emoji reaction bar for chat messages with toggle support, counts, and add button. Essential for messaging interfaces.',
   variantCount: 1,

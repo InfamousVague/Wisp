@@ -6,6 +6,7 @@ export const conversationListItemEntry: ComponentEntry = {
   slug: 'conversation-list-item',
   name: 'ConversationListItem',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Rich list item for messaging app conversation sidebars with avatar, name, last message preview, timestamp, unread badge, online dot, and pinned/muted indicators.',
   variantCount: 1,

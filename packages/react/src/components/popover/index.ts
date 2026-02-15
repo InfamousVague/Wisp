@@ -8,5 +8,5 @@ export type {
   PopoverPlacement,
   PopoverAlign,
   PopoverContextValue,
-} from '@wisp-ui/core/types/Popover.types';
-export { popoverPlacements, popoverAligns } from '@wisp-ui/core/types/Popover.types';
+} from '@coexist/wisp-core/types/Popover.types';
+export { popoverPlacements, popoverAligns } from '@coexist/wisp-core/types/Popover.types';

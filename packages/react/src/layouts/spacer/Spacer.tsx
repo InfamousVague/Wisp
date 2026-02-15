@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { SpacerProps } from '@wisp-ui/core/types/Spacer.types';
-import { buildSpacerStyle } from '@wisp-ui/core/styles/Spacer.styles';
+import type { SpacerProps } from '@coexist/wisp-core/types/Spacer.types';
+import { buildSpacerStyle } from '@coexist/wisp-core/styles/Spacer.styles';
 import { useTheme } from '../../providers';
 
 /**

@@ -29,7 +29,7 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import type React from 'react';
-import { DEFAULT_DURATION } from '@wisp-ui/core/animation/constants';
+import { DEFAULT_DURATION } from '@coexist/wisp-core/animation/constants';
 
 // ---------------------------------------------------------------------------
 // Types

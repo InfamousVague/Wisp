@@ -7,8 +7,10 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@wisp-ui/react': resolve(__dirname, '..', 'packages', 'react', 'src'),
-      '@wisp-ui/core': resolve(__dirname, '..', 'packages', 'core', 'src'),
+      '@wisp-ui/react': resolve(__dirname, '../packages/react/src'),
+      '@wisp-ui/core': resolve(__dirname, '../packages/core/src'),
+      '@coexist/wisp-react': resolve(__dirname, '../packages/react/src'),
+      '@coexist/wisp-core': resolve(__dirname, '../packages/core/src'),
     },
   },
   optimizeDeps: {

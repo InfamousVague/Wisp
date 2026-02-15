@@ -24,7 +24,7 @@
 
 import React, { useEffect, useMemo, useState, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import type { CoachmarkProps, CoachmarkPlacement, CoachmarkAlign } from '@wisp-ui/core/types/Coachmark.types';
+import type { CoachmarkProps, CoachmarkPlacement, CoachmarkAlign } from '@coexist/wisp-core/types/Coachmark.types';
 import {
   resolveCoachmarkColors,
   buildCoachmarkPanelStyle,
@@ -34,7 +34,7 @@ import {
   buildCoachmarkFooterStyle,
   buildCoachmarkDismissButtonStyle,
   buildCoachmarkActionButtonStyle,
-} from '@wisp-ui/core/styles/Coachmark.styles';
+} from '@coexist/wisp-core/styles/Coachmark.styles';
 import { useTheme } from '../../providers';
 import { Button } from '../../primitives/button';
 import { Text } from '../../primitives/text';

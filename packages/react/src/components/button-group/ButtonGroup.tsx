@@ -2,13 +2,13 @@
  * @module ButtonGroup
  */
 import React, { forwardRef, useState, useCallback, useMemo } from 'react';
-import type { ButtonGroupProps } from '@wisp-ui/core/types/ButtonGroup.types';
-import type { CSSStyleObject } from '@wisp-ui/core/types';
-import { buttonGroupSizeMap } from '@wisp-ui/core/types/ButtonGroup.types';
+import type { ButtonGroupProps } from '@coexist/wisp-core/types/ButtonGroup.types';
+import type { CSSStyleObject } from '@coexist/wisp-core/types';
+import { buttonGroupSizeMap } from '@coexist/wisp-core/types/ButtonGroup.types';
 import {
   buildGroupContainerStyle,
   buildGroupItemStyle,
-} from '@wisp-ui/core/styles/ButtonGroup.styles';
+} from '@coexist/wisp-core/styles/ButtonGroup.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
 

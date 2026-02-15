@@ -14,8 +14,8 @@ import React, {
   useState,
 } from 'react';
 import { useTheme } from '../../providers';
-import type { MessageInputProps } from '@wisp-ui/core/types/MessageInput.types';
-import { messageInputSizeMap } from '@wisp-ui/core/types/MessageInput.types';
+import type { MessageInputProps } from '@coexist/wisp-core/types/MessageInput.types';
+import { messageInputSizeMap } from '@coexist/wisp-core/types/MessageInput.types';
 import {
   resolveMessageInputColors,
   buildMessageInputContainerStyle,
@@ -27,7 +27,7 @@ import {
   buildMessageInputContextBarStyle,
   buildMessageInputAttachmentsStyle,
   buildMessageInputCounterStyle,
-} from '@wisp-ui/core/styles/MessageInput.styles';
+} from '@coexist/wisp-core/styles/MessageInput.styles';
 import { Popover, PopoverTrigger, PopoverContent } from '../popover';
 import { EmojiPicker } from '../emoji-picker';
 
@@ -123,6 +123,7 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
     skeleton = false,
     replyingTo,
     editing,
+    variant = 'default',
     showVoice = false,
     onVoiceClick,
     maxLength,
@@ -148,7 +149,7 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
   );
 
   if (skeleton) {
-    const skeletonStyle = buildMessageInputSkeletonStyle(sizeConfig, theme);
+    const skeletonStyle = buildMessageInputSkeletonStyle(sizeConfig, theme, variant);
     return <div aria-hidden className={className} style={{ ...skeletonStyle, ...userStyle }} />;
   }
 
@@ -158,8 +159,8 @@ export const MessageInput = forwardRef<HTMLDivElement, MessageInputProps>(functi
   );
 
   const containerStyle = useMemo(
-    () => buildMessageInputContainerStyle(sizeConfig, colors, theme),
-    [sizeConfig, colors, theme],
+    () => buildMessageInputContainerStyle(sizeConfig, colors, theme, variant),
+    [sizeConfig, colors, theme, variant],
   );
 
   const textareaStyle = useMemo(

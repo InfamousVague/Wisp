@@ -2,7 +2,7 @@
  * @module primitives/slider
  * @description React Native Slider primitive for the Wisp design system.
  *
- * Reuses color resolution and size maps from `@wisp-ui/core`.
+ * Reuses color resolution and size maps from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `PanResponder` for drag gestures instead of mouse/touch DOM events.
@@ -15,12 +15,12 @@
 import React, { forwardRef, useMemo, useCallback, useState, useRef } from 'react';
 import { View, PanResponder } from 'react-native';
 import type { ViewProps, ViewStyle, LayoutChangeEvent, GestureResponderEvent } from 'react-native';
-import type { ComponentSize, Thickness } from '@wisp-ui/core/tokens/shared';
-import { sliderSizeMap } from '@wisp-ui/core/types/Slider.types';
-import { resolveSliderColors } from '@wisp-ui/core/styles/Slider.styles';
-import { thicknessValues } from '@wisp-ui/core/tokens/shared';
+import type { ComponentSize, Thickness } from '@coexist/wisp-core/tokens/shared';
+import { sliderSizeMap } from '@coexist/wisp-core/types/Slider.types';
+import { resolveSliderColors } from '@coexist/wisp-core/styles/Slider.styles';
+import { thicknessValues } from '@coexist/wisp-core/tokens/shared';
 import { Text } from '../text';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
@@ -117,9 +117,16 @@ export const Slider = forwardRef<View, SliderProps>(function Slider(
 
   const handleTrackLayout = useCallback((e: LayoutChangeEvent) => {
     trackWidthRef.current = e.nativeEvent.layout.width;
-    (e.target as any).measureInWindow?.((x: number) => {
-      trackPageXRef.current = x;
-    });
+    const target = (e as any).target ?? (e.nativeEvent as any)?.target;
+    if (target && typeof (target as any).measureInWindow === 'function') {
+      (target as any).measureInWindow((x: number) => {
+        trackPageXRef.current = x;
+      });
+    } else if (target && typeof (target as any).getBoundingClientRect === 'function') {
+      // Web fallback: use getBoundingClientRect
+      const rect = (target as any).getBoundingClientRect();
+      trackPageXRef.current = rect.left;
+    }
   }, []);
 
   // Update value

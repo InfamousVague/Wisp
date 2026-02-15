@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbSeparator } from './Breadcrumb';
-import { breadcrumbSizes } from '@wisp-ui/core/types/Breadcrumb.types';
+import { breadcrumbSizes } from '@coexist/wisp-core/types/Breadcrumb.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

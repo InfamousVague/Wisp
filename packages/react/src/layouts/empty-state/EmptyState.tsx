@@ -1,13 +1,13 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { EmptyStateProps } from '@wisp-ui/core/types/EmptyState.types';
-import { emptyStateSizeMap } from '@wisp-ui/core/types/EmptyState.types';
+import type { EmptyStateProps } from '@coexist/wisp-core/types/EmptyState.types';
+import { emptyStateSizeMap } from '@coexist/wisp-core/types/EmptyState.types';
 import {
   buildContainerStyle,
   buildIconStyle,
   buildTitleStyle,
   buildDescriptionStyle,
   buildActionStyle,
-} from '@wisp-ui/core/styles/EmptyState.styles';
+} from '@coexist/wisp-core/styles/EmptyState.styles';
 import { useTheme } from '../../providers';
 
 /**

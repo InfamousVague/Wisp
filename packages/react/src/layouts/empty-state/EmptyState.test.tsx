@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { EmptyState } from './EmptyState';
-import { emptyStateSizes } from '@wisp-ui/core/types/EmptyState.types';
+import { emptyStateSizes } from '@coexist/wisp-core/types/EmptyState.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

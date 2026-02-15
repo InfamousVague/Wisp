@@ -8,5 +8,5 @@
  * @module primitives/rating
  */
 export { Rating } from './Rating';
-export type { RatingProps, RatingSize, RatingSizeConfig } from '@wisp-ui/core/types/Rating.types';
-export { ratingSizes, ratingSizeMap } from '@wisp-ui/core/types/Rating.types';
+export type { RatingProps, RatingSize, RatingSizeConfig } from '@coexist/wisp-core/types/Rating.types';
+export { ratingSizes, ratingSizeMap } from '@coexist/wisp-core/types/Rating.types';

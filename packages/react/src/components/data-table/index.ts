@@ -7,5 +7,5 @@ export type {
   DataTableSizeConfig,
   DataTableVariant,
   SortState,
-} from '@wisp-ui/core/types/DataTable.types';
-export { dataTableSizes, dataTableSizeMap, dataTableVariants } from '@wisp-ui/core/types/DataTable.types';
+} from '@coexist/wisp-core/types/DataTable.types';
+export { dataTableSizes, dataTableSizeMap, dataTableVariants } from '@coexist/wisp-core/types/DataTable.types';

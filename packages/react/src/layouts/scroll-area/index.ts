@@ -5,5 +5,5 @@
  */
 
 export { ScrollArea } from './ScrollArea';
-export type { ScrollAreaProps, ScrollAreaDirection, ScrollbarWidth } from '@wisp-ui/core/types/ScrollArea.types';
-export { scrollAreaDirections, scrollbarWidths } from '@wisp-ui/core/types/ScrollArea.types';
+export type { ScrollAreaProps, ScrollAreaDirection, ScrollbarWidth } from '@coexist/wisp-core/types/ScrollArea.types';
+export { scrollAreaDirections, scrollbarWidths } from '@coexist/wisp-core/types/ScrollArea.types';

@@ -6,6 +6,7 @@ export const typingIndicatorEntry: ComponentEntry = {
   slug: 'typing-indicator',
   name: 'TypingIndicator',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Animated typing indicator with bouncing, pulsing, scaling, or wave dot animations. Can render as bare dots or inside a chat-bubble-shaped container with optional avatar.',
   variantCount: 4,

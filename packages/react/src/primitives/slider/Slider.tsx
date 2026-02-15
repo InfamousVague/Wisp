@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useCallback, useState, useRef, useEffect } from 'react';
-import type { SliderProps } from '@wisp-ui/core/types/Slider.types';
-import { sliderSizeMap } from '@wisp-ui/core/types/Slider.types';
+import type { SliderProps } from '@coexist/wisp-core/types/Slider.types';
+import { sliderSizeMap } from '@coexist/wisp-core/types/Slider.types';
 import {
   resolveSliderColors,
   buildTrackStyle,
@@ -9,10 +9,10 @@ import {
   buildLabelRowStyle,
   buildTrackWrapperStyle,
   getSliderSkeletonStyle,
-} from '@wisp-ui/core/styles/Slider.styles';
+} from '@coexist/wisp-core/styles/Slider.styles';
 import { useTheme } from '../../providers';
-import { fontFamilyStacks, thicknessValues } from '@wisp-ui/core/tokens/shared';
-import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { fontFamilyStacks, thicknessValues } from '@coexist/wisp-core/tokens/shared';
+import { defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Helpers

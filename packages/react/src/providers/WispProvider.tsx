@@ -28,8 +28,8 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import type { ThemeColors, ThemeMode, WispTheme } from '@wisp-ui/core/theme/types';
-import { createTheme, type ThemeOverrides } from '@wisp-ui/core/theme/create-theme';
+import type { ThemeColors, ThemeMode, WispTheme } from '@coexist/wisp-core/theme/types';
+import { createTheme, type ThemeOverrides } from '@coexist/wisp-core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Context value shape

@@ -14,9 +14,9 @@ import React, {
 } from 'react';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives';
-import type { MediaPlayerProps, PlaybackSpeed } from '@wisp-ui/core/types/MediaPlayer.types';
-import { mediaPlayerSizeMap, playbackSpeeds } from '@wisp-ui/core/types/MediaPlayer.types';
-import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { MediaPlayerProps, PlaybackSpeed } from '@coexist/wisp-core/types/MediaPlayer.types';
+import { mediaPlayerSizeMap, playbackSpeeds } from '@coexist/wisp-core/types/MediaPlayer.types';
+import { defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import {
   resolveMediaPlayerColors,
   buildMediaPlayerContainerStyle,
@@ -34,7 +34,7 @@ import {
   buildAudioInfoStyle,
   buildAudioSeekRowStyle,
   buildMediaPlayerSkeletonStyle,
-} from '@wisp-ui/core/styles/MediaPlayer.styles';
+} from '@coexist/wisp-core/styles/MediaPlayer.styles';
 
 // ---------------------------------------------------------------------------
 // Time formatter

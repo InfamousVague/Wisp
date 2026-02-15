@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import type { CardProps } from '@wisp-ui/core/types/Card.types';
-import { buildCardStyle, getCardSkeletonStyle } from '@wisp-ui/core/styles/Card.styles';
+import type { CardProps } from '@coexist/wisp-core/types/Card.types';
+import { buildCardStyle, getCardSkeletonStyle } from '@coexist/wisp-core/styles/Card.styles';
 import { useTheme } from '../../providers';
 
 /**

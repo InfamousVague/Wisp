@@ -76,6 +76,7 @@ export const channelListEntry: ComponentEntry = {
   slug: 'channel-list',
   name: 'ChannelList',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Collapsible category-grouped channel list sidebar with text, voice, and other channel types.',
   variantCount: 4,

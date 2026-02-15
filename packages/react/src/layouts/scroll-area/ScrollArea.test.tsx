@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { ScrollArea } from './ScrollArea';
-import { scrollAreaDirections, scrollbarWidths } from '@wisp-ui/core/types/ScrollArea.types';
+import { scrollAreaDirections, scrollbarWidths } from '@coexist/wisp-core/types/ScrollArea.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

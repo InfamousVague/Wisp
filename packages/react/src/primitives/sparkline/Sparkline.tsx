@@ -6,15 +6,15 @@
 
 import React, { forwardRef, useMemo, useEffect, useId } from 'react';
 import { useTheme } from '../../providers';
-import type { SparklineProps } from '@wisp-ui/core/types/Sparkline.types';
-import { sparklineSizeMap } from '@wisp-ui/core/types/Sparkline.types';
+import type { SparklineProps } from '@coexist/wisp-core/types/Sparkline.types';
+import { sparklineSizeMap } from '@coexist/wisp-core/types/Sparkline.types';
 import {
   resolveSparklineColors,
   buildSparklineWrapperStyle,
   buildSparklineSvgStyle,
   buildSparklineSkeletonStyle,
   ensureSparklineKeyframes,
-} from '@wisp-ui/core/styles/Sparkline.styles';
+} from '@coexist/wisp-core/styles/Sparkline.styles';
 
 // ---------------------------------------------------------------------------
 // Geometry helpers

@@ -10,9 +10,9 @@ export type {
   AchievementStatus,
   AchievementRarity,
   AchievementRarityConfig,
-} from '@wisp-ui/core/types/AchievementCard.types';
+} from '@coexist/wisp-core/types/AchievementCard.types';
 export {
   achievementStatuses,
   achievementRarities,
   achievementRarityMap,
-} from '@wisp-ui/core/types/AchievementCard.types';
+} from '@coexist/wisp-core/types/AchievementCard.types';

@@ -8,10 +8,10 @@ import React, {
 } from 'react';
 import { View, Text as RNText, Pressable, ScrollView } from 'react-native';
 import Svg, { Path, Polyline } from 'react-native-svg';
-import type { SidebarWidth, SidebarPosition, SidebarContextValue } from '@wisp-ui/core/types/Sidebar.types';
-import { sidebarWidthMap } from '@wisp-ui/core/types/Sidebar.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
-import type { ThemeColors } from '@wisp-ui/core/theme/types';
+import type { SidebarWidth, SidebarPosition, SidebarContextValue } from '@coexist/wisp-core/types/Sidebar.types';
+import { sidebarWidthMap } from '@coexist/wisp-core/types/Sidebar.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
+import type { ThemeColors } from '@coexist/wisp-core/theme/types';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { DateRangePicker } from './DateRangePicker';
-import type { DateRange } from '@wisp-ui/core/types/DateRangePicker.types';
+import type { DateRange } from '@coexist/wisp-core/types/DateRangePicker.types';
 
 const meta: Meta<typeof DateRangePicker> = {
   title: 'Components/DateRangePicker',

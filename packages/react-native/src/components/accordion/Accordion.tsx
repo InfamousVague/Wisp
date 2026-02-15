@@ -3,7 +3,7 @@ import { View, Pressable, Animated } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
 import { Collapse } from '../../layouts/collapse';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

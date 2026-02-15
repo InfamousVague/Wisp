@@ -3,7 +3,7 @@
  * @description Side panel for threaded message replies.
  */
 import React, { forwardRef, useMemo, useCallback, useRef } from 'react';
-import type { ThreadPanelProps, ThreadMessage } from '@wisp-ui/core/types/ThreadPanel.types';
+import type { ThreadPanelProps, ThreadMessage } from '@coexist/wisp-core/types/ThreadPanel.types';
 import {
   resolveThreadPanelColors,
   buildThreadPanelContainerStyle,
@@ -21,7 +21,7 @@ import {
   buildThreadDividerLineStyle,
   buildThreadInputAreaStyle,
   buildThreadLoadingStyle,
-} from '@wisp-ui/core/styles/ThreadPanel.styles';
+} from '@coexist/wisp-core/styles/ThreadPanel.styles';
 import { useTheme } from '../../providers';
 import { MessageInput } from '../message-input';
 

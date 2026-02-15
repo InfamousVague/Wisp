@@ -3,7 +3,7 @@
  * @description Panel listing all pinned messages in a channel or conversation.
  */
 import React, { forwardRef, useMemo, useCallback } from 'react';
-import type { PinnedMessagesProps, PinnedMessage } from '@wisp-ui/core/types/PinnedMessages.types';
+import type { PinnedMessagesProps, PinnedMessage } from '@coexist/wisp-core/types/PinnedMessages.types';
 import {
   resolvePinnedMessagesColors,
   buildPinnedMessagesContainerStyle,
@@ -23,7 +23,7 @@ import {
   buildUnpinButtonStyle,
   buildPinnedEmptyStyle,
   buildPinnedLoadingStyle,
-} from '@wisp-ui/core/styles/PinnedMessages.styles';
+} from '@coexist/wisp-core/styles/PinnedMessages.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

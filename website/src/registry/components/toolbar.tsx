@@ -7,6 +7,7 @@ export const toolbarEntry: ComponentEntry = {
   slug: 'toolbar',
   name: 'Toolbar',
   category: 'components',
+  subcategory: 'Navigation',
   description:
     'Horizontal toolbar with groups, separators, and 3 variants (elevated, transparent, pill). Sizes control height and spacing.',
   variantCount: 3,

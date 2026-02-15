@@ -6,6 +6,7 @@ export const questTrackerEntry: ComponentEntry = {
   slug: 'quest-tracker',
   name: 'QuestTracker',
   category: 'components',
+  subcategory: 'Gamification',
   description:
     'Compact quest objective list with completion indicators, optional counters, collapsible header, and auto-calculated progress bar.',
   variantCount: 3,

@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, useCallback, useState, useRef, useId } from 'react';
 import { Minus, Plus } from 'lucide-react';
-import type { NumberInputProps } from '@wisp-ui/core/types/NumberInput.types';
-import { inputSizeMap } from '@wisp-ui/core/types/Input.types';
+import type { NumberInputProps } from '@coexist/wisp-core/types/NumberInput.types';
+import { inputSizeMap } from '@coexist/wisp-core/types/Input.types';
 import {
   numberInputButtonSizeMap,
   buildWrapperStyle,
@@ -10,7 +10,7 @@ import {
   buildButtonStyle,
   buildLabelStyle,
   buildHintStyle,
-} from '@wisp-ui/core/styles/NumberInput.styles';
+} from '@coexist/wisp-core/styles/NumberInput.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

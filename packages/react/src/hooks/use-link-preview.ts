@@ -7,7 +7,7 @@
  */
 
 import { useState, useEffect, useRef } from 'react';
-import type { LinkPreviewData, LinkPreviewFetcher } from '@wisp-ui/core/types/LinkPreviewCard.types';
+import type { LinkPreviewData, LinkPreviewFetcher } from '@coexist/wisp-core/types/LinkPreviewCard.types';
 
 // ---------------------------------------------------------------------------
 // Default fetcher (Microlink API)

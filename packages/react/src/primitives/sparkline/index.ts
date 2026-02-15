@@ -5,10 +5,10 @@ export type {
   SparklineSize,
   SparklineSizeConfig,
   SparklineColor,
-} from '@wisp-ui/core/types/Sparkline.types';
+} from '@coexist/wisp-core/types/Sparkline.types';
 export {
   sparklineVariants,
   sparklineSizes,
   sparklineSizeMap,
   sparklineColors,
-} from '@wisp-ui/core/types/Sparkline.types';
+} from '@coexist/wisp-core/types/Sparkline.types';

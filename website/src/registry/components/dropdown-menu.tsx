@@ -30,6 +30,7 @@ export const dropdownMenuEntry: ComponentEntry = {
   slug: 'dropdown-menu',
   name: 'DropdownMenu',
   category: 'components',
+  subcategory: 'Overlays & Modals',
   description:
     'Context menu with items, separators, icons, keyboard shortcuts, danger actions, and alignment options.',
   variantCount: 1,

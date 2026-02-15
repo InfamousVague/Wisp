@@ -6,6 +6,7 @@ export const readReceiptEntry: ComponentEntry = {
   slug: 'read-receipt',
   name: 'ReadReceipt',
   category: 'primitives',
+  subcategory: 'Media & Display',
   description:
     'Message delivery status indicator showing sent, delivered, read, and failed states with inline icons. Essential for chat interfaces.',
   variantCount: 5,

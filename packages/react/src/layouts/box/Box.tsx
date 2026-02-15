@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { BoxProps } from '@wisp-ui/core/types/Box.types';
-import { buildBoxStyle } from '@wisp-ui/core/styles/Box.styles';
+import type { BoxProps } from '@coexist/wisp-core/types/Box.types';
+import { buildBoxStyle } from '@coexist/wisp-core/styles/Box.styles';
 import { useTheme } from '../../providers';
 
 /**

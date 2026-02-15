@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Chip } from './Chip';
-import { chipColors, chipSizes, chipVariants } from '@wisp-ui/core/types/Chip.types';
+import { chipColors, chipSizes, chipVariants } from '@coexist/wisp-core/types/Chip.types';
 import { Text } from '../text';
 import { Star, Check, AlertCircle, Info, Tag, Zap } from 'lucide-react';
 

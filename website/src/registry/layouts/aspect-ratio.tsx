@@ -7,6 +7,7 @@ export const aspectRatioEntry: ComponentEntry = {
   slug: 'aspect-ratio',
   name: 'AspectRatio',
   category: 'layouts',
+  subcategory: 'Spacing & Alignment',
   description:
     'Maintains a fixed aspect ratio for its children. Useful for images, video embeds, and responsive media containers.',
   variantCount: 1,

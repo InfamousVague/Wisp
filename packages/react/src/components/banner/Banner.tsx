@@ -2,16 +2,16 @@
  * @module Banner
  */
 import React, { forwardRef, useMemo } from 'react';
-import type { BannerProps } from '@wisp-ui/core/types/Banner.types';
+import type { BannerProps } from '@coexist/wisp-core/types/Banner.types';
 import {
   resolveBannerColors,
   buildBannerStyle,
   buildBannerTitleStyle,
   buildBannerMessageStyle,
   buildBannerDismissStyle,
-} from '@wisp-ui/core/styles/Banner.styles';
+} from '@coexist/wisp-core/styles/Banner.styles';
 import { useTheme } from '../../providers';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 
 /**
  * Banner — Inline notification banner for the Wisp design system.

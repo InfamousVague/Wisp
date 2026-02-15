@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Icon } from './Icon';
-import { iconSizeMap } from '@wisp-ui/core/types/Icon.types';
+import { iconSizeMap } from '@coexist/wisp-core/types/Icon.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

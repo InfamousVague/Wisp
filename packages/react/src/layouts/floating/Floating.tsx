@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import type { FloatingProps } from '@wisp-ui/core/types/Floating.types';
+import type { FloatingProps } from '@coexist/wisp-core/types/Floating.types';
 import { useFloating } from './useFloating';
-import { zIndex as zIndexScale } from '@wisp-ui/core/tokens/z-index';
+import { zIndex as zIndexScale } from '@coexist/wisp-core/tokens/z-index';
 
 /**
  * Floating -- Declarative floating positioning component for the Wisp design system.

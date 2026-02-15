@@ -9,11 +9,11 @@ export type {
   EmojiCategory,
   SkinTone,
   CategoryIconMap,
-} from '@wisp-ui/core/types/EmojiPicker.types';
+} from '@coexist/wisp-core/types/EmojiPicker.types';
 export {
   emojiPickerSizes,
   emojiPickerSizeMap,
   emojiCategories,
   skinTones,
   SKIN_TONE_MODIFIERS,
-} from '@wisp-ui/core/types/EmojiPicker.types';
+} from '@coexist/wisp-core/types/EmojiPicker.types';

@@ -5,7 +5,7 @@
 import type { WispTheme } from '../theme/types';
 
 export function resolveVideoTileBackground(theme: WispTheme): string {
-  return theme.colors.surface.primary;
+  return theme.colors.background.surface;
 }
 
 export function resolveSpeakingBorderColor(theme: WispTheme): string {

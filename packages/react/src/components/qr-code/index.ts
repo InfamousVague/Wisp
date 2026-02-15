@@ -9,7 +9,7 @@ export type {
   QRCodeEyePupilStyle,
   QRCodeGradient,
   QRCodeGradientStop,
-} from '@wisp-ui/core/types/QRCode.types';
+} from '@coexist/wisp-core/types/QRCode.types';
 export {
   qrCodeSizes,
   qrCodeSizeMap,
@@ -17,4 +17,4 @@ export {
   qrCodeErrorLevels,
   qrCodeEyeFrameStyles,
   qrCodeEyePupilStyles,
-} from '@wisp-ui/core/types/QRCode.types';
+} from '@coexist/wisp-core/types/QRCode.types';

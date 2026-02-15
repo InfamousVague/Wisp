@@ -13,5 +13,5 @@ export function resolveDevicePickerLabel(kind: 'audioinput' | 'videoinput' | 'au
 }
 
 export function resolvePickerBackground(theme: WispTheme): string {
-  return theme.colors.surface.secondary;
+  return theme.colors.background.surface;
 }

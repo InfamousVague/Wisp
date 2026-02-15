@@ -1,9 +1,9 @@
 import React, { forwardRef, useState, useCallback, useMemo } from 'react';
 import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import type { ButtonGroupItem, ButtonGroupVariant, ButtonGroupSize } from '@wisp-ui/core/types/ButtonGroup.types';
-import { buttonGroupSizeMap } from '@wisp-ui/core/types/ButtonGroup.types';
-import { defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { ButtonGroupItem, ButtonGroupVariant, ButtonGroupSize } from '@coexist/wisp-core/types/ButtonGroup.types';
+import { buttonGroupSizeMap } from '@coexist/wisp-core/types/ButtonGroup.types';
+import { defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface ButtonGroupProps {

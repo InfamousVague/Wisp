@@ -4,8 +4,8 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { SegmentedControl } from './SegmentedControl';
-import { segmentedControlSizeMap } from '@wisp-ui/core/types/SegmentedControl.types';
-import type { SegmentedControlSize } from '@wisp-ui/core/types/SegmentedControl.types';
+import { segmentedControlSizeMap } from '@coexist/wisp-core/types/SegmentedControl.types';
+import type { SegmentedControlSize } from '@coexist/wisp-core/types/SegmentedControl.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

@@ -2,7 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { CircularProgress } from './CircularProgress';
 import { Text } from '../text';
-import { circularProgressSizes, circularProgressVariants } from '@wisp-ui/core/types/CircularProgress.types';
+import { circularProgressSizes, circularProgressVariants } from '@coexist/wisp-core/types/CircularProgress.types';
 
 // ---------------------------------------------------------------------------
 // Meta

@@ -8,7 +8,7 @@
  * translate web-specific shorthands (e.g. `boxShadow`) into their RN equivalents.
  */
 
-import type { CSSStyleObject } from '@wisp-ui/core';
+import type { CSSStyleObject } from '@coexist/wisp-core';
 import type { ViewStyle, TextStyle } from 'react-native';
 
 // ---------------------------------------------------------------------------

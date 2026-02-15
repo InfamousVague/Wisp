@@ -95,6 +95,7 @@ export function buildInnerStyle(
   sizeConfig: AvatarSizeConfig,
   shape: AvatarShape,
   theme: WispTheme,
+  onSurface = false,
 ): CSSStyleObject {
   const { colors: themeColors, radii } = theme;
   return {
@@ -104,7 +105,7 @@ export function buildInnerStyle(
     width: sizeConfig.container,
     height: sizeConfig.container,
     borderRadius: shape === 'circle' ? '50%' : radii[sizeConfig.squareRadius],
-    backgroundColor: themeColors.accent.primary,
+    backgroundColor: onSurface ? themeColors.text.onRaised : themeColors.accent.primary,
     overflow: 'hidden',
   };
 }
@@ -142,6 +143,7 @@ export function buildImageStyle(): CSSStyleObject {
 export function buildInitialsStyle(
   sizeConfig: AvatarSizeConfig,
   theme: WispTheme,
+  onSurface = false,
 ): CSSStyleObject {
   const { colors: themeColors, typography } = theme;
   return {
@@ -149,7 +151,7 @@ export function buildInitialsStyle(
     fontSize: sizeConfig.fontSize,
     fontWeight: typography.weights.semibold,
     lineHeight: 1,
-    color: themeColors.text.inverse,
+    color: onSurface ? themeColors.background.surface : themeColors.text.inverse,
     userSelect: 'none',
     pointerEvents: 'none',
   };

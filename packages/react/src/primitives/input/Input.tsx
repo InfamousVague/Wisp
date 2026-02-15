@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useCallback, useState, useId } from 'react';
-import type { InputProps } from '@wisp-ui/core/types/Input.types';
-import { inputSizeMap } from '@wisp-ui/core/types/Input.types';
+import type { InputProps } from '@coexist/wisp-core/types/Input.types';
+import { inputSizeMap } from '@coexist/wisp-core/types/Input.types';
 import {
   resolveInputColors,
   buildWrapperStyle,
@@ -9,7 +9,7 @@ import {
   buildLabelStyle,
   buildHintStyle,
   getInputSkeletonStyle,
-} from '@wisp-ui/core/styles/Input.styles';
+} from '@coexist/wisp-core/styles/Input.styles';
 import { useTheme } from '../../providers';
 
 /**

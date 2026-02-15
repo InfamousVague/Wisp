@@ -15,10 +15,10 @@ export type {
   GridJustifyItems,
   GridAlignContent,
   GridJustifyContent,
-} from '@wisp-ui/core/types/Grid.types';
+} from '@coexist/wisp-core/types/Grid.types';
 export {
   gridAlignItems,
   gridJustifyItems,
   gridAlignContents,
   gridJustifyContents,
-} from '@wisp-ui/core/types/Grid.types';
+} from '@coexist/wisp-core/types/Grid.types';

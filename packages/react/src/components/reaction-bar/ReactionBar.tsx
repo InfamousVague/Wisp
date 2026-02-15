@@ -6,8 +6,8 @@
 
 import React, { forwardRef, useCallback, useMemo } from 'react';
 import { useTheme } from '../../providers';
-import type { ReactionBarProps } from '@wisp-ui/core/types/ReactionBar.types';
-import { reactionBarSizeMap } from '@wisp-ui/core/types/ReactionBar.types';
+import type { ReactionBarProps } from '@coexist/wisp-core/types/ReactionBar.types';
+import { reactionBarSizeMap } from '@coexist/wisp-core/types/ReactionBar.types';
 import {
   resolveReactionBarColors,
   buildReactionBarContainerStyle,
@@ -15,7 +15,7 @@ import {
   buildReactionCountStyle,
   buildAddButtonStyle,
   buildReactionBarSkeletonStyle,
-} from '@wisp-ui/core/styles/ReactionBar.styles';
+} from '@coexist/wisp-core/styles/ReactionBar.styles';
 
 // ---------------------------------------------------------------------------
 // Add icon (small +)

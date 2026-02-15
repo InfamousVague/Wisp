@@ -2,7 +2,7 @@
  * @module primitives/number-input
  * @description React Native NumberInput primitive for the Wisp design system.
  *
- * Reuses input size maps and color resolution from `@wisp-ui/core`.
+ * Reuses input size maps and color resolution from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `<TextInput>` instead of `<input>` and `<Pressable>` instead of `<button>`.
@@ -20,13 +20,13 @@ import type {
   ViewStyle,
   TextStyle,
   NativeSyntheticEvent,
-  TextInputFocusEventData,
+  TargetedEvent,
 } from 'react-native';
-import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
-import { inputSizeMap } from '@wisp-ui/core/types/Input.types';
-import { resolveInputColors } from '@wisp-ui/core/styles/Input.styles';
+import type { ComponentSize } from '@coexist/wisp-core/tokens/shared';
+import { inputSizeMap } from '@coexist/wisp-core/types/Input.types';
+import { resolveInputColors } from '@coexist/wisp-core/styles/Input.styles';
 import { Text } from '../text';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
@@ -274,7 +274,7 @@ export const NumberInput = forwardRef<View, NumberInputProps>(
     );
 
     const handleFocus = useCallback(
-      (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      (e: NativeSyntheticEvent<TargetedEvent>) => {
         if (!disabled) {
           setFocused(true);
           setInputText(null);
@@ -284,7 +284,7 @@ export const NumberInput = forwardRef<View, NumberInputProps>(
     );
 
     const handleBlur = useCallback(
-      (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      (e: NativeSyntheticEvent<TargetedEvent>) => {
         setFocused(false);
         setInputText(null);
       },

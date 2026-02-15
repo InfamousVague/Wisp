@@ -4,12 +4,12 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Button } from './Button';
-import { buttonVariants } from '@wisp-ui/core/types/Button.types';
+import { buttonVariants } from '@coexist/wisp-core/types/Button.types';
 import { WispProvider } from '../../providers';
-import { contrastRatio } from '@wisp-ui/core/utils/contrast';
-import { resolveVariantColors } from '@wisp-ui/core/styles/Button.styles';
-import { darkColors } from '@wisp-ui/core/theme/dark';
-import { lightColors } from '@wisp-ui/core/theme/light';
+import { contrastRatio } from '@coexist/wisp-core/utils/contrast';
+import { resolveVariantColors } from '@coexist/wisp-core/styles/Button.styles';
+import { darkColors } from '@coexist/wisp-core/theme/dark';
+import { lightColors } from '@coexist/wisp-core/theme/light';
 
 // ---------------------------------------------------------------------------
 // Wrapper

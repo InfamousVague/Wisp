@@ -121,6 +121,7 @@ export const codeBlockEntry: ComponentEntry = {
   slug: 'code-block',
   name: 'CodeBlock',
   category: 'primitives',
+  subcategory: 'Text & Typography',
   description:
     'Monospace code display with optional syntax highlighting, line numbers, line highlighting, copy-to-clipboard, and max-height scrolling. Pass a SyntaxHighlighter function to enable coloured tokens. Two variants: default (dark surface) and outlined.',
   variantCount: 2,

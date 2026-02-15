@@ -1,12 +1,12 @@
 import React, { forwardRef, useMemo, useEffect } from 'react';
-import type { SkeletonProps } from '@wisp-ui/core/types/Skeleton.types';
+import type { SkeletonProps } from '@coexist/wisp-core/types/Skeleton.types';
 import {
   ensureSkeletonKeyframes,
   buildBlockStyle,
   buildTextContainerStyle,
   buildTextLineStyle,
   buildWaveOverlayStyle,
-} from '@wisp-ui/core/styles/Skeleton.styles';
+} from '@coexist/wisp-core/styles/Skeleton.styles';
 import { useTheme } from '../../providers';
 
 /**

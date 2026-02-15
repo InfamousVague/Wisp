@@ -17,13 +17,13 @@
  */
 
 import React, { forwardRef, useMemo, useEffect } from 'react';
-import type { BeaconProps } from '@wisp-ui/core/types/Beacon.types';
-import { beaconSizeMap } from '@wisp-ui/core/types/Beacon.types';
+import type { BeaconProps } from '@coexist/wisp-core/types/Beacon.types';
+import { beaconSizeMap } from '@coexist/wisp-core/types/Beacon.types';
 import {
   resolveBeaconColor,
   buildBeaconButtonStyle,
   buildBeaconPulseStyle,
-} from '@wisp-ui/core/styles/Beacon.styles';
+} from '@coexist/wisp-core/styles/Beacon.styles';
 import { useTheme } from '../../providers';
 import { Icon } from '../icon';
 import { Popover, PopoverTrigger, PopoverContent } from '../../components/popover';

@@ -2,8 +2,8 @@
  * @module ActivityFeed
  */
 import React, { forwardRef, useMemo } from 'react';
-import type { ActivityFeedProps } from '@wisp-ui/core/types/ActivityFeed.types';
-import { activityFeedSizeMap } from '@wisp-ui/core/types/ActivityFeed.types';
+import type { ActivityFeedProps } from '@coexist/wisp-core/types/ActivityFeed.types';
+import { activityFeedSizeMap } from '@coexist/wisp-core/types/ActivityFeed.types';
 import {
   buildFeedContainerStyle,
   buildFeedItemStyle,
@@ -11,7 +11,7 @@ import {
   buildFeedConnectorStyle,
   buildFeedContentStyle,
   buildFeedTimestampStyle,
-} from '@wisp-ui/core/styles/ActivityFeed.styles';
+} from '@coexist/wisp-core/styles/ActivityFeed.styles';
 import { useTheme } from '../../providers';
 
 /**

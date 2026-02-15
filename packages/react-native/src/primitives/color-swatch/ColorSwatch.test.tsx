@@ -8,7 +8,7 @@ import { WispProvider } from '../../providers';
 import {
   colorSwatchSizes,
   colorSwatchShapes,
-} from '@wisp-ui/core/types/ColorSwatch.types';
+} from '@coexist/wisp-core/types/ColorSwatch.types';
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => (
   <WispProvider mode="dark">{children}</WispProvider>

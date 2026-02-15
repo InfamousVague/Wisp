@@ -6,6 +6,7 @@ export const formFieldEntry: ComponentEntry = {
   slug: 'form-field',
   name: 'FormField',
   category: 'layouts',
+  subcategory: 'Forms & States',
   description:
     'Wraps form controls with label, description, error message, and required indicator. Supports vertical/horizontal orientation.',
   variantCount: 2,

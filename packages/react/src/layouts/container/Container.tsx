@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { ContainerProps } from '@wisp-ui/core/types/Container.types';
-import { buildContainerStyle } from '@wisp-ui/core/styles/Container.styles';
+import type { ContainerProps } from '@coexist/wisp-core/types/Container.types';
+import { buildContainerStyle } from '@coexist/wisp-core/styles/Container.styles';
 import { useTheme } from '../../providers';
 
 /**

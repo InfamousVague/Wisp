@@ -5,10 +5,10 @@ export type {
   AudioWaveformSize,
   AudioWaveformSizeConfig,
   AudioWaveformColor,
-} from '@wisp-ui/core/types/AudioWaveform.types';
+} from '@coexist/wisp-core/types/AudioWaveform.types';
 export {
   audioWaveformVariants,
   audioWaveformSizes,
   audioWaveformSizeMap,
   audioWaveformColors,
-} from '@wisp-ui/core/types/AudioWaveform.types';
+} from '@coexist/wisp-core/types/AudioWaveform.types';

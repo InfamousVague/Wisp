@@ -1,13 +1,13 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { FormFieldProps } from '@wisp-ui/core/types/FormField.types';
-import { formFieldSizeMap } from '@wisp-ui/core/types/FormField.types';
+import type { FormFieldProps } from '@coexist/wisp-core/types/FormField.types';
+import { formFieldSizeMap } from '@coexist/wisp-core/types/FormField.types';
 import {
   buildWrapperStyle,
   buildLabelStyle,
   buildRequiredStyle,
   buildContentStyle,
   buildHintStyle,
-} from '@wisp-ui/core/styles/FormField.styles';
+} from '@coexist/wisp-core/styles/FormField.styles';
 import { useTheme } from '../../providers';
 
 /**

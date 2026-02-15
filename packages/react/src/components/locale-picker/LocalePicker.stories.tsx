@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { LocalePicker } from './LocalePicker';
-import type { LocaleOption } from '@wisp-ui/core/types/LocalePicker.types';
+import type { LocaleOption } from '@coexist/wisp-core/types/LocalePicker.types';
 
 const meta: Meta<typeof LocalePicker> = {
   title: 'Components/LocalePicker',

@@ -2,7 +2,7 @@
  * @module Toggle
  */
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import type { ToggleProps } from '@wisp-ui/core/types/Toggle.types';
+import type { ToggleProps } from '@coexist/wisp-core/types/Toggle.types';
 import {
   resolveToggleColors,
   getDisabledToggleColors,
@@ -11,9 +11,9 @@ import {
   buildHandleStyle,
   buildTrackContentStyle,
   getToggleSkeletonStyle,
-} from '@wisp-ui/core/styles/Toggle.styles';
+} from '@coexist/wisp-core/styles/Toggle.styles';
 import { useTheme } from '../../providers';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 
 /**
  * Toggle -- Switch primitive for the Wisp design system.

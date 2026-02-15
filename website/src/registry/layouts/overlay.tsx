@@ -23,6 +23,7 @@ export const overlayEntry: ComponentEntry = {
   slug: 'overlay',
   name: 'Overlay',
   category: 'layouts',
+  subcategory: 'Scrolling & Positioning',
   description:
     'Full-screen backdrop layer with dim, blur, or transparent modes. Supports scroll locking, escape-to-close, and portal rendering.',
   variantCount: 3,

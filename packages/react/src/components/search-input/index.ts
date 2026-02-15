@@ -1,2 +1,2 @@
 export { SearchInput } from './SearchInput';
-export type { SearchInputProps } from '@wisp-ui/core/types/SearchInput.types';
+export type { SearchInputProps } from '@coexist/wisp-core/types/SearchInput.types';

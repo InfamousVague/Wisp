@@ -4,8 +4,8 @@ export type {
   ActivityCirclesRing,
   ActivityCirclesSize,
   ActivityCirclesSizeConfig,
-} from '@wisp-ui/core/types/ActivityCircles.types';
+} from '@coexist/wisp-core/types/ActivityCircles.types';
 export {
   activityCirclesSizes,
   activityCirclesSizeMap,
-} from '@wisp-ui/core/types/ActivityCircles.types';
+} from '@coexist/wisp-core/types/ActivityCircles.types';

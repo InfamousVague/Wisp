@@ -8,7 +8,7 @@ import type {
   ChannelItem as ChannelItemType,
   ChannelCategory,
   ChannelType,
-} from '@wisp-ui/core/types/ChannelList.types';
+} from '@coexist/wisp-core/types/ChannelList.types';
 import {
   resolveChannelListColors,
   buildChannelListContainerStyle,
@@ -22,7 +22,7 @@ import {
   buildChannelListLoadingStyle,
   buildChannelListSkeletonCategoryStyle,
   buildChannelListSkeletonItemStyle,
-} from '@wisp-ui/core/styles/ChannelList.styles';
+} from '@coexist/wisp-core/styles/ChannelList.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

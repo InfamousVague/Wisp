@@ -25,6 +25,7 @@ export const stickyEntry: ComponentEntry = {
   slug: 'sticky',
   name: 'Sticky',
   category: 'layouts',
+  subcategory: 'Scrolling & Positioning',
   description:
     'Position-sticky wrapper with configurable edge (top/bottom), offset, and z-index from theme.',
   variantCount: 2,

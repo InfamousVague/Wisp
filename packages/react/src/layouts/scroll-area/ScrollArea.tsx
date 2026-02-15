@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { ScrollAreaProps } from '@wisp-ui/core/types/ScrollArea.types';
-import { buildScrollAreaStyle } from '@wisp-ui/core/styles/ScrollArea.styles';
+import type { ScrollAreaProps } from '@coexist/wisp-core/types/ScrollArea.types';
+import { buildScrollAreaStyle } from '@coexist/wisp-core/styles/ScrollArea.styles';
 import { useTheme } from '../../providers';
 
 /**

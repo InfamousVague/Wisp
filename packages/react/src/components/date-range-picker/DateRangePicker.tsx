@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback, useMemo, useState, useRef, useEffect } from 'react';
-import type { DateRangePickerProps, DateRange, DateRangePickerSizeConfig } from '@wisp-ui/core/types/DateRangePicker.types';
-import { dateRangePickerSizeMap } from '@wisp-ui/core/types/DateRangePicker.types';
+import type { DateRangePickerProps, DateRange, DateRangePickerSizeConfig } from '@coexist/wisp-core/types/DateRangePicker.types';
+import { dateRangePickerSizeMap } from '@coexist/wisp-core/types/DateRangePicker.types';
 import {
   buildWrapperStyle,
   buildLabelStyle,
@@ -13,10 +13,10 @@ import {
   buildDayHeaderStyle,
   buildRangeDayCellStyle,
   buildSkeletonStyle,
-} from '@wisp-ui/core/styles/DateRangePicker.styles';
+} from '@coexist/wisp-core/styles/DateRangePicker.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
-import type { ThemeColors } from '@wisp-ui/core/theme/types';
+import type { ThemeColors } from '@coexist/wisp-core/theme/types';
 
 // ---------------------------------------------------------------------------
 // Helpers

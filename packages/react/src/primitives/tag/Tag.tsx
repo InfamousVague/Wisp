@@ -1,12 +1,12 @@
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import type { TagProps } from '@wisp-ui/core/types/Tag.types';
-import { tagSizeMap } from '@wisp-ui/core/types/Tag.types';
+import type { TagProps } from '@coexist/wisp-core/types/Tag.types';
+import { tagSizeMap } from '@coexist/wisp-core/types/Tag.types';
 import {
   resolveTagColors,
   buildTagStyle,
   buildCloseButtonStyle,
   getTagSkeletonStyle,
-} from '@wisp-ui/core/styles/Tag.styles';
+} from '@coexist/wisp-core/styles/Tag.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../text';
 

@@ -9,7 +9,7 @@ import {
   gridJustifyItems,
   gridAlignContents,
   gridJustifyContents,
-} from '@wisp-ui/core/types/Grid.types';
+} from '@coexist/wisp-core/types/Grid.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

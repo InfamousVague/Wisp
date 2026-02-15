@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { ChatBubble } from './ChatBubble';
-import { chatBubbleAlignments, chatBubbleVariants, chatBubbleStatuses } from '@wisp-ui/core/types/ChatBubble.types';
+import { chatBubbleAlignments, chatBubbleVariants, chatBubbleStatuses } from '@coexist/wisp-core/types/ChatBubble.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

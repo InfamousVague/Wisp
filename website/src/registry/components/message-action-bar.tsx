@@ -53,6 +53,7 @@ export const messageActionBarEntry: ComponentEntry = {
   slug: 'message-action-bar',
   name: 'MessageActionBar',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Floating action bar shown on message hover/long-press with actions like reply, react, forward, pin, and delete.',
   variantCount: 1,

@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ScrollArea } from './ScrollArea';
-import { scrollAreaDirections, scrollbarWidths } from '@wisp-ui/core/types/ScrollArea.types';
+import { scrollAreaDirections, scrollbarWidths } from '@coexist/wisp-core/types/ScrollArea.types';
 import { Text } from '../../primitives/text';
 import { useThemeColors } from '../../providers';
 

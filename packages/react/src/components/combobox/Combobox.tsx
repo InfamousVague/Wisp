@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, useCallback, useState, useRef, useEffect, useId } from 'react';
 import { createPortal } from 'react-dom';
-import type { ComboboxProps } from '@wisp-ui/core/types/Combobox.types';
-import { inputSizeMap } from '@wisp-ui/core/types/Input.types';
+import type { ComboboxProps } from '@coexist/wisp-core/types/Combobox.types';
+import { inputSizeMap } from '@coexist/wisp-core/types/Input.types';
 import {
   resolveComboboxColors,
   buildWrapperStyle,
@@ -13,7 +13,7 @@ import {
   buildOptionStyle,
   buildEmptyStyle,
   getComboboxSkeletonStyle,
-} from '@wisp-ui/core/styles/Combobox.styles';
+} from '@coexist/wisp-core/styles/Combobox.styles';
 import { useTheme } from '../../providers';
 
 /**

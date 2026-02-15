@@ -11,6 +11,7 @@ export const colorPickerEntry: ComponentEntry = {
   slug: 'color-picker',
   name: 'ColorPicker',
   category: 'primitives',
+  subcategory: 'Inputs',
   description:
     'Color picker with hue/saturation area, preset swatches, hex input, 3 sizes, and skeleton loading.',
   variantCount: 3,

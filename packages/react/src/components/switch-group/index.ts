@@ -5,4 +5,4 @@ export type {
   CheckboxGroupProps,
   SwitchGroupOption,
   SwitchGroupOrientation,
-} from '@wisp-ui/core/types/SwitchGroup.types';
+} from '@coexist/wisp-core/types/SwitchGroup.types';

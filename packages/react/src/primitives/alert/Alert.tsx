@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { AlertProps } from '@wisp-ui/core/types/Alert.types';
-import type { CSSStyleObject } from '@wisp-ui/core/types';
+import type { AlertProps } from '@coexist/wisp-core/types/Alert.types';
+import type { CSSStyleObject } from '@coexist/wisp-core/types';
 import {
   buildAlertStyle,
   buildIconWrapperStyle,
@@ -8,7 +8,7 @@ import {
   buildTitleStyle,
   buildDescriptionStyle,
   buildActionStyle,
-} from '@wisp-ui/core/styles/Alert.styles';
+} from '@coexist/wisp-core/styles/Alert.styles';
 import { useTheme } from '../../providers';
 
 /**

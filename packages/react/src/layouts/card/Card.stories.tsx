@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Card } from './Card';
-import { cardVariants, cardPaddings, cardRadii } from '@wisp-ui/core/types/Card.types';
+import { cardVariants, cardPaddings, cardRadii } from '@coexist/wisp-core/types/Card.types';
 import { Text } from '../../primitives/text';
 import { Button } from '../../primitives/button';
 import { Icon } from '../../primitives/icon';

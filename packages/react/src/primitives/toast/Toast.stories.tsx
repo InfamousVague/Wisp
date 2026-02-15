@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Toast } from './Toast';
-import { toastVariants } from '@wisp-ui/core/types/Toast.types';
+import { toastVariants } from '@coexist/wisp-core/types/Toast.types';
 import { Text } from '../text';
 import { Button } from '../button';
 import { Icon } from '../icon';

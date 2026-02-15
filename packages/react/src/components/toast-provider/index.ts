@@ -5,5 +5,5 @@ export type {
   ToastItem,
   ToastPosition,
   UseToastReturn,
-} from '@wisp-ui/core/types/ToastProvider.types';
-export { toastPositions } from '@wisp-ui/core/types/ToastProvider.types';
+} from '@coexist/wisp-core/types/ToastProvider.types';
+export { toastPositions } from '@coexist/wisp-core/types/ToastProvider.types';

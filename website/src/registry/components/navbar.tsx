@@ -6,6 +6,7 @@ export const navbarEntry: ComponentEntry = {
   slug: 'navbar',
   name: 'Navbar',
   category: 'components',
+  subcategory: 'Navigation',
   description:
     'Top navigation bar with brand, content areas, and nav items. Supports solid, transparent, and glass variants with optional sticky positioning.',
   variantCount: 3,

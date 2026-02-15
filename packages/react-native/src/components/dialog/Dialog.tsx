@@ -3,7 +3,7 @@ import { View, Pressable, Animated, Text as RNText, Dimensions } from 'react-nat
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { Overlay } from '../../layouts/overlay';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 type DialogSize = 'sm' | 'md' | 'lg';

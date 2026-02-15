@@ -11,6 +11,7 @@ export const checkboxEntry: ComponentEntry = {
   slug: 'checkbox',
   name: 'Checkbox',
   category: 'primitives',
+  subcategory: 'Selection',
   description:
     'Checkbox with label, description, indeterminate state, error/warning validation, and skeleton loading.',
   variantCount: 5,

@@ -2,7 +2,7 @@
  * @module primitives/color-swatch
  * @description React Native ColorSwatch primitive for the Wisp design system.
  *
- * Reuses size maps from `@wisp-ui/core`.
+ * Reuses size maps from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `<View>` instead of `<div>`.
@@ -18,8 +18,8 @@ import type {
   ColorSwatchSize,
   ColorSwatchShape,
   ColorSwatchSizeConfig,
-} from '@wisp-ui/core/types/ColorSwatch.types';
-import { colorSwatchSizeMap } from '@wisp-ui/core/types/ColorSwatch.types';
+} from '@coexist/wisp-core/types/ColorSwatch.types';
+import { colorSwatchSizeMap } from '@coexist/wisp-core/types/ColorSwatch.types';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
@@ -65,7 +65,7 @@ export interface ColorSwatchProps extends Omit<ViewProps, 'children'> {
 function resolveBorderRadius(
   shape: ColorSwatchShape,
   sizeConfig: ColorSwatchSizeConfig,
-  radii: import('@wisp-ui/core/theme/types').ThemeRadii,
+  radii: import('@coexist/wisp-core/theme/types').ThemeRadii,
 ): number {
   switch (shape) {
     case 'circle':

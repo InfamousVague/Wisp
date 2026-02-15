@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { Animated, Easing } from 'react-native';
 import type { ViewStyle } from 'react-native';
-import { DEFAULT_DURATION } from '@wisp-ui/core/animation/constants';
+import { DEFAULT_DURATION } from '@coexist/wisp-core/animation/constants';
 
 export type TransitionPhase = 'enter' | 'idle' | 'exit';
 

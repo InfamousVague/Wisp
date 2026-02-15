@@ -4,9 +4,9 @@ export type {
   VoiceRecorderState,
   VoiceRecorderSize,
   VoiceRecorderSizeConfig,
-} from '@wisp-ui/core/types/VoiceRecorder.types';
+} from '@coexist/wisp-core/types/VoiceRecorder.types';
 export {
   voiceRecorderStates,
   voiceRecorderSizes,
   voiceRecorderSizeMap,
-} from '@wisp-ui/core/types/VoiceRecorder.types';
+} from '@coexist/wisp-core/types/VoiceRecorder.types';

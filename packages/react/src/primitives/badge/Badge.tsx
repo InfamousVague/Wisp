@@ -1,12 +1,12 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { BadgeProps } from '@wisp-ui/core/types/Badge.types';
-import { badgeSizeMap } from '@wisp-ui/core/types/Badge.types';
+import type { BadgeProps } from '@coexist/wisp-core/types/Badge.types';
+import { badgeSizeMap } from '@coexist/wisp-core/types/Badge.types';
 import {
   buildBadgeStyle,
   buildDotStyle,
   resolveBadgeColors,
   getBadgeSkeletonStyle,
-} from '@wisp-ui/core/styles/Badge.styles';
+} from '@coexist/wisp-core/styles/Badge.styles';
 import { useTheme } from '../../providers';
 
 /**

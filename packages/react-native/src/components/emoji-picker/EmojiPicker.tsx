@@ -8,24 +8,26 @@
  */
 
 import React, { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
-import { View, Text, ScrollView, TextInput, Pressable, Animated } from 'react-native';
+import { View, Text, ScrollView, Pressable, Animated } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle, NativeSyntheticEvent, NativeScrollEvent, LayoutChangeEvent } from 'react-native';
 import type {
   EmojiItem,
   EmojiCategory,
   SkinTone,
-} from '@wisp-ui/core/types/EmojiPicker.types';
+} from '@coexist/wisp-core/types/EmojiPicker.types';
 import {
   emojiPickerSizeMap,
   emojiCategories,
   skinTones,
   SKIN_TONE_MODIFIERS,
-} from '@wisp-ui/core/types/EmojiPicker.types';
-import type { EmojiPickerSize } from '@wisp-ui/core/types/EmojiPicker.types';
-import { resolveEmojiPickerColors } from '@wisp-ui/core/styles/EmojiPicker.styles';
+} from '@coexist/wisp-core/types/EmojiPicker.types';
+import type { EmojiPickerSize } from '@coexist/wisp-core/types/EmojiPicker.types';
+import { resolveEmojiPickerColors } from '@coexist/wisp-core/styles/EmojiPicker.styles';
 import { EMOJI_DATA } from './emoji-data';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
+import { SearchInput } from '../search-input';
+import Svg, { Path, Circle, Line, Polyline, Rect } from 'react-native-svg';
 
 // ---------------------------------------------------------------------------
 // Category labels & icons
@@ -44,17 +46,124 @@ const CATEGORY_LABELS: Record<EmojiCategory, string> = {
   flags: 'Flags',
 };
 
-const CATEGORY_ICONS: Record<EmojiCategory, string> = {
-  recent: '\u{1F552}',
-  smileys: '\u{1F600}',
-  people: '\u{1F465}',
-  animals: '\u{1F43E}',
-  food: '\u{1F354}',
-  travel: '\u{2708}',
-  activities: '\u{1F3C6}',
-  objects: '\u{1F4A1}',
-  symbols: '\u{2764}',
-  flags: '\u{1F3F3}',
+// ---------------------------------------------------------------------------
+// SVG Icons (matching Lucide icons used in React DOM version)
+// ---------------------------------------------------------------------------
+
+function ClockIcon({ size = 16, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Circle cx={12} cy={12} r={10} />
+      <Polyline points="12 6 12 12 16 14" />
+    </Svg>
+  );
+}
+
+function SmileIcon({ size = 16, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Circle cx={12} cy={12} r={10} />
+      <Path d="M8 14s1.5 2 4 2 4-2 4-2" />
+      <Line x1={9} y1={9} x2={9.01} y2={9} />
+      <Line x1={15} y1={9} x2={15.01} y2={9} />
+    </Svg>
+  );
+}
+
+function UsersIcon({ size = 16, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <Circle cx={9} cy={7} r={4} />
+      <Path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+      <Path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </Svg>
+  );
+}
+
+function PawPrintIcon({ size = 16, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Circle cx={11} cy={4} r={2} />
+      <Circle cx={18} cy={8} r={2} />
+      <Circle cx={20} cy={16} r={2} />
+      <Path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z" />
+    </Svg>
+  );
+}
+
+function UtensilsCrossedIcon({ size = 16, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8" />
+      <Path d="M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.3 7.3c1.7 1.7 4.3 1.7 6 0" />
+      <Path d="m2 22 5.5-5.5" />
+      <Path d="m22 2-5.5 5.5" />
+    </Svg>
+  );
+}
+
+function PlaneIcon({ size = 16, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" />
+    </Svg>
+  );
+}
+
+function TrophyIcon({ size = 16, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+      <Path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+      <Path d="M4 22h16" />
+      <Path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+      <Path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+      <Path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+    </Svg>
+  );
+}
+
+function LightbulbIcon({ size = 16, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+      <Path d="M9 18h6" />
+      <Path d="M10 22h4" />
+    </Svg>
+  );
+}
+
+function HeartIcon({ size = 16, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+    </Svg>
+  );
+}
+
+function FlagIcon({ size = 16, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+      <Line x1={4} y1={22} x2={4} y2={15} />
+    </Svg>
+  );
+}
+
+type CategoryIconComponent = React.FC<{ size?: number; color?: string }>;
+
+const CATEGORY_ICONS: Record<EmojiCategory, CategoryIconComponent> = {
+  recent: ClockIcon,
+  smileys: SmileIcon,
+  people: UsersIcon,
+  animals: PawPrintIcon,
+  food: UtensilsCrossedIcon,
+  travel: PlaneIcon,
+  activities: TrophyIcon,
+  objects: LightbulbIcon,
+  symbols: HeartIcon,
+  flags: FlagIcon,
 };
 
 const SKIN_TONE_HAND = '\u{1F44B}';
@@ -167,13 +276,15 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     [themeColors],
   );
 
+  const resolvedRadius = (theme.radii ?? defaultRadii)[sizeConfig.borderRadius] ?? defaultRadii[sizeConfig.borderRadius];
+
   // --- Skeleton ---
 
   if (skeleton) {
     const skeletonStyle: ViewStyle = {
       width: sizeConfig.width,
       height: sizeConfig.height,
-      borderRadius: sizeConfig.borderRadius,
+      borderRadius: resolvedRadius,
       backgroundColor: themeColors.border.subtle,
     };
     return <View style={[skeletonStyle, userStyle as ViewStyle]} />;
@@ -290,21 +401,24 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
   // ---- Styles ----
 
   const containerStyle = useMemo<ViewStyle>(() => ({
+    flexDirection: 'column',
     width: sizeConfig.width,
     height: sizeConfig.height,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: resolvedRadius,
     backgroundColor: colors.bg,
     borderWidth: 1,
     borderColor: colors.border,
     overflow: 'hidden',
-  }), [sizeConfig, colors]);
+  }), [sizeConfig, colors, resolvedRadius]);
 
   const headerStyle = useMemo<ViewStyle>(() => ({
+    flexDirection: 'column',
+    gap: sizeConfig.gap * 2,
     paddingHorizontal: sizeConfig.padding,
     paddingTop: sizeConfig.padding,
     paddingBottom: sizeConfig.gap,
+    flexShrink: 0,
     backgroundColor: colors.bg,
-    zIndex: 2,
   }), [sizeConfig, colors]);
 
   const searchRowStyle = useMemo<ViewStyle>(() => ({
@@ -314,51 +428,45 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     height: sizeConfig.searchHeight,
   }), [sizeConfig]);
 
+  const CLIP_PAD = 2;
   const sliderClipStyle = useMemo<ViewStyle>(() => ({
     flex: 1,
-    height: sizeConfig.searchHeight + 4,
-    padding: defaultSpacing['2xs'],
-    margin: -2,
+    height: sizeConfig.searchHeight + CLIP_PAD * 2,
+    marginVertical: -CLIP_PAD,
+    paddingVertical: CLIP_PAD,
+    paddingRight: CLIP_PAD,
     overflow: 'hidden',
+    position: 'relative',
   }), [sizeConfig]);
+
+  const innerWidth = Math.max(0, headerWidth - CLIP_PAD);
 
   const sliderTrackStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
-    width: headerWidth * 2 || '200%' as any,
+    width: innerWidth * 2 || '200%' as any,
     height: '100%' as any,
-  }), [headerWidth]);
+  }), [innerWidth]);
 
   const sliderPanelStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
-    width: headerWidth || '50%' as any,
+    width: innerWidth || '50%' as any,
     height: '100%' as any,
-  }), [headerWidth]);
-
-  const searchStyle = useMemo<TextStyle>(() => ({
-    flex: 1,
-    height: sizeConfig.searchHeight,
-    fontSize: sizeConfig.fontSize,
-    color: themeColors.text.primary,
-    backgroundColor: themeColors.background.sunken,
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: theme.radii[sizeConfig.borderRadius] / 2,
-    paddingHorizontal: sizeConfig.padding,
-  }), [sizeConfig, colors, themeColors]);
+    flexShrink: 0,
+  }), [innerWidth]);
 
   const skinTriggerStyle = useMemo<ViewStyle>(() => ({
     width: triggerSize,
     height: triggerSize,
-    borderRadius: theme.radii[sizeConfig.borderRadius] / 2,
+    borderRadius: resolvedRadius / 2,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
     backgroundColor: skinToneOpen ? themeColors.background.sunken : 'transparent',
     borderWidth: 1,
     borderColor: skinToneOpen ? colors.skinToneActiveBorder : colors.border,
-  }), [triggerSize, sizeConfig, colors, themeColors, skinToneOpen]);
+    flexShrink: 0,
+  }), [triggerSize, resolvedRadius, colors, themeColors, skinToneOpen]);
 
   const tabBarStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
@@ -367,22 +475,25 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     paddingHorizontal: sizeConfig.padding,
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
-    backgroundColor: colors.bg,
-    zIndex: 1,
+    flexShrink: 0,
+    overflow: 'hidden',
   }), [sizeConfig, colors]);
 
   const categoryLabelStyle = useMemo<TextStyle>(() => ({
-    fontSize: sizeConfig.fontSize - 1,
+    fontSize: sizeConfig.fontSize,
     fontWeight: defaultTypography.weights.semibold,
     color: colors.categoryLabel,
-    paddingHorizontal: sizeConfig.padding,
-    paddingVertical: defaultSpacing.xs,
+    paddingTop: sizeConfig.gap + 2,
+    paddingBottom: sizeConfig.gap,
+    backgroundColor: colors.bg,
+    zIndex: 2,
   }), [sizeConfig, colors]);
 
   const cellRowStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingHorizontal: sizeConfig.padding,
+    gap: sizeConfig.gap,
+    justifyContent: 'center',
   }), [sizeConfig]);
 
   const cellStyle = useMemo<ViewStyle>(() => ({
@@ -390,17 +501,24 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     height: sizeConfig.cellSize,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: sizeConfig.cellSize / 4,
-  }), [sizeConfig]);
+    borderRadius: (theme.radii ?? defaultRadii).md ?? defaultRadii.md,
+  }), [sizeConfig, theme]);
 
   const emojiTextStyle = useMemo<TextStyle>(() => ({
     fontSize: sizeConfig.emojiSize,
   }), [sizeConfig]);
 
+  const gridContentStyle = useMemo<ViewStyle>(() => ({
+    paddingHorizontal: sizeConfig.padding,
+    paddingBottom: sizeConfig.padding,
+    gap: sizeConfig.gap * 2,
+  }), [sizeConfig]);
+
   const noResultsStyle = useMemo<ViewStyle>(() => ({
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: defaultSpacing['2xl'],
+    padding: defaultSpacing.xl,
   }), []);
 
   return (
@@ -417,34 +535,34 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
               ]}
             >
               {/* Panel 1: Search bar */}
-              <View style={{ ...sliderPanelStyle, justifyContent: 'flex-start' }}>
+              <View style={sliderPanelStyle}>
                 {showSearch && (
-                  <TextInput
+                  <SearchInput
+                    size={size}
                     value={search}
-                    onChangeText={setSearch}
+                    onValueChange={setSearch}
+                    onClear={() => setSearch('')}
                     placeholder={searchPlaceholder}
-                    placeholderTextColor={themeColors.text.muted}
-                    style={searchStyle}
-                    accessibilityLabel="Search emoji"
+                    fullWidth
                   />
                 )}
               </View>
 
               {/* Panel 2: Skin tone options */}
               {showSkinTones && (
-                <View style={sliderPanelStyle}>
+                <View style={{ ...sliderPanelStyle, justifyContent: 'space-evenly' }}>
                   {skinTones.map((tone: SkinTone) => {
                     const isActive = currentSkinTone === tone;
                     const optStyle: ViewStyle = {
                       width: optionSize,
                       height: optionSize,
-                      borderRadius: optionSize / 2,
+                      borderRadius: (theme.radii ?? defaultRadii).full ?? defaultRadii.full,
                       alignItems: 'center',
                       justifyContent: 'center',
                       overflow: 'hidden',
-                      borderWidth: isActive ? 2 : 0,
+                      borderWidth: 2,
                       borderColor: isActive ? colors.skinToneActiveBorder : 'transparent',
-                      backgroundColor: isActive ? themeColors.background.surface : 'transparent',
+                      backgroundColor: isActive ? colors.bg : 'transparent',
                     };
                     return (
                       <Pressable
@@ -485,19 +603,18 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
         <View style={tabBarStyle}>
           {tabCategories.map((cat) => {
             const isActive = activeCategory === cat;
+            const IconComp = CATEGORY_ICONS[cat];
             const tabStyle: ViewStyle = {
               flex: 1,
               alignItems: 'center',
               justifyContent: 'center',
               height: sizeConfig.tabHeight,
-              borderBottomWidth: isActive ? 2 : 0,
+              borderBottomWidth: 2,
               borderBottomColor: isActive ? colors.tabIndicator : 'transparent',
             };
             return (
-              <Pressable key={cat} onPress={() => handleTabClick(cat)} style={tabStyle}>
-                <Text style={{ fontSize: sizeConfig.tabIconSize, opacity: isActive ? 1 : 0.5 }}>
-                  {CATEGORY_ICONS[cat]}
-                </Text>
+              <Pressable key={cat} onPress={() => handleTabClick(cat)} style={tabStyle} accessibilityLabel={CATEGORY_LABELS[cat]}>
+                <IconComp size={sizeConfig.tabIconSize} color={isActive ? colors.tabTextActive : colors.tabText} />
               </Pressable>
             );
           })}
@@ -510,6 +627,7 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
         onScroll={handleScroll}
         scrollEventThrottle={16}
         style={{ flex: 1 }}
+        contentContainerStyle={gridContentStyle}
       >
         {!hasResults && (
           <View style={noResultsStyle}>

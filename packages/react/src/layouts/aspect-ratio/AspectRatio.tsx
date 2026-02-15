@@ -21,9 +21,9 @@
  */
 
 import React, { forwardRef, useMemo } from 'react';
-import type { AspectRatioProps } from '@wisp-ui/core/types/AspectRatio.types';
-import type { CSSStyleObject } from '@wisp-ui/core/types';
-import { buildContainerStyle, buildInnerStyle } from '@wisp-ui/core/styles/AspectRatio.styles';
+import type { AspectRatioProps } from '@coexist/wisp-core/types/AspectRatio.types';
+import type { CSSStyleObject } from '@coexist/wisp-core/types';
+import { buildContainerStyle, buildInnerStyle } from '@coexist/wisp-core/styles/AspectRatio.styles';
 
 /**
  * AspectRatio component that constrains its children to a given

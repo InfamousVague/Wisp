@@ -22,7 +22,11 @@
       "@wisp-ui/react": ["../packages/react/src"],
       "@wisp-ui/react/*": ["../packages/react/src/*"],
       "@wisp-ui/core": ["../packages/core/src"],
-      "@wisp-ui/core/*": ["../packages/core/src/*"]
+      "@wisp-ui/core/*": ["../packages/core/src/*"],
+      "@coexist/wisp-react": ["../packages/react/src"],
+      "@coexist/wisp-react/*": ["../packages/react/src/*"],
+      "@coexist/wisp-core": ["../packages/core/src"],
+      "@coexist/wisp-core/*": ["../packages/core/src/*"]
     },
     "baseUrl": "."
   },

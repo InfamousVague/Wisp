@@ -42,16 +42,16 @@ import type {
   AccordionContentProps,
   AccordionContextValue,
   AccordionItemContextValue,
-} from '@wisp-ui/core/types/Accordion.types';
-import type { CSSStyleObject } from '@wisp-ui/core/types';
-import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
+} from '@coexist/wisp-core/types/Accordion.types';
+import type { CSSStyleObject } from '@coexist/wisp-core/types';
+import { fontFamilyStacks } from '@coexist/wisp-core/tokens/shared';
 import {
   buildAccordionStyle,
   buildItemStyle,
   buildTriggerStyle,
   buildChevronStyle,
   buildContentStyle,
-} from '@wisp-ui/core/styles/Accordion.styles';
+} from '@coexist/wisp-core/styles/Accordion.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

@@ -6,6 +6,7 @@ export const dateRangePickerEntry: ComponentEntry = {
   slug: 'date-range-picker',
   name: 'DateRangePicker',
   category: 'components',
+  subcategory: 'Date & Time',
   description:
     'Dual-calendar date range selector with start/end inputs, min/max constraints, sizes, and skeleton loading.',
   variantCount: 3,

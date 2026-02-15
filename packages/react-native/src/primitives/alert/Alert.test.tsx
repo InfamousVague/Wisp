@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Alert } from './Alert';
-import { alertVariants } from '@wisp-ui/core/types/Alert.types';
+import { alertVariants } from '@coexist/wisp-core/types/Alert.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

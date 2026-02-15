@@ -19,6 +19,7 @@ export const dataTableEntry: ComponentEntry = {
   slug: 'data-table',
   name: 'DataTable',
   category: 'components',
+  subcategory: 'Data Display',
   description:
     'Data-driven table with sorting, row selection, striped/hoverable rows, card variant, sticky header, and skeleton loading.',
   variantCount: 2,

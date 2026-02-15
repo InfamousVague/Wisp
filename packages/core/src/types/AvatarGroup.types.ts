@@ -15,6 +15,11 @@ export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: AvatarSize;
   /** Overlap spacing in pixels (negative margin between avatars). @default 8 */
   spacing?: number;
+  /**
+   * When `true`, passes `onSurface` to each child Avatar for dark / raised surfaces.
+   * @default false
+   */
+  onSurface?: boolean;
   /** Avatar elements to render in the group. */
   children: React.ReactNode;
 }

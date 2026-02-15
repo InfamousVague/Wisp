@@ -2,13 +2,13 @@
  * @module NotificationBadge
  */
 import React, { forwardRef, useMemo, useEffect } from 'react';
-import type { NotificationBadgeProps } from '@wisp-ui/core/types/NotificationBadge.types';
+import type { NotificationBadgeProps } from '@coexist/wisp-core/types/NotificationBadge.types';
 import {
   resolveNotificationBadgeColors,
   buildNotificationBadgeWrapperStyle,
   buildNotificationBadgeStyle,
   ensureNotificationBadgeKeyframes,
-} from '@wisp-ui/core/styles/NotificationBadge.styles';
+} from '@coexist/wisp-core/styles/NotificationBadge.styles';
 import { useTheme } from '../../providers';
 
 /**

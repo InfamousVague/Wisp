@@ -6,6 +6,7 @@ export const chipEntry: ComponentEntry = {
   slug: 'chip',
   name: 'Chip',
   category: 'primitives',
+  subcategory: 'Badges & Tags',
   description:
     'Interactive chip with filled, outlined, and subtle variants. Supports removable, clickable, and disabled states with 5 semantic colors.',
   variantCount: 15,

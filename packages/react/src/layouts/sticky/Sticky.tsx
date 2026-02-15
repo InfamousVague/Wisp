@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { StickyProps } from '@wisp-ui/core/types/Sticky.types';
-import { buildStickyStyle } from '@wisp-ui/core/styles/Sticky.styles';
+import type { StickyProps } from '@coexist/wisp-core/types/Sticky.types';
+import { buildStickyStyle } from '@coexist/wisp-core/styles/Sticky.styles';
 
 /**
  * Sticky -- Sticky positioning primitive for the Wisp design system.

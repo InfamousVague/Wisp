@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { ProgressProps } from '@wisp-ui/core/types/Progress.types';
-import { progressSizeMap } from '@wisp-ui/core/types/Progress.types';
-import { thicknessValues } from '@wisp-ui/core/tokens/shared';
+import type { ProgressProps } from '@coexist/wisp-core/types/Progress.types';
+import { progressSizeMap } from '@coexist/wisp-core/types/Progress.types';
+import { thicknessValues } from '@coexist/wisp-core/tokens/shared';
 import {
   resolveProgressColors,
   buildTrackStyle,
@@ -11,7 +11,7 @@ import {
   buildLabelTextStyle,
   buildValueTextStyle,
   getProgressSkeletonStyle,
-} from '@wisp-ui/core/styles/Progress.styles';
+} from '@coexist/wisp-core/styles/Progress.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../text';
 

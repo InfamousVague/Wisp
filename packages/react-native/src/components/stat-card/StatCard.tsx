@@ -9,10 +9,10 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { StatCardVariant, StatCardSize } from '@wisp-ui/core/types/StatCard.types';
-import { statCardSizeMap } from '@wisp-ui/core/types/StatCard.types';
-import { resolveStatCardColors } from '@wisp-ui/core/styles/StatCard.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { StatCardVariant, StatCardSize } from '@coexist/wisp-core/types/StatCard.types';
+import { statCardSizeMap } from '@coexist/wisp-core/types/StatCard.types';
+import { resolveStatCardColors } from '@coexist/wisp-core/styles/StatCard.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

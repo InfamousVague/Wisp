@@ -6,6 +6,7 @@ export const textEntry: ComponentEntry = {
   slug: 'text',
   name: 'Text',
   category: 'primitives',
+  subcategory: 'Text & Typography',
   description:
     'Polymorphic text primitive with 11 size steps, semantic colors, font weights, truncation, and skeleton loading.',
   variantCount: 11,

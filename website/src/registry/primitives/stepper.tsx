@@ -11,6 +11,7 @@ export const stepperEntry: ComponentEntry = {
   slug: 'stepper',
   name: 'Stepper',
   category: 'primitives',
+  subcategory: 'Media & Display',
   description:
     'Numeric stepper with plus/minus buttons, min/max constraints, custom step increment, and skeleton loading.',
   variantCount: 3,

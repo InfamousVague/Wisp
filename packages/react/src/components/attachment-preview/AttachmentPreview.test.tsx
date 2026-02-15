@@ -5,7 +5,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { WispProvider } from '../../providers';
 import { AttachmentPreview } from './AttachmentPreview';
-import type { Attachment } from '@wisp-ui/core/types/AttachmentPreview.types';
+import type { Attachment } from '@coexist/wisp-core/types/AttachmentPreview.types';
 
 // ---------------------------------------------------------------------------
 // Wrapper

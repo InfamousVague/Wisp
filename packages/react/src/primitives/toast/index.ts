@@ -9,5 +9,5 @@
  */
 
 export { Toast } from './Toast';
-export type { ToastProps, ToastVariant } from '@wisp-ui/core/types/Toast.types';
-export { toastVariants } from '@wisp-ui/core/types/Toast.types';
+export type { ToastProps, ToastVariant } from '@coexist/wisp-core/types/Toast.types';
+export { toastVariants } from '@coexist/wisp-core/types/Toast.types';

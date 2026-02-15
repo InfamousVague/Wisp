@@ -1,7 +1,10 @@
 {
-  "name": "@wisp-ui/react",
+  "name": "@coexist/wisp-react",
   "version": "0.1.0",
-  "description": "Wisp UI React components — built on @wisp-ui/core",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Wisp UI React components — built on @coexist/wisp-core",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -25,7 +28,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@wisp-ui/core": "workspace:*",
+    "@coexist/wisp-core": "^0.1.0",
     "lucide-react": "^0.563.0"
   },
   "peerDependencies": {

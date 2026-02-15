@@ -6,6 +6,7 @@ export const kbdEntry: ComponentEntry = {
   slug: 'kbd',
   name: 'Kbd',
   category: 'primitives',
+  subcategory: 'Text & Typography',
   description:
     'Keyboard key indicator for displaying shortcuts and key combinations. Three sizes with monospace styling.',
   variantCount: 3,

@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText } from 'react-native';
-import type { FormFieldSize } from '@wisp-ui/core/types/FormField.types';
-import { formFieldSizeMap } from '@wisp-ui/core/types/FormField.types';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { FormFieldSize } from '@coexist/wisp-core/types/FormField.types';
+import { formFieldSizeMap } from '@coexist/wisp-core/types/FormField.types';
+import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export type FormFieldOrientation = 'vertical' | 'horizontal';

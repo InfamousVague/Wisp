@@ -13,6 +13,7 @@ export const timelineEntry: ComponentEntry = {
   slug: 'timeline',
   name: 'Timeline',
   category: 'components',
+  subcategory: 'Data Display',
   description:
     'Vertical or horizontal timeline with status-colored dots, icons, timestamps, and 3 size presets.',
   variantCount: 2,

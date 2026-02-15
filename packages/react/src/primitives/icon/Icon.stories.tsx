@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from './Icon';
-import { iconSizes as iconSizeOptions, iconColors } from '@wisp-ui/core/types/Icon.types';
+import { iconSizes as iconSizeOptions, iconColors } from '@coexist/wisp-core/types/Icon.types';
 import { Text } from '../text';
 import {
   Search,

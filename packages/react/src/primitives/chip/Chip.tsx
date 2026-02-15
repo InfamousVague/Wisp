@@ -1,14 +1,14 @@
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
 import { X } from 'lucide-react';
-import type { ChipProps } from '@wisp-ui/core/types/Chip.types';
-import { chipSizeMap } from '@wisp-ui/core/types/Chip.types';
+import type { ChipProps } from '@coexist/wisp-core/types/Chip.types';
+import { chipSizeMap } from '@coexist/wisp-core/types/Chip.types';
 import {
   buildChipStyle,
   buildIconWrapperStyle,
   buildRemoveButtonStyle,
   getRemoveButtonHoverBg,
   resolveChipColors,
-} from '@wisp-ui/core/styles/Chip.styles';
+} from '@coexist/wisp-core/styles/Chip.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../text';
 

@@ -32,6 +32,7 @@ export const pinnedMessagesEntry: ComponentEntry = {
   slug: 'pinned-messages',
   name: 'PinnedMessages',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Panel listing all pinned messages in a channel or conversation, with click-to-jump and unpin actions.',
   variantCount: 1,

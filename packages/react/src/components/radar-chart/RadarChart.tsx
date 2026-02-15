@@ -1,13 +1,13 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { RadarChartProps } from '@wisp-ui/core/types/RadarChart.types';
-import { radarChartSizeMap } from '@wisp-ui/core/types/RadarChart.types';
+import type { RadarChartProps } from '@coexist/wisp-core/types/RadarChart.types';
+import { radarChartSizeMap } from '@coexist/wisp-core/types/RadarChart.types';
 import {
   computePolygonPoints,
   pointsToString,
   regularPolygonPoints,
   axisAngle,
   polarToCartesian,
-} from '@wisp-ui/core/styles/chart-utils';
+} from '@coexist/wisp-core/styles/chart-utils';
 import {
   resolveSeriesColor,
   resolveRadarChartColors,
@@ -17,7 +17,7 @@ import {
   buildRadarChartLegendItemStyle,
   buildRadarChartLegendDotStyle,
   buildRadarChartLegendTextStyle,
-} from '@wisp-ui/core/styles/RadarChart.styles';
+} from '@coexist/wisp-core/styles/RadarChart.styles';
 import { useTheme } from '../../providers';
 
 /**

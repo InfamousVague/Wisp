@@ -6,5 +6,5 @@
  */
 
 export { Spacer } from './Spacer';
-export type { SpacerProps, SpacerSize } from '@wisp-ui/core/types/Spacer.types';
-export { spacerSizes } from '@wisp-ui/core/types/Spacer.types';
+export type { SpacerProps, SpacerSize } from '@coexist/wisp-core/types/Spacer.types';
+export { spacerSizes } from '@coexist/wisp-core/types/Spacer.types';

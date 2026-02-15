@@ -7,6 +7,7 @@ export const achievementCardEntry: ComponentEntry = {
   slug: 'achievement-card',
   name: 'AchievementCard',
   category: 'components',
+  subcategory: 'Gamification',
   description:
     'Card showing achievement with locked, in-progress, and unlocked states. Supports five rarity tiers with colour-coded accents.',
   variantCount: 5,

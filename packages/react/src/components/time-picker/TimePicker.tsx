@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useCallback, useState, useRef, useEffect } from 'react';
-import type { TimePickerProps } from '@wisp-ui/core/types/TimePicker.types';
-import { timePickerSizeMap } from '@wisp-ui/core/types/TimePicker.types';
+import type { TimePickerProps } from '@coexist/wisp-core/types/TimePicker.types';
+import { timePickerSizeMap } from '@coexist/wisp-core/types/TimePicker.types';
 import {
   buildTimePickerContainerStyle,
   buildTimePickerTriggerStyle,
@@ -10,10 +10,10 @@ import {
   buildTimePickerLabelStyle,
   buildTimePickerErrorStyle,
   buildTimePickerSkeletonStyle,
-} from '@wisp-ui/core/styles/TimePicker.styles';
+} from '@coexist/wisp-core/styles/TimePicker.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
-import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
+import { fontFamilyStacks } from '@coexist/wisp-core/tokens/shared';
 
 // ---------------------------------------------------------------------------
 // Helpers

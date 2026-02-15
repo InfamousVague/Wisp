@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, useState, useCallback, useRef, createContext, useContext, useEffect } from 'react';
 import { View, Pressable, ScrollView, Animated, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle, LayoutChangeEvent } from 'react-native';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
@@ -29,6 +29,8 @@ export interface TabProps {
   value: string;
   disabled?: boolean;
   icon?: React.ReactNode;
+  /** Notification badge count. Renders a small count indicator next to the label. */
+  badge?: number;
   style?: ViewStyle;
 }
 
@@ -191,7 +193,7 @@ TabList.displayName = 'TabList';
 
 export const Tab = forwardRef<View, TabProps & { _registerLayout?: (value: string, layout: TabLayout) => void }>(
   function Tab(
-    { children, value, disabled = false, icon, style: userStyle, _registerLayout },
+    { children, value, disabled = false, icon, badge, style: userStyle, _registerLayout },
     ref,
   ) {
     const { theme } = useTheme();
@@ -228,6 +230,29 @@ export const Tab = forwardRef<View, TabProps & { _registerLayout?: (value: strin
       [isActive, themeColors],
     );
 
+    const badgeStyle = useMemo<ViewStyle>(
+      () => ({
+        backgroundColor: themeColors.status.danger,
+        borderRadius: 99,
+        paddingHorizontal: 5,
+        minWidth: 18,
+        height: 18,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }),
+      [themeColors],
+    );
+
+    const badgeTextStyle = useMemo<TextStyle>(
+      () => ({
+        fontSize: 10,
+        fontWeight: '700',
+        color: '#FFFFFF',
+        textAlign: 'center',
+      }),
+      [],
+    );
+
     return (
       <Pressable
         ref={ref}
@@ -240,6 +265,11 @@ export const Tab = forwardRef<View, TabProps & { _registerLayout?: (value: strin
       >
         {icon}
         {children != null && <RNText style={labelStyle}>{children}</RNText>}
+        {badge != null && badge > 0 && (
+          <View style={badgeStyle}>
+            <RNText style={badgeTextStyle}>{badge > 99 ? '99+' : badge}</RNText>
+          </View>
+        )}
       </Pressable>
     );
   },

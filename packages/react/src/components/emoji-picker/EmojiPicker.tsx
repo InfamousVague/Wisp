@@ -27,13 +27,13 @@ import type {
   EmojiItem,
   EmojiCategory,
   SkinTone,
-} from '@wisp-ui/core/types/EmojiPicker.types';
+} from '@coexist/wisp-core/types/EmojiPicker.types';
 import {
   emojiPickerSizeMap,
   emojiCategories,
   skinTones,
   SKIN_TONE_MODIFIERS,
-} from '@wisp-ui/core/types/EmojiPicker.types';
+} from '@coexist/wisp-core/types/EmojiPicker.types';
 import {
   resolveEmojiPickerColors,
   buildEmojiPickerContainerStyle,
@@ -52,7 +52,7 @@ import {
   buildEmojiPickerCellRowStyle,
   buildEmojiPickerSkeletonStyle,
   buildEmojiPickerNoResultsStyle,
-} from '@wisp-ui/core/styles/EmojiPicker.styles';
+} from '@coexist/wisp-core/styles/EmojiPicker.styles';
 import { EMOJI_DATA } from './emoji-data';
 
 // ---------------------------------------------------------------------------

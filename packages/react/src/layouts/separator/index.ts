@@ -5,10 +5,10 @@ export type {
   SeparatorOrientation,
   SeparatorVariant,
   SeparatorSpacing,
-} from '@wisp-ui/core/types/Separator.types';
+} from '@coexist/wisp-core/types/Separator.types';
 export {
   separatorOrientations,
   separatorVariants,
   separatorSpacings,
   separatorSpacingMap,
-} from '@wisp-ui/core/types/Separator.types';
+} from '@coexist/wisp-core/types/Separator.types';

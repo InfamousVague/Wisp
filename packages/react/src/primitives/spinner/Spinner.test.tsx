@@ -4,10 +4,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Spinner } from './Spinner';
-import { spinnerSizeMap } from '@wisp-ui/core/types/Spinner.types';
+import { spinnerSizeMap } from '@coexist/wisp-core/types/Spinner.types';
 import { WispProvider } from '../../providers';
-import { darkColors } from '@wisp-ui/core/theme/dark';
-import { lightColors } from '@wisp-ui/core/theme/light';
+import { darkColors } from '@coexist/wisp-core/theme/dark';
+import { lightColors } from '@coexist/wisp-core/theme/light';
 
 // ---------------------------------------------------------------------------
 // Wrapper

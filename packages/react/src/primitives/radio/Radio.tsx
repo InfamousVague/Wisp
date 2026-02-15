@@ -7,18 +7,18 @@ import React, {
   createContext,
   useContext,
 } from 'react';
-import type { RadioProps, RadioGroupProps } from '@wisp-ui/core/types/Radio.types';
-import { radioSizeMap } from '@wisp-ui/core/types/Radio.types';
-import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
-import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
+import type { RadioProps, RadioGroupProps } from '@coexist/wisp-core/types/Radio.types';
+import { radioSizeMap } from '@coexist/wisp-core/types/Radio.types';
+import type { ComponentSize } from '@coexist/wisp-core/tokens/shared';
+import { fontFamilyStacks } from '@coexist/wisp-core/tokens/shared';
 import {
   resolveRadioColors,
   buildOuterCircleStyle,
   buildInnerDotStyle,
   getRadioSkeletonStyle,
-} from '@wisp-ui/core/styles/Radio.styles';
+} from '@coexist/wisp-core/styles/Radio.styles';
 import { useTheme } from '../../providers';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Context

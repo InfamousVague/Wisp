@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Select } from './Select';
-import { selectSizes } from '@wisp-ui/core/types/Select.types';
+import { selectSizes } from '@coexist/wisp-core/types/Select.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

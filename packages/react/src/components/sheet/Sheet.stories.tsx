@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Sheet } from './Sheet';
-import { sheetSizes } from '@wisp-ui/core/types/Sheet.types';
-import type { SheetSize } from '@wisp-ui/core/types/Sheet.types';
+import { sheetSizes } from '@coexist/wisp-core/types/Sheet.types';
+import type { SheetSize } from '@coexist/wisp-core/types/Sheet.types';
 import { Text } from '../../primitives/text';
 import { Button } from '../../primitives/button';
 

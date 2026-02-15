@@ -105,6 +105,7 @@ export const attachmentPreviewEntry: ComponentEntry = {
   slug: 'attachment-preview',
   name: 'AttachmentPreview',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Horizontal scrollable row of queued file preview cards with thumbnails, progress bars, and remove buttons.',
   variantCount: 5,

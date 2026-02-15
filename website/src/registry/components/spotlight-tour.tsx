@@ -79,6 +79,7 @@ export const spotlightTourEntry: ComponentEntry = {
   slug: 'spotlight-tour',
   name: 'SpotlightTour',
   category: 'components',
+  subcategory: 'Feedback & Guidance',
   description:
     'Full guided tour with dark backdrop cutout, step popovers, and navigation controls. Highlights target elements with an SVG mask overlay.',
   variantCount: 2,

@@ -6,8 +6,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import type { PinInputProps } from '@wisp-ui/core/types/PinInput.types';
-import { pinInputSizeMap } from '@wisp-ui/core/types/PinInput.types';
+import type { PinInputProps } from '@coexist/wisp-core/types/PinInput.types';
+import { pinInputSizeMap } from '@coexist/wisp-core/types/PinInput.types';
 import {
   resolvePinInputColors,
   buildWrapperStyle,
@@ -16,7 +16,7 @@ import {
   buildLabelStyle,
   buildHintStyle,
   buildSkeletonCellStyle,
-} from '@wisp-ui/core/styles/PinInput.styles';
+} from '@coexist/wisp-core/styles/PinInput.styles';
 import { useControllable } from '../../hooks/use-controllable';
 import { useTheme } from '../../providers';
 import { Text } from '../text';

@@ -23,7 +23,7 @@ import { useTheme } from '../../providers';
 
 /**
  * Maps spacing token keys to their numeric pixel values.
- * Mirrors the shared spacing scale from `@wisp-ui/core`.
+ * Mirrors the shared spacing scale from `@coexist/wisp-core`.
  */
 const spacingMap: Record<string, number> = {
   '2xs': 2,
@@ -182,10 +182,16 @@ export const Stack = forwardRef<View, StackProps>(function Stack(
         };
   }, [divider, direction, resolvedGap, themeColors.border.subtle]);
 
+  // Filter out bare string/number children that would cause
+  // "text node cannot be a child of View" errors on React Native Web.
+  const safeChildren = React.Children.toArray(children).filter(
+    (child) => child != null && typeof child !== 'string' && typeof child !== 'number',
+  );
+
   // Insert dividers between children when the divider prop is set
-  let content = children;
+  let content: React.ReactNode = safeChildren;
   if (divider && dividerStyle) {
-    const childArray = React.Children.toArray(children).filter(Boolean);
+    const childArray = safeChildren;
     const withDividers: React.ReactNode[] = [];
 
     childArray.forEach((child, i) => {

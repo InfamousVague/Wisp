@@ -1,6 +1,9 @@
 {
-  "name": "@wisp-ui/core",
-  "version": "0.1.0",
+  "name": "@coexist/wisp-core",
+  "version": "0.1.1",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Framework-agnostic core for the Wisp design system — tokens, themes, styles, logic, and types",
   "type": "module",
   "main": "./dist/index.js",
@@ -51,6 +54,46 @@
       "import": "./dist/animation/index.mjs",
       "require": "./dist/animation/index.js",
       "types": "./dist/animation/index.d.ts"
+    },
+    "./tokens/*": {
+      "import": "./dist/tokens/*.mjs",
+      "require": "./dist/tokens/*.js",
+      "types": "./dist/tokens/*.d.ts"
+    },
+    "./theme/*": {
+      "import": "./dist/theme/*.mjs",
+      "require": "./dist/theme/*.js",
+      "types": "./dist/theme/*.d.ts"
+    },
+    "./styles/*": {
+      "import": "./dist/styles/*.mjs",
+      "require": "./dist/styles/*.js",
+      "types": "./dist/styles/*.d.ts"
+    },
+    "./types/*": {
+      "import": "./dist/types/*.mjs",
+      "require": "./dist/types/*.js",
+      "types": "./dist/types/*.d.ts"
+    },
+    "./logic/*": {
+      "import": "./dist/logic/*.mjs",
+      "require": "./dist/logic/*.js",
+      "types": "./dist/logic/*.d.ts"
+    },
+    "./utils/*": {
+      "import": "./dist/utils/*.mjs",
+      "require": "./dist/utils/*.js",
+      "types": "./dist/utils/*.d.ts"
+    },
+    "./variants/*": {
+      "import": "./dist/variants/*.mjs",
+      "require": "./dist/variants/*.js",
+      "types": "./dist/variants/*.d.ts"
+    },
+    "./animation/*": {
+      "import": "./dist/animation/*.mjs",
+      "require": "./dist/animation/*.js",
+      "types": "./dist/animation/*.d.ts"
     }
   },
   "files": [

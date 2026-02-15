@@ -51,7 +51,7 @@ import type {
   CommandEmptyProps,
   CommandContextValue,
   CommandItemEntry,
-} from '@wisp-ui/core/types/Command.types';
+} from '@coexist/wisp-core/types/Command.types';
 import {
   buildOverlayStyle,
   buildPanelStyle,
@@ -68,7 +68,7 @@ import {
   buildSeparatorStyle,
   buildEmptyStyle,
   buildLoadingStyle,
-} from '@wisp-ui/core/styles/Command.styles';
+} from '@coexist/wisp-core/styles/Command.styles';
 
 // ---------------------------------------------------------------------------
 // Animation injection

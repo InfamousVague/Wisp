@@ -11,6 +11,7 @@ export const calendarEntry: ComponentEntry = {
   slug: 'calendar',
   name: 'Calendar',
   category: 'components',
+  subcategory: 'Date & Time',
   description:
     'Month calendar with date selection, min/max constraints, disabled dates, locale support, and 3 size presets.',
   variantCount: 3,

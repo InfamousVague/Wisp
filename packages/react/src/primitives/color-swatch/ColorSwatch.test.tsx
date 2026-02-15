@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { ColorSwatch } from './ColorSwatch';
-import { colorSwatchSizes, colorSwatchShapes } from '@wisp-ui/core/types/ColorSwatch.types';
+import { colorSwatchSizes, colorSwatchShapes } from '@coexist/wisp-core/types/ColorSwatch.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

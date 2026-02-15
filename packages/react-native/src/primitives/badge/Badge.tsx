@@ -2,17 +2,17 @@
  * @module primitives/badge
  * @description React Native Badge primitive for the Wisp design system.
  *
- * Reuses color resolution and size maps from `@wisp-ui/core`.
+ * Reuses color resolution and size maps from `@coexist/wisp-core`.
  * Renders via `<View>` + `<Text>` instead of `<span>`.
  */
 
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { BadgeSize, BadgeVariant, BadgeShape } from '@wisp-ui/core/types/Badge.types';
-import { badgeSizeMap } from '@wisp-ui/core/types/Badge.types';
-import { resolveBadgeColors } from '@wisp-ui/core/styles/Badge.styles';
-import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { BadgeSize, BadgeVariant, BadgeShape } from '@coexist/wisp-core/types/Badge.types';
+import { badgeSizeMap } from '@coexist/wisp-core/types/Badge.types';
+import { resolveBadgeColors } from '@coexist/wisp-core/styles/Badge.styles';
+import { defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

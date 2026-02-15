@@ -2,16 +2,16 @@
  * @module Button
  */
 import React, { forwardRef, useMemo, useCallback, useEffect, useRef } from 'react';
-import type { ButtonProps } from '@wisp-ui/core/types/Button.types';
-import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
-import type { TextSize } from '@wisp-ui/core/tokens/shared';
+import type { ButtonProps } from '@coexist/wisp-core/types/Button.types';
+import type { ComponentSize } from '@coexist/wisp-core/tokens/shared';
+import type { TextSize } from '@coexist/wisp-core/tokens/shared';
 import {
   buildButtonStyle,
   resolveVariantColors,
   getDisabledColors,
   getButtonSkeletonStyle,
   getSpinnerStyle,
-} from '@wisp-ui/core/styles/Button.styles';
+} from '@coexist/wisp-core/styles/Button.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../text';
 

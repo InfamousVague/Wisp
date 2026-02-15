@@ -7,6 +7,7 @@ export const stackEntry: ComponentEntry = {
   slug: 'stack',
   name: 'Stack',
   category: 'layouts',
+  subcategory: 'Spacing & Alignment',
   description:
     'Flex-based layout primitive with horizontal (HStack), vertical (VStack), and configurable gap, alignment, wrapping, and dividers.',
   variantCount: 3,

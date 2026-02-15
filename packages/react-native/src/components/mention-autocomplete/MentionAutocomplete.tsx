@@ -6,8 +6,8 @@
 import React, { forwardRef, useMemo, useCallback } from 'react';
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import { resolveMentionAutocompleteColors } from '@wisp-ui/core/styles/MentionAutocomplete.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { resolveMentionAutocompleteColors } from '@coexist/wisp-core/styles/MentionAutocomplete.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

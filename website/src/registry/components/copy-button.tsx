@@ -6,6 +6,7 @@ export const copyButtonEntry: ComponentEntry = {
   slug: 'copy-button',
   name: 'CopyButton',
   category: 'components',
+  subcategory: 'Social',
   description:
     'One-click clipboard copy button with copied confirmation state, configurable duration, label, and 3 variants.',
   variantCount: 3,

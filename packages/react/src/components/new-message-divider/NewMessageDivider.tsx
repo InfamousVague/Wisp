@@ -2,12 +2,12 @@
  * @module NewMessageDivider
  */
 import React, { forwardRef, useMemo } from 'react';
-import type { NewMessageDividerProps } from '@wisp-ui/core/types/NewMessageDivider.types';
+import type { NewMessageDividerProps } from '@coexist/wisp-core/types/NewMessageDivider.types';
 import {
   buildNewMessageDividerStyle,
   buildLineStyle,
   buildLabelStyle,
-} from '@wisp-ui/core/styles/NewMessageDivider.styles';
+} from '@coexist/wisp-core/styles/NewMessageDivider.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives';
 

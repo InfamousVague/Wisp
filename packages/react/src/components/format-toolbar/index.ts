@@ -2,5 +2,5 @@ export { FormatToolbar } from './FormatToolbar';
 export type {
   FormatToolbarProps,
   FormatAction,
-} from '@wisp-ui/core/types/FormatToolbar.types';
-export { formatActions } from '@wisp-ui/core/types/FormatToolbar.types';
+} from '@coexist/wisp-core/types/FormatToolbar.types';
+export { formatActions } from '@coexist/wisp-core/types/FormatToolbar.types';

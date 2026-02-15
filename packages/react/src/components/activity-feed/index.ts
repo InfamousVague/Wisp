@@ -5,5 +5,5 @@
  */
 
 export { ActivityFeed } from './ActivityFeed';
-export type { ActivityFeedProps, ActivityFeedItem, ActivityFeedSize, ActivityFeedSizeConfig } from '@wisp-ui/core/types/ActivityFeed.types';
-export { activityFeedSizes, activityFeedSizeMap } from '@wisp-ui/core/types/ActivityFeed.types';
+export type { ActivityFeedProps, ActivityFeedItem, ActivityFeedSize, ActivityFeedSizeConfig } from '@coexist/wisp-core/types/ActivityFeed.types';
+export { activityFeedSizes, activityFeedSizeMap } from '@coexist/wisp-core/types/ActivityFeed.types';

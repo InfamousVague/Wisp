@@ -2,7 +2,7 @@
  * @module components/message-search
  * @description React Native MessageSearch for the Wisp design system.
  *
- * Reuses color resolution from `@wisp-ui/core`. Renders via `<View>` + `<Text>`.
+ * Reuses color resolution from `@coexist/wisp-core`. Renders via `<View>` + `<Text>`.
  */
 
 import React, { forwardRef, useMemo, useCallback } from 'react';
@@ -11,11 +11,11 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type {
   SearchResult,
   SearchFilter,
-} from '@wisp-ui/core/types/MessageSearch.types';
+} from '@coexist/wisp-core/types/MessageSearch.types';
 import {
   resolveMessageSearchColors,
-} from '@wisp-ui/core/styles/MessageSearch.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+} from '@coexist/wisp-core/styles/MessageSearch.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 import Svg, { Line, Circle } from 'react-native-svg';
 
@@ -162,8 +162,6 @@ export const MessageSearch = forwardRef<View, MessageSearchProps>(
     const containerStyle: ViewStyle = {
       flex: 1,
       backgroundColor: colors.bg,
-      borderLeftWidth: 1,
-      borderLeftColor: colors.border,
     };
 
     const headerStyle: ViewStyle = {
@@ -174,23 +172,35 @@ export const MessageSearch = forwardRef<View, MessageSearchProps>(
       paddingHorizontal: defaultSpacing.md,
       borderBottomWidth: 1,
       borderBottomColor: colors.border,
-      minHeight: 48,
+      minHeight: 56,
     };
 
-    const inputStyle: ViewStyle & TextStyle = {
+    const inputWrapperStyle: ViewStyle = {
       flex: 1,
       minWidth: 0,
+      flexDirection: 'row',
+      alignItems: 'center',
       height: 32,
       paddingHorizontal: 10,
-      paddingVertical: 0,
-      fontSize: defaultTypography.sizes.sm.fontSize,
-      lineHeight: defaultTypography.sizes.sm.lineHeight,
-      color: colors.inputText,
+      gap: 6,
       backgroundColor: colors.inputBg,
       borderWidth: 1,
       borderColor: colors.inputBorder,
       borderRadius: defaultRadii.md,
     };
+
+    const inputStyle = {
+      flex: 1,
+      minWidth: 0,
+      height: '100%' as any,
+      paddingHorizontal: 0,
+      paddingVertical: 0,
+      fontSize: defaultTypography.sizes.sm.fontSize,
+      lineHeight: defaultTypography.sizes.sm.lineHeight,
+      color: colors.inputText,
+      backgroundColor: 'transparent',
+      outlineStyle: 'none',
+    } as ViewStyle & TextStyle;
 
     const closeButtonStyle: ViewStyle = {
       width: 28,
@@ -339,15 +349,17 @@ export const MessageSearch = forwardRef<View, MessageSearchProps>(
       >
         {/* Header with search input and close button */}
         <View style={headerStyle}>
-          <SearchIcon size={16} color={colors.headerTextMuted} />
-          <TextInput
-            value={query}
-            onChangeText={onQueryChange}
-            placeholder={placeholder}
-            placeholderTextColor={colors.inputPlaceholder}
-            accessibilityLabel="Search messages"
-            style={inputStyle}
-          />
+          <View style={inputWrapperStyle}>
+            <SearchIcon size={14} color={colors.headerTextMuted} />
+            <TextInput
+              value={query}
+              onChangeText={onQueryChange}
+              placeholder={placeholder}
+              placeholderTextColor={colors.inputPlaceholder}
+              accessibilityLabel="Search messages"
+              style={inputStyle}
+            />
+          </View>
           {onClose && (
             <Pressable
               accessibilityRole="button"

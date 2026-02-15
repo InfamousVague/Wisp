@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo, useRef, useEffect } from 'react';
 import { View, Animated } from 'react-native';
-import type { IndicatorVariant, IndicatorState, IndicatorSize } from '@wisp-ui/core/types/Indicator.types';
-import { indicatorSizeMap } from '@wisp-ui/core/types/Indicator.types';
-import { resolveIndicatorColor } from '@wisp-ui/core/styles/Indicator.styles';
+import type { IndicatorVariant, IndicatorState, IndicatorSize } from '@coexist/wisp-core/types/Indicator.types';
+import { indicatorSizeMap } from '@coexist/wisp-core/types/Indicator.types';
+import { resolveIndicatorColor } from '@coexist/wisp-core/styles/Indicator.styles';
 import { useTheme } from '../../providers';
 
 export interface IndicatorProps {

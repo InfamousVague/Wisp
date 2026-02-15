@@ -9,8 +9,8 @@
 import React, { forwardRef, createContext, useContext, useMemo } from 'react';
 import { View, Pressable, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { NavbarVariant } from '@wisp-ui/core/types/Navbar.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { NavbarVariant } from '@coexist/wisp-core/types/Navbar.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

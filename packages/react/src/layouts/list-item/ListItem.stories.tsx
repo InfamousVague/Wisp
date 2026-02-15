@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ListItem } from './ListItem';
-import { listItemSizes } from '@wisp-ui/core/types/ListItem.types';
+import { listItemSizes } from '@coexist/wisp-core/types/ListItem.types';
 import { Text } from '../../primitives/text';
 import { Icon } from '../../primitives/icon';
 import { Avatar } from '../../primitives/avatar';

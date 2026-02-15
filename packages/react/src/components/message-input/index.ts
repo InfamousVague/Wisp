@@ -6,8 +6,8 @@ export type {
   MessageInputReplyContext,
   MessageInputEditContext,
   MessageInputAttachment,
-} from '@wisp-ui/core/types/MessageInput.types';
+} from '@coexist/wisp-core/types/MessageInput.types';
 export {
   messageInputSizes,
   messageInputSizeMap,
-} from '@wisp-ui/core/types/MessageInput.types';
+} from '@coexist/wisp-core/types/MessageInput.types';

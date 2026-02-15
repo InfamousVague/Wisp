@@ -4,12 +4,12 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Badge } from './Badge';
-import { badgeVariants, badgeSizes, badgeShapes } from '@wisp-ui/core/types/Badge.types';
+import { badgeVariants, badgeSizes, badgeShapes } from '@coexist/wisp-core/types/Badge.types';
 import { WispProvider } from '../../providers';
-import { contrastRatio } from '@wisp-ui/core/utils/contrast';
-import { resolveBadgeColors } from '@wisp-ui/core/styles/Badge.styles';
-import { darkColors } from '@wisp-ui/core/theme/dark';
-import { lightColors } from '@wisp-ui/core/theme/light';
+import { contrastRatio } from '@coexist/wisp-core/utils/contrast';
+import { resolveBadgeColors } from '@coexist/wisp-core/styles/Badge.styles';
+import { darkColors } from '@coexist/wisp-core/theme/dark';
+import { lightColors } from '@coexist/wisp-core/theme/light';
 
 // ---------------------------------------------------------------------------
 // Wrapper

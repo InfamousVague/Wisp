@@ -6,6 +6,7 @@ export const meterEntry: ComponentEntry = {
   slug: 'meter',
   name: 'Meter',
   category: 'primitives',
+  subcategory: 'Status & Feedback',
   description:
     'Gauge meter with default, gradient, and segments variants. Semantic coloring based on low/high/optimum thresholds.',
   variantCount: 3,

@@ -8,5 +8,5 @@ export type {
   FloatingStrategy,
   FloatingPosition,
   UseFloatingOptions,
-} from '@wisp-ui/core/types/Floating.types';
-export { floatingPlacements, floatingAligns, floatingStrategies } from '@wisp-ui/core/types/Floating.types';
+} from '@coexist/wisp-core/types/Floating.types';
+export { floatingPlacements, floatingAligns, floatingStrategies } from '@coexist/wisp-core/types/Floating.types';

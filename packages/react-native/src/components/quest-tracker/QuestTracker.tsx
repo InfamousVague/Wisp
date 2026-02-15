@@ -8,9 +8,9 @@
 import React, { forwardRef, useMemo, useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import type { QuestObjective, QuestTrackerSize } from '@wisp-ui/core/types/QuestTracker.types';
-import { questTrackerSizeMap } from '@wisp-ui/core/types/QuestTracker.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { QuestObjective, QuestTrackerSize } from '@coexist/wisp-core/types/QuestTracker.types';
+import { questTrackerSizeMap } from '@coexist/wisp-core/types/QuestTracker.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

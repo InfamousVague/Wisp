@@ -1,18 +1,40 @@
 /**
  * ActiveCallPanel — Main in-call UI with remote video, local PiP, controls, and timer.
+ *
+ * Composes with `<CallControls>` for the control bar instead of building custom buttons.
  */
 
-import React, { forwardRef, useMemo, useState } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import { View, Pressable } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
+import Svg, { Path, Circle } from 'react-native-svg';
 import { Text } from '../../primitives';
 import { CallTimer } from '../../primitives/call-timer';
 import { VideoTile } from '../video-tile';
-import {
-  resolveCallPanelBackground,
-  resolveCallPanelBorder,
-} from '@coexist/wisp-core/styles/ActiveCallPanel.styles';
+import { CallControls } from '../call-controls';
 import { useTheme } from '../../providers';
+
+// ---------------------------------------------------------------------------
+// SVG Icons (only SettingsIcon — controls icons live in CallControls)
+// ---------------------------------------------------------------------------
+
+function SettingsIcon({ size = 20, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+      <Circle cx={12} cy={12} r={3} />
+    </Svg>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Noop helper
+// ---------------------------------------------------------------------------
+const noop = () => {};
+
+// ---------------------------------------------------------------------------
+// ActiveCallPanel
+// ---------------------------------------------------------------------------
 
 export interface ActiveCallPanelProps {
   localStream: MediaStream | null;
@@ -22,12 +44,17 @@ export interface ActiveCallPanelProps {
   callType: 'voice' | 'video';
   isMuted: boolean;
   isCameraOff: boolean;
+  isScreenSharing?: boolean;
+  isSpeakerOn?: boolean;
   connectedAt: number | null;
   onToggleMute: () => void;
   onToggleCamera: () => void;
   onEndCall: () => void;
+  onToggleScreenShare?: () => void;
+  onToggleSpeaker?: () => void;
   onSwitchCamera?: () => void;
   onMinimize?: () => void;
+  onSettings?: () => void;
   style?: ViewStyle;
 }
 
@@ -39,37 +66,41 @@ export const ActiveCallPanel = forwardRef<View, ActiveCallPanelProps>(function A
     callType,
     isMuted,
     isCameraOff,
+    isScreenSharing = false,
+    isSpeakerOn = true,
     connectedAt,
     onToggleMute,
     onToggleCamera,
     onEndCall,
+    onToggleScreenShare,
+    onToggleSpeaker,
     onSwitchCamera,
     onMinimize,
+    onSettings,
     style: userStyle,
   },
   ref,
 ) {
   const { theme } = useTheme();
   const tc = theme.colors;
-  const bgColor = resolveCallPanelBackground(theme);
-  const borderColor = resolveCallPanelBorder(theme);
 
   const isVideo = callType === 'video';
 
+  // Map 'voice' → 'audio' for CallControls
+  const controlsCallType = callType === 'voice' ? 'audio' : callType;
+
   const containerStyle = useMemo<ViewStyle>(() => ({
-    backgroundColor: bgColor,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor,
+    backgroundColor: '#000',
     overflow: 'hidden',
-  }), [bgColor, borderColor]);
+    position: 'relative',
+  }), []);
 
   const videoAreaStyle = useMemo<ViewStyle>(() => ({
     position: 'relative',
     aspectRatio: isVideo ? 16 / 9 : undefined,
     height: isVideo ? undefined : 120,
-    backgroundColor: tc.surface.primary,
-  }), [isVideo, tc]);
+    backgroundColor: '#000',
+  }), [isVideo]);
 
   const pipStyle = useMemo<ViewStyle>(() => ({
     position: 'absolute',
@@ -97,53 +128,33 @@ export const ActiveCallPanel = forwardRef<View, ActiveCallPanelProps>(function A
     color: tc.text.primary,
   }), [tc]);
 
-  const controlsBarStyle = useMemo<ViewStyle>(() => ({
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    gap: 16,
-  }), []);
-
-  const controlButtonStyle = useMemo(() => (active: boolean): ViewStyle => ({
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: active ? tc.text.secondary : 'rgba(255,255,255,0.1)',
-  }), [tc]);
-
-  const endButtonStyle = useMemo<ViewStyle>(() => ({
-    width: 52,
-    height: 44,
-    borderRadius: 22,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: tc.status.danger,
-  }), [tc]);
-
-  const controlTextStyle = useMemo<TextStyle>(() => ({
-    fontSize: 11,
-    color: '#fff',
-    fontWeight: '600',
-  }), []);
-
   const timerBarStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 6,
-    borderTopWidth: 1,
-    borderTopColor: borderColor,
-  }), [borderColor]);
+  }), []);
 
   const timerLabelStyle = useMemo<TextStyle>(() => ({
     fontSize: 12,
     color: tc.text.secondary,
   }), [tc]);
+
+  const controlsRowStyle = useMemo<ViewStyle>(() => ({
+    flexDirection: 'row',
+    alignItems: 'center',
+  }), []);
+
+  const settingsCogStyle = useMemo<ViewStyle>(() => ({
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    marginRight: 12,
+  }), []);
 
   return (
     <View ref={ref} style={[containerStyle, userStyle]}>
@@ -182,53 +193,32 @@ export const ActiveCallPanel = forwardRef<View, ActiveCallPanelProps>(function A
             )}
           </View>
         )}
+
       </View>
 
-      {/* Controls bar */}
-      <View style={controlsBarStyle}>
-        <Pressable
-          style={controlButtonStyle(isMuted)}
-          onPress={onToggleMute}
-          accessibilityLabel={isMuted ? 'Unmute' : 'Mute'}
-        >
-          <Text style={controlTextStyle}>{isMuted ? 'MIC' : 'MIC'}</Text>
-        </Pressable>
-
-        {isVideo && (
+      {/* Controls row — CallControls centered, settings cog at trailing edge */}
+      <View style={controlsRowStyle}>
+        <CallControls
+          isMuted={isMuted}
+          isVideoOff={isCameraOff}
+          isScreenSharing={isScreenSharing}
+          isSpeakerOn={isSpeakerOn}
+          onToggleMute={onToggleMute}
+          onToggleVideo={onToggleCamera}
+          onToggleScreenShare={onToggleScreenShare ?? noop}
+          onToggleSpeaker={onToggleSpeaker ?? noop}
+          onEndCall={onEndCall}
+          callType={controlsCallType}
+          layout="compact"
+          style={{ flex: 1 }}
+        />
+        {onSettings && (
           <Pressable
-            style={controlButtonStyle(isCameraOff)}
-            onPress={onToggleCamera}
-            accessibilityLabel={isCameraOff ? 'Turn on camera' : 'Turn off camera'}
+            style={settingsCogStyle}
+            onPress={onSettings}
+            accessibilityLabel="Call settings"
           >
-            <Text style={controlTextStyle}>CAM</Text>
-          </Pressable>
-        )}
-
-        {isVideo && onSwitchCamera && (
-          <Pressable
-            style={controlButtonStyle(false)}
-            onPress={onSwitchCamera}
-            accessibilityLabel="Switch camera"
-          >
-            <Text style={controlTextStyle}>FLIP</Text>
-          </Pressable>
-        )}
-
-        <Pressable
-          style={endButtonStyle}
-          onPress={onEndCall}
-          accessibilityLabel="End call"
-        >
-          <Text style={controlTextStyle}>END</Text>
-        </Pressable>
-
-        {onMinimize && (
-          <Pressable
-            style={controlButtonStyle(false)}
-            onPress={onMinimize}
-            accessibilityLabel="Minimize"
-          >
-            <Text style={controlTextStyle}>MIN</Text>
+            <SettingsIcon size={18} color="rgba(255,255,255,0.85)" />
           </Pressable>
         )}
       </View>
@@ -240,6 +230,7 @@ export const ActiveCallPanel = forwardRef<View, ActiveCallPanelProps>(function A
           <CallTimer startedAt={connectedAt} size="sm" />
         </View>
       )}
+
     </View>
   );
 });

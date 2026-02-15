@@ -59,6 +59,7 @@ export const toastProviderEntry: ComponentEntry = {
   slug: 'toast-provider',
   name: 'ToastProvider',
   category: 'components',
+  subcategory: 'Feedback & Guidance',
   description:
     'Context-based toast notification system with positioning, auto-dismiss, and max visible limit. Uses the existing Toast primitive for rendering.',
   variantCount: 6,

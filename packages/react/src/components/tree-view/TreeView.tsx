@@ -24,10 +24,10 @@
  * ```
  */
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import type { TreeViewProps, TreeNode, TreeViewSizeConfig } from '@wisp-ui/core/types/TreeView.types';
-import type { CSSStyleObject } from '@wisp-ui/core/types';
-import { treeViewSizeMap } from '@wisp-ui/core/types/TreeView.types';
-import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
+import type { TreeViewProps, TreeNode, TreeViewSizeConfig } from '@coexist/wisp-core/types/TreeView.types';
+import type { CSSStyleObject } from '@coexist/wisp-core/types';
+import { treeViewSizeMap } from '@coexist/wisp-core/types/TreeView.types';
+import { fontFamilyStacks } from '@coexist/wisp-core/tokens/shared';
 import {
   buildTreeContainerStyle,
   buildTreeNodeStyle,
@@ -36,10 +36,10 @@ import {
   buildTreeLabelStyle,
   buildTreeSkeletonRowStyle,
   buildTreeSkeletonBarStyle,
-} from '@wisp-ui/core/styles/TreeView.styles';
+} from '@coexist/wisp-core/styles/TreeView.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives';
-import type { ThemeColors } from '@wisp-ui/core/theme/types';
+import type { ThemeColors } from '@coexist/wisp-core/theme/types';
 
 // ---------------------------------------------------------------------------
 // Internal -- TreeNodeRow

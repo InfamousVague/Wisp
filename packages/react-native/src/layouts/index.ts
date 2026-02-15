@@ -135,3 +135,10 @@ export type { StickyProps } from './sticky';
 
 export { Floating } from './floating';
 export type { FloatingProps } from './floating';
+
+// ---------------------------------------------------------------------------
+// AnchoredPopover
+// ---------------------------------------------------------------------------
+
+export { AnchoredPopover } from './anchored-popover';
+export type { AnchoredPopoverProps } from './anchored-popover';

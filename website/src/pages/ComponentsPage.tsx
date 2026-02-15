@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, VStack } from '@wisp-ui/react';
-import { entriesByCategory } from '../registry';
-import { CategoryGrid } from '../shared/CategoryGrid';
+import { entriesBySubcategory } from '../registry';
+import { SubcategoryGrid } from '../shared/CategoryGrid';
 
 export function ComponentsPage() {
-  const entries = entriesByCategory('components');
+  const groups = entriesBySubcategory('components');
 
   return (
     <VStack gap="lg">
@@ -18,7 +18,7 @@ export function ComponentsPage() {
           </Text>
         </div>
       </div>
-      <CategoryGrid entries={entries} />
+      <SubcategoryGrid groups={groups} />
     </VStack>
   );
 }

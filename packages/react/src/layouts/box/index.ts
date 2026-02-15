@@ -12,5 +12,5 @@ export type {
   ThemeRadiiKey,
   BoxDisplay,
   BoxPosition,
-} from '@wisp-ui/core/types/Box.types';
-export { spacingKeys, radiiKeys } from '@wisp-ui/core/types/Box.types';
+} from '@coexist/wisp-core/types/Box.types';
+export { spacingKeys, radiiKeys } from '@coexist/wisp-core/types/Box.types';

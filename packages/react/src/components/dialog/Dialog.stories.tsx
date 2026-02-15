@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Dialog } from './Dialog';
-import { dialogSizes } from '@wisp-ui/core/types/Dialog.types';
+import { dialogSizes } from '@coexist/wisp-core/types/Dialog.types';
 import { Text } from '../../primitives/text';
 import { Button } from '../../primitives/button';
 

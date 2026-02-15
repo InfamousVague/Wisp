@@ -3,7 +3,7 @@
  * @description Dropdown overlay for @mention user search and selection.
  */
 import React, { forwardRef, useMemo, useCallback, useEffect, useRef } from 'react';
-import type { MentionAutocompleteProps, MentionUser } from '@wisp-ui/core/types/MentionAutocomplete.types';
+import type { MentionAutocompleteProps, MentionUser } from '@coexist/wisp-core/types/MentionAutocomplete.types';
 import {
   resolveMentionAutocompleteColors,
   buildMentionContainerStyle,
@@ -13,7 +13,7 @@ import {
   buildMentionNameStyle,
   buildMentionUsernameStyle,
   buildMentionEmptyStyle,
-} from '@wisp-ui/core/styles/MentionAutocomplete.styles';
+} from '@coexist/wisp-core/styles/MentionAutocomplete.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

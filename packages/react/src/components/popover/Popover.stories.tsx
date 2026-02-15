@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Popover, PopoverTrigger, PopoverContent } from './Popover';
-import { popoverPlacements, popoverAligns } from '@wisp-ui/core/types/Popover.types';
+import { popoverPlacements, popoverAligns } from '@coexist/wisp-core/types/Popover.types';
 
 // ---------------------------------------------------------------------------
 // Meta

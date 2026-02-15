@@ -12,8 +12,8 @@ import {
   CommandSeparator,
   CommandEmpty,
 } from './Command';
-import { commandSizes } from '@wisp-ui/core/types/Command.types';
-import type { CommandSize } from '@wisp-ui/core/types/Command.types';
+import { commandSizes } from '@coexist/wisp-core/types/Command.types';
+import type { CommandSize } from '@coexist/wisp-core/types/Command.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

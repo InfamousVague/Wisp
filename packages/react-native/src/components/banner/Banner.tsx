@@ -2,9 +2,9 @@ import React, { forwardRef, useMemo } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import type { BannerVariant } from '@wisp-ui/core/types/Banner.types';
-import { resolveBannerColors } from '@wisp-ui/core/styles/Banner.styles';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { BannerVariant } from '@coexist/wisp-core/types/Banner.types';
+import { resolveBannerColors } from '@coexist/wisp-core/styles/Banner.styles';
+import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface BannerProps {

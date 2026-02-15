@@ -245,3 +245,5 @@ export { UserMiniCard } from './user-mini-card';
 export type { UserMiniCardProps, UserMiniCardAction, UserMiniCardStatus } from './user-mini-card';
 export { AddFriendInput } from './add-friend-input';
 export type { AddFriendInputProps, AddFriendFeedbackState } from './add-friend-input';
+export { UserPicker } from './user-picker';
+export type { UserPickerProps, UserPickerUser, UserPickerStatus } from './user-picker';

@@ -13,6 +13,7 @@ export const activityFeedEntry: ComponentEntry = {
   slug: 'activity-feed',
   name: 'ActivityFeed',
   category: 'components',
+  subcategory: 'Data Display',
   description:
     'Vertical activity log with avatars, icons, timestamps, connector lines, and 2 size presets.',
   variantCount: 2,

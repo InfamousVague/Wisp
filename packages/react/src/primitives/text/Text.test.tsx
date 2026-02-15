@@ -5,9 +5,9 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Text } from './Text';
 import { WispProvider } from '../../providers';
-import { contrastRatio } from '@wisp-ui/core/utils/contrast';
-import { lightColors } from '@wisp-ui/core/theme/light';
-import { darkColors } from '@wisp-ui/core/theme/dark';
+import { contrastRatio } from '@coexist/wisp-core/utils/contrast';
+import { lightColors } from '@coexist/wisp-core/theme/light';
+import { darkColors } from '@coexist/wisp-core/theme/dark';
 
 // ---------------------------------------------------------------------------
 // Test wrapper

@@ -16,16 +16,16 @@ import type {
   TabProps,
   TabPanelProps,
   TabsContextValue,
-} from '@wisp-ui/core/types/Tabs.types';
-import type { CSSStyleObject } from '@wisp-ui/core/types';
-import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
+} from '@coexist/wisp-core/types/Tabs.types';
+import type { CSSStyleObject } from '@coexist/wisp-core/types';
+import { fontFamilyStacks } from '@coexist/wisp-core/tokens/shared';
 import {
   buildTabListStyle,
   buildTabIndicatorStyle,
   buildTabStyle,
   buildTabFocusStyle,
   buildTabPanelStyle,
-} from '@wisp-ui/core/styles/Tabs.styles';
+} from '@coexist/wisp-core/styles/Tabs.styles';
 import { useTheme } from '../../providers';
 
 /** Use `useLayoutEffect` on the client and `useEffect` during SSR. */

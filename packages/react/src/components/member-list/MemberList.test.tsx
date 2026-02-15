@@ -5,7 +5,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { WispProvider } from '../../providers';
 import { MemberList } from './MemberList';
-import type { MemberListSection } from '@wisp-ui/core/types/MemberList.types';
+import type { MemberListSection } from '@coexist/wisp-core/types/MemberList.types';
 
 // ---------------------------------------------------------------------------
 // Wrapper

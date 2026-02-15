@@ -9,9 +9,9 @@
 import React, { forwardRef, useCallback, useMemo, useState } from 'react';
 import { View, Image as RNImage, Text, Animated } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle, ImageStyle, ImageResizeMode } from 'react-native';
-import type { ImageFit, ImageRadius } from '@wisp-ui/core/types/Image.types';
-import { imageRadiusMap } from '@wisp-ui/core/types/Image.types';
-import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { ImageFit, ImageRadius } from '@coexist/wisp-core/types/Image.types';
+import { imageRadiusMap } from '@coexist/wisp-core/types/Image.types';
+import { defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

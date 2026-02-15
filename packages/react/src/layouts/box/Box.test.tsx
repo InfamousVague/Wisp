@@ -4,7 +4,7 @@ import React, { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Box } from './Box';
-import { spacingKeys, radiiKeys } from '@wisp-ui/core/types/Box.types';
+import { spacingKeys, radiiKeys } from '@coexist/wisp-core/types/Box.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Separator } from './Separator';
-import { separatorOrientations, separatorVariants, separatorSpacings } from '@wisp-ui/core/types/Separator.types';
+import { separatorOrientations, separatorVariants, separatorSpacings } from '@coexist/wisp-core/types/Separator.types';
 import { Text } from '../../primitives/text';
 
 // ---------------------------------------------------------------------------

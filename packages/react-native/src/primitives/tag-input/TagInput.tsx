@@ -1,9 +1,9 @@
 import React, { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
 import { View, TextInput, Text as RNText, Pressable } from 'react-native';
-import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
-import { tagInputSizeMap } from '@wisp-ui/core/types/TagInput.types';
-import { resolveTagInputColors } from '@wisp-ui/core/styles/TagInput.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { ComponentSize } from '@coexist/wisp-core/tokens/shared';
+import { tagInputSizeMap } from '@coexist/wisp-core/types/TagInput.types';
+import { resolveTagInputColors } from '@coexist/wisp-core/styles/TagInput.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface TagInputProps {

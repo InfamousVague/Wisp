@@ -52,6 +52,7 @@ export const messageSearchEntry: ComponentEntry = {
   slug: 'message-search',
   name: 'MessageSearch',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Search panel with query input, filter pills, and a scrollable list of message result previews.',
   variantCount: 5,

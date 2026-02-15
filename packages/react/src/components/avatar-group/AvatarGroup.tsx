@@ -2,13 +2,13 @@
  * @module AvatarGroup
  */
 import React, { forwardRef, useMemo } from 'react';
-import type { AvatarGroupProps } from '@wisp-ui/core/types/AvatarGroup.types';
-import { avatarSizeMap } from '@wisp-ui/core/types/Avatar.types';
+import type { AvatarGroupProps } from '@coexist/wisp-core/types/AvatarGroup.types';
+import { avatarSizeMap } from '@coexist/wisp-core/types/Avatar.types';
 import {
   buildGroupStyle,
   buildAvatarWrapperStyle,
   buildOverflowStyle,
-} from '@wisp-ui/core/styles/AvatarGroup.styles';
+} from '@coexist/wisp-core/styles/AvatarGroup.styles';
 import { useTheme } from '../../providers';
 
 /**
@@ -40,6 +40,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
       max,
       size = 'md',
       spacing = 8,
+      onSurface = false,
       style: userStyle,
       className,
       ...rest
@@ -82,7 +83,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
 
           // Clone each Avatar child to inject the group's size prop
           const cloned = React.isValidElement(child)
-            ? React.cloneElement(child as React.ReactElement<any>, { size })
+            ? React.cloneElement(child as React.ReactElement<any>, { size, onSurface })
             : child;
 
           return (

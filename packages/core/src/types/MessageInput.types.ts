@@ -15,6 +15,13 @@ import { defaultSpacing, defaultTypography } from '../theme/create-theme';
 export const messageInputSizes = ['sm', 'md', 'lg'] as const;
 export type MessageInputSize = (typeof messageInputSizes)[number];
 
+// ---------------------------------------------------------------------------
+// Variant
+// ---------------------------------------------------------------------------
+
+export const messageInputVariants = ['default', 'pill'] as const;
+export type MessageInputVariant = (typeof messageInputVariants)[number];
+
 export interface MessageInputSizeConfig {
   /** Minimum height (px). */
   minHeight: number;
@@ -107,6 +114,14 @@ export interface MessageInputProps extends Omit<React.HTMLAttributes<HTMLDivElem
 
   /** Size preset. @default 'md' */
   size?: MessageInputSize;
+
+  /**
+   * Visual variant.
+   * - `'default'` — standard rounded rectangle (uses size borderRadius).
+   * - `'pill'` — fully rounded pill shape with tighter icon insets.
+   * @default 'default'
+   */
+  variant?: MessageInputVariant;
 
   /** Called when the value changes. */
   onValueChange?: (value: string) => void;

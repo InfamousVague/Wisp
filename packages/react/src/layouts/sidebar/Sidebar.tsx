@@ -11,8 +11,8 @@ import type {
   SidebarSectionProps,
   SidebarItemProps,
   SidebarContextValue,
-} from '@wisp-ui/core/types/Sidebar.types';
-import type { CSSStyleObject } from '@wisp-ui/core/types';
+} from '@coexist/wisp-core/types/Sidebar.types';
+import type { CSSStyleObject } from '@coexist/wisp-core/types';
 
 import {
   buildSidebarStyle,
@@ -24,7 +24,7 @@ import {
   buildItemIconStyle,
   buildItemLabelStyle,
   buildItemBadgeStyle,
-} from '@wisp-ui/core/styles/Sidebar.styles';
+} from '@coexist/wisp-core/styles/Sidebar.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

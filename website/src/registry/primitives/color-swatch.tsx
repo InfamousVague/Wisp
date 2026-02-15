@@ -6,6 +6,7 @@ export const colorSwatchEntry: ComponentEntry = {
   slug: 'color-swatch',
   name: 'ColorSwatch',
   category: 'primitives',
+  subcategory: 'Media & Display',
   description:
     'Color preview swatch with circle, square, and rounded shapes in 4 sizes. Supports border and checkerboard background for transparency.',
   variantCount: 12,

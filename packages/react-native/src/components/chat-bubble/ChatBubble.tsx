@@ -2,7 +2,7 @@
  * @module components/chat-bubble
  * @description React Native ChatBubble for the Wisp design system.
  *
- * Reuses color resolution from `@wisp-ui/core`. Renders via `<View>` + `<Text>`.
+ * Reuses color resolution from `@coexist/wisp-core`. Renders via `<View>` + `<Text>`.
  */
 
 import React, { forwardRef, useMemo, useCallback } from 'react';
@@ -14,10 +14,10 @@ import type {
   ChatBubbleStatus,
   ChatBubbleReaction,
   ChatBubbleReplyTo,
-} from '@wisp-ui/core/types/ChatBubble.types';
-import { resolveChatBubbleColors } from '@wisp-ui/core/styles/ChatBubble.styles';
+} from '@coexist/wisp-core/types/ChatBubble.types';
+import { resolveChatBubbleColors } from '@coexist/wisp-core/styles/ChatBubble.styles';
 import Svg, { Path } from 'react-native-svg';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
@@ -153,8 +153,9 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: defaultSpacing.xs,
-    marginTop: defaultSpacing.sm,
-  }), []);
+    marginTop: defaultSpacing.xs,
+    alignSelf: isOutgoing ? 'flex-end' : 'flex-start',
+  }), [isOutgoing]);
 
   const replyToContainerStyle = useMemo<ViewStyle>(() => ({
     borderLeftWidth: 2,
@@ -191,16 +192,10 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
   const mediaIsFirst = !forwarded && !replyTo;
 
   const mediaSlotStyle = useMemo<ViewStyle>(() => ({
-    marginLeft: -defaultSpacing.md,
-    marginRight: -defaultSpacing.md,
-    marginTop: mediaIsFirst ? -defaultSpacing.sm : 0,
     marginBottom: defaultSpacing.xs,
     overflow: 'hidden',
-    ...(mediaIsFirst ? {
-      borderTopLeftRadius: defaultRadii.lg - 1,
-      borderTopRightRadius: defaultRadii.lg - 1,
-    } : {}),
-  }), [mediaIsFirst]);
+    borderRadius: defaultRadii.md,
+  }), []);
 
   const handleReactionClick = useCallback(
     (emoji: string) => { onReactionClick?.(emoji); },
@@ -242,40 +237,40 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
 
         {/* Text content */}
         <Text style={textStyle}>{children}</Text>
-
-        {/* Reactions inside bubble */}
-        {hasReactions && (
-          <View style={reactionsContainerStyle}>
-            {reactions!.map((reaction) => (
-              <Pressable
-                key={reaction.emoji}
-                onPress={() => handleReactionClick(reaction.emoji)}
-                accessibilityLabel={`${reaction.emoji} ${reaction.count}`}
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: defaultSpacing.xs,
-                  paddingHorizontal: defaultSpacing.sm,
-                  paddingVertical: defaultSpacing.xs,
-                  borderRadius: defaultRadii.lg,
-                  borderWidth: 1,
-                  borderColor: reaction.reacted
-                    ? themeColors.brand.primary
-                    : themeColors.border.subtle,
-                  backgroundColor: reaction.reacted
-                    ? `${themeColors.brand.primary}15`
-                    : themeColors.background.surface,
-                }}
-              >
-                <Text style={{ fontSize: defaultTypography.sizes.xs.fontSize }}>{reaction.emoji}</Text>
-                <Text style={{ fontSize: defaultTypography.sizes.xs.fontSize, color: themeColors.text.secondary }}>
-                  {reaction.count}
-                </Text>
-              </Pressable>
-            ))}
-          </View>
-        )}
       </View>
+
+      {/* Reactions below bubble */}
+      {hasReactions && (
+        <View style={reactionsContainerStyle}>
+          {reactions!.map((reaction) => (
+            <Pressable
+              key={reaction.emoji}
+              onPress={() => handleReactionClick(reaction.emoji)}
+              accessibilityLabel={`${reaction.emoji} ${reaction.count}`}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: defaultSpacing.xs,
+                paddingHorizontal: defaultSpacing.sm,
+                paddingVertical: defaultSpacing.xs,
+                borderRadius: defaultRadii.lg,
+                borderWidth: 1,
+                borderColor: reaction.reacted
+                  ? themeColors.brand.primary
+                  : themeColors.border.subtle,
+                backgroundColor: reaction.reacted
+                  ? `${themeColors.brand.primary}20`
+                  : themeColors.background.sunken,
+              }}
+            >
+              <Text style={{ fontSize: defaultTypography.sizes.xs.fontSize }}>{reaction.emoji}</Text>
+              <Text style={{ fontSize: defaultTypography.sizes.xs.fontSize, color: themeColors.text.secondary }}>
+                {reaction.count}
+              </Text>
+            </Pressable>
+          ))}
+        </View>
+      )}
 
       {/* Footer below bubble */}
       {showFooter && (

@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { ActivityCirclesProps } from '@wisp-ui/core/types/ActivityCircles.types';
-import { activityCirclesSizeMap } from '@wisp-ui/core/types/ActivityCircles.types';
-import { thicknessValues } from '@wisp-ui/core/tokens/shared';
-import { computeRingGeometry } from '@wisp-ui/core/styles/chart-utils';
+import type { ActivityCirclesProps } from '@coexist/wisp-core/types/ActivityCircles.types';
+import { activityCirclesSizeMap } from '@coexist/wisp-core/types/ActivityCircles.types';
+import { thicknessValues } from '@coexist/wisp-core/tokens/shared';
+import { computeRingGeometry } from '@coexist/wisp-core/styles/chart-utils';
 import {
   resolveRingColor,
   resolveActivityCirclesColors,
@@ -13,7 +13,7 @@ import {
   buildActivityCirclesLegendItemStyle,
   buildActivityCirclesLegendDotStyle,
   buildActivityCirclesLegendTextStyle,
-} from '@wisp-ui/core/styles/ActivityCircles.styles';
+} from '@coexist/wisp-core/styles/ActivityCircles.styles';
 import { useTheme } from '../../providers';
 
 /**

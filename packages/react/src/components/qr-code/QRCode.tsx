@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useId } from 'react';
-import type { QRCodeProps, QRCodeGradient, QRCodeEyeFrameStyle, QRCodeEyePupilStyle } from '@wisp-ui/core/types/QRCode.types';
-import { qrCodeSizeMap } from '@wisp-ui/core/types/QRCode.types';
+import type { QRCodeProps, QRCodeGradient, QRCodeEyeFrameStyle, QRCodeEyePupilStyle } from '@coexist/wisp-core/types/QRCode.types';
+import { qrCodeSizeMap } from '@coexist/wisp-core/types/QRCode.types';
 import {
   computeQRMatrix,
   isFinderPattern,
@@ -11,13 +11,13 @@ import {
   diamondPath,
   starPath,
   classyPath,
-} from '@wisp-ui/core/styles/qr-utils';
+} from '@coexist/wisp-core/styles/qr-utils';
 import {
   resolveQRCodeColors,
   buildQRCodeWrapperStyle,
   buildQRCodeSvgStyle,
   buildQRCodeLogoOverlayStyle,
-} from '@wisp-ui/core/styles/QRCode.styles';
+} from '@coexist/wisp-core/styles/QRCode.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

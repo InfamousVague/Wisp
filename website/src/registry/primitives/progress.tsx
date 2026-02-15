@@ -6,6 +6,7 @@ export const progressEntry: ComponentEntry = {
   slug: 'progress',
   name: 'Progress',
   category: 'primitives',
+  subcategory: 'Status & Feedback',
   description:
     'Linear progress bar with determinate/indeterminate modes, 5 sizes, semantic colors, labels, and skeleton loading.',
   variantCount: 5,

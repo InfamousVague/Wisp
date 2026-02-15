@@ -6,5 +6,5 @@
  */
 
 export { Container } from './Container';
-export type { ContainerProps, ContainerSize } from '@wisp-ui/core/types/Container.types';
-export { containerSizes, containerSizeMap } from '@wisp-ui/core/types/Container.types';
+export type { ContainerProps, ContainerSize } from '@coexist/wisp-core/types/Container.types';
+export { containerSizes, containerSizeMap } from '@coexist/wisp-core/types/Container.types';

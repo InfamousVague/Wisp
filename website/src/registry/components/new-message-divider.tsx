@@ -6,6 +6,7 @@ export const newMessageDividerEntry: ComponentEntry = {
   slug: 'new-message-divider',
   name: 'NewMessageDivider',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'A horizontal divider that marks the boundary between read and unread messages. Renders a colored line with a centered label.',
   variantCount: 1,

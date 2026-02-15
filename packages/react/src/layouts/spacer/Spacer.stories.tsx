@@ -1,8 +1,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Spacer } from './Spacer';
-import { spacerSizes } from '@wisp-ui/core/types/Spacer.types';
-import type { SpacerSize } from '@wisp-ui/core/types/Spacer.types';
+import { spacerSizes } from '@coexist/wisp-core/types/Spacer.types';
+import type { SpacerSize } from '@coexist/wisp-core/types/Spacer.types';
 import { Stack, HStack } from '../stack';
 import { Text } from '../../primitives/text';
 import { useThemeColors } from '../../providers';

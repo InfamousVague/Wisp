@@ -4,9 +4,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Sticky } from './Sticky';
-import { stickyEdges } from '@wisp-ui/core/types/Sticky.types';
+import { stickyEdges } from '@coexist/wisp-core/types/Sticky.types';
 import { WispProvider } from '../../providers';
-import { zIndex as zIndexScale } from '@wisp-ui/core/tokens/z-index';
+import { zIndex as zIndexScale } from '@coexist/wisp-core/tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Wrapper

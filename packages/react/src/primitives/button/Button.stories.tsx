@@ -1,8 +1,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
-import { buttonVariants, buttonShapes } from '@wisp-ui/core/types/Button.types';
-import { componentSizes } from '@wisp-ui/core/tokens/shared';
+import { buttonVariants, buttonShapes } from '@coexist/wisp-core/types/Button.types';
+import { componentSizes } from '@coexist/wisp-core/tokens/shared';
 import { Icon } from '../icon';
 import { Text } from '../text';
 import { Plus, ArrowRight, Trash2, Download, Check, Search, Star, Settings, Mail, Heart } from 'lucide-react';

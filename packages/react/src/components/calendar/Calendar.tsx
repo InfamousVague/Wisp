@@ -21,8 +21,8 @@
  */
 
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import type { CalendarProps } from '@wisp-ui/core/types/Calendar.types';
-import { calendarSizeMap } from '@wisp-ui/core/types/Calendar.types';
+import type { CalendarProps } from '@coexist/wisp-core/types/Calendar.types';
+import { calendarSizeMap } from '@coexist/wisp-core/types/Calendar.types';
 import {
   buildCalendarContainerStyle,
   buildCalendarHeaderStyle,
@@ -32,10 +32,10 @@ import {
   buildCalendarDayCellStyle,
   buildCalendarMonthYearStyle,
   buildCalendarSkeletonCellStyle,
-} from '@wisp-ui/core/styles/Calendar.styles';
+} from '@coexist/wisp-core/styles/Calendar.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
-import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Helpers

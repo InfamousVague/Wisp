@@ -52,6 +52,7 @@ export const carouselEntry: ComponentEntry = {
   slug: 'carousel',
   name: 'Carousel',
   category: 'components',
+  subcategory: 'Media',
   description:
     'Slide carousel with auto-play, loop, arrow navigation, dot indicators, controlled/uncontrolled index, and skeleton loading.',
   variantCount: 1,

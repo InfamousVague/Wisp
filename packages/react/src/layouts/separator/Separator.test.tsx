@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Separator } from './Separator';
-import { separatorOrientations, separatorVariants, separatorSpacings, separatorSpacingMap } from '@wisp-ui/core/types/Separator.types';
+import { separatorOrientations, separatorVariants, separatorSpacings, separatorSpacingMap } from '@coexist/wisp-core/types/Separator.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

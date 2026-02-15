@@ -2,7 +2,7 @@
  * @module primitives/icon
  * @description React Native Icon primitive for the Wisp design system.
  *
- * Reuses icon size maps and semantic color resolution from `@wisp-ui/core`.
+ * Reuses icon size maps and semantic color resolution from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `<View>` instead of `<span>`.
@@ -16,9 +16,9 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View } from 'react-native';
 import type { ViewProps, ViewStyle } from 'react-native';
-import type { ComponentSize, SemanticColor } from '@wisp-ui/core/tokens/shared';
-import { iconSizeMap } from '@wisp-ui/core/types/Icon.types';
-import { resolveIconColor } from '@wisp-ui/core/styles/Icon.styles';
+import type { ComponentSize, SemanticColor } from '@coexist/wisp-core/tokens/shared';
+import { iconSizeMap } from '@coexist/wisp-core/types/Icon.types';
+import { resolveIconColor } from '@coexist/wisp-core/styles/Icon.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

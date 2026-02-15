@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import { ChevronRight } from 'lucide-react';
-import type { BreadcrumbProps, BreadcrumbItemProps, BreadcrumbSeparatorProps } from '@wisp-ui/core/types/Breadcrumb.types';
-import { breadcrumbSizeMap } from '@wisp-ui/core/types/Breadcrumb.types';
+import type { BreadcrumbProps, BreadcrumbItemProps, BreadcrumbSeparatorProps } from '@coexist/wisp-core/types/Breadcrumb.types';
+import { breadcrumbSizeMap } from '@coexist/wisp-core/types/Breadcrumb.types';
 import {
   buildNavStyle,
   buildListStyle,
@@ -10,7 +10,7 @@ import {
   buildLinkHoverStyle,
   buildActiveStyle,
   buildSeparatorStyle,
-} from '@wisp-ui/core/styles/Breadcrumb.styles';
+} from '@coexist/wisp-core/styles/Breadcrumb.styles';
 import { useTheme } from '../../providers';
 
 /**

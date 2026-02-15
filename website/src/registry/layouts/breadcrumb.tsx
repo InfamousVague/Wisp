@@ -7,6 +7,7 @@ export const breadcrumbEntry: ComponentEntry = {
   slug: 'breadcrumb',
   name: 'Breadcrumb',
   category: 'layouts',
+  subcategory: 'Navigation & Wayfinding',
   description:
     'Navigation breadcrumb trail with auto separators, size variants, icon support, and active state for current page.',
   variantCount: 3,

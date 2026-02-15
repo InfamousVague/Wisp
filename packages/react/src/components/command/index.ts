@@ -17,6 +17,6 @@ export type {
   CommandSeparatorProps,
   CommandEmptyProps,
   CommandSize,
-} from '@wisp-ui/core/types/Command.types';
+} from '@coexist/wisp-core/types/Command.types';
 
-export { commandSizes, commandSizeMap } from '@wisp-ui/core/types/Command.types';
+export { commandSizes, commandSizeMap } from '@coexist/wisp-core/types/Command.types';

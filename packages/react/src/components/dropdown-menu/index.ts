@@ -14,5 +14,5 @@ export type {
   DropdownMenuSeparatorProps,
   DropdownMenuAlign,
   DropdownMenuSide,
-} from "@wisp-ui/core/types/DropdownMenu.types";
-export { dropdownMenuAligns, dropdownMenuSides } from "@wisp-ui/core/types/DropdownMenu.types";
+} from "@coexist/wisp-core/types/DropdownMenu.types";
+export { dropdownMenuAligns, dropdownMenuSides } from "@coexist/wisp-core/types/DropdownMenu.types";

@@ -7,5 +7,5 @@ export type {
   SidebarContextValue,
   SidebarWidth,
   SidebarPosition,
-} from '@wisp-ui/core/types/Sidebar.types';
-export { sidebarWidths, sidebarWidthMap, sidebarPositions } from '@wisp-ui/core/types/Sidebar.types';
+} from '@coexist/wisp-core/types/Sidebar.types';
+export { sidebarWidths, sidebarWidthMap, sidebarPositions } from '@coexist/wisp-core/types/Sidebar.types';

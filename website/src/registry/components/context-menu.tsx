@@ -65,6 +65,7 @@ export const contextMenuEntry: ComponentEntry = {
   slug: 'context-menu',
   name: 'ContextMenu',
   category: 'components',
+  subcategory: 'Overlays & Modals',
   description:
     'Right-click context menu with items, separators, icons, keyboard shortcuts, and destructive actions. Portal-rendered with click-outside and Escape dismissal.',
   variantCount: 1,

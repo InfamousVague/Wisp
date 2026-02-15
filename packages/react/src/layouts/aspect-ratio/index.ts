@@ -4,4 +4,4 @@
  */
 
 export { AspectRatio } from './AspectRatio';
-export type { AspectRatioProps } from '@wisp-ui/core/types/AspectRatio.types';
+export type { AspectRatioProps } from '@coexist/wisp-core/types/AspectRatio.types';

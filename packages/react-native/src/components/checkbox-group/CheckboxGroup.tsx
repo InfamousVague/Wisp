@@ -1,9 +1,9 @@
 import React, { forwardRef, useState, useCallback, useMemo } from 'react';
 import { View, Text } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import type { SwitchGroupOption, SwitchGroupOrientation } from '@wisp-ui/core/types/SwitchGroup.types';
+import type { SwitchGroupOption, SwitchGroupOrientation } from '@coexist/wisp-core/types/SwitchGroup.types';
 import { Checkbox } from '../../primitives/checkbox';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface CheckboxGroupProps {

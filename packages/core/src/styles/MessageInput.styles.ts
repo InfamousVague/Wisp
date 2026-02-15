@@ -5,7 +5,7 @@
 
 import type { CSSStyleObject } from '../types';
 import type { ThemeColors, WispTheme } from '../theme/types';
-import type { MessageInputSizeConfig } from '../types/MessageInput.types';
+import type { MessageInputSizeConfig, MessageInputVariant } from '../types/MessageInput.types';
 import { durations, easings } from '../tokens/motion';
 
 // ---------------------------------------------------------------------------
@@ -49,14 +49,18 @@ export function buildMessageInputContainerStyle(
   sizeConfig: MessageInputSizeConfig,
   colors: MessageInputColors,
   theme: WispTheme,
+  variant: MessageInputVariant = 'default',
 ): CSSStyleObject {
   const { radii } = theme;
+  const isPill = variant === 'pill';
+  const resolvedRadius = isPill ? radii.full : radii[sizeConfig.borderRadius];
+  const hPad = isPill ? sizeConfig.padding * 0.75 : sizeConfig.padding;
   return {
     display: 'flex',
     alignItems: 'flex-end',
     gap: sizeConfig.gap,
-    padding: `${sizeConfig.padding / 2}px ${sizeConfig.padding}px`,
-    borderRadius: radii[sizeConfig.borderRadius],
+    padding: `${sizeConfig.padding / 2}px ${hPad}px`,
+    borderRadius: resolvedRadius,
     border: `1px solid ${colors.border}`,
     backgroundColor: colors.bg,
     transition: `border-color ${durations.fast}ms ${easings.easeOut.css}`,
@@ -132,13 +136,15 @@ export function buildMessageInputSendButtonStyle(
 export function buildMessageInputSkeletonStyle(
   sizeConfig: MessageInputSizeConfig,
   theme: WispTheme,
+  variant: MessageInputVariant = 'default',
 ): CSSStyleObject {
   const { colors: themeColors, radii } = theme;
+  const isPill = variant === 'pill';
   return {
     display: 'block',
     width: '100%',
     height: sizeConfig.minHeight + sizeConfig.padding,
-    borderRadius: radii[sizeConfig.borderRadius],
+    borderRadius: isPill ? radii.full : radii[sizeConfig.borderRadius],
     backgroundColor: themeColors.border.subtle,
     animation: 'wisp-skeleton-pulse 1.5s ease-in-out infinite',
   };

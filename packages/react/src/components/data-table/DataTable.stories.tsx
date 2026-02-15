@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { DataTable } from './DataTable';
-import { dataTableSizes, dataTableVariants } from '@wisp-ui/core/types/DataTable.types';
-import type { DataTableColumn, SortState } from '@wisp-ui/core/types/DataTable.types';
+import { dataTableSizes, dataTableVariants } from '@coexist/wisp-core/types/DataTable.types';
+import type { DataTableColumn, SortState } from '@coexist/wisp-core/types/DataTable.types';
 
 const meta: Meta<typeof DataTable> = {
   title: 'Components/DataTable',

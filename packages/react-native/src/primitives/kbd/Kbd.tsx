@@ -2,7 +2,7 @@
  * @module primitives/kbd
  * @description React Native Kbd primitive for the Wisp design system.
  *
- * Reuses size maps from `@wisp-ui/core`.
+ * Reuses size maps from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `<View>` + `<Text>` instead of `<kbd>`.
@@ -14,9 +14,9 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { KbdSize } from '@wisp-ui/core/types/Kbd.types';
-import { kbdSizeMap } from '@wisp-ui/core/types/Kbd.types';
-import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { KbdSize } from '@coexist/wisp-core/types/Kbd.types';
+import { kbdSizeMap } from '@coexist/wisp-core/types/Kbd.types';
+import { defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

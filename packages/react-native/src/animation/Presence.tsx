@@ -3,7 +3,7 @@ import { Animated, Easing } from 'react-native';
 import type { ViewStyle } from 'react-native';
 import { useTransition } from './use-transition';
 import type { TransitionPhase } from './use-transition';
-import { DEFAULT_DURATION } from '@wisp-ui/core/animation/constants';
+import { DEFAULT_DURATION } from '@coexist/wisp-core/animation/constants';
 
 export type PresenceAnimation = 'fadeIn' | 'scaleIn' | 'slideUp' | 'slideDown';
 
@@ -78,7 +78,7 @@ export function Presence({
   animation = 'fadeIn',
   duration = DEFAULT_DURATION,
   children,
-}: PresenceProps): JSX.Element | null {
+}: PresenceProps): React.JSX.Element | null {
   const { mounted, phase } = useTransition(visible, { duration });
   const progress = useRef(new Animated.Value(visible ? 1 : 0)).current;
 

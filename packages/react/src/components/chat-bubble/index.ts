@@ -6,9 +6,9 @@ export type {
   ChatBubbleStatus,
   ChatBubbleReaction,
   ChatBubbleReplyTo,
-} from '@wisp-ui/core/types/ChatBubble.types';
+} from '@coexist/wisp-core/types/ChatBubble.types';
 export {
   chatBubbleAlignments,
   chatBubbleVariants,
   chatBubbleStatuses,
-} from '@wisp-ui/core/types/ChatBubble.types';
+} from '@coexist/wisp-core/types/ChatBubble.types';

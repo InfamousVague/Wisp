@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Spinner } from './Spinner';
-import { componentSizes } from '@wisp-ui/core/tokens/shared';
+import { componentSizes } from '@coexist/wisp-core/tokens/shared';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

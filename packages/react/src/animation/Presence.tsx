@@ -28,8 +28,8 @@
 import React, { useMemo } from 'react';
 import { useTransition } from './use-transition';
 import type { TransitionPhase } from './use-transition';
-import { DEFAULT_DURATION } from '@wisp-ui/core/animation/constants';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { DEFAULT_DURATION } from '@coexist/wisp-core/animation/constants';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Types

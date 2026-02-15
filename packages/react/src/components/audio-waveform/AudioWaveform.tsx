@@ -7,15 +7,15 @@
 
 import React, { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
 import { useTheme } from '../../providers';
-import type { AudioWaveformProps } from '@wisp-ui/core/types/AudioWaveform.types';
-import { audioWaveformSizeMap } from '@wisp-ui/core/types/AudioWaveform.types';
+import type { AudioWaveformProps } from '@coexist/wisp-core/types/AudioWaveform.types';
+import { audioWaveformSizeMap } from '@coexist/wisp-core/types/AudioWaveform.types';
 import {
   resolveAudioWaveformColors,
   buildAudioWaveformWrapperStyle,
   buildAudioWaveformSvgStyle,
   buildAudioWaveformSkeletonStyle,
   ensureAudioWaveformKeyframes,
-} from '@wisp-ui/core/styles/AudioWaveform.styles';
+} from '@coexist/wisp-core/styles/AudioWaveform.styles';
 
 // ---------------------------------------------------------------------------
 // Component

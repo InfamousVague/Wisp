@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Card } from './Card';
-import { cardVariants, cardPaddings, cardRadii } from '@wisp-ui/core/types/Card.types';
+import { cardVariants, cardPaddings, cardRadii } from '@coexist/wisp-core/types/Card.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

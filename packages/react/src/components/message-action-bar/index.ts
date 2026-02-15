@@ -2,4 +2,4 @@ export { MessageActionBar } from './MessageActionBar';
 export type {
   MessageActionBarProps,
   MessageAction,
-} from '@wisp-ui/core/types/MessageActionBar.types';
+} from '@coexist/wisp-core/types/MessageActionBar.types';

@@ -12,6 +12,7 @@ export const segmentedControlEntry: ComponentEntry = {
   slug: 'segmented-control',
   name: 'SegmentedControl',
   category: 'components',
+  subcategory: 'Selection & Input',
   description:
     'Horizontal segmented button group for single selection with animated indicator, sizes, and fullWidth mode.',
   variantCount: 3,

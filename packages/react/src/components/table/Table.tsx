@@ -52,8 +52,8 @@ import type {
   TableHeadProps,
   TableCellProps,
   TableContextValue,
-} from '@wisp-ui/core/types/Table.types';
-import type { CSSStyleObject } from '@wisp-ui/core/types';
+} from '@coexist/wisp-core/types/Table.types';
+import type { CSSStyleObject } from '@coexist/wisp-core/types';
 import {
   buildTableBorderedWrapperStyle,
   buildTableStyle,
@@ -63,7 +63,7 @@ import {
   buildTableRowStyle,
   buildTableHeadStyle,
   buildTableCellStyle,
-} from '@wisp-ui/core/styles/Table.styles';
+} from '@coexist/wisp-core/styles/Table.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

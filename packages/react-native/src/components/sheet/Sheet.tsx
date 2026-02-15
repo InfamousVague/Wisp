@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, useRef, useEffect, useCallback } from 'react';
 import { View, Pressable, Animated, PanResponder, Dimensions, Modal, StyleSheet } from 'react-native';
 import type { ViewStyle } from 'react-native';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 type SheetSize = 'sm' | 'md' | 'lg' | 'full';

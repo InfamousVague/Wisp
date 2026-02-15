@@ -11,6 +11,7 @@ export const tagInputEntry: ComponentEntry = {
   slug: 'tag-input',
   name: 'TagInput',
   category: 'primitives',
+  subcategory: 'Inputs',
   description:
     'Multi-value tag input with add/remove, max limit, duplicate control, custom separators, validation, and skeleton loading.',
   variantCount: 5,

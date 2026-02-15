@@ -9,5 +9,5 @@
  * @module primitives/color-picker
  */
 export { ColorPicker } from './ColorPicker';
-export type { ColorPickerProps, ColorPickerSize, ColorPickerSizeConfig } from '@wisp-ui/core/types/ColorPicker.types';
-export { colorPickerSizes, colorPickerSizeMap } from '@wisp-ui/core/types/ColorPicker.types';
+export type { ColorPickerProps, ColorPickerSize, ColorPickerSizeConfig } from '@coexist/wisp-core/types/ColorPicker.types';
+export { colorPickerSizes, colorPickerSizeMap } from '@coexist/wisp-core/types/ColorPicker.types';

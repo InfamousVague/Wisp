@@ -6,6 +6,7 @@ export const messageInputEntry: ComponentEntry = {
   slug: 'message-input',
   name: 'MessageInput',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Rich chat input with auto-expanding textarea, send button, attachment trigger, built-in emoji picker, reply/edit context bars, voice button, attachment previews, and character counter.',
   variantCount: 1,

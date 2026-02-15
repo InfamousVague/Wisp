@@ -2,7 +2,7 @@
  * @module components/thread-panel
  * @description React Native ThreadPanel for the Wisp design system.
  *
- * Reuses color resolution from `@wisp-ui/core`. Renders via `<View>` + `<Text>`.
+ * Reuses color resolution from `@coexist/wisp-core`. Renders via `<View>` + `<Text>`.
  */
 
 import React, { forwardRef, useMemo, useCallback } from 'react';
@@ -10,8 +10,8 @@ import { View, Text, Pressable, ScrollView } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import {
   resolveThreadPanelColors,
-} from '@wisp-ui/core/styles/ThreadPanel.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+} from '@coexist/wisp-core/styles/ThreadPanel.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 import { MessageInput } from '../message-input';
 import Svg, { Line } from 'react-native-svg';
@@ -110,8 +110,6 @@ export const ThreadPanel = forwardRef<View, ThreadPanelProps>(
     const containerStyle: ViewStyle = {
       flex: 1,
       backgroundColor: colors.bg,
-      borderLeftWidth: 1,
-      borderLeftColor: colors.border,
     };
 
     const headerStyle: ViewStyle = {
@@ -122,7 +120,7 @@ export const ThreadPanel = forwardRef<View, ThreadPanelProps>(
       paddingHorizontal: defaultSpacing.md,
       borderBottomWidth: 1,
       borderBottomColor: colors.border,
-      minHeight: 48,
+      minHeight: 56,
     };
 
     const titleTextStyle: TextStyle = {

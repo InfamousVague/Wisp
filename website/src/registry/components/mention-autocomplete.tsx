@@ -14,6 +14,7 @@ export const mentionAutocompleteEntry: ComponentEntry = {
   slug: 'mention-autocomplete',
   name: 'MentionAutocomplete',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Dropdown overlay for @mention user search and selection with avatar, name, username, and keyboard navigation support.',
   variantCount: 1,

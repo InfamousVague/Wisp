@@ -52,6 +52,7 @@ export const achievementUnlockEntry: ComponentEntry = {
   slug: 'achievement-unlock',
   name: 'AchievementUnlock',
   category: 'components',
+  subcategory: 'Gamification',
   description:
     'Animated popup notification for achievement unlock events. Features staggered entrance animations, rarity-coloured accents, and auto-dismiss.',
   variantCount: 5,

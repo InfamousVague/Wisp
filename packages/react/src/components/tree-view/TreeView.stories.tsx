@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { TreeView } from './TreeView';
-import type { TreeNode } from '@wisp-ui/core/types/TreeView.types';
+import type { TreeNode } from '@coexist/wisp-core/types/TreeView.types';
 import { Folder, File, FileText, FileCode, Settings, Image } from 'lucide-react';
 
 const meta: Meta<typeof TreeView> = {

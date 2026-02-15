@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Sidebar, SidebarSection, SidebarItem } from './Sidebar';
-import { sidebarWidths } from '@wisp-ui/core/types/Sidebar.types';
+import { sidebarWidths } from '@coexist/wisp-core/types/Sidebar.types';
 import { Text } from '../../primitives/text';
 import { Icon } from '../../primitives/icon';
 import { Badge } from '../../primitives/badge';

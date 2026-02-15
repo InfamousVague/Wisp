@@ -104,7 +104,7 @@ export interface TreeNode {
  * selected state. Pass `skeleton` to render a loading placeholder.
  */
 export interface TreeViewProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect' | 'onToggle'> {
   /** Array of root-level {@link TreeNode} items to display. */
   nodes: TreeNode[];
 

@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { GridProps, GridItemProps } from '@wisp-ui/core/types/Grid.types';
-import { buildGridStyle, buildGridItemStyle } from '@wisp-ui/core/styles/Grid.styles';
+import type { GridProps, GridItemProps } from '@coexist/wisp-core/types/Grid.types';
+import { buildGridStyle, buildGridItemStyle } from '@coexist/wisp-core/styles/Grid.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

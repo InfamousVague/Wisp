@@ -6,6 +6,7 @@ export const skeletonEntry: ComponentEntry = {
   slug: 'skeleton',
   name: 'Skeleton',
   category: 'primitives',
+  subcategory: 'Status & Feedback',
   description:
     'Loading placeholder with text, circular, and rectangular variants. Supports pulse, wave, and static animations.',
   variantCount: 9,

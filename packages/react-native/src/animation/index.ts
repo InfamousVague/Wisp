@@ -10,5 +10,5 @@ export { useTransition } from './use-transition';
 export type { TransitionPhase, TransitionConfig, TransitionResult } from './use-transition';
 
 // Re-export shared presets and constants from core
-export * from '@wisp-ui/core/animation/presets';
-export * from '@wisp-ui/core/animation/constants';
+export * from '@coexist/wisp-core/animation/presets';
+export * from '@coexist/wisp-core/animation/constants';

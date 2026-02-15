@@ -2,8 +2,8 @@
  * @module Text
  */
 import React, { forwardRef, useMemo } from 'react';
-import type { TextProps } from '@wisp-ui/core/types/Text.types';
-import { buildTextStyle, resolveTextColor, getSkeletonStyle, getIconStyle } from '@wisp-ui/core/styles/Text.styles';
+import type { TextProps } from '@coexist/wisp-core/types/Text.types';
+import { buildTextStyle, resolveTextColor, getSkeletonStyle, getIconStyle } from '@coexist/wisp-core/styles/Text.styles';
 import { useTheme } from '../../providers';
 
 /**

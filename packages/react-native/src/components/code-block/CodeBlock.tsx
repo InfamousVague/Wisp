@@ -9,8 +9,8 @@
 import React, { forwardRef, useCallback, useMemo, useState } from 'react';
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { CodeBlockVariant } from '@wisp-ui/core/types/CodeBlock.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { CodeBlockVariant } from '@coexist/wisp-core/types/CodeBlock.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

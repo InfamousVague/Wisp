@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Avatar } from './Avatar';
-import { avatarSizes, avatarShapes, avatarStatuses } from '@wisp-ui/core/types/Avatar.types';
+import { avatarSizes, avatarShapes, avatarStatuses } from '@coexist/wisp-core/types/Avatar.types';
 import { Text } from '../text';
 import { Camera } from 'lucide-react';
 

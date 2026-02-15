@@ -58,7 +58,7 @@ export const VideoTile = forwardRef<View, VideoTileProps>(function VideoTile(
   // Attach stream to video element (web only)
   useEffect(() => {
     if (Platform.OS === 'web' && videoRef.current && stream) {
-      videoRef.current.srcObject = stream;
+      (videoRef.current as any).srcObject = stream;
     }
   }, [stream]);
 

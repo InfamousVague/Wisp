@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Calendar } from './Calendar';
-import { calendarSizes } from '@wisp-ui/core/types/Calendar.types';
+import { calendarSizes } from '@coexist/wisp-core/types/Calendar.types';
 
 const meta: Meta<typeof Calendar> = {
   title: 'Components/Calendar',

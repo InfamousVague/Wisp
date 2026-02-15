@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { NumberInput } from './NumberInput';
-import { numberInputSizes } from '@wisp-ui/core/types/NumberInput.types';
+import { numberInputSizes } from '@coexist/wisp-core/types/NumberInput.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

@@ -2,7 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Meter } from './Meter';
 import { Text } from '../text';
-import { meterSizes, meterVariants } from '@wisp-ui/core/types/Meter.types';
+import { meterSizes, meterVariants } from '@coexist/wisp-core/types/Meter.types';
 
 // ---------------------------------------------------------------------------
 // Meta

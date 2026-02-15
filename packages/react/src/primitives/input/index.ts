@@ -9,5 +9,5 @@
  * @module primitives/input
  */
 export { Input } from './Input';
-export type { InputProps, InputSize, InputSizeConfig } from '@wisp-ui/core/types/Input.types';
-export { inputSizes, inputSizeMap } from '@wisp-ui/core/types/Input.types';
+export type { InputProps, InputSize, InputSizeConfig } from '@coexist/wisp-core/types/Input.types';
+export { inputSizes, inputSizeMap } from '@coexist/wisp-core/types/Input.types';

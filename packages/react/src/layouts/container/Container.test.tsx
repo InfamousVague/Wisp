@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Container } from './Container';
-import { containerSizes, containerSizeMap } from '@wisp-ui/core/types/Container.types';
+import { containerSizes, containerSizeMap } from '@coexist/wisp-core/types/Container.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

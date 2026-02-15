@@ -4,9 +4,9 @@
  */
 
 import React, { forwardRef, useMemo, useState, useCallback, useEffect, useRef } from 'react';
-import type { CopyButtonProps } from '@wisp-ui/core/types/CopyButton.types';
-import { copyButtonSizeMap } from '@wisp-ui/core/types/CopyButton.types';
-import { buildCopyButtonStyle, getCopyButtonSkeletonStyle } from '@wisp-ui/core/styles/CopyButton.styles';
+import type { CopyButtonProps } from '@coexist/wisp-core/types/CopyButton.types';
+import { copyButtonSizeMap } from '@coexist/wisp-core/types/CopyButton.types';
+import { buildCopyButtonStyle, getCopyButtonSkeletonStyle } from '@coexist/wisp-core/styles/CopyButton.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

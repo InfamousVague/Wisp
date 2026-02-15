@@ -4,9 +4,9 @@ export type {
   ReadReceiptStatus,
   ReadReceiptSize,
   ReadReceiptSizeConfig,
-} from '@wisp-ui/core/types/ReadReceipt.types';
+} from '@coexist/wisp-core/types/ReadReceipt.types';
 export {
   readReceiptStatuses,
   readReceiptSizes,
   readReceiptSizeMap,
-} from '@wisp-ui/core/types/ReadReceipt.types';
+} from '@coexist/wisp-core/types/ReadReceipt.types';

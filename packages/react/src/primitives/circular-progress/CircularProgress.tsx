@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, useEffect } from 'react';
-import type { CircularProgressProps } from '@wisp-ui/core/types/CircularProgress.types';
-import { circularProgressSizeMap } from '@wisp-ui/core/types/CircularProgress.types';
-import { thicknessValues } from '@wisp-ui/core/tokens/shared';
+import type { CircularProgressProps } from '@coexist/wisp-core/types/CircularProgress.types';
+import { circularProgressSizeMap } from '@coexist/wisp-core/types/CircularProgress.types';
+import { thicknessValues } from '@coexist/wisp-core/tokens/shared';
 import {
   resolveCircularProgressColors,
   ensureCircularProgressKeyframes,
@@ -13,7 +13,7 @@ import {
   buildHalfCenterContentStyle,
   buildValueTextStyle,
   buildLabelTextStyle,
-} from '@wisp-ui/core/styles/CircularProgress.styles';
+} from '@coexist/wisp-core/styles/CircularProgress.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../text';
 

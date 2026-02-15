@@ -3,13 +3,13 @@
  * @description Floating action bar shown on message hover/long-press.
  */
 import React, { forwardRef, useMemo, useCallback } from 'react';
-import type { MessageActionBarProps, MessageAction } from '@wisp-ui/core/types/MessageActionBar.types';
+import type { MessageActionBarProps, MessageAction } from '@coexist/wisp-core/types/MessageActionBar.types';
 import {
   resolveMessageActionBarColors,
   buildMessageActionBarContainerStyle,
   buildMessageActionButtonStyle,
   buildMessageActionSeparatorStyle,
-} from '@wisp-ui/core/styles/MessageActionBar.styles';
+} from '@coexist/wisp-core/styles/MessageActionBar.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

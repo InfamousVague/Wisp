@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import type { ColorPickerProps } from '@wisp-ui/core/types/ColorPicker.types';
-import { colorPickerSizeMap } from '@wisp-ui/core/types/ColorPicker.types';
+import type { ColorPickerProps } from '@coexist/wisp-core/types/ColorPicker.types';
+import { colorPickerSizeMap } from '@coexist/wisp-core/types/ColorPicker.types';
 import {
   buildColorPickerContainerStyle,
   buildColorPickerPreviewRowStyle,
@@ -10,7 +10,7 @@ import {
   buildColorPickerSwatchStyle,
   buildColorPickerLabelStyle,
   getColorPickerSkeletonStyle,
-} from '@wisp-ui/core/styles/ColorPicker.styles';
+} from '@coexist/wisp-core/styles/ColorPicker.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

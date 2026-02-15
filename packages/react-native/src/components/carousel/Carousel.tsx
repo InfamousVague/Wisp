@@ -2,7 +2,7 @@ import React, { forwardRef, useState, useCallback, useMemo, useEffect, useRef, C
 import { View, FlatList, Pressable, Dimensions } from 'react-native';
 import type { ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface CarouselProps {

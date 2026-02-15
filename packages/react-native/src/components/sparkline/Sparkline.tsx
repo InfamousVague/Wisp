@@ -9,9 +9,9 @@ import React, { forwardRef, useMemo } from 'react';
 import { View } from 'react-native';
 import type { ViewProps, ViewStyle } from 'react-native';
 import Svg, { Path, Rect, Circle } from 'react-native-svg';
-import type { SparklineVariant, SparklineSize, SparklineColor } from '@wisp-ui/core/types/Sparkline.types';
-import { sparklineSizeMap } from '@wisp-ui/core/types/Sparkline.types';
-import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import type { SparklineVariant, SparklineSize, SparklineColor } from '@coexist/wisp-core/types/Sparkline.types';
+import { sparklineSizeMap } from '@coexist/wisp-core/types/Sparkline.types';
+import { defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

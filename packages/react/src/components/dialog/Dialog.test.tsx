@@ -4,8 +4,8 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Dialog } from './Dialog';
-import { dialogSizes } from '@wisp-ui/core/types/Dialog.types';
-import type { DialogSize } from '@wisp-ui/core/types/Dialog.types';
+import { dialogSizes } from '@coexist/wisp-core/types/Dialog.types';
+import type { DialogSize } from '@coexist/wisp-core/types/Dialog.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

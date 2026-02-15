@@ -2,16 +2,16 @@
  * @module primitives/notification-badge
  * @description React Native NotificationBadge primitive for the Wisp design system.
  *
- * Reuses color resolution from `@wisp-ui/core`.
+ * Reuses color resolution from `@coexist/wisp-core`.
  * Renders via View + Text with Animated pulse instead of CSS keyframes.
  */
 
 import React, { forwardRef, useMemo, useRef, useEffect } from 'react';
 import { View, Text, Animated } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { NotificationBadgeColor } from '@wisp-ui/core/types/NotificationBadge.types';
-import { resolveNotificationBadgeColors } from '@wisp-ui/core/styles/NotificationBadge.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { NotificationBadgeColor } from '@coexist/wisp-core/types/NotificationBadge.types';
+import { resolveNotificationBadgeColors } from '@coexist/wisp-core/styles/NotificationBadge.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

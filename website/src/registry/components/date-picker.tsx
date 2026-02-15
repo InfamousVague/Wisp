@@ -11,6 +11,7 @@ export const datePickerEntry: ComponentEntry = {
   slug: 'date-picker',
   name: 'DatePicker',
   category: 'components',
+  subcategory: 'Date & Time',
   description:
     'Input with calendar dropdown for date selection. Supports formatting, min/max, clearable, label, error, and skeleton.',
   variantCount: 3,

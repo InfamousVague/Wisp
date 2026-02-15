@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { FormField } from './FormField';
-import { formFieldSizes, formFieldOrientations } from '@wisp-ui/core/types/FormField.types';
+import { formFieldSizes, formFieldOrientations } from '@coexist/wisp-core/types/FormField.types';
 import { Input } from '../../primitives/input';
 import { TextArea } from '../../primitives/textarea';
 import { Select } from '../../components/select';

@@ -3,7 +3,7 @@
  * @description URL preview card showing title, description, image, and domain.
  */
 import React, { forwardRef, useMemo, useCallback } from 'react';
-import type { LinkPreviewCardProps } from '@wisp-ui/core/types/LinkPreviewCard.types';
+import type { LinkPreviewCardProps } from '@coexist/wisp-core/types/LinkPreviewCard.types';
 import {
   resolveLinkPreviewCardColors,
   buildLinkPreviewCardContainerStyle,
@@ -17,7 +17,7 @@ import {
   buildLinkPreviewSkeletonStyle,
   buildLinkPreviewSkeletonImageStyle,
   buildLinkPreviewSkeletonLineStyle,
-} from '@wisp-ui/core/styles/LinkPreviewCard.styles';
+} from '@coexist/wisp-core/styles/LinkPreviewCard.styles';
 import { useTheme } from '../../providers';
 import { useLinkPreview } from '../../hooks/use-link-preview';
 

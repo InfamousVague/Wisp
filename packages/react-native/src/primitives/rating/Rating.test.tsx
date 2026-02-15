@@ -3,7 +3,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { ratingSizes } from '@wisp-ui/core/types/Rating.types';
+import { ratingSizes } from '@coexist/wisp-core/types/Rating.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

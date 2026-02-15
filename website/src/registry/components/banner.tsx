@@ -7,6 +7,7 @@ export const bannerEntry: ComponentEntry = {
   slug: 'banner',
   name: 'Banner',
   category: 'components',
+  subcategory: 'Feedback & Guidance',
   description:
     'Full-width notification banner with 5 semantic variants, optional title, icon, action slot, and dismissible state.',
   variantCount: 5,

@@ -8,14 +8,14 @@ import React, {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import type { TooltipProps } from "@wisp-ui/core/types/Tooltip.types";
+import type { TooltipProps } from "@coexist/wisp-core/types/Tooltip.types";
 import {
   buildArrowStyle,
   buildPortalPositionStyle,
   buildTooltipStyle,
   calculatePosition,
   resolveTooltipColors,
-} from "@wisp-ui/core/styles/Tooltip.styles";
+} from "@coexist/wisp-core/styles/Tooltip.styles";
 import { useTheme } from "../../providers";
 
 /**

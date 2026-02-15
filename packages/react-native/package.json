@@ -1,7 +1,10 @@
 {
-  "name": "@wisp-ui/react-native",
-  "version": "0.1.0",
-  "description": "Wisp UI React Native components — built on @wisp-ui/core",
+  "name": "@coexist/wisp-react-native",
+  "version": "0.1.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Wisp UI React Native components — built on @coexist/wisp-core",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "files": [
@@ -13,7 +16,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@wisp-ui/core": "workspace:*",
+    "@coexist/wisp-core": "^0.1.0",
     "react-native-svg": "^15.15.2"
   },
   "peerDependencies": {

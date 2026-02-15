@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { View } from 'react-native';
-import { zIndex as zIndexScale } from '@wisp-ui/core/tokens/z-index';
+import { zIndex as zIndexScale } from '@coexist/wisp-core/tokens/z-index';
 
 type StickyEdge = 'top' | 'bottom';
 

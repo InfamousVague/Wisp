@@ -46,6 +46,7 @@ export const floatingEntry: ComponentEntry = {
   slug: 'floating',
   name: 'Floating',
   category: 'layouts',
+  subcategory: 'Scrolling & Positioning',
   description:
     'Positions content relative to an anchor element with placement, alignment, offset, and collision strategies (flip/shift).',
   variantCount: 4,

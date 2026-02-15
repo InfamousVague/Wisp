@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { EmptyState } from './EmptyState';
-import { emptyStateSizes } from '@wisp-ui/core/types/EmptyState.types';
+import { emptyStateSizes } from '@coexist/wisp-core/types/EmptyState.types';
 import { Icon } from '../../primitives/icon';
 import { Button } from '../../primitives/button';
 import { Text } from '../../primitives/text';

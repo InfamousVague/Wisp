@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText, Image } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 const sizeMap = {

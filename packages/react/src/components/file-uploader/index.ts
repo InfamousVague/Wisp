@@ -5,4 +5,4 @@
  */
 
 export { FileUploader } from './FileUploader';
-export type { FileUploaderProps } from '@wisp-ui/core/types/FileUploader.types';
+export type { FileUploaderProps } from '@coexist/wisp-core/types/FileUploader.types';

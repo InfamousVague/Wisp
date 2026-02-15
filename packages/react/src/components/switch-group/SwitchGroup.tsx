@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import type { SwitchGroupProps, CheckboxGroupProps } from '@wisp-ui/core/types/SwitchGroup.types';
-import type { CSSStyleObject } from '@wisp-ui/core/types';
+import type { SwitchGroupProps, CheckboxGroupProps } from '@coexist/wisp-core/types/SwitchGroup.types';
+import type { CSSStyleObject } from '@coexist/wisp-core/types';
 import {
   buildGroupStyle,
   buildGroupLabelStyle,
@@ -10,12 +10,12 @@ import {
   buildOptionLabelStyle,
   buildOptionDescriptionStyle,
   buildErrorStyle,
-} from '@wisp-ui/core/styles/SwitchGroup.styles';
+} from '@coexist/wisp-core/styles/SwitchGroup.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
 import { Toggle } from '../../primitives/toggle';
 import { Checkbox } from '../../primitives/checkbox';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // SwitchGroup

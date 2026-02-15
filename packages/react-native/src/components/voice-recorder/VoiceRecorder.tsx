@@ -9,10 +9,10 @@
 import React, { forwardRef, useMemo, useRef, useEffect } from 'react';
 import { View, Text, Pressable, Animated } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { VoiceRecorderState, VoiceRecorderSize } from '@wisp-ui/core/types/VoiceRecorder.types';
-import { voiceRecorderSizeMap } from '@wisp-ui/core/types/VoiceRecorder.types';
-import { resolveVoiceRecorderColors } from '@wisp-ui/core/styles/VoiceRecorder.styles';
-import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { VoiceRecorderState, VoiceRecorderSize } from '@coexist/wisp-core/types/VoiceRecorder.types';
+import { voiceRecorderSizeMap } from '@coexist/wisp-core/types/VoiceRecorder.types';
+import { resolveVoiceRecorderColors } from '@coexist/wisp-core/styles/VoiceRecorder.styles';
+import { defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

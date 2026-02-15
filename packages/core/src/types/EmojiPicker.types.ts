@@ -7,8 +7,10 @@
 
 import type { ThemeRadii } from '../theme/types';
 import type React from 'react';
-import type { LucideIcon } from 'lucide-react';
 import { defaultSpacing, defaultTypography } from '../theme/create-theme';
+
+/** Framework-agnostic icon component type (compatible with Lucide icons). */
+type IconComponent = React.ComponentType<{ size?: number; color?: string; strokeWidth?: number }>;
 
 // ---------------------------------------------------------------------------
 // Skin Tones (Fitzpatrick scale)
@@ -101,7 +103,7 @@ export interface EmojiItem {
 }
 
 /** Map of category names to Lucide icon component types. */
-export type CategoryIconMap = Record<EmojiCategory, LucideIcon>;
+export type CategoryIconMap = Record<EmojiCategory, IconComponent>;
 
 // ---------------------------------------------------------------------------
 // Props
@@ -175,7 +177,7 @@ export interface EmojiPickerTriggerProps extends Omit<React.HTMLAttributes<HTMLD
   offset?: number;
 
   /** Custom trigger icon (Lucide component type). */
-  icon?: LucideIcon;
+  icon?: IconComponent;
 
   /** Custom trigger content (replaces default button). */
   children?: React.ReactNode;

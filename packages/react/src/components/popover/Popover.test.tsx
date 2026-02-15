@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { Popover, PopoverTrigger, PopoverContent } from './Popover';
-import { popoverPlacements, popoverAligns } from '@wisp-ui/core/types/Popover.types';
+import { popoverPlacements, popoverAligns } from '@coexist/wisp-core/types/Popover.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

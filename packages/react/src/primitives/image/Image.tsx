@@ -1,12 +1,12 @@
 import React, { forwardRef, useMemo, useState, useEffect, useCallback } from 'react';
 import { ImageOff } from 'lucide-react';
-import type { ImageProps } from '@wisp-ui/core/types/Image.types';
+import type { ImageProps } from '@coexist/wisp-core/types/Image.types';
 import {
   buildWrapperStyle,
   buildImageStyle,
   buildFallbackStyle,
   buildSkeletonStyle,
-} from '@wisp-ui/core/styles/Image.styles';
+} from '@coexist/wisp-core/styles/Image.styles';
 import { useTheme } from '../../providers';
 
 /**

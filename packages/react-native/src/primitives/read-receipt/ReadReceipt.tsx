@@ -2,17 +2,17 @@
  * @module primitives/read-receipt
  * @description React Native ReadReceipt primitive for the Wisp design system.
  *
- * Reuses color resolution and size maps from `@wisp-ui/core`.
+ * Reuses color resolution and size maps from `@coexist/wisp-core`.
  * Renders status icons as unicode characters instead of Lucide SVGs.
  */
 
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { ReadReceiptStatus, ReadReceiptSize } from '@wisp-ui/core/types/ReadReceipt.types';
-import { readReceiptSizeMap } from '@wisp-ui/core/types/ReadReceipt.types';
-import { resolveReadReceiptColors } from '@wisp-ui/core/styles/ReadReceipt.styles';
-import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import type { ReadReceiptStatus, ReadReceiptSize } from '@coexist/wisp-core/types/ReadReceipt.types';
+import { readReceiptSizeMap } from '@coexist/wisp-core/types/ReadReceipt.types';
+import { resolveReadReceiptColors } from '@coexist/wisp-core/styles/ReadReceipt.styles';
+import { defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

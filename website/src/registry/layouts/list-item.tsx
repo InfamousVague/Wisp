@@ -7,6 +7,7 @@ export const listItemEntry: ComponentEntry = {
   slug: 'list-item',
   name: 'ListItem',
   category: 'layouts',
+  subcategory: 'Navigation & Wayfinding',
   description:
     'Structured row with leading, trailing, and content slots. Supports interactive states, sizes, and active highlighting.',
   variantCount: 3,

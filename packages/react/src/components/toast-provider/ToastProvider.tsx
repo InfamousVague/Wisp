@@ -9,11 +9,11 @@ import type {
   ToastItem,
   ToastPosition,
   UseToastReturn,
-} from '@wisp-ui/core/types/ToastProvider.types';
+} from '@coexist/wisp-core/types/ToastProvider.types';
 import {
   buildToastContainerStyle,
   buildToastItemWrapperStyle,
-} from '@wisp-ui/core/styles/ToastProvider.styles';
+} from '@coexist/wisp-core/styles/ToastProvider.styles';
 import { Toast } from '../../primitives';
 import { useTheme } from '../../providers';
 

@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Button } from './Button';
-import { buttonVariants } from '@wisp-ui/core/types/Button.types';
+import { buttonVariants } from '@coexist/wisp-core/types/Button.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

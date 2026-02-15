@@ -3,7 +3,7 @@ import { View, Pressable, Modal, SafeAreaView, StyleSheet, Text as RNText } from
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { Calendar } from '../calendar';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 type DatePickerSize = 'sm' | 'md' | 'lg';

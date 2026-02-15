@@ -7,6 +7,7 @@ export const tabsEntry: ComponentEntry = {
   slug: 'tabs',
   name: 'Tabs',
   category: 'components',
+  subcategory: 'Navigation',
   description:
     'Compound tab component with accessible keyboard navigation. Supports horizontal/vertical orientation, icons, disabled tabs, and controlled/uncontrolled modes.',
   variantCount: 2,

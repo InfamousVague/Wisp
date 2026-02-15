@@ -4,7 +4,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Spacer } from './Spacer';
-import { spacerSizes } from '@wisp-ui/core/types/Spacer.types';
+import { spacerSizes } from '@coexist/wisp-core/types/Spacer.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

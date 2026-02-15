@@ -20,6 +20,7 @@ export const popoverEntry: ComponentEntry = {
   slug: 'popover',
   name: 'Popover',
   category: 'components',
+  subcategory: 'Overlays & Modals',
   description:
     'Floating panel anchored to a trigger with placement, alignment, offset, and controlled/uncontrolled modes.',
   variantCount: 4,

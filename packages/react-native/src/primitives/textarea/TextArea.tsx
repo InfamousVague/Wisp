@@ -2,7 +2,7 @@
  * @module primitives/textarea
  * @description React Native TextArea primitive for the Wisp design system.
  *
- * Reuses color resolution and size maps from `@wisp-ui/core`.
+ * Reuses color resolution and size maps from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `<TextInput multiline>` instead of `<textarea>`.
@@ -21,13 +21,13 @@ import type {
   ViewStyle,
   TextStyle,
   NativeSyntheticEvent,
-  TextInputFocusEventData,
+  TargetedEvent,
 } from 'react-native';
-import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
-import { textAreaSizeMap } from '@wisp-ui/core/types/TextArea.types';
-import { resolveTextAreaColors } from '@wisp-ui/core/styles/TextArea.styles';
+import type { ComponentSize } from '@coexist/wisp-core/tokens/shared';
+import { textAreaSizeMap } from '@coexist/wisp-core/types/TextArea.types';
+import { resolveTextAreaColors } from '@coexist/wisp-core/styles/TextArea.styles';
 import { Text } from '../text';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultTypography, defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
@@ -103,17 +103,17 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea(
   const [focused, setFocused] = useState(false);
 
   const handleFocus = useCallback(
-    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    (e: NativeSyntheticEvent<TargetedEvent>) => {
       if (!disabled) setFocused(true);
-      onFocus?.(e);
+      onFocus?.(e as any);
     },
     [disabled, onFocus],
   );
 
   const handleBlur = useCallback(
-    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    (e: NativeSyntheticEvent<TargetedEvent>) => {
       setFocused(false);
-      onBlur?.(e);
+      onBlur?.(e as any);
     },
     [onBlur],
   );
@@ -142,7 +142,7 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea(
 
   const containerStyle = useMemo<ViewStyle>(() => ({
     minHeight: sizeConfig.minHeight,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: typeof sizeConfig.borderRadius === 'number' ? sizeConfig.borderRadius : (defaultRadii as any)[sizeConfig.borderRadius] ?? defaultRadii.md,
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.bg,

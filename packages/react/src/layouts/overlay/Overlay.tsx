@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import type { OverlayProps } from '@wisp-ui/core/types/Overlay.types';
-import { buildOverlayStyle } from '@wisp-ui/core/styles/Overlay.styles';
+import type { OverlayProps } from '@coexist/wisp-core/types/Overlay.types';
+import { buildOverlayStyle } from '@coexist/wisp-core/styles/Overlay.styles';
 
 /**
  * Overlay -- Full-screen overlay primitive for the Wisp design system.

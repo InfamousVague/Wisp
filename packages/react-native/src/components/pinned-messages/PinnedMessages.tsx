@@ -2,7 +2,7 @@
  * @module components/pinned-messages
  * @description React Native PinnedMessages for the Wisp design system.
  *
- * Reuses color resolution from `@wisp-ui/core`. Renders via `<View>` + `<Text>`.
+ * Reuses color resolution from `@coexist/wisp-core`. Renders via `<View>` + `<Text>`.
  */
 
 import React, { forwardRef, useMemo, useCallback } from 'react';
@@ -10,9 +10,9 @@ import { View, Text, Pressable, ScrollView } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import {
   resolvePinnedMessagesColors,
-} from '@wisp-ui/core/styles/PinnedMessages.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
-import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
+} from '@coexist/wisp-core/styles/PinnedMessages.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
+import { fontFamilyStacks } from '@coexist/wisp-core/tokens/shared';
 import { useTheme } from '../../providers';
 import Svg, { Line, Path } from 'react-native-svg';
 
@@ -127,8 +127,6 @@ export const PinnedMessages = forwardRef<View, PinnedMessagesProps>(
     const containerStyle: ViewStyle = {
       flex: 1,
       backgroundColor: colors.bg,
-      borderLeftWidth: 1,
-      borderLeftColor: colors.border,
     };
 
     const headerStyle: ViewStyle = {
@@ -139,7 +137,7 @@ export const PinnedMessages = forwardRef<View, PinnedMessagesProps>(
       paddingHorizontal: defaultSpacing.md,
       borderBottomWidth: 1,
       borderBottomColor: colors.border,
-      minHeight: 48,
+      minHeight: 56,
     };
 
     const titleTextStyle: TextStyle = {

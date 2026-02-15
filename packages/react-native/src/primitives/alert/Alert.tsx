@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText } from 'react-native';
-import type { AlertVariant } from '@wisp-ui/core/types/Alert.types';
-import type { ThemeColors } from '@wisp-ui/core/theme/types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { AlertVariant } from '@coexist/wisp-core/types/Alert.types';
+import type { ThemeColors } from '@coexist/wisp-core/theme/types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface AlertProps {

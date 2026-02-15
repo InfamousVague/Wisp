@@ -1,14 +1,14 @@
 import React, { forwardRef, useMemo, useCallback, useState, useRef } from 'react';
-import type { CheckboxProps } from '@wisp-ui/core/types/Checkbox.types';
-import { checkboxSizeMap } from '@wisp-ui/core/types/Checkbox.types';
+import type { CheckboxProps } from '@coexist/wisp-core/types/Checkbox.types';
+import { checkboxSizeMap } from '@coexist/wisp-core/types/Checkbox.types';
 import {
   resolveCheckboxColors,
   buildBoxStyle,
   buildIconStyle,
   getCheckboxSkeletonStyle,
-} from '@wisp-ui/core/styles/Checkbox.styles';
+} from '@coexist/wisp-core/styles/Checkbox.styles';
 import { useTheme } from '../../providers';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 
 /**
  * Checkbox — Selection primitive for the Wisp design system.

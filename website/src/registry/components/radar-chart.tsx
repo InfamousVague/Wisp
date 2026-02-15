@@ -6,6 +6,7 @@ export const radarChartEntry: ComponentEntry = {
   slug: 'radar-chart',
   name: 'RadarChart',
   category: 'components',
+  subcategory: 'Data Viz',
   description:
     'Multi-axis radar (spider) chart for comparing one or more data series across categories. Features concentric polygon grids, axis labels, data-point dots, and a colour-coded legend.',
   variantCount: 4,

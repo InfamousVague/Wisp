@@ -5,5 +5,5 @@
  */
 
 export { EmptyState } from './EmptyState';
-export type { EmptyStateProps, EmptyStateSize, EmptyStateSizeConfig } from '@wisp-ui/core/types/EmptyState.types';
-export { emptyStateSizes, emptyStateSizeMap } from '@wisp-ui/core/types/EmptyState.types';
+export type { EmptyStateProps, EmptyStateSize, EmptyStateSizeConfig } from '@coexist/wisp-core/types/EmptyState.types';
+export { emptyStateSizes, emptyStateSizeMap } from '@coexist/wisp-core/types/EmptyState.types';

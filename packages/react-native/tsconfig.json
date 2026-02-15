@@ -19,11 +19,13 @@
     "baseUrl": ".",
     "paths": {
       "@wisp-ui/core": ["../core/src/index.ts"],
-      "@wisp-ui/core/*": ["../core/src/*"]
+      "@wisp-ui/core/*": ["../core/src/*"],
+      "@coexist/wisp-core": ["../core/src/index.ts"],
+      "@coexist/wisp-core/*": ["../core/src/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "dist"],
+  "exclude": ["node_modules", "dist", "**/*.test.tsx", "**/*.test.ts"],
   "references": [
     { "path": "../core" }
   ]

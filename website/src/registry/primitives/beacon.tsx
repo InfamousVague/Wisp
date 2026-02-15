@@ -6,6 +6,7 @@ export const beaconEntry: ComponentEntry = {
   slug: 'beacon',
   name: 'Beacon',
   category: 'primitives',
+  subcategory: 'Status & Feedback',
   description:
     'Pulsing icon button that opens a popover with help content. Supports pulse/static states, configurable placement, size and colour variants.',
   variantCount: 4,

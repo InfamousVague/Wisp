@@ -25,13 +25,14 @@ export interface LinkPreviewCardColors {
 export function resolveLinkPreviewCardColors(
   theme: WispTheme,
 ): LinkPreviewCardColors {
-  const { colors } = theme;
+  const { colors, mode } = theme;
+  const isLight = mode === 'light';
   return {
-    bg: colors.background.raised,
+    bg: isLight ? colors.background.sunken : colors.background.surface,
     border: colors.border.subtle,
-    title: colors.text.onRaised,
-    description: colors.text.onRaisedSecondary,
-    domain: withAlpha(colors.text.onRaisedSecondary, 0.7),
+    title: isLight ? colors.text.primary : colors.text.primary,
+    description: isLight ? colors.text.secondary : colors.text.secondary,
+    domain: withAlpha(isLight ? colors.text.secondary : colors.text.secondary, 0.7),
   };
 }
 

@@ -2,7 +2,7 @@
  * @module primitives/checkbox
  * @description React Native Checkbox primitive for the Wisp design system.
  *
- * Reuses color resolution and size maps from `@wisp-ui/core`.
+ * Reuses color resolution and size maps from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `<Pressable>` instead of `<label>`.
@@ -17,11 +17,11 @@
 import React, { forwardRef, useMemo, useCallback, useState, useRef, useEffect } from 'react';
 import { Pressable, View, Animated } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
-import { checkboxSizeMap } from '@wisp-ui/core/types/Checkbox.types';
-import { resolveCheckboxColors } from '@wisp-ui/core/styles/Checkbox.styles';
+import type { ComponentSize } from '@coexist/wisp-core/tokens/shared';
+import { checkboxSizeMap } from '@coexist/wisp-core/types/Checkbox.types';
+import { resolveCheckboxColors } from '@coexist/wisp-core/styles/Checkbox.styles';
 import { Text } from '../text';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

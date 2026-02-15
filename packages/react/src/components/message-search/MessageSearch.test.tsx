@@ -5,7 +5,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { WispProvider } from '../../providers';
 import { MessageSearch } from './MessageSearch';
-import type { SearchResult, SearchFilter } from '@wisp-ui/core/types/MessageSearch.types';
+import type { SearchResult, SearchFilter } from '@coexist/wisp-core/types/MessageSearch.types';
 
 // ---------------------------------------------------------------------------
 // Wrapper

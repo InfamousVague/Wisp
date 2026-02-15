@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Floating } from './Floating';
-import { floatingPlacements, floatingAligns } from '@wisp-ui/core/types/Floating.types';
+import { floatingPlacements, floatingAligns } from '@coexist/wisp-core/types/Floating.types';
 import { Text } from '../../primitives/text';
 import { Box } from '../box';
 import { Button } from '../../primitives/button';

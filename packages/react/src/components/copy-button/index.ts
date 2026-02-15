@@ -5,5 +5,5 @@
  */
 
 export { CopyButton } from './CopyButton';
-export type { CopyButtonProps, CopyButtonSize, CopyButtonVariant, CopyButtonSizeConfig } from '@wisp-ui/core/types/CopyButton.types';
-export { copyButtonSizes, copyButtonSizeMap, copyButtonVariants } from '@wisp-ui/core/types/CopyButton.types';
+export type { CopyButtonProps, CopyButtonSize, CopyButtonVariant, CopyButtonSizeConfig } from '@coexist/wisp-core/types/CopyButton.types';
+export { copyButtonSizes, copyButtonSizeMap, copyButtonVariants } from '@coexist/wisp-core/types/CopyButton.types';

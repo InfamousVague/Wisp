@@ -18,14 +18,14 @@ import type {
   DropdownMenuItemProps,
   DropdownMenuSeparatorProps,
   DropdownMenuContextValue,
-} from "@wisp-ui/core/types/DropdownMenu.types";
+} from "@coexist/wisp-core/types/DropdownMenu.types";
 import {
   buildContentStyle,
   buildItemStyle,
   buildItemIconStyle,
   buildShortcutStyle,
   buildSeparatorStyle,
-} from "@wisp-ui/core/styles/DropdownMenu.styles";
+} from "@coexist/wisp-core/styles/DropdownMenu.styles";
 
 /** Internal React context that shares open state and refs between compound components. */
 const DropdownMenuContext = createContext<DropdownMenuContextValue | null>(null);

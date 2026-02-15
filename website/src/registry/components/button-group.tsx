@@ -12,6 +12,7 @@ export const buttonGroupEntry: ComponentEntry = {
   slug: 'button-group',
   name: 'ButtonGroup',
   category: 'components',
+  subcategory: 'Navigation',
   description:
     'Connected button group for single selection with outline/ghost variants, sizes, and fullWidth mode.',
   variantCount: 2,

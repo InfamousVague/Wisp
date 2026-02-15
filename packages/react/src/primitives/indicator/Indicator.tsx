@@ -2,13 +2,13 @@
  * @module Indicator
  */
 import React, { forwardRef, useMemo, useEffect } from 'react';
-import type { IndicatorProps } from '@wisp-ui/core/types/Indicator.types';
-import { indicatorSizeMap } from '@wisp-ui/core/types/Indicator.types';
+import type { IndicatorProps } from '@coexist/wisp-core/types/Indicator.types';
+import { indicatorSizeMap } from '@coexist/wisp-core/types/Indicator.types';
 import {
   resolveIndicatorColor,
   buildIndicatorDotStyle,
   buildIndicatorContainerStyle,
-} from '@wisp-ui/core/styles/Indicator.styles';
+} from '@coexist/wisp-core/styles/Indicator.styles';
 import { useTheme } from '../../providers';
 
 // Inject pulse keyframe once

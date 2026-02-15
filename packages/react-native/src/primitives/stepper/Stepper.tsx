@@ -2,7 +2,7 @@
  * @module primitives/stepper
  * @description React Native Stepper primitive for the Wisp design system.
  *
- * Reuses size maps from `@wisp-ui/core`.
+ * Reuses size maps from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `<Pressable>` with `onPress` instead of `<button>` with `onClick`.
@@ -15,10 +15,10 @@
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
 import { Pressable, View } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { StepperSize, StepperSizeConfig } from '@wisp-ui/core/types/Stepper.types';
-import { stepperSizeMap } from '@wisp-ui/core/types/Stepper.types';
+import type { StepperSize, StepperSizeConfig } from '@coexist/wisp-core/types/Stepper.types';
+import { stepperSizeMap } from '@coexist/wisp-core/types/Stepper.types';
 import { Text } from '../text';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

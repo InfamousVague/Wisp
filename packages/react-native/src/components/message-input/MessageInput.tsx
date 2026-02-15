@@ -7,19 +7,81 @@
  * Uses TextInput + onContentSizeChange for auto-expand.
  */
 
-import React, { forwardRef, useCallback, useMemo, useState } from 'react';
-import { View, TextInput, Text, Pressable, ScrollView } from 'react-native';
+import React, { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Platform, View, TextInput, Text, Pressable, ScrollView } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type {
   MessageInputSize,
+  MessageInputVariant,
   MessageInputReplyContext,
   MessageInputEditContext,
   MessageInputAttachment,
-} from '@wisp-ui/core/types/MessageInput.types';
-import { messageInputSizeMap } from '@wisp-ui/core/types/MessageInput.types';
-import { resolveMessageInputColors } from '@wisp-ui/core/styles/MessageInput.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+} from '@coexist/wisp-core/types/MessageInput.types';
+import { messageInputSizeMap } from '@coexist/wisp-core/types/MessageInput.types';
+import { resolveMessageInputColors } from '@coexist/wisp-core/styles/MessageInput.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
+import Svg, { Path, Circle, Line, Polyline } from 'react-native-svg';
+
+// ---------------------------------------------------------------------------
+// SVG Icons
+// ---------------------------------------------------------------------------
+
+function PaperclipIcon({ size = 18, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+    </Svg>
+  );
+}
+
+function SmileIcon({ size = 18, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Circle cx={12} cy={12} r={10} />
+      <Path d="M8 14s1.5 2 4 2 4-2 4-2" />
+      <Line x1={9} y1={9} x2={9.01} y2={9} />
+      <Line x1={15} y1={9} x2={15.01} y2={9} />
+    </Svg>
+  );
+}
+
+function MicIcon({ size = 18, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+      <Path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+      <Line x1={12} y1={19} x2={12} y2={22} />
+    </Svg>
+  );
+}
+
+function SendIcon({ size = 16, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="m22 2-7 20-4-9-9-4Z" />
+      <Path d="M22 2 11 13" />
+    </Svg>
+  );
+}
+
+function FileIcon({ size = 14, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+      <Polyline points="14 2 14 8 20 8" />
+    </Svg>
+  );
+}
+
+function XIcon({ size = 12, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="M18 6 6 18" />
+      <Path d="m6 6 12 12" />
+    </Svg>
+  );
+}
 
 // ---------------------------------------------------------------------------
 // Props
@@ -34,6 +96,13 @@ export interface MessageInputProps extends ViewProps {
   placeholder?: string;
   /** Size preset. @default 'md' */
   size?: MessageInputSize;
+  /**
+   * Visual variant.
+   * - `'default'` — standard rounded rectangle.
+   * - `'pill'` — fully rounded pill shape with tighter icon insets.
+   * @default 'default'
+   */
+  variant?: MessageInputVariant;
   /** Called when the value changes. */
   onValueChange?: (value: string) => void;
   /** Called when the user submits the message. */
@@ -70,6 +139,14 @@ export interface MessageInputProps extends ViewProps {
   attachments?: MessageInputAttachment[];
   /** Called when an attachment preview is removed. */
   onAttachmentRemove?: (id: string) => void;
+  /** Called when the cursor selection changes — useful for @mention trigger detection. */
+  onSelectionChange?: (event: { nativeEvent: { selection: { start: number; end: number } } }) => void;
+  /** Called when a key is pressed — useful for keyboard navigation in mention dropdowns. */
+  onKeyPress?: (event: { nativeEvent: { key: string } }) => void;
+  /** Highlight @mentions in the input with accent color. @default false */
+  highlightMentions?: boolean;
+  /** List of valid mention names to highlight. When empty/undefined all @word patterns are highlighted. */
+  mentionNames?: string[];
 }
 
 // ---------------------------------------------------------------------------
@@ -92,6 +169,7 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
     defaultValue = '',
     placeholder = 'Type a message...',
     size = 'md',
+    variant = 'default',
     onValueChange,
     onSubmit,
     showAttachment = true,
@@ -110,6 +188,10 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
     maxLength,
     attachments,
     onAttachmentRemove,
+    onSelectionChange,
+    onKeyPress,
+    highlightMentions = false,
+    mentionNames,
     style: userStyle,
     ...rest
   },
@@ -121,18 +203,33 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
 
   const [internalValue, setInternalValue] = useState(defaultValue);
   const value = controlledValue !== undefined ? controlledValue : internalValue;
-  const [inputHeight, setInputHeight] = useState(sizeConfig.minHeight - sizeConfig.padding);
+  const singleLineHeight = sizeConfig.minHeight - sizeConfig.padding;
+  const lineHeight = sizeConfig.fontSize * 1.4;
+  const maxLines = 5;
+  const maxExpandHeight = Math.ceil(lineHeight * maxLines) + sizeConfig.padding;
+
+  // On web, auto-expand is disabled to avoid RN Web textarea sizing issues.
+  // The input is always single-line on web; native platforms expand normally.
+  const webPlatform = Platform.OS === 'web';
+  const effectiveAutoExpand = autoExpand && !webPlatform;
+  const [inputHeight, setInputHeight] = useState(singleLineHeight);
 
   const colors = useMemo(
     () => resolveMessageInputColors(theme),
     [themeColors],
   );
 
+  const isPill = variant === 'pill';
+  const radiiScale = theme.radii ?? defaultRadii;
+  const isMultiline = effectiveAutoExpand && inputHeight > singleLineHeight + 4; // 4px tolerance
+  const resolvedRadius = (isPill && !isMultiline) ? radiiScale.full : (radiiScale[sizeConfig.borderRadius] ?? defaultRadii[sizeConfig.borderRadius]);
+  const hPad = (isPill && !isMultiline) ? sizeConfig.padding * 0.75 : sizeConfig.padding;
+
   if (skeleton) {
     const skeletonStyle: ViewStyle = {
       width: '100%',
       height: sizeConfig.minHeight + sizeConfig.padding,
-      borderRadius: sizeConfig.borderRadius,
+      borderRadius: resolvedRadius,
       backgroundColor: themeColors.border.subtle,
     };
     return <View style={[skeletonStyle, userStyle as ViewStyle]} />;
@@ -144,28 +241,30 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
 
   const containerStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
-    alignItems: 'flex-end',
+    alignItems: isMultiline ? 'flex-start' : 'flex-end',
     gap: sizeConfig.gap,
-    paddingHorizontal: sizeConfig.padding,
+    paddingHorizontal: hPad,
     paddingVertical: sizeConfig.padding / 2,
-    borderRadius: sizeConfig.borderRadius,
+    borderRadius: resolvedRadius,
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.bg,
     width: '100%',
-  }), [sizeConfig, colors]);
+  }), [sizeConfig, colors, isPill, hPad, resolvedRadius, isMultiline]);
 
+  const resolvedInputHeight = effectiveAutoExpand ? Math.min(inputHeight, maxExpandHeight) : singleLineHeight;
   const inputStyle = useMemo<TextStyle>(() => ({
     flex: 1,
-    minHeight: sizeConfig.minHeight - sizeConfig.padding,
-    maxHeight: sizeConfig.maxHeight,
+    minHeight: singleLineHeight,
+    maxHeight: webPlatform ? singleLineHeight : maxExpandHeight,
     fontSize: sizeConfig.fontSize,
     color: colors.text,
     padding: 0,
     paddingVertical: sizeConfig.padding / 2,
-    lineHeight: sizeConfig.fontSize * 1.4,
-    ...(autoExpand ? { height: Math.min(inputHeight, sizeConfig.maxHeight) } : {}),
-  }), [sizeConfig, colors, autoExpand, inputHeight]);
+    lineHeight,
+    outlineStyle: 'none' as any,
+    height: resolvedInputHeight,
+  }), [sizeConfig, colors, resolvedInputHeight, singleLineHeight, maxExpandHeight, lineHeight, webPlatform]);
 
   const iconBtnStyle = useMemo<ViewStyle>(() => ({
     alignItems: 'center',
@@ -189,7 +288,7 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
     height: sizeConfig.iconButtonSize,
     borderRadius: sizeConfig.iconButtonSize / 2,
     backgroundColor: hasContent && !sending ? colors.sendBg : colors.sendBgDisabled,
-    opacity: hasContent && !sending ? 1 : 0.5,
+    opacity: 1,
   }), [sizeConfig, colors, hasContent, sending]);
 
   const sendIconStyle = useMemo<TextStyle>(() => ({
@@ -231,6 +330,58 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
     maxWidth: 180,
   }), [themeColors]);
 
+  // ---- Mention highlight overlay (web only) ----
+  const mentionOverlayStyle = useMemo<TextStyle>(() => ({
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    fontSize: sizeConfig.fontSize,
+    lineHeight: sizeConfig.fontSize * 1.4,
+    paddingVertical: sizeConfig.padding / 2,
+    padding: 0,
+    color: 'transparent',
+    pointerEvents: 'none' as any,
+    whiteSpace: 'pre-wrap' as any,
+    wordBreak: 'break-word' as any,
+    overflowWrap: 'break-word' as any,
+    fontFamily: 'System',
+  }), [sizeConfig]);
+
+  const mentionParts = useMemo(() => {
+    if (!highlightMentions || !value) return null;
+
+    // Build a regex that matches @Name patterns
+    // If mentionNames is provided, match those specifically; otherwise match @Word+
+    if (mentionNames && mentionNames.length > 0) {
+      // Escape special regex chars and sort by length (longest first) to avoid partial matches
+      const escaped = mentionNames
+        .sort((a, b) => b.length - a.length)
+        .map((n) => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+      const pattern = new RegExp(`(@(?:${escaped.join('|')}))`, 'g');
+      const parts: { text: string; isMention: boolean }[] = [];
+      let lastIndex = 0;
+      let match: RegExpExecArray | null;
+      while ((match = pattern.exec(value)) !== null) {
+        if (match.index > lastIndex) {
+          parts.push({ text: value.slice(lastIndex, match.index), isMention: false });
+        }
+        parts.push({ text: match[1], isMention: true });
+        lastIndex = pattern.lastIndex;
+      }
+      if (lastIndex < value.length) {
+        parts.push({ text: value.slice(lastIndex), isMention: false });
+      }
+      return parts.length > 0 ? parts : null;
+    }
+
+    // Fallback: match any @Word (letters/spaces until end or non-alpha)
+    return null;
+  }, [highlightMentions, value, mentionNames]);
+
+  const showMentionOverlay = Platform.OS === 'web' && highlightMentions && mentionParts && mentionParts.length > 0;
+
   const overLimit = maxLength !== undefined && value.length > maxLength;
 
   const counterStyle = useMemo<TextStyle>(() => ({
@@ -254,14 +405,55 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
     if (controlledValue === undefined) setInternalValue('');
   }, [hasContent, sending, disabled, value, onSubmit, controlledValue]);
 
+  const textInputRef = useRef<TextInput>(null);
+
   const handleContentSizeChange = useCallback(
     (e: { nativeEvent: { contentSize: { height: number } } }) => {
-      if (autoExpand) {
-        setInputHeight(e.nativeEvent.contentSize.height);
-      }
+      if (!effectiveAutoExpand) return;
+      setInputHeight(e.nativeEvent.contentSize.height);
     },
-    [autoExpand],
+    [effectiveAutoExpand],
   );
+
+  // Web: force the underlying <textarea> to rows=1 so the browser's
+  // default rows=2 doesn't inflate the input to two visible lines.
+  // A MutationObserver keeps it pinned since RN Web resets it on re-render.
+  useEffect(() => {
+    if (Platform.OS !== 'web') return;
+    const node = textInputRef.current as unknown as HTMLElement | null;
+    if (!node) return;
+    const el = (node as any).tagName === 'TEXTAREA'
+      ? (node as any)
+      : (node as any).querySelector?.('textarea');
+    if (!el) return;
+    el.rows = 1;
+    const observer = new MutationObserver(() => {
+      if (el.rows !== 1) el.rows = 1;
+    });
+    observer.observe(el, { attributes: true, attributeFilter: ['rows'] });
+    return () => observer.disconnect();
+  }, []);
+
+  // --- Web: Enter to submit, Shift+Enter for newline ---
+  const textInputWrapperRef = useRef<View>(null);
+  const handleSubmitRef = useRef(handleSubmit);
+  handleSubmitRef.current = handleSubmit;
+
+  useEffect(() => {
+    if (Platform.OS !== 'web') return;
+    const wrapper = textInputWrapperRef.current as unknown as HTMLElement;
+    if (!wrapper) return;
+
+    const onKeyDown = (e: any) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleSubmitRef.current();
+      }
+    };
+
+    (wrapper as any).addEventListener('keydown', onKeyDown, true);
+    return () => (wrapper as any).removeEventListener('keydown', onKeyDown, true);
+  }, []);
 
   const hasContextBar = Boolean(replyingTo || editing);
   const hasAttachments = attachments && attachments.length > 0;
@@ -283,7 +475,7 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
             onPress={replyingTo ? replyingTo.onClear : editing?.onCancel}
             accessibilityLabel={replyingTo ? 'Cancel reply' : 'Cancel edit'}
           >
-            <Text style={{ fontSize: 14, color: themeColors.text.muted }}>{'\u{2715}'}</Text>
+            <XIcon size={14} color={themeColors.text.muted} />
           </Pressable>
         </View>
       )}
@@ -298,7 +490,7 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
         >
           {attachments!.map((att) => (
             <View key={att.id} style={attachmentCardStyle}>
-              <Text style={{ fontSize: 14 }}>{'\u{1F4C4}'}</Text>
+              <FileIcon size={14} color={themeColors.text.muted} />
               <View style={{ flex: 1 }}>
                 <Text style={{ fontSize: defaultTypography.sizes.xs.fontSize, color: themeColors.text.primary }} numberOfLines={1}>
                   {att.name}
@@ -311,7 +503,7 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
               </View>
               {onAttachmentRemove && (
                 <Pressable onPress={() => onAttachmentRemove(att.id)} accessibilityLabel={`Remove ${att.name}`}>
-                  <Text style={{ fontSize: 10, color: themeColors.text.muted }}>{'\u{2715}'}</Text>
+                  <XIcon size={10} color={themeColors.text.muted} />
                 </Pressable>
               )}
             </View>
@@ -320,7 +512,7 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
       )}
 
       {/* Main input row */}
-      <View style={containerStyle}>
+      <View ref={textInputWrapperRef} style={containerStyle}>
         {showAttachment && (
           <Pressable
             onPress={onAttachmentClick}
@@ -328,22 +520,46 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
             accessibilityLabel="Attach file"
             style={iconBtnStyle}
           >
-            <Text style={iconTextStyle}>{'\u{1F4CE}'}</Text>
+            <PaperclipIcon size={sizeConfig.iconSize} color={colors.icon} />
           </Pressable>
         )}
 
-        <TextInput
-          value={value}
-          onChangeText={handleChangeText}
-          placeholder={placeholder}
-          placeholderTextColor={colors.placeholder}
-          editable={!disabled && !sending}
-          multiline
-          onContentSizeChange={handleContentSizeChange}
-          style={inputStyle}
-          accessibilityLabel="Message"
-          maxLength={maxLength}
-        />
+        <View style={{ flex: 1, position: 'relative' }}>
+          {/* Mention highlight overlay — renders colored @mentions behind the input */}
+          {showMentionOverlay && (
+            <Text style={mentionOverlayStyle} aria-hidden>
+              {mentionParts!.map((part, i) =>
+                part.isMention ? (
+                  <Text key={i} style={{ color: themeColors.status.info, fontWeight: '600' }}>
+                    {part.text}
+                  </Text>
+                ) : (
+                  <Text key={i} style={{ color: colors.text }}>
+                    {part.text}
+                  </Text>
+                ),
+              )}
+            </Text>
+          )}
+          <TextInput
+            ref={textInputRef}
+            value={value}
+            onChangeText={handleChangeText}
+            placeholder={placeholder}
+            placeholderTextColor={colors.placeholder}
+            editable={!disabled && !sending}
+            multiline
+            onContentSizeChange={handleContentSizeChange}
+            onSelectionChange={onSelectionChange}
+            onKeyPress={onKeyPress}
+            style={[
+              inputStyle,
+              showMentionOverlay ? { color: 'transparent', caretColor: colors.text } as any : undefined,
+            ]}
+            accessibilityLabel="Message"
+            maxLength={maxLength}
+          />
+        </View>
 
         {/* Character counter */}
         {maxLength !== undefined && (
@@ -359,7 +575,7 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
             accessibilityLabel="Add emoji"
             style={iconBtnStyle}
           >
-            <Text style={iconTextStyle}>{'\u{1F60A}'}</Text>
+            <SmileIcon size={sizeConfig.iconSize} color={colors.icon} />
           </Pressable>
         )}
 
@@ -371,7 +587,7 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
             accessibilityLabel="Voice message"
             style={iconBtnStyle}
           >
-            <Text style={iconTextStyle}>{'\u{1F3A4}'}</Text>
+            <MicIcon size={sizeConfig.iconSize} color={colors.icon} />
           </Pressable>
         )}
 
@@ -381,7 +597,7 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
           accessibilityLabel="Send message"
           style={sendBtnStyle}
         >
-          <Text style={sendIconStyle}>{'\u{27A4}'}</Text>
+          <SendIcon size={Math.round(sizeConfig.iconSize * 0.8)} color={colors.sendIcon} />
         </Pressable>
       </View>
     </View>

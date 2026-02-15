@@ -4,8 +4,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from './Toolbar';
-import { toolbarSizes, toolbarVariants } from '@wisp-ui/core/types/Toolbar.types';
-import type { ToolbarSize, ToolbarVariant } from '@wisp-ui/core/types/Toolbar.types';
+import { toolbarSizes, toolbarVariants } from '@coexist/wisp-core/types/Toolbar.types';
+import type { ToolbarSize, ToolbarVariant } from '@coexist/wisp-core/types/Toolbar.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

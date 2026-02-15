@@ -20,8 +20,8 @@
 
 import React, { useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import type { AchievementUnlockProps } from '@wisp-ui/core/types/AchievementUnlock.types';
-import { achievementRarityMap } from '@wisp-ui/core/types/AchievementCard.types';
+import type { AchievementUnlockProps } from '@coexist/wisp-core/types/AchievementUnlock.types';
+import { achievementRarityMap } from '@coexist/wisp-core/types/AchievementCard.types';
 import {
   buildAchievementUnlockOverlayStyle,
   buildAchievementUnlockPanelStyle,
@@ -31,7 +31,7 @@ import {
   buildAchievementUnlockRarityStyle,
   buildAchievementUnlockCloseStyle,
   buildAchievementUnlockActionStyle,
-} from '@wisp-ui/core/styles/AchievementUnlock.styles';
+} from '@coexist/wisp-core/styles/AchievementUnlock.styles';
 import { useTheme } from '../../providers';
 import { Button } from '../../primitives/button';
 import { Text } from '../../primitives/text';

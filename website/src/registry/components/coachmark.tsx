@@ -47,6 +47,7 @@ export const coachmarkEntry: ComponentEntry = {
   slug: 'coachmark',
   name: 'Coachmark',
   category: 'components',
+  subcategory: 'Feedback & Guidance',
   description:
     'Standalone positioned callout attached to a target element. Supports placement, alignment, colour variants, and arrow pointer.',
   variantCount: 4,

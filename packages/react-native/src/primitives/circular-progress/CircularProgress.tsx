@@ -1,10 +1,10 @@
 import React, { forwardRef, useMemo, useRef, useEffect } from 'react';
 import { View, Text as RNText, Animated, Easing } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
-import type { CircularProgressSize } from '@wisp-ui/core/types/CircularProgress.types';
-import { circularProgressSizeMap } from '@wisp-ui/core/types/CircularProgress.types';
-import { resolveCircularProgressColors } from '@wisp-ui/core/styles/CircularProgress.styles';
-import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { CircularProgressSize } from '@coexist/wisp-core/types/CircularProgress.types';
+import { circularProgressSizeMap } from '@coexist/wisp-core/types/CircularProgress.types';
+import { resolveCircularProgressColors } from '@coexist/wisp-core/styles/CircularProgress.styles';
+import { defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 type ColorVariant = 'default' | 'success' | 'warning' | 'danger' | 'info';

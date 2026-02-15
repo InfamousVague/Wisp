@@ -7,6 +7,7 @@ export const inputEntry: ComponentEntry = {
   slug: 'input',
   name: 'Input',
   category: 'primitives',
+  subcategory: 'Inputs',
   description:
     'Text input field with label, hint, error/warning states, leading and trailing icons, and skeleton loading.',
   variantCount: 5,

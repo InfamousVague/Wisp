@@ -1,9 +1,9 @@
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
 import { View, TextInput, Pressable, Text } from 'react-native';
 import type { ViewProps } from 'react-native';
-import { colorPickerSizeMap } from '@wisp-ui/core/types/ColorPicker.types';
-import type { ColorPickerSize, ColorPickerSizeConfig } from '@wisp-ui/core/types/ColorPicker.types';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { colorPickerSizeMap } from '@coexist/wisp-core/types/ColorPicker.types';
+import type { ColorPickerSize, ColorPickerSizeConfig } from '@coexist/wisp-core/types/ColorPicker.types';
+import { defaultSpacing, defaultTypography, defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
@@ -66,6 +66,7 @@ export const ColorPicker = forwardRef<View, ColorPickerProps>(function ColorPick
   const { theme } = useTheme();
   const tc = theme.colors;
   const sizeConfig = useMemo(() => colorPickerSizeMap[size], [size]);
+  const resolvedBorderRadius = typeof sizeConfig.borderRadius === 'number' ? sizeConfig.borderRadius : (defaultRadii as any)[sizeConfig.borderRadius] ?? defaultRadii.md;
   const resolvedPresets = presets ?? DEFAULT_PRESETS;
 
   // Controlled / uncontrolled
@@ -118,7 +119,7 @@ export const ColorPicker = forwardRef<View, ColorPickerProps>(function ColorPick
           {
             width: sizeConfig.previewSize * 4,
             height: sizeConfig.previewSize * 2,
-            borderRadius: sizeConfig.borderRadius,
+            borderRadius: resolvedBorderRadius,
             backgroundColor: tc.background.raised,
             opacity: 0.5,
           },
@@ -160,7 +161,7 @@ export const ColorPicker = forwardRef<View, ColorPickerProps>(function ColorPick
           style={{
             width: sizeConfig.previewSize,
             height: sizeConfig.previewSize,
-            borderRadius: sizeConfig.borderRadius,
+            borderRadius: resolvedBorderRadius,
             backgroundColor: currentColor,
             borderWidth: 1,
             borderColor: tc.border.subtle,
@@ -185,10 +186,10 @@ export const ColorPicker = forwardRef<View, ColorPickerProps>(function ColorPick
               fontSize: sizeConfig.fontSize,
               fontFamily: 'monospace' as const,
               color: tc.text.primary,
-              backgroundColor: tc.background.raised,
+              backgroundColor: 'transparent',
               borderWidth: 1,
-              borderColor: tc.border.subtle,
-              borderRadius: sizeConfig.borderRadius,
+              borderColor: tc.border.strong,
+              borderRadius: resolvedBorderRadius,
               paddingHorizontal: defaultSpacing.sm,
             }}
           />

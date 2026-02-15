@@ -6,6 +6,7 @@ export const timePickerEntry: ComponentEntry = {
   slug: 'time-picker',
   name: 'TimePicker',
   category: 'components',
+  subcategory: 'Date & Time',
   description:
     'Time selection input with 12h/24h format, minute step intervals, label, error state, and size presets.',
   variantCount: 2,

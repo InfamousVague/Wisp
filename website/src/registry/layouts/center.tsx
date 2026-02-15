@@ -39,6 +39,7 @@ export const centerEntry: ComponentEntry = {
   slug: 'center',
   name: 'Center',
   category: 'layouts',
+  subcategory: 'Spacing & Alignment',
   description:
     'Centers children both horizontally and vertically using flexbox. Supports inline mode.',
   variantCount: 1,

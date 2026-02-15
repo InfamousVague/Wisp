@@ -5,5 +5,5 @@ export type {
   SegmentedControlOption,
   SegmentedControlSize,
   SegmentedControlSizeConfig,
-} from '@wisp-ui/core/types/SegmentedControl.types';
-export { segmentedControlSizeMap } from '@wisp-ui/core/types/SegmentedControl.types';
+} from '@coexist/wisp-core/types/SegmentedControl.types';
+export { segmentedControlSizeMap } from '@coexist/wisp-core/types/SegmentedControl.types';

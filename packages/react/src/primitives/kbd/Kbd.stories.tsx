@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Kbd } from './Kbd';
-import { kbdSizes } from '@wisp-ui/core/types/Kbd.types';
+import { kbdSizes } from '@coexist/wisp-core/types/Kbd.types';
 import { Text } from '../text';
 
 // ---------------------------------------------------------------------------

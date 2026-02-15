@@ -40,9 +40,9 @@ import type {
   PopoverContextValue,
   PopoverPlacement,
   PopoverAlign,
-} from '@wisp-ui/core/types/Popover.types';
-import type { CSSStyleObject } from '@wisp-ui/core/types';
-import { buildContentStyle, buildOverlayStyle } from '@wisp-ui/core/styles/Popover.styles';
+} from '@coexist/wisp-core/types/Popover.types';
+import type { CSSStyleObject } from '@coexist/wisp-core/types';
+import { buildContentStyle, buildOverlayStyle } from '@coexist/wisp-core/styles/Popover.styles';
 
 // ---------------------------------------------------------------------------
 // Context

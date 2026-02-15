@@ -18,16 +18,16 @@
  */
 import React, { forwardRef, useMemo, useCallback, useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import type { SheetProps } from '@wisp-ui/core/types/Sheet.types';
-import type { CSSStyleObject } from '@wisp-ui/core/types';
+import type { SheetProps } from '@coexist/wisp-core/types/Sheet.types';
+import type { CSSStyleObject } from '@coexist/wisp-core/types';
 import {
   buildOverlayStyle,
   buildSheetStyle,
   buildHandleBarStyle,
   buildHandlePillStyle,
-} from '@wisp-ui/core/styles/Sheet.styles';
+} from '@coexist/wisp-core/styles/Sheet.styles';
 import { useTheme } from '../../providers';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Drag dismiss threshold — if user drags more than this distance, close

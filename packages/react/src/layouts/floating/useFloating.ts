@@ -5,7 +5,7 @@ import type {
   FloatingStrategy,
   FloatingPosition,
   UseFloatingOptions,
-} from '@wisp-ui/core/types/Floating.types';
+} from '@coexist/wisp-core/types/Floating.types';
 
 // ---------------------------------------------------------------------------
 // Position calculation

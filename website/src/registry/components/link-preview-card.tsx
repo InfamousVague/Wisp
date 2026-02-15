@@ -6,6 +6,7 @@ export const linkPreviewCardEntry: ComponentEntry = {
   slug: 'link-preview-card',
   name: 'LinkPreviewCard',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'URL preview card showing title, description, image thumbnail, and domain — like link embeds in Telegram, Slack, and Discord.',
   variantCount: 1,

@@ -5,5 +5,5 @@
  */
 
 export { SocialButton } from './SocialButton';
-export type { SocialButtonProps, SocialProvider, SocialButtonSize, SocialButtonVariant, SocialButtonSizeConfig, SocialProviderConfig } from '@wisp-ui/core/types/SocialButton.types';
-export { socialProviders, socialButtonSizes, socialButtonSizeMap, socialButtonVariants, socialProviderConfigs } from '@wisp-ui/core/types/SocialButton.types';
+export type { SocialButtonProps, SocialProvider, SocialButtonSize, SocialButtonVariant, SocialButtonSizeConfig, SocialProviderConfig } from '@coexist/wisp-core/types/SocialButton.types';
+export { socialProviders, socialButtonSizes, socialButtonSizeMap, socialButtonVariants, socialProviderConfigs } from '@coexist/wisp-core/types/SocialButton.types';

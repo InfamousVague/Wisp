@@ -1,20 +1,20 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText } from 'react-native';
 import Svg, { Circle, Line, Polygon, Text as SvgText } from 'react-native-svg';
-import type { RadarChartSize, RadarChartSeries as RadarChartSeriesType } from '@wisp-ui/core/types/RadarChart.types';
-import { radarChartSizeMap } from '@wisp-ui/core/types/RadarChart.types';
+import type { RadarChartSize, RadarChartSeries as RadarChartSeriesType } from '@coexist/wisp-core/types/RadarChart.types';
+import { radarChartSizeMap } from '@coexist/wisp-core/types/RadarChart.types';
 import {
   computePolygonPoints,
   pointsToString,
   regularPolygonPoints,
   axisAngle,
   polarToCartesian,
-} from '@wisp-ui/core/styles/chart-utils';
+} from '@coexist/wisp-core/styles/chart-utils';
 import {
   resolveSeriesColor,
   resolveRadarChartColors,
-} from '@wisp-ui/core/styles/RadarChart.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+} from '@coexist/wisp-core/styles/RadarChart.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface RadarChartProps {

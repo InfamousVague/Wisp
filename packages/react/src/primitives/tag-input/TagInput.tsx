@@ -7,8 +7,8 @@ import React, {
   useState,
 } from 'react';
 import { X } from 'lucide-react';
-import type { TagInputProps } from '@wisp-ui/core/types/TagInput.types';
-import { tagInputSizeMap } from '@wisp-ui/core/types/TagInput.types';
+import type { TagInputProps } from '@coexist/wisp-core/types/TagInput.types';
+import { tagInputSizeMap } from '@coexist/wisp-core/types/TagInput.types';
 import {
   resolveTagInputColors,
   buildWrapperStyle,
@@ -20,7 +20,7 @@ import {
   buildLabelStyle,
   buildHintStyle,
   buildSkeletonStyle,
-} from '@wisp-ui/core/styles/TagInput.styles';
+} from '@coexist/wisp-core/styles/TagInput.styles';
 import { useControllable } from '../../hooks/use-controllable';
 import { useTheme } from '../../providers';
 import { Text } from '../text';

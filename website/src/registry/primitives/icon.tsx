@@ -7,6 +7,7 @@ export const iconEntry: ComponentEntry = {
   slug: 'icon',
   name: 'Icon',
   category: 'primitives',
+  subcategory: 'Text & Typography',
   description:
     'Wrapper for Lucide icons with consistent sizing, semantic colors, stroke width control, and skeleton loading.',
   variantCount: 5,

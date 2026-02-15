@@ -6,6 +6,7 @@ export const voiceRecorderEntry: ComponentEntry = {
   slug: 'voice-recorder',
   name: 'VoiceRecorder',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Voice recording button with timer, pulsing indicator, and send/cancel controls. Supports idle, recording, paused, and preview states.',
   variantCount: 4,

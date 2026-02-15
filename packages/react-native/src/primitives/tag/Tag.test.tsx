@@ -5,7 +5,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Tag } from './Tag';
 import { WispProvider } from '../../providers';
-import { tagSizes } from '@wisp-ui/core/types/Tag.types';
+import { tagSizes } from '@coexist/wisp-core/types/Tag.types';
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => (
   <WispProvider mode="dark">{children}</WispProvider>

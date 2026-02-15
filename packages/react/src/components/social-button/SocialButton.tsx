@@ -2,9 +2,9 @@
  * @module SocialButton
  */
 import React, { forwardRef, useMemo, useState, useCallback } from 'react';
-import type { SocialButtonProps } from '@wisp-ui/core/types/SocialButton.types';
-import { socialButtonSizeMap, socialProviderConfigs } from '@wisp-ui/core/types/SocialButton.types';
-import { buildSocialButtonStyle } from '@wisp-ui/core/styles/SocialButton.styles';
+import type { SocialButtonProps } from '@coexist/wisp-core/types/SocialButton.types';
+import { socialButtonSizeMap, socialProviderConfigs } from '@coexist/wisp-core/types/SocialButton.types';
+import { buildSocialButtonStyle } from '@coexist/wisp-core/styles/SocialButton.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives';
 

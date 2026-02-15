@@ -43,6 +43,7 @@ export const sidebarEntry: ComponentEntry = {
   slug: 'sidebar',
   name: 'Sidebar',
   category: 'layouts',
+  subcategory: 'Navigation & Wayfinding',
   description:
     'Navigation sidebar with sections, items, icons, badges, active state, and collapsible width presets.',
   variantCount: 4,

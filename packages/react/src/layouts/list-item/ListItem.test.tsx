@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { ListItem } from './ListItem';
-import { listItemSizes, listItemSizeMap } from '@wisp-ui/core/types/ListItem.types';
+import { listItemSizes, listItemSizeMap } from '@coexist/wisp-core/types/ListItem.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

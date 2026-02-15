@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Kbd } from './Kbd';
 import { WispProvider } from '../../providers';
-import { kbdSizes } from '@wisp-ui/core/types/Kbd.types';
+import { kbdSizes } from '@coexist/wisp-core/types/Kbd.types';
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => (
   <WispProvider mode="dark">{children}</WispProvider>

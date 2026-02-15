@@ -1,12 +1,12 @@
 import React, { forwardRef, useMemo, useEffect } from 'react';
-import type { SpinnerProps } from '@wisp-ui/core/types/Spinner.types';
-import { spinnerSizeMap } from '@wisp-ui/core/types/Spinner.types';
+import type { SpinnerProps } from '@coexist/wisp-core/types/Spinner.types';
+import { spinnerSizeMap } from '@coexist/wisp-core/types/Spinner.types';
 import {
   ensureSpinnerKeyframes,
   buildSpinnerContainerStyle,
   buildSvgStyle,
   buildLabelStyle,
-} from '@wisp-ui/core/styles/Spinner.styles';
+} from '@coexist/wisp-core/styles/Spinner.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../text';
 

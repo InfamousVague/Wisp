@@ -1,9 +1,9 @@
 import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import { View, Text as RNText, Pressable } from 'react-native';
 import Svg, { Path, Defs, ClipPath, Rect } from 'react-native-svg';
-import type { RatingSize } from '@wisp-ui/core/types/Rating.types';
-import { ratingSizeMap } from '@wisp-ui/core/types/Rating.types';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { RatingSize } from '@coexist/wisp-core/types/Rating.types';
+import { ratingSizeMap } from '@coexist/wisp-core/types/Rating.types';
+import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface RatingProps {

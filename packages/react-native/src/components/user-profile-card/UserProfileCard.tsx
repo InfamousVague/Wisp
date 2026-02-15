@@ -2,7 +2,7 @@
  * @module components/user-profile-card
  * @description React Native UserProfileCard for the Wisp design system.
  *
- * Reuses color resolution from `@wisp-ui/core`. Renders via `<View>` + `<Text>`.
+ * Reuses color resolution from `@coexist/wisp-core`. Renders via `<View>` + `<Text>`.
  */
 
 import React, { forwardRef, useMemo } from 'react';
@@ -10,11 +10,11 @@ import { View, Text, Pressable, Image, Animated } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle, ImageStyle } from 'react-native';
 import {
   resolveUserProfileCardColors,
-} from '@wisp-ui/core/styles/UserProfileCard.styles';
-import type { UserProfileCardColors } from '@wisp-ui/core/styles/UserProfileCard.styles';
-import type { UserProfileCardProps as CoreUserProfileCardProps, UserStatus } from '@wisp-ui/core/types/UserProfileCard.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
-import { withAlpha } from '@wisp-ui/core/tokens/color-utils';
+} from '@coexist/wisp-core/styles/UserProfileCard.styles';
+import type { UserProfileCardColors } from '@coexist/wisp-core/styles/UserProfileCard.styles';
+import type { UserProfileCardProps as CoreUserProfileCardProps, UserStatus } from '@coexist/wisp-core/types/UserProfileCard.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
+import { withAlpha } from '@coexist/wisp-core/tokens/color-utils';
 import { useTheme } from '../../providers';
 import Svg, { Line, Path } from 'react-native-svg';
 
@@ -83,6 +83,7 @@ function DefaultAvatar({ name, bg }: { name: string; bg: string }) {
         backgroundColor: bg,
         alignItems: 'center',
         justifyContent: 'center',
+        flexShrink: 0,
       }}
     >
       <Text style={{ color: '#fff', fontSize: 16, fontWeight: '600' }}>
@@ -243,6 +244,7 @@ export const UserProfileCard = forwardRef<View, UserProfileCardProps>(
         height: 60,
         flexShrink: 0,
         backgroundColor: bgColor,
+        position: 'relative',
       };
     }, [bannerColor, colors]);
 
@@ -379,6 +381,7 @@ export const UserProfileCard = forwardRef<View, UserProfileCardProps>(
       borderRadius: defaultRadii.md,
       backgroundColor: 'transparent',
       zIndex: 2,
+      flexShrink: 0,
     }), []);
 
     const statusLabel: Record<string, string> = {

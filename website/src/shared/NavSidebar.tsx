@@ -14,24 +14,25 @@ import {
   Home,
   BookOpen,
 } from 'lucide-react';
+import { SUBCATEGORY_ORDER } from '../registry';
+import type { ComponentCategory } from '../registry';
+import { toAnchorId } from './CategoryGrid';
 
-const NAV_SECTIONS = [
-  {
-    label: 'Overview',
-    items: [
-      { label: 'Home', path: '/', icon: Home },
-      { label: 'Docs', path: '/docs', icon: BookOpen },
-    ],
-  },
-  {
-    label: 'Library',
-    items: [
-      { label: 'Tokens', path: '/tokens', icon: Palette },
-      { label: 'Primitives', path: '/primitives', icon: Layers },
-      { label: 'Layouts', path: '/layouts', icon: LayoutGrid },
-      { label: 'Components', path: '/components', icon: Component },
-    ],
-  },
+const OVERVIEW_ITEMS = [
+  { label: 'Home', path: '/', icon: Home },
+  { label: 'Docs', path: '/docs', icon: BookOpen },
+];
+
+const LIBRARY_CATEGORIES: {
+  label: string;
+  category: ComponentCategory;
+  path: string;
+  icon: React.ComponentType<{ size?: number | string }>;
+}[] = [
+  { label: 'Tokens', category: 'tokens', path: '/tokens', icon: Palette as any },
+  { label: 'Primitives', category: 'primitives', path: '/primitives', icon: Layers as any },
+  { label: 'Layouts', category: 'layouts', path: '/layouts', icon: LayoutGrid as any },
+  { label: 'Components', category: 'components', path: '/components', icon: Component as any },
 ];
 
 export function NavSidebar() {
@@ -69,27 +70,76 @@ export function NavSidebar() {
         </div>
       </div>
 
-      {/* Nav sections */}
-      {NAV_SECTIONS.map((section) => (
-        <SidebarSection key={section.label} title={section.label}>
-          {section.items.map((item) => {
-            const isActive =
-              item.path === '/'
-                ? location.pathname === '/'
-                : location.pathname.startsWith(item.path);
+      {/* Overview section */}
+      <SidebarSection title="Overview">
+        {OVERVIEW_ITEMS.map((item) => {
+          const isActive =
+            item.path === '/'
+              ? location.pathname === '/'
+              : location.pathname.startsWith(item.path);
 
-            return (
+          return (
+            <SidebarItem
+              key={item.path}
+              icon={<item.icon size={16} />}
+              label={item.label}
+              active={isActive}
+              onClick={() => navigate(item.path)}
+            />
+          );
+        })}
+      </SidebarSection>
+
+      {/* Library section with subcategory nesting */}
+      <SidebarSection title="Library">
+        {LIBRARY_CATEGORIES.map(({ label, category, path, icon: Icon }) => {
+          const isActive =
+            path === '/'
+              ? location.pathname === '/'
+              : location.pathname.startsWith(path);
+          const subcategories = SUBCATEGORY_ORDER[category];
+
+          return (
+            <React.Fragment key={path}>
               <SidebarItem
-                key={item.path}
-                icon={<item.icon size={16} />}
-                label={item.label}
+                icon={<Icon size={16} />}
+                label={label}
                 active={isActive}
-                onClick={() => navigate(item.path)}
+                onClick={() => navigate(path)}
               />
-            );
-          })}
-        </SidebarSection>
-      ))}
+
+              {/* Subcategory items — shown when the parent category is active */}
+              {subcategories && isActive && (
+                <div style={{ paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 1 }}>
+                  {subcategories.map((sub) => {
+                    const anchorId = toAnchorId(sub);
+                    const isSubActive = location.hash === `#${anchorId}`;
+
+                    return (
+                      <SidebarItem
+                        key={sub}
+                        label={sub}
+                        active={isSubActive}
+                        onClick={() => {
+                          navigate(`${path}#${anchorId}`);
+                          // Defer scroll to let the route settle
+                          requestAnimationFrame(() => {
+                            document.getElementById(anchorId)?.scrollIntoView({
+                              behavior: 'smooth',
+                              block: 'start',
+                            });
+                          });
+                        }}
+                        style={{ fontSize: 12, padding: '3px 8px', minHeight: 28 }}
+                      />
+                    );
+                  })}
+                </div>
+              )}
+            </React.Fragment>
+          );
+        })}
+      </SidebarSection>
     </Sidebar>
   );
 }

@@ -9,4 +9,4 @@ export type {
   AccordionType,
   AccordionContextValue,
   AccordionItemContextValue,
-} from '@wisp-ui/core/types/Accordion.types';
+} from '@coexist/wisp-core/types/Accordion.types';

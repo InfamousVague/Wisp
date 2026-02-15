@@ -2,8 +2,8 @@
  * @module Timeline
  */
 import React, { forwardRef, useMemo } from 'react';
-import type { TimelineProps, TimelineStatus } from '@wisp-ui/core/types/Timeline.types';
-import { timelineSizeMap } from '@wisp-ui/core/types/Timeline.types';
+import type { TimelineProps, TimelineStatus } from '@coexist/wisp-core/types/Timeline.types';
+import { timelineSizeMap } from '@coexist/wisp-core/types/Timeline.types';
 import {
   buildTimelineContainerStyle,
   buildTimelineItemStyle,
@@ -19,7 +19,7 @@ import {
   buildTimelineSkeletonDotStyle,
   buildTimelineSkeletonLineStyle,
   buildTimelineSkeletonLineShortStyle,
-} from '@wisp-ui/core/styles/Timeline.styles';
+} from '@coexist/wisp-core/styles/Timeline.styles';
 import { useTheme } from '../../providers';
 
 /**

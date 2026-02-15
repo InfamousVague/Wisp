@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useState, useCallback } from 'react';
-import type { ListItemProps } from '@wisp-ui/core/types/ListItem.types';
-import { buildListItemStyle, buildLeadingStyle, buildContentStyle, buildTrailingStyle } from '@wisp-ui/core/styles/ListItem.styles';
+import type { ListItemProps } from '@coexist/wisp-core/types/ListItem.types';
+import { buildListItemStyle, buildLeadingStyle, buildContentStyle, buildTrailingStyle } from '@coexist/wisp-core/styles/ListItem.styles';
 import { useTheme } from '../../providers';
 
 /**

@@ -2,7 +2,7 @@
  * @module TypingIndicator
  */
 import React, { forwardRef, useMemo, useEffect } from 'react';
-import type { TypingIndicatorProps } from '@wisp-ui/core/types/TypingIndicator.types';
+import type { TypingIndicatorProps } from '@coexist/wisp-core/types/TypingIndicator.types';
 import {
   ensureTypingIndicatorKeyframes,
   buildDotsContainerStyle,
@@ -11,7 +11,7 @@ import {
   buildTypingGroupStyle,
   buildTypingRowStyle,
   buildTypingSenderNameStyle,
-} from '@wisp-ui/core/styles/TypingIndicator.styles';
+} from '@coexist/wisp-core/styles/TypingIndicator.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives';
 

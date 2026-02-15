@@ -1,13 +1,13 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { SeparatorProps } from '@wisp-ui/core/types/Separator.types';
+import type { SeparatorProps } from '@coexist/wisp-core/types/Separator.types';
 import {
   buildSeparatorStyle,
   buildLineStyle,
   buildLabelStyle,
   resolveSeparatorColor,
-} from '@wisp-ui/core/styles/Separator.styles';
+} from '@coexist/wisp-core/styles/Separator.styles';
 import { useTheme } from '../../providers';
-import { thicknessValues } from '@wisp-ui/core/tokens/shared';
+import { thicknessValues } from '@coexist/wisp-core/tokens/shared';
 
 /**
  * Separator — Horizontal or vertical divider primitive for the Wisp design system.

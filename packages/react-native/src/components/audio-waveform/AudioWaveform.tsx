@@ -10,9 +10,9 @@ import React, { forwardRef, useMemo, useCallback } from 'react';
 import { View, PanResponder } from 'react-native';
 import type { ViewProps, ViewStyle, GestureResponderEvent } from 'react-native';
 import Svg, { Rect } from 'react-native-svg';
-import type { AudioWaveformSize, AudioWaveformColor } from '@wisp-ui/core/types/AudioWaveform.types';
-import { audioWaveformSizeMap } from '@wisp-ui/core/types/AudioWaveform.types';
-import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import type { AudioWaveformSize, AudioWaveformColor } from '@coexist/wisp-core/types/AudioWaveform.types';
+import { audioWaveformSizeMap } from '@coexist/wisp-core/types/AudioWaveform.types';
+import { defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
@@ -26,6 +26,8 @@ export interface AudioWaveformProps extends ViewProps {
   size?: AudioWaveformSize;
   /** Accent color. @default 'default' */
   color?: AudioWaveformColor;
+  /** Raw color override for bars (e.g. '#fff'). Takes precedence over `color`. */
+  tint?: string;
   /** Progress fraction (0–1). @default 0 */
   progress?: number;
   /** Show loading skeleton. @default false */
@@ -44,6 +46,7 @@ export const AudioWaveform = forwardRef<View, AudioWaveformProps>(
       data,
       size = 'md',
       color = 'default',
+      tint,
       progress = 0,
       skeleton = false,
       onSeek,
@@ -57,6 +60,7 @@ export const AudioWaveform = forwardRef<View, AudioWaveformProps>(
     const sizeConfig = audioWaveformSizeMap[size];
 
     const accentColor = useMemo(() => {
+      if (tint) return tint;
       switch (color) {
         case 'success': return themeColors.status.success;
         case 'warning': return themeColors.status.warning;
@@ -64,7 +68,7 @@ export const AudioWaveform = forwardRef<View, AudioWaveformProps>(
         case 'info': return themeColors.status.info;
         default: return themeColors.accent.primary;
       }
-    }, [color, themeColors]);
+    }, [tint, color, themeColors]);
 
     const handlePress = useCallback(
       (e: GestureResponderEvent) => {

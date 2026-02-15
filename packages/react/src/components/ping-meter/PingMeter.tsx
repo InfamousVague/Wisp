@@ -2,8 +2,8 @@
  * @module PingMeter
  */
 import React, { forwardRef, useMemo, useEffect } from 'react';
-import type { PingMeterProps, PingQuality } from '@wisp-ui/core/types/PingMeter.types';
-import { pingMeterSizeMap } from '@wisp-ui/core/types/PingMeter.types';
+import type { PingMeterProps, PingQuality } from '@coexist/wisp-core/types/PingMeter.types';
+import { pingMeterSizeMap } from '@coexist/wisp-core/types/PingMeter.types';
 import {
   getLatencyColor,
   ensurePingPulseKeyframes,
@@ -13,7 +13,7 @@ import {
   buildPingBarStyle,
   buildPingLatencyStyle,
   getPingMeterSkeletonStyle,
-} from '@wisp-ui/core/styles/PingMeter.styles';
+} from '@coexist/wisp-core/styles/PingMeter.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives';
 

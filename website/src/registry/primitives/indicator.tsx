@@ -6,6 +6,7 @@ export const indicatorEntry: ComponentEntry = {
   slug: 'indicator',
   name: 'Indicator',
   category: 'primitives',
+  subcategory: 'Status & Feedback',
   description:
     'Status dot indicator with 5 semantic color variants and 3 animation states: idle (static), active (pulsing), and inactive (hollow).',
   variantCount: 5,

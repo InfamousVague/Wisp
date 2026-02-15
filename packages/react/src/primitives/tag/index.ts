@@ -9,5 +9,5 @@
  */
 
 export { Tag } from './Tag';
-export type { TagProps, TagSize, TagSizeConfig } from '@wisp-ui/core/types/Tag.types';
-export { tagSizes, tagSizeMap } from '@wisp-ui/core/types/Tag.types';
+export type { TagProps, TagSize, TagSizeConfig } from '@coexist/wisp-core/types/Tag.types';
+export { tagSizes, tagSizeMap } from '@coexist/wisp-core/types/Tag.types';

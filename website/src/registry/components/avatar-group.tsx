@@ -6,6 +6,7 @@ export const avatarGroupEntry: ComponentEntry = {
   slug: 'avatar-group',
   name: 'AvatarGroup',
   category: 'components',
+  subcategory: 'Social',
   description:
     'Displays a stack of overlapping avatars with an optional "+N" overflow indicator for truncated lists.',
   variantCount: 3,

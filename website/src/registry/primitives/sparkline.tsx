@@ -11,6 +11,7 @@ export const sparklineEntry: ComponentEntry = {
   slug: 'sparkline',
   name: 'Sparkline',
   category: 'primitives',
+  subcategory: 'Media & Display',
   description:
     'Tiny inline SVG chart for embedding in tables, cards, and dashboards. Supports line, area, and bar chart types with smooth curves, end dots, and entry animation.',
   variantCount: 3,

@@ -16,8 +16,8 @@
  */
 
 import React, { useMemo, useState } from 'react';
-import type { QuestTrackerProps, QuestObjectiveStatus } from '@wisp-ui/core/types/QuestTracker.types';
-import { questTrackerSizeMap } from '@wisp-ui/core/types/QuestTracker.types';
+import type { QuestTrackerProps, QuestObjectiveStatus } from '@coexist/wisp-core/types/QuestTracker.types';
+import { questTrackerSizeMap } from '@coexist/wisp-core/types/QuestTracker.types';
 import {
   buildQuestTrackerContainerStyle,
   buildQuestTrackerHeaderStyle,
@@ -30,7 +30,7 @@ import {
   buildQuestTrackerCounterStyle,
   buildQuestTrackerProgressTrackStyle,
   buildQuestTrackerProgressBarStyle,
-} from '@wisp-ui/core/styles/QuestTracker.styles';
+} from '@coexist/wisp-core/styles/QuestTracker.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
 import { Icon } from '../../primitives/icon';

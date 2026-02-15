@@ -9,7 +9,7 @@ import {
   CommandSeparator,
   CommandEmpty,
 } from './Command';
-import { commandSizes } from '@wisp-ui/core/types/Command.types';
+import { commandSizes } from '@coexist/wisp-core/types/Command.types';
 import { Button } from '../../primitives/button';
 import { Text } from '../../primitives/text';
 import {

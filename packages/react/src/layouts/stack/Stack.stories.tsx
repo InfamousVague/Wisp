@@ -1,8 +1,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Stack, HStack, VStack } from './Stack';
-import { stackDirections, stackAligns, stackJustifys } from '@wisp-ui/core/types/Stack.types';
-import type { StackGap } from '@wisp-ui/core/types/Stack.types';
+import { stackDirections, stackAligns, stackJustifys } from '@coexist/wisp-core/types/Stack.types';
+import type { StackGap } from '@coexist/wisp-core/types/Stack.types';
 import { Text } from '../../primitives/text';
 import { useThemeColors } from '../../providers';
 

@@ -4,9 +4,9 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Overlay } from './Overlay';
-import { overlayBackdrops } from '@wisp-ui/core/types/Overlay.types';
+import { overlayBackdrops } from '@coexist/wisp-core/types/Overlay.types';
 import { WispProvider } from '../../providers';
-import { zIndex as zIndexScale } from '@wisp-ui/core/tokens/z-index';
+import { zIndex as zIndexScale } from '@coexist/wisp-core/tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Wrapper

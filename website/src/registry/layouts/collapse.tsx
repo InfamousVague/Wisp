@@ -23,6 +23,7 @@ export const collapseEntry: ComponentEntry = {
   slug: 'collapse',
   name: 'Collapse',
   category: 'layouts',
+  subcategory: 'Content Containers',
   description:
     'Animated height transition for show/hide content. Configurable duration presets, custom easing, and optional unmount on close.',
   variantCount: 4,

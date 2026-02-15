@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { FormField } from './FormField';
-import { formFieldSizes, formFieldOrientations } from '@wisp-ui/core/types/FormField.types';
+import { formFieldSizes, formFieldOrientations } from '@coexist/wisp-core/types/FormField.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

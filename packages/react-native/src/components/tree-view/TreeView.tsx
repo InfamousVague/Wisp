@@ -3,8 +3,8 @@ import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
 import { Collapse } from '../../layouts/collapse';
-import type { ThemeColors } from '@wisp-ui/core/theme/types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { ThemeColors } from '@coexist/wisp-core/theme/types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 const sizeMap = {

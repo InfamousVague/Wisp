@@ -2,7 +2,7 @@
  * @module components/channel-list
  * @description React Native ChannelList for the Wisp design system.
  *
- * Reuses color resolution from `@wisp-ui/core`. Renders via `<View>` + `<Text>`.
+ * Reuses color resolution from `@coexist/wisp-core`. Renders via `<View>` + `<Text>`.
  * Collapsible category-grouped channel sidebar with type icons.
  */
 
@@ -13,9 +13,9 @@ import type {
   ChannelItem as ChannelItemType,
   ChannelCategory,
   ChannelType,
-} from '@wisp-ui/core/types/ChannelList.types';
-import { resolveChannelListColors } from '@wisp-ui/core/styles/ChannelList.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+} from '@coexist/wisp-core/types/ChannelList.types';
+import { resolveChannelListColors } from '@coexist/wisp-core/styles/ChannelList.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 import Svg, { Line, Path, Polyline, Rect } from 'react-native-svg';
 

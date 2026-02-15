@@ -2,7 +2,7 @@
  * @module primitives/pin-input
  * @description React Native PinInput primitive for the Wisp design system.
  *
- * Reuses pin-input size maps and color resolution from `@wisp-ui/core`.
+ * Reuses pin-input size maps and color resolution from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `<TextInput>` instead of `<input>` for each cell.
@@ -30,12 +30,12 @@ import type {
   NativeSyntheticEvent,
   TextInputKeyPressEventData,
 } from 'react-native';
-import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
-import type { PinInputType } from '@wisp-ui/core/types/PinInput.types';
-import { pinInputSizeMap } from '@wisp-ui/core/types/PinInput.types';
-import { resolvePinInputColors } from '@wisp-ui/core/styles/PinInput.styles';
+import type { ComponentSize } from '@coexist/wisp-core/tokens/shared';
+import type { PinInputType } from '@coexist/wisp-core/types/PinInput.types';
+import { pinInputSizeMap } from '@coexist/wisp-core/types/PinInput.types';
+import { resolvePinInputColors } from '@coexist/wisp-core/styles/PinInput.styles';
 import { Text } from '../text';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

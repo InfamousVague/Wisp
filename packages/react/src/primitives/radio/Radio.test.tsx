@@ -5,10 +5,10 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Radio, RadioGroup } from './Radio';
 import { WispProvider } from '../../providers';
-import { contrastRatio } from '@wisp-ui/core/utils/contrast';
-import { resolveRadioColors } from '@wisp-ui/core/styles/Radio.styles';
-import { darkColors } from '@wisp-ui/core/theme/dark';
-import { lightColors } from '@wisp-ui/core/theme/light';
+import { contrastRatio } from '@coexist/wisp-core/utils/contrast';
+import { resolveRadioColors } from '@coexist/wisp-core/styles/Radio.styles';
+import { darkColors } from '@coexist/wisp-core/theme/dark';
+import { lightColors } from '@coexist/wisp-core/theme/light';
 
 // ---------------------------------------------------------------------------
 // Wrapper

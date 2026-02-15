@@ -2,14 +2,14 @@
  * @module Stepper
  */
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import type { StepperProps } from '@wisp-ui/core/types/Stepper.types';
-import { stepperSizeMap } from '@wisp-ui/core/types/Stepper.types';
+import type { StepperProps } from '@coexist/wisp-core/types/Stepper.types';
+import { stepperSizeMap } from '@coexist/wisp-core/types/Stepper.types';
 import {
   buildStepperContainerStyle,
   buildStepperButtonStyle,
   buildStepperValueStyle,
   getStepperSkeletonStyle,
-} from '@wisp-ui/core/styles/Stepper.styles';
+} from '@coexist/wisp-core/styles/Stepper.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

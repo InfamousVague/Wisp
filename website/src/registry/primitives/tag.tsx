@@ -7,6 +7,7 @@ export const tagEntry: ComponentEntry = {
   slug: 'tag',
   name: 'Tag',
   category: 'primitives',
+  subcategory: 'Badges & Tags',
   description:
     'Selectable tag with optional remove button, icon support, and skeleton loading. Commonly used for filtering and categorization.',
   variantCount: 3,

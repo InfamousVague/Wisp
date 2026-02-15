@@ -5,7 +5,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { WispProvider } from '../../providers';
 import { ChannelList } from './ChannelList';
-import type { ChannelCategory } from '@wisp-ui/core/types/ChannelList.types';
+import type { ChannelCategory } from '@coexist/wisp-core/types/ChannelList.types';
 
 // ---------------------------------------------------------------------------
 // Wrapper

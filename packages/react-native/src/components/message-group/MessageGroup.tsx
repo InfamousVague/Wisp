@@ -9,9 +9,9 @@
 import React, { forwardRef, useMemo, Children, isValidElement, cloneElement } from 'react';
 import { View, Text } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { ChatBubbleAlignment, ChatBubbleStatus } from '@wisp-ui/core/types/ChatBubble.types';
+import type { ChatBubbleAlignment, ChatBubbleStatus } from '@coexist/wisp-core/types/ChatBubble.types';
 import { ChatBubble, StatusIcon } from '../chat-bubble/ChatBubble';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

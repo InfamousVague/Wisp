@@ -6,6 +6,7 @@ export const activityCirclesEntry: ComponentEntry = {
   slug: 'activity-circles',
   name: 'ActivityCircles',
   category: 'components',
+  subcategory: 'Gamification',
   description:
     'Apple-Watch-style concentric progress rings for tracking multiple metrics simultaneously. Each ring represents a separate metric with customisable colours, labels, and centre content.',
   variantCount: 4,

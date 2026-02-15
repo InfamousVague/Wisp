@@ -1,8 +1,8 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Pressable } from 'react-native';
-import type { ListItemSize } from '@wisp-ui/core/types/ListItem.types';
-import { listItemSizeMap } from '@wisp-ui/core/types/ListItem.types';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import type { ListItemSize } from '@coexist/wisp-core/types/ListItem.types';
+import { listItemSizeMap } from '@coexist/wisp-core/types/ListItem.types';
+import { defaultSpacing, defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface ListItemProps {

@@ -7,6 +7,7 @@ export const scrollAreaEntry: ComponentEntry = {
   slug: 'scroll-area',
   name: 'ScrollArea',
   category: 'layouts',
+  subcategory: 'Scrolling & Positioning',
   description:
     'Scrollable container with thin scrollbar, directional control, and optional scrollbar hiding.',
   variantCount: 3,

@@ -6,6 +6,7 @@ export const mediaPlayerEntry: ComponentEntry = {
   slug: 'media-player',
   name: 'MediaPlayer',
   category: 'components',
+  subcategory: 'Media',
   description:
     'Audio and video player with seek bar, volume, playback speed, and fullscreen controls. No major UI kit ships a native media player — instant differentiator.',
   variantCount: 2,

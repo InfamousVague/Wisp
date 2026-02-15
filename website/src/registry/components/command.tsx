@@ -106,6 +106,7 @@ export const commandEntry: ComponentEntry = {
   slug: 'command',
   name: 'Command',
   category: 'components',
+  subcategory: 'Selection & Input',
   description:
     'A command palette / quick-search component with fuzzy filtering, keyboard navigation, groups, separators, icons, shortcuts, and loading state.',
   variantCount: 3,

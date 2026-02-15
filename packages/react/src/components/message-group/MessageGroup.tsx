@@ -2,8 +2,8 @@
  * @module MessageGroup
  */
 import React, { forwardRef, useMemo, Children, isValidElement, cloneElement } from 'react';
-import type { MessageGroupProps } from '@wisp-ui/core/types/MessageGroup.types';
-import type { ChatBubbleStatus } from '@wisp-ui/core/types/ChatBubble.types';
+import type { MessageGroupProps } from '@coexist/wisp-core/types/MessageGroup.types';
+import type { ChatBubbleStatus } from '@coexist/wisp-core/types/ChatBubble.types';
 import {
   buildMessageGroupStyle,
   buildSenderNameStyle,
@@ -12,7 +12,7 @@ import {
   buildGroupFooterStyle,
   buildGroupTimestampStyle,
   buildGroupStatusStyle,
-} from '@wisp-ui/core/styles/MessageGroup.styles';
+} from '@coexist/wisp-core/styles/MessageGroup.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives';
 import { StatusIcon, ChatBubble } from '../chat-bubble/ChatBubble';

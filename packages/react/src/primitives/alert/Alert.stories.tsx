@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Alert } from './Alert';
-import { alertVariants } from '@wisp-ui/core/types/Alert.types';
+import { alertVariants } from '@coexist/wisp-core/types/Alert.types';
 import { Text } from '../text';
 import { Button } from '../button';
 import { Icon } from '../icon';

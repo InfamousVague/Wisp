@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, createContext, useContext } from 'react';
-import type { ToolbarProps, ToolbarGroupProps, ToolbarSeparatorProps, ToolbarSizeConfig } from '@wisp-ui/core/types/Toolbar.types';
-import { toolbarSizeMap } from '@wisp-ui/core/types/Toolbar.types';
-import { buildToolbarStyle, buildGroupStyle, buildSeparatorStyle } from '@wisp-ui/core/styles/Toolbar.styles';
+import type { ToolbarProps, ToolbarGroupProps, ToolbarSeparatorProps, ToolbarSizeConfig } from '@coexist/wisp-core/types/Toolbar.types';
+import { toolbarSizeMap } from '@coexist/wisp-core/types/Toolbar.types';
+import { buildToolbarStyle, buildGroupStyle, buildSeparatorStyle } from '@coexist/wisp-core/styles/Toolbar.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

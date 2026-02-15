@@ -531,3 +531,60 @@ export type { MessageSearchProps, SearchResult, SearchFilter, SearchFilterType }
 export { AttachmentPreview } from './attachment-preview';
 export type { AttachmentPreviewProps, Attachment, AttachmentFileType } from './attachment-preview';
 
+// ---------------------------------------------------------------------------
+// CallControls
+// ---------------------------------------------------------------------------
+
+export { CallControls } from './call-controls';
+export type { CallControlsProps } from './call-controls';
+
+
+// ---------------------------------------------------------------------------
+// CallMiniWindow
+// ---------------------------------------------------------------------------
+
+export { CallMiniWindow } from './call-mini-window';
+export type { CallMiniWindowProps } from './call-mini-window';
+
+// ---------------------------------------------------------------------------
+// VoiceChannelPanel
+// ---------------------------------------------------------------------------
+
+export { VoiceChannelPanel } from './voice-channel-panel';
+export type { VoiceChannelPanelProps } from './voice-channel-panel';
+
+// ---------------------------------------------------------------------------
+// RoleBadge
+// ---------------------------------------------------------------------------
+
+export { RoleBadge } from './role-badge';
+export type { RoleBadgeProps, Role } from './role-badge';
+
+// ---------------------------------------------------------------------------
+// PermissionManager
+// ---------------------------------------------------------------------------
+
+export { PermissionManager } from './permission-manager';
+export type { PermissionManagerProps, Permission, PermissionState, PermissionCategory } from './permission-manager';
+
+// ---------------------------------------------------------------------------
+// Wave 17 — Social / Friends
+// ---------------------------------------------------------------------------
+
+export { FriendListItem } from './friend-list-item';
+export type { FriendListItemProps, FriendAction, FriendStatus } from './friend-list-item';
+
+export { FriendRequestItem } from './friend-request-item';
+export type { FriendRequestItemProps, FriendRequestType } from './friend-request-item';
+
+export { UserSearchResult } from './user-search-result';
+export type { UserSearchResultProps, UserSearchRequestState } from './user-search-result';
+
+export { FriendSection } from './friend-section';
+export type { FriendSectionProps } from './friend-section';
+
+export { UserMiniCard } from './user-mini-card';
+export type { UserMiniCardProps, UserMiniCardAction, UserMiniCardStatus } from './user-mini-card';
+
+export { AddFriendInput } from './add-friend-input';
+export type { AddFriendInputProps, AddFriendFeedbackState } from './add-friend-input';

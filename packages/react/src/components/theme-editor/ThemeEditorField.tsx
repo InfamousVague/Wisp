@@ -5,7 +5,7 @@
  */
 
 import React, { memo, useCallback } from 'react';
-import type { ThemeEditorFieldDescriptor } from '@wisp-ui/core/theme/editor-fields';
+import type { ThemeEditorFieldDescriptor } from '@coexist/wisp-core/theme/editor-fields';
 import { ColorPicker } from '../../primitives/color-picker';
 import { Slider } from '../../primitives/slider';
 import { NumberInput } from '../../primitives/number-input';

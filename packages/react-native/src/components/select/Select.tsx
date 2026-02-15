@@ -2,7 +2,7 @@ import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import { View, Pressable, Modal, FlatList, StyleSheet, Text as RNText, SafeAreaView } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline, Path } from 'react-native-svg';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface SelectOption {
@@ -79,8 +79,8 @@ export const Select = forwardRef<View, SelectProps>(function Select(
       paddingHorizontal: cfg.paddingX,
       borderRadius: defaultRadii.md,
       borderWidth: 1,
-      borderColor: hasError ? themeColors.status.danger : themeColors.border.subtle,
-      backgroundColor: themeColors.background.surface,
+      borderColor: hasError ? themeColors.status.danger : themeColors.border.strong,
+      backgroundColor: 'transparent',
       gap: defaultSpacing.sm,
       alignSelf: fullWidth ? 'stretch' : 'flex-start',
       opacity: disabled ? 0.4 : 1,
@@ -128,13 +128,18 @@ export const Select = forwardRef<View, SelectProps>(function Select(
 
       <Modal visible={isOpen} transparent animationType="fade" onRequestClose={() => setIsOpen(false)} statusBarTranslucent>
         <Pressable style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.5)' }]} onPress={() => setIsOpen(false)}>
-          <SafeAreaView style={{ flex: 1, justifyContent: 'center', paddingHorizontal: defaultSpacing.xl }}>
+          <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: defaultSpacing.xl }}>
             <Pressable onPress={(e) => e.stopPropagation()}>
               <View style={{
-                backgroundColor: themeColors.background.raised,
+                backgroundColor: themeColors.background.canvas,
                 borderRadius: defaultRadii.xl,
                 maxHeight: '70%',
+                maxWidth: 400,
+                minWidth: 240,
+                width: '100%',
                 overflow: 'hidden',
+                borderWidth: 1,
+                borderColor: themeColors.border.subtle,
                 shadowColor: '#000',
                 shadowOffset: { width: 0, height: 8 },
                 shadowOpacity: 0.2,
@@ -143,7 +148,7 @@ export const Select = forwardRef<View, SelectProps>(function Select(
               }}>
                 {label && (
                   <View style={{ paddingHorizontal: defaultSpacing.lg, paddingTop: defaultSpacing.lg, paddingBottom: defaultSpacing.sm }}>
-                    <RNText style={{ fontSize: defaultTypography.sizes.base.fontSize, fontWeight: defaultTypography.weights.semibold, color: themeColors.text.onRaised } as TextStyle}>
+                    <RNText style={{ fontSize: defaultTypography.sizes.base.fontSize, fontWeight: defaultTypography.weights.semibold, color: themeColors.text.primary } as TextStyle}>
                       {label}
                     </RNText>
                   </View>
@@ -170,11 +175,11 @@ export const Select = forwardRef<View, SelectProps>(function Select(
                       >
                         {item.icon && <View style={{ flexShrink: 0 }}>{item.icon}</View>}
                         <View style={{ flex: 1 }}>
-                          <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, fontWeight: isSelected ? '600' : '400', color: themeColors.text.onRaised } as TextStyle}>
+                          <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, fontWeight: isSelected ? '600' : '400', color: themeColors.text.primary } as TextStyle}>
                             {item.label}
                           </RNText>
                           {item.description && (
-                            <RNText style={{ fontSize: defaultTypography.sizes.xs.fontSize, color: themeColors.text.onRaisedSecondary, marginTop: defaultSpacing['2xs'] } as TextStyle}>
+                            <RNText style={{ fontSize: defaultTypography.sizes.xs.fontSize, color: themeColors.text.secondary, marginTop: defaultSpacing['2xs'] } as TextStyle}>
                               {item.description}
                             </RNText>
                           )}

@@ -8,9 +8,9 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
-import type { AchievementStatus, AchievementRarity } from '@wisp-ui/core/types/AchievementCard.types';
-import { achievementRarityMap } from '@wisp-ui/core/types/AchievementCard.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { AchievementStatus, AchievementRarity } from '@coexist/wisp-core/types/AchievementCard.types';
+import { achievementRarityMap } from '@coexist/wisp-core/types/AchievementCard.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

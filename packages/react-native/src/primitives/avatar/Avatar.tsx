@@ -1,12 +1,12 @@
 import React, { forwardRef, useMemo, useState, useCallback } from 'react';
 import { View, Image, Text as RNText } from 'react-native';
-import type { AvatarSize, AvatarShape, AvatarStatus } from '@wisp-ui/core/types/Avatar.types';
-import { avatarSizeMap } from '@wisp-ui/core/types/Avatar.types';
+import type { AvatarSize, AvatarShape, AvatarStatus } from '@coexist/wisp-core/types/Avatar.types';
+import { avatarSizeMap } from '@coexist/wisp-core/types/Avatar.types';
 import {
   extractInitials,
   resolveStatusColor,
-} from '@wisp-ui/core/styles/Avatar.styles';
-import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+} from '@coexist/wisp-core/styles/Avatar.styles';
+import { defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface AvatarProps {
@@ -16,6 +16,7 @@ export interface AvatarProps {
   size?: AvatarSize;
   shape?: AvatarShape;
   status?: AvatarStatus;
+  onSurface?: boolean;
   style?: object;
 }
 
@@ -27,6 +28,7 @@ export const Avatar = forwardRef<View, AvatarProps>(function Avatar(
     size = 'md',
     shape = 'circle',
     status,
+    onSurface = false,
     style: userStyle,
   },
   ref,

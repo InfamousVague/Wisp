@@ -6,6 +6,7 @@ export const separatorEntry: ComponentEntry = {
   slug: 'separator',
   name: 'Separator',
   category: 'layouts',
+  subcategory: 'Content Containers',
   description:
     'Horizontal or vertical divider line with optional center label, spacing presets, and subtle/strong variants.',
   variantCount: 2,

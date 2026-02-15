@@ -1,4 +1,4 @@
 /** @module primitives/sticky */
 export { Sticky } from './Sticky';
-export type { StickyProps, StickyEdge } from '@wisp-ui/core/types/Sticky.types';
-export { stickyEdges } from '@wisp-ui/core/types/Sticky.types';
+export type { StickyProps, StickyEdge } from '@coexist/wisp-core/types/Sticky.types';
+export { stickyEdges } from '@coexist/wisp-core/types/Sticky.types';

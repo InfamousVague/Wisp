@@ -8,5 +8,5 @@
  * @module primitives/radio
  */
 export { Radio, RadioGroup } from './Radio';
-export type { RadioProps, RadioGroupProps, RadioSize, RadioSizeConfig } from '@wisp-ui/core/types/Radio.types';
-export { radioSizes, radioSizeMap } from '@wisp-ui/core/types/Radio.types';
+export type { RadioProps, RadioGroupProps, RadioSize, RadioSizeConfig } from '@coexist/wisp-core/types/Radio.types';
+export { radioSizes, radioSizeMap } from '@coexist/wisp-core/types/Radio.types';

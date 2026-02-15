@@ -2,7 +2,7 @@
  * @module primitives/text
  * @description React Native Text primitive for the Wisp design system.
  *
- * Reuses color resolution and size maps from `@wisp-ui/core` while rendering
+ * Reuses color resolution and size maps from `@coexist/wisp-core` while rendering
  * through RN's `<Text>` component. Key differences from the React DOM version:
  *
  * - `numberOfLines` replaces CSS `text-overflow` / `-webkit-line-clamp`.
@@ -19,10 +19,10 @@ import type {
   SemanticColor,
   FontWeightKey,
   FontFamilyKey,
-} from '@wisp-ui/core/tokens/shared';
-import type { TextAlign } from '@wisp-ui/core/types/Text.types';
-import { resolveTextColor } from '@wisp-ui/core/styles/Text.styles';
-import { sizeMap } from '@wisp-ui/core/styles/Text.styles';
+} from '@coexist/wisp-core/tokens/shared';
+import type { TextAlign } from '@coexist/wisp-core/types/Text.types';
+import { resolveTextColor } from '@coexist/wisp-core/styles/Text.styles';
+import { sizeMap } from '@coexist/wisp-core/styles/Text.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

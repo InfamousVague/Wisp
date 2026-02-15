@@ -4,7 +4,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Toast } from './Toast';
-import { toastVariants } from '@wisp-ui/core/types/Toast.types';
+import { toastVariants } from '@coexist/wisp-core/types/Toast.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

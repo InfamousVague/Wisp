@@ -10,5 +10,5 @@ export type {
   PinInputSize,
   PinInputType,
   PinInputSizeConfig,
-} from '@wisp-ui/core/types/PinInput.types';
-export { pinInputSizes, pinInputTypes, pinInputSizeMap } from '@wisp-ui/core/types/PinInput.types';
+} from '@coexist/wisp-core/types/PinInput.types';
+export { pinInputSizes, pinInputTypes, pinInputSizeMap } from '@coexist/wisp-core/types/PinInput.types';

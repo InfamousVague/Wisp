@@ -7,7 +7,7 @@ import type {
   MessageSearchProps,
   SearchResult,
   SearchFilter,
-} from '@wisp-ui/core/types/MessageSearch.types';
+} from '@coexist/wisp-core/types/MessageSearch.types';
 import {
   resolveMessageSearchColors,
   buildMessageSearchContainerStyle,
@@ -26,7 +26,7 @@ import {
   buildSearchEmptyStyle,
   buildSearchLoadingStyle,
   buildResultCountStyle,
-} from '@wisp-ui/core/styles/MessageSearch.styles';
+} from '@coexist/wisp-core/styles/MessageSearch.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

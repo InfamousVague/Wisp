@@ -6,7 +6,7 @@ import type {
   ChatBubbleProps,
   ChatBubbleStatus,
   ChatBubbleReaction,
-} from '@wisp-ui/core/types/ChatBubble.types';
+} from '@coexist/wisp-core/types/ChatBubble.types';
 import {
   resolveChatBubbleColors,
   buildChatBubbleStyle,
@@ -19,7 +19,7 @@ import {
   buildForwardedStyle,
   buildMediaSlotStyle,
   buildHighlightStyle,
-} from '@wisp-ui/core/styles/ChatBubble.styles';
+} from '@coexist/wisp-core/styles/ChatBubble.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives';
 

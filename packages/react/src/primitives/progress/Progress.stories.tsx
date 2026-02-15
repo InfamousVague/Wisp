@@ -2,7 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Progress } from './Progress';
 import { Text } from '../text';
-import { componentSizes, thicknesses } from '@wisp-ui/core/tokens/shared';
+import { componentSizes, thicknesses } from '@coexist/wisp-core/tokens/shared';
 
 // ---------------------------------------------------------------------------
 // Meta

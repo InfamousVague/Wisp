@@ -6,6 +6,7 @@ export const fileUploaderEntry: ComponentEntry = {
   slug: 'file-uploader',
   name: 'FileUploader',
   category: 'components',
+  subcategory: 'Media',
   description:
     'Drag-and-drop file upload zone with file type filtering, size limits, multiple file support, and rejection callbacks.',
   variantCount: 1,

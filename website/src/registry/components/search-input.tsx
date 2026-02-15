@@ -6,6 +6,7 @@ export const searchInputEntry: ComponentEntry = {
   slug: 'search-input',
   name: 'SearchInput',
   category: 'components',
+  subcategory: 'Selection & Input',
   description:
     'Specialized search field with built-in search icon, clear button, loading state, and optional debounced search callback.',
   variantCount: 1,

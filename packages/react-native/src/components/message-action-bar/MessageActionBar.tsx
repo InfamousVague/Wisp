@@ -6,8 +6,8 @@
 import React, { forwardRef, useMemo, useCallback } from 'react';
 import { View, Pressable } from 'react-native';
 import type { ViewProps, ViewStyle } from 'react-native';
-import { resolveMessageActionBarColors } from '@wisp-ui/core/styles/MessageActionBar.styles';
-import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { resolveMessageActionBarColors } from '@coexist/wisp-core/styles/MessageActionBar.styles';
+import { defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 import Svg, { Circle, Path, Line } from 'react-native-svg';
 

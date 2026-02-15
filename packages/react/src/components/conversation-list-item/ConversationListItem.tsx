@@ -6,7 +6,7 @@
  * preview, timestamp, unread badge, and pinned/muted indicators.
  */
 import React, { forwardRef, useMemo, useCallback } from 'react';
-import type { ConversationListItemProps } from '@wisp-ui/core/types/ConversationListItem.types';
+import type { ConversationListItemProps } from '@coexist/wisp-core/types/ConversationListItem.types';
 import {
   resolveConversationListItemColors,
   buildConversationListItemStyle,
@@ -23,7 +23,7 @@ import {
   buildConversationListItemSkeletonStyle,
   buildSkeletonCircleStyle,
   buildSkeletonLineStyle,
-} from '@wisp-ui/core/styles/ConversationListItem.styles';
+} from '@coexist/wisp-core/styles/ConversationListItem.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

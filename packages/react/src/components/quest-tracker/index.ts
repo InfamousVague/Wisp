@@ -11,9 +11,9 @@ export type {
   QuestObjectiveStatus,
   QuestTrackerSize,
   QuestTrackerSizeConfig,
-} from '@wisp-ui/core/types/QuestTracker.types';
+} from '@coexist/wisp-core/types/QuestTracker.types';
 export {
   questObjectiveStatuses,
   questTrackerSizes,
   questTrackerSizeMap,
-} from '@wisp-ui/core/types/QuestTracker.types';
+} from '@coexist/wisp-core/types/QuestTracker.types';

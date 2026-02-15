@@ -4,8 +4,8 @@ import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { Sheet } from './Sheet';
-import { sheetSizes } from '@wisp-ui/core/types/Sheet.types';
-import type { SheetSize } from '@wisp-ui/core/types/Sheet.types';
+import { sheetSizes } from '@coexist/wisp-core/types/Sheet.types';
+import type { SheetSize } from '@coexist/wisp-core/types/Sheet.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

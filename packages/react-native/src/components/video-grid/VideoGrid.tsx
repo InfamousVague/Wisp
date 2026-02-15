@@ -72,8 +72,8 @@ export const VideoGrid = forwardRef<View, VideoGridProps>(function VideoGrid(
 ) {
   const { theme } = useTheme();
   const isDark =
-    theme.colors.background.base === '#000000' ||
-    theme.colors.background.base === '#0a0a0a';
+    theme.colors.background.canvas === '#000000' ||
+    theme.colors.background.canvas === '#0a0a0a';
 
   const bgColor = useMemo(() => resolveGridBackground(isDark), [isDark]);
 

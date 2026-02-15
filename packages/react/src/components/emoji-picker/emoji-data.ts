@@ -5,7 +5,7 @@
  * category (most popular first). Only standard Unicode emoji are used.
  */
 
-import type { EmojiItem } from '@wisp-ui/core/types/EmojiPicker.types';
+import type { EmojiItem } from '@coexist/wisp-core/types/EmojiPicker.types';
 
 // ---------------------------------------------------------------------------
 // Smileys & Emotion (~60)

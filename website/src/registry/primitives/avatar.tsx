@@ -6,6 +6,7 @@ export const avatarEntry: ComponentEntry = {
   slug: 'avatar',
   name: 'Avatar',
   category: 'primitives',
+  subcategory: 'Media & Display',
   description:
     'User avatar with image, initials fallback, or icon fallback. Supports 5 sizes, circle/square shape, status indicator, and skeleton loading.',
   variantCount: 5,

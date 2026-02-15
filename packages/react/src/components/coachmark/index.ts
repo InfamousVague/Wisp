@@ -10,9 +10,9 @@ export type {
   CoachmarkVariant,
   CoachmarkPlacement,
   CoachmarkAlign,
-} from '@wisp-ui/core/types/Coachmark.types';
+} from '@coexist/wisp-core/types/Coachmark.types';
 export {
   coachmarkVariants,
   coachmarkPlacements,
   coachmarkAligns,
-} from '@wisp-ui/core/types/Coachmark.types';
+} from '@coexist/wisp-core/types/Coachmark.types';

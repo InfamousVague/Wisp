@@ -2,17 +2,24 @@
  * @module components/conversation-list-item
  * @description React Native ConversationListItem for the Wisp design system.
  *
- * Reuses color resolution from `@wisp-ui/core`. Renders via `<View>` + `<Text>`.
+ * Reuses color resolution from `@coexist/wisp-core`. Renders via `<View>` + `<Text>`.
  */
 
 import React, { forwardRef, useMemo, useCallback } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import { resolveConversationListItemColors } from '@wisp-ui/core/styles/ConversationListItem.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
-import { fontFamilyStacks } from '@wisp-ui/core/tokens/shared';
+import { resolveConversationListItemColors } from '@coexist/wisp-core/styles/ConversationListItem.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
+import { fontFamilyStacks } from '@coexist/wisp-core/tokens/shared';
 import { useTheme } from '../../providers';
-import Svg, { Path, Line } from 'react-native-svg';
+import Svg, { Path, Line, Polyline } from 'react-native-svg';
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+
+/** Message delivery status for read receipts. */
+export type MessageStatus = 'sent' | 'delivered' | 'read';
 
 // ---------------------------------------------------------------------------
 // Props (mirror web but extend ViewProps)
@@ -43,6 +50,8 @@ export interface ConversationListItemProps extends ViewProps {
   onPress?: () => void;
   /** Show loading skeleton. @default false */
   skeleton?: boolean;
+  /** Read receipt status for the last message. */
+  status?: MessageStatus;
 }
 
 // ---------------------------------------------------------------------------
@@ -54,6 +63,23 @@ function PinIcon({ size = 12, color }: { size?: number; color?: string }) {
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
       <Path d="M12 17v5" />
       <Path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16h14v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z" />
+    </Svg>
+  );
+}
+
+function CheckIcon({ size = 14, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+      <Polyline points="20 6 9 17 4 12" />
+    </Svg>
+  );
+}
+
+function DoubleCheckIcon({ size = 14, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+      <Polyline points="18 6 7 17 2 12" />
+      <Polyline points="22 6 11 17" />
     </Svg>
   );
 }
@@ -87,6 +113,7 @@ export const ConversationListItem = forwardRef<View, ConversationListItemProps>(
       active = false,
       disabled = false,
       skeleton = false,
+      status,
       onPress,
       style: userStyle,
       ...rest
@@ -244,6 +271,9 @@ export const ConversationListItem = forwardRef<View, ConversationListItemProps>(
             {lastMessage && <Text numberOfLines={1} style={lastMsgTextStyle}>{lastMessage}</Text>}
 
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 0 }}>
+              {status === 'sent' && <CheckIcon size={14} color={colors.textMuted} />}
+              {status === 'delivered' && <DoubleCheckIcon size={14} color={colors.textMuted} />}
+              {status === 'read' && <DoubleCheckIcon size={14} color={theme.colors.accent.primary} />}
               {pinned && <PinIcon size={12} color={colors.textMuted} />}
               {muted && <MuteIcon size={12} color={colors.textMuted} />}
               {hasUnread && (

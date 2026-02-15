@@ -1,12 +1,12 @@
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import type { RatingProps } from '@wisp-ui/core/types/Rating.types';
-import { ratingSizeMap } from '@wisp-ui/core/types/Rating.types';
+import type { RatingProps } from '@coexist/wisp-core/types/Rating.types';
+import { ratingSizeMap } from '@coexist/wisp-core/types/Rating.types';
 import {
   buildRatingContainerStyle,
   buildRatingStarStyle,
   buildRatingValueStyle,
   getRatingSkeletonStyle,
-} from '@wisp-ui/core/styles/Rating.styles';
+} from '@coexist/wisp-core/styles/Rating.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

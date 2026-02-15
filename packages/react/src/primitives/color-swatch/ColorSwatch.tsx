@@ -1,11 +1,11 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { ColorSwatchProps } from '@wisp-ui/core/types/ColorSwatch.types';
-import { colorSwatchSizeMap } from '@wisp-ui/core/types/ColorSwatch.types';
+import type { ColorSwatchProps } from '@coexist/wisp-core/types/ColorSwatch.types';
+import { colorSwatchSizeMap } from '@coexist/wisp-core/types/ColorSwatch.types';
 import {
   buildSwatchStyle,
   buildCheckerboardStyle,
   buildColorOverlayStyle,
-} from '@wisp-ui/core/styles/ColorSwatch.styles';
+} from '@coexist/wisp-core/styles/ColorSwatch.styles';
 import { useTheme } from '../../providers';
 
 /**

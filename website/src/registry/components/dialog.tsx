@@ -43,6 +43,7 @@ export const dialogEntry: ComponentEntry = {
   slug: 'dialog',
   name: 'Dialog',
   category: 'components',
+  subcategory: 'Overlays & Modals',
   description:
     'Modal dialog with title, description, body, footer, close button, overlay click/escape handling, and size presets.',
   variantCount: 3,

@@ -5,5 +5,5 @@
  */
 
 export { FormField } from './FormField';
-export type { FormFieldProps, FormFieldSize, FormFieldOrientation, FormFieldSizeConfig } from '@wisp-ui/core/types/FormField.types';
-export { formFieldSizes, formFieldOrientations, formFieldSizeMap } from '@wisp-ui/core/types/FormField.types';
+export type { FormFieldProps, FormFieldSize, FormFieldOrientation, FormFieldSizeConfig } from '@coexist/wisp-core/types/FormField.types';
+export { formFieldSizes, formFieldOrientations, formFieldSizeMap } from '@coexist/wisp-core/types/FormField.types';

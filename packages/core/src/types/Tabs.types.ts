@@ -71,6 +71,8 @@ export interface TabProps {
   icon?: React.ReactNode;
   /** Tab label content. */
   children?: React.ReactNode;
+  /** Notification badge count. Renders a small count indicator next to the label. */
+  badge?: number;
   /** Optional CSS class applied to the `button` element. */
   className?: string;
   /** Optional inline styles merged onto the `button` element. */

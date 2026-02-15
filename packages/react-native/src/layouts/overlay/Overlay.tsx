@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Pressable, Modal, StyleSheet } from 'react-native';
-import { zIndex } from '@wisp-ui/core/tokens/z-index';
+import { zIndex } from '@coexist/wisp-core/tokens/z-index';
 
 type OverlayBackdrop = 'dim' | 'blur' | 'transparent';
 

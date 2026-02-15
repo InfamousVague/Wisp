@@ -2,13 +2,13 @@
  * @module SearchInput
  */
 import React, { forwardRef, useMemo, useState, useCallback, useEffect, useRef } from 'react';
-import type { SearchInputProps } from '@wisp-ui/core/types/SearchInput.types';
+import type { SearchInputProps } from '@coexist/wisp-core/types/SearchInput.types';
 import {
   searchInputSizeMap,
   buildSearchInputContainerStyle,
   buildSearchInputFieldStyle,
   buildSearchInputClearButtonStyle,
-} from '@wisp-ui/core/styles/SearchInput.styles';
+} from '@coexist/wisp-core/styles/SearchInput.styles';
 import { useTheme } from '../../providers';
 import { Spinner } from '../../primitives';
 

@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { StackProps } from '@wisp-ui/core/types/Stack.types';
-import { buildStackStyle, buildDividerStyle } from '@wisp-ui/core/styles/Stack.styles';
+import type { StackProps } from '@coexist/wisp-core/types/Stack.types';
+import { buildStackStyle, buildDividerStyle } from '@coexist/wisp-core/styles/Stack.styles';
 import { useTheme } from '../../providers';
 
 /**

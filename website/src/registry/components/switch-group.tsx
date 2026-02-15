@@ -12,6 +12,7 @@ export const switchGroupEntry: ComponentEntry = {
   slug: 'switch-group',
   name: 'SwitchGroup',
   category: 'components',
+  subcategory: 'Selection & Input',
   description:
     'Group of toggle switches for multi-select with label, descriptions, error state, and horizontal/vertical layout.',
   variantCount: 2,

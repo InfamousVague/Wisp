@@ -1,9 +1,9 @@
 import React, { forwardRef, useMemo, useCallback } from 'react';
 import { View, Text as RNText, Pressable } from 'react-native';
-import type { ChipSize, ChipColor, ChipVariant } from '@wisp-ui/core/types/Chip.types';
-import { chipSizeMap } from '@wisp-ui/core/types/Chip.types';
-import { resolveChipColors } from '@wisp-ui/core/styles/Chip.styles';
-import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { ChipSize, ChipColor, ChipVariant } from '@coexist/wisp-core/types/Chip.types';
+import { chipSizeMap } from '@coexist/wisp-core/types/Chip.types';
+import { resolveChipColors } from '@coexist/wisp-core/styles/Chip.styles';
+import { defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface ChipProps {

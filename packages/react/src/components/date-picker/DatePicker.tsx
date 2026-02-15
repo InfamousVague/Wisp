@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useCallback, useState, useRef, useEffect } from 'react';
-import type { DatePickerProps } from '@wisp-ui/core/types/DatePicker.types';
-import { datePickerSizeMap } from '@wisp-ui/core/types/DatePicker.types';
+import type { DatePickerProps } from '@coexist/wisp-core/types/DatePicker.types';
+import { datePickerSizeMap } from '@coexist/wisp-core/types/DatePicker.types';
 import {
   buildDatePickerContainerStyle,
   buildDatePickerTriggerStyle,
@@ -10,7 +10,7 @@ import {
   buildDatePickerLabelStyle,
   buildDatePickerErrorStyle,
   buildDatePickerSkeletonStyle,
-} from '@wisp-ui/core/styles/DatePicker.styles';
+} from '@coexist/wisp-core/styles/DatePicker.styles';
 import { useTheme } from '../../providers';
 import { Text } from '../../primitives/text';
 import { Calendar } from '../calendar';

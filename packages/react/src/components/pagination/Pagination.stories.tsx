@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Pagination } from './Pagination';
-import { paginationSizes } from '@wisp-ui/core/types/Pagination.types';
+import { paginationSizes } from '@coexist/wisp-core/types/Pagination.types';
 import { Text } from '../../primitives/text';
 
 const meta: Meta<typeof Pagination> = {

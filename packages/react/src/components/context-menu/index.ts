@@ -5,4 +5,4 @@ export type {
   ContextMenuContentProps,
   ContextMenuItemProps,
   ContextMenuSeparatorProps,
-} from '@wisp-ui/core/types/ContextMenu.types';
+} from '@coexist/wisp-core/types/ContextMenu.types';

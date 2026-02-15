@@ -4,8 +4,8 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Sidebar, SidebarSection, SidebarItem } from './Sidebar';
-import { sidebarWidths, sidebarPositions } from '@wisp-ui/core/types/Sidebar.types';
-import type { SidebarWidth, SidebarPosition } from '@wisp-ui/core/types/Sidebar.types';
+import { sidebarWidths, sidebarPositions } from '@coexist/wisp-core/types/Sidebar.types';
+import type { SidebarWidth, SidebarPosition } from '@coexist/wisp-core/types/Sidebar.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

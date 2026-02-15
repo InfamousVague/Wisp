@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Overlay } from './Overlay';
-import { overlayBackdrops } from '@wisp-ui/core/types/Overlay.types';
+import { overlayBackdrops } from '@coexist/wisp-core/types/Overlay.types';
 import { Text } from '../../primitives/text';
 import { Box } from '../box';
 import { Button } from '../../primitives/button';

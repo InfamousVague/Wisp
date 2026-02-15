@@ -34,6 +34,7 @@ export const sheetEntry: ComponentEntry = {
   slug: 'sheet',
   name: 'Sheet',
   category: 'components',
+  subcategory: 'Overlays & Modals',
   description:
     'Bottom sheet that slides up with size presets (sm–full), overlay backdrop, escape-to-close, and glass variant.',
   variantCount: 4,

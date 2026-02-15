@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { KbdProps } from '@wisp-ui/core/types/Kbd.types';
-import { kbdSizeMap } from '@wisp-ui/core/types/Kbd.types';
-import { buildKbdStyle } from '@wisp-ui/core/styles/Kbd.styles';
+import type { KbdProps } from '@coexist/wisp-core/types/Kbd.types';
+import { kbdSizeMap } from '@coexist/wisp-core/types/Kbd.types';
+import { buildKbdStyle } from '@coexist/wisp-core/styles/Kbd.styles';
 import { useTheme } from '../../providers';
 
 /**

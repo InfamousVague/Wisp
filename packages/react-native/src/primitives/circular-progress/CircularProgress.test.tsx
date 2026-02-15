@@ -3,7 +3,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { circularProgressSizes } from '@wisp-ui/core/types/CircularProgress.types';
+import { circularProgressSizes } from '@coexist/wisp-core/types/CircularProgress.types';
 import { WispProvider } from '../../providers';
 
 // ---------------------------------------------------------------------------

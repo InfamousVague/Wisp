@@ -2,7 +2,7 @@ import React, { forwardRef, useMemo } from 'react';
 import { View, Pressable, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 type SocialProvider = 'google' | 'apple' | 'facebook' | 'github' | 'x' | 'microsoft' | 'discord' | 'slack';

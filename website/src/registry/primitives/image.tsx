@@ -7,6 +7,7 @@ export const imageEntry: ComponentEntry = {
   slug: 'image',
   name: 'Image',
   category: 'primitives',
+  subcategory: 'Media & Display',
   description:
     'Image component with built-in loading skeleton, error fallback, lazy loading, object-fit control, aspect-ratio support, and six radius presets.',
   variantCount: 4,

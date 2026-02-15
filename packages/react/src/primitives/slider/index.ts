@@ -8,5 +8,5 @@
  * @module primitives/slider
  */
 export { Slider } from './Slider';
-export type { SliderProps, SliderSize, SliderSizeConfig } from '@wisp-ui/core/types/Slider.types';
-export { sliderSizes, sliderSizeMap } from '@wisp-ui/core/types/Slider.types';
+export type { SliderProps, SliderSize, SliderSizeConfig } from '@coexist/wisp-core/types/Slider.types';
+export { sliderSizes, sliderSizeMap } from '@coexist/wisp-core/types/Slider.types';

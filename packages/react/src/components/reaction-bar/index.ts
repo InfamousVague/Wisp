@@ -4,8 +4,8 @@ export type {
   Reaction,
   ReactionBarSize,
   ReactionBarSizeConfig,
-} from '@wisp-ui/core/types/ReactionBar.types';
+} from '@coexist/wisp-core/types/ReactionBar.types';
 export {
   reactionBarSizes,
   reactionBarSizeMap,
-} from '@wisp-ui/core/types/ReactionBar.types';
+} from '@coexist/wisp-core/types/ReactionBar.types';

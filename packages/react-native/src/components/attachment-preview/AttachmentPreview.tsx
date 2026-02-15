@@ -3,15 +3,15 @@
  * @description React Native AttachmentPreview for the Wisp design system.
  *
  * Horizontal scrollable row of queued file preview cards displayed above
- * the message input area. Reuses color resolution from `@wisp-ui/core`.
+ * the message input area. Reuses color resolution from `@coexist/wisp-core`.
  */
 
 import React, { forwardRef, useMemo, useCallback } from 'react';
 import { View, Text, Pressable, ScrollView, Image } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle, ImageStyle } from 'react-native';
-import type { Attachment, AttachmentFileType } from '@wisp-ui/core/types/AttachmentPreview.types';
-import { resolveAttachmentPreviewColors } from '@wisp-ui/core/styles/AttachmentPreview.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { Attachment, AttachmentFileType } from '@coexist/wisp-core/types/AttachmentPreview.types';
+import { resolveAttachmentPreviewColors } from '@coexist/wisp-core/styles/AttachmentPreview.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 import Svg, { Line, Path, Circle, Rect } from 'react-native-svg';
 

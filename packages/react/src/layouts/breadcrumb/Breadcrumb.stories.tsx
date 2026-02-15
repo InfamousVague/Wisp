@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Breadcrumb, BreadcrumbItem } from './Breadcrumb';
-import { breadcrumbSizes } from '@wisp-ui/core/types/Breadcrumb.types';
+import { breadcrumbSizes } from '@coexist/wisp-core/types/Breadcrumb.types';
 import { Text } from '../../primitives/text';
 import { Icon } from '../../primitives/icon';
 import { Home, Folder, File } from 'lucide-react';

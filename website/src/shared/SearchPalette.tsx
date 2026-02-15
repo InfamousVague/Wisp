@@ -71,10 +71,18 @@ export function SearchPalette({ open, onOpenChange }: SearchPaletteProps) {
                 <CommandItem
                   key={entry.slug}
                   value={`${entry.category}/${entry.slug}`}
-                  keywords={entry.keywords}
+                  keywords={[
+                    ...(entry.keywords ?? []),
+                    ...(entry.subcategory ? [entry.subcategory.toLowerCase()] : []),
+                  ]}
                   icon={meta.icon as any}
                 >
-                  {entry.name}
+                  <span>{entry.name}</span>
+                  {entry.subcategory && (
+                    <span style={{ marginLeft: 8, fontSize: 11, opacity: 0.5 }}>
+                      {entry.subcategory}
+                    </span>
+                  )}
                 </CommandItem>
               ))}
             </CommandGroup>

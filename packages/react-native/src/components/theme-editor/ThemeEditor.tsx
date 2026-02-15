@@ -8,14 +8,14 @@
 import React, { forwardRef, useCallback, useMemo, useState } from 'react';
 import { View } from 'react-native';
 import type { ViewStyle } from 'react-native';
-import type { ThemeOverrides } from '@wisp-ui/core/theme/create-theme';
+import type { ThemeOverrides } from '@coexist/wisp-core/theme/create-theme';
 import {
   themeEditorTabs,
   getGroupsForTab,
   getNestedValue,
   setNestedValue,
   type ThemeEditorTab,
-} from '@wisp-ui/core/theme/editor-fields';
+} from '@coexist/wisp-core/theme/editor-fields';
 import { useTheme } from '../../providers';
 import { Card } from '../../layouts/card';
 import { VStack, HStack } from '../../layouts/stack';

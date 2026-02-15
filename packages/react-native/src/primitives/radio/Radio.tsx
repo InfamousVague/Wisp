@@ -2,7 +2,7 @@
  * @module primitives/radio
  * @description React Native Radio and RadioGroup primitives for the Wisp design system.
  *
- * Reuses color resolution and size maps from `@wisp-ui/core`.
+ * Reuses color resolution and size maps from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `<Pressable>` instead of `<label>` for Radio.
@@ -26,11 +26,11 @@ import React, {
 } from 'react';
 import { Pressable, View, Animated } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
-import { radioSizeMap } from '@wisp-ui/core/types/Radio.types';
-import { resolveRadioColors } from '@wisp-ui/core/styles/Radio.styles';
+import type { ComponentSize } from '@coexist/wisp-core/tokens/shared';
+import { radioSizeMap } from '@coexist/wisp-core/types/Radio.types';
+import { resolveRadioColors } from '@coexist/wisp-core/styles/Radio.styles';
 import { Text } from '../text';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

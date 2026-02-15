@@ -1,15 +1,15 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View, Text as RNText } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
-import type { ActivityCirclesSize, ActivityCirclesRing } from '@wisp-ui/core/types/ActivityCircles.types';
-import { activityCirclesSizeMap } from '@wisp-ui/core/types/ActivityCircles.types';
-import { thicknessValues, type Thickness } from '@wisp-ui/core/tokens/shared';
-import { computeRingGeometry } from '@wisp-ui/core/styles/chart-utils';
+import type { ActivityCirclesSize, ActivityCirclesRing } from '@coexist/wisp-core/types/ActivityCircles.types';
+import { activityCirclesSizeMap } from '@coexist/wisp-core/types/ActivityCircles.types';
+import { thicknessValues, type Thickness } from '@coexist/wisp-core/tokens/shared';
+import { computeRingGeometry } from '@coexist/wisp-core/styles/chart-utils';
 import {
   resolveRingColor,
   resolveActivityCirclesColors,
-} from '@wisp-ui/core/styles/ActivityCircles.styles';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+} from '@coexist/wisp-core/styles/ActivityCircles.styles';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 export interface ActivityCirclesProps {

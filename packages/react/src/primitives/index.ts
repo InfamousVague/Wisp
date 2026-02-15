@@ -7,8 +7,8 @@
 // Shared Tokens
 // ---------------------------------------------------------------------------
 
-export { thicknesses, thicknessValues } from '@wisp-ui/core/tokens/shared';
-export type { Thickness } from '@wisp-ui/core/tokens/shared';
+export { thicknesses, thicknessValues } from '@coexist/wisp-core/tokens/shared';
+export type { Thickness } from '@coexist/wisp-core/tokens/shared';
 
 // ---------------------------------------------------------------------------
 // Text

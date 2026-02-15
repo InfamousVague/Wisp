@@ -2,7 +2,7 @@
  * @module primitives/button
  * @description React Native Button primitive for the Wisp design system.
  *
- * Reuses variant color resolution and size maps from `@wisp-ui/core`.
+ * Reuses variant color resolution and size maps from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `<Pressable>` with `onPress` instead of `<button>` with `onClick`.
@@ -15,14 +15,14 @@
 import React, { forwardRef, useMemo, useCallback } from 'react';
 import { Pressable, ActivityIndicator, View } from 'react-native';
 import type { PressableProps, ViewStyle } from 'react-native';
-import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
-import type { TextSize } from '@wisp-ui/core/tokens/shared';
-import type { ButtonVariant, ButtonShape } from '@wisp-ui/core/types/Button.types';
-import { buttonSizeMap, shapeRadiusMap } from '@wisp-ui/core/types/Button.types';
+import type { ComponentSize } from '@coexist/wisp-core/tokens/shared';
+import type { TextSize } from '@coexist/wisp-core/tokens/shared';
+import type { ButtonVariant, ButtonShape } from '@coexist/wisp-core/types/Button.types';
+import { buttonSizeMap, shapeRadiusMap } from '@coexist/wisp-core/types/Button.types';
 import {
   resolveVariantColors,
   getDisabledColors,
-} from '@wisp-ui/core/styles/Button.styles';
+} from '@coexist/wisp-core/styles/Button.styles';
 import { Text } from '../text';
 import { toRNShadow } from '../../utils';
 import { useTheme } from '../../providers';
@@ -106,7 +106,7 @@ export const Button = forwardRef<View, ButtonProps>(function Button(
       height: sizeConfig.height,
       paddingHorizontal: paddingH,
       paddingVertical: sizeConfig.paddingY,
-      borderRadius: shapeRadiusMap[shape],
+      borderRadius: theme.radii[shapeRadiusMap[shape]],
       borderWidth,
       borderColor: variantColors.border,
       flexDirection: 'row',

@@ -24,11 +24,11 @@ export type {
   TableVariant,
   TableCellAlignment,
   TableContextValue,
-} from '@wisp-ui/core/types/Table.types';
+} from '@coexist/wisp-core/types/Table.types';
 export {
   tableSizes,
   tableVariants,
   tableCellAlignments,
   tableSizePaddingMap,
   tableSizeFontMap,
-} from '@wisp-ui/core/types/Table.types';
+} from '@coexist/wisp-core/types/Table.types';

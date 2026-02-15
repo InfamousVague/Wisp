@@ -9,7 +9,7 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View } from 'react-native';
 import type { ViewProps, ViewStyle } from 'react-native';
-import { zIndex } from '@wisp-ui/core/tokens/z-index';
+import { zIndex } from '@coexist/wisp-core/tokens/z-index';
 
 // ---------------------------------------------------------------------------
 // Props

@@ -11,6 +11,7 @@ export const numberInputEntry: ComponentEntry = {
   slug: 'number-input',
   name: 'NumberInput',
   category: 'primitives',
+  subcategory: 'Inputs',
   description:
     'Numeric input with increment/decrement buttons, min/max constraints, custom step, label, and validation.',
   variantCount: 3,

@@ -45,7 +45,16 @@ export function resolveChatBubbleColors(
     };
   }
 
-  // incoming — black bubble with white text in both themes
+  // incoming — light gray in light mode, dark raised in dark mode
+  const isLight = theme.mode === 'light';
+  if (isLight) {
+    return {
+      bg: themeColors.background.sunken,
+      text: themeColors.text.primary,
+      timestamp: themeColors.text.secondary,
+      border: themeColors.border.subtle,
+    };
+  }
   return {
     bg: themeColors.background.raised,
     text: themeColors.text.onRaised,

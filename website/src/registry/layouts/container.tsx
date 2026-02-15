@@ -7,6 +7,7 @@ export const containerEntry: ComponentEntry = {
   slug: 'container',
   name: 'Container',
   category: 'layouts',
+  subcategory: 'Spacing & Alignment',
   description:
     'Responsive width-constrained wrapper with 6 size presets (sm–full), auto centering, and horizontal padding.',
   variantCount: 6,

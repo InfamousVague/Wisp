@@ -4,5 +4,5 @@ export type {
   BeaconVariant,
   BeaconSize,
   BeaconSizeConfig,
-} from '@wisp-ui/core/types/Beacon.types';
-export { beaconVariants, beaconSizes, beaconSizeMap } from '@wisp-ui/core/types/Beacon.types';
+} from '@coexist/wisp-core/types/Beacon.types';
+export { beaconVariants, beaconSizes, beaconSizeMap } from '@coexist/wisp-core/types/Beacon.types';

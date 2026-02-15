@@ -1,25 +1,25 @@
 /**
  * @module @wisp-ui/react
- * @description Wisp React — React components built on @wisp-ui/core.
+ * @description Wisp React — React components built on @coexist/wisp-core.
  */
 
 // ─── Core re-exports (tokens, theme types, variants, utils) ─────
-// Consumers can import from @wisp-ui/core directly, but we re-export
+// Consumers can import from @coexist/wisp-core directly, but we re-export
 // for convenience so they only need @wisp-ui/react.
 
 // Tokens
-export { colors, neutral } from '@wisp-ui/core/tokens/colors';
-export { spacing } from '@wisp-ui/core/tokens/spacing';
-export { typography } from '@wisp-ui/core/tokens/typography';
-export { radii } from '@wisp-ui/core/tokens/radii';
-export { shadows } from '@wisp-ui/core/tokens/shadows';
-export { borderWidths } from '@wisp-ui/core/tokens/borders';
-export { componentHeights, iconSizes } from '@wisp-ui/core/tokens/sizing';
-export { durations, easings, springs } from '@wisp-ui/core/tokens/motion';
-export { zIndex } from '@wisp-ui/core/tokens/z-index';
-export { breakpoints as breakpointTokens } from '@wisp-ui/core/tokens/breakpoints';
-export { opacity } from '@wisp-ui/core/tokens/opacity';
-export { withAlpha, lighten, darken, mixColors, hexToRgb, rgbToHex } from '@wisp-ui/core/tokens/color-utils';
+export { colors, neutral } from '@coexist/wisp-core/tokens/colors';
+export { spacing } from '@coexist/wisp-core/tokens/spacing';
+export { typography } from '@coexist/wisp-core/tokens/typography';
+export { radii } from '@coexist/wisp-core/tokens/radii';
+export { shadows } from '@coexist/wisp-core/tokens/shadows';
+export { borderWidths } from '@coexist/wisp-core/tokens/borders';
+export { componentHeights, iconSizes } from '@coexist/wisp-core/tokens/sizing';
+export { durations, easings, springs } from '@coexist/wisp-core/tokens/motion';
+export { zIndex } from '@coexist/wisp-core/tokens/z-index';
+export { breakpoints as breakpointTokens } from '@coexist/wisp-core/tokens/breakpoints';
+export { opacity } from '@coexist/wisp-core/tokens/opacity';
+export { withAlpha, lighten, darken, mixColors, hexToRgb, rgbToHex } from '@coexist/wisp-core/tokens/color-utils';
 export {
   textSizes,
   fontWeightKeys,
@@ -31,7 +31,7 @@ export {
   resolveSemanticColor,
   surfaceVariants,
   glassStyle,
-} from '@wisp-ui/core/tokens/shared';
+} from '@coexist/wisp-core/tokens/shared';
 export type {
   TextSize,
   FontWeightKey,
@@ -39,21 +39,21 @@ export type {
   FontFamilyKey,
   ComponentSize,
   SurfaceVariant,
-} from '@wisp-ui/core/tokens/shared';
+} from '@coexist/wisp-core/tokens/shared';
 
 // Theme types (from core)
-export type { ThemeMode, ThemeColors, ThemeConfig, WispTheme } from '@wisp-ui/core/theme/types';
+export type { ThemeMode, ThemeColors, ThemeConfig, WispTheme } from '@coexist/wisp-core/theme/types';
 
 // Variants
-export { appearances, type Appearance, getAppearanceColors } from '@wisp-ui/core/variants/appearance';
-export { sizes, type Size, sizeConfig } from '@wisp-ui/core/variants/size';
-export { shapes, type Shape, shapeConfig } from '@wisp-ui/core/variants/shape';
-export { intents, type Intent } from '@wisp-ui/core/variants/intent';
-export { orientations, type Orientation } from '@wisp-ui/core/variants/orientation';
+export { appearances, type Appearance, getAppearanceColors } from '@coexist/wisp-core/variants/appearance';
+export { sizes, type Size, sizeConfig } from '@coexist/wisp-core/variants/size';
+export { shapes, type Shape, shapeConfig } from '@coexist/wisp-core/variants/shape';
+export { intents, type Intent } from '@coexist/wisp-core/variants/intent';
+export { orientations, type Orientation } from '@coexist/wisp-core/variants/orientation';
 
 // Utils (from core)
-export { getSizeValues, getShapeRadius } from '@wisp-ui/core/utils/style-helpers';
-export { getButtonA11yProps, getInputA11yProps, getCheckboxA11yProps, getLiveRegionProps } from '@wisp-ui/core/utils/accessibility';
+export { getSizeValues, getShapeRadius } from '@coexist/wisp-core/utils/style-helpers';
+export { getButtonA11yProps, getInputA11yProps, getCheckboxA11yProps, getLiveRegionProps } from '@coexist/wisp-core/utils/accessibility';
 
 // ─── React Providers & Theme ────────────────────────────────────
 export { WispProvider } from './providers';
@@ -88,11 +88,11 @@ export { mergeRefs } from './utils/merge-refs';
 // ─── Primitives ─────────────────────────────────────────────────
 export { Text } from './primitives';
 export type { TextProps, TextWeight, TextColor, TextFamily } from './primitives';
-export { textColors, textWeights } from '@wisp-ui/core/types/Text.types';
+export { textColors, textWeights } from '@coexist/wisp-core/types/Text.types';
 
 export { Icon, iconSizeMap } from './primitives';
 export type { IconProps, IconColor, IconSize } from './primitives';
-export { iconColors } from '@wisp-ui/core/types/Icon.types';
+export { iconColors } from '@coexist/wisp-core/types/Icon.types';
 
 export { Button, buttonVariants, buttonShapes, buttonSizeMap, shapeRadiusMap } from './primitives';
 export type { ButtonProps, ButtonVariant, ButtonShape, ButtonSize } from './primitives';
@@ -458,6 +458,42 @@ export type { MessageSearchProps, SearchResult, SearchFilter, SearchFilterType }
 
 export { AttachmentPreview } from './components';
 export type { AttachmentPreviewProps, Attachment, AttachmentFileType } from './components';
+
+export { CallControls } from './components';
+export type { CallControlsProps } from './components';
+export type { CallType, CallStatus, CallParticipant, ParticipantStatus, CallControlLayout } from '@coexist/wisp-core/types/CallControls.types';
+export type { SnapPosition } from '@coexist/wisp-core/types/CallMiniWindow.types';
+
+export { CallMiniWindow } from './components';
+export type { CallMiniWindowProps } from './components';
+
+export { VoiceChannelPanel } from './components';
+export type { VoiceChannelPanelProps } from './components';
+
+export { RoleBadge } from './components';
+export type { RoleBadgeProps, Role } from './components';
+
+export { PermissionManager } from './components';
+export type { PermissionManagerProps, Permission, PermissionState, PermissionCategory } from './components';
+
+// Wave 17 — Social / Friends
+export { FriendListItem } from './components';
+export type { FriendListItemProps, FriendAction, FriendStatus } from './components';
+
+export { FriendRequestItem } from './components';
+export type { FriendRequestItemProps, FriendRequestType } from './components';
+
+export { UserSearchResult } from './components';
+export type { UserSearchResultProps, UserSearchRequestState } from './components';
+
+export { FriendSection } from './components';
+export type { FriendSectionProps } from './components';
+
+export { UserMiniCard } from './components';
+export type { UserMiniCardProps, UserMiniCardAction, UserMiniCardStatus } from './components';
+
+export { AddFriendInput } from './components';
+export type { AddFriendInputProps, AddFriendFeedbackState } from './components';
 
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';

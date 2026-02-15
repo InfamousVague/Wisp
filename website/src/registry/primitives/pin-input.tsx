@@ -6,6 +6,7 @@ export const pinInputEntry: ComponentEntry = {
   slug: 'pin-input',
   name: 'PinInput',
   category: 'primitives',
+  subcategory: 'Inputs',
   description:
     'One-time code input with configurable length, number/text types, mask mode, auto-focus, validation, and skeleton loading.',
   variantCount: 5,

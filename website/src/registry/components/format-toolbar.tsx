@@ -35,6 +35,7 @@ export const formatToolbarEntry: ComponentEntry = {
   slug: 'format-toolbar',
   name: 'FormatToolbar',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Inline formatting toolbar with bold, italic, strikethrough, code, quote, and list actions for rich text editing.',
   variantCount: 2,

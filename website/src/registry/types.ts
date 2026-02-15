@@ -26,6 +26,8 @@ export interface ComponentEntry {
   slug: string;
   name: string;
   category: ComponentCategory;
+  /** Optional subcategory for grouping within a category page. */
+  subcategory?: string;
   description: string;
   cardPreview: React.ReactNode;
   variantCount?: number;

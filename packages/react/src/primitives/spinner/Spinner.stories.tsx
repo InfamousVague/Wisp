@@ -2,7 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Spinner } from './Spinner';
 import { Text } from '../text';
-import { componentSizes } from '@wisp-ui/core/tokens/shared';
+import { componentSizes } from '@coexist/wisp-core/tokens/shared';
 
 // ---------------------------------------------------------------------------
 // Meta

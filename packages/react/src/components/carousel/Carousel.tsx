@@ -32,7 +32,7 @@ import React, {
   useRef,
   Children,
 } from 'react';
-import type { CarouselProps } from '@wisp-ui/core/types/Carousel.types';
+import type { CarouselProps } from '@coexist/wisp-core/types/Carousel.types';
 import {
   buildCarouselContainerStyle,
   buildCarouselTrackStyle,
@@ -41,7 +41,7 @@ import {
   buildCarouselDotsContainerStyle,
   buildCarouselDotStyle,
   buildCarouselSkeletonStyle,
-} from '@wisp-ui/core/styles/Carousel.styles';
+} from '@coexist/wisp-core/styles/Carousel.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

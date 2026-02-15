@@ -5,5 +5,5 @@
  */
 
 export { ButtonGroup } from './ButtonGroup';
-export type { ButtonGroupProps, ButtonGroupItem, ButtonGroupSize, ButtonGroupVariant, ButtonGroupSizeConfig } from '@wisp-ui/core/types/ButtonGroup.types';
-export { buttonGroupSizes, buttonGroupSizeMap, buttonGroupVariants } from '@wisp-ui/core/types/ButtonGroup.types';
+export type { ButtonGroupProps, ButtonGroupItem, ButtonGroupSize, ButtonGroupVariant, ButtonGroupSizeConfig } from '@coexist/wisp-core/types/ButtonGroup.types';
+export { buttonGroupSizes, buttonGroupSizeMap, buttonGroupVariants } from '@coexist/wisp-core/types/ButtonGroup.types';

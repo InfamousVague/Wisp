@@ -6,6 +6,7 @@ export const toastEntry: ComponentEntry = {
   slug: 'toast',
   name: 'Toast',
   category: 'primitives',
+  subcategory: 'Status & Feedback',
   description:
     'Notification toast with 5 semantic variants, solid/glass surfaces, optional icon, action button, and dismissible state.',
   variantCount: 5,

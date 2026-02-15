@@ -2,14 +2,14 @@
  * @module FileUploader
  */
 import React, { forwardRef, useRef, useState, useCallback, useMemo } from 'react';
-import type { FileUploaderProps } from '@wisp-ui/core/types/FileUploader.types';
+import type { FileUploaderProps } from '@coexist/wisp-core/types/FileUploader.types';
 import {
   buildDropzoneStyle,
   buildDropzoneIconStyle,
   buildDropzoneTitleStyle,
   buildDropzoneDescriptionStyle,
   buildDropzoneLinkStyle,
-} from '@wisp-ui/core/styles/FileUploader.styles';
+} from '@coexist/wisp-core/styles/FileUploader.styles';
 import { useTheme } from '../../providers';
 
 /**

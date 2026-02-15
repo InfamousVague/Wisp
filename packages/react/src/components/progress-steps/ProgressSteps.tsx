@@ -2,9 +2,9 @@
  * @module ProgressSteps
  */
 import React, { forwardRef, useMemo } from 'react';
-import type { ProgressStepsProps } from '@wisp-ui/core/types/ProgressSteps.types';
-import { progressStepsSizeMap } from '@wisp-ui/core/types/ProgressSteps.types';
-import type { StepStatus } from '@wisp-ui/core/styles/ProgressSteps.styles';
+import type { ProgressStepsProps } from '@coexist/wisp-core/types/ProgressSteps.types';
+import { progressStepsSizeMap } from '@coexist/wisp-core/types/ProgressSteps.types';
+import type { StepStatus } from '@coexist/wisp-core/styles/ProgressSteps.styles';
 import {
   buildStepsContainerStyle,
   buildStepWrapperStyle,
@@ -12,9 +12,9 @@ import {
   buildConnectorStyle,
   buildStepLabelStyle,
   buildStepDescriptionStyle,
-} from '@wisp-ui/core/styles/ProgressSteps.styles';
+} from '@coexist/wisp-core/styles/ProgressSteps.styles';
 import { useTheme } from '../../providers';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 
 // Checkmark SVG for completed steps
 function CheckIcon({ size, color }: { size: number; color: string }) {

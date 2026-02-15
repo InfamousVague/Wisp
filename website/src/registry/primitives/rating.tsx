@@ -11,6 +11,7 @@ export const ratingEntry: ComponentEntry = {
   slug: 'rating',
   name: 'Rating',
   category: 'primitives',
+  subcategory: 'Media & Display',
   description:
     'Star rating with 3 sizes, half-star precision, read-only/disabled modes, and skeleton loading.',
   variantCount: 3,

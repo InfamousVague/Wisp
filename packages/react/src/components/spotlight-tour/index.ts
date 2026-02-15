@@ -9,5 +9,5 @@ export type {
   SpotlightTourProps,
   SpotlightTourStep,
   SpotlightTourVariant,
-} from '@wisp-ui/core/types/SpotlightTour.types';
-export { spotlightTourVariants } from '@wisp-ui/core/types/SpotlightTour.types';
+} from '@coexist/wisp-core/types/SpotlightTour.types';
+export { spotlightTourVariants } from '@coexist/wisp-core/types/SpotlightTour.types';

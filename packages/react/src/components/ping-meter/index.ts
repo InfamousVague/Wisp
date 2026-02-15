@@ -5,5 +5,5 @@
  */
 
 export { PingMeter } from './PingMeter';
-export type { PingMeterProps, PingMeterSize, PingMeterVariant, PingQuality, PingMeterSizeConfig } from '@wisp-ui/core/types/PingMeter.types';
-export { pingMeterSizes, pingMeterVariants, pingMeterSizeMap } from '@wisp-ui/core/types/PingMeter.types';
+export type { PingMeterProps, PingMeterSize, PingMeterVariant, PingQuality, PingMeterSizeConfig } from '@coexist/wisp-core/types/PingMeter.types';
+export { pingMeterSizes, pingMeterVariants, pingMeterSizeMap } from '@coexist/wisp-core/types/PingMeter.types';

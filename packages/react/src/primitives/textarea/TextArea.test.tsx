@@ -5,10 +5,10 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { TextArea } from './TextArea';
 import { WispProvider } from '../../providers';
-import { contrastRatio } from '@wisp-ui/core/utils/contrast';
-import { resolveTextAreaColors } from '@wisp-ui/core/styles/TextArea.styles';
-import { darkColors } from '@wisp-ui/core/theme/dark';
-import { lightColors } from '@wisp-ui/core/theme/light';
+import { contrastRatio } from '@coexist/wisp-core/utils/contrast';
+import { resolveTextAreaColors } from '@coexist/wisp-core/styles/TextArea.styles';
+import { darkColors } from '@coexist/wisp-core/theme/dark';
+import { lightColors } from '@coexist/wisp-core/theme/light';
 
 // ---------------------------------------------------------------------------
 // Wrapper

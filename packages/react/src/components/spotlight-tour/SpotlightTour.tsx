@@ -24,7 +24,7 @@
 
 import React, { useEffect, useMemo, useState, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import type { SpotlightTourProps } from '@wisp-ui/core/types/SpotlightTour.types';
+import type { SpotlightTourProps } from '@coexist/wisp-core/types/SpotlightTour.types';
 import {
   buildSpotlightPopoverStyle,
   buildSpotlightTitleStyle,
@@ -32,11 +32,11 @@ import {
   buildSpotlightFooterStyle,
   buildSpotlightStepCountStyle,
   buildSpotlightNavButtonStyle,
-} from '@wisp-ui/core/styles/SpotlightTour.styles';
+} from '@coexist/wisp-core/styles/SpotlightTour.styles';
 import { useTheme } from '../../providers';
 import { Button } from '../../primitives/button';
 import { Text } from '../../primitives/text';
-import { defaultSpacing } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing } from '@coexist/wisp-core/theme/create-theme';
 
 // ---------------------------------------------------------------------------
 // Keyframe injection (singleton)

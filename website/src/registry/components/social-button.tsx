@@ -6,6 +6,7 @@ export const socialButtonEntry: ComponentEntry = {
   slug: 'social-button',
   name: 'SocialButton',
   category: 'components',
+  subcategory: 'Social',
   description:
     'Pre-styled OAuth login buttons for 8 providers (Google, Apple, GitHub, etc.) with filled/outline variants and icon-only mode.',
   variantCount: 2,

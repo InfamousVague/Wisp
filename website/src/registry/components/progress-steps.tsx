@@ -26,6 +26,7 @@ export const progressStepsEntry: ComponentEntry = {
   slug: 'progress-steps',
   name: 'ProgressSteps',
   category: 'components',
+  subcategory: 'Navigation',
   description:
     'Multi-step progress indicator with horizontal/vertical orientation, step icons, descriptions, and click-to-navigate.',
   variantCount: 2,

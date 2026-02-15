@@ -6,15 +6,15 @@
  */
 
 import React, { forwardRef, useCallback, useMemo, useState } from 'react';
-import type { ThemeEditorProps } from '@wisp-ui/core/types/ThemeEditor.types';
-import type { ThemeOverrides } from '@wisp-ui/core/theme/create-theme';
+import type { ThemeEditorProps } from '@coexist/wisp-core/types/ThemeEditor.types';
+import type { ThemeOverrides } from '@coexist/wisp-core/theme/create-theme';
 import {
   themeEditorTabs,
   getGroupsForTab,
   getNestedValue,
   setNestedValue,
   type ThemeEditorTab,
-} from '@wisp-ui/core/theme/editor-fields';
+} from '@coexist/wisp-core/theme/editor-fields';
 import { useTheme } from '../../providers';
 import { Card } from '../../layouts/card';
 import { VStack, HStack } from '../../layouts/stack';

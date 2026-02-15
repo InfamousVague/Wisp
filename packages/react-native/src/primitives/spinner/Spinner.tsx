@@ -2,7 +2,7 @@
  * @module primitives/spinner
  * @description React Native Spinner primitive for the Wisp design system.
  *
- * Reuses size maps from `@wisp-ui/core` while rendering through RN's
+ * Reuses size maps from `@coexist/wisp-core` while rendering through RN's
  * `Animated` API. Key differences from the React DOM version:
  *
  * - Uses `Animated.View` with `Animated.loop(Animated.timing(...))` instead of
@@ -15,10 +15,10 @@
 import React, { forwardRef, useMemo, useRef, useEffect } from 'react';
 import { View, Animated } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { ComponentSize } from '@wisp-ui/core/tokens/shared';
-import { spinnerSizeMap } from '@wisp-ui/core/types/Spinner.types';
+import type { ComponentSize } from '@coexist/wisp-core/tokens/shared';
+import { spinnerSizeMap } from '@coexist/wisp-core/types/Spinner.types';
 import { Text } from '../text';
-import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

@@ -11,6 +11,7 @@ export const sliderEntry: ComponentEntry = {
   slug: 'slider',
   name: 'Slider',
   category: 'primitives',
+  subcategory: 'Inputs',
   description:
     'Range slider with 5 sizes, label, value display, custom step, and skeleton loading.',
   variantCount: 5,

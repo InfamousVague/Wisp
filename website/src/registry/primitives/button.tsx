@@ -7,6 +7,7 @@ export const buttonEntry: ComponentEntry = {
   slug: 'button',
   name: 'Button',
   category: 'primitives',
+  subcategory: 'Buttons & Actions',
   description:
     'Trigger actions and submit forms. Supports multiple variants, sizes, shapes, icons, loading states, and full-width layout.',
   variantCount: 16,

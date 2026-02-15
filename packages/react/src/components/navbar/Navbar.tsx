@@ -8,13 +8,13 @@ import type {
   NavbarContentProps,
   NavbarItemProps,
   NavbarVariant,
-} from '@wisp-ui/core/types/Navbar.types';
+} from '@coexist/wisp-core/types/Navbar.types';
 import {
   buildNavbarStyle,
   buildNavbarBrandStyle,
   buildNavbarContentStyle,
   buildNavbarItemStyle,
-} from '@wisp-ui/core/styles/Navbar.styles';
+} from '@coexist/wisp-core/styles/Navbar.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

@@ -2,7 +2,7 @@
  * @module primitives/meter
  * @description React Native Meter primitive for the Wisp design system.
  *
- * Reuses color resolution, size maps, and segment logic from `@wisp-ui/core`.
+ * Reuses color resolution, size maps, and segment logic from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `<View>` for track and fill bar instead of `<div>`.
@@ -16,11 +16,11 @@
 import React, { forwardRef, useMemo } from 'react';
 import { View } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { MeterSize, MeterVariant } from '@wisp-ui/core/types/Meter.types';
-import { meterSizeMap } from '@wisp-ui/core/types/Meter.types';
-import { resolveSegmentColor } from '@wisp-ui/core/styles/Meter.styles';
+import type { MeterSize, MeterVariant } from '@coexist/wisp-core/types/Meter.types';
+import { meterSizeMap } from '@coexist/wisp-core/types/Meter.types';
+import { resolveSegmentColor } from '@coexist/wisp-core/styles/Meter.styles';
 import { Text } from '../text';
-import { defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

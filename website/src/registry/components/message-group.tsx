@@ -6,6 +6,7 @@ export const messageGroupEntry: ComponentEntry = {
   slug: 'message-group',
   name: 'MessageGroup',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'Groups consecutive chat bubbles from the same sender with an avatar and name header. Timestamp and status are rendered once below the entire group.',
   variantCount: 2,

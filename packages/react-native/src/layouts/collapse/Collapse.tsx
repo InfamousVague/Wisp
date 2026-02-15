@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useState, useEffect, useCallback } from 'react';
 import { View, Animated, LayoutAnimation, Platform, UIManager } from 'react-native';
-import type { CollapseDuration } from '@wisp-ui/core/types/Collapse.types';
-import { collapseDurationMap } from '@wisp-ui/core/types/Collapse.types';
+import type { CollapseDuration } from '@coexist/wisp-core/types/Collapse.types';
+import { collapseDurationMap } from '@coexist/wisp-core/types/Collapse.types';
 
 // Enable LayoutAnimation on Android
 if (

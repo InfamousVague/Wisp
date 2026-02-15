@@ -6,6 +6,7 @@ export const accordionEntry: ComponentEntry = {
   slug: 'accordion',
   name: 'Accordion',
   category: 'components',
+  subcategory: 'Navigation',
   description:
     'Collapsible content sections with single or multiple expansion modes, icons, disabled items, and keyboard navigation.',
   variantCount: 2,

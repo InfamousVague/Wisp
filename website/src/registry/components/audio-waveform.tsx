@@ -20,6 +20,7 @@ export const audioWaveformEntry: ComponentEntry = {
   slug: 'audio-waveform',
   name: 'AudioWaveform',
   category: 'components',
+  subcategory: 'Media',
   description:
     'Visual waveform representation of audio data. Supports bars, line, and mirrored variants with playback progress and seek interaction. Perfect for chat voice messages and audio players.',
   variantCount: 3,

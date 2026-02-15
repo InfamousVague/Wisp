@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { Animated, Easing } from 'react-native';
-import { DEFAULT_DURATION } from '@wisp-ui/core/animation/constants';
+import { DEFAULT_DURATION } from '@coexist/wisp-core/animation/constants';
 
 const EASING_MAP: Record<string, (value: number) => number> = {
   linear: Easing.linear,

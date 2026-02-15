@@ -6,6 +6,7 @@ export const tableEntry: ComponentEntry = {
   slug: 'table',
   name: 'Table',
   category: 'components',
+  subcategory: 'Data Display',
   description:
     'Compound table with header, body, footer, striped rows, hoverable rows, sticky header, and size variants.',
   variantCount: 3,

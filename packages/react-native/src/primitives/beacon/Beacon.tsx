@@ -10,9 +10,9 @@
 import React, { forwardRef, useMemo, useRef, useEffect } from 'react';
 import { View, Pressable, Animated } from 'react-native';
 import type { ViewProps, ViewStyle } from 'react-native';
-import type { BeaconVariant, BeaconSize } from '@wisp-ui/core/types/Beacon.types';
-import { beaconSizeMap } from '@wisp-ui/core/types/Beacon.types';
-import { resolveBeaconColor } from '@wisp-ui/core/styles/Beacon.styles';
+import type { BeaconVariant, BeaconSize } from '@coexist/wisp-core/types/Beacon.types';
+import { beaconSizeMap } from '@coexist/wisp-core/types/Beacon.types';
+import { resolveBeaconColor } from '@coexist/wisp-core/styles/Beacon.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

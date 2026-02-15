@@ -29,6 +29,7 @@ export const treeViewEntry: ComponentEntry = {
   slug: 'tree-view',
   name: 'TreeView',
   category: 'components',
+  subcategory: 'Navigation',
   description:
     'Expandable file-tree style component with nested nodes, icons, selection, controlled/uncontrolled expansion, and skeleton.',
   variantCount: 3,

@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo, useState, useCallback, useRef, createContext, useContext } from 'react';
 import { View, Pressable, Modal, StyleSheet } from 'react-native';
 import type { ViewStyle } from 'react-native';
-import { defaultSpacing, defaultRadii } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
@@ -11,7 +11,7 @@ import { useTheme } from '../../providers';
 interface PopoverContextValue {
   open: boolean;
   setOpen: (open: boolean) => void;
-  triggerRef: React.RefObject<View>;
+  triggerRef: React.RefObject<View | null>;
   placement: PopoverPlacement;
 }
 
@@ -100,7 +100,7 @@ export const PopoverTrigger = forwardRef<View, PopoverTriggerProps>(function Pop
 
   return (
     <Pressable
-      ref={triggerRef}
+      ref={triggerRef as any}
       onPress={() => setOpen(!open)}
       accessibilityRole="button"
       accessibilityState={{ expanded: open }}

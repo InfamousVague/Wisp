@@ -2,7 +2,7 @@
  * @module primitives/progress
  * @description React Native Progress primitive for the Wisp design system.
  *
- * Reuses color resolution, size maps, and thickness tokens from `@wisp-ui/core`.
+ * Reuses color resolution, size maps, and thickness tokens from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Track and fill rendered as `<View>` instead of `<div>`.
@@ -17,13 +17,13 @@
 import React, { forwardRef, useMemo, useRef, useEffect } from 'react';
 import { View, Animated } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { ComponentSize, Thickness } from '@wisp-ui/core/tokens/shared';
-import { thicknessValues } from '@wisp-ui/core/tokens/shared';
-import { progressSizeMap } from '@wisp-ui/core/types/Progress.types';
-import { resolveProgressColors } from '@wisp-ui/core/styles/Progress.styles';
-import type { ProgressColors } from '@wisp-ui/core/styles/Progress.styles';
+import type { ComponentSize, Thickness } from '@coexist/wisp-core/tokens/shared';
+import { thicknessValues } from '@coexist/wisp-core/tokens/shared';
+import { progressSizeMap } from '@coexist/wisp-core/types/Progress.types';
+import { resolveProgressColors } from '@coexist/wisp-core/styles/Progress.styles';
+import type { ProgressColors } from '@coexist/wisp-core/styles/Progress.styles';
 import { Text } from '../text';
-import { defaultSpacing, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

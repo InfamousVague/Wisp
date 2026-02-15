@@ -17,6 +17,7 @@ export const radioEntry: ComponentEntry = {
   slug: 'radio',
   name: 'Radio',
   category: 'primitives',
+  subcategory: 'Selection',
   description:
     'Radio button group with vertical/horizontal orientation, descriptions, validation states, and skeleton loading.',
   variantCount: 5,

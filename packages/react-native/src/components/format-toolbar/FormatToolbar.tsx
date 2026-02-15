@@ -3,7 +3,7 @@
  * @description React Native FormatToolbar for the Wisp design system.
  *
  * Composes the Toolbar layout primitive with format-specific action buttons.
- * Reuses color resolution from `@wisp-ui/core`. Renders via `<View>` + `<Pressable>`.
+ * Reuses color resolution from `@coexist/wisp-core`. Renders via `<View>` + `<Pressable>`.
  */
 
 import React, { forwardRef, useMemo, useCallback } from 'react';
@@ -12,10 +12,10 @@ import type { ViewProps, ViewStyle } from 'react-native';
 import {
   resolveFormatToolbarColors,
   getFormatButtonIconSize,
-} from '@wisp-ui/core/styles/FormatToolbar.styles';
-import type { FormatAction } from '@wisp-ui/core/types/FormatToolbar.types';
-import { formatActions } from '@wisp-ui/core/types/FormatToolbar.types';
-import { defaultRadii } from '@wisp-ui/core/theme/create-theme';
+} from '@coexist/wisp-core/styles/FormatToolbar.styles';
+import type { FormatAction } from '@coexist/wisp-core/types/FormatToolbar.types';
+import { formatActions } from '@coexist/wisp-core/types/FormatToolbar.types';
+import { defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from '../toolbar';
 import Svg, { Line, Path, Polyline, Rect } from 'react-native-svg';

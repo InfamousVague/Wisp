@@ -2,7 +2,7 @@
  * @module primitives/toast
  * @description React Native Toast primitive for the Wisp design system.
  *
- * Reuses color resolution from `@wisp-ui/core`.
+ * Reuses color resolution from `@coexist/wisp-core`.
  * Key differences from the React DOM version:
  *
  * - Uses `<View>` instead of `<div>` and `<Pressable>` instead of `<button>`.
@@ -15,11 +15,11 @@
 import React, { forwardRef, useMemo } from 'react';
 import { Pressable, View } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { ToastVariant } from '@wisp-ui/core/types/Toast.types';
-import { resolveToastColors } from '@wisp-ui/core/styles/Toast.styles';
-import type { ToastColors } from '@wisp-ui/core/styles/Toast.styles';
+import type { ToastVariant } from '@coexist/wisp-core/types/Toast.types';
+import { resolveToastColors } from '@coexist/wisp-core/styles/Toast.styles';
+import type { ToastColors } from '@coexist/wisp-core/styles/Toast.styles';
 import { Text } from '../text';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

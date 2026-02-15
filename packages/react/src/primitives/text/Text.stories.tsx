@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Text } from './Text';
-import { textSizes, textWeights, textColors } from '@wisp-ui/core/types/Text.types';
+import { textSizes, textWeights, textColors } from '@coexist/wisp-core/types/Text.types';
 import { Icon } from '../icon';
 import { Search, AlertCircle, CheckCircle, ArrowRight, Star, Info, Zap } from 'lucide-react';
 

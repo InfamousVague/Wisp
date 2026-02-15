@@ -19,7 +19,7 @@
 import React, { useMemo, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
-import type { DialogProps } from '@wisp-ui/core/types/Dialog.types';
+import type { DialogProps } from '@coexist/wisp-core/types/Dialog.types';
 import {
   buildOverlayStyle,
   buildPanelStyle,
@@ -30,10 +30,10 @@ import {
   buildCloseButtonHoverStyle,
   buildBodyStyle,
   buildFooterStyle,
-} from '@wisp-ui/core/styles/Dialog.styles';
+} from '@coexist/wisp-core/styles/Dialog.styles';
 import { useTheme, WispProvider } from '../../providers';
 import { Text } from '../../primitives';
-import { createTheme } from '@wisp-ui/core/theme/create-theme';
+import { createTheme } from '@coexist/wisp-core/theme/create-theme';
 
 /** Guards against injecting the CSS keyframes more than once per page. */
 let animationInjected = false;

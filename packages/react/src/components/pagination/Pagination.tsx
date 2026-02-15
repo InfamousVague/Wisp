@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import type { PaginationProps, PageItem } from '@wisp-ui/core/types/Pagination.types';
-import { paginationSizeMap } from '@wisp-ui/core/types/Pagination.types';
+import type { PaginationProps, PageItem } from '@coexist/wisp-core/types/Pagination.types';
+import { paginationSizeMap } from '@coexist/wisp-core/types/Pagination.types';
 import {
   buildNavStyle,
   buildActivePageStyle,
@@ -9,7 +9,7 @@ import {
   buildArrowStyle,
   buildArrowHoverStyle,
   buildEllipsisStyle,
-} from '@wisp-ui/core/styles/Pagination.styles';
+} from '@coexist/wisp-core/styles/Pagination.styles';
 import { useTheme } from '../../providers';
 
 /**

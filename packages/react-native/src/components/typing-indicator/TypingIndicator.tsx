@@ -10,9 +10,9 @@
 import React, { forwardRef, useMemo, useEffect, useRef } from 'react';
 import { View, Text, Animated, Easing } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
-import type { ChatBubbleAlignment } from '@wisp-ui/core/types/ChatBubble.types';
-import type { TypingIndicatorAnimation } from '@wisp-ui/core/types/TypingIndicator.types';
-import { defaultSpacing, defaultRadii, defaultTypography } from '@wisp-ui/core/theme/create-theme';
+import type { ChatBubbleAlignment } from '@coexist/wisp-core/types/ChatBubble.types';
+import type { TypingIndicatorAnimation } from '@coexist/wisp-core/types/TypingIndicator.types';
+import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------
@@ -144,8 +144,9 @@ export const TypingIndicator = forwardRef<View, TypingIndicatorProps>(function T
 ) {
   const { theme } = useTheme();
   const themeColors = theme.colors;
+  const isLight = theme.mode === 'light';
   const isOutgoing = align === 'outgoing';
-  const dotColor = color ?? themeColors.text.muted;
+  const dotColor = color ?? themeColors.text.secondary;
 
   const dotsContainerStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
@@ -167,33 +168,23 @@ export const TypingIndicator = forwardRef<View, TypingIndicatorProps>(function T
     </View>
   );
 
-  // ---- Non-bubble mode ----
-  if (!bubble) {
-    return (
-      <View
-        ref={ref}
-        style={[{ flexDirection: 'row', alignItems: 'center' }, userStyle]}
-        accessibilityRole="none"
-        accessibilityLabel="Typing"
-        {...rest}
-      >
-        {dots}
-      </View>
-    );
-  }
-
-  // ---- Bubble mode ----
-  const bubbleStyle = useMemo<ViewStyle>(() => ({
-    paddingHorizontal: defaultSpacing.lg,
-    paddingVertical: defaultSpacing.md,
-    borderTopLeftRadius: defaultRadii.lg,
-    borderTopRightRadius: defaultRadii.lg,
-    borderBottomLeftRadius: isOutgoing ? 12 : 2,
-    borderBottomRightRadius: isOutgoing ? 2 : 12,
-    backgroundColor: isOutgoing ? '#FFFFFF' : themeColors.background.surface,
-    borderWidth: 1,
-    borderColor: isOutgoing ? '#E4E4E7' : themeColors.border.subtle,
-  }), [isOutgoing, themeColors]);
+  // ---- Bubble mode styles (always call hooks to satisfy Rules of Hooks) ----
+  const bubbleStyle = useMemo<ViewStyle>(() => {
+    // Match ChatBubble color resolution so the typing bubble looks like a real chat bubble
+    const incomingBg = isLight ? themeColors.background.sunken : themeColors.background.raised;
+    const incomingBorder = isLight ? themeColors.border.subtle : (themeColors.accent as any).dividerRaised ?? themeColors.border.subtle;
+    return {
+      paddingHorizontal: defaultSpacing.lg,
+      paddingVertical: defaultSpacing.md,
+      borderTopLeftRadius: defaultRadii.lg,
+      borderTopRightRadius: defaultRadii.lg,
+      borderBottomLeftRadius: isOutgoing ? 12 : 2,
+      borderBottomRightRadius: isOutgoing ? 2 : 12,
+      backgroundColor: isOutgoing ? '#FFFFFF' : incomingBg,
+      borderWidth: 1,
+      borderColor: isOutgoing ? '#E4E4E7' : incomingBorder,
+    };
+  }, [isOutgoing, isLight, themeColors]);
 
   const groupStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'column',
@@ -214,6 +205,22 @@ export const TypingIndicator = forwardRef<View, TypingIndicatorProps>(function T
     color: themeColors.text.secondary,
   }), [themeColors]);
 
+  // ---- Non-bubble mode ----
+  if (!bubble) {
+    return (
+      <View
+        ref={ref}
+        style={[{ flexDirection: 'row', alignItems: 'center' }, userStyle]}
+        accessibilityRole="none"
+        accessibilityLabel="Typing"
+        {...rest}
+      >
+        {dots}
+      </View>
+    );
+  }
+
+  // ---- Bubble mode ----
   return (
     <View
       ref={ref}

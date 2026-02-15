@@ -4,7 +4,7 @@
  * displayed above the message input area.
  */
 import React, { forwardRef, useMemo, useCallback } from 'react';
-import type { AttachmentPreviewProps, Attachment, AttachmentFileType } from '@wisp-ui/core/types/AttachmentPreview.types';
+import type { AttachmentPreviewProps, Attachment, AttachmentFileType } from '@coexist/wisp-core/types/AttachmentPreview.types';
 import {
   resolveAttachmentPreviewColors,
   buildAttachmentContainerStyle,
@@ -18,7 +18,7 @@ import {
   buildProgressBarContainerStyle,
   buildProgressBarFillStyle,
   buildErrorOverlayStyle,
-} from '@wisp-ui/core/styles/AttachmentPreview.styles';
+} from '@coexist/wisp-core/styles/AttachmentPreview.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

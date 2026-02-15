@@ -11,6 +11,7 @@ export const toggleEntry: ComponentEntry = {
   slug: 'toggle',
   name: 'Toggle',
   category: 'primitives',
+  subcategory: 'Selection',
   description:
     'Switch toggle with 5 sizes, slim variant, custom handle icons, label, and skeleton loading.',
   variantCount: 5,

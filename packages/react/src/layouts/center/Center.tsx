@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
-import type { CenterProps } from '@wisp-ui/core/types/Center.types';
-import { buildCenterStyle } from '@wisp-ui/core/styles/Center.styles';
+import type { CenterProps } from '@coexist/wisp-core/types/Center.types';
+import { buildCenterStyle } from '@coexist/wisp-core/styles/Center.styles';
 
 /**
  * Center -- Layout primitive that centers its children both horizontally

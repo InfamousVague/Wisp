@@ -6,6 +6,7 @@ export const chatBubbleEntry: ComponentEntry = {
   slug: 'chat-bubble',
   name: 'ChatBubble',
   category: 'components',
+  subcategory: 'Chat & Messaging',
   description:
     'A styled message bubble with one sharp corner indicating direction — iMessage / WhatsApp style. Supports timestamps, delivery status, emoji reactions, replies, forwarding, editing, media, and message highlighting.',
   variantCount: 2,

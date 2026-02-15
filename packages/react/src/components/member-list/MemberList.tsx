@@ -7,7 +7,7 @@ import type {
   MemberListProps,
   MemberListMember,
   MemberListSection,
-} from '@wisp-ui/core/types/MemberList.types';
+} from '@coexist/wisp-core/types/MemberList.types';
 import {
   resolveMemberListColors,
   buildMemberListContainerStyle,
@@ -22,7 +22,7 @@ import {
   buildMemberRoleTextStyle,
   buildMemberStatusDotStyle,
   buildMemberListLoadingStyle,
-} from '@wisp-ui/core/styles/MemberList.styles';
+} from '@coexist/wisp-core/styles/MemberList.styles';
 import { useTheme } from '../../providers';
 
 // ---------------------------------------------------------------------------

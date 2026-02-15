@@ -6,6 +6,7 @@ export const themeEditorEntry: ComponentEntry = {
   slug: 'theme-editor',
   name: 'ThemeEditor',
   category: 'components',
+  subcategory: 'Utilities',
   description:
     'Live theme customization panel with controls for every configurable token — colors, spacing, typography, and border radii. Changes propagate instantly to all components via context.',
   variantCount: 4,
