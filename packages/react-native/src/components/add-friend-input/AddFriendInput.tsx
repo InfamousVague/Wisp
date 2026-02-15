@@ -117,7 +117,7 @@ export const AddFriendInput = forwardRef<View, AddFriendInputProps>(
       lineHeight: defaultTypography.sizes.sm.lineHeight,
       color: colors.text,
       padding: 0,
-      outlineStyle: 'none',
+      outlineStyle: 'none' as any,
     } as TextStyle;
 
     const btnStyle: ViewStyle = {

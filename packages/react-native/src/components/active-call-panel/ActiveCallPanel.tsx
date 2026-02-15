@@ -100,18 +100,23 @@ export const ActiveCallPanel = forwardRef<View, ActiveCallPanelProps>(function A
     aspectRatio: isVideo ? 16 / 9 : undefined,
     height: isVideo ? undefined : 120,
     backgroundColor: '#000',
+    ...(isVideo ? {
+      margin: 12,
+      borderRadius: 12,
+      overflow: 'hidden' as const,
+    } : {}),
   }), [isVideo]);
 
   const pipStyle = useMemo<ViewStyle>(() => ({
     position: 'absolute',
-    top: 8,
-    right: 8,
+    top: 10,
+    right: 10,
     width: 120,
     height: 90,
     borderRadius: 8,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.2)',
+    borderColor: 'rgba(255,255,255,0.25)',
     zIndex: 10,
   }), []);
 
@@ -196,8 +201,12 @@ export const ActiveCallPanel = forwardRef<View, ActiveCallPanelProps>(function A
 
       </View>
 
-      {/* Controls row — CallControls centered, settings cog at trailing edge */}
+      {/* Controls row — invisible spacer on left balances settings cog on right */}
       <View style={controlsRowStyle}>
+        {/* Invisible spacer — matches settings cog width so controls stay centered */}
+        {onSettings && (
+          <View style={{ width: 36, height: 36, marginLeft: 12, opacity: 0 }} pointerEvents="none" />
+        )}
         <CallControls
           isMuted={isMuted}
           isVideoOff={isCameraOff}

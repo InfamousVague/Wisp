@@ -199,7 +199,7 @@ export const MessageSearch = forwardRef<View, MessageSearchProps>(
       lineHeight: defaultTypography.sizes.sm.lineHeight,
       color: colors.inputText,
       backgroundColor: 'transparent',
-      outlineStyle: 'none',
+      outlineStyle: 'none' as any,
     } as ViewStyle & TextStyle;
 
     const closeButtonStyle: ViewStyle = {

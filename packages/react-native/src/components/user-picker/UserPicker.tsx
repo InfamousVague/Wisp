@@ -273,7 +273,7 @@ export const UserPicker = forwardRef<View, UserPickerProps>(
       lineHeight: defaultTypography.sizes.sm.lineHeight,
       color: colors.searchText,
       padding: 0,
-      outlineStyle: 'none',
+      outlineStyle: 'none' as any,
     } as TextStyle;
 
     const rowStyle = (isSelected: boolean): ViewStyle => ({
