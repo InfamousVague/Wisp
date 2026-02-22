@@ -76,6 +76,10 @@ export interface CommunitySidebarProps extends ViewProps {
   onSidebarLongPress?: (event: GestureResponderEvent) => void;
   loading?: boolean;
   skeleton?: boolean;
+  /** Render extra content below a channel row (e.g. voice channel participants). */
+  renderChannelExtra?: (channel: ChannelItem) => React.ReactNode;
+  /** Override the default channel icon. Receives the channel and default icon element. */
+  renderChannelIcon?: (channel: ChannelItem, defaultIcon: React.ReactNode) => React.ReactNode;
 }
 
 // ---------------------------------------------------------------------------
@@ -125,6 +129,8 @@ export const CommunitySidebar = forwardRef<View, CommunitySidebarProps>(
       onSidebarLongPress,
       loading = false,
       skeleton = false,
+      renderChannelExtra,
+      renderChannelIcon,
       style: userStyle,
       ...rest
     },
@@ -470,6 +476,8 @@ export const CommunitySidebar = forwardRef<View, CommunitySidebarProps>(
             draggable={draggable}
             onChannelReorder={onChannelReorder}
             onCategoryReorder={onCategoryReorder}
+            renderChannelExtra={renderChannelExtra}
+            renderChannelIcon={renderChannelIcon}
             loading={loading}
             skeleton={false}
           />

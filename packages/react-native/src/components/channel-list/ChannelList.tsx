@@ -84,6 +84,10 @@ export interface ChannelListProps extends ViewProps {
   onChannelReorder?: (channelId: string, targetCategoryId: string | null, newIndex: number) => void;
   /** Called when a category header is dropped to a new position. */
   onCategoryReorder?: (categoryId: string, newIndex: number) => void;
+  /** Render extra content below a channel row (e.g. voice channel participants). */
+  renderChannelExtra?: (channel: ChannelItemType) => React.ReactNode;
+  /** Override the default channel icon. Receives the channel and default icon element. */
+  renderChannelIcon?: (channel: ChannelItemType, defaultIcon: React.ReactNode) => React.ReactNode;
 }
 
 // ---------------------------------------------------------------------------
@@ -366,6 +370,8 @@ export const ChannelList = forwardRef<View, ChannelListProps>(
       draggable = false,
       onChannelReorder,
       onCategoryReorder,
+      renderChannelExtra,
+      renderChannelIcon,
       style: userStyle,
       ...rest
     },
@@ -739,7 +745,9 @@ export const ChannelList = forwardRef<View, ChannelListProps>(
               {...webProps}
             >
               <View style={iconContainerStyle}>
-                {channel.icon ?? <ChannelTypeIcon type={type} size={18} color={iconColor} />}
+                {renderChannelIcon
+                  ? renderChannelIcon(channel, channel.icon ?? <ChannelTypeIcon type={type} size={18} color={iconColor} />)
+                  : (channel.icon ?? <ChannelTypeIcon type={type} size={18} color={iconColor} />)}
               </View>
               <Text style={nameStyle} numberOfLines={1}>{channel.name}</Text>
               {hasUnread && !muted && (
@@ -750,6 +758,7 @@ export const ChannelList = forwardRef<View, ChannelListProps>(
                 </View>
               )}
             </Pressable>
+            {renderChannelExtra?.(channel)}
           </View>
         );
       },
@@ -757,6 +766,7 @@ export const ChannelList = forwardRef<View, ChannelListProps>(
         colors, badgeStyle, badgeTextStyle,
         handleChannelClick, onChannelLongPress,
         draggable, dragState,
+        renderChannelExtra, renderChannelIcon,
         handleDragStart, handleChannelLayout,
       ],
     );
