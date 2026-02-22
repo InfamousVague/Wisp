@@ -197,9 +197,9 @@ function DataTableInner<T>(
                   justifyContent: 'center',
                 }}
               >
-                {typeof content === 'string' ? (
+                {typeof content === 'string' || typeof content === 'number' ? (
                   <RNText style={{ fontSize: cfg.fontSize, color: themeColors.text.primary, textAlign: rnAlign } as TextStyle}>
-                    {content}
+                    {String(content)}
                   </RNText>
                 ) : (
                   content

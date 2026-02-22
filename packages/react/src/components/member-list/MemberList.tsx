@@ -416,7 +416,24 @@ export const MemberList = forwardRef<HTMLDivElement, MemberListProps>(
 
                           {/* Text */}
                           <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-                            <span style={memberNameStyle}>{member.name}</span>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                              {member.roleIcon && (
+                                <span
+                                  style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    width: 14,
+                                    height: 14,
+                                    flexShrink: 0,
+                                  }}
+                                  aria-hidden
+                                >
+                                  {member.roleIcon}
+                                </span>
+                              )}
+                              <span style={member.roleColor ? { ...memberNameStyle, color: member.roleColor } : memberNameStyle}>{member.name}</span>
+                            </span>
                             {(member.roleText || member.statusText) && (
                               <span style={memberRoleTextStyle}>
                                 {member.roleText || member.statusText}

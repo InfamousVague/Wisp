@@ -105,6 +105,8 @@ export { Navbar, NavbarBrand, NavbarContent, NavbarItem } from './navbar';
 export type { NavbarProps, NavbarBrandProps, NavbarContentProps, NavbarItemProps } from './navbar';
 export { SearchInput } from './search-input';
 export type { SearchInputProps } from './search-input';
+export { MessageList } from './message-list';
+export type { MessageListProps, MessageListItem, MessageListEntry, DaySeparator, NewMessageMarker } from './message-list';
 export { MessageInput } from './message-input';
 export type { MessageInputProps } from './message-input';
 export { VoiceRecorder } from './voice-recorder';
@@ -176,6 +178,10 @@ export type { MemberListProps, MemberListSection, MemberListMember } from './mem
 export { ChannelList } from './channel-list';
 export type { ChannelListProps, ChannelCategory, ChannelItem, ChannelType } from './channel-list';
 
+// ChannelHeader
+export { ChannelHeader } from './channel-header';
+export type { ChannelHeaderProps, ChannelHeaderType, ChannelHeaderAction } from './channel-header';
+
 // MessageSearch
 export { MessageSearch } from './message-search';
 export type { MessageSearchProps } from './message-search';
@@ -231,6 +237,10 @@ export { RoleBadge } from './role-badge';
 export type { RoleBadgeProps } from './role-badge';
 export { PermissionManager } from './permission-manager';
 export type { PermissionManagerProps, Permission, PermissionState } from './permission-manager';
+export { RoleCreateDialog } from './role-create-dialog';
+export type { RoleCreateDialogProps, RoleCreateData, RolePermissionCategory } from './role-create-dialog';
+export { PermissionCalculator } from './permission-calculator';
+export type { PermissionCalculatorProps, ComputedPermission } from './permission-calculator';
 
 // Wave 17: Social / Friends
 export { FriendListItem } from './friend-list-item';
@@ -247,3 +257,85 @@ export { AddFriendInput } from './add-friend-input';
 export type { AddFriendInputProps, AddFriendFeedbackState } from './add-friend-input';
 export { UserPicker } from './user-picker';
 export type { UserPickerProps, UserPickerUser, UserPickerStatus } from './user-picker';
+
+// Community / Threads
+export { ThreadIndicator } from './thread-indicator';
+export type { ThreadIndicatorProps } from './thread-indicator';
+export { ThreadListView } from './thread-list-view';
+export type { ThreadListViewProps, ThreadListItem } from './thread-list-view';
+export { ThreadFollowButton } from './thread-follow-button';
+export type { ThreadFollowButtonProps } from './thread-follow-button';
+
+// Community
+export { CommunityCreateDialog } from './community-create-dialog';
+export type { CommunityCreateDialogProps, CommunityCreateData } from './community-create-dialog';
+
+// CommunitySidebar
+export { CommunitySidebar } from './community-sidebar';
+export type { CommunitySidebarProps } from './community-sidebar';
+export type { CommunitySpace, CommunityInfo } from './community-sidebar';
+
+// InviteManager
+export { InviteManager } from './invite-manager';
+export type { InviteManagerProps, InviteLink, InviteCreateOptions } from './invite-manager';
+
+// RoleManagementPanel
+export { RoleManagementPanel } from './role-management-panel';
+export type { RoleManagementPanelProps, ManagedRole, RolePermissionItem, RoleEditorTab, RoleMember } from './role-management-panel';
+
+// ScreenSharePicker
+export { ScreenSharePicker } from './screen-share-picker';
+export type { ScreenSharePickerProps } from './screen-share-picker';
+
+// RecordingIndicator
+export { RecordingIndicator } from './recording-indicator';
+export type { RecordingIndicatorProps } from './recording-indicator';
+
+// E2EEKeyExchangeUI
+export { E2EEKeyExchangeUI } from './e2ee-key-exchange-ui';
+export type { E2EEKeyExchangeUIProps } from './e2ee-key-exchange-ui';
+
+// ConversationView
+export { ConversationView } from './conversation-view';
+export type { ConversationViewProps } from './conversation-view';
+
+// File Management
+export { FolderCard } from './folder-card';
+export type { FolderCardProps } from './folder-card';
+
+export { FileCard } from './file-card';
+export type { FileCardProps } from './file-card';
+
+export { FileContextMenu, FolderContextMenu } from './file-context-menu';
+export type { FileContextMenuProps, FolderContextMenuProps } from './file-context-menu';
+
+export { FileUploadZone } from './file-upload-zone';
+export type { FileUploadZoneProps } from './file-upload-zone';
+
+export { FileDetailPanel } from './file-detail-panel';
+export type { FileDetailPanelProps } from './file-detail-panel';
+
+export { FileChannelView } from './file-channel-view';
+export type { FileChannelViewProps } from './file-channel-view';
+
+export { FileTransferProgress } from './file-transfer-progress';
+export type { FileTransferProgressProps, TransferState, TransferStep } from './file-transfer-progress';
+
+export { FileTransferList } from './file-transfer-list';
+export type { FileTransferListProps } from './file-transfer-list';
+
+export { SharedFolderCard } from './shared-folder-card';
+export type { SharedFolderCardProps, SharedFolderMember, FolderSyncStatus } from './shared-folder-card';
+
+export { SyncStatusIndicator } from './sync-status-indicator';
+export type { SyncStatusIndicatorProps } from './sync-status-indicator';
+
+export { StorageUsageMeter } from './storage-usage-meter';
+export type { StorageUsageMeterProps, StorageSegment } from './storage-usage-meter';
+
+export { ConflictResolutionDialog } from './conflict-resolution-dialog';
+export type { ConflictResolutionDialogProps, ConflictVersion } from './conflict-resolution-dialog';
+
+export { FileTypeAllowlistSettings } from './file-type-allowlist-settings';
+export type { FileTypeAllowlistSettingsProps, FileTypePreset } from './file-type-allowlist-settings';
+

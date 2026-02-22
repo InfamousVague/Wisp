@@ -62,6 +62,7 @@ export const Tooltip = forwardRef<View, TooltipProps>(function Tooltip(
       paddingHorizontal: defaultSpacing.md,
       paddingVertical: defaultSpacing.sm,
       borderRadius: defaultRadii.md,
+      overflow: 'hidden' as const,
       maxWidth: 220,
     }),
     [themeColors],

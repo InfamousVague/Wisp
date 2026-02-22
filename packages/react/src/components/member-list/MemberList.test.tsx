@@ -278,6 +278,42 @@ describe('MemberList — status dots', () => {
 });
 
 // ---------------------------------------------------------------------------
+// Role color
+// ---------------------------------------------------------------------------
+
+describe('MemberList — role color', () => {
+  it('applies roleColor to member name when provided', () => {
+    const sections: MemberListSection[] = [
+      {
+        id: 'admins',
+        label: 'Admins',
+        members: [
+          { id: 'u1', name: 'Alice', status: 'online', roleColor: '#e74c3c' },
+        ],
+      },
+    ];
+    render(
+      <Dark>
+        <MemberList sections={sections} />
+      </Dark>,
+    );
+    const nameEl = screen.getByText('Alice');
+    expect(nameEl).toHaveStyle({ color: '#e74c3c' });
+  });
+
+  it('uses default theme color when roleColor is not provided', () => {
+    render(
+      <Dark>
+        <MemberList sections={baseSections} />
+      </Dark>,
+    );
+    const nameEl = screen.getByText('Alice');
+    // Should NOT have a custom role color
+    expect(nameEl.style.color).not.toBe('rgb(231, 76, 60)');
+  });
+});
+
+// ---------------------------------------------------------------------------
 // Close button
 // ---------------------------------------------------------------------------
 

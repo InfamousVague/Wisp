@@ -7,8 +7,10 @@ import { Checkbox } from './Checkbox';
 import { WispProvider } from '../../providers';
 import { contrastRatio } from '@coexist/wisp-core/utils/contrast';
 import { resolveCheckboxColors } from '@coexist/wisp-core/styles/Checkbox.styles';
-import { darkColors } from '@coexist/wisp-core/theme/dark';
-import { lightColors } from '@coexist/wisp-core/theme/light';
+import { createTheme } from '@coexist/wisp-core/theme/create-theme';
+
+const darkTheme = createTheme({ mode: 'dark' });
+const lightTheme = createTheme({ mode: 'light' });
 
 // ---------------------------------------------------------------------------
 // Wrapper
@@ -203,14 +205,14 @@ describe('Checkbox — WCAG contrast', () => {
 
   describe('dark mode', () => {
     it('checked icon on box passes AA-large (3:1)', () => {
-      const colors = resolveCheckboxColors(true, false, false, false, false, darkColors);
+      const colors = resolveCheckboxColors(true, false, false, false, false, darkTheme);
       if (!isHex(colors.iconColor) || !isHex(colors.boxBg)) return;
       const ratio = contrastRatio(colors.iconColor, colors.boxBg);
       expect(ratio).toBeGreaterThanOrEqual(3);
     });
 
     it('indeterminate icon on box passes AA-large (3:1)', () => {
-      const colors = resolveCheckboxColors(false, true, false, false, false, darkColors);
+      const colors = resolveCheckboxColors(false, true, false, false, false, darkTheme);
       if (!isHex(colors.iconColor) || !isHex(colors.boxBg)) return;
       const ratio = contrastRatio(colors.iconColor, colors.boxBg);
       expect(ratio).toBeGreaterThanOrEqual(3);
@@ -219,14 +221,14 @@ describe('Checkbox — WCAG contrast', () => {
 
   describe('light mode', () => {
     it('checked icon on box passes AA-large (3:1)', () => {
-      const colors = resolveCheckboxColors(true, false, false, false, false, lightColors);
+      const colors = resolveCheckboxColors(true, false, false, false, false, lightTheme);
       if (!isHex(colors.iconColor) || !isHex(colors.boxBg)) return;
       const ratio = contrastRatio(colors.iconColor, colors.boxBg);
       expect(ratio).toBeGreaterThanOrEqual(3);
     });
 
     it('indeterminate icon on box passes AA-large (3:1)', () => {
-      const colors = resolveCheckboxColors(false, true, false, false, false, lightColors);
+      const colors = resolveCheckboxColors(false, true, false, false, false, lightTheme);
       if (!isHex(colors.iconColor) || !isHex(colors.boxBg)) return;
       const ratio = contrastRatio(colors.iconColor, colors.boxBg);
       expect(ratio).toBeGreaterThanOrEqual(3);

@@ -1,5 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
-import { View, Pressable } from 'react-native';
+import { View, Pressable, Text as RNText } from 'react-native';
+import type { TextStyle } from 'react-native';
 import type { ListItemSize } from '@coexist/wisp-core/types/ListItem.types';
 import { listItemSizeMap } from '@coexist/wisp-core/types/ListItem.types';
 import { defaultSpacing, defaultRadii } from '@coexist/wisp-core/theme/create-theme';
@@ -59,6 +60,7 @@ export const ListItem = forwardRef<View, ListItemProps>(function ListItem(
       paddingHorizontal: config.paddingX,
       paddingVertical: config.paddingY,
       borderRadius: defaultRadii.md,
+      overflow: 'hidden' as const,
       backgroundColor,
       opacity: disabled ? 0.5 : 1,
     }),
@@ -73,7 +75,11 @@ export const ListItem = forwardRef<View, ListItemProps>(function ListItem(
         </View>
       )}
       <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
-        {children}
+        {typeof children === 'string' || typeof children === 'number' ? (
+          <RNText style={{ color: themeColors.text.primary } as TextStyle}>{children}</RNText>
+        ) : (
+          children
+        )}
       </View>
       {trailing && (
         <View style={{ flexShrink: 0, flexDirection: 'row', alignItems: 'center', gap: defaultSpacing.sm }}>

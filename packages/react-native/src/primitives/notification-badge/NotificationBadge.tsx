@@ -31,9 +31,20 @@ export interface NotificationBadgeProps extends ViewProps {
   invisible?: boolean;
   /** When `true`, applies a pulsing animation to draw attention. @default false */
   pulse?: boolean;
+  /** Size variant. `'sm'` renders a compact badge (14px), `'md'` is default (20px). @default 'md' */
+  size?: 'sm' | 'md';
   /** The element the badge is anchored to (typically an icon or avatar). */
   children?: React.ReactNode;
 }
+
+// ---------------------------------------------------------------------------
+// Size constants
+// ---------------------------------------------------------------------------
+
+const BADGE_SIZES = {
+  sm: { minWidth: 16, height: 16, paddingH: 4, dotSize: 6, fontSize: 9, lineHeight: 12, translateOffset: 5 },
+  md: { minWidth: 20, height: 20, paddingH: defaultSpacing.sm, dotSize: 8, fontSize: defaultTypography.sizes.xs.fontSize, lineHeight: 14, translateOffset: 6 },
+} as const;
 
 // ---------------------------------------------------------------------------
 // Component
@@ -48,6 +59,7 @@ export const NotificationBadge = forwardRef<View, NotificationBadgeProps>(
       color = 'danger',
       invisible = false,
       pulse = false,
+      size = 'md',
       children,
       style: userStyle,
       ...rest
@@ -96,9 +108,11 @@ export const NotificationBadge = forwardRef<View, NotificationBadgeProps>(
           ? String(count)
           : null;
 
+    const sizeConfig = BADGE_SIZES[size];
+
     const wrapperStyle = useMemo<ViewStyle>(() => ({
       position: 'relative',
-      alignSelf: 'flex-start',
+      alignSelf: 'center',
     }), []);
 
     const badgeStyle = useMemo<ViewStyle>(() => {
@@ -106,28 +120,29 @@ export const NotificationBadge = forwardRef<View, NotificationBadgeProps>(
         position: 'absolute',
         top: 0,
         right: 0,
-        transform: [{ translateX: 6 }, { translateY: -6 }],
+        transform: [{ translateX: sizeConfig.translateOffset }, { translateY: -sizeConfig.translateOffset }],
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colors.bg,
         borderRadius: defaultRadii.full,
+        overflow: 'hidden' as const,
         zIndex: 1,
       };
 
       if (dot) {
-        return { ...base, width: 8, height: 8, minWidth: 8 };
+        return { ...base, width: sizeConfig.dotSize, height: sizeConfig.dotSize, minWidth: sizeConfig.dotSize };
       }
 
-      return { ...base, minWidth: 20, height: 20, paddingHorizontal: defaultSpacing.sm };
-    }, [colors, dot]);
+      return { ...base, minWidth: sizeConfig.minWidth, height: sizeConfig.height, paddingHorizontal: sizeConfig.paddingH };
+    }, [colors, dot, sizeConfig]);
 
     const textStyle = useMemo<TextStyle>(() => ({
-      fontSize: defaultTypography.sizes.xs.fontSize,
+      fontSize: sizeConfig.fontSize,
       fontWeight: defaultTypography.weights.semibold,
       color: colors.text,
-      lineHeight: 14,
+      lineHeight: sizeConfig.lineHeight,
       textAlign: 'center',
-    }), [colors]);
+    }), [colors, sizeConfig]);
 
     const renderBadge = () => {
       if (!showBadge) return null;

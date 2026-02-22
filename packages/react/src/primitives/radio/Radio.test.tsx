@@ -7,8 +7,10 @@ import { Radio, RadioGroup } from './Radio';
 import { WispProvider } from '../../providers';
 import { contrastRatio } from '@coexist/wisp-core/utils/contrast';
 import { resolveRadioColors } from '@coexist/wisp-core/styles/Radio.styles';
-import { darkColors } from '@coexist/wisp-core/theme/dark';
-import { lightColors } from '@coexist/wisp-core/theme/light';
+import { createTheme } from '@coexist/wisp-core/theme/create-theme';
+
+const darkTheme = createTheme({ mode: 'dark' });
+const lightTheme = createTheme({ mode: 'light' });
 
 // ---------------------------------------------------------------------------
 // Wrapper
@@ -417,32 +419,32 @@ describe('RadioGroup — WCAG contrast', () => {
 
   describe('dark mode', () => {
     it('label on canvas passes AA (4.5:1)', () => {
-      const colors = resolveRadioColors(false, false, false, darkColors);
-      if (!isHex(colors.labelColor) || !isHex(darkColors.background.canvas)) return;
-      const ratio = contrastRatio(colors.labelColor, darkColors.background.canvas);
+      const colors = resolveRadioColors(false, false, false, darkTheme);
+      if (!isHex(colors.labelColor) || !isHex(darkTheme.colors.background.canvas)) return;
+      const ratio = contrastRatio(colors.labelColor, darkTheme.colors.background.canvas);
       expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
 
     it('selected dot (accent) on canvas passes AA-large (3:1)', () => {
-      const colors = resolveRadioColors(true, false, false, darkColors);
-      if (!isHex(colors.innerBg) || !isHex(darkColors.background.canvas)) return;
-      const ratio = contrastRatio(colors.innerBg, darkColors.background.canvas);
+      const colors = resolveRadioColors(true, false, false, darkTheme);
+      if (!isHex(colors.innerBg) || !isHex(darkTheme.colors.background.canvas)) return;
+      const ratio = contrastRatio(colors.innerBg, darkTheme.colors.background.canvas);
       expect(ratio).toBeGreaterThanOrEqual(3);
     });
   });
 
   describe('light mode', () => {
     it('label on canvas passes AA (4.5:1)', () => {
-      const colors = resolveRadioColors(false, false, false, lightColors);
-      if (!isHex(colors.labelColor) || !isHex(lightColors.background.canvas)) return;
-      const ratio = contrastRatio(colors.labelColor, lightColors.background.canvas);
+      const colors = resolveRadioColors(false, false, false, lightTheme);
+      if (!isHex(colors.labelColor) || !isHex(lightTheme.colors.background.canvas)) return;
+      const ratio = contrastRatio(colors.labelColor, lightTheme.colors.background.canvas);
       expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
 
     it('selected dot (accent) on canvas passes AA-large (3:1)', () => {
-      const colors = resolveRadioColors(true, false, false, lightColors);
-      if (!isHex(colors.innerBg) || !isHex(lightColors.background.canvas)) return;
-      const ratio = contrastRatio(colors.innerBg, lightColors.background.canvas);
+      const colors = resolveRadioColors(true, false, false, lightTheme);
+      if (!isHex(colors.innerBg) || !isHex(lightTheme.colors.background.canvas)) return;
+      const ratio = contrastRatio(colors.innerBg, lightTheme.colors.background.canvas);
       expect(ratio).toBeGreaterThanOrEqual(3);
     });
   });

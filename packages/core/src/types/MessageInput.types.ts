@@ -193,4 +193,28 @@ export interface MessageInputProps extends Omit<React.HTMLAttributes<HTMLDivElem
    * Called when an attachment preview is removed.
    */
   onAttachmentRemove?: (id: string) => void;
+
+  // -- Community extensions --
+
+  /**
+   * Whether content warning mode is enabled on this message.
+   * Shows a toggle button and wraps content in a spoiler tag.
+   * @default false
+   */
+  contentWarning?: boolean;
+
+  /** Called when the content warning toggle is clicked. */
+  onContentWarningToggle?: () => void;
+
+  /** Show content warning toggle button. @default false */
+  showContentWarning?: boolean;
+
+  /**
+   * Slow mode remaining seconds. When > 0, the input is disabled
+   * and a countdown is shown. When 0 or undefined, slow mode is inactive.
+   */
+  slowModeRemaining?: number;
+
+  /** Whether slow mode is enabled on this channel. @default false */
+  slowModeEnabled?: boolean;
 }

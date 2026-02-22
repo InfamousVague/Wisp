@@ -2,26 +2,25 @@
  * @module theme/light
  * @description Light-mode color tokens for the Wisp design system.
  *
- * Clean white canvas with cool gray accents. Dark surfaces for cards
- * and raised elements maintain the monochrome aesthetic. Black accent
- * system for interactive elements.
+ * Clean white canvas with cool gray accents. Light surfaces for cards
+ * and panels. Black accent system for interactive elements.
  */
 
 import type { ThemeColors } from './types';
 
 export const lightColors: ThemeColors = {
   // ---------------------------------------------------------------------------
-  // Background / elevation — white canvas, dark surfaces
+  // Background / elevation — white canvas, light surfaces
   // ---------------------------------------------------------------------------
   background: {
     /** Root-level light canvas — pure white. */
     canvas: '#FFFFFF',
-    /** Recessed / inset areas — subtle cool off-white. */
-    sunken: '#F4F4F5',
-    /** Card / panel surface — near-black. */
-    surface: '#09090B',
-    /** Elevated elements (popovers, tooltips) — dark. */
-    raised: '#111113',
+    /** Recessed / inset areas — cool gray, visible on surface. */
+    sunken: '#EBEBED',
+    /** Card / panel surface — cool off-white. */
+    surface: '#F8F8FA',
+    /** Elevated elements (popovers, tooltips) — white. */
+    raised: '#FFFFFF',
     /** Semi-transparent scrim for modals and drawers. */
     overlay: 'rgba(0, 0, 0, 0.6)',
   },
@@ -36,14 +35,14 @@ export const lightColors: ThemeColors = {
     secondary: '#71717A',
     /** Muted / disabled text — cool gray (≥ 3:1 on canvas). */
     muted: '#8E8E96',
-    /** Inverse text — pure white, used on dark surfaces. */
+    /** Inverse text — pure white, used on accent/dark surfaces. */
     inverse: '#FFFFFF',
     /** Link / interactive text — near-black on canvas. */
     link: '#0C0C0E',
-    /** Primary text on raised (dark) surfaces — pure white. */
-    onRaised: '#FFFFFF',
-    /** Secondary text on raised (dark) surfaces — readable on dark. */
-    onRaisedSecondary: '#A1A1AA',
+    /** Primary text on raised surfaces — near-black. */
+    onRaised: '#0C0C0E',
+    /** Secondary text on raised surfaces — medium gray. */
+    onRaisedSecondary: '#71717A',
   },
 
   // ---------------------------------------------------------------------------
@@ -74,12 +73,12 @@ export const lightColors: ThemeColors = {
     secondary: '#71717A',
     /** Selection / highlight tint — black at low opacity. */
     highlight: 'rgba(0, 0, 0, 0.04)',
-    /** Hover highlight on raised (dark) surfaces — white tint. */
-    highlightRaised: 'rgba(255, 255, 255, 0.08)',
-    /** Muted foreground on raised (dark) surfaces. */
-    mutedRaised: 'rgba(255, 255, 255, 0.45)',
-    /** Low-contrast divider on raised (dark) surfaces. */
-    dividerRaised: 'rgba(255, 255, 255, 0.10)',
+    /** Hover highlight on raised surfaces — subtle dark tint. */
+    highlightRaised: 'rgba(0, 0, 0, 0.04)',
+    /** Muted foreground on raised surfaces. */
+    mutedRaised: 'rgba(0, 0, 0, 0.35)',
+    /** Low-contrast divider on raised surfaces. */
+    dividerRaised: 'rgba(0, 0, 0, 0.08)',
   },
 
   // ---------------------------------------------------------------------------

@@ -63,6 +63,7 @@ export const Badge = forwardRef<View, BadgeProps>(function Badge(
     paddingHorizontal: sizeConfig.paddingX,
     paddingVertical: sizeConfig.paddingY,
     borderRadius: shape === 'pill' ? 9999 : sizeConfig.badgeRadius,
+    overflow: 'hidden' as const,
     backgroundColor: colors.bg,
     borderWidth: 1,
     borderColor: colors.border,

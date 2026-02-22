@@ -325,6 +325,7 @@ export const NumberInput = forwardRef<View, NumberInputProps>(
       height: sizeConfig.height + 16,
       paddingHorizontal: defaultSpacing.sm,
       borderRadius: sizeConfig.borderRadius + 4,
+      overflow: 'hidden' as const,
       borderWidth: 1,
       borderColor: colors.border,
       backgroundColor: disabled ? colors.bg : 'transparent',

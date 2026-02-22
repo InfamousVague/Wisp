@@ -158,7 +158,11 @@ export const CircularProgress = forwardRef<View, CircularProgressProps>(
                 justifyContent: 'center',
               }}
             >
-              {children != null ? children : (
+              {children != null ? (
+                typeof children === 'string' || typeof children === 'number' ? (
+                  <RNText style={{ fontSize: sizeConfig.fontSize, fontWeight: defaultTypography.weights.semibold, color: colors.valueText }}>{children}</RNText>
+                ) : children
+              ) : (
                 <RNText
                   style={{
                     fontSize: sizeConfig.fontSize,

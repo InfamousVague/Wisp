@@ -61,6 +61,7 @@ export const Chip = forwardRef<View, ChipProps>(function Chip(
       paddingHorizontal: sizeConfig.paddingX,
       paddingVertical: sizeConfig.paddingY,
       borderRadius: sizeConfig.borderRadius,
+      overflow: 'hidden' as const,
       backgroundColor: colors.bg,
       borderWidth: 1,
       borderColor: colors.border,

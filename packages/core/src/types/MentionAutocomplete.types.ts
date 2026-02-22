@@ -27,6 +27,53 @@ export interface MentionUser {
 }
 
 // ---------------------------------------------------------------------------
+// Mention role (community roles)
+// ---------------------------------------------------------------------------
+
+/**
+ * Represents a role that can be @mentioned in community channels.
+ */
+export interface MentionRole {
+  /** Unique role identifier. */
+  id: string;
+  /** Role display name. */
+  name: string;
+  /** Role color (hex). */
+  color?: string;
+  /** Number of members with this role. */
+  memberCount?: number;
+}
+
+// ---------------------------------------------------------------------------
+// Mention special (@everyone, @here)
+// ---------------------------------------------------------------------------
+
+/** Type of special mention. */
+export type MentionSpecialType = 'everyone' | 'here';
+
+/**
+ * Represents a special mention target (@everyone, @here).
+ */
+export interface MentionSpecial {
+  /** Special mention type. */
+  type: MentionSpecialType;
+  /** Description shown below the label. */
+  description?: string;
+}
+
+// ---------------------------------------------------------------------------
+// Union mention item
+// ---------------------------------------------------------------------------
+
+/**
+ * Discriminated union for all mention item types.
+ */
+export type MentionItem =
+  | { kind: 'user'; data: MentionUser }
+  | { kind: 'role'; data: MentionRole }
+  | { kind: 'special'; data: MentionSpecial };
+
+// ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
 
@@ -65,4 +112,15 @@ export interface MentionAutocompleteProps extends Omit<React.HTMLAttributes<HTML
 
   /** Text shown when no users match. @default 'No users found' */
   emptyText?: string;
+
+  // -- Community mention extensions --
+
+  /** Roles available for @role mention. */
+  roles?: MentionRole[];
+
+  /** Show special mentions (@everyone, @here) at the top. @default false */
+  showSpecialMentions?: boolean;
+
+  /** Called when any mention item (user, role, or special) is selected. */
+  onItemSelect?: (item: MentionItem) => void;
 }

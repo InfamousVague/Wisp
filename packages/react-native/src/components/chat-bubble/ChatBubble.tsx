@@ -123,6 +123,7 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
     borderTopRightRadius: defaultRadii.lg,
     borderBottomLeftRadius: isOutgoing ? 12 : 2,
     borderBottomRightRadius: isOutgoing ? 2 : 12,
+    overflow: 'hidden' as const,
     backgroundColor: colors.bg,
     borderWidth: 1,
     borderColor: colors.border,

@@ -6,8 +6,34 @@
  */
 
 import React, { forwardRef, useMemo, useState, useCallback } from 'react';
-import { View, Text, Pressable, ScrollView } from 'react-native';
+import { View, Text, Pressable, ScrollView, Platform } from 'react-native';
 import type { GestureResponderEvent, ViewProps, ViewStyle, TextStyle } from 'react-native';
+
+/**
+ * Creates a web-compatible onContextMenu handler that maps right-click
+ * to the same handler used for mobile long-press.
+ * Returns undefined on non-web platforms.
+ */
+function webContextMenu(handler: ((e: GestureResponderEvent) => void) | undefined) {
+  if (Platform.OS !== 'web' || !handler) return undefined;
+  return (e: any) => {
+    e.preventDefault();
+    const syntheticEvent = {
+      nativeEvent: {
+        pageX: e.clientX ?? e.pageX ?? 0,
+        pageY: e.clientY ?? e.pageY ?? 0,
+        locationX: 0,
+        locationY: 0,
+        target: e.target,
+        identifier: 0,
+        timestamp: Date.now(),
+      },
+      preventDefault: () => e.preventDefault(),
+      stopPropagation: () => e.stopPropagation(),
+    } as unknown as GestureResponderEvent;
+    handler(syntheticEvent);
+  };
+}
 import type {
   MemberListMember,
   MemberListSection,
@@ -28,6 +54,8 @@ export interface MemberListProps extends ViewProps {
   sections: MemberListSection[];
   /** Called when a member item is pressed. */
   onMemberClick?: (member: MemberListMember, event: GestureResponderEvent) => void;
+  /** Called when a member item is long-pressed (e.g. context menu). */
+  onMemberLongPress?: (member: MemberListMember, event: GestureResponderEvent) => void;
   /** Panel title. @default 'Members' */
   title?: string;
   /** Called when the close button is pressed. If omitted, no close button. */
@@ -232,6 +260,7 @@ export const MemberList = forwardRef<View, MemberListProps>(
     {
       sections,
       onMemberClick,
+      onMemberLongPress,
       title = 'Members',
       onClose,
       loading = false,
@@ -269,6 +298,13 @@ export const MemberList = forwardRef<View, MemberListProps>(
         onMemberClick?.(member, event);
       },
       [onMemberClick],
+    );
+
+    const handleMemberLongPress = useCallback(
+      (member: MemberListMember, event: GestureResponderEvent) => {
+        onMemberLongPress?.(member, event);
+      },
+      [onMemberLongPress],
     );
 
     // -- Skeleton early return ------------------------------------------------
@@ -423,10 +459,10 @@ export const MemberList = forwardRef<View, MemberListProps>(
                   >
                     <ChevronIcon
                       size={12}
-                      color={colors.sectionLabel}
+                      color={section.labelColor ?? colors.sectionLabel}
                       collapsed={isCollapsed}
                     />
-                    <Text style={sectionLabelStyle}>
+                    <Text style={[sectionLabelStyle, section.labelColor ? { color: section.labelColor } : undefined]}>
                       {section.label} ({section.members.length})
                     </Text>
                   </Pressable>
@@ -435,6 +471,13 @@ export const MemberList = forwardRef<View, MemberListProps>(
                   {!isCollapsed &&
                     section.members.map((member) => {
                       const dotColor = resolveStatusDotColor(member.status, colors);
+                      // Web context menu for member right-click
+                      const memberCtxHandler = onMemberLongPress
+                        ? webContextMenu((e) => onMemberLongPress(member, e))
+                        : undefined;
+                      const memberWebProps = memberCtxHandler
+                        ? { onContextMenu: memberCtxHandler } as any
+                        : {};
 
                       return (
                         <Pressable
@@ -442,7 +485,9 @@ export const MemberList = forwardRef<View, MemberListProps>(
                           accessibilityRole="button"
                           accessibilityLabel={`${member.name}${member.status ? `, ${member.status}` : ''}`}
                           onPress={(e) => handleMemberClick(member, e)}
+                          onLongPress={(e) => handleMemberLongPress(member, e)}
                           style={memberItemStyle}
+                          {...memberWebProps}
                         >
                           {/* Avatar + status dot */}
                           <View style={{ position: 'relative', flexShrink: 0 }}>
@@ -466,9 +511,22 @@ export const MemberList = forwardRef<View, MemberListProps>(
 
                           {/* Text */}
                           <View style={{ flex: 1, flexDirection: 'column', minWidth: 0 }}>
-                            <Text style={memberNameStyle} numberOfLines={1}>
-                              {member.name}
-                            </Text>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                              {member.roleIcon && (
+                                <View style={{ width: 14, height: 14, flexShrink: 0, alignItems: 'center', justifyContent: 'center' }}>
+                                  {member.roleIcon}
+                                </View>
+                              )}
+                              <Text
+                                style={[
+                                  memberNameStyle,
+                                  member.roleColor ? { color: member.roleColor } : undefined,
+                                ]}
+                                numberOfLines={1}
+                              >
+                                {member.name}
+                              </Text>
+                            </View>
                             {(member.roleText || member.statusText) && (
                               <Text style={memberRoleTextStyle} numberOfLines={1}>
                                 {member.roleText || member.statusText}

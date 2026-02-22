@@ -320,6 +320,7 @@ export const PinInput = forwardRef<View, PinInputProps>(function PinInput(
           ? (colors.focusRing !== 'transparent' ? colors.focusRing : colors.border)
           : colors.border,
         borderRadius: sizeConfig.borderRadius,
+        overflow: 'hidden' as const,
         padding: 0,
         opacity: disabled ? 0.5 : 1,
       };

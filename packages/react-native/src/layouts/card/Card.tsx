@@ -145,12 +145,17 @@ export const Card = forwardRef<View, CardProps>(function Card(
     }
   }, [variant, themeColors]);
 
+  // overflow: 'hidden' ensures borderRadius clips content on React Native iOS.
+  // Only applied to non-elevated variants since it would clip iOS shadows.
+  const needsOverflowClip = variant !== 'elevated' && radiusValue > 0;
+
   const baseStyle = useMemo<ViewStyle>(() => ({
     padding: paddingValue,
     borderRadius: radiusValue,
+    ...(needsOverflowClip ? { overflow: 'hidden' as const } : {}),
     opacity: disabled ? 0.5 : 1,
     ...variantStyles,
-  }), [paddingValue, radiusValue, disabled, variantStyles]);
+  }), [paddingValue, radiusValue, needsOverflowClip, disabled, variantStyles]);
 
   const handlePress = useCallback(() => {
     if (disabled) return;

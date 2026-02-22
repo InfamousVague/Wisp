@@ -56,6 +56,7 @@ export const Tag = forwardRef<View, TagProps>(function Tag(
       borderWidth: 1,
       borderColor: colors.border,
       borderRadius: sizeConfig.borderRadius,
+      overflow: 'hidden' as const,
       opacity: disabled ? 0.5 : 1,
     }),
     [sizeConfig, colors, disabled, onRemove],

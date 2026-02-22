@@ -22,6 +22,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@wisp-ui/core': resolve(__dirname, '../core/src'),
+      '@coexist/wisp-core': resolve(__dirname, '../core/src'),
     },
   },
 });

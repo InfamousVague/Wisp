@@ -62,6 +62,7 @@ export const Alert = forwardRef<View, AlertProps>(function Alert(
           padding: defaultSpacing.md,
           paddingHorizontal: defaultSpacing.lg,
           borderRadius: defaultRadii.lg,
+          overflow: 'hidden',
           borderWidth: 1,
           borderColor: colors.border,
           backgroundColor: colors.bg,
@@ -100,7 +101,9 @@ export const Alert = forwardRef<View, AlertProps>(function Alert(
             {body}
           </RNText>
         )}
-        {!body && typeof children !== 'string' && children}
+        {!body && typeof children === 'number' ? (
+          <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, lineHeight: 20, fontWeight: defaultTypography.weights.regular, color: isRaised ? themeColors.text.onRaisedSecondary : themeColors.text.secondary }}>{children}</RNText>
+        ) : !body && typeof children !== 'string' ? children : null}
       </View>
 
       {action && (

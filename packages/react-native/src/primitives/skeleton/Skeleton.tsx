@@ -63,6 +63,7 @@ export const Skeleton = forwardRef<View, SkeletonProps>(function Skeleton(
             width: size,
             height: size,
             borderRadius: size / 2,
+            overflow: 'hidden',
             backgroundColor: bgColor,
             opacity: pulseAnim,
           },

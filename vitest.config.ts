@@ -11,7 +11,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./tests/setup.ts'],
-    include: ['src/**/*.test.{ts,tsx}'],
+    include: ['src/**/*.test.{ts,tsx}', 'packages/react/src/**/*.test.{ts,tsx}'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
@@ -22,6 +22,9 @@ export default defineConfig({
   resolve: {
     alias: {
       '@wisp': resolve(__dirname, 'src'),
+      '@coexist/wisp-core': resolve(__dirname, 'packages/core/src'),
+      '@wisp-ui/core': resolve(__dirname, 'packages/core/src'),
+      '@wisp-ui/react': resolve(__dirname, 'packages/react/src'),
     },
   },
 });

@@ -158,4 +158,28 @@ export interface ChatBubbleProps extends React.HTMLAttributes<HTMLDivElement> {
    * **Do not set this prop manually** — it is injected by `MessageGroup`.
    */
   _inGroup?: boolean;
+
+  // -- Community thread extensions --
+
+  /**
+   * Thread indicator metadata. When provided, a "View Thread" button
+   * with reply count is rendered below the bubble.
+   */
+  threadInfo?: {
+    /** Number of replies in the thread. */
+    replyCount: number;
+    /** Avatars of recent thread participants (rendered as a mini AvatarGroup). */
+    participantAvatars?: React.ReactNode[];
+    /** Last reply timestamp text. */
+    lastReplyAt?: string;
+    /** Called when the thread indicator is clicked. */
+    onClick?: () => void;
+  };
+
+  /**
+   * Whether this is a system message (e.g. "User joined", "Channel created").
+   * System messages render with a centered, muted appearance.
+   * @default false
+   */
+  system?: boolean;
 }

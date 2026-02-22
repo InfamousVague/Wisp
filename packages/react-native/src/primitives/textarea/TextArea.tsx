@@ -143,6 +143,7 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea(
   const containerStyle = useMemo<ViewStyle>(() => ({
     minHeight: sizeConfig.minHeight,
     borderRadius: typeof sizeConfig.borderRadius === 'number' ? sizeConfig.borderRadius : (defaultRadii as any)[sizeConfig.borderRadius] ?? defaultRadii.md,
+    overflow: 'hidden' as const,
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.bg,

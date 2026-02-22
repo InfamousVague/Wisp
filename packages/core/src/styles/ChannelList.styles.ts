@@ -151,6 +151,33 @@ export function buildCategoryHeaderStyle(
 }
 
 // ---------------------------------------------------------------------------
+// 3b. Category create-channel button (+)
+// ---------------------------------------------------------------------------
+
+export function buildCategoryCreateButtonStyle(
+  colors: ChannelListColors,
+  theme: WispTheme,
+): CSSStyleObject {
+  const { radii } = theme;
+  return {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 18,
+    height: 18,
+    borderRadius: radii.sm,
+    border: 'none',
+    backgroundColor: 'transparent',
+    color: colors.categoryIcon,
+    cursor: 'pointer',
+    padding: 0,
+    flexShrink: 0,
+    opacity: 0,
+    transition: `opacity ${durations.fast}ms ${easings.easeOut.css}, color ${durations.fast}ms ${easings.easeOut.css}`,
+  };
+}
+
+// ---------------------------------------------------------------------------
 // 4. Category label (uppercase text)
 // ---------------------------------------------------------------------------
 

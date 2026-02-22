@@ -20,6 +20,7 @@ import {
   Lightbulb,
   Heart,
   Flag,
+  Sparkles,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type {
@@ -70,6 +71,7 @@ const CATEGORY_ICONS: Record<EmojiCategory, LucideIcon> = {
   objects: Lightbulb,
   symbols: Heart,
   flags: Flag,
+  custom: Sparkles,
 };
 
 /** Display names for each category. */
@@ -84,6 +86,7 @@ const CATEGORY_LABELS: Record<EmojiCategory, string> = {
   objects: 'Objects',
   symbols: 'Symbols',
   flags: 'Flags',
+  custom: 'Custom',
 };
 
 /** Skin tone preview emoji. */

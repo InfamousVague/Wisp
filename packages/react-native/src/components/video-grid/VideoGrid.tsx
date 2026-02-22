@@ -1,36 +1,34 @@
 /**
- * VideoGrid — Responsive grid of video participants with click-to-focus.
+ * @module components/video-grid
+ * @description React Native VideoGrid component for the Wisp design system.
  *
- * Layouts:
- *   - **grid** (default): Equal-sized tiles that auto-scale for any group size.
- *     Clicking a tile focuses it (promoted to main view with thumbnail strip below).
- *     Clicking the focused tile again returns to grid view.
- *   - **spotlight**: Active speaker (or `focusedDid`) takes main area,
- *     everyone else in a horizontal thumbnail strip below.
- *   - **sidebar**: Screen share or focused video in the main area,
- *     participants in a vertical sidebar strip on the right.
- *
- * Supports screen sharing (always takes the main area regardless of layout).
+ * Responsive grid layout for video call participants. Reuses column resolution
+ * from `@coexist/wisp-core`.
  */
 
-import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import { View, Pressable, ScrollView } from 'react-native';
-import type { ViewStyle } from 'react-native';
+import React, { forwardRef, useMemo, useCallback } from 'react';
+import { View, Text, Pressable, ScrollView } from 'react-native';
+import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
+import type {
+  VideoGridLayout,
+  VideoParticipant,
+} from '@coexist/wisp-core/types/VideoGrid.types';
+import { resolveGridColumns } from '@coexist/wisp-core/styles/VideoGrid.styles';
 import { useTheme } from '../../providers';
-import { VideoTile } from '../video-tile/VideoTile';
-import type { VideoGridProps, VideoGridParticipant } from '@coexist/wisp-core/types/VideoGrid.types';
-import {
-  resolveGridColumns,
-  resolveGridBackground,
-  THUMBNAIL_STRIP_HEIGHT,
-} from '@coexist/wisp-core/styles/VideoGrid.styles';
 
 // ---------------------------------------------------------------------------
-// Defaults
+// Props
 // ---------------------------------------------------------------------------
 
-const DEFAULT_GAP = 6;
-const DEFAULT_TILE_RADIUS = 10;
+export interface VideoGridProps extends ViewProps {
+  participants: VideoParticipant[];
+  layout?: VideoGridLayout;
+  spotlightId?: string;
+  onParticipantClick?: (participantId: string) => void;
+  maxVisible?: number;
+  showOverflowCount?: boolean;
+  skeleton?: boolean;
+}
 
 // ---------------------------------------------------------------------------
 // Component
@@ -39,259 +37,166 @@ const DEFAULT_TILE_RADIUS = 10;
 export const VideoGrid = forwardRef<View, VideoGridProps>(function VideoGrid(
   {
     participants,
-    localStream,
-    screenShareStream = null,
-    screenShareDid = null,
     layout = 'grid',
-    activeSpeakerDid = null,
-    localDid,
-    focusedDid: controlledFocused,
-    onFocusParticipant,
-    gap = DEFAULT_GAP,
-    tileBorderRadius = DEFAULT_TILE_RADIUS,
+    spotlightId,
+    onParticipantClick,
+    maxVisible = 25,
+    showOverflowCount = true,
+    skeleton = false,
+    style: userStyle,
+    ...rest
   },
   ref,
 ) {
   const { theme } = useTheme();
-  const isDark =
-    theme.colors.background.canvas === '#000000' ||
-    theme.colors.background.canvas === '#0a0a0a';
 
-  const bgColor = useMemo(() => resolveGridBackground(isDark), [isDark]);
+  const visibleParticipants = participants.slice(0, maxVisible);
+  const overflowCount = participants.length - maxVisible;
+  const hasOverflow = overflowCount > 0 && showOverflowCount;
 
-  // Internal focused state (used when uncontrolled)
-  const [internalFocused, setInternalFocused] = useState<string | null>(null);
-  const focusedDid = controlledFocused !== undefined ? controlledFocused : internalFocused;
-
-  const handleTilePress = useCallback((did: string) => {
-    const next = did === focusedDid ? null : did;
-    if (onFocusParticipant) {
-      onFocusParticipant(next);
-    } else {
-      setInternalFocused(next);
-    }
-  }, [focusedDid, onFocusParticipant]);
-
-  // -------------------------------------------------------------------------
-  // Helpers
-  // -------------------------------------------------------------------------
-
-  const streamFor = useCallback((p: VideoGridParticipant) => {
-    return p.did === localDid ? localStream : p.stream;
-  }, [localDid, localStream]);
-
-  const isLocal = useCallback((p: VideoGridParticipant) => p.did === localDid, [localDid]);
-
-  // -------------------------------------------------------------------------
-  // Screen share layout — always takes priority
-  // -------------------------------------------------------------------------
-  if (screenShareStream) {
-    const shareOwner = participants.find((p) => p.did === screenShareDid);
-
+  // -----------------------------------------------------------------------
+  // Skeleton
+  // -----------------------------------------------------------------------
+  if (skeleton) {
     return (
-      <View ref={ref} style={[rootStyle, { backgroundColor: bgColor }]}>
-        {/* Main: screen share */}
-        <View style={mainAreaStyle}>
-          <VideoTile
-            stream={screenShareStream}
-            displayName={shareOwner?.displayName ?? 'Screen'}
-            fit="contain"
-            size="full"
-            style={{ borderRadius: tileBorderRadius }}
-          />
-        </View>
-
-        {/* Thumbnail strip */}
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={[stripContentStyle, { gap }]}
-          style={[stripContainerStyle, { height: THUMBNAIL_STRIP_HEIGHT + 12 }]}
-        >
-          {participants.map((p) => (
-            <Pressable
-              key={p.did}
-              onPress={() => handleTilePress(p.did)}
-              style={[
-                thumbnailWrapperStyle,
-                { borderRadius: tileBorderRadius - 2 },
-                p.isSpeaking && speakingBorderStyle,
-              ]}
-            >
-              <VideoTile
-                stream={streamFor(p)}
-                displayName={p.displayName}
-                isMuted={p.isMuted}
-                isCameraOff={p.isCameraOff}
-                isSpeaking={p.isSpeaking}
-                mirror={isLocal(p)}
-                size="sm"
-                style={{ borderRadius: tileBorderRadius - 2 }}
-              />
-            </Pressable>
-          ))}
-        </ScrollView>
+      <View ref={ref} style={[skeletonContainer, { backgroundColor: theme.colors.background.sunken }, userStyle]} {...rest}>
+        {[0, 1, 2, 3].map((i) => (
+          <View key={i} style={[skeletonTile, { backgroundColor: theme.colors.border.subtle }]} />
+        ))}
       </View>
     );
   }
 
-  // -------------------------------------------------------------------------
-  // Spotlight / focused layout
-  // -------------------------------------------------------------------------
-  const effectiveFocused = focusedDid ?? (layout === 'spotlight' ? activeSpeakerDid : null);
-  const hasFocused = effectiveFocused && participants.some((p) => p.did === effectiveFocused);
+  // -----------------------------------------------------------------------
+  // Tile renderer
+  // -----------------------------------------------------------------------
+  const renderTile = useCallback((p: VideoParticipant, tileStyle?: ViewStyle) => {
+    const showFallback = p.isCameraOff || !p.videoStream;
+    return (
+      <Pressable
+        key={p.id}
+        onPress={() => onParticipantClick?.(p.id)}
+        style={[
+          baseTileStyle,
+          { backgroundColor: theme.colors.background.raised, borderRadius: 8 },
+          p.isSpeaking && { borderWidth: 2, borderColor: theme.colors.status.success },
+          tileStyle,
+        ]}
+        accessibilityLabel={p.name}
+      >
+        {/* Video stream */}
+        {!showFallback && p.videoStream && (
+          <View style={streamWrapperStyle}>{p.videoStream as React.ReactElement}</View>
+        )}
 
-  if (hasFocused) {
-    const focused = participants.find((p) => p.did === effectiveFocused)!;
-    const others = participants.filter((p) => p.did !== effectiveFocused);
+        {/* Fallback */}
+        {showFallback && (
+          <View style={fallbackStyle}>
+            {p.avatar ? (p.avatar as React.ReactElement) : (
+              <Text style={[initialStyle, { color: theme.colors.text.secondary }]}>
+                {p.name.charAt(0).toUpperCase()}
+              </Text>
+            )}
+          </View>
+        )}
 
-    // Sidebar layout: main + vertical strip on the right
-    if (layout === 'sidebar') {
-      return (
-        <View ref={ref} style={[sidebarRootStyle, { backgroundColor: bgColor }]}>
-          <Pressable
-            style={[mainAreaStyle, { padding: gap / 2 }]}
-            onPress={() => handleTilePress(focused.did)}
-          >
-            <VideoTile
-              stream={streamFor(focused)}
-              displayName={focused.displayName}
-              isMuted={focused.isMuted}
-              isCameraOff={focused.isCameraOff}
-              isSpeaking={focused.isSpeaking}
-              mirror={isLocal(focused)}
-              fit="cover"
-              size="full"
-              style={{ borderRadius: tileBorderRadius }}
-            />
-          </Pressable>
-
-          {others.length > 0 && (
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={[verticalStripContentStyle, { gap }]}
-              style={verticalStripStyle}
-            >
-              {others.map((p) => (
-                <Pressable
-                  key={p.did}
-                  onPress={() => handleTilePress(p.did)}
-                  style={[
-                    sidebarThumbStyle,
-                    { borderRadius: tileBorderRadius - 2 },
-                    p.isSpeaking && speakingBorderStyle,
-                  ]}
-                >
-                  <VideoTile
-                    stream={streamFor(p)}
-                    displayName={p.displayName}
-                    isMuted={p.isMuted}
-                    isCameraOff={p.isCameraOff}
-                    isSpeaking={p.isSpeaking}
-                    mirror={isLocal(p)}
-                    size="sm"
-                    style={{ borderRadius: tileBorderRadius - 2 }}
-                  />
-                </Pressable>
-              ))}
-            </ScrollView>
+        {/* Indicators */}
+        <View style={indicatorsRowStyle}>
+          {p.isMuted && (
+            <View style={indicatorBadgeStyle}>
+              <Text style={indicatorTextStyle}>M</Text>
+            </View>
+          )}
+          {p.isDeafened && (
+            <View style={indicatorBadgeStyle}>
+              <Text style={indicatorTextStyle}>D</Text>
+            </View>
+          )}
+          {p.isScreenSharing && (
+            <View style={indicatorBadgeStyle}>
+              <Text style={indicatorTextStyle}>S</Text>
+            </View>
           )}
         </View>
-      );
-    }
 
-    // Default spotlight: main area + horizontal thumbnail strip below
+        {/* Name label */}
+        <View style={nameLabelContainerStyle}>
+          <Text style={nameLabelStyle} numberOfLines={1}>
+            {p.name}
+          </Text>
+        </View>
+      </Pressable>
+    );
+  }, [theme, onParticipantClick]);
+
+  // -----------------------------------------------------------------------
+  // Spotlight layout
+  // -----------------------------------------------------------------------
+  if (layout === 'spotlight') {
+    const spotlightParticipant =
+      visibleParticipants.find((p) => p.id === spotlightId) ?? visibleParticipants[0];
+    const stripParticipants = spotlightParticipant
+      ? visibleParticipants.filter((p) => p.id !== spotlightParticipant.id)
+      : [];
+
     return (
-      <View ref={ref} style={[rootStyle, { backgroundColor: bgColor }]}>
-        {/* Main focused view */}
-        <Pressable
-          style={[mainAreaStyle, { padding: gap }]}
-          onPress={() => handleTilePress(focused.did)}
-        >
-          <VideoTile
-            stream={streamFor(focused)}
-            displayName={focused.displayName}
-            isMuted={focused.isMuted}
-            isCameraOff={focused.isCameraOff}
-            isSpeaking={focused.isSpeaking}
-            mirror={isLocal(focused)}
-            fit="cover"
-            size="full"
-            style={{ borderRadius: tileBorderRadius }}
-          />
-        </Pressable>
-
-        {/* Horizontal thumbnail strip */}
-        {others.length > 0 && (
+      <View ref={ref} style={[spotlightRootStyle, { backgroundColor: theme.colors.background.sunken }, userStyle]} {...rest}>
+        {spotlightParticipant && (
+          <View style={spotlightMainStyle}>
+            {renderTile(spotlightParticipant, { flex: 1 })}
+          </View>
+        )}
+        {stripParticipants.length > 0 && (
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={[stripContentStyle, { gap, paddingHorizontal: gap }]}
-            style={[stripContainerStyle, { height: THUMBNAIL_STRIP_HEIGHT + gap * 2 }]}
+            contentContainerStyle={stripContentStyle}
+            style={stripStyle}
           >
-            {others.map((p) => (
-              <Pressable
-                key={p.did}
-                onPress={() => handleTilePress(p.did)}
-                style={[
-                  thumbnailWrapperStyle,
-                  { borderRadius: tileBorderRadius - 2 },
-                  p.did === activeSpeakerDid && speakingBorderStyle,
-                ]}
-              >
-                <VideoTile
-                  stream={streamFor(p)}
-                  displayName={p.displayName}
-                  isMuted={p.isMuted}
-                  isCameraOff={p.isCameraOff}
-                  isSpeaking={p.isSpeaking}
-                  mirror={isLocal(p)}
-                  size="sm"
-                  style={{ borderRadius: tileBorderRadius - 2 }}
-                />
-              </Pressable>
-            ))}
+            {stripParticipants.map((p) => renderTile(p, { width: 150, height: 100 }))}
           </ScrollView>
         )}
       </View>
     );
   }
 
-  // -------------------------------------------------------------------------
-  // Grid layout (default — no one focused)
-  // -------------------------------------------------------------------------
-  const count = participants.length;
-  const cols = resolveGridColumns(count);
-  const rows = Math.ceil(count / cols);
-
-  const tileWidth = `${100 / cols}%` as unknown as number;
-  const tileHeight = `${100 / rows}%` as unknown as number;
+  // -----------------------------------------------------------------------
+  // Grid layout
+  // -----------------------------------------------------------------------
+  const displayCount = hasOverflow ? visibleParticipants.length + 1 : visibleParticipants.length;
+  const cols = resolveGridColumns(displayCount);
+  const rows = Math.ceil(displayCount / cols);
 
   return (
-    <View ref={ref} style={[gridContainerStyle, { backgroundColor: bgColor, padding: gap / 2 }]}>
-      {participants.map((p) => (
-        <Pressable
-          key={p.did}
-          onPress={() => handleTilePress(p.did)}
+    <View ref={ref} style={[gridRootStyle, { backgroundColor: theme.colors.background.sunken }, userStyle]} {...rest}>
+      {visibleParticipants.map((p) => (
+        <View
+          key={p.id}
           style={{
-            width: tileWidth,
-            height: tileHeight,
-            padding: gap / 2,
+            width: `${100 / cols}%` as unknown as number,
+            height: `${100 / rows}%` as unknown as number,
+            padding: 2,
           }}
         >
-          <VideoTile
-            stream={streamFor(p)}
-            displayName={p.displayName}
-            isMuted={p.isMuted}
-            isCameraOff={p.isCameraOff}
-            isSpeaking={p.isSpeaking}
-            mirror={isLocal(p)}
-            fit="cover"
-            size="full"
-            style={{ borderRadius: tileBorderRadius }}
-          />
-        </Pressable>
+          {renderTile(p, { flex: 1 })}
+        </View>
       ))}
+
+      {hasOverflow && (
+        <View
+          style={{
+            width: `${100 / cols}%` as unknown as number,
+            height: `${100 / rows}%` as unknown as number,
+            padding: 2,
+          }}
+        >
+          <View style={[overflowTileStyle, { backgroundColor: theme.colors.background.raised, borderRadius: 8 }]}>
+            <Text style={[overflowTextStyle, { color: theme.colors.text.secondary }]}>
+              +{overflowCount}
+            </Text>
+          </View>
+        </View>
+      )}
     </View>
   );
 });
@@ -302,62 +207,126 @@ VideoGrid.displayName = 'VideoGrid';
 // Static styles
 // ---------------------------------------------------------------------------
 
-const rootStyle: ViewStyle = {
-  flex: 1,
-  flexDirection: 'column',
-};
-
-const sidebarRootStyle: ViewStyle = {
-  flex: 1,
-  flexDirection: 'row',
-};
-
-const mainAreaStyle: ViewStyle = {
-  flex: 1,
-};
-
-const gridContainerStyle: ViewStyle = {
+const gridRootStyle: ViewStyle = {
   flex: 1,
   flexDirection: 'row',
   flexWrap: 'wrap',
   alignContent: 'center',
+  padding: 2,
+  borderRadius: 12,
 };
 
-// Horizontal thumbnail strip
-const stripContainerStyle: ViewStyle = {
+const spotlightRootStyle: ViewStyle = {
+  flex: 1,
+  flexDirection: 'column',
+  padding: 4,
+  gap: 4,
+  borderRadius: 12,
+};
+
+const spotlightMainStyle: ViewStyle = {
+  flex: 1,
+  minHeight: 0,
+};
+
+const stripStyle: ViewStyle = {
   flexGrow: 0,
   flexShrink: 0,
+  height: 108,
 };
 
 const stripContentStyle: ViewStyle = {
+  gap: 4,
   alignItems: 'center',
-  paddingVertical: 6,
-  paddingHorizontal: 6,
+  paddingHorizontal: 2,
 };
 
-const thumbnailWrapperStyle: ViewStyle = {
-  width: THUMBNAIL_STRIP_HEIGHT * (16 / 9),
-  height: THUMBNAIL_STRIP_HEIGHT,
+const baseTileStyle: ViewStyle = {
   overflow: 'hidden',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'relative',
 };
 
-// Vertical sidebar strip
-const verticalStripStyle: ViewStyle = {
-  width: 180,
-  flexGrow: 0,
-  flexShrink: 0,
+const streamWrapperStyle: ViewStyle = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  alignItems: 'center',
+  justifyContent: 'center',
 };
 
-const verticalStripContentStyle: ViewStyle = {
+const fallbackStyle: ViewStyle = {
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 8,
+};
+
+const initialStyle: TextStyle = {
+  fontSize: 24,
+  fontWeight: '600',
+};
+
+const indicatorsRowStyle: ViewStyle = {
+  position: 'absolute',
+  top: 6,
+  right: 6,
+  flexDirection: 'row',
+  gap: 4,
+};
+
+const indicatorBadgeStyle: ViewStyle = {
+  width: 18,
+  height: 18,
+  borderRadius: 4,
+  backgroundColor: 'rgba(0,0,0,0.5)',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
+const indicatorTextStyle: TextStyle = {
+  color: '#ffffff',
+  fontSize: 9,
+  fontWeight: '700',
+};
+
+const nameLabelContainerStyle: ViewStyle = {
+  position: 'absolute',
+  bottom: 6,
+  left: 6,
+  right: 6,
+};
+
+const nameLabelStyle: TextStyle = {
+  fontSize: 11,
+  fontWeight: '500',
+  color: '#ffffff',
+};
+
+const overflowTileStyle: ViewStyle = {
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
+const overflowTextStyle: TextStyle = {
+  fontSize: 16,
+  fontWeight: '600',
+};
+
+const skeletonContainer: ViewStyle = {
+  flex: 1,
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: 4,
   padding: 4,
+  borderRadius: 12,
 };
 
-const sidebarThumbStyle: ViewStyle = {
+const skeletonTile: ViewStyle = {
+  width: '48%',
   height: 100,
-  overflow: 'hidden',
-};
-
-const speakingBorderStyle: ViewStyle = {
-  borderWidth: 2,
-  borderColor: '#22c55e',
+  borderRadius: 8,
 };

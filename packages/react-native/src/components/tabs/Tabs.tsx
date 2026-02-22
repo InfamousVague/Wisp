@@ -234,9 +234,9 @@ export const Tab = forwardRef<View, TabProps & { _registerLayout?: (value: strin
       () => ({
         backgroundColor: themeColors.status.danger,
         borderRadius: 99,
-        paddingHorizontal: 5,
-        minWidth: 18,
-        height: 18,
+        paddingHorizontal: 4,
+        minWidth: 16,
+        height: 16,
         alignItems: 'center',
         justifyContent: 'center',
       }),
@@ -245,7 +245,7 @@ export const Tab = forwardRef<View, TabProps & { _registerLayout?: (value: strin
 
     const badgeTextStyle = useMemo<TextStyle>(
       () => ({
-        fontSize: 10,
+        fontSize: 9,
         fontWeight: '700',
         color: '#FFFFFF',
         textAlign: 'center',

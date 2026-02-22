@@ -32,17 +32,21 @@ export function resolveNotificationBadgeColors(
   theme: WispTheme,
 ): NotificationBadgeColorSet {
   const { colors: themeColors } = theme;
+  // Badge text on saturated status backgrounds must always be white for
+  // readability, regardless of theme mode.  `text.inverse` flips with the
+  // theme (dark in dark-mode) which makes the count invisible on red/green/blue.
+  const WHITE = '#FFFFFF';
   switch (color) {
     case 'danger':
-      return { bg: themeColors.status.danger, text: themeColors.text.inverse };
+      return { bg: themeColors.status.danger, text: WHITE };
     case 'warning':
       return { bg: themeColors.status.warning, text: themeColors.text.primary };
     case 'success':
-      return { bg: themeColors.status.success, text: themeColors.text.inverse };
+      return { bg: themeColors.status.success, text: WHITE };
     case 'info':
-      return { bg: themeColors.status.info, text: themeColors.text.inverse };
+      return { bg: themeColors.status.info, text: WHITE };
     case 'default':
-      return { bg: themeColors.accent.primary, text: themeColors.text.inverse };
+      return { bg: themeColors.accent.primary, text: WHITE };
     default:
       return resolveNotificationBadgeColors('danger', theme);
   }

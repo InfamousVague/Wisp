@@ -263,12 +263,12 @@ export const ConversationListItem = forwardRef<View, ConversationListItemProps>(
           {/* Name + timestamp row */}
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 4 }}>
             <Text numberOfLines={1} style={nameTextStyle}>{name}</Text>
-            {timestamp && <Text style={timestampTextStyle}>{timestamp}</Text>}
+            {timestamp ? <Text style={timestampTextStyle}>{timestamp}</Text> : null}
           </View>
 
           {/* Last message + indicators row */}
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 4 }}>
-            {lastMessage && <Text numberOfLines={1} style={lastMsgTextStyle}>{lastMessage}</Text>}
+            {lastMessage ? <Text numberOfLines={1} style={lastMsgTextStyle}>{lastMessage}</Text> : null}
 
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 0 }}>
               {status === 'sent' && <CheckIcon size={14} color={colors.textMuted} />}

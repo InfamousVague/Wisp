@@ -222,6 +222,7 @@ export const Slider = forwardRef<View, SliderProps>(function Slider(
     height: sizeConfig.trackHeight,
     borderRadius: sizeConfig.trackRadius,
     backgroundColor: colors.track,
+    overflow: 'hidden' as const,
   }), [sizeConfig, colors]);
 
   const filledTrackStyle = useMemo<ViewStyle>(() => ({

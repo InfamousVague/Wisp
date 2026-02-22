@@ -6,8 +6,10 @@ import { describe, it, expect } from 'vitest';
 import { Text } from './Text';
 import { WispProvider } from '../../providers';
 import { contrastRatio } from '@coexist/wisp-core/utils/contrast';
-import { lightColors } from '@coexist/wisp-core/theme/light';
-import { darkColors } from '@coexist/wisp-core/theme/dark';
+import { createTheme } from '@coexist/wisp-core/theme/create-theme';
+
+const darkTheme = createTheme({ mode: 'dark' });
+const lightTheme = createTheme({ mode: 'light' });
 
 // ---------------------------------------------------------------------------
 // Test wrapper
@@ -134,43 +136,43 @@ describe('Text — truncation', () => {
 
 describe('Text — WCAG contrast', () => {
   describe('dark mode', () => {
-    const canvas = darkColors.background.canvas;
+    const canvas = darkTheme.colors.background.canvas;
 
     it('primary text on dark canvas passes AA (4.5:1)', () => {
-      const ratio = contrastRatio(darkColors.text.primary, canvas);
+      const ratio = contrastRatio(darkTheme.colors.text.primary, canvas);
       expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
 
     it('secondary text on dark canvas passes AA-large (3:1)', () => {
-      const ratio = contrastRatio(darkColors.text.secondary, canvas);
+      const ratio = contrastRatio(darkTheme.colors.text.secondary, canvas);
       expect(ratio).toBeGreaterThanOrEqual(3);
     });
 
     it('inverse text on dark surface passes AA (4.5:1)', () => {
       // Inverse text is meant for opposite-mode surfaces
       // In dark mode, it should work on raised/surface
-      const surface = darkColors.background.surface;
-      const ratio = contrastRatio(darkColors.text.primary, surface);
+      const surface = darkTheme.colors.background.surface;
+      const ratio = contrastRatio(darkTheme.colors.text.primary, surface);
       expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
   });
 
   describe('light mode', () => {
-    const canvas = lightColors.background.canvas;
+    const canvas = lightTheme.colors.background.canvas;
 
     it('primary text on light canvas passes AA (4.5:1)', () => {
-      const ratio = contrastRatio(lightColors.text.primary, canvas);
+      const ratio = contrastRatio(lightTheme.colors.text.primary, canvas);
       expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
 
     it('secondary text on light canvas passes AA-large (3:1)', () => {
-      const ratio = contrastRatio(lightColors.text.secondary, canvas);
+      const ratio = contrastRatio(lightTheme.colors.text.secondary, canvas);
       expect(ratio).toBeGreaterThanOrEqual(3);
     });
 
     it('inverse text on dark surface passes AA (4.5:1)', () => {
-      const surface = lightColors.background.surface;
-      const ratio = contrastRatio(lightColors.text.inverse, surface);
+      const surface = lightTheme.colors.background.surface;
+      const ratio = contrastRatio(lightTheme.colors.text.inverse, surface);
       expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
   });

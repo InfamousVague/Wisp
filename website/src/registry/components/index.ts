@@ -73,6 +73,7 @@ import { attachmentPreviewEntry } from './attachment-preview';
 import { callControlsEntry } from './call-controls';
 import { callMiniWindowEntry } from './call-mini-window';
 import { voiceChannelPanelEntry } from './voice-channel-panel';
+import { groupCallPanelEntry } from './group-call-panel';
 import { roleBadgeEntry } from './role-badge';
 import { permissionManagerEntry } from './permission-manager';
 
@@ -83,6 +84,17 @@ import { friendSectionEntry } from './friend-section';
 import { userMiniCardEntry } from './user-mini-card';
 import { addFriendInputEntry } from './add-friend-input';
 
+// Community
+import { communityCreateDialogEntry } from './community-create-dialog';
+import { communitySidebarEntry } from './community-sidebar';
+import { channelHeaderEntry } from './channel-header';
+import { inviteManagerEntry } from './invite-manager';
+import { roleManagementPanelEntry } from './role-management-panel';
+import { e2eeKeyExchangeUIEntry } from './e2ee-key-exchange-ui';
+import { conversationViewEntry } from './conversation-view';
+
+// File Management
+import { folderCardEntry } from './folder-card';
 
 export const componentEntries: ComponentEntry[] = [
   commandEntry,
@@ -160,6 +172,7 @@ export const componentEntries: ComponentEntry[] = [
   callControlsEntry,
   callMiniWindowEntry,
   voiceChannelPanelEntry,
+  groupCallPanelEntry,
 
   // Wave 16 — Roles & Permissions
   roleBadgeEntry,
@@ -172,4 +185,16 @@ export const componentEntries: ComponentEntry[] = [
   friendSectionEntry,
   userMiniCardEntry,
   addFriendInputEntry,
+
+  // Wave 18 — Community
+  communityCreateDialogEntry,
+  communitySidebarEntry,
+  channelHeaderEntry,
+  inviteManagerEntry,
+  roleManagementPanelEntry,
+  e2eeKeyExchangeUIEntry,
+  conversationViewEntry,
+
+  // File Management
+  folderCardEntry,
 ];

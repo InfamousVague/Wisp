@@ -59,4 +59,18 @@ export interface ThreadPanelProps extends React.HTMLAttributes<HTMLDivElement> {
 
   /** Custom renderer for each message. Falls back to built-in rendering. */
   renderMessage?: (message: ThreadMessage) => React.ReactNode;
+
+  // -- Community thread extensions --
+
+  /** Thread name (for named threads). Shown in the header below the title. */
+  threadName?: string;
+
+  /** Whether the current user is following this thread. @default false */
+  isFollowing?: boolean;
+
+  /** Called when the follow/unfollow button is toggled. */
+  onFollowToggle?: () => void;
+
+  /** Show the follow/unfollow button in the header. @default false */
+  showFollowButton?: boolean;
 }

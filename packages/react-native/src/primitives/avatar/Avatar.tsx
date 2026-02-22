@@ -79,6 +79,7 @@ export const Avatar = forwardRef<View, AvatarProps>(function Avatar(
             width: sizeConfig.container,
             height: sizeConfig.container,
             borderRadius,
+            overflow: 'hidden',
           }}
           onError={handleImgError}
           accessibilityLabel={alt || name || 'Avatar'}

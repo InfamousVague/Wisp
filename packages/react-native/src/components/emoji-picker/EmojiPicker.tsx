@@ -8,7 +8,7 @@
  */
 
 import React, { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
-import { View, Text, ScrollView, Pressable, Animated } from 'react-native';
+import { View, Text, ScrollView, Pressable, Animated, Image } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle, NativeSyntheticEvent, NativeScrollEvent, LayoutChangeEvent } from 'react-native';
 import type {
   EmojiItem,
@@ -44,6 +44,7 @@ const CATEGORY_LABELS: Record<EmojiCategory, string> = {
   objects: 'Objects',
   symbols: 'Symbols',
   flags: 'Flags',
+  custom: 'Custom',
 };
 
 // ---------------------------------------------------------------------------
@@ -151,6 +152,14 @@ function FlagIcon({ size = 16, color }: { size?: number; color?: string }) {
   );
 }
 
+function StarIcon({ size = 16, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+    </Svg>
+  );
+}
+
 type CategoryIconComponent = React.FC<{ size?: number; color?: string }>;
 
 const CATEGORY_ICONS: Record<EmojiCategory, CategoryIconComponent> = {
@@ -164,6 +173,7 @@ const CATEGORY_ICONS: Record<EmojiCategory, CategoryIconComponent> = {
   objects: LightbulbIcon,
   symbols: HeartIcon,
   flags: FlagIcon,
+  custom: StarIcon,
 };
 
 const SKIN_TONE_HAND = '\u{1F44B}';
@@ -177,8 +187,10 @@ export interface EmojiPickerProps extends ViewProps {
   size?: EmojiPickerSize;
   /** Called when an emoji is selected. */
   onSelect?: (emoji: string, item?: EmojiItem) => void;
-  /** Custom emoji data. */
+  /** Custom emoji data (merged with built-in set). */
   emojis?: EmojiItem[];
+  /** Custom community/server emoji added to the 'custom' category. */
+  customEmojis?: EmojiItem[];
   /** Recently used emojis. */
   recent?: string[];
   /** Search placeholder text. @default 'Search emoji...' */
@@ -208,6 +220,7 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     size = 'md',
     onSelect,
     emojis,
+    customEmojis,
     recent,
     searchPlaceholder = 'Search emoji...',
     showSearch = true,
@@ -292,7 +305,11 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
 
   // --- Emoji data ---
 
-  const allEmojis = emojis ?? EMOJI_DATA;
+  const allEmojis = useMemo(() => {
+    const base = emojis ? [...EMOJI_DATA, ...emojis] : [...EMOJI_DATA];
+    if (customEmojis && customEmojis.length > 0) base.push(...customEmojis);
+    return base;
+  }, [emojis, customEmojis]);
 
   const sortedEmojis = useMemo(() => {
     return [...allEmojis].sort((a, b) => (a.popularityRank ?? 999) - (b.popularityRank ?? 999));
@@ -667,12 +684,20 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
                   const displayEmoji = applySkinTone(item.emoji, item);
                   return (
                     <Pressable
-                      key={item.emoji}
+                      key={item.imageUrl || item.emoji}
                       onPress={() => handleSelect(item.emoji, item)}
                       accessibilityLabel={item.name}
                       style={cellStyle}
                     >
-                      <Text style={emojiTextStyle}>{displayEmoji}</Text>
+                      {item.imageUrl ? (
+                        <Image
+                          source={{ uri: item.imageUrl }}
+                          style={{ width: sizeConfig.emojiSize, height: sizeConfig.emojiSize }}
+                          resizeMode="contain"
+                        />
+                      ) : (
+                        <Text style={emojiTextStyle}>{displayEmoji}</Text>
+                      )}
                     </Pressable>
                   );
                 })}

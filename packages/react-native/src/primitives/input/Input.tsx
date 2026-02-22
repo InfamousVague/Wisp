@@ -109,6 +109,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
     height: sizeConfig.height,
     paddingHorizontal: sizeConfig.paddingX,
     borderRadius: typeof sizeConfig.borderRadius === 'number' ? sizeConfig.borderRadius : (defaultRadii as any)[sizeConfig.borderRadius] ?? defaultRadii.md,
+    overflow: 'hidden' as const,
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.bg,
@@ -119,7 +120,6 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
   const inputStyle = useMemo<TextStyle>(() => ({
     flex: 1,
     fontSize: sizeConfig.fontSize,
-    lineHeight: sizeConfig.fontSize * sizeConfig.lineHeight,
     color: colors.text,
     padding: 0,
   }), [sizeConfig, colors]);

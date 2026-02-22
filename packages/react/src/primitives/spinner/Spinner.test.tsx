@@ -6,8 +6,10 @@ import { describe, it, expect } from 'vitest';
 import { Spinner } from './Spinner';
 import { spinnerSizeMap } from '@coexist/wisp-core/types/Spinner.types';
 import { WispProvider } from '../../providers';
-import { darkColors } from '@coexist/wisp-core/theme/dark';
-import { lightColors } from '@coexist/wisp-core/theme/light';
+import { createTheme } from '@coexist/wisp-core/theme/create-theme';
+
+const darkTheme = createTheme({ mode: 'dark' });
+const lightTheme = createTheme({ mode: 'light' });
 
 // ---------------------------------------------------------------------------
 // Wrapper
@@ -136,25 +138,25 @@ describe('Spinner — theme colors', () => {
   it('uses border.subtle as track color in dark mode', () => {
     const { container } = render(<Dark><Spinner /></Dark>);
     const circles = container.querySelectorAll('circle');
-    expect(circles[0]).toHaveAttribute('stroke', darkColors.border.subtle);
+    expect(circles[0]).toHaveAttribute('stroke', darkTheme.colors.border.subtle);
   });
 
   it('uses accent.primary as indicator color in dark mode', () => {
     const { container } = render(<Dark><Spinner /></Dark>);
     const circles = container.querySelectorAll('circle');
-    expect(circles[1]).toHaveAttribute('stroke', darkColors.accent.primary);
+    expect(circles[1]).toHaveAttribute('stroke', darkTheme.colors.accent.primary);
   });
 
   it('uses border.subtle as track color in light mode', () => {
     const { container } = render(<Light><Spinner /></Light>);
     const circles = container.querySelectorAll('circle');
-    expect(circles[0]).toHaveAttribute('stroke', lightColors.border.subtle);
+    expect(circles[0]).toHaveAttribute('stroke', lightTheme.colors.border.subtle);
   });
 
   it('uses accent.primary as indicator color in light mode', () => {
     const { container } = render(<Light><Spinner /></Light>);
     const circles = container.querySelectorAll('circle');
-    expect(circles[1]).toHaveAttribute('stroke', lightColors.accent.primary);
+    expect(circles[1]).toHaveAttribute('stroke', lightTheme.colors.accent.primary);
   });
 });
 

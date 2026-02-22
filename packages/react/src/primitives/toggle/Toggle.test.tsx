@@ -7,8 +7,10 @@ import { Toggle } from './Toggle';
 import { WispProvider } from '../../providers';
 import { contrastRatio } from '@coexist/wisp-core/utils/contrast';
 import { resolveToggleColors } from '@coexist/wisp-core/styles/Toggle.styles';
-import { darkColors } from '@coexist/wisp-core/theme/dark';
-import { lightColors } from '@coexist/wisp-core/theme/light';
+import { createTheme } from '@coexist/wisp-core/theme/create-theme';
+
+const darkTheme = createTheme({ mode: 'dark' });
+const lightTheme = createTheme({ mode: 'light' });
 
 // ---------------------------------------------------------------------------
 // Wrapper
@@ -172,14 +174,14 @@ describe('Toggle — WCAG contrast', () => {
 
   describe('dark mode', () => {
     it('checked handle on track passes AA-large (3:1)', () => {
-      const colors = resolveToggleColors(true, darkColors);
+      const colors = resolveToggleColors(true, darkTheme);
       if (!isHex(colors.handleBg) || !isHex(colors.trackBg)) return;
       const ratio = contrastRatio(colors.handleBg, colors.trackBg);
       expect(ratio).toBeGreaterThanOrEqual(3);
     });
 
     it('unchecked handle on track passes AA-large (3:1)', () => {
-      const colors = resolveToggleColors(false, darkColors);
+      const colors = resolveToggleColors(false, darkTheme);
       if (!isHex(colors.handleBg) || !isHex(colors.trackBg)) return;
       const ratio = contrastRatio(colors.handleBg, colors.trackBg);
       expect(ratio).toBeGreaterThanOrEqual(3);
@@ -188,14 +190,14 @@ describe('Toggle — WCAG contrast', () => {
 
   describe('light mode', () => {
     it('checked handle on track passes AA-large (3:1)', () => {
-      const colors = resolveToggleColors(true, lightColors);
+      const colors = resolveToggleColors(true, lightTheme);
       if (!isHex(colors.handleBg) || !isHex(colors.trackBg)) return;
       const ratio = contrastRatio(colors.handleBg, colors.trackBg);
       expect(ratio).toBeGreaterThanOrEqual(3);
     });
 
     it('unchecked handle on track passes AA-large (3:1)', () => {
-      const colors = resolveToggleColors(false, lightColors);
+      const colors = resolveToggleColors(false, lightTheme);
       if (!isHex(colors.handleBg) || !isHex(colors.trackBg)) return;
       const ratio = contrastRatio(colors.handleBg, colors.trackBg);
       expect(ratio).toBeGreaterThanOrEqual(3);

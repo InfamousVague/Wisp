@@ -1,5 +1,5 @@
 import React, { forwardRef, useMemo, useState, useCallback, useRef, createContext, useContext } from 'react';
-import { View, Pressable, Animated } from 'react-native';
+import { View, Pressable, Animated, Text as RNText } from 'react-native';
 import type { ViewStyle, TextStyle } from 'react-native';
 import Svg, { Polyline } from 'react-native-svg';
 import { Collapse } from '../../layouts/collapse';
@@ -229,7 +229,11 @@ export const AccordionTrigger = forwardRef<View, AccordionTriggerProps>(function
       accessibilityState={{ expanded: isOpen }}
       style={[triggerStyle, userStyle]}
     >
-      {children}
+      {typeof children === 'string' || typeof children === 'number' ? (
+        <RNText style={{ fontSize: 14, fontWeight: '500', color: themeColors.text.primary, flex: 1 } as TextStyle}>{children}</RNText>
+      ) : (
+        children
+      )}
       <Animated.View style={{ transform: [{ rotate }] }}>
         {icon ?? (
           <Svg width={16} height={16} viewBox="0 0 24 24" fill="none">

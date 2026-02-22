@@ -6,6 +6,7 @@ import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/crea
 import { useTheme } from '../../providers';
 
 const sizeMap = {
+  xs: { dotSize: 20, lineThickness: 2, labelFontSize: 10, descFontSize: 9, iconSize: 12, gap: defaultSpacing.xs },
   sm: { dotSize: 24, lineThickness: 2, labelFontSize: 12, descFontSize: 11, iconSize: 14, gap: defaultSpacing.sm },
   md: { dotSize: 32, lineThickness: 2, labelFontSize: 14, descFontSize: 12, iconSize: 16, gap: defaultSpacing.md },
   lg: { dotSize: 40, lineThickness: 2, labelFontSize: 15, descFontSize: 13, iconSize: 20, gap: defaultSpacing.md },
@@ -96,12 +97,16 @@ export const ProgressSteps = forwardRef<View, ProgressStepsProps>(function Progr
         const lineColor = status === 'completed' ? themeColors.accent.primary : themeColors.border.subtle;
 
         if (isHorizontal) {
+          // Use transparent spacers on outer edges so first/last dots are centered
+          const leftLineColor = i > 0
+            ? (i <= currentStep ? themeColors.accent.primary : themeColors.border.subtle)
+            : 'transparent';
+          const rightLineColor = !isLast ? lineColor : 'transparent';
+
           return (
             <View key={step.id} style={{ flex: 1, alignItems: 'center' }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%' }}>
-                {i > 0 && (
-                  <View style={{ flex: 1, height: cfg.lineThickness, backgroundColor: (i <= currentStep ? themeColors.accent.primary : themeColors.border.subtle) }} />
-                )}
+                <View style={{ flex: 1, height: cfg.lineThickness, backgroundColor: leftLineColor }} />
                 <Pressable
                   onPress={isClickable ? () => onStepClick(i) : undefined}
                   disabled={!isClickable}
@@ -109,9 +114,7 @@ export const ProgressSteps = forwardRef<View, ProgressStepsProps>(function Progr
                 >
                   {dotContent}
                 </Pressable>
-                {!isLast && (
-                  <View style={{ flex: 1, height: cfg.lineThickness, backgroundColor: lineColor }} />
-                )}
+                <View style={{ flex: 1, height: cfg.lineThickness, backgroundColor: rightLineColor }} />
               </View>
               <View style={{ alignItems: 'center', marginTop: cfg.gap }}>
                 <RNText style={{ fontSize: cfg.labelFontSize, fontWeight: status === 'active' ? '600' : '400', color: status === 'upcoming' ? themeColors.text.muted : themeColors.text.primary, textAlign: 'center' } as TextStyle}>

@@ -1,6 +1,6 @@
-import React, { forwardRef, useMemo, useState, useCallback, createContext, useContext } from 'react';
+import React, { forwardRef, useMemo, useState, useCallback, useRef, useEffect, createContext, useContext } from 'react';
 import { View, Pressable, Modal, ScrollView, StyleSheet, Text as RNText } from 'react-native';
-import type { ViewStyle, TextStyle } from 'react-native';
+import type { ViewStyle, TextStyle, LayoutRectangle } from 'react-native';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 
@@ -11,6 +11,8 @@ import { useTheme } from '../../providers';
 interface DropdownMenuContextValue {
   open: boolean;
   setOpen: (open: boolean) => void;
+  triggerLayout: LayoutRectangle | null;
+  setTriggerLayout: (layout: LayoutRectangle | null) => void;
 }
 
 const DropdownMenuContext = createContext<DropdownMenuContextValue | null>(null);
@@ -30,6 +32,8 @@ export interface DropdownMenuProps {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
+  /** Explicit trigger position (x, y, width, height in window coordinates). When provided, skips auto-measurement. */
+  anchorLayout?: { x: number; y: number; width: number; height: number } | null;
 }
 
 export interface DropdownMenuTriggerProps {
@@ -40,6 +44,8 @@ export interface DropdownMenuTriggerProps {
 export interface DropdownMenuContentProps {
   children: React.ReactNode;
   style?: ViewStyle;
+  /** Alignment relative to trigger: 'start' (left-aligned) or 'end' (right-aligned). Default: 'start'. */
+  align?: 'start' | 'end';
 }
 
 export interface DropdownMenuItemProps {
@@ -60,12 +66,14 @@ export interface DropdownMenuSeparatorProps {
 // ---------------------------------------------------------------------------
 
 export const DropdownMenu = forwardRef<View, DropdownMenuProps>(function DropdownMenu(
-  { children, open: controlledOpen, defaultOpen = false, onOpenChange },
+  { children, open: controlledOpen, defaultOpen = false, onOpenChange, anchorLayout },
   ref,
 ) {
   const isControlled = controlledOpen !== undefined;
   const [internalOpen, setInternalOpen] = useState(defaultOpen);
   const open = isControlled ? controlledOpen : internalOpen;
+  const [triggerLayout, setTriggerLayout] = useState<LayoutRectangle | null>(null);
+  const rootRef = useRef<View>(null);
 
   const setOpen = useCallback(
     (next: boolean) => {
@@ -75,14 +83,39 @@ export const DropdownMenu = forwardRef<View, DropdownMenuProps>(function Dropdow
     [isControlled, onOpenChange],
   );
 
+  // Use explicit anchorLayout when provided
+  const effectiveLayout = anchorLayout ?? triggerLayout;
+
+  // Auto-measure root when open transitions to true (fallback for controlled mode without DropdownMenuTrigger or anchorLayout)
+  useEffect(() => {
+    if (open && !anchorLayout && !triggerLayout && rootRef.current) {
+      rootRef.current.measureInWindow((x, y, width, height) => {
+        if (width > 0 && height > 0) {
+          setTriggerLayout({ x, y, width, height });
+        }
+      });
+    }
+    if (!open && !anchorLayout) {
+      setTriggerLayout(null);
+    }
+  }, [open, anchorLayout]);
+
   const ctxValue = useMemo<DropdownMenuContextValue>(
-    () => ({ open, setOpen }),
-    [open, setOpen],
+    () => ({ open, setOpen, triggerLayout: effectiveLayout, setTriggerLayout }),
+    [open, setOpen, effectiveLayout],
   );
 
   return (
     <DropdownMenuContext.Provider value={ctxValue}>
-      <View ref={ref}>{children}</View>
+      <View
+        ref={(node) => {
+          (rootRef as React.MutableRefObject<View | null>).current = node;
+          if (typeof ref === 'function') ref(node);
+          else if (ref) (ref as React.MutableRefObject<View | null>).current = node;
+        }}
+      >
+        {children}
+      </View>
     </DropdownMenuContext.Provider>
   );
 });
@@ -97,12 +130,26 @@ export const DropdownMenuTrigger = forwardRef<View, DropdownMenuTriggerProps>(fu
   { children, style: userStyle },
   ref,
 ) {
-  const { open, setOpen } = useDropdownMenuContext();
+  const { open, setOpen, setTriggerLayout } = useDropdownMenuContext();
+  const triggerRef = useRef<View>(null);
+
+  const handlePress = useCallback(() => {
+    // Measure trigger position before opening
+    triggerRef.current?.measureInWindow((x, y, width, height) => {
+      setTriggerLayout({ x, y, width, height });
+      setOpen(!open);
+    });
+  }, [open, setOpen, setTriggerLayout]);
 
   return (
     <Pressable
-      ref={ref}
-      onPress={() => setOpen(!open)}
+      ref={(node) => {
+        // Forward both refs
+        (triggerRef as React.MutableRefObject<View | null>).current = node;
+        if (typeof ref === 'function') ref(node);
+        else if (ref) (ref as React.MutableRefObject<View | null>).current = node;
+      }}
+      onPress={handlePress}
       accessibilityRole="button"
       accessibilityState={{ expanded: open }}
       style={userStyle}
@@ -119,11 +166,11 @@ DropdownMenuTrigger.displayName = 'DropdownMenuTrigger';
 // ---------------------------------------------------------------------------
 
 export const DropdownMenuContent = forwardRef<View, DropdownMenuContentProps>(function DropdownMenuContent(
-  { children, style: userStyle },
+  { children, style: userStyle, align = 'start' },
   ref,
 ) {
   const { theme } = useTheme();
-  const { open, setOpen } = useDropdownMenuContext();
+  const { open, setOpen, triggerLayout } = useDropdownMenuContext();
   const themeColors = theme.colors;
 
   const contentStyle = useMemo<ViewStyle>(
@@ -131,8 +178,7 @@ export const DropdownMenuContent = forwardRef<View, DropdownMenuContentProps>(fu
       backgroundColor: themeColors.background.raised,
       borderRadius: defaultRadii.lg,
       paddingVertical: defaultSpacing.sm,
-      minWidth: 180,
-      maxWidth: 280,
+      minWidth: 200,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 4 },
       shadowOpacity: 0.2,
@@ -142,23 +188,48 @@ export const DropdownMenuContent = forwardRef<View, DropdownMenuContentProps>(fu
     [themeColors],
   );
 
+  // Calculate position based on trigger layout
+  const positionStyle = useMemo<ViewStyle>(() => {
+    if (!triggerLayout) {
+      return { position: 'absolute', top: 8, left: 8 };
+    }
+
+    const style: ViewStyle = {
+      position: 'absolute',
+      top: triggerLayout.y + triggerLayout.height + 4,
+    };
+
+    if (align === 'end') {
+      // Right-align: dropdown right edge aligns with trigger right edge
+      style.left = triggerLayout.x + triggerLayout.width - 220;
+    } else {
+      // Left-align: dropdown left edge aligns with trigger left edge
+      style.left = triggerLayout.x;
+    }
+
+    // Match trigger width when wider than minWidth
+    if (triggerLayout.width > 200) {
+      style.width = triggerLayout.width;
+    }
+
+    return style;
+  }, [triggerLayout, align]);
+
   if (!open) return null;
 
   return (
     <Modal
       visible={open}
       transparent
-      animationType="fade"
+      animationType="none"
       onRequestClose={() => setOpen(false)}
       statusBarTranslucent
     >
       <Pressable style={StyleSheet.absoluteFill} onPress={() => setOpen(false)}>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <ScrollView>
-            <Pressable onPress={(e) => e.stopPropagation()} ref={ref} style={[contentStyle, userStyle]}>
-              {children}
-            </Pressable>
-          </ScrollView>
+        <View style={positionStyle}>
+          <Pressable onPress={(e) => e.stopPropagation()} ref={ref} style={[contentStyle, userStyle]}>
+            {children}
+          </Pressable>
         </View>
       </Pressable>
     </Modal>
@@ -190,9 +261,11 @@ export const DropdownMenuItem = forwardRef<View, DropdownMenuItemProps>(function
   const itemStyle: ViewStyle = {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: defaultSpacing.md,
-    paddingVertical: defaultSpacing.md,
-    paddingHorizontal: defaultSpacing.lg,
+    gap: defaultSpacing.sm,
+    paddingVertical: defaultSpacing.sm,
+    paddingHorizontal: defaultSpacing.md,
+    borderRadius: defaultRadii.sm,
+    marginHorizontal: defaultSpacing.xs,
     opacity: disabled ? 0.4 : 1,
   };
 
@@ -202,14 +275,46 @@ export const DropdownMenuItem = forwardRef<View, DropdownMenuItemProps>(function
       onPress={handlePress}
       disabled={disabled}
       accessibilityRole="menuitem"
-      style={({ pressed }) => [
+      style={({ pressed, hovered }: { pressed: boolean; hovered?: boolean }) => [
         itemStyle,
-        pressed ? { backgroundColor: themeColors.accent.highlight } : undefined,
+        (pressed || hovered)
+          ? {
+              backgroundColor: danger
+                ? themeColors.status.danger
+                : themeColors.accent.highlight,
+            }
+          : undefined,
         userStyle,
       ]}
     >
-      {icon && <View style={{ flexShrink: 0 }}>{icon}</View>}
-      <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: textColor, flex: 1 } as TextStyle}>{children}</RNText>
+      {({ pressed, hovered }: { pressed: boolean; hovered?: boolean }) => {
+        const isHighlighted = pressed || hovered;
+        const activeTextColor = danger && isHighlighted ? '#fff' : textColor;
+        return (
+          <>
+            {icon && (
+              <View style={{ flexShrink: 0, opacity: danger && !isHighlighted ? 0.9 : 1 }}>
+                {React.isValidElement(icon)
+                  ? React.cloneElement(icon as React.ReactElement<{ color?: string }>, {
+                      color: activeTextColor,
+                    })
+                  : icon}
+              </View>
+            )}
+            <RNText
+              style={
+                {
+                  fontSize: defaultTypography.sizes.sm.fontSize,
+                  color: activeTextColor,
+                  flex: 1,
+                } as TextStyle
+              }
+            >
+              {children}
+            </RNText>
+          </>
+        );
+      }}
     </Pressable>
   );
 });

@@ -165,7 +165,10 @@ export const Box = forwardRef<View, BoxProps>(function Box(
 
     // Border radius
     const resolvedRadius = resolveRadius(radius);
-    if (resolvedRadius !== undefined) s.borderRadius = resolvedRadius;
+    if (resolvedRadius !== undefined) {
+      s.borderRadius = resolvedRadius;
+      s.overflow = 'hidden';
+    }
 
     return s;
   }, [p, px, py, pt, pr, pb, pl, width, height, minWidth, maxWidth, minHeight, maxHeight, radius]);

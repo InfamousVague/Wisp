@@ -142,8 +142,9 @@ export {
   // LinkPreviewCard
   LinkPreviewCard,
   // Wave 12: Chat extended
-  ConversationList, ConversationListItem, MemberList, PinnedMessages, UserProfileCard,
+  ConversationList, ConversationListItem, MessageList, MemberList, PinnedMessages, UserProfileCard,
   ChannelList,
+  ChannelHeader,
   // Wave 13: Thread & Actions
   ThreadPanel, MessageActionBar,
   // Wave 14: MessageSearch
@@ -164,6 +165,22 @@ export {
   // Wave 17: Social / Friends
   FriendListItem, FriendRequestItem, FriendSection,
   UserSearchResult, UserMiniCard, AddFriendInput, UserPicker,
+  // Community / Threads
+  ThreadIndicator, ThreadListView, ThreadFollowButton,
+  // Community
+  CommunityCreateDialog,
+  CommunitySidebar,
+  InviteManager,
+  // RoleManagementPanel
+  RoleManagementPanel,
+  // ScreenSharePicker & RecordingIndicator
+  ScreenSharePicker, RecordingIndicator,
+  // File Sharing — new components
+  FileTransferProgress, FileTransferList, SharedFolderCard,
+  SyncStatusIndicator, StorageUsageMeter,
+  ConflictResolutionDialog, FileTypeAllowlistSettings,
+  // FormatToolbar
+  FormatToolbar,
 } from './components';
 export type {
   // Wave 1
@@ -219,10 +236,12 @@ export type {
   LinkPreviewCardProps,
   // Wave 12: Chat extended
   ConversationListProps, ConversationListItemProps,
+  MessageListProps, MessageListItem, MessageListEntry, DaySeparator, NewMessageMarker,
   MemberListProps, MemberListSection, MemberListMember,
   PinnedMessagesProps, PinnedMessage,
   UserProfileCardProps, ProfileRole, ProfileAction,
   ChannelListProps, ChannelCategory, ChannelItem, ChannelType,
+  ChannelHeaderProps, ChannelHeaderType, ChannelHeaderAction,
   // Wave 13: Thread & Actions
   ThreadPanelProps, ThreadMessage,
   MessageActionBarProps, MessageAction,
@@ -253,6 +272,29 @@ export type {
   UserMiniCardProps, UserMiniCardAction, UserMiniCardStatus,
   AddFriendInputProps, AddFriendFeedbackState,
   UserPickerProps, UserPickerUser, UserPickerStatus,
+  // Community / Threads
+  ThreadIndicatorProps,
+  ThreadListViewProps, ThreadListItem,
+  ThreadFollowButtonProps,
+  // Community
+  CommunityCreateDialogProps, CommunityCreateData,
+  CommunitySidebarProps, CommunitySpace, CommunityInfo,
+  InviteManagerProps, InviteLink, InviteCreateOptions,
+  // RoleManagementPanel
+  RoleManagementPanelProps, ManagedRole, RolePermissionCategory, RolePermissionItem, RoleEditorTab, RoleMember,
+  // ScreenSharePicker & RecordingIndicator
+  ScreenSharePickerProps,
+  RecordingIndicatorProps,
+  // File Sharing — new components
+  FileTransferProgressProps, TransferState, TransferStep,
+  FileTransferListProps,
+  SharedFolderCardProps, SharedFolderMember, FolderSyncStatus,
+  SyncStatusIndicatorProps,
+  StorageUsageMeterProps, StorageSegment,
+  ConflictResolutionDialogProps, ConflictVersion,
+  FileTypeAllowlistSettingsProps, FileTypePreset,
+  // FormatToolbar
+  FormatToolbarProps,
 } from './components';
 
 // ---------------------------------------------------------------------------
@@ -290,3 +332,35 @@ export type {
 // Utilities
 // ---------------------------------------------------------------------------
 export { stripWebProps, toRNShadow } from './utils';
+
+// Emoji Management Panel
+export { EmojiManagementPanel } from './components/emoji-management-panel';
+export type { EmojiManagementPanelProps } from './components/emoji-management-panel';
+export type { CustomEmoji } from '@coexist/wisp-core/types/EmojiManagementPanel.types';
+
+// Sticker Picker
+export { StickerPicker } from './components/sticker-picker';
+export type { StickerPickerProps } from './components/sticker-picker';
+export type { StickerPickerPack, StickerPickerSize } from '@coexist/wisp-core/types/StickerPicker.types';
+
+// Combined Picker (Emoji + Stickers tabbed)
+export { CombinedPicker } from './components/combined-picker';
+export type { CombinedPickerProps, CombinedPickerTab } from './components/combined-picker';
+
+// Sticker Management Panel
+export { StickerManagementPanel } from './components/sticker-management-panel';
+export type { StickerManagementPanelProps } from './components/sticker-management-panel';
+export type { Sticker as WispSticker, StickerPack as WispStickerPack } from '@coexist/wisp-core/types/StickerManagementPanel.types';
+
+// Format Toolbar (types re-exported from wisp-core)
+export type { FormatAction } from '@coexist/wisp-core/types/FormatToolbar.types';
+export { formatActions } from '@coexist/wisp-core/types/FormatToolbar.types';
+
+// Text Effect Picker
+export { TextEffectPicker } from './components/text-effect-picker';
+export type { TextEffectPickerProps, TextEffectType, TextEffectInfo } from './components/text-effect-picker';
+export { textEffects, textEffectInfoMap } from './components/text-effect-picker';
+
+// Text Effect Wrapper (animations)
+export { TextEffectWrapper } from './components/text-effect-wrapper';
+export type { TextEffectWrapperProps } from './components/text-effect-wrapper';

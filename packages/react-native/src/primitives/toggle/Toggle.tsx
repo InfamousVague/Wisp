@@ -106,6 +106,7 @@ export const Toggle = forwardRef<View, ToggleProps>(function Toggle(
     width: sizeConfig.trackWidth,
     height: sizeConfig.trackHeight,
     borderRadius: sizeConfig.trackHeight / 2,
+    overflow: 'hidden' as const,
     backgroundColor: colors.trackBg,
     justifyContent: 'center',
     paddingHorizontal: sizeConfig.padding,

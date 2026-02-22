@@ -27,7 +27,7 @@ export interface SearchResult {
 }
 
 /** Available search filter types. */
-export type SearchFilterType = 'from' | 'in' | 'has' | 'before' | 'after';
+export type SearchFilterType = 'from' | 'in' | 'has' | 'before' | 'after' | 'is';
 
 /** An active search filter. */
 export interface SearchFilter {
@@ -74,4 +74,15 @@ export interface MessageSearchProps extends Omit<React.HTMLAttributes<HTMLDivEle
 
   /** Called when the close/clear button is clicked. */
   onClose?: () => void;
+
+  // -- Community search extensions --
+
+  /** Search scope: search across whole community or within a specific channel. */
+  scope?: 'community' | 'channel';
+
+  /** Called when the search scope changes. */
+  onScopeChange?: (scope: 'community' | 'channel') => void;
+
+  /** Called when a filter is added (e.g. from a filter picker UI). */
+  onFilterAdd?: (filter: SearchFilter) => void;
 }

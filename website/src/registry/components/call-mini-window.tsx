@@ -25,6 +25,7 @@ export const callMiniWindowEntry: ComponentEntry = {
         onExpand={() => {}}
         onEndCall={() => {}}
         draggable={false}
+        style={{ position: 'relative', bottom: 'auto', right: 'auto', zIndex: 'auto' }}
       />
     </div>
   ),
@@ -42,6 +43,7 @@ export const callMiniWindowEntry: ComponentEntry = {
             onExpand={() => {}}
             onEndCall={() => {}}
             draggable={false}
+            style={{ position: 'relative', bottom: 'auto', right: 'auto', zIndex: 'auto' }}
           />
         </div>
       ),
@@ -66,6 +68,7 @@ export const callMiniWindowEntry: ComponentEntry = {
             onExpand={() => {}}
             onEndCall={() => {}}
             draggable={false}
+            style={{ position: 'relative', bottom: 'auto', right: 'auto', zIndex: 'auto' }}
           />
         </div>
       ),

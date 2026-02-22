@@ -11,7 +11,7 @@ import type React from 'react';
 // ---------------------------------------------------------------------------
 
 /** Channel type determines the icon shown. */
-export type ChannelType = 'text' | 'voice' | 'announcement' | 'thread' | 'forum';
+export type ChannelType = 'text' | 'voice' | 'announcement' | 'thread' | 'forum' | 'files' | 'bulletin' | 'welcome';
 
 /** A single channel entry. */
 export interface ChannelItem {
@@ -70,4 +70,21 @@ export interface ChannelListProps extends React.HTMLAttributes<HTMLDivElement> {
 
   /** Show loading skeleton. @default false */
   skeleton?: boolean;
+
+  // -- Community space management --
+
+  /** Called when the "create space" button is clicked. */
+  onSpaceCreate?: () => void;
+
+  /** Called when spaces are reordered. Receives the new order of category IDs. */
+  onSpaceReorder?: (orderedIds: string[]) => void;
+
+  /** Called when a space (category) delete action is triggered. */
+  onSpaceDelete?: (categoryId: string) => void;
+
+  /** Called when a channel create action is triggered within a category. */
+  onChannelCreate?: (categoryId: string) => void;
+
+  /** Show space management controls (create/delete/reorder). @default false */
+  showSpaceManagement?: boolean;
 }

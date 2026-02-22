@@ -87,6 +87,7 @@ export const Beacon = forwardRef<View, BeaconProps>(
       width: sizeConfig.buttonSize,
       height: sizeConfig.buttonSize,
       borderRadius: sizeConfig.borderRadius,
+      overflow: 'hidden',
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: accentColor,

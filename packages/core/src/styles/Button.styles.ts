@@ -161,7 +161,7 @@ export function resolveVariantColors(
         bg: themeColors.status.warning,
         bgHover: themeColors.status.warning,
         bgActive: themeColors.status.warning,
-        text: themeColors.text.primary, // dark text always — amber is bright in both modes
+        text: themeColors.text.inverse, // inverse text for contrast — amber is bright
         border: 'transparent',
         borderHover: 'transparent',
       };

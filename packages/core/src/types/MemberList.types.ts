@@ -24,6 +24,12 @@ export interface MemberListMember {
   roleText?: string;
   /** Custom status text. */
   statusText?: string;
+  /** Role color for name display (hex string, e.g. "#FF5722"). */
+  roleColor?: string;
+  /** Role icon element displayed inline next to the role text. */
+  roleIcon?: React.ReactNode;
+  /** Custom status emoji. */
+  statusEmoji?: string;
 }
 
 /** A section group in the member list (e.g. "Online — 5", "Offline — 12"). */
@@ -36,6 +42,10 @@ export interface MemberListSection {
   members: MemberListMember[];
   /** Whether the section starts collapsed. @default false */
   collapsed?: boolean;
+  /** Total member count for the section header (e.g. "Online — 5"). */
+  memberCount?: number;
+  /** Custom color for the section label text (hex string, e.g. "#FF5722"). Overrides the default muted color. */
+  labelColor?: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -63,4 +73,7 @@ export interface MemberListProps extends React.HTMLAttributes<HTMLDivElement> {
 
   /** Show loading skeleton. @default false */
   skeleton?: boolean;
+
+  /** Called when a member is right-clicked / long-pressed (context menu). */
+  onMemberContextMenu?: (member: MemberListMember, event: React.MouseEvent) => void;
 }

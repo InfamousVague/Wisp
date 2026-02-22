@@ -8,8 +8,10 @@ import { buttonVariants } from '@coexist/wisp-core/types/Button.types';
 import { WispProvider } from '../../providers';
 import { contrastRatio } from '@coexist/wisp-core/utils/contrast';
 import { resolveVariantColors } from '@coexist/wisp-core/styles/Button.styles';
-import { darkColors } from '@coexist/wisp-core/theme/dark';
-import { lightColors } from '@coexist/wisp-core/theme/light';
+import { createTheme } from '@coexist/wisp-core/theme/create-theme';
+
+const darkTheme = createTheme({ mode: 'dark' });
+const lightTheme = createTheme({ mode: 'light' });
 
 // ---------------------------------------------------------------------------
 // Wrapper
@@ -180,7 +182,7 @@ describe('Button — WCAG contrast', () => {
   describe('dark mode', () => {
     buttonVariants.forEach((variant) => {
       it(`"${variant}" text/bg contrast passes AA-large (3:1)`, () => {
-        const colors = resolveVariantColors(variant, darkColors);
+        const colors = resolveVariantColors(variant, darkTheme);
         // Skip transparent backgrounds (ghost buttons rely on surface contrast)
         if (!isHex(colors.bg)) return;
         const ratio = contrastRatio(colors.text, colors.bg);
@@ -192,7 +194,7 @@ describe('Button — WCAG contrast', () => {
   describe('light mode', () => {
     buttonVariants.forEach((variant) => {
       it(`"${variant}" text/bg contrast passes AA-large (3:1)`, () => {
-        const colors = resolveVariantColors(variant, lightColors);
+        const colors = resolveVariantColors(variant, lightTheme);
         if (!isHex(colors.bg)) return;
         const ratio = contrastRatio(colors.text, colors.bg);
         expect(ratio).toBeGreaterThanOrEqual(3);

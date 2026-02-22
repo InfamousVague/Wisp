@@ -315,6 +315,7 @@ export const SidebarItem = forwardRef<View, SidebarItemProps>(function SidebarIt
         marginHorizontal: horizontalMargin,
         marginVertical: defaultSpacing['2xs'],
         borderRadius: defaultRadii.md,
+        overflow: 'hidden' as const,
         backgroundColor,
         opacity: disabled ? 0.4 : 1,
       };
@@ -329,6 +330,7 @@ export const SidebarItem = forwardRef<View, SidebarItemProps>(function SidebarIt
       marginHorizontal: horizontalMargin,
       marginVertical: defaultSpacing['2xs'],
       borderRadius: defaultRadii.md,
+      overflow: 'hidden' as const,
       backgroundColor,
       opacity: disabled ? 0.4 : 1,
     };

@@ -123,6 +123,7 @@ export const Toast = forwardRef<View, ToastProps>(function Toast(
     paddingVertical: defaultSpacing.md,
     paddingHorizontal: defaultSpacing.md,
     borderRadius: defaultRadii.lg,
+    overflow: 'hidden' as const,
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.bg,
@@ -191,7 +192,11 @@ export const Toast = forwardRef<View, ToastProps>(function Toast(
       <View style={contentStyle}>
         <Text style={titleStyle}>{title}</Text>
         {description && <Text style={descriptionStyle}>{description}</Text>}
-        {children}
+        {typeof children === 'string' || typeof children === 'number' ? (
+          <Text style={descriptionStyle}>{children}</Text>
+        ) : (
+          children
+        )}
       </View>
 
       {action && <View style={actionWrapperStyle}>{action}</View>}

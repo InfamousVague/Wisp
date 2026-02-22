@@ -160,6 +160,7 @@ export const TagInput = forwardRef<View, TagInputProps>(function TagInput(
           borderWidth: 1,
           borderColor: colors.border,
           borderRadius: sizeConfig.borderRadius,
+          overflow: 'hidden',
           backgroundColor: colors.bg,
           opacity: disabled ? 0.5 : 1,
         }}

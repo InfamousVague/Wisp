@@ -162,6 +162,7 @@ export const ColorPicker = forwardRef<View, ColorPickerProps>(function ColorPick
             width: sizeConfig.previewSize,
             height: sizeConfig.previewSize,
             borderRadius: resolvedBorderRadius,
+            overflow: 'hidden',
             backgroundColor: currentColor,
             borderWidth: 1,
             borderColor: tc.border.subtle,

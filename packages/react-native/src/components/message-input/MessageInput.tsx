@@ -133,6 +133,12 @@ export interface MessageInputProps extends ViewProps {
   showVoice?: boolean;
   /** Called when voice button is pressed. */
   onVoiceClick?: () => void;
+  /** Show formatting toolbar toggle button. @default false */
+  showFormat?: boolean;
+  /** Called when format button is pressed. */
+  onFormatClick?: () => void;
+  /** Whether formatting toolbar is currently active/open. @default false */
+  formatActive?: boolean;
   /** Maximum character count with counter display. */
   maxLength?: number;
   /** Queued attachments shown as preview cards above input. */
@@ -185,6 +191,9 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
     editing,
     showVoice = false,
     onVoiceClick,
+    showFormat = false,
+    onFormatClick,
+    formatActive = false,
     maxLength,
     attachments,
     onAttachmentRemove,
@@ -246,6 +255,7 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
     paddingHorizontal: hPad,
     paddingVertical: sizeConfig.padding / 2,
     borderRadius: resolvedRadius,
+    overflow: 'hidden' as const,
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.bg,
@@ -566,6 +576,17 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
           <Text style={counterStyle}>
             {value.length}/{maxLength}
           </Text>
+        )}
+
+        {showFormat && (
+          <Pressable
+            onPress={onFormatClick}
+            disabled={disabled}
+            accessibilityLabel="Formatting"
+            style={[iconBtnStyle, formatActive ? { backgroundColor: colors.border, borderRadius: sizeConfig.iconButtonSize / 2 } : undefined]}
+          >
+            <Text style={{ fontSize: sizeConfig.iconSize - 2, fontWeight: '700', color: formatActive ? colors.text : colors.icon }}>Aa</Text>
+          </Pressable>
         )}
 
         {showEmoji && (

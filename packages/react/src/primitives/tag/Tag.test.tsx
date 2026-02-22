@@ -7,8 +7,10 @@ import { Tag } from './Tag';
 import { WispProvider } from '../../providers';
 import { contrastRatio } from '@coexist/wisp-core/utils/contrast';
 import { resolveTagColors } from '@coexist/wisp-core/styles/Tag.styles';
-import { darkColors } from '@coexist/wisp-core/theme/dark';
-import { lightColors } from '@coexist/wisp-core/theme/light';
+import { createTheme } from '@coexist/wisp-core/theme/create-theme';
+
+const darkTheme = createTheme({ mode: 'dark' });
+const lightTheme = createTheme({ mode: 'light' });
 
 // ---------------------------------------------------------------------------
 // Wrapper
@@ -171,32 +173,32 @@ describe('Tag — WCAG contrast', () => {
 
   describe('dark mode', () => {
     it('selected text on accent passes AA-large (3:1)', () => {
-      const colors = resolveTagColors(true, false, darkColors);
+      const colors = resolveTagColors(true, false, darkTheme);
       if (!isHex(colors.text) || !isHex(colors.bg)) return;
       const ratio = contrastRatio(colors.text, colors.bg);
       expect(ratio).toBeGreaterThanOrEqual(3);
     });
 
     it('default text on canvas passes AA (4.5:1)', () => {
-      const colors = resolveTagColors(false, false, darkColors);
-      if (!isHex(colors.text) || !isHex(darkColors.background.canvas)) return;
-      const ratio = contrastRatio(colors.text, darkColors.background.canvas);
+      const colors = resolveTagColors(false, false, darkTheme);
+      if (!isHex(colors.text) || !isHex(darkTheme.colors.background.canvas)) return;
+      const ratio = contrastRatio(colors.text, darkTheme.colors.background.canvas);
       expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
   });
 
   describe('light mode', () => {
     it('selected text on accent passes AA-large (3:1)', () => {
-      const colors = resolveTagColors(true, false, lightColors);
+      const colors = resolveTagColors(true, false, lightTheme);
       if (!isHex(colors.text) || !isHex(colors.bg)) return;
       const ratio = contrastRatio(colors.text, colors.bg);
       expect(ratio).toBeGreaterThanOrEqual(3);
     });
 
     it('default text on canvas passes AA (4.5:1)', () => {
-      const colors = resolveTagColors(false, false, lightColors);
-      if (!isHex(colors.text) || !isHex(lightColors.background.canvas)) return;
-      const ratio = contrastRatio(colors.text, lightColors.background.canvas);
+      const colors = resolveTagColors(false, false, lightTheme);
+      if (!isHex(colors.text) || !isHex(lightTheme.colors.background.canvas)) return;
+      const ratio = contrastRatio(colors.text, lightTheme.colors.background.canvas);
       expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
   });

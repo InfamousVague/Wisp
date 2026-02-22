@@ -105,7 +105,6 @@ export const Button = forwardRef<View, ButtonProps>(function Button(
     return {
       height: sizeConfig.height,
       paddingHorizontal: paddingH,
-      paddingVertical: sizeConfig.paddingY,
       borderRadius: theme.radii[shapeRadiusMap[shape]],
       borderWidth,
       borderColor: variantColors.border,
@@ -113,6 +112,7 @@ export const Button = forwardRef<View, ButtonProps>(function Button(
       alignItems: 'center',
       justifyContent: 'center',
       gap: sizeConfig.gap,
+      overflow: 'hidden',
       opacity: isDisabled ? 0.6 : 1,
       ...(fullWidth ? { width: '100%' } : { alignSelf: 'flex-start' }),
     } as ViewStyle;

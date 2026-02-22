@@ -15,6 +15,7 @@ import {
   buildChannelListHeaderSlotStyle,
   buildCategoryHeaderStyle,
   buildCategoryLabelStyle,
+  buildCategoryCreateButtonStyle,
   buildChannelItemStyle,
   buildChannelIconStyle,
   buildChannelNameStyle,
@@ -143,6 +144,24 @@ function ChevronIcon({ size = 12, color, collapsed }: { size?: number; color?: s
   );
 }
 
+function PlusIcon({ size = 14, color }: { size?: number; color?: string }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color ?? 'currentColor'}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <line x1="5" y1="12" x2="19" y2="12" />
+    </svg>
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Channel type icon map
 // ---------------------------------------------------------------------------
@@ -237,6 +256,7 @@ export const ChannelList = forwardRef<HTMLDivElement, ChannelListProps>(
       categories,
       onChannelClick,
       onCategoryToggle,
+      onChannelCreate,
       header,
       loading = false,
       skeleton = false,
@@ -288,6 +308,11 @@ export const ChannelList = forwardRef<HTMLDivElement, ChannelListProps>(
       [colors, theme],
     );
 
+    const categoryCreateBtnStyle = useMemo(
+      () => buildCategoryCreateButtonStyle(colors, theme),
+      [colors, theme],
+    );
+
     const badgeStyle = useMemo(
       () => buildChannelBadgeStyle(colors, theme),
       [colors, theme],
@@ -315,6 +340,14 @@ export const ChannelList = forwardRef<HTMLDivElement, ChannelListProps>(
         onChannelClick?.(channel);
       },
       [onChannelClick],
+    );
+
+    const handleChannelCreate = useCallback(
+      (e: React.MouseEvent, categoryId: string) => {
+        e.stopPropagation();
+        onChannelCreate?.(categoryId);
+      },
+      [onChannelCreate],
     );
 
     // ----- Render helpers -----
@@ -377,6 +410,7 @@ export const ChannelList = forwardRef<HTMLDivElement, ChannelListProps>(
               style={categoryHeaderStyle}
               onClick={() => handleCategoryToggle(category.id)}
               aria-expanded={!isCollapsed}
+              className="wisp-channel-category"
             >
               <ChevronIcon
                 size={12}
@@ -384,6 +418,25 @@ export const ChannelList = forwardRef<HTMLDivElement, ChannelListProps>(
                 collapsed={isCollapsed}
               />
               <span style={categoryLabelStyle}>{category.label}</span>
+              {onChannelCreate && (
+                <span
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Create channel in ${category.label}`}
+                  style={categoryCreateBtnStyle}
+                  className="wisp-category-create-btn"
+                  onClick={(e) => handleChannelCreate(e, category.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      onChannelCreate(category.id);
+                    }
+                  }}
+                >
+                  <PlusIcon size={14} />
+                </span>
+              )}
             </button>
 
             {/* Channel items */}
@@ -396,8 +449,11 @@ export const ChannelList = forwardRef<HTMLDivElement, ChannelListProps>(
         collapsedMap,
         categoryHeaderStyle,
         categoryLabelStyle,
+        categoryCreateBtnStyle,
         colors.categoryIcon,
         handleCategoryToggle,
+        handleChannelCreate,
+        onChannelCreate,
         renderChannel,
       ],
     );
@@ -411,6 +467,18 @@ export const ChannelList = forwardRef<HTMLDivElement, ChannelListProps>(
         style={{ ...containerStyle, ...userStyle }}
         {...rest}
       >
+        {/* Hover style for category create button */}
+        {onChannelCreate && (
+          <style>{`
+            .wisp-channel-category:hover .wisp-category-create-btn {
+              opacity: 1 !important;
+            }
+            .wisp-category-create-btn:hover {
+              color: ${colors.channelTextActive} !important;
+            }
+          `}</style>
+        )}
+
         {/* Header slot */}
         {header && <div style={headerSlotStyle}>{header}</div>}
 

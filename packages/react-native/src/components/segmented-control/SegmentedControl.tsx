@@ -46,14 +46,16 @@ export const SegmentedControl = forwardRef<View, SegmentedControlProps>(function
 
   const activeIndex = options.findIndex((o) => o.value === activeValue);
   const [containerWidth, setContainerWidth] = useState(0);
-  const segmentWidth = options.length > 0 ? containerWidth / options.length : 0;
+  const pad = 3;
+  const innerWidth = containerWidth > 0 ? containerWidth - pad * 2 : 0;
+  const segmentWidth = options.length > 0 ? innerWidth / options.length : 0;
 
   const indicatorX = useRef(new Animated.Value(0)).current;
   const hasMounted = useRef(false);
 
   useEffect(() => {
     if (containerWidth === 0) return;
-    const target = activeIndex * segmentWidth;
+    const target = pad + activeIndex * segmentWidth;
     if (!hasMounted.current) {
       hasMounted.current = true;
       indicatorX.setValue(target);
@@ -85,7 +87,7 @@ export const SegmentedControl = forwardRef<View, SegmentedControlProps>(function
       height: cfg.height,
       borderRadius: cfg.height / 2,
       backgroundColor: themeColors.background.surface,
-      padding: defaultSpacing['2xs'],
+      padding: pad,
       alignSelf: fullWidth ? 'stretch' : 'flex-start',
       position: 'relative',
       overflow: 'hidden',
@@ -103,11 +105,11 @@ export const SegmentedControl = forwardRef<View, SegmentedControlProps>(function
         <Animated.View
           style={{
             position: 'absolute',
-            top: 2,
-            bottom: 2,
+            top: pad,
+            bottom: pad,
             left: indicatorX,
             width: segmentWidth,
-            borderRadius: (cfg.height - 4) / 2,
+            borderRadius: (cfg.height - pad * 2) / 2,
             backgroundColor: themeColors.accent.highlight,
           }}
         />

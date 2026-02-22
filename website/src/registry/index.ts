@@ -54,6 +54,7 @@ export const SUBCATEGORY_ORDER: Partial<Record<ComponentCategory, string[]>> = {
     'Audio & Video',
     'Roles & Permissions',
     'Social',
+    'Community',
     'Utilities',
   ],
   layouts: [

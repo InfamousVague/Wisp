@@ -7,8 +7,10 @@ import { Input } from './Input';
 import { WispProvider } from '../../providers';
 import { contrastRatio } from '@coexist/wisp-core/utils/contrast';
 import { resolveInputColors } from '@coexist/wisp-core/styles/Input.styles';
-import { darkColors } from '@coexist/wisp-core/theme/dark';
-import { lightColors } from '@coexist/wisp-core/theme/light';
+import { createTheme } from '@coexist/wisp-core/theme/create-theme';
+
+const darkTheme = createTheme({ mode: 'dark' });
+const lightTheme = createTheme({ mode: 'light' });
 
 // ---------------------------------------------------------------------------
 // Wrapper
@@ -245,25 +247,25 @@ describe('Input — WCAG contrast', () => {
 
   describe('dark mode', () => {
     it('default text on canvas passes AA (4.5:1)', () => {
-      const colors = resolveInputColors(false, false, false, false, darkColors);
+      const colors = resolveInputColors(false, false, false, false, darkTheme);
       // Input bg is transparent, so text sits on canvas
-      const bg = darkColors.background.canvas;
+      const bg = darkTheme.colors.background.canvas;
       if (!isHex(colors.text) || !isHex(bg)) return;
       const ratio = contrastRatio(colors.text, bg);
       expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
 
     it('label text on canvas passes AA (4.5:1)', () => {
-      const colors = resolveInputColors(false, false, false, false, darkColors);
-      const bg = darkColors.background.canvas;
+      const colors = resolveInputColors(false, false, false, false, darkTheme);
+      const bg = darkTheme.colors.background.canvas;
       if (!isHex(colors.label) || !isHex(bg)) return;
       const ratio = contrastRatio(colors.label, bg);
       expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
 
     it('placeholder on canvas passes AA-large (3:1)', () => {
-      const colors = resolveInputColors(false, false, false, false, darkColors);
-      const bg = darkColors.background.canvas;
+      const colors = resolveInputColors(false, false, false, false, darkTheme);
+      const bg = darkTheme.colors.background.canvas;
       if (!isHex(colors.placeholder) || !isHex(bg)) return;
       const ratio = contrastRatio(colors.placeholder, bg);
       expect(ratio).toBeGreaterThanOrEqual(3);
@@ -272,24 +274,24 @@ describe('Input — WCAG contrast', () => {
 
   describe('light mode', () => {
     it('default text on canvas passes AA (4.5:1)', () => {
-      const colors = resolveInputColors(false, false, false, false, lightColors);
-      const bg = lightColors.background.canvas;
+      const colors = resolveInputColors(false, false, false, false, lightTheme);
+      const bg = lightTheme.colors.background.canvas;
       if (!isHex(colors.text) || !isHex(bg)) return;
       const ratio = contrastRatio(colors.text, bg);
       expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
 
     it('label text on canvas passes AA (4.5:1)', () => {
-      const colors = resolveInputColors(false, false, false, false, lightColors);
-      const bg = lightColors.background.canvas;
+      const colors = resolveInputColors(false, false, false, false, lightTheme);
+      const bg = lightTheme.colors.background.canvas;
       if (!isHex(colors.label) || !isHex(bg)) return;
       const ratio = contrastRatio(colors.label, bg);
       expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
 
     it('placeholder on canvas passes AA-large (3:1)', () => {
-      const colors = resolveInputColors(false, false, false, false, lightColors);
-      const bg = lightColors.background.canvas;
+      const colors = resolveInputColors(false, false, false, false, lightTheme);
+      const bg = lightTheme.colors.background.canvas;
       if (!isHex(colors.placeholder) || !isHex(bg)) return;
       const ratio = contrastRatio(colors.placeholder, bg);
       expect(ratio).toBeGreaterThanOrEqual(3);

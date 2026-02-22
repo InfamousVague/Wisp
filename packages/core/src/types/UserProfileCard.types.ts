@@ -84,4 +84,18 @@ export interface UserProfileCardProps extends React.HTMLAttributes<HTMLDivElemen
 
   /** Called when the close button is clicked. If omitted, no close button is shown. */
   onClose?: () => void;
+
+  // -- Community profile extensions --
+
+  /** Community-specific nickname (overrides name display). */
+  nickname?: string;
+
+  /** Date the user joined the community (ISO string or formatted). */
+  joinedAt?: string;
+
+  /** Custom status emoji. */
+  statusEmoji?: string;
+
+  /** Label for the joined date section. @default 'Joined' */
+  joinedLabel?: string;
 }

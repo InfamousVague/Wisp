@@ -148,6 +148,7 @@ export const Checkbox = forwardRef<View, CheckboxProps>(function Checkbox(
     width: sizeConfig.boxSize,
     height: sizeConfig.boxSize,
     borderRadius: sizeConfig.borderRadius,
+    overflow: 'hidden' as const,
     backgroundColor: colors.boxBg,
     borderWidth: 1.5,
     borderColor: colors.boxBorder,

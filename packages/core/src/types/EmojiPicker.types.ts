@@ -84,6 +84,7 @@ export const emojiCategories = [
   'objects',
   'symbols',
   'flags',
+  'custom',
 ] as const;
 export type EmojiCategory = (typeof emojiCategories)[number];
 
@@ -100,6 +101,10 @@ export interface EmojiItem {
   skinToneSupport?: boolean;
   /** Popularity rank (lower = more popular). */
   popularityRank?: number;
+  /** Optional image URL for custom emoji (community/server emoji). */
+  imageUrl?: string;
+  /** Whether this is an animated emoji. */
+  animated?: boolean;
 }
 
 /** Map of category names to Lucide icon component types. */
@@ -148,6 +153,12 @@ export interface EmojiPickerProps extends Omit<React.HTMLAttributes<HTMLDivEleme
 
   /** Auto-focus the search input on mount. @default false */
   autoFocusSearch?: boolean;
+
+  /** Custom community/server emoji to include in the 'custom' category. */
+  customEmojis?: EmojiItem[];
+
+  /** Label for the custom emoji category tab. @default 'Custom' */
+  customCategoryLabel?: string;
 }
 
 // ---------------------------------------------------------------------------

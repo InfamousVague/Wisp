@@ -411,6 +411,9 @@ export type { AudioWaveformProps, AudioWaveformVariant, AudioWaveformSize, Audio
 export { ReactionBar, reactionBarSizes, reactionBarSizeMap } from './components';
 export type { ReactionBarProps, Reaction, ReactionBarSize, ReactionBarSizeConfig } from './components';
 
+export { MessageList } from './components';
+export type { MessageListProps, MessageListItem, MessageListEntry, DaySeparator, NewMessageMarker } from './components';
+
 export { MessageInput, messageInputSizes, messageInputSizeMap } from './components';
 export type { MessageInputProps, MessageInputSize, MessageInputSizeConfig } from './components';
 
@@ -453,6 +456,9 @@ export type { MemberListProps, MemberListSection, MemberListMember } from './com
 export { ChannelList } from './components';
 export type { ChannelListProps, ChannelCategory, ChannelItem, ChannelType } from './components';
 
+export { ChannelHeader } from './components';
+export type { ChannelHeaderProps, ChannelHeaderType, ChannelHeaderAction } from './components';
+
 export { MessageSearch } from './components';
 export type { MessageSearchProps, SearchResult, SearchFilter, SearchFilterType } from './components';
 
@@ -476,6 +482,12 @@ export type { RoleBadgeProps, Role } from './components';
 export { PermissionManager } from './components';
 export type { PermissionManagerProps, Permission, PermissionState, PermissionCategory } from './components';
 
+export { RoleCreateDialog } from './components';
+export type { RoleCreateDialogProps, RoleCreateData, RolePermissionCategory } from './components';
+
+export { PermissionCalculator } from './components';
+export type { PermissionCalculatorProps, ComputedPermission } from './components';
+
 // Wave 17 — Social / Friends
 export { FriendListItem } from './components';
 export type { FriendListItemProps, FriendAction, FriendStatus } from './components';
@@ -494,6 +506,75 @@ export type { UserMiniCardProps, UserMiniCardAction, UserMiniCardStatus } from '
 
 export { AddFriendInput } from './components';
 export type { AddFriendInputProps, AddFriendFeedbackState } from './components';
+
+// Wave 18 — Community / Threads
+export { ThreadIndicator } from './components';
+export type { ThreadIndicatorProps } from './components';
+
+export { ThreadListView } from './components';
+export type { ThreadListViewProps, ThreadListItem } from './components';
+
+export { ThreadFollowButton } from './components';
+export type { ThreadFollowButtonProps } from './components';
+
+// Wave 18 — Community
+export { CommunityCreateDialog } from './components';
+export type { CommunityCreateDialogProps, CommunityCreateData } from './components';
+export { CommunitySidebar } from './components';
+export type { CommunitySidebarProps, CommunitySpace, CommunityInfo } from './components';
+export { InviteManager } from './components';
+export type { InviteManagerProps, InviteLink, InviteCreateOptions } from './components';
+export { RoleManagementPanel } from './components';
+export type { RoleManagementPanelProps, ManagedRole, RolePermissionItem } from './components';
+
+// Voice/Video
+export { VideoGrid, videoGridLayouts } from './components';
+export type { VideoGridProps, VideoParticipant, VideoGridLayout } from './components';
+
+export { GroupCallPanel, groupCallLayouts, groupCallViewModes, videoAspects } from './components';
+export type { GroupCallPanelProps, GroupCallParticipant, GroupCallLayout, GroupCallViewMode, VideoAspect } from './components';
+
+export { ScreenSharePicker, screenShareSourceTypes } from './components';
+export type { ScreenSharePickerProps, ScreenShareSource, ScreenShareSourceType } from './components';
+
+export { RecordingIndicator, recordingIndicatorVariants, recordingIndicatorSizes, recordingIndicatorSizeMap } from './components';
+export type { RecordingIndicatorProps, RecordingIndicatorVariant, RecordingIndicatorSize, RecordingIndicatorSizeConfig } from './components';
+
+// E2EE
+export { E2EEKeyExchangeUI } from './components';
+export type { E2EEKeyExchangeUIProps, KeyExchangeStatus } from './components';
+
+// ConversationView
+export { ConversationView } from './components';
+export type { ConversationViewProps } from './components';
+
+// File Management
+export { FolderCard } from './components';
+export type { FolderCardProps } from './components';
+export { FileCard } from './components';
+export type { FileCardProps } from './components';
+export { FileContextMenu, FolderContextMenu } from './components';
+export type { FileContextMenuProps, FolderContextMenuProps } from './components';
+export { FileUploadZone } from './components';
+export type { FileUploadZoneProps } from './components';
+export { FileDetailPanel } from './components';
+export type { FileDetailPanelProps } from './components';
+export { FileChannelView } from './components';
+export type { FileChannelViewProps, FileFolder, FileEntry, FileViewMode, FileSortField, FileSortDirection } from './components';
+export { FileTransferProgress } from './components';
+export type { FileTransferProgressProps, TransferState, TransferStep } from './components';
+export { FileTransferList } from './components';
+export type { FileTransferListProps } from './components';
+export { SharedFolderCard } from './components';
+export type { SharedFolderCardProps, SharedFolderMember, FolderSyncStatus } from './components';
+export { SyncStatusIndicator } from './components';
+export type { SyncStatusIndicatorProps } from './components';
+export { StorageUsageMeter } from './components';
+export type { StorageUsageMeterProps, StorageSegment } from './components';
+export { ConflictResolutionDialog } from './components';
+export type { ConflictResolutionDialogProps, ConflictVersion } from './components';
+export { FileTypeAllowlistSettings } from './components';
+export type { FileTypeAllowlistSettingsProps, FileTypePreset } from './components';
 
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';

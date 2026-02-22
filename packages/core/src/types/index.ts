@@ -55,6 +55,7 @@ export { iconColors, iconSizeMap, type IconColor, type IconSize, type IconProps 
 export * from './Image.types';
 export * from './Indicator.types';
 export * from './Input.types';
+export * from './InviteManager.types';
 export * from './Kbd.types';
 export * from './ListItem.types';
 export * from './LocalePicker.types';
@@ -131,6 +132,7 @@ export { formatActions, type FormatAction, type FormatToolbarProps } from './For
 export * from './UserProfileCard.types';
 export * from './MemberList.types';
 export * from './ChannelList.types';
+export * from './ChannelHeader.types';
 export * from './MessageSearch.types';
 export * from './AttachmentPreview.types';
 export * from './ActiveCallPanel.types';
@@ -143,6 +145,8 @@ export * from './DevicePicker.types';
 export * from './QualitySelector.types';
 export * from './VideoGrid.types';
 export * from './VideoTile.types';
+export * from './ScreenSharePicker.types';
+export * from './RecordingIndicator.types';
 export * from './VoiceChannelPanel.types';
 export * from './GroupCallPanel.types';
 export * from './VideoEffectsPanel.types';
@@ -151,6 +155,8 @@ export * from './CallPipWidget.types';
 export * from './CallHistoryItem.types';
 export * from './RoleBadge.types';
 export * from './PermissionManager.types';
+export * from './RoleCreateDialog.types';
+export * from './PermissionCalculator.types';
 
 // Social / Friends
 export * from './FriendListItem.types';
@@ -159,3 +165,28 @@ export * from './FriendSection.types';
 export * from './UserSearchResult.types';
 export * from './UserMiniCard.types';
 export * from './AddFriendInput.types';
+
+// Community / Threads
+export * from './ThreadIndicator.types';
+export * from './ThreadListView.types';
+export * from './ThreadFollowButton.types';
+export * from './CommunityCreateDialog.types';
+export * from './CommunitySidebar.types';
+export { type RoleManagementPanelProps, type ManagedRole, type RolePermissionItem } from './RoleManagementPanel.types';
+// Note: RolePermissionCategory is already exported from RoleCreateDialog.types
+// Re-export it from RoleManagementPanel.types for consumers who import from there directly
+
+// File management
+export * from './FolderCard.types';
+export * from './FileCard.types';
+export * from './FileContextMenu.types';
+export * from './FileUploadZone.types';
+export * from './FileDetailPanel.types';
+export * from './FileChannelView.types';
+export * from './FileTransferProgress.types';
+export * from './FileTransferList.types';
+export * from './SharedFolderCard.types';
+export * from './SyncStatusIndicator.types';
+export * from './StorageUsageMeter.types';
+export * from './ConflictResolutionDialog.types';
+export * from './FileTypeAllowlistSettings.types';

@@ -8,8 +8,10 @@ import { badgeVariants, badgeSizes, badgeShapes } from '@coexist/wisp-core/types
 import { WispProvider } from '../../providers';
 import { contrastRatio } from '@coexist/wisp-core/utils/contrast';
 import { resolveBadgeColors } from '@coexist/wisp-core/styles/Badge.styles';
-import { darkColors } from '@coexist/wisp-core/theme/dark';
-import { lightColors } from '@coexist/wisp-core/theme/light';
+import { createTheme } from '@coexist/wisp-core/theme/create-theme';
+
+const darkTheme = createTheme({ mode: 'dark' });
+const lightTheme = createTheme({ mode: 'light' });
 
 // ---------------------------------------------------------------------------
 // Wrapper
@@ -89,7 +91,7 @@ describe('Badge — dot', () => {
     // The dot is the first child span inside the badge
     const dotEl = badge?.querySelector('span > span');
     expect(dotEl).toBeTruthy();
-    expect(dotEl?.style.borderRadius).toBe('50%');
+    expect(dotEl?.style.borderRadius).toBe('9999px');
   });
 
   it('does not render a dot when dot is not set', () => {
@@ -157,7 +159,7 @@ describe('Badge — WCAG contrast', () => {
   describe('dark mode', () => {
     badgeVariants.forEach((variant) => {
       it(`"${variant}" text/bg contrast passes AA-large (3:1)`, () => {
-        const colors = resolveBadgeColors(variant, darkColors);
+        const colors = resolveBadgeColors(variant, darkTheme);
         // Skip non-hex backgrounds (e.g. rgba surfaces)
         if (!isHex(colors.bg)) return;
         const ratio = contrastRatio(colors.text, colors.bg);
@@ -169,7 +171,7 @@ describe('Badge — WCAG contrast', () => {
   describe('light mode', () => {
     badgeVariants.forEach((variant) => {
       it(`"${variant}" text/bg contrast passes AA-large (3:1)`, () => {
-        const colors = resolveBadgeColors(variant, lightColors);
+        const colors = resolveBadgeColors(variant, lightTheme);
         // Skip non-hex backgrounds (e.g. rgba surfaces)
         if (!isHex(colors.bg)) return;
         const ratio = contrastRatio(colors.text, colors.bg);

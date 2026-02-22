@@ -415,6 +415,13 @@ export type { ReactionBarProps, Reaction, ReactionBarSize, ReactionBarSizeConfig
 export { reactionBarSizes, reactionBarSizeMap } from './reaction-bar';
 
 // ---------------------------------------------------------------------------
+// MessageList
+// ---------------------------------------------------------------------------
+
+export { MessageList } from './message-list';
+export type { MessageListProps, MessageListItem, MessageListEntry, DaySeparator, NewMessageMarker } from './message-list';
+
+// ---------------------------------------------------------------------------
 // MessageInput
 // ---------------------------------------------------------------------------
 
@@ -518,6 +525,13 @@ export { ChannelList } from './channel-list';
 export type { ChannelListProps, ChannelCategory, ChannelItem, ChannelType } from './channel-list';
 
 // ---------------------------------------------------------------------------
+// ChannelHeader
+// ---------------------------------------------------------------------------
+
+export { ChannelHeader } from './channel-header';
+export type { ChannelHeaderProps, ChannelHeaderType, ChannelHeaderAction } from './channel-header';
+
+// ---------------------------------------------------------------------------
 // MessageSearch
 // ---------------------------------------------------------------------------
 
@@ -568,6 +582,20 @@ export { PermissionManager } from './permission-manager';
 export type { PermissionManagerProps, Permission, PermissionState, PermissionCategory } from './permission-manager';
 
 // ---------------------------------------------------------------------------
+// RoleCreateDialog
+// ---------------------------------------------------------------------------
+
+export { RoleCreateDialog } from './role-create-dialog';
+export type { RoleCreateDialogProps, RoleCreateData, RolePermissionCategory } from './role-create-dialog';
+
+// ---------------------------------------------------------------------------
+// PermissionCalculator
+// ---------------------------------------------------------------------------
+
+export { PermissionCalculator } from './permission-calculator';
+export type { PermissionCalculatorProps, ComputedPermission } from './permission-calculator';
+
+// ---------------------------------------------------------------------------
 // Wave 17 — Social / Friends
 // ---------------------------------------------------------------------------
 
@@ -588,3 +616,133 @@ export type { UserMiniCardProps, UserMiniCardAction, UserMiniCardStatus } from '
 
 export { AddFriendInput } from './add-friend-input';
 export type { AddFriendInputProps, AddFriendFeedbackState } from './add-friend-input';
+
+// ---------------------------------------------------------------------------
+// Community / Threads
+// ---------------------------------------------------------------------------
+
+export { ThreadIndicator } from './thread-indicator';
+export type { ThreadIndicatorProps } from './thread-indicator';
+
+export { ThreadListView } from './thread-list-view';
+export type { ThreadListViewProps, ThreadListItem } from './thread-list-view';
+
+export { ThreadFollowButton } from './thread-follow-button';
+export type { ThreadFollowButtonProps } from './thread-follow-button';
+
+// ---------------------------------------------------------------------------
+// CommunityCreateDialog
+// ---------------------------------------------------------------------------
+
+export { CommunityCreateDialog } from './community-create-dialog';
+export type { CommunityCreateDialogProps, CommunityCreateData } from './community-create-dialog';
+
+// CommunitySidebar
+// ---------------------------------------------------------------------------
+
+export { CommunitySidebar } from './community-sidebar';
+export type { CommunitySidebarProps, CommunitySpace, CommunityInfo } from './community-sidebar';
+
+// ---------------------------------------------------------------------------
+// InviteManager
+// ---------------------------------------------------------------------------
+
+export { InviteManager } from './invite-manager';
+export type { InviteManagerProps, InviteLink, InviteCreateOptions } from './invite-manager';
+
+// ---------------------------------------------------------------------------
+// RoleManagementPanel
+// ---------------------------------------------------------------------------
+
+export { RoleManagementPanel } from './role-management-panel';
+export type { RoleManagementPanelProps, ManagedRole, RolePermissionItem } from './role-management-panel';
+
+// ---------------------------------------------------------------------------
+// VideoGrid
+// ---------------------------------------------------------------------------
+
+export { VideoGrid } from './video-grid';
+export type { VideoGridProps, VideoParticipant, VideoGridLayout } from './video-grid';
+export { videoGridLayouts } from './video-grid';
+
+// ---------------------------------------------------------------------------
+// GroupCallPanel
+// ---------------------------------------------------------------------------
+
+export { GroupCallPanel } from './group-call-panel';
+export type { GroupCallPanelProps, GroupCallParticipant, GroupCallLayout, GroupCallViewMode, VideoAspect } from './group-call-panel';
+export { groupCallLayouts, groupCallViewModes, videoAspects } from '@coexist/wisp-core/types/GroupCallPanel.types';
+
+// ---------------------------------------------------------------------------
+// ScreenSharePicker
+// ---------------------------------------------------------------------------
+
+export { ScreenSharePicker } from './screen-share-picker';
+export type { ScreenSharePickerProps, ScreenShareSource, ScreenShareSourceType } from './screen-share-picker';
+export { screenShareSourceTypes } from './screen-share-picker';
+
+// ---------------------------------------------------------------------------
+// RecordingIndicator
+// ---------------------------------------------------------------------------
+
+export { RecordingIndicator } from './recording-indicator';
+export type { RecordingIndicatorProps, RecordingIndicatorVariant, RecordingIndicatorSize, RecordingIndicatorSizeConfig } from './recording-indicator';
+export { recordingIndicatorVariants, recordingIndicatorSizes, recordingIndicatorSizeMap } from './recording-indicator';
+
+// ---------------------------------------------------------------------------
+// E2EEKeyExchangeUI
+// ---------------------------------------------------------------------------
+
+export { E2EEKeyExchangeUI } from './e2ee-key-exchange-ui';
+export type { E2EEKeyExchangeUIProps, KeyExchangeStatus } from './e2ee-key-exchange-ui';
+
+// ---------------------------------------------------------------------------
+// ConversationView
+// ---------------------------------------------------------------------------
+
+export { ConversationView } from './conversation-view';
+export type { ConversationViewProps } from './conversation-view';
+
+// ---------------------------------------------------------------------------
+// File Management
+// ---------------------------------------------------------------------------
+
+export { FolderCard } from './folder-card';
+export type { FolderCardProps } from './folder-card';
+
+export { FileCard } from './file-card';
+export type { FileCardProps } from './file-card';
+
+export { FileContextMenu, FolderContextMenu } from './file-context-menu';
+export type { FileContextMenuProps, FolderContextMenuProps } from './file-context-menu';
+
+export { FileUploadZone } from './file-upload-zone';
+export type { FileUploadZoneProps } from './file-upload-zone';
+
+export { FileDetailPanel } from './file-detail-panel';
+export type { FileDetailPanelProps } from './file-detail-panel';
+
+export { FileChannelView } from './file-channel-view';
+export type { FileChannelViewProps, FileFolder, FileEntry, FileViewMode, FileSortField, FileSortDirection } from './file-channel-view';
+
+export { FileTransferProgress } from './file-transfer-progress';
+export type { FileTransferProgressProps, TransferState, TransferStep } from './file-transfer-progress';
+
+export { FileTransferList } from './file-transfer-list';
+export type { FileTransferListProps } from './file-transfer-list';
+
+export { SharedFolderCard } from './shared-folder-card';
+export type { SharedFolderCardProps, SharedFolderMember, FolderSyncStatus } from './shared-folder-card';
+
+export { SyncStatusIndicator } from './sync-status-indicator';
+export type { SyncStatusIndicatorProps } from './sync-status-indicator';
+
+export { StorageUsageMeter } from './storage-usage-meter';
+export type { StorageUsageMeterProps, StorageSegment } from './storage-usage-meter';
+
+export { ConflictResolutionDialog } from './conflict-resolution-dialog';
+export type { ConflictResolutionDialogProps, ConflictVersion } from './conflict-resolution-dialog';
+
+export { FileTypeAllowlistSettings } from './file-type-allowlist-settings';
+export type { FileTypeAllowlistSettingsProps, FileTypePreset } from './file-type-allowlist-settings';
+
