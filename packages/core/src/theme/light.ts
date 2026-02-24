@@ -43,6 +43,8 @@ export const lightColors: ThemeColors = {
     onRaised: '#0C0C0E',
     /** Secondary text on raised surfaces — medium gray. */
     onRaisedSecondary: '#71717A',
+    /** Text on accent-colored backgrounds — white. */
+    onAccent: '#FFFFFF',
   },
 
   // ---------------------------------------------------------------------------

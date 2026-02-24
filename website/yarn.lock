@@ -160,6 +160,21 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.28.5"
 
+"@coexist/wisp-core@^0.1.0", "@coexist/wisp-core@workspace:*":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@coexist/wisp-core/-/wisp-core-0.1.0.tgz#907ae0da4e30a8bb7aefb68342f794f77b9e3885"
+  integrity sha512-5ZBpZEsuriT8Z358KpVCXivXLNuMv4yD1mrvA4nzNixE8Vb1D9wGlgon+WX/Ogo+me34hCsPcw06zVUtHwxTHw==
+  dependencies:
+    qrcode-generator "^2.0.4"
+
+"@coexist/wisp-react@workspace:*":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@coexist/wisp-react/-/wisp-react-0.1.0.tgz#d0da3b50e8b45928778dcec62a0638bf2b2ba8bc"
+  integrity sha512-aQHU52sx7d8riHIhfXr9e/0WGf0GQ+zbWl9VsmWJEk50vBNHeH38p0A4wvbar8BYiY2bOugyqNWJ+nAzfHLgfQ==
+  dependencies:
+    "@coexist/wisp-core" "^0.1.0"
+    lucide-react "^0.563.0"
+
 "@esbuild/aix-ppc64@0.25.12":
   version "0.25.12"
   resolved "https://registry.yarnpkg.com/@esbuild/aix-ppc64/-/aix-ppc64-0.25.12.tgz#80fcbe36130e58b7670511e888b8e88a259ed76c"
@@ -894,6 +909,11 @@ property-information@^7.0.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/property-information/-/property-information-7.1.0.tgz#b622e8646e02b580205415586b40804d3e8bfd5d"
   integrity sha512-TwEZ+X+yCJmYfL7TPUOcvBZ4QfoT5YenQiJuX//0th53DE6w0xxLEtfK3iyryQFddXuvkIk51EEgrJQ0WJkOmQ==
+
+qrcode-generator@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/qrcode-generator/-/qrcode-generator-2.0.4.tgz#e8b3f30922577eba52078aa9c0d5a2a74fe1fd94"
+  integrity sha512-mZSiP6RnbHl4xL2Ap5HfkjLnmxfKcPWpWe/c+5XxCuetEenqmNFf1FH/ftXPCtFG5/TDobjsjz6sSNL0Sr8Z9g==
 
 react-dom@^18.3.0:
   version "18.3.1"

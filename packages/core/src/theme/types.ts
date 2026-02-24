@@ -90,6 +90,8 @@ export interface TextColors {
   onRaised: string;
   /** Secondary / muted text on raised / elevated surfaces. */
   onRaisedSecondary: string;
+  /** Text rendered on accent-colored backgrounds. */
+  onAccent: string;
 }
 
 /**

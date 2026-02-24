@@ -55,6 +55,7 @@ export const SUBCATEGORY_ORDER: Partial<Record<ComponentCategory, string[]>> = {
     'Roles & Permissions',
     'Social',
     'Community',
+    'Notifications',
     'Utilities',
   ],
   layouts: [

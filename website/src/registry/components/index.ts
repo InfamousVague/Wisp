@@ -96,6 +96,12 @@ import { conversationViewEntry } from './conversation-view';
 // File Management
 import { folderCardEntry } from './folder-card';
 
+// Notifications
+import { notificationItemEntry } from './notification-item';
+import { notificationGroupEntry } from './notification-group';
+import { notificationDrawerEntry } from './notification-drawer';
+import { notificationBellEntry } from './notification-bell';
+
 export const componentEntries: ComponentEntry[] = [
   commandEntry,
   comboboxEntry,
@@ -197,4 +203,10 @@ export const componentEntries: ComponentEntry[] = [
 
   // File Management
   folderCardEntry,
+
+  // Notifications
+  notificationBellEntry,
+  notificationItemEntry,
+  notificationGroupEntry,
+  notificationDrawerEntry,
 ];

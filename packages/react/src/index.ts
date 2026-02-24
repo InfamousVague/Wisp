@@ -576,5 +576,16 @@ export type { ConflictResolutionDialogProps, ConflictVersion } from './component
 export { FileTypeAllowlistSettings } from './components';
 export type { FileTypeAllowlistSettingsProps, FileTypePreset } from './components';
 
+// ─── Notification System ────────────────────────────────────────
+export { NotificationItem } from './components/notification-item';
+export type { NotificationItemProps, NotificationType, NotificationAction } from './components/notification-item';
+export { NotificationGroup } from './components/notification-group';
+export type { NotificationGroupProps } from './components/notification-group';
+export { NotificationDrawer } from './components/notification-drawer';
+export type { NotificationDrawerProps, NotificationCategory } from './components/notification-drawer';
+export { NotificationBell } from './components/notification-bell';
+export type { NotificationBellProps, NotificationBellSize } from './components/notification-bell';
+export { notificationBellSizes } from './components/notification-bell';
+
 // ─── Contexts ───────────────────────────────────────────────────
 export { LoadingContext } from './contexts';

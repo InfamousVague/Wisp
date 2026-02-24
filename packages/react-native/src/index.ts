@@ -364,3 +364,13 @@ export { textEffects, textEffectInfoMap } from './components/text-effect-picker'
 // Text Effect Wrapper (animations)
 export { TextEffectWrapper } from './components/text-effect-wrapper';
 export type { TextEffectWrapperProps } from './components/text-effect-wrapper';
+
+// Notification system
+export { NotificationItem } from './components/notification-item';
+export type { NotificationItemProps, NotificationType, NotificationAction } from './components/notification-item';
+
+export { NotificationGroup } from './components/notification-group';
+export type { NotificationGroupProps } from './components/notification-group';
+
+export { NotificationDrawer } from './components/notification-drawer';
+export type { NotificationDrawerProps, NotificationCategory } from './components/notification-drawer';
