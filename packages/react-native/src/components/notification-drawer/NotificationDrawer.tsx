@@ -21,6 +21,7 @@ import type {
   notificationCategories,
 } from '@coexist/wisp-core/types/NotificationDrawer.types';
 import { useTheme } from '../../providers';
+import { Button } from '../../primitives';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -82,7 +83,6 @@ export const NotificationDrawer = forwardRef<View, NotificationDrawerProps>(
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'space-between',
             paddingHorizontal: defaultSpacing.lg,
             paddingTop: defaultSpacing.lg,
             paddingBottom: defaultSpacing.sm,
@@ -94,47 +94,37 @@ export const NotificationDrawer = forwardRef<View, NotificationDrawerProps>(
               lineHeight: defaultTypography.sizes.lg.lineHeight,
               fontWeight: String(defaultTypography.weights.bold) as TextStyle['fontWeight'],
               color: colors.headerText,
+              flex: 1,
             }}
           >
             Notifications
           </RNText>
 
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: defaultSpacing.sm }}>
-            {onMarkAllRead && (
-              <Pressable
-                onPress={onMarkAllRead}
-                accessibilityRole="button"
-                accessibilityLabel="Mark all as read"
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              >
-                <RNText
-                  style={{
-                    fontSize: defaultTypography.sizes.xs.fontSize,
-                    color: theme.colors.accent.primary,
-                    fontWeight: String(defaultTypography.weights.medium) as TextStyle['fontWeight'],
-                  }}
-                >
-                  Mark all read
-                </RNText>
-              </Pressable>
-            )}
+          {onMarkAllRead && (
+            <Button size="sm" variant="secondary" onPress={onMarkAllRead}>
+              Mark all read
+            </Button>
+          )}
 
-            <Pressable
-              onPress={onClose}
-              accessibilityRole="button"
-              accessibilityLabel="Close notifications"
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              style={{
-                width: 28,
-                height: 28,
-                borderRadius: 14,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <RNText style={{ fontSize: 16, color: colors.headerIcon }}>{'\u2715'}</RNText>
-            </Pressable>
-          </View>
+          {/* Close button — top-right corner */}
+          <Pressable
+            onPress={onClose}
+            accessibilityRole="button"
+            accessibilityLabel="Close notifications"
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            style={{
+              position: 'absolute',
+              top: defaultSpacing.sm,
+              right: defaultSpacing.sm,
+              width: 28,
+              height: 28,
+              borderRadius: 14,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <RNText style={{ fontSize: 16, color: colors.headerIcon }}>{'\u2715'}</RNText>
+          </Pressable>
         </View>
 
         {/* ── Category tabs ──────────────────────────────────────────── */}

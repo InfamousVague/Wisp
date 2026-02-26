@@ -8,7 +8,7 @@
  */
 
 import React, { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
-import { View, Text, ScrollView, Pressable, Animated, Image } from 'react-native';
+import { View, Text, ScrollView, Pressable, Animated, Image, Dimensions } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle, NativeSyntheticEvent, NativeScrollEvent, LayoutChangeEvent } from 'react-native';
 import type {
   EmojiItem,
@@ -291,11 +291,16 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
 
   const resolvedRadius = (theme.radii ?? defaultRadii)[sizeConfig.borderRadius] ?? defaultRadii[sizeConfig.borderRadius];
 
+  // Clamp width to screen so picker never overflows on mobile
+  const screenWidth = Dimensions.get('window').width;
+  const PICKER_H_MARGIN = 24; // total horizontal safety margin
+  const clampedWidth = Math.min(sizeConfig.width, screenWidth - PICKER_H_MARGIN);
+
   // --- Skeleton ---
 
   if (skeleton) {
     const skeletonStyle: ViewStyle = {
-      width: sizeConfig.width,
+      width: clampedWidth,
       height: sizeConfig.height,
       borderRadius: resolvedRadius,
       backgroundColor: themeColors.border.subtle,
@@ -419,14 +424,14 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
 
   const containerStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'column',
-    width: sizeConfig.width,
+    width: clampedWidth,
     height: sizeConfig.height,
     borderRadius: resolvedRadius,
     backgroundColor: colors.bg,
     borderWidth: 1,
     borderColor: colors.border,
     overflow: 'hidden',
-  }), [sizeConfig, colors, resolvedRadius]);
+  }), [clampedWidth, sizeConfig, colors, resolvedRadius]);
 
   const headerStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'column',
@@ -520,6 +525,16 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
     justifyContent: 'center',
     borderRadius: (theme.radii ?? defaultRadii).md ?? defaultRadii.md,
   }), [sizeConfig, theme]);
+
+  // Custom emoji (image-based) get a 2× larger cell so they stand out
+  const customEmojiDisplaySize = Math.round(sizeConfig.cellSize * 2);
+  const customCellStyle = useMemo<ViewStyle>(() => ({
+    width: customEmojiDisplaySize,
+    height: customEmojiDisplaySize,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: (theme.radii ?? defaultRadii).md ?? defaultRadii.md,
+  }), [customEmojiDisplaySize, theme]);
 
   const emojiTextStyle = useMemo<TextStyle>(() => ({
     fontSize: sizeConfig.emojiSize,
@@ -676,6 +691,59 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
           const items = grouped.get(cat);
           if (!items || items.length === 0) return null;
 
+          // For the custom category, sub-group by groupName so each
+          // server / source gets its own section header.
+          if (cat === 'custom') {
+            const subGroups: { id: string; name: string; items: EmojiItem[] }[] = [];
+            const subGroupMap = new Map<string, EmojiItem[]>();
+            const subGroupOrder: string[] = [];
+            const subGroupNames = new Map<string, string>();
+
+            for (const item of items) {
+              const gid = item.groupId ?? '__ungrouped__';
+              const gname = item.groupName ?? 'Custom';
+              if (!subGroupMap.has(gid)) {
+                subGroupMap.set(gid, []);
+                subGroupOrder.push(gid);
+                subGroupNames.set(gid, gname);
+              }
+              subGroupMap.get(gid)!.push(item);
+            }
+            for (const gid of subGroupOrder) {
+              subGroups.push({ id: gid, name: subGroupNames.get(gid)!, items: subGroupMap.get(gid)! });
+            }
+
+            return (
+              <View key={cat} onLayout={handleSectionLayout(cat)}>
+                {subGroups.map((sg) => (
+                  <View key={sg.id} style={{ marginBottom: sizeConfig.gap * 2 }}>
+                    <Text style={categoryLabelStyle}>{sg.name}</Text>
+                    <View style={cellRowStyle}>
+                      {sg.items.map((item) => (
+                        <Pressable
+                          key={item.imageUrl || item.emoji}
+                          onPress={() => handleSelect(item.emoji, item)}
+                          accessibilityLabel={item.name}
+                          style={item.imageUrl ? customCellStyle : cellStyle}
+                        >
+                          {item.imageUrl ? (
+                            <Image
+                              source={{ uri: item.imageUrl }}
+                              style={{ width: customEmojiDisplaySize, height: customEmojiDisplaySize }}
+                              resizeMode="contain"
+                            />
+                          ) : (
+                            <Text style={emojiTextStyle}>{item.emoji}</Text>
+                          )}
+                        </Pressable>
+                      ))}
+                    </View>
+                  </View>
+                ))}
+              </View>
+            );
+          }
+
           return (
             <View key={cat} onLayout={handleSectionLayout(cat)}>
               <Text style={categoryLabelStyle}>{CATEGORY_LABELS[cat]}</Text>
@@ -687,12 +755,12 @@ export const EmojiPicker = forwardRef<View, EmojiPickerProps>(function EmojiPick
                       key={item.imageUrl || item.emoji}
                       onPress={() => handleSelect(item.emoji, item)}
                       accessibilityLabel={item.name}
-                      style={cellStyle}
+                      style={item.imageUrl ? customCellStyle : cellStyle}
                     >
                       {item.imageUrl ? (
                         <Image
                           source={{ uri: item.imageUrl }}
-                          style={{ width: sizeConfig.emojiSize, height: sizeConfig.emojiSize }}
+                          style={{ width: customEmojiDisplaySize, height: customEmojiDisplaySize }}
                           resizeMode="contain"
                         />
                       ) : (

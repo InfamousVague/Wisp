@@ -12,8 +12,8 @@
  * - Vanity URL section with link icon, base URL label, and input
  */
 
-import React, { forwardRef, useMemo, useState, useCallback } from 'react';
-import { View, Text, Pressable, ScrollView, TextInput } from 'react-native';
+import React, { forwardRef, useMemo, useState, useCallback, useRef } from 'react';
+import { View, Text, Pressable, ScrollView, TextInput, Modal, StyleSheet } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import {
   resolveInviteManagerColors,
@@ -194,8 +194,30 @@ function formatUses(uses: number, maxUses?: number | null): string {
 }
 
 // ---------------------------------------------------------------------------
-// OptionPicker — RN equivalent of HTML <select>
-// Cycles through options on press since native select isn't available in RN
+// ChevronDown icon for dropdown indicator
+// ---------------------------------------------------------------------------
+
+function ChevronDownIcon({ size = 12, color }: { size?: number; color?: string }) {
+  return (
+    <Svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color ?? 'currentColor'}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <Polyline points="6 9 12 15 18 9" />
+    </Svg>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// OptionPicker — Modal-based dropdown select (works inside nested modals)
+// Uses <Modal transparent> like Wisp's Select/DropdownMenu so it renders
+// above all other layers regardless of parent z-index or absolute positioning.
 // ---------------------------------------------------------------------------
 
 function OptionPicker({
@@ -213,29 +235,116 @@ function OptionPicker({
   style: ViewStyle;
   colors: InviteManagerColors;
 }) {
+  const [open, setOpen] = useState(false);
   const idx = options.findIndex((o) => o.value === value);
-  const cycle = useCallback(() => {
-    const nextIdx = (idx + 1) % options.length;
-    onChange(options[nextIdx].value);
-  }, [idx, options, onChange]);
+  const anchorRef = useRef<View>(null);
+  const [anchorLayout, setAnchorLayout] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
+
+  const handleOpen = useCallback(() => {
+    anchorRef.current?.measureInWindow((x, y, width, height) => {
+      setAnchorLayout({ x, y, width, height });
+      setOpen(true);
+    });
+  }, []);
+
+  const handleSelect = useCallback((val: string) => {
+    onChange(val);
+    setOpen(false);
+  }, [onChange]);
 
   return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityLabel={label}
-      onPress={cycle}
-      style={style}
-    >
-      <Text
-        style={{
-          fontSize: defaultTypography.sizes.sm.fontSize,
-          color: colors.textPrimary,
-        }}
-        numberOfLines={1}
+    <View ref={anchorRef} collapsable={false}>
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={label}
+        onPress={handleOpen}
+        style={[style, { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }]}
       >
-        {options[idx >= 0 ? idx : 0].label}
-      </Text>
-    </Pressable>
+        <Text
+          style={{
+            fontSize: defaultTypography.sizes.sm.fontSize,
+            color: colors.textPrimary,
+            flex: 1,
+          }}
+          numberOfLines={1}
+        >
+          {options[idx >= 0 ? idx : 0].label}
+        </Text>
+        <ChevronDownIcon size={12} color={colors.textSecondary} />
+      </Pressable>
+
+      <Modal
+        visible={open}
+        transparent
+        animationType="none"
+        onRequestClose={() => setOpen(false)}
+        statusBarTranslucent
+      >
+        {/* Full-screen backdrop to close on outside tap */}
+        <Pressable style={StyleSheet.absoluteFill} onPress={() => setOpen(false)}>
+          {/* Positioned dropdown — uses absolute coords from measureInWindow */}
+          {anchorLayout && (
+            <View
+              style={{
+                position: 'absolute',
+                top: anchorLayout.y + anchorLayout.height + 4,
+                left: anchorLayout.x,
+                width: anchorLayout.width,
+              }}
+            >
+              <Pressable onPress={(e) => e.stopPropagation()}>
+                <View
+                  style={{
+                    backgroundColor: colors.bg,
+                    borderRadius: defaultRadii.md,
+                    borderWidth: 1,
+                    borderColor: colors.border,
+                    paddingVertical: 4,
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.2,
+                    shadowRadius: 8,
+                    elevation: 8,
+                  }}
+                >
+                  {options.map((option) => {
+                    const isSelected = option.value === value;
+                    return (
+                      <Pressable
+                        key={option.value}
+                        onPress={() => handleSelect(option.value)}
+                        style={({ pressed }) => ({
+                          paddingVertical: 6,
+                          paddingHorizontal: defaultSpacing.sm,
+                          backgroundColor: isSelected
+                            ? colors.accentBg + '20'
+                            : pressed
+                              ? colors.inputBg
+                              : 'transparent',
+                        })}
+                      >
+                        <Text
+                          style={{
+                            fontSize: defaultTypography.sizes.sm.fontSize,
+                            color: isSelected ? colors.accentBg : colors.textPrimary,
+                            fontWeight: isSelected
+                              ? (String(defaultTypography.weights.semibold) as TextStyle['fontWeight'])
+                              : (String(defaultTypography.weights.regular) as TextStyle['fontWeight']),
+                          }}
+                          numberOfLines={1}
+                        >
+                          {option.label}
+                        </Text>
+                      </Pressable>
+                    );
+                  })}
+                </View>
+              </Pressable>
+            </View>
+          )}
+        </Pressable>
+      </Modal>
+    </View>
   );
 }
 

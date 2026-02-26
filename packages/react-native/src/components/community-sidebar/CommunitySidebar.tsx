@@ -358,17 +358,21 @@ export const CommunitySidebar = forwardRef<View, CommunitySidebarProps>(
           {community.icon && (
             <View style={{ flexShrink: 0 }}>{community.icon}</View>
           )}
-          <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={nameStyle} numberOfLines={1}>
-              {community.name}
-            </Text>
+          <View style={{ flex: 1, minWidth: 0, paddingRight: 36 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+              <Text style={{ ...nameStyle, flex: undefined, flexShrink: 1 }} numberOfLines={1}>
+                {community.name}
+              </Text>
+              <View style={{ flexShrink: 0 }}>
+                <ChevronDownIcon size={14} color={colors.headerSubtext} />
+              </View>
+            </View>
             {community.subtitle ? (
               <Text style={subtitleStyle} numberOfLines={1}>
                 {community.subtitle}
               </Text>
             ) : null}
           </View>
-          <ChevronDownIcon size={14} color={colors.headerSubtext} />
         </Pressable>
 
         {/* Space tab strip */}

@@ -1,28 +1,28 @@
 /**
  * @module components/combined-picker
- * @description Combined Emoji + Sticker picker with tabbed navigation.
+ * @description Combined Emoji + GIF picker with tabbed navigation.
  *
- * Wraps the existing EmojiPicker and StickerPicker components behind a
- * top tab bar so users can switch between emoji and sticker selection
+ * Wraps the existing EmojiPicker and GifPicker components behind a
+ * top tab bar so users can switch between emoji and GIF selection
  * in a single popup panel.
  */
 
 import React, { forwardRef, useState, useMemo, useCallback } from 'react';
-import { View, Pressable, Text } from 'react-native';
+import { View, Pressable, Text, Dimensions } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { EmojiItem } from '@coexist/wisp-core/types/EmojiPicker.types';
 import type { EmojiPickerSize } from '@coexist/wisp-core/types/EmojiPicker.types';
-import type { StickerPickerPack } from '@coexist/wisp-core/types/StickerPicker.types';
+import type { GifItem } from '@coexist/wisp-core/types/GifPicker.types';
 import { emojiPickerSizeMap } from '@coexist/wisp-core/types/EmojiPicker.types';
 import { useTheme } from '../../providers';
 import { EmojiPicker } from '../emoji-picker';
-import { StickerPicker } from '../sticker-picker';
+import { GifPicker } from '../gif-picker';
 
 // ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
 
-export type CombinedPickerTab = 'emoji' | 'stickers';
+export type CombinedPickerTab = 'emoji' | 'gifs';
 
 export interface CombinedPickerProps extends ViewProps {
   /** Size preset (passed through to inner pickers). @default 'md' */
@@ -34,11 +34,11 @@ export interface CombinedPickerProps extends ViewProps {
   /** Custom community emoji for the 'custom' category tab. */
   customEmojis?: EmojiItem[];
 
-  // ── Sticker props ────────────────────────────────────────────────────
-  /** Sticker packs to display in the sticker tab. */
-  stickerPacks?: StickerPickerPack[];
-  /** Called when a sticker is selected. */
-  onStickerSelect?: (stickerId: string, packId: string) => void;
+  // ── GIF props ────────────────────────────────────────────────────────
+  /** Relay server URL for the GIF search proxy. */
+  relayUrl?: string;
+  /** Called when a GIF is selected. */
+  onGifSelect?: (gif: GifItem) => void;
 
   /** The initially active tab. @default 'emoji' */
   defaultTab?: CombinedPickerTab;
@@ -54,8 +54,8 @@ export const CombinedPicker = forwardRef<View, CombinedPickerProps>(
       size = 'md',
       onEmojiSelect,
       customEmojis,
-      stickerPacks,
-      onStickerSelect,
+      relayUrl,
+      onGifSelect,
       defaultTab = 'emoji',
       style: userStyle,
       ...rest
@@ -67,10 +67,13 @@ export const CombinedPicker = forwardRef<View, CombinedPickerProps>(
     const sizeConfig = emojiPickerSizeMap[size];
     const [activeTab, setActiveTab] = useState<CombinedPickerTab>(defaultTab);
 
-    const hasStickers = stickerPacks && stickerPacks.length > 0;
+    // Clamp width to screen so picker never overflows on mobile
+    const screenWidth = Dimensions.get('window').width;
+    const PICKER_H_MARGIN = 24;
+    const clampedWidth = Math.min(sizeConfig.width, screenWidth - PICKER_H_MARGIN);
 
-    // If no sticker packs, just render plain EmojiPicker without tabs
-    if (!hasStickers) {
+    // If no relay URL (GIF proxy not available), just render plain EmojiPicker
+    if (!relayUrl) {
       return (
         <EmojiPicker
           ref={ref}
@@ -86,13 +89,13 @@ export const CombinedPicker = forwardRef<View, CombinedPickerProps>(
     const TAB_BAR_HEIGHT = 36;
 
     const containerStyle = useMemo<ViewStyle>(() => ({
-      width: sizeConfig.width,
+      width: clampedWidth,
       borderRadius: theme.radii.xl ?? 16,
       borderWidth: 1,
       borderColor: themeColors.border.subtle,
       backgroundColor: themeColors.background.raised,
       overflow: 'hidden',
-    }), [sizeConfig, themeColors, theme]);
+    }), [clampedWidth, themeColors, theme]);
 
     const tabBarStyle = useMemo<ViewStyle>(() => ({
       flexDirection: 'row',
@@ -135,12 +138,12 @@ export const CombinedPicker = forwardRef<View, CombinedPickerProps>(
             <Text style={makeTabTextStyle(activeTab === 'emoji')}>Emoji</Text>
           </Pressable>
           <Pressable
-            onPress={() => setActiveTab('stickers')}
-            style={makeTabStyle(activeTab === 'stickers')}
+            onPress={() => setActiveTab('gifs')}
+            style={makeTabStyle(activeTab === 'gifs')}
             accessibilityRole="tab"
-            accessibilityState={{ selected: activeTab === 'stickers' }}
+            accessibilityState={{ selected: activeTab === 'gifs' }}
           >
-            <Text style={makeTabTextStyle(activeTab === 'stickers')}>Stickers</Text>
+            <Text style={makeTabTextStyle(activeTab === 'gifs')}>GIFs</Text>
           </Pressable>
         </View>
 
@@ -153,10 +156,10 @@ export const CombinedPicker = forwardRef<View, CombinedPickerProps>(
             style={{ borderWidth: 0, borderRadius: 0 }}
           />
         ) : (
-          <StickerPicker
+          <GifPicker
             size={size}
-            packs={stickerPacks!}
-            onSelect={onStickerSelect}
+            relayUrl={relayUrl}
+            onSelect={onGifSelect}
             style={{ borderWidth: 0, borderRadius: 0 }}
           />
         )}

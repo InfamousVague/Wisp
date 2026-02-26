@@ -343,7 +343,12 @@ export { StickerPicker } from './components/sticker-picker';
 export type { StickerPickerProps } from './components/sticker-picker';
 export type { StickerPickerPack, StickerPickerSize } from '@coexist/wisp-core/types/StickerPicker.types';
 
-// Combined Picker (Emoji + Stickers tabbed)
+// GIF Picker
+export { GifPicker } from './components/gif-picker';
+export type { GifPickerProps } from './components/gif-picker';
+export type { GifItem } from '@coexist/wisp-core/types/GifPicker.types';
+
+// Combined Picker (Emoji + GIFs tabbed)
 export { CombinedPicker } from './components/combined-picker';
 export type { CombinedPickerProps, CombinedPickerTab } from './components/combined-picker';
 

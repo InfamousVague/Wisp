@@ -65,9 +65,9 @@ export interface EmojiPickerSizeConfig {
 }
 
 export const emojiPickerSizeMap: Record<EmojiPickerSize, EmojiPickerSizeConfig> = {
-  sm: { width: 280, height: 320, cellSize: 30, emojiSize: 18, fontSize: defaultTypography.sizes.xs.fontSize, padding: defaultSpacing.sm, gap: defaultSpacing['2xs'], tabHeight: 32, searchHeight: 32, borderRadius: 'lg', tabIconSize: 14, columnsCount: 8, skinToneDotSize: 18 },
-  md: { width: 340, height: 400, cellSize: 36, emojiSize: 22, fontSize: defaultTypography.sizes.xs.fontSize, padding: defaultSpacing.md, gap: defaultSpacing['2xs'], tabHeight: 36, searchHeight: 36, borderRadius: 'xl', tabIconSize: 16, columnsCount: 8, skinToneDotSize: 22 },
-  lg: { width: 400, height: 480, cellSize: 44, emojiSize: 28, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.lg, gap: defaultSpacing.xs, tabHeight: 42, searchHeight: 40, borderRadius: 'xl', tabIconSize: 18, columnsCount: 8, skinToneDotSize: 26 } };
+  sm: { width: 340, height: 360, cellSize: 30, emojiSize: 18, fontSize: defaultTypography.sizes.xs.fontSize, padding: defaultSpacing.sm, gap: defaultSpacing['2xs'], tabHeight: 32, searchHeight: 32, borderRadius: 'lg', tabIconSize: 14, columnsCount: 8, skinToneDotSize: 18 },
+  md: { width: 420, height: 440, cellSize: 36, emojiSize: 22, fontSize: defaultTypography.sizes.xs.fontSize, padding: defaultSpacing.md, gap: defaultSpacing['2xs'], tabHeight: 36, searchHeight: 36, borderRadius: 'xl', tabIconSize: 16, columnsCount: 8, skinToneDotSize: 22 },
+  lg: { width: 480, height: 520, cellSize: 44, emojiSize: 28, fontSize: defaultTypography.sizes.sm.fontSize, padding: defaultSpacing.lg, gap: defaultSpacing.xs, tabHeight: 42, searchHeight: 40, borderRadius: 'xl', tabIconSize: 18, columnsCount: 8, skinToneDotSize: 26 } };
 
 // ---------------------------------------------------------------------------
 // Emoji categories & data
@@ -75,6 +75,7 @@ export const emojiPickerSizeMap: Record<EmojiPickerSize, EmojiPickerSizeConfig> 
 
 export const emojiCategories = [
   'recent',
+  'custom',
   'smileys',
   'people',
   'animals',
@@ -84,7 +85,6 @@ export const emojiCategories = [
   'objects',
   'symbols',
   'flags',
-  'custom',
 ] as const;
 export type EmojiCategory = (typeof emojiCategories)[number];
 
@@ -105,6 +105,10 @@ export interface EmojiItem {
   imageUrl?: string;
   /** Whether this is an animated emoji. */
   animated?: boolean;
+  /** Optional group/source identifier for sectioning custom emoji (e.g. community ID). */
+  groupId?: string;
+  /** Optional display label for the group (e.g. community name, "Umbra"). */
+  groupName?: string;
 }
 
 /** Map of category names to Lucide icon component types. */
