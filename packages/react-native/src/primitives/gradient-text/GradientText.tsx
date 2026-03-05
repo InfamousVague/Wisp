@@ -82,7 +82,7 @@ function GradientTextWeb({
   const webStyle: any = {
     ...style,
     backgroundImage: gradientStr,
-    backgroundSize: animated ? '200% 100%' : '100% 100%',
+    backgroundSize: animated ? '300% 300%' : '100% 100%',
     WebkitBackgroundClip: 'text',
     backgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
