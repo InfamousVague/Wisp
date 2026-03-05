@@ -91,6 +91,46 @@ export interface ChannelListProps extends ViewProps {
 }
 
 // ---------------------------------------------------------------------------
+// Channel hover gradient bar (web only)
+// ---------------------------------------------------------------------------
+
+let channelHoverCSSInjected = false;
+function injectChannelHoverCSS() {
+  if (channelHoverCSSInjected || Platform.OS !== 'web') return;
+  channelHoverCSSInjected = true;
+  const style = document.createElement('style');
+  style.textContent = `
+    [data-wisp-channel]:hover::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      margin-top: -8px;
+      width: 3px;
+      height: 16px;
+      border-radius: 2px;
+      background: linear-gradient(180deg, #8B5CF6, #EC4899, #3B82F6);
+      opacity: 1;
+      transition: opacity 0.15s ease;
+    }
+    [data-wisp-channel]::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      margin-top: -8px;
+      width: 3px;
+      height: 16px;
+      border-radius: 2px;
+      background: linear-gradient(180deg, #8B5CF6, #EC4899, #3B82F6);
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+// ---------------------------------------------------------------------------
 // Drag state types
 // ---------------------------------------------------------------------------
 
@@ -680,6 +720,9 @@ export const ChannelList = forwardRef<View, ChannelListProps>(
         const hasUnread = (channel.unreadCount ?? 0) > 0;
         const isBeingDragged = dragState?.channelId === channel.id;
 
+        // Inject channel hover CSS on first render (web only)
+        if (Platform.OS === 'web') injectChannelHoverCSS();
+
         const itemStyle: ViewStyle = {
           flexDirection: 'row',
           alignItems: 'center',
@@ -692,6 +735,8 @@ export const ChannelList = forwardRef<View, ChannelListProps>(
           backgroundColor: active ? colors.channelActiveBg : 'transparent',
           opacity: isBeingDragged ? 0.3 : muted && !active ? 0.5 : 1,
           minHeight: 32,
+          position: 'relative' as const,
+          overflow: 'hidden' as const,
         };
 
         const iconContainerStyle: ViewStyle = {
@@ -725,9 +770,9 @@ export const ChannelList = forwardRef<View, ChannelListProps>(
           : undefined;
 
         // Spread web-only props (onContextMenu is not typed in RN but works on web)
-        const webProps = contextMenuHandler
-          ? { onContextMenu: contextMenuHandler } as any
-          : {};
+        const webProps: any = {};
+        if (contextMenuHandler) webProps.onContextMenu = contextMenuHandler;
+        if (Platform.OS === 'web' && !active) webProps['data-wisp-channel'] = '';
 
         return (
           <View

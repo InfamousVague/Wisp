@@ -5,8 +5,8 @@
  * Reuses color resolution from `@coexist/wisp-core`. Renders via `<View>` + `<Text>`.
  */
 
-import React, { forwardRef, useMemo, useCallback } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import React, { forwardRef, useMemo, useCallback, useEffect, useState } from 'react';
+import { View, Text, Pressable, Platform } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import { resolveConversationListItemColors } from '@coexist/wisp-core/styles/ConversationListItem.styles';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
@@ -52,6 +52,8 @@ export interface ConversationListItemProps extends ViewProps {
   skeleton?: boolean;
   /** Read receipt status for the last message. */
   status?: MessageStatus;
+  /** Trigger a brief shimmer sweep (e.g. on new message). Increment to re-trigger. */
+  shimmer?: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -96,6 +98,24 @@ function MuteIcon({ size = 12, color }: { size?: number; color?: string }) {
 }
 
 // ---------------------------------------------------------------------------
+// Shimmer CSS (web only)
+// ---------------------------------------------------------------------------
+
+let shimmerInjected = false;
+function injectShimmerCSS() {
+  if (shimmerInjected || Platform.OS !== 'web') return;
+  shimmerInjected = true;
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes wisp-convo-shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+// ---------------------------------------------------------------------------
 // ConversationListItem
 // ---------------------------------------------------------------------------
 
@@ -114,6 +134,7 @@ export const ConversationListItem = forwardRef<View, ConversationListItemProps>(
       disabled = false,
       skeleton = false,
       status,
+      shimmer,
       onPress,
       style: userStyle,
       ...rest
@@ -128,6 +149,17 @@ export const ConversationListItem = forwardRef<View, ConversationListItemProps>(
     );
 
     const hasUnread = unreadCount > 0;
+
+    // Shimmer sweep on new message
+    const [shimmerActive, setShimmerActive] = useState(false);
+    useEffect(() => {
+      if (shimmer && shimmer > 0 && Platform.OS === 'web') {
+        injectShimmerCSS();
+        setShimmerActive(true);
+        const timer = setTimeout(() => setShimmerActive(false), 700);
+        return () => clearTimeout(timer);
+      }
+    }, [shimmer]);
 
     // ------ Skeleton ------
     if (skeleton) {
@@ -249,9 +281,27 @@ export const ConversationListItem = forwardRef<View, ConversationListItemProps>(
         onPress={handlePress}
         accessibilityRole="button"
         accessibilityState={{ disabled, selected: active }}
-        style={[containerStyle, userStyle as ViewStyle]}
+        style={[containerStyle, { position: 'relative', overflow: 'hidden' } as ViewStyle, userStyle as ViewStyle]}
         {...rest}
       >
+        {/* Shimmer sweep overlay */}
+        {shimmerActive && Platform.OS === 'web' && (
+          <View
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              overflow: 'hidden',
+              pointerEvents: 'none',
+              zIndex: 10,
+              background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%)',
+              animation: 'wisp-convo-shimmer 0.6s ease-out forwards',
+            } as any}
+          />
+        )}
+
         {/* Avatar */}
         <View style={avatarWrapperStyle}>
           {avatar}

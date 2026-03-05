@@ -75,6 +75,22 @@ export const NotificationBadge = forwardRef<View, NotificationBadgeProps>(
     );
 
     const pulseAnim = useRef(new Animated.Value(1)).current;
+    const popAnim = useRef(new Animated.Value(1)).current;
+    const prevCountRef = useRef(count);
+
+    // Spring pop when count changes
+    useEffect(() => {
+      if (prevCountRef.current !== count && count !== undefined && count > 0) {
+        popAnim.setValue(1.3);
+        Animated.spring(popAnim, {
+          toValue: 1,
+          tension: 300,
+          friction: 10,
+          useNativeDriver: true,
+        }).start();
+      }
+      prevCountRef.current = count;
+    }, [count, popAnim]);
 
     useEffect(() => {
       if (pulse) {
@@ -152,7 +168,7 @@ export const NotificationBadge = forwardRef<View, NotificationBadgeProps>(
       if (pulse) {
         return (
           <Animated.View
-            style={[badgeStyle, { transform: [{ scale: pulseAnim }] }]}
+            style={[badgeStyle, { transform: [{ scale: Animated.multiply(pulseAnim, popAnim) }] }]}
             pointerEvents="none"
           >
             {badgeContent}
@@ -161,9 +177,9 @@ export const NotificationBadge = forwardRef<View, NotificationBadgeProps>(
       }
 
       return (
-        <View style={badgeStyle} pointerEvents="none">
+        <Animated.View style={[badgeStyle, { transform: [{ scale: popAnim }] }]} pointerEvents="none">
           {badgeContent}
-        </View>
+        </Animated.View>
       );
     };
 

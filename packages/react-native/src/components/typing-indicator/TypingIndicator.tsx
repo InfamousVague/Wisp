@@ -8,7 +8,7 @@
  */
 
 import React, { forwardRef, useMemo, useEffect, useRef } from 'react';
-import { View, Text, Animated, Easing } from 'react-native';
+import { View, Text, Animated, Easing, Platform } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { ChatBubbleAlignment } from '@coexist/wisp-core/types/ChatBubble.types';
 import type { TypingIndicatorAnimation } from '@coexist/wisp-core/types/TypingIndicator.types';
@@ -27,22 +27,28 @@ export interface TypingIndicatorProps extends ViewProps {
   sender?: string;
   color?: string;
   dotSize?: number;
+  /** Use gradient-colored dots. @default false */
+  gradient?: boolean;
 }
 
 // ---------------------------------------------------------------------------
 // Animated Dot
 // ---------------------------------------------------------------------------
 
+const GRADIENT_DOT_COLORS = ['#8B5CF6', '#EC4899', '#3B82F6'];
+
 function AnimatedDot({
   index,
   animation,
   dotSize,
   color,
+  gradient,
 }: {
   index: number;
   animation: TypingIndicatorAnimation;
   dotSize: number;
   color: string;
+  gradient?: boolean;
 }) {
   const anim = useRef(new Animated.Value(0)).current;
 
@@ -109,18 +115,22 @@ function AnimatedDot({
     }
   }, [anim, animation]);
 
+  const dotBaseStyle: any = {
+    width: dotSize,
+    height: dotSize,
+    borderRadius: dotSize / 2,
+  };
+
+  if (gradient && Platform.OS === 'web') {
+    dotBaseStyle.background = `linear-gradient(135deg, ${GRADIENT_DOT_COLORS[index % GRADIENT_DOT_COLORS.length]}, ${GRADIENT_DOT_COLORS[(index + 1) % GRADIENT_DOT_COLORS.length]})`;
+  } else if (gradient) {
+    dotBaseStyle.backgroundColor = GRADIENT_DOT_COLORS[index % GRADIENT_DOT_COLORS.length];
+  } else {
+    dotBaseStyle.backgroundColor = color;
+  }
+
   return (
-    <Animated.View
-      style={[
-        {
-          width: dotSize,
-          height: dotSize,
-          borderRadius: dotSize / 2,
-          backgroundColor: color,
-        },
-        animatedStyle,
-      ]}
-    />
+    <Animated.View style={[dotBaseStyle, animatedStyle]} />
   );
 }
 
@@ -137,6 +147,7 @@ export const TypingIndicator = forwardRef<View, TypingIndicatorProps>(function T
     sender,
     color,
     dotSize = 8,
+    gradient = false,
     style: userStyle,
     ...rest
   },
@@ -163,6 +174,7 @@ export const TypingIndicator = forwardRef<View, TypingIndicatorProps>(function T
           animation={animation}
           dotSize={dotSize}
           color={dotColor}
+          gradient={gradient}
         />
       ))}
     </View>

@@ -8,7 +8,7 @@
  */
 
 import React, { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Platform, View, TextInput, Text, Pressable, ScrollView } from 'react-native';
+import { Platform, View, TextInput, Text, Pressable, ScrollView, Animated } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type {
   MessageInputSize,
@@ -79,6 +79,14 @@ function XIcon({ size = 12, color }: { size?: number; color?: string }) {
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
       <Path d="M18 6 6 18" />
       <Path d="m6 6 12 12" />
+    </Svg>
+  );
+}
+
+function CheckSentIcon({ size = 16, color }: { size?: number; color?: string }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+      <Path d="M20 6 9 17l-5-5" />
     </Svg>
   );
 }
@@ -306,15 +314,15 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
     color: colors.sendIcon,
   }), [sizeConfig, colors]);
 
+  const contextBarAccent = replyingTo ? themeColors.accent.primary : themeColors.status.warning;
   const contextBarStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'center',
     gap: defaultSpacing.sm,
     paddingHorizontal: sizeConfig.padding,
     paddingVertical: defaultSpacing.xs,
-    borderLeftWidth: 2,
-    borderLeftColor: replyingTo ? themeColors.accent.primary : themeColors.status.warning,
-  }), [replyingTo, themeColors, sizeConfig]);
+    ...(Platform.OS !== 'web' ? { borderLeftWidth: 2, borderLeftColor: contextBarAccent } : {}),
+  }), [contextBarAccent, sizeConfig]);
 
   const contextLabelStyle = useMemo<TextStyle>(() => ({
     fontSize: defaultTypography.sizes.xs.fontSize,
@@ -409,11 +417,28 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
     [controlledValue, onValueChange],
   );
 
+  // --- Send button spring + icon morph ---
+  const sendScale = useRef(new Animated.Value(1)).current;
+  const [showCheck, setShowCheck] = useState(false);
+
   const handleSubmit = useCallback(() => {
     if (!hasContent || sending || disabled) return;
     onSubmit?.(value);
     if (controlledValue === undefined) setInternalValue('');
-  }, [hasContent, sending, disabled, value, onSubmit, controlledValue]);
+
+    // Spring pop animation
+    sendScale.setValue(1.2);
+    Animated.spring(sendScale, {
+      toValue: 1,
+      tension: 300,
+      friction: 10,
+      useNativeDriver: true,
+    }).start();
+
+    // Brief check icon morph
+    setShowCheck(true);
+    setTimeout(() => setShowCheck(false), 600);
+  }, [hasContent, sending, disabled, value, onSubmit, controlledValue, sendScale]);
 
   const textInputRef = useRef<TextInput>(null);
 
@@ -472,7 +497,18 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
     <View ref={ref} style={[wrapperStyle, userStyle as ViewStyle]} {...rest}>
       {/* Reply / Edit context bar */}
       {hasContextBar && (
-        <View style={contextBarStyle}>
+        <View style={[contextBarStyle, { position: 'relative', overflow: 'hidden' }]}>
+          {/* Gradient accent bar (web) */}
+          {Platform.OS === 'web' && (
+            <View style={{
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              bottom: 0,
+              width: 2,
+              background: 'linear-gradient(180deg, #8B5CF6, #EC4899, #3B82F6)',
+            } as any} />
+          )}
           <View style={{ flex: 1 }}>
             <Text style={contextLabelStyle}>
               {replyingTo ? `Replying to ${replyingTo.sender}` : 'Editing message'}
@@ -612,14 +648,19 @@ export const MessageInput = forwardRef<View, MessageInputProps>(function Message
           </Pressable>
         )}
 
-        <Pressable
-          onPress={handleSubmit}
-          disabled={!hasContent || sending || disabled}
-          accessibilityLabel="Send message"
-          style={sendBtnStyle}
-        >
-          <SendIcon size={Math.round(sizeConfig.iconSize * 0.8)} color={colors.sendIcon} />
-        </Pressable>
+        <Animated.View style={{ transform: [{ scale: sendScale }] }}>
+          <Pressable
+            onPress={handleSubmit}
+            disabled={!hasContent || sending || disabled}
+            accessibilityLabel="Send message"
+            style={sendBtnStyle}
+          >
+            {showCheck
+              ? <CheckSentIcon size={Math.round(sizeConfig.iconSize * 0.8)} color={colors.sendIcon} />
+              : <SendIcon size={Math.round(sizeConfig.iconSize * 0.8)} color={colors.sendIcon} />
+            }
+          </Pressable>
+        </Animated.View>
       </View>
     </View>
   );

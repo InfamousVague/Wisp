@@ -1,5 +1,5 @@
 import React, { forwardRef, useMemo, useState, useCallback, useRef, createContext, useContext, useEffect } from 'react';
-import { View, Pressable, ScrollView, Animated, Text as RNText } from 'react-native';
+import { View, Pressable, ScrollView, Animated, Text as RNText, Platform } from 'react-native';
 import type { ViewStyle, TextStyle, LayoutChangeEvent } from 'react-native';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
@@ -21,6 +21,8 @@ export interface TabsProps {
 
 export interface TabListProps {
   children: React.ReactNode;
+  /** Use a gradient fill for the active indicator. @default false */
+  indicatorGradient?: boolean;
   style?: ViewStyle;
 }
 
@@ -110,8 +112,20 @@ interface TabLayout {
   width: number;
 }
 
+// CSS keyframe injection for gradient indicator shimmer (web only)
+let tabGradientKeyframesInjected = false;
+function injectTabGradientKeyframes(): void {
+  if (tabGradientKeyframesInjected || typeof document === 'undefined') return;
+  tabGradientKeyframesInjected = true;
+  const sheet = document.createElement('style');
+  sheet.id = 'wisp-tab-gradient-indicator';
+  sheet.textContent =
+    '@keyframes wisp-tab-gradient-shift { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }';
+  document.head.appendChild(sheet);
+}
+
 export const TabList = forwardRef<View, TabListProps>(function TabList(
-  { children, style: userStyle },
+  { children, indicatorGradient = false, style: userStyle },
   ref,
 ) {
   const { theme } = useTheme();
@@ -125,6 +139,10 @@ export const TabList = forwardRef<View, TabListProps>(function TabList(
   const activeLayout = tabLayouts[activeValue];
 
   useEffect(() => {
+    if (indicatorGradient && Platform.OS === 'web') injectTabGradientKeyframes();
+  }, [indicatorGradient]);
+
+  useEffect(() => {
     if (!activeLayout) return;
     if (!hasMounted.current) {
       hasMounted.current = true;
@@ -133,8 +151,8 @@ export const TabList = forwardRef<View, TabListProps>(function TabList(
       return;
     }
     Animated.parallel([
-      Animated.timing(indicatorX, { toValue: activeLayout.x, duration: 200, useNativeDriver: false }),
-      Animated.timing(indicatorW, { toValue: activeLayout.width, duration: 200, useNativeDriver: false }),
+      Animated.spring(indicatorX, { toValue: activeLayout.x, tension: 300, friction: 20, useNativeDriver: false }),
+      Animated.spring(indicatorW, { toValue: activeLayout.width, tension: 300, friction: 20, useNativeDriver: false }),
     ]).start();
   }, [activeLayout]);
 
@@ -165,20 +183,31 @@ export const TabList = forwardRef<View, TabListProps>(function TabList(
     });
   });
 
+  // Gradient indicator style (web CSS gradient + animation)
+  const gradientIndicatorStyle: any = indicatorGradient && Platform.OS === 'web'
+    ? {
+        background: 'linear-gradient(90deg, #8B5CF6, #EC4899, #3B82F6, #8B5CF6)',
+        backgroundSize: '200% 100%',
+        animation: 'wisp-tab-gradient-shift 3s linear infinite',
+      }
+    : { backgroundColor: themeColors.accent.primary };
+
   return (
     <View ref={ref} style={[listStyle, userStyle]}>
       {childrenWithLayout}
       {activeLayout && (
         <Animated.View
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: indicatorX,
-            width: indicatorW,
-            height: 2,
-            backgroundColor: themeColors.accent.primary,
-            borderRadius: defaultRadii.sm,
-          }}
+          style={[
+            {
+              position: 'absolute',
+              bottom: 0,
+              left: indicatorX,
+              width: indicatorW,
+              height: 2,
+              borderRadius: defaultRadii.sm,
+            },
+            gradientIndicatorStyle,
+          ]}
         />
       )}
     </View>

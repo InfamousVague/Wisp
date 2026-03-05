@@ -5,8 +5,8 @@
  * Reuses color resolution from `@coexist/wisp-core`. Renders via `<View>` + `<Text>`.
  */
 
-import React, { forwardRef, useMemo, useCallback } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import React, { forwardRef, useMemo, useCallback, useRef, useState } from 'react';
+import { View, Text, Pressable, Animated, Platform } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type {
   ChatBubbleAlignment,
@@ -83,6 +83,64 @@ export function StatusIcon({ status, color, readColor }: { status: ChatBubbleSta
 }
 
 // ---------------------------------------------------------------------------
+// Animated Reaction Chip — spring pop on press
+// ---------------------------------------------------------------------------
+
+function AnimatedReactionChip({
+  reaction,
+  onPress,
+  themeColors,
+}: {
+  reaction: ChatBubbleReaction;
+  onPress: (emoji: string) => void;
+  themeColors: any;
+}) {
+  const scale = useRef(new Animated.Value(1)).current;
+
+  const handlePress = useCallback(() => {
+    scale.setValue(1.15);
+    Animated.spring(scale, {
+      toValue: 1,
+      tension: 300,
+      friction: 10,
+      useNativeDriver: true,
+    }).start();
+    onPress(reaction.emoji);
+  }, [reaction.emoji, onPress, scale]);
+
+  const chipStyle = useMemo(() => ({
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    gap: defaultSpacing.xs,
+    paddingHorizontal: defaultSpacing.sm,
+    paddingVertical: defaultSpacing.xs,
+    borderRadius: defaultRadii.lg,
+    borderWidth: 1,
+    borderColor: reaction.reacted
+      ? themeColors.brand.primary
+      : themeColors.border.subtle,
+    backgroundColor: reaction.reacted
+      ? `${themeColors.brand.primary}20`
+      : themeColors.background.sunken,
+  }), [reaction.reacted, themeColors]);
+
+  return (
+    <Animated.View style={{ transform: [{ scale }] }}>
+      <Pressable
+        onPress={handlePress}
+        accessibilityLabel={`${reaction.emoji} ${reaction.count}`}
+        style={chipStyle}
+      >
+        <Text style={{ fontSize: defaultTypography.sizes.xs.fontSize }}>{reaction.emoji}</Text>
+        <Text style={{ fontSize: defaultTypography.sizes.xs.fontSize, color: themeColors.text.secondary }}>
+          {reaction.count}
+        </Text>
+      </Pressable>
+    </Animated.View>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
@@ -142,6 +200,10 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
     gap: defaultSpacing.xs,
     marginTop: defaultSpacing.xs,
     justifyContent: isOutgoing ? 'flex-end' : 'flex-start',
+    ...(Platform.OS === 'web' ? {
+      opacity: 0.5,
+      transition: 'opacity 0.15s ease',
+    } as any : {}),
   }), [isOutgoing]);
 
   const timestampStyle = useMemo<TextStyle>(() => ({
@@ -216,8 +278,17 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
     ? { backgroundColor: `${themeColors.accent.primary}15` }
     : {};
 
+  // Web: hover makes footer timestamps fully visible
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <View ref={ref} style={[wrapperStyle, userStyle]} {...rest}>
+    <View
+      ref={ref}
+      style={[wrapperStyle, userStyle]}
+      onPointerEnter={Platform.OS === 'web' ? (() => setHovered(true)) as any : undefined}
+      onPointerLeave={Platform.OS === 'web' ? (() => setHovered(false)) as any : undefined}
+      {...rest}
+    >
       {/* Bubble */}
       <View style={bubbleStyle}>
         {/* Forwarded label */}
@@ -244,38 +315,19 @@ export const ChatBubble = forwardRef<View, ChatBubbleProps>(function ChatBubble(
       {hasReactions && (
         <View style={reactionsContainerStyle}>
           {reactions!.map((reaction) => (
-            <Pressable
+            <AnimatedReactionChip
               key={reaction.emoji}
-              onPress={() => handleReactionClick(reaction.emoji)}
-              accessibilityLabel={`${reaction.emoji} ${reaction.count}`}
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: defaultSpacing.xs,
-                paddingHorizontal: defaultSpacing.sm,
-                paddingVertical: defaultSpacing.xs,
-                borderRadius: defaultRadii.lg,
-                borderWidth: 1,
-                borderColor: reaction.reacted
-                  ? themeColors.brand.primary
-                  : themeColors.border.subtle,
-                backgroundColor: reaction.reacted
-                  ? `${themeColors.brand.primary}20`
-                  : themeColors.background.sunken,
-              }}
-            >
-              <Text style={{ fontSize: defaultTypography.sizes.xs.fontSize }}>{reaction.emoji}</Text>
-              <Text style={{ fontSize: defaultTypography.sizes.xs.fontSize, color: themeColors.text.secondary }}>
-                {reaction.count}
-              </Text>
-            </Pressable>
+              reaction={reaction}
+              onPress={handleReactionClick}
+              themeColors={themeColors}
+            />
           ))}
         </View>
       )}
 
       {/* Footer below bubble */}
       {showFooter && (
-        <View style={footerStyle}>
+        <View style={[footerStyle, hovered && Platform.OS === 'web' ? { opacity: 1 } as any : undefined]}>
           {timestamp && (
             <Text style={timestampStyle}>
               {timestamp}{edited ? ' (edited)' : ''}

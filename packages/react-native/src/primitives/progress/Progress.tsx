@@ -15,7 +15,7 @@
  */
 
 import React, { forwardRef, useMemo, useRef, useEffect } from 'react';
-import { View, Animated } from 'react-native';
+import { View, Animated, Platform } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { ComponentSize, Thickness } from '@coexist/wisp-core/tokens/shared';
 import { thicknessValues } from '@coexist/wisp-core/tokens/shared';
@@ -25,6 +25,18 @@ import type { ProgressColors } from '@coexist/wisp-core/styles/Progress.styles';
 import { Text } from '../text';
 import { defaultSpacing, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
+
+// CSS keyframes for gradient shimmer sweep (web only)
+let progressGradientInjected = false;
+function injectProgressGradientKeyframes(): void {
+  if (progressGradientInjected || typeof document === 'undefined') return;
+  progressGradientInjected = true;
+  const sheet = document.createElement('style');
+  sheet.id = 'wisp-progress-gradient';
+  sheet.textContent =
+    '@keyframes wisp-progress-shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }';
+  document.head.appendChild(sheet);
+}
 
 // ---------------------------------------------------------------------------
 // Props
@@ -92,6 +104,18 @@ export interface ProgressProps extends Omit<ViewProps, 'children'> {
    */
   thickness?: Thickness;
 
+  /**
+   * Use a gradient fill with shimmer sweep animation.
+   * @default false
+   */
+  gradient?: boolean;
+
+  /**
+   * Show a subtle glow shadow at the leading edge of the progress fill.
+   * @default false
+   */
+  glowEdge?: boolean;
+
   style?: ViewStyle;
 }
 
@@ -110,6 +134,8 @@ export const Progress = forwardRef<View, ProgressProps>(function Progress(
     color = 'default',
     thickness,
     indeterminate = false,
+    gradient = false,
+    glowEdge = false,
     style: userStyle,
     ...rest
   },
@@ -150,6 +176,13 @@ export const Progress = forwardRef<View, ProgressProps>(function Progress(
     () => resolveProgressColors(color, theme),
     [color, themeColors],
   );
+
+  // ---------------------------------------------------------------------------
+  // Gradient shimmer setup (web only)
+  // ---------------------------------------------------------------------------
+  useEffect(() => {
+    if (gradient && Platform.OS === 'web') injectProgressGradientKeyframes();
+  }, [gradient]);
 
   // ---------------------------------------------------------------------------
   // Indeterminate animation
@@ -202,12 +235,20 @@ export const Progress = forwardRef<View, ProgressProps>(function Progress(
     overflow: 'hidden',
   }), [sizeConfig, colors]);
 
+  const gradientFillWebStyle: any = gradient && Platform.OS === 'web'
+    ? {
+        background: 'linear-gradient(90deg, #8B5CF6, #EC4899, #3B82F6, #8B5CF6)',
+        backgroundSize: '200% 100%',
+        animation: 'wisp-progress-shimmer 2s linear infinite',
+      }
+    : {};
+
   const determinateFillStyle = useMemo<ViewStyle>(() => ({
     height: '100%',
     width: `${percent}%`,
     borderRadius: sizeConfig.borderRadius,
-    backgroundColor: colors.fill,
-  }), [sizeConfig, colors, percent]);
+    backgroundColor: gradient ? undefined : colors.fill,
+  }), [sizeConfig, colors, percent, gradient]);
 
   const indeterminateFillStyle = useMemo<ViewStyle>(() => ({
     height: '100%',
@@ -250,6 +291,7 @@ export const Progress = forwardRef<View, ProgressProps>(function Progress(
           <Animated.View
             style={[
               indeterminateFillStyle,
+              gradientFillWebStyle,
               {
                 transform: [
                   {
@@ -263,7 +305,26 @@ export const Progress = forwardRef<View, ProgressProps>(function Progress(
             ]}
           />
         ) : (
-          <View style={determinateFillStyle} />
+          <View style={[determinateFillStyle, gradientFillWebStyle]}>
+            {glowEdge && percent > 0 && percent < 100 && (
+              <View
+                style={{
+                  position: 'absolute',
+                  right: -2,
+                  top: -2,
+                  bottom: -2,
+                  width: 8,
+                  borderRadius: 4,
+                  backgroundColor: gradient ? '#EC4899' : colors.fill,
+                  opacity: 0.6,
+                  shadowColor: gradient ? '#EC4899' : colors.fill,
+                  shadowOffset: { width: 0, height: 0 },
+                  shadowOpacity: 0.8,
+                  shadowRadius: 6,
+                }}
+              />
+            )}
+          </View>
         )}
       </View>
     </View>
