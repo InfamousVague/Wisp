@@ -8,6 +8,8 @@ export { useSpring } from './use-spring';
 export type { SpringResult } from './use-spring';
 export { useTransition } from './use-transition';
 export type { TransitionPhase, TransitionConfig, TransitionResult } from './use-transition';
+export { useTextScramble } from './use-text-scramble';
+export type { TextScrambleOptions, TextScrambleResult } from './use-text-scramble';
 
 // Re-export shared presets and constants from core
 export * from '@coexist/wisp-core/animation/presets';

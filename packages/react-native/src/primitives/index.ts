@@ -201,3 +201,21 @@ export type { BeaconProps } from './beacon';
 // ---------------------------------------------------------------------------
 export { CallTimer } from './call-timer';
 export type { CallTimerProps } from './call-timer';
+
+// ---------------------------------------------------------------------------
+// GradientText
+// ---------------------------------------------------------------------------
+export { GradientText } from './gradient-text';
+export type { GradientTextProps } from './gradient-text';
+
+// ---------------------------------------------------------------------------
+// GradientBorder
+// ---------------------------------------------------------------------------
+export { GradientBorder } from './gradient-border';
+export type { GradientBorderProps } from './gradient-border';
+
+// ---------------------------------------------------------------------------
+// AnimatedCounter
+// ---------------------------------------------------------------------------
+export { AnimatedCounter } from './animated-counter';
+export type { AnimatedCounterProps } from './animated-counter';

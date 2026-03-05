@@ -13,6 +13,8 @@ export type { WispProviderProps, WispThemeContextValue } from './providers';
 export { WispThemeContext } from './providers';
 export { useTheme, useThemeColors } from './providers';
 export type { UseThemeReturn } from './providers';
+export { useMotion, MotionProvider } from './providers';
+export type { MotionPreferences, MotionCategory, MotionContextValue } from './providers';
 
 // ---------------------------------------------------------------------------
 // Primitives
@@ -26,7 +28,7 @@ export {
   Alert, Skeleton, Rating, CircularProgress,
   TagInput, ColorPicker,
   NotificationBadge, ReadReceipt, WispImage, Beacon,
-  CallTimer,
+  CallTimer, GradientText, GradientBorder, AnimatedCounter,
 } from './primitives';
 export type {
   TextProps, BadgeProps, ButtonProps, InputProps, ToggleProps,
@@ -37,7 +39,7 @@ export type {
   AlertProps, SkeletonProps, RatingProps, CircularProgressProps,
   TagInputProps, ColorPickerProps,
   NotificationBadgeProps, ReadReceiptProps, WispImageProps, BeaconProps,
-  CallTimerProps,
+  CallTimerProps, GradientTextProps, GradientBorderProps, AnimatedCounterProps,
 } from './primitives';
 
 // ---------------------------------------------------------------------------
@@ -319,13 +321,14 @@ export type {
 // ---------------------------------------------------------------------------
 export {
   Presence, useAnimatedValue, usePressAnimation,
-  useSpring, useTransition,
+  useSpring, useTransition, useTextScramble,
 } from './animation';
 export type {
   PresenceProps, PresenceAnimation,
   AnimatedValueConfig, AnimatedValueResult,
   PressAnimationConfig, PressAnimationResult,
   SpringResult, TransitionPhase, TransitionConfig, TransitionResult,
+  TextScrambleOptions, TextScrambleResult,
 } from './animation';
 
 // ---------------------------------------------------------------------------
