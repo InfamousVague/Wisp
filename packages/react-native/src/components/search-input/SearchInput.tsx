@@ -7,13 +7,35 @@
  */
 
 import React, { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { View, TextInput, Pressable, Text, ActivityIndicator } from 'react-native';
+import { Platform, View, TextInput, Pressable, Text, ActivityIndicator } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { ComponentSize } from '@coexist/wisp-core/tokens/shared';
 import { searchInputSizeMap } from '@coexist/wisp-core/styles/SearchInput.styles';
 import { useTheme } from '../../providers';
 import { GradientBorder } from '../../primitives/gradient-border/GradientBorder';
 import Svg, { Circle, Line, Path } from 'react-native-svg';
+
+// ---------------------------------------------------------------------------
+// Animated gradient caret (web only)
+// ---------------------------------------------------------------------------
+
+let caretKeyframesInjected = false;
+
+function injectCaretKeyframes(): void {
+  if (caretKeyframesInjected || typeof document === 'undefined') return;
+  caretKeyframesInjected = true;
+
+  const sheet = document.createElement('style');
+  sheet.id = 'wisp-search-input-caret-gradient';
+  sheet.textContent = [
+    '@keyframes wisp-caret-gradient {',
+    '  0%, 100% { caret-color: #8B5CF6; }',
+    '  33% { caret-color: #EC4899; }',
+    '  66% { caret-color: #3B82F6; }',
+    '}',
+  ].join('\n');
+  document.head.appendChild(sheet);
+}
 
 function SearchIcon({ size = 16, color = '#888' }: { size?: number; color?: string }) {
   return (
@@ -103,6 +125,23 @@ export const SearchInput = forwardRef<View, SearchInputProps>(
     const value = controlledValue !== undefined ? controlledValue : internalValue;
     const [focused, setFocused] = useState(false);
     const debounceTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+    const inputRef = useRef<TextInput>(null);
+
+    // Animated gradient caret on web when gradientBorder is active
+    useEffect(() => {
+      if (Platform.OS !== 'web' || !gradientBorder) return;
+      injectCaretKeyframes();
+
+      const el = inputRef.current as unknown as HTMLElement | null;
+      if (!el?.style) return;
+
+      if (focused) {
+        el.style.animation = 'wisp-caret-gradient 3s linear infinite';
+      } else {
+        el.style.animation = '';
+        el.style.caretColor = '';
+      }
+    }, [focused, gradientBorder]);
 
     // Debounce logic
     useEffect(() => {
@@ -179,6 +218,7 @@ export const SearchInput = forwardRef<View, SearchInputProps>(
         <SearchIcon size={sizeConfig.iconSize} color={mutedColor} />
 
         <TextInput
+          ref={inputRef}
           value={value}
           onChangeText={handleChangeText}
           placeholder={placeholder}

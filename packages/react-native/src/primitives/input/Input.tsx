@@ -12,8 +12,8 @@
  * - Label and hint rendered as `<Text>` components.
  */
 
-import React, { forwardRef, useMemo, useCallback, useState } from 'react';
-import { View, TextInput, Text } from 'react-native';
+import React, { forwardRef, useMemo, useCallback, useEffect, useRef, useState } from 'react';
+import { Platform, View, TextInput, Text } from 'react-native';
 import type {
   TextInputProps,
   ViewStyle,
@@ -27,6 +27,28 @@ import { resolveInputColors } from '@coexist/wisp-core/styles/Input.styles';
 import { defaultSpacing, defaultTypography, defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
 import { GradientBorder } from '../gradient-border/GradientBorder';
+
+// ---------------------------------------------------------------------------
+// Animated gradient caret (web only)
+// ---------------------------------------------------------------------------
+
+let caretKeyframesInjected = false;
+
+function injectCaretKeyframes(): void {
+  if (caretKeyframesInjected || typeof document === 'undefined') return;
+  caretKeyframesInjected = true;
+
+  const sheet = document.createElement('style');
+  sheet.id = 'wisp-input-caret-gradient';
+  sheet.textContent = [
+    '@keyframes wisp-caret-gradient {',
+    '  0%, 100% { caret-color: #8B5CF6; }',
+    '  33% { caret-color: #EC4899; }',
+    '  66% { caret-color: #3B82F6; }',
+    '}',
+  ].join('\n');
+  document.head.appendChild(sheet);
+}
 
 // ---------------------------------------------------------------------------
 // Props
@@ -75,6 +97,33 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
   const sizeConfig = inputSizeMap[size];
 
   const [focused, setFocused] = useState(false);
+
+  // Merge forwarded ref with internal ref for caret animation
+  const internalRef = useRef<TextInput>(null);
+  const mergedRef = useCallback(
+    (node: TextInput | null) => {
+      internalRef.current = node;
+      if (typeof ref === 'function') ref(node);
+      else if (ref) (ref as React.MutableRefObject<TextInput | null>).current = node;
+    },
+    [ref],
+  );
+
+  // Animated gradient caret on web when gradientBorder is active
+  useEffect(() => {
+    if (Platform.OS !== 'web' || !gradientBorder) return;
+    injectCaretKeyframes();
+
+    const el = internalRef.current as unknown as HTMLElement | null;
+    if (!el?.style) return;
+
+    if (focused) {
+      el.style.animation = 'wisp-caret-gradient 3s linear infinite';
+    } else {
+      el.style.animation = '';
+      el.style.caretColor = '';
+    }
+  }, [focused, gradientBorder]);
 
   const handleFocus = useCallback(
     (e: NativeSyntheticEvent<TargetedEvent>) => {
@@ -128,7 +177,10 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
     fontSize: sizeConfig.fontSize,
     color: colors.text,
     padding: 0,
-  }), [sizeConfig, colors]);
+    // Suppress browser default focus outline on web — the component handles
+    // focus visuals itself via border color or GradientBorder.
+    outlineStyle: 'none',
+  } as TextStyle), [sizeConfig, colors]);
 
   const labelStyle = useMemo<TextStyle>(() => ({
     fontSize: sizeConfig.labelFontSize,
@@ -160,7 +212,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
       )}
 
       <TextInput
-        ref={ref}
+        ref={mergedRef}
         editable={!disabled}
         placeholderTextColor={colors.placeholder}
         onFocus={handleFocus}
