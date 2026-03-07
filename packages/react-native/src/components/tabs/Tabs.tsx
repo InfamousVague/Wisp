@@ -200,11 +200,14 @@ export const TabList = forwardRef<View, TabListProps>(function TabList(
           style={[
             {
               position: 'absolute',
-              bottom: 0,
+              bottom: -1,
               left: indicatorX,
               width: indicatorW,
               height: 2,
-              borderRadius: defaultRadii.sm,
+              borderTopLeftRadius: 1,
+              borderTopRightRadius: 1,
+              borderBottomLeftRadius: 0,
+              borderBottomRightRadius: 0,
             },
             gradientIndicatorStyle,
           ]}
