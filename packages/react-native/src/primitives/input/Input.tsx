@@ -26,6 +26,7 @@ import { inputSizeMap } from '@coexist/wisp-core/types/Input.types';
 import { resolveInputColors } from '@coexist/wisp-core/styles/Input.styles';
 import { defaultSpacing, defaultTypography, defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
+import { GradientBorder } from '../gradient-border/GradientBorder';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -42,6 +43,8 @@ export interface InputProps extends Omit<TextInputProps, 'style'> {
   fullWidth?: boolean;
   disabled?: boolean;
   style?: ViewStyle;
+  /** When true, shows an animated gradient border on focus. @default false */
+  gradientBorder?: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -62,6 +65,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
     style: userStyle,
     onFocus,
     onBlur,
+    gradientBorder = false,
     ...rest
   },
   ref,
@@ -103,19 +107,21 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
     ...(fullWidth ? { width: '100%' } : { alignSelf: 'flex-start' }),
   }), [fullWidth]);
 
+  const resolvedRadius = typeof sizeConfig.borderRadius === 'number' ? sizeConfig.borderRadius : (defaultRadii as any)[sizeConfig.borderRadius] ?? defaultRadii.md;
+
   const containerStyle = useMemo<ViewStyle>(() => ({
     flexDirection: 'row',
     alignItems: 'center',
     height: sizeConfig.height,
     paddingHorizontal: sizeConfig.paddingX,
-    borderRadius: typeof sizeConfig.borderRadius === 'number' ? sizeConfig.borderRadius : (defaultRadii as any)[sizeConfig.borderRadius] ?? defaultRadii.md,
+    borderRadius: resolvedRadius,
     overflow: 'hidden' as const,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: gradientBorder && focused ? 'transparent' : colors.border,
     backgroundColor: colors.bg,
     gap: defaultSpacing.sm,
     opacity: disabled ? 0.5 : 1,
-  }), [sizeConfig, colors, disabled]);
+  }), [sizeConfig, colors, disabled, gradientBorder, focused, resolvedRadius]);
 
   const inputStyle = useMemo<TextStyle>(() => ({
     flex: 1,
@@ -143,37 +149,53 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
     };
   }, [bottomText, sizeConfig, colors, errorMessage, warningMessage]);
 
+  const inputContainer = (
+    <View style={containerStyle}>
+      {LeadingIcon && (
+        <LeadingIcon
+          size={sizeConfig.iconSize}
+          color={colors.icon}
+          strokeWidth={2}
+        />
+      )}
+
+      <TextInput
+        ref={ref}
+        editable={!disabled}
+        placeholderTextColor={colors.placeholder}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        style={inputStyle}
+        {...rest}
+      />
+
+      {TrailingIcon && (
+        <TrailingIcon
+          size={sizeConfig.iconSize}
+          color={colors.icon}
+          strokeWidth={2}
+        />
+      )}
+    </View>
+  );
+
   return (
     <View style={[wrapperStyle, userStyle]}>
       {label && <Text style={labelStyle}>{label}</Text>}
 
-      <View style={containerStyle}>
-        {LeadingIcon && (
-          <LeadingIcon
-            size={sizeConfig.iconSize}
-            color={colors.icon}
-            strokeWidth={2}
-          />
-        )}
-
-        <TextInput
-          ref={ref}
-          editable={!disabled}
-          placeholderTextColor={colors.placeholder}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          style={inputStyle}
-          {...rest}
-        />
-
-        {TrailingIcon && (
-          <TrailingIcon
-            size={sizeConfig.iconSize}
-            color={colors.icon}
-            strokeWidth={2}
-          />
-        )}
-      </View>
+      {gradientBorder ? (
+        <GradientBorder
+          visible={focused}
+          animated={focused}
+          radius={resolvedRadius}
+          width={2}
+          speed={3000}
+        >
+          {inputContainer}
+        </GradientBorder>
+      ) : (
+        inputContainer
+      )}
 
       {bottomText && <Text style={hintStyle}>{bottomText}</Text>}
     </View>

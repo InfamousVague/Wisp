@@ -29,6 +29,7 @@ import { resolveTextAreaColors } from '@coexist/wisp-core/styles/TextArea.styles
 import { Text } from '../text';
 import { defaultSpacing, defaultTypography, defaultRadii } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
+import { GradientBorder } from '../gradient-border/GradientBorder';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -43,6 +44,8 @@ export interface TextAreaProps extends Omit<TextInputProps, 'style'> {
   fullWidth?: boolean;
   disabled?: boolean;
   style?: ViewStyle;
+  /** When true, shows an animated gradient border on focus. @default false */
+  gradientBorder?: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -89,6 +92,7 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea(
     style: userStyle,
     onFocus,
     onBlur,
+    gradientBorder = false,
     ...rest
   },
   ref,
@@ -140,15 +144,17 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea(
     ...(fullWidth ? { width: '100%' } : { alignSelf: 'flex-start' }),
   }), [sizeConfig, fullWidth]);
 
+  const resolvedRadius = typeof sizeConfig.borderRadius === 'number' ? sizeConfig.borderRadius : (defaultRadii as any)[sizeConfig.borderRadius] ?? defaultRadii.md;
+
   const containerStyle = useMemo<ViewStyle>(() => ({
     minHeight: sizeConfig.minHeight,
-    borderRadius: typeof sizeConfig.borderRadius === 'number' ? sizeConfig.borderRadius : (defaultRadii as any)[sizeConfig.borderRadius] ?? defaultRadii.md,
+    borderRadius: resolvedRadius,
     overflow: 'hidden' as const,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: gradientBorder && focused ? 'transparent' : colors.border,
     backgroundColor: colors.bg,
     opacity: disabled ? 0.5 : 1,
-  }), [sizeConfig, colors, disabled]);
+  }), [sizeConfig, colors, disabled, gradientBorder, focused, resolvedRadius]);
 
   const inputStyle = useMemo<TextStyle>(() => ({
     flex: 1,
@@ -183,22 +189,38 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(function TextArea(
   // Render
   // ---------------------------------------------------------------------------
 
+  const textareaContainer = (
+    <View style={containerStyle}>
+      <TextInput
+        ref={ref}
+        multiline
+        editable={!disabled}
+        placeholderTextColor={colors.placeholder}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        style={inputStyle}
+        {...rest}
+      />
+    </View>
+  );
+
   return (
     <View style={[wrapperStyle, userStyle]}>
       {label && <Text style={labelStyle}>{label}</Text>}
 
-      <View style={containerStyle}>
-        <TextInput
-          ref={ref}
-          multiline
-          editable={!disabled}
-          placeholderTextColor={colors.placeholder}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          style={inputStyle}
-          {...rest}
-        />
-      </View>
+      {gradientBorder ? (
+        <GradientBorder
+          visible={focused}
+          animated={focused}
+          radius={resolvedRadius}
+          width={2}
+          speed={3000}
+        >
+          {textareaContainer}
+        </GradientBorder>
+      ) : (
+        textareaContainer
+      )}
 
       {bottomText && <Text style={hintStyle}>{bottomText}</Text>}
     </View>

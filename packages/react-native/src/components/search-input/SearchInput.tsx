@@ -12,6 +12,7 @@ import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type { ComponentSize } from '@coexist/wisp-core/tokens/shared';
 import { searchInputSizeMap } from '@coexist/wisp-core/styles/SearchInput.styles';
 import { useTheme } from '../../providers';
+import { GradientBorder } from '../../primitives/gradient-border/GradientBorder';
 import Svg, { Circle, Line, Path } from 'react-native-svg';
 
 function SearchIcon({ size = 16, color = '#888' }: { size?: number; color?: string }) {
@@ -62,6 +63,8 @@ export interface SearchInputProps extends ViewProps {
   rounded?: boolean;
   /** When true, uses surface-aware colors for dark backgrounds. @default false */
   onSurface?: boolean;
+  /** When true, shows an animated gradient border on focus. @default false */
+  gradientBorder?: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -84,6 +87,7 @@ export const SearchInput = forwardRef<View, SearchInputProps>(
       disabled = false,
       rounded = false,
       onSurface = false,
+      gradientBorder = false,
       style: userStyle,
       ...rest
     },
@@ -140,10 +144,14 @@ export const SearchInput = forwardRef<View, SearchInputProps>(
       paddingHorizontal: rounded ? sizeConfig.paddingX + 4 : sizeConfig.paddingX - 2,
       borderRadius: resolvedRadius,
       borderWidth: 1,
-      borderColor: focused ? themeColors.accent.primary : themeColors.border.strong,
+      borderColor: gradientBorder && focused
+        ? 'transparent'
+        : focused
+          ? themeColors.accent.primary
+          : themeColors.border.strong,
       opacity: disabled ? 0.5 : 1,
       ...(fullWidth ? { width: '100%' as any } : {}),
-    }), [sizeConfig, focused, disabled, fullWidth, rounded, themeColors, resolvedRadius]);
+    }), [sizeConfig, focused, disabled, fullWidth, rounded, themeColors, resolvedRadius, gradientBorder]);
 
     const inputStyle = useMemo<TextStyle>(() => ({
       flex: 1,
@@ -166,7 +174,7 @@ export const SearchInput = forwardRef<View, SearchInputProps>(
 
     const hasValue = value.length > 0;
 
-    return (
+    const innerContent = (
       <View ref={ref} style={[containerStyle, userStyle]} {...rest}>
         <SearchIcon size={sizeConfig.iconSize} color={mutedColor} />
 
@@ -198,6 +206,22 @@ export const SearchInput = forwardRef<View, SearchInputProps>(
         )}
       </View>
     );
+
+    if (gradientBorder) {
+      return (
+        <GradientBorder
+          visible={focused}
+          animated={focused}
+          radius={resolvedRadius}
+          width={2}
+          speed={3000}
+        >
+          {innerContent}
+        </GradientBorder>
+      );
+    }
+
+    return innerContent;
   },
 );
 
