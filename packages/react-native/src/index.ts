@@ -382,3 +382,8 @@ export type { NotificationGroupProps } from './components/notification-group';
 
 export { NotificationDrawer } from './components/notification-drawer';
 export type { NotificationDrawerProps, NotificationCategory } from './components/notification-drawer';
+
+// Re-exports added by patch-wisp.sh for deep import compatibility
+export { E2EEKeyExchangeUI } from './components/e2ee-key-exchange-ui';
+export type { E2EEKeyExchangeUIProps } from './components/e2ee-key-exchange-ui';
+export type { SearchResult, SearchFilter, SearchFilterType } from './components/message-search';
