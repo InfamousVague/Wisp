@@ -38,6 +38,24 @@ function injectProgressGradientKeyframes(): void {
   document.head.appendChild(sheet);
 }
 
+// Native gradient: try to load expo-linear-gradient (optional peer dep)
+let NativeLinearGradient: React.ComponentType<any> | null = null;
+let NativeAnimatedGradient: React.ComponentType<any> | null = null;
+try {
+  if (Platform.OS !== 'web') {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const LG = require('expo-linear-gradient').LinearGradient;
+    if (LG) {
+      NativeLinearGradient = LG;
+      NativeAnimatedGradient = Animated.createAnimatedComponent(LG);
+    }
+  }
+} catch {
+  // expo-linear-gradient not available — native gradient will be skipped
+}
+
+const GRADIENT_COLORS = ['#8B5CF6', '#EC4899', '#3B82F6', '#8B5CF6'];
+
 // ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
@@ -178,11 +196,28 @@ export const Progress = forwardRef<View, ProgressProps>(function Progress(
   );
 
   // ---------------------------------------------------------------------------
-  // Gradient shimmer setup (web only)
+  // Gradient shimmer setup
   // ---------------------------------------------------------------------------
   useEffect(() => {
     if (gradient && Platform.OS === 'web') injectProgressGradientKeyframes();
   }, [gradient]);
+
+  // Native gradient shimmer animation
+  const nativeGradientAnim = useRef(new Animated.Value(0)).current;
+  const useNativeGradient = gradient && Platform.OS !== 'web' && !!NativeAnimatedGradient;
+
+  useEffect(() => {
+    if (!useNativeGradient) return;
+    const loop = Animated.loop(
+      Animated.timing(nativeGradientAnim, {
+        toValue: 1,
+        duration: 2000,
+        useNativeDriver: true,
+      }),
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [useNativeGradient, nativeGradientAnim]);
 
   // ---------------------------------------------------------------------------
   // Indeterminate animation
@@ -247,8 +282,9 @@ export const Progress = forwardRef<View, ProgressProps>(function Progress(
     height: '100%',
     width: `${percent}%`,
     borderRadius: sizeConfig.borderRadius,
-    backgroundColor: gradient ? undefined : colors.fill,
-  }), [sizeConfig, colors, percent, gradient]);
+    backgroundColor: (gradient && (Platform.OS === 'web' || useNativeGradient)) ? undefined : colors.fill,
+    overflow: 'hidden' as const,
+  }), [sizeConfig, colors, percent, gradient, useNativeGradient]);
 
   const indeterminateFillStyle = useMemo<ViewStyle>(() => ({
     height: '100%',
@@ -306,6 +342,27 @@ export const Progress = forwardRef<View, ProgressProps>(function Progress(
           />
         ) : (
           <View style={[determinateFillStyle, gradientFillWebStyle]}>
+            {/* Native gradient fill */}
+            {useNativeGradient && NativeAnimatedGradient && (
+              <NativeAnimatedGradient
+                colors={GRADIENT_COLORS}
+                start={{ x: 0, y: 0.5 }}
+                end={{ x: 1, y: 0.5 }}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '200%',
+                  height: '100%',
+                  transform: [{
+                    translateX: nativeGradientAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [-200, 200],
+                    }),
+                  }],
+                } as any}
+              />
+            )}
             {glowEdge && percent > 0 && percent < 100 && (
               <View
                 style={{
