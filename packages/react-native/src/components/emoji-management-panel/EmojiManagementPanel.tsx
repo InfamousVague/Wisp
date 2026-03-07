@@ -114,7 +114,7 @@ export const EmojiManagementPanel = forwardRef<View, EmojiManagementPanelProps>(
       <View ref={ref} style={[containerStyle, userStyle]} {...rest}>
         {/* Header */}
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Text style={{ fontSize: theme.typography.sizes.md.fontSize, fontWeight: theme.typography.weights.semibold, color: colors.text }}>
+          <Text style={{ fontSize: theme.typography.sizes.base.fontSize, fontWeight: theme.typography.weights.semibold, color: colors.text }}>
             {title}
           </Text>
           <View style={{

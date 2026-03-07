@@ -256,7 +256,7 @@ export const MessageList = forwardRef<FlatListType, MessageListProps>(
     // Styles
     const containerStyle = useMemo<ViewStyle>(() => ({
       flex: 1,
-      backgroundColor: themeColors.background.primary,
+      backgroundColor: themeColors.background.canvas,
       position: 'relative',
     }), [themeColors]);
 
@@ -270,7 +270,7 @@ export const MessageList = forwardRef<FlatListType, MessageListProps>(
     const daySepLineStyle = useMemo<ViewStyle>(() => ({
       flex: 1,
       height: 1,
-      backgroundColor: themeColors.border.default,
+      backgroundColor: themeColors.border.subtle,
       opacity: 0.5,
     }), [themeColors]);
 
@@ -292,9 +292,9 @@ export const MessageList = forwardRef<FlatListType, MessageListProps>(
       borderRadius: 18,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: themeColors.background.secondary,
+      backgroundColor: themeColors.background.surface,
       borderWidth: 1,
-      borderColor: themeColors.border.default,
+      borderColor: themeColors.border.subtle,
       zIndex: 10,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
@@ -397,8 +397,8 @@ export const MessageList = forwardRef<FlatListType, MessageListProps>(
       return (
         <MessageListSkeleton
           containerStyle={userStyle as ViewStyle}
-          bgColor={themeColors.background.primary}
-          borderColor={themeColors.border.default}
+          bgColor={themeColors.background.canvas}
+          borderColor={themeColors.border.subtle}
           isInline={isInline}
         />
       );

@@ -3,7 +3,7 @@
  * @description Color resolution for the TextEffectPicker component.
  */
 
-import type { Theme } from '../theme/create-theme';
+import type { WispTheme as Theme } from '../theme/types';
 
 export interface TextEffectPickerColors {
   /** Backdrop / container background. */

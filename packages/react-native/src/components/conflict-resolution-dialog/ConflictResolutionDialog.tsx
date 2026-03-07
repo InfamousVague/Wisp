@@ -131,10 +131,10 @@ export const ConflictResolutionDialog = forwardRef<View, ConflictResolutionDialo
             <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: tc.text.secondary } as TextStyle}>Keep Both</RNText>
           </Pressable>
           <Pressable onPress={onKeepLocal} style={buttonStyle(true)}>
-            <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: tc.text.onAccent } as TextStyle}>Keep Local</RNText>
+            <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: tc.brand.text } as TextStyle}>Keep Local</RNText>
           </Pressable>
           <Pressable onPress={onKeepRemote} style={buttonStyle(true)}>
-            <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: tc.text.onAccent } as TextStyle}>Keep Remote</RNText>
+            <RNText style={{ fontSize: defaultTypography.sizes.sm.fontSize, color: tc.brand.text } as TextStyle}>Keep Remote</RNText>
           </Pressable>
         </View>
       </View>

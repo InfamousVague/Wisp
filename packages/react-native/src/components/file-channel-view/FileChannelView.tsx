@@ -114,7 +114,7 @@ export const FileChannelView = forwardRef<View, FileChannelViewProps>(function F
 
   if (skeleton) {
     return (
-      <View ref={ref} style={[{ flex: 1, backgroundColor: tc.background.base }, userStyle]}>
+      <View ref={ref} style={[{ flex: 1, backgroundColor: tc.background.canvas }, userStyle]}>
         {[1, 2, 3, 4].map((i) => (
           <View
             key={i}
@@ -132,7 +132,7 @@ export const FileChannelView = forwardRef<View, FileChannelViewProps>(function F
   }
 
   return (
-    <View ref={ref} style={[{ flex: 1, backgroundColor: tc.background.base }, userStyle]} accessibilityRole="none">
+    <View ref={ref} style={[{ flex: 1, backgroundColor: tc.background.canvas }, userStyle]} accessibilityRole="none">
       {/* Header */}
       <View style={headerStyle}>
         <View style={{ flex: 1 }}>

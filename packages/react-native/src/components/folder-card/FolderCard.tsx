@@ -77,10 +77,10 @@ export const FolderCard = forwardRef<View, FolderCardProps>(
     const cardStyle = useMemo<ViewStyle>(() => ({
       borderRadius: defaultRadii.lg,
       borderWidth: 1,
-      borderColor: selected || dropTarget ? themeColors.accent.primary : themeColors.border.default,
+      borderColor: selected || dropTarget ? themeColors.accent.primary : themeColors.border.subtle,
       backgroundColor: dropTarget
         ? `${themeColors.accent.primary}10`
-        : themeColors.background.secondary,
+        : themeColors.background.surface,
       overflow: 'hidden',
     }), [themeColors, selected, dropTarget]);
 
@@ -88,7 +88,7 @@ export const FolderCard = forwardRef<View, FolderCardProps>(
       alignItems: 'center',
       justifyContent: 'center',
       height: 80,
-      backgroundColor: themeColors.background.primary,
+      backgroundColor: themeColors.background.canvas,
     }), [themeColors]);
 
     const bodyStyle = useMemo<ViewStyle>(() => ({
@@ -109,7 +109,7 @@ export const FolderCard = forwardRef<View, FolderCardProps>(
 
     const skeletonStyle = useMemo<ViewStyle>(() => ({
       borderRadius: defaultRadii.lg,
-      backgroundColor: themeColors.border.default,
+      backgroundColor: themeColors.border.subtle,
       height: 130,
       opacity: 0.3,
     }), [themeColors]);

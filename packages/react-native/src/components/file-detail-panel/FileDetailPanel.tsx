@@ -150,13 +150,13 @@ export const FileDetailPanel = forwardRef<View, FileDetailPanelProps>(
     }), [themeColors]);
 
     const fileNameStyle = useMemo<TextStyle>(() => ({
-      fontSize: defaultTypography.sizes.md.fontSize,
+      fontSize: defaultTypography.sizes.base.fontSize,
       fontWeight: defaultTypography.weights.semibold as TextStyle['fontWeight'],
       color: themeColors.text.primary,
     }), [themeColors]);
 
     const editInputStyle = useMemo<TextStyle>(() => ({
-      fontSize: defaultTypography.sizes.md.fontSize,
+      fontSize: defaultTypography.sizes.base.fontSize,
       fontWeight: defaultTypography.weights.semibold as TextStyle['fontWeight'],
       color: themeColors.text.primary,
       backgroundColor: themeColors.background.raised,
@@ -204,13 +204,13 @@ export const FileDetailPanel = forwardRef<View, FileDetailPanelProps>(
       borderRadius: defaultRadii.md,
       backgroundColor: 'transparent',
       borderWidth: 1,
-      borderColor: themeColors.status.error,
+      borderColor: themeColors.status.danger,
     }), [themeColors]);
 
     const deleteBtnTextStyle = useMemo<TextStyle>(() => ({
       fontSize: defaultTypography.sizes.sm.fontSize,
       fontWeight: defaultTypography.weights.medium as TextStyle['fontWeight'],
-      color: themeColors.status.error,
+      color: themeColors.status.danger,
     }), [themeColors]);
 
     if (!open) return null;

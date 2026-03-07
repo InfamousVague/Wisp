@@ -165,7 +165,7 @@ export function FileContextMenu({
   }), []);
 
   const sheetStyle = useMemo<ViewStyle>(() => ({
-    backgroundColor: themeColors.background.secondary,
+    backgroundColor: themeColors.background.surface,
     borderTopLeftRadius: defaultRadii.xl,
     borderTopRightRadius: defaultRadii.xl,
     paddingVertical: defaultSpacing.sm,
@@ -176,7 +176,7 @@ export function FileContextMenu({
     width: 40,
     height: 4,
     borderRadius: 2,
-    backgroundColor: themeColors.border.default,
+    backgroundColor: themeColors.border.subtle,
     alignSelf: 'center',
     marginVertical: defaultSpacing.xs,
   }), [themeColors]);
@@ -190,17 +190,17 @@ export function FileContextMenu({
   }), []);
 
   const textStyle = useMemo<TextStyle>(() => ({
-    fontSize: defaultTypography.sizes.md.fontSize,
+    fontSize: defaultTypography.sizes.base.fontSize,
     color: themeColors.text.primary,
   }), [themeColors]);
 
   const destructiveTextStyle = useMemo<TextStyle>(() => ({
-    color: themeColors.status?.error ?? '#ef4444',
+    color: themeColors.status?.danger ?? '#ef4444',
   }), [themeColors]);
 
   const separatorStyle = useMemo<ViewStyle>(() => ({
     height: 1,
-    backgroundColor: themeColors.border.default,
+    backgroundColor: themeColors.border.subtle,
     marginVertical: defaultSpacing.xs,
     marginHorizontal: defaultSpacing.md,
   }), [themeColors]);
@@ -238,7 +238,7 @@ export function FileContextMenu({
           {onDelete && (
             <>
               <View style={separatorStyle} />
-              <MenuItem icon={<TrashIcon color={themeColors.status?.error ?? '#ef4444'} />} label={multiSelect ? `Delete ${label}` : 'Delete'} onPress={() => handleAction(onDelete)} destructive itemStyle={itemStyle} textStyle={textStyle} destructiveTextStyle={destructiveTextStyle} />
+              <MenuItem icon={<TrashIcon color={themeColors.status?.danger ?? '#ef4444'} />} label={multiSelect ? `Delete ${label}` : 'Delete'} onPress={() => handleAction(onDelete)} destructive itemStyle={itemStyle} textStyle={textStyle} destructiveTextStyle={destructiveTextStyle} />
             </>
           )}
         </View>
@@ -269,7 +269,7 @@ export function FolderContextMenu({
   }), []);
 
   const sheetStyle = useMemo<ViewStyle>(() => ({
-    backgroundColor: themeColors.background.secondary,
+    backgroundColor: themeColors.background.surface,
     borderTopLeftRadius: defaultRadii.xl,
     borderTopRightRadius: defaultRadii.xl,
     paddingVertical: defaultSpacing.sm,
@@ -280,7 +280,7 @@ export function FolderContextMenu({
     width: 40,
     height: 4,
     borderRadius: 2,
-    backgroundColor: themeColors.border.default,
+    backgroundColor: themeColors.border.subtle,
     alignSelf: 'center',
     marginVertical: defaultSpacing.xs,
   }), [themeColors]);
@@ -294,17 +294,17 @@ export function FolderContextMenu({
   }), []);
 
   const textStyle = useMemo<TextStyle>(() => ({
-    fontSize: defaultTypography.sizes.md.fontSize,
+    fontSize: defaultTypography.sizes.base.fontSize,
     color: themeColors.text.primary,
   }), [themeColors]);
 
   const destructiveTextStyle = useMemo<TextStyle>(() => ({
-    color: themeColors.status?.error ?? '#ef4444',
+    color: themeColors.status?.danger ?? '#ef4444',
   }), [themeColors]);
 
   const separatorStyle = useMemo<ViewStyle>(() => ({
     height: 1,
-    backgroundColor: themeColors.border.default,
+    backgroundColor: themeColors.border.subtle,
     marginVertical: defaultSpacing.xs,
     marginHorizontal: defaultSpacing.md,
   }), [themeColors]);
@@ -331,7 +331,7 @@ export function FolderContextMenu({
           {onDelete && (
             <>
               <View style={separatorStyle} />
-              <MenuItem icon={<TrashIcon color={themeColors.status?.error ?? '#ef4444'} />} label="Delete" onPress={() => handleAction(onDelete)} destructive itemStyle={itemStyle} textStyle={textStyle} destructiveTextStyle={destructiveTextStyle} />
+              <MenuItem icon={<TrashIcon color={themeColors.status?.danger ?? '#ef4444'} />} label="Delete" onPress={() => handleAction(onDelete)} destructive itemStyle={itemStyle} textStyle={textStyle} destructiveTextStyle={destructiveTextStyle} />
             </>
           )}
         </View>

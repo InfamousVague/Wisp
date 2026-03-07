@@ -62,16 +62,16 @@ export const FileUploadZone = forwardRef<View, FileUploadZoneProps>(
       gap: defaultSpacing.sm,
       paddingHorizontal: defaultSpacing.md,
       paddingVertical: defaultSpacing.sm,
-      backgroundColor: themeColors.background.secondary,
+      backgroundColor: themeColors.background.surface,
       borderTopWidth: 1,
-      borderTopColor: themeColors.border.default,
+      borderTopColor: themeColors.border.subtle,
     }), [themeColors]);
 
     const progressTrackStyle = useMemo<ViewStyle>(() => ({
       flex: 1,
       height: 6,
       borderRadius: 3,
-      backgroundColor: themeColors.border.default,
+      backgroundColor: themeColors.border.subtle,
       overflow: 'hidden',
     }), [themeColors]);
 
@@ -79,7 +79,7 @@ export const FileUploadZone = forwardRef<View, FileUploadZoneProps>(
       height: '100%',
       borderRadius: 3,
       backgroundColor: themeColors.accent.primary,
-      width: (uploadProgress ?? 0) + '%',
+      width: (`${uploadProgress ?? 0}%` as any),
     }), [themeColors, uploadProgress]);
 
     const fileNameStyle = useMemo<TextStyle>(() => ({

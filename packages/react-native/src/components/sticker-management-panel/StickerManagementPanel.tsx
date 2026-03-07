@@ -123,7 +123,7 @@ export const StickerManagementPanel = forwardRef<View, StickerManagementPanelPro
     return (
       <View ref={ref} style={[containerStyle, userStyle]} {...rest}>
         {/* Header */}
-        <Text style={{ fontSize: theme.typography.sizes.md.fontSize, fontWeight: theme.typography.weights.semibold, color: colors.text }}>
+        <Text style={{ fontSize: theme.typography.sizes.base.fontSize, fontWeight: theme.typography.weights.semibold, color: colors.text }}>
           {title}
         </Text>
 
