@@ -5,8 +5,8 @@
  * Reuses color resolution from `@coexist/wisp-core`. Renders via `<View>` + `<Text>`.
  */
 
-import React, { forwardRef, useMemo, useCallback } from 'react';
-import { View, Text, Pressable, ScrollView, TextInput } from 'react-native';
+import React, { forwardRef, useMemo, useCallback, useEffect } from 'react';
+import { Platform, View, Text, Pressable, ScrollView } from 'react-native';
 import type { ViewProps, ViewStyle, TextStyle } from 'react-native';
 import type {
   SearchResult,
@@ -17,7 +17,88 @@ import {
 } from '@coexist/wisp-core/styles/MessageSearch.styles';
 import { defaultSpacing, defaultRadii, defaultTypography } from '@coexist/wisp-core/theme/create-theme';
 import { useTheme } from '../../providers';
+import { SearchInput } from '../search-input';
 import Svg, { Line, Circle } from 'react-native-svg';
+
+// ---------------------------------------------------------------------------
+// Gradient highlight helpers
+// ---------------------------------------------------------------------------
+
+const GRADIENT_COLORS = ['#8B5CF6', '#EC4899', '#3B82F6', '#8B5CF6'];
+const GRADIENT_SPEED = 3000;
+const HIGHLIGHT_KEYFRAMES_ID = 'wisp-search-highlight-keyframes';
+
+let highlightKeyframesInjected = false;
+
+function injectHighlightKeyframes(): void {
+  if (highlightKeyframesInjected || typeof document === 'undefined') return;
+  highlightKeyframesInjected = true;
+  const sheet = document.createElement('style');
+  sheet.id = HIGHLIGHT_KEYFRAMES_ID;
+  sheet.textContent = `@keyframes wisp-gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}`;
+  document.head.appendChild(sheet);
+}
+
+/**
+ * Split text into segments, highlighting substrings that match the query
+ * with an animated gradient on web, or accent color on native.
+ */
+function renderHighlightedText(
+  text: string,
+  query: string,
+  accentColor: string,
+): React.ReactNode {
+  const trimmed = query.trim();
+  if (!trimmed) return text;
+
+  // Escape regex special chars in the query
+  const escaped = trimmed.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escaped})`, 'gi');
+  const parts = text.split(regex);
+
+  if (parts.length <= 1) return text;
+
+  const isWeb = Platform.OS === 'web';
+  const gradientStr = `linear-gradient(90deg, ${GRADIENT_COLORS.join(', ')})`;
+
+  return parts.map((part, i) => {
+    const isMatch = regex.test(part);
+    // Reset lastIndex since we re-use the regex with `g` flag
+    regex.lastIndex = 0;
+
+    if (!isMatch) return part;
+
+    if (isWeb) {
+      return (
+        <Text
+          key={i}
+          style={{
+            backgroundImage: gradientStr,
+            backgroundSize: '300% 300%',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            color: 'transparent',
+            animationName: 'wisp-gradient-shift',
+            animationDuration: `${GRADIENT_SPEED}ms`,
+            animationTimingFunction: 'ease',
+            animationIterationCount: 'infinite',
+            fontWeight: '600',
+          } as any}
+        >
+          {part}
+        </Text>
+      );
+    }
+
+    // Native fallback: accent-colored bold text
+    return (
+      <Text key={i} style={{ color: accentColor, fontWeight: '600' }}>
+        {part}
+      </Text>
+    );
+  });
+}
 
 // ---------------------------------------------------------------------------
 // Props
@@ -44,6 +125,8 @@ export interface MessageSearchProps extends ViewProps {
   placeholder?: string;
   /** Called when the close/clear button is clicked. */
   onClose?: () => void;
+  /** Show animated gradient border on the search input when focused. @default false */
+  gradientBorder?: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -145,6 +228,7 @@ export const MessageSearch = forwardRef<View, MessageSearchProps>(
       totalResults,
       placeholder = 'Search messages...',
       onClose,
+      gradientBorder = false,
       style: userStyle,
       ...rest
     },
@@ -157,6 +241,11 @@ export const MessageSearch = forwardRef<View, MessageSearchProps>(
       () => resolveMessageSearchColors(theme),
       [theme],
     );
+
+    // Inject gradient keyframes on web (once)
+    useEffect(() => {
+      if (Platform.OS === 'web') injectHighlightKeyframes();
+    }, []);
 
     // -- Styles ---------------------------------------------------------------
     const containerStyle: ViewStyle = {
@@ -174,33 +263,6 @@ export const MessageSearch = forwardRef<View, MessageSearchProps>(
       borderBottomColor: colors.border,
       minHeight: 56,
     };
-
-    const inputWrapperStyle: ViewStyle = {
-      flex: 1,
-      minWidth: 0,
-      flexDirection: 'row',
-      alignItems: 'center',
-      height: 32,
-      paddingHorizontal: 10,
-      gap: 6,
-      backgroundColor: colors.inputBg,
-      borderWidth: 1,
-      borderColor: colors.inputBorder,
-      borderRadius: defaultRadii.md,
-    };
-
-    const inputStyle = {
-      flex: 1,
-      minWidth: 0,
-      height: '100%' as any,
-      paddingHorizontal: 0,
-      paddingVertical: 0,
-      fontSize: defaultTypography.sizes.sm.fontSize,
-      lineHeight: defaultTypography.sizes.sm.lineHeight,
-      color: colors.inputText,
-      backgroundColor: 'transparent',
-      outlineStyle: 'none' as any,
-    } as ViewStyle & TextStyle;
 
     const closeButtonStyle: ViewStyle = {
       width: 28,
@@ -349,17 +411,16 @@ export const MessageSearch = forwardRef<View, MessageSearchProps>(
       >
         {/* Header with search input and close button */}
         <View style={headerStyle}>
-          <View style={inputWrapperStyle}>
-            <SearchIcon size={14} color={colors.headerTextMuted} />
-            <TextInput
-              value={query}
-              onChangeText={onQueryChange}
-              placeholder={placeholder}
-              placeholderTextColor={colors.inputPlaceholder}
-              accessibilityLabel="Search messages"
-              style={inputStyle}
-            />
-          </View>
+          <SearchInput
+            value={query}
+            onValueChange={onQueryChange}
+            placeholder={placeholder}
+            size="sm"
+            fullWidth
+            loading={loading}
+            gradientBorder={gradientBorder}
+            onClear={() => onQueryChange('')}
+          />
           {onClose && (
             <Pressable
               accessibilityRole="button"
@@ -443,8 +504,10 @@ export const MessageSearch = forwardRef<View, MessageSearchProps>(
                     <Text style={timestampTextStyle}>{result.timestamp}</Text>
                   </View>
 
-                  {/* Message content */}
-                  <Text style={contentTextStyle} numberOfLines={2}>{result.content}</Text>
+                  {/* Message content with gradient-highlighted matches */}
+                  <Text style={contentTextStyle} numberOfLines={2}>
+                    {renderHighlightedText(result.content, query, colors.highlightText)}
+                  </Text>
 
                   {/* Channel name */}
                   {result.channelName && (
