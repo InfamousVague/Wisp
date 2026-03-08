@@ -15,7 +15,7 @@
  * Respects `prefers-reduced-motion` — skips the animation entirely when set.
  */
 
-import React, { useRef, useEffect, useState, useMemo } from 'react';
+import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
 import { Animated, Platform, View, Easing } from 'react-native';
 import type { ViewStyle } from 'react-native';
 
@@ -180,13 +180,39 @@ function AuraBurstWeb({
   // Track activation count to force re-render of ring divs (replays animation)
   const [burstKey, setBurstKey] = useState(0);
   const prevActive = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [childSize, setChildSize] = useState<{ w: number; h: number } | null>(null);
 
   // Generate random jitter offsets per ring (regenerated each burst)
   const ringJitter = useRef<Array<{ jx: number; jy: number }>>([]);
 
+  // Measure the first child element so rings align to the actual content,
+  // not the potentially-larger flex wrapper.
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const child = container.firstElementChild as HTMLElement;
+    if (!child) return;
+
+    const measure = () => {
+      setChildSize({ w: child.offsetWidth, h: child.offsetHeight });
+    };
+    measure();
+
+    const ro = new ResizeObserver(measure);
+    ro.observe(child);
+    return () => ro.disconnect();
+  }, []);
+
   useEffect(() => {
     if (active && !prevActive.current) {
       injectWebKeyframes();
+      // Re-measure child in case it changed
+      const container = containerRef.current;
+      if (container) {
+        const child = container.firstElementChild as HTMLElement;
+        if (child) setChildSize({ w: child.offsetWidth, h: child.offsetHeight });
+      }
       // Generate fresh jitter for each ring
       ringJitter.current = colors.map(() => ({
         jx: jitter(2.5),
@@ -199,10 +225,10 @@ function AuraBurstWeb({
 
   const reducedMotion = useMemo(() => prefersReducedMotion(), []);
 
-  const showRings = burstKey > 0 && !reducedMotion;
+  const showRings = burstKey > 0 && !reducedMotion && childSize != null;
 
   return (
-    <View style={[{ position: 'relative' } as ViewStyle, style]}>
+    <div ref={containerRef} style={{ position: 'relative', ...(style as any) }}>
       {children}
       {showRings &&
         colors.map((color, i) => {
@@ -210,8 +236,12 @@ function AuraBurstWeb({
           const j = ringJitter.current[i] || { jx: 0, jy: 0 };
           const ringStyle: any = {
             position: 'absolute',
-            // Start flush with the element edge
-            inset: -borderWidth,
+            // Align to the measured child, not the container
+            top: -borderWidth,
+            left: -borderWidth,
+            width: childSize.w + borderWidth * 2,
+            height: childSize.h + borderWidth * 2,
+            boxSizing: 'border-box',
             borderRadius: radius,
             border: `${borderWidth}px solid ${color}`,
             boxShadow: `0 0 ${blur}px ${blur * 0.5}px ${color}`,
@@ -225,7 +255,7 @@ function AuraBurstWeb({
           };
           return <div key={`${burstKey}-${i}`} style={ringStyle} />;
         })}
-    </View>
+    </div>
   );
 }
 
