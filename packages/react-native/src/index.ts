@@ -28,7 +28,7 @@ export {
   Alert, Skeleton, Rating, CircularProgress,
   TagInput, ColorPicker,
   NotificationBadge, ReadReceipt, WispImage, Beacon,
-  CallTimer, GradientText, GradientBorder, AnimatedCounter,
+  CallTimer, GradientText, GradientBorder, AnimatedCounter, AuraBurst,
 } from './primitives';
 export type {
   TextProps, BadgeProps, ButtonProps, InputProps, ToggleProps,
@@ -39,7 +39,7 @@ export type {
   AlertProps, SkeletonProps, RatingProps, CircularProgressProps,
   TagInputProps, ColorPickerProps,
   NotificationBadgeProps, ReadReceiptProps, WispImageProps, BeaconProps,
-  CallTimerProps, GradientTextProps, GradientBorderProps, AnimatedCounterProps,
+  CallTimerProps, GradientTextProps, GradientBorderProps, AnimatedCounterProps, AuraBurstProps,
 } from './primitives';
 
 // ---------------------------------------------------------------------------

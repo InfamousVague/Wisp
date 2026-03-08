@@ -219,3 +219,9 @@ export type { GradientBorderProps } from './gradient-border';
 // ---------------------------------------------------------------------------
 export { AnimatedCounter } from './animated-counter';
 export type { AnimatedCounterProps } from './animated-counter';
+
+// ---------------------------------------------------------------------------
+// AuraBurst
+// ---------------------------------------------------------------------------
+export { AuraBurst } from './aura-burst';
+export type { AuraBurstProps } from './aura-burst';
